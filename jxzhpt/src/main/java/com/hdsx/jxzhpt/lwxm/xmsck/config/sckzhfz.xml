@@ -264,11 +264,11 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
 		<if test="xzqhdm!='' and xzqhdm!= null ">
 			${xzqhdm}
 		</if>
-	<if test="lxmc!='' and lxmc!= null ">
+	    <if test="lxmc!='' and lxmc!= null ">
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and scxmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf in (${xmnf})
  		</if>
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
@@ -276,8 +276,8 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		<if test="sbzt!='' and sbzt!= null ">
  			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
  		</if>
- 		<if test="lxjsdj!='' and lxjsdj!= null ">
- 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			${jsdj}
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
  			and sck_lxbm like #{lxbm}||'%'
@@ -287,6 +287,15 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		</if>
  		<if test="bz!='' and bz!= null ">
  			and sck_lxbm like #{bz}||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 				${tsdq}
+ 	    </if>
+ 	    <if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>
+ 		<if test="gldj!='' and gldj!= null ">
+ 			${gldj}
  		</if>
  </select>
   <select id="exportExcel_zhfz_scsh" parameterType="sckzhfz" resultType="elist">
@@ -306,7 +315,7 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and scxmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf in (${xmnf})
  		</if>
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'

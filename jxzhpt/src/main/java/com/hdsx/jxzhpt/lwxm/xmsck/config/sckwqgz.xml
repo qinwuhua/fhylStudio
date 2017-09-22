@@ -380,7 +380,7 @@
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and scxmnf like '%'||(#{xmnf})||'%'
+			and scxmnf in  (${xmnf})
 		</if>
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
@@ -393,9 +393,6 @@
 			and (sck_shzt like '%'||(#{shzt})||'%' or sck_shzt is null or sck_shzt='')
 			</if>
 		</if>
-		<!-- <if test="jsdj!='' and jsdj!= null ">
-			and jsdj like '%'||(#{jsdj})||'%'
-		</if> -->
 		<if test="akjfl!='' and akjfl!= null ">
 			${akjfl}
 		</if>
