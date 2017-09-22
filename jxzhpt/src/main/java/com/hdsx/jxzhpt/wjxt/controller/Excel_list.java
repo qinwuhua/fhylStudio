@@ -29,7 +29,14 @@ public class Excel_list implements Serializable {
 	private String nf;
 	private String ssbb;
 	private String treeno;
+	private String yf;
 	
+	public String getYf() {
+		return yf;
+	}
+	public void setYf(String yf) {
+		this.yf = yf;
+	}
 	public String getNf() {
 		return nf;
 	}

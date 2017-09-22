@@ -24,9 +24,10 @@
     	var list_map = new Array();
     	for(var i=1;i<25;i++){
     		var obj=$("#tr"+i+" input");
-   			var excel_list = {gydw:"",nf:"",v_0:"",v_1:"",v_2:"",v_3:"",v_4:"",v_5:"",v_6:"",v_7:"",v_8:"",v_9:"",v_10:"",v_11:"",v_12:"",v_13:""};
+   			var excel_list = {gydw:"",nf:"",yf:"",v_0:"",v_1:"",v_2:"",v_3:"",v_4:"",v_5:"",v_6:"",v_7:"",v_8:"",v_9:"",v_10:"",v_11:"",v_12:"",v_13:""};
        		excel_list.gydw+=$.cookie('unit');
        		excel_list.nf+=$("#nf").combobox('getValue');
+       		excel_list.yf+=$("#yf").combobox('getValue');
        		excel_list.v_0+=$(obj[0]).val();
        		excel_list.v_1+=$(obj[1]).val();
        		excel_list.v_2+=$(obj[2]).val();
@@ -61,15 +62,13 @@
     }
     
     $(function(){
-		setnf();
+		setnf();setyf();
     })
     
     function setnf(){
-		
 		var id='nf';
 		var myDate = new Date();
 		var years=[];
-		
 		for(var i=2011;i<=2020;i++){
 			years.push({text:(i),value:(i)});
 		}
@@ -79,6 +78,20 @@
 		    textField:'text'   
 		});
 		$('#'+id).combobox("setValue",new Date().getFullYear());
+	}
+	function setyf(){
+		var id='yf';
+		var myDate = new Date();
+		var years=[];
+		for(var i=1;i<=12;i++){
+			years.push({text:(i),value:(i)});
+		}
+		$('#'+id).combobox({    
+		    data:years,
+		    valueField:'text',    
+		    textField:'text'   
+		});
+		$('#'+id).combobox("setValue",new Date().getMonth());
 	}
   </script>
   <style type="text/css">
@@ -125,7 +138,7 @@ a:active {
                     <div  class="easyui-layout" fit="true" >
               <div data-options="region:'center',border:false" style="overflow:auto;">
               <table id='bbtable' width="1160px" >
-                <caption align="top" style="font-size:x-large;font-weight: bolder;"><input type="text" id="nf"  style="width:80px;">年危桥改造等三件实事进展情况汇总表 </caption>
+                <caption align="top" style="font-size:x-large;font-weight: bolder;"><input type="text" id="nf"  style="width:80px;">年<input type="text" id="yf"  style="width:80px;">月危桥改造等三件实事进展情况汇总表 </caption>
                 
                   <tr>
                     <td rowspan="3" colspan="5" style="width: 300px;">项目</td>
