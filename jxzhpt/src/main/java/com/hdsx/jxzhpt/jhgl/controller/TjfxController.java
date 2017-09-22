@@ -1245,16 +1245,17 @@ public class TjfxController extends BaseActionSupport{
 				et.add(new Excel_tilte("技术等级",1,2,7,7));
 				et.add(new Excel_tilte("路面类型",1,2,8,8));
 				et.add(new Excel_tilte("MQI",1,2,9,9));
-				et.add(new Excel_tilte("路面PQI",1,2,10,10));
-				et.add(new Excel_tilte("路面分项指标",1,1,11,15));
-				et.add(new Excel_tilte("路基SCI",1,2,16,16));
-				et.add(new Excel_tilte("桥隧构造物BCI",1,2,17,17));
-				et.add(new Excel_tilte("沿线设施TCI",1,2,18,18));
-				et.add(new Excel_tilte("PCI",2,2,11,11));
-				et.add(new Excel_tilte("RQI",2,2,12,12));
-				et.add(new Excel_tilte("RDI",2,2,13,13));		
-				et.add(new Excel_tilte("SRI",2,2,14,14));
-				et.add(new Excel_tilte("PSSI",2,2,15,15));
+				et.add(new Excel_tilte("MQI等级",1,2,10,10));
+				et.add(new Excel_tilte("路面PQI",1,2,11,11));
+				et.add(new Excel_tilte("路面分项指标",1,1,12,16));
+				et.add(new Excel_tilte("路基SCI",1,2,17,17));
+				et.add(new Excel_tilte("桥隧构造物BCI",1,2,18,18));
+				et.add(new Excel_tilte("沿线设施TCI",1,2,19,19));
+				et.add(new Excel_tilte("PCI",2,2,12,12));
+				et.add(new Excel_tilte("RQI",2,2,13,13));
+				et.add(new Excel_tilte("RDI",2,2,14,14));		
+				et.add(new Excel_tilte("SRI",2,2,15,15));
+				et.add(new Excel_tilte("PSSI",2,2,16,16));
 				eldata.setEt(et);//将表头内容设置到类里面
 				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 				Excel_export.excel_export(eldata,response);
