@@ -310,6 +310,7 @@
  </select>
  
 	
+
 	<select id="exportExcel_wqgz_scgl" parameterType="sckwqgz" resultType="elist">
 		select rownum v_0,x.xzqhmc v_1,x.qlbh v_2,x.qlmc v_3,x.qlzxzh v_4,x.lxbm v_5,x.lxmc v_6,t.scqlqc v_7,
            t.scqlqk v_8,t.fapgdw v_9,t.fascdw v_10,t.faspsj v_11,t.spwh v_12,t.tzgs v_13,t.jsxz v_14,t.jsnr v_15,t.scxmnf v_16,t.scbz v_17
@@ -359,7 +360,22 @@
 		</if>
 		 <if test="gldj!='' and gldj!= null ">
 			${gldj}
-		</if> 
+		</if>
+	    <if test="xlxbm !='' and xlxbm != null">
+	        and xlxbm like '%'||(#{xlxbm})||'%'
+	    </if>
+	    <if test="xqlbm !='' and xqlbm != null">
+	        and xlxbm like '%'||(#{xqlbm})||'%'
+	    </if>
+	    <if test="xzxzh !='' and xzxzh != null">
+	        and xlxbm like '%'||(#{xlxbm})||'%'
+	    </if>
+	    <if test="xlxmc !='' and xlxmc != null">
+	        and xlxbm like '%'||(#{xlxbm})||'%'
+	    </if>
+	    <if test="xqlmc !='' and xqlmc != null">
+	        and xlxbm like '%'||(#{xlxbm})||'%'
+	    </if> 
 	</select>
 	<select id="exportExcel_wqgz_scsh" parameterType="sckwqgz" resultType="elist">
 		select rownum v_0,x.xzqhmc v_1,x.qlbh v_2,x.qlmc v_3,x.qlzxzh v_4,x.lxbm v_5,x.lxmc v_6,t.scqlqc v_7,
@@ -406,17 +422,32 @@
 			and qlbh like '%'||(#{qlbh})||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-		${tsdq}
+		    ${tsdq}
 		</if>
 		<if test="xmklx !='' and xmklx != null ">
-		and xmklx like '%'||(#{xmklx})||'%'
+		    and xmklx like '%'||(#{xmklx})||'%'
  		</if>	
  		 <if test="jsdj!='' and jsdj!= null ">
 			${jsdj}
 		</if> 
 		<if test="gldj!='' and gldj!= null ">
 			${gldj}
-		</if> 
+		</if>
+		<if test="xlxbm !='' and xlxbm != null">
+	        and xlxbm like '%'||(#{xlxbm})||'%'
+	    </if>
+	    <if test="xqlbm !='' and xqlbm != null">
+	        and xlxbm like '%'||(#{xqlbm})||'%'
+	    </if>
+	    <if test="xzxzh !='' and xzxzh != null">
+	        and xlxbm like '%'||(#{xlxbm})||'%'
+	    </if>
+	    <if test="xlxmc !='' and xlxmc != null">
+	        and xlxbm like '%'||(#{xlxbm})||'%'
+	    </if>
+	    <if test="xqlmc !='' and xqlmc != null">
+	        and xlxbm like '%'||(#{xlxbm})||'%'
+	    </if> 
 	</select>
 	<select id="insertToSheet" resultType="sjbb" parameterType="hashMap">
 		select

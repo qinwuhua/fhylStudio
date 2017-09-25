@@ -85,6 +85,36 @@ public class Plan_zhfz {
 	private String scbz;
 	private String scyhlc;
 	private String gjxjnd;
+	
+	private String ylxbm;//灾害防治-原路线编码
+	private String yqdzh;//灾害防治-原起点桩号
+	private String yzdzh;//灾害防治-原止点桩号
+	private String ylxmc;//灾害防治-原路线名称
+	
+	public String getYlxbm() {
+		return ylxbm;
+	}
+	public void setYlxbm(String ylxbm) {
+		this.ylxbm = ylxbm;
+	}
+	public String getYqdzh() {
+		return yqdzh;
+	}
+	public void setYqdzh(String yqdzh) {
+		this.yqdzh = yqdzh;
+	}
+	public String getYzdzh() {
+		return yzdzh;
+	}
+	public void setYzdzh(String yzdzh) {
+		this.yzdzh = yzdzh;
+	}
+	public String getYlxmc() {
+		return ylxmc;
+	}
+	public void setYlxmc(String ylxmc) {
+		this.ylxmc = ylxmc;
+	}
 	public String getJhkgsj1() {
 		return jhkgsj1;
 	}

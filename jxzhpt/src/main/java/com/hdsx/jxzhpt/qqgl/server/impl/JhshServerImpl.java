@@ -870,6 +870,12 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public boolean updateJhshYhzx(Jhsh jhsh) {
 		return update("updateJhshYhzx",jhsh)>0;
 	}
+	
+	@Override
+	public boolean updateSflgc(Jhsh jhsh) {
+		return update("updateJhshSflgc",jhsh)>0;
+	}
+	
 	@Override
 	public List<Jhsh> queryGsdgz(Jhsh jhsh, int page, int rows) {
 		params.put("jhsh", jhsh);
@@ -1203,5 +1209,12 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public List<Lx> queryLxidbyGhlxbm(String string) {
 		return queryList("queryLxidbyGhlxbm", string);
 	}
-	
+	@Override
+	public List<Jhsh> queryJhshSflgc(Jhsh jhsh) {
+		return queryList("querySflgc", jhsh);
+	}
+	@Override
+	public Jhsh querySflgcByXmbm(Jhsh jhsh) {
+		return queryOne("querySflgcByXmbm", jhsh);
+	}
 }

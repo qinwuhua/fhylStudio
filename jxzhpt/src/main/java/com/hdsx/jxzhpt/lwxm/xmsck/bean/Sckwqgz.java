@@ -149,10 +149,12 @@ public void setGldj(String gldj) {
 	private String sck_sbthcd1;
 	private String zdezj;
 	private String scakjfl;
-	private String xlxbm;
-	private String xqlbm;
-	private String xzxzh;
-	private String xlxmc;
+	
+	private String xlxbm;//原路线编码
+	private String xqlbm;//原桥梁编码
+	private String xzxzh;//原中心桩号
+	private String xlxmc;//原路线名称
+	private String xqlmc;//原桥梁名称
 	
 	private String nsqsbz;
 	private String xmklx;//项目库类型
@@ -988,5 +990,10 @@ public void setGldj(String gldj) {
 	public void setNsqsbz(String nsqsbz) {
 		this.nsqsbz = nsqsbz;
 	}
-		
+	public String getXqlmc() {
+		return xqlmc;
+	}
+	public void setXqlmc(String xqlmc) {
+		this.xqlmc = xqlmc;
+	}	
 }

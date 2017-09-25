@@ -13,6 +13,10 @@ public class Jckzhfz implements Serializable{
 	private String xmklx;
 	private String lsjl;
 	private String lsxmxx;
+	private String ylxbm;//灾害防治-原路线编码
+	private String yqdzh;//灾害防治-原起点桩号
+	private String yzdzh;//灾害防治-原止点桩号
+	private String ylxmc;//灾害防治-原路线名称
 	
 	public String getLsjl() {
 		return lsjl;
@@ -44,6 +48,32 @@ public class Jckzhfz implements Serializable{
 	public void setJsdj(String jsdj) {
 		this.jsdj = jsdj;
 	}
+    //新添加
+	public String getYlxbm() {
+		return ylxbm;
+	}
+	public void setYlxbm(String ylxbm) {
+		this.ylxbm = ylxbm;
+	}
+	public String getYqdzh() {
+		return yqdzh;
+	}
+	public void setYqdzh(String yqdzh) {
+		this.yqdzh = yqdzh;
+	}
+	public String getYzdzh() {
+		return yzdzh;
+	}
+	public void setYzdzh(String yzdzh) {
+		this.yzdzh = yzdzh;
+	}
+	public String getYlxmc() {
+		return ylxmc;
+	}
+	public void setYlxmc(String ylxmc) {
+		this.ylxmc = ylxmc;
+	}
+
 	private static final long serialVersionUID = 1L;
 	private String id;
 	private String gydwdm;
@@ -272,17 +302,19 @@ public class Jckzhfz implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Jckzhfz [id=" + id + ", gydwdm=" + gydwdm + ", gydwbm="
-				+ gydwbm + ", gydw=" + gydw + ", xzqhdm=" + xzqhdm
-				+ ", xzqhmc=" + xzqhmc + ", lxjsdj=" + lxjsdj + ", lxbm="
-				+ lxbm + ", lxmc=" + lxmc + ", qdzh=" + qdzh + ", zdzh=" + zdzh
-				+ ", qzlc=" + qzlc + ", yhlc=" + yhlc + ", gjxjnd=" + gjxjnd
-				+ ", yhnr=" + yhnr + ", tbbmbm=" + tbbmbm + ", tbsj=" + tbsj
-				+ ", xmnf=" + xmnf + ", xmtype=" + xmtype + ", sbzt=" + sbzt
-				+ ", sbsj=" + sbsj + ", sbbm=" + sbbm + ", shzt=" + shzt
-				+ ", shsj=" + shsj + ", shbm=" + shbm + ", bz=" + bz
-				+ ", sbthcd=" + sbthcd + ", tsdq=" + tsdq + ", page=" + page
-				+ ", rows=" + rows + ", sbzt2=" + sbzt2 + "]";
+		return "Jckzhfz [gldj=" + gldj + ", jsdj=" + jsdj + ", xmklx=" + xmklx
+				+ ", lsjl=" + lsjl + ", lsxmxx=" + lsxmxx + ", ylxbm=" + ylxbm
+				+ ", yqdzh=" + yqdzh + ", yzdzh=" + yzdzh + ", ylxmc=" + ylxmc
+				+ ", id=" + id + ", gydwdm=" + gydwdm + ", gydwbm=" + gydwbm
+				+ ", gydw=" + gydw + ", xzqhdm=" + xzqhdm + ", xzqhmc="
+				+ xzqhmc + ", lxjsdj=" + lxjsdj + ", lxbm=" + lxbm + ", lxmc="
+				+ lxmc + ", qdzh=" + qdzh + ", zdzh=" + zdzh + ", qzlc=" + qzlc
+				+ ", yhlc=" + yhlc + ", gjxjnd=" + gjxjnd + ", yhnr=" + yhnr
+				+ ", tbbmbm=" + tbbmbm + ", tbsj=" + tbsj + ", xmnf=" + xmnf
+				+ ", xmtype=" + xmtype + ", sbzt=" + sbzt + ", sbsj=" + sbsj
+				+ ", sbbm=" + sbbm + ", shzt=" + shzt + ", shsj=" + shsj
+				+ ", shbm=" + shbm + ", bz=" + bz + ", sbthcd=" + sbthcd
+				+ ", tsdq=" + tsdq + ", page=" + page + ", rows=" + rows
+				+ ", sbzt2=" + sbzt2 + ", gydwlx=" + gydwlx + "]";
 	}
-
 }

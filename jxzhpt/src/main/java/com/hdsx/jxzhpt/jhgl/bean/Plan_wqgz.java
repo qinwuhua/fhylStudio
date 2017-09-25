@@ -1,10 +1,14 @@
 package com.hdsx.jxzhpt.jhgl.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 
-public class Plan_wqgz {
+public class Plan_wqgz implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	private String id;//唯一ID
 	private String sckid;//危桥改造项目库ID
 	private String sbnf;//上报年份
@@ -89,6 +93,42 @@ public class Plan_wqgz {
 	private String xjgjnd;
 	private String sfylrbwqk;
 	
+	private String xlxbm;//原路线编码
+	private String xqlbm;//原桥梁编码
+	private String xzxzh;//原中心桩号
+	private String xlxmc;//原路线名称
+	private String xqlmc;//原桥梁名称
+
+	public String getXlxbm() {
+		return xlxbm;
+	}
+	public void setXlxbm(String xlxbm) {
+		this.xlxbm = xlxbm;
+	}
+	public String getXqlbm() {
+		return xqlbm;
+	}
+	public void setXqlbm(String xqlbm) {
+		this.xqlbm = xqlbm;
+	}
+	public String getXzxzh() {
+		return xzxzh;
+	}
+	public void setXzxzh(String xzxzh) {
+		this.xzxzh = xzxzh;
+	}
+	public String getXlxmc() {
+		return xlxmc;
+	}
+	public void setXlxmc(String xlxmc) {
+		this.xlxmc = xlxmc;
+	}
+	public String getXqlmc() {
+		return xqlmc;
+	}
+	public void setXqlmc(String xqlmc) {
+		this.xqlmc = xqlmc;
+	}
 	public String getJhkgsj1() {
 		return jhkgsj1;
 	}
@@ -586,5 +626,4 @@ public class Plan_wqgz {
 	public void setYjjgsj(String yjjgsj) {
 		this.yjjgsj = yjjgsj;
 	}
-	
 }

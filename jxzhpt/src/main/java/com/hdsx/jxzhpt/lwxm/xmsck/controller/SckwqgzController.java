@@ -32,7 +32,7 @@ import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 /**
- * 项目审查库——灾害防治Action层
+ * 前期管理——危桥改造控制层
  * @author lhp
  *
  */
@@ -200,6 +200,7 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 			//先得到导出的数据集
 			List <Excel_list> list=wqgzServer.exportExcel_wqgz_scgl(sckwqgz);
 			//导出设置
+
 			ExcelData eldata=new ExcelData();//创建一个类
 			eldata.setTitleName("危桥改造项目");//设置第一行 
 			eldata.setSheetName("危桥");//设置sheeet名
@@ -334,6 +335,7 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 			//先得到导出的数据集
 			List <Excel_list> list=wqgzServer.exportExcel_wqgz_scsh(sckwqgz);
 			//导出设置
+
 			
 			ExcelData eldata=new ExcelData();//创建一个类
 			eldata.setTitleName("危桥改造项目");//设置第一行 

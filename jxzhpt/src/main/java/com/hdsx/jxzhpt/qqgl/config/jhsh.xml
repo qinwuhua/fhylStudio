@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.jhsh">
+
+    <!-- 根据项目编号查询示范路工程数据 -->
+    <select id="querySflgcByXmbm" parameterType="jhsh" resultType="jhsh">
+       SELECT * FROM jhsh_sfl sfl WHERE sfl.xmbm = #{xmbm}
+    </select>
+    
+    <!-- 示范路工程查询Jhsh_sfl -->
+    <select id="querySflgc" parameterType="jhsh" resultType="jhsh">
+       select * from jhsh_sfl sfl where 1 = 1
+    </select>
+
+    <!-- 示范路更新Jhsh_sfl -->
+    <update id="updateJhshSflgc" parameterType="jhsh">
+	  update jhsh_sfl
+		<set>
+		  <if test="xmbm!=null">xmbm=#{xmbm},</if>
+		  <if test="ztz!=null">ztz=#{ztz},</if>
+		  <if test="tbz!=null">tbz=#{tbz},</if>
+		  <if test="tbz_jaf!=null">tbz_jaf=#{tbz_jaf},</if>
+		  <if test="tbz_gcjlf!=null">tbz_gcjlf=#{tbz_gcjlf},</if>
+		  <if test="tbz_qqgzf!=null">tbz_qqgzf=#{tbz_qqgzf},</if>
+		  <if test="dfzc!=null">dfzc=#{dfzc},</if>
+		  <if test="zydpx!=null">zydpx=#{zydpx}</if>
+		</set>
+	  where xmbm=#{xmbm}
+	</update>
+        
 	<insert id="insertJhshLmsjFromCbsj" parameterType="java.util.List">
 		<!-- insert into jhsh_sjgz (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh,jszlc)
 		select sys_guid(),c.xmbm,c.xmmc,c.xzqh,c.qdzh,c.zdzh,c.kgsj,c.wgsj,c.gq,k.gkpfwh,c.sjpfwh,c.jszlc
@@ -14,9 +41,9 @@
 	     gq=(select gq from cbsj_sjgz c where c.xmbm=#{xmbm}),
 	     sjpfwh=(select sjpfwh from cbsj_sjgz c where c.xmbm=#{xmbm}),
 	     jszlc=(select jszlc from cbsj_sjgz c where c.xmbm=#{xmbm})
-	    where j.xmbm=#{xmbm}
-		
+	    where j.xmbm=#{xmbm}	
 	</insert>
+	
 	<insert id="insertJhshLmgzFromCbsj" parameterType="java.util.List">
 		<!-- insert into jhsh_lmgz (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh)
 		select sys_guid(),c.xmbm,c.xmmc,c.xzqh,c.qdzh,c.zdzh,c.kgsj,c.wgsj,c.gq,k.gkpfwh,c.sjpfwh
