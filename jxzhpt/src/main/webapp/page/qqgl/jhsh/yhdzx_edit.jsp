@@ -49,9 +49,7 @@
 					$("#xmnf").combobox("setValue",msg.xmbm.substr(0,4));
 					$('#xmlx').val(4);
 					$('#gcfl1').combo('setText',msg.gcfl);
-					if(msg.xfchd=='是'){
-						$("#xfcse").attr('checked','checked');
-					}
+					
 					if(msg.snhntmchbhd=='是'){
 						$("#snhntmchbse").attr('checked','checked');
 					}
