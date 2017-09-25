@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="../../../js/autocomplete/jquery.autocomplete.css" />
 	<link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css" />
 	<script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
 	<script type="text/javascript" src="../../../js/jquery-form.js"></script>
 	<script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>

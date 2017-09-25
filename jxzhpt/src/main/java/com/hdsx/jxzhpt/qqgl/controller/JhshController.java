@@ -611,7 +611,47 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 	}
 	
+	/**
+	 * 查询计划管理->计划申报->示范路工程数据
+	 * @throws Exception
+	 */
+	public void querySflgc() throws Exception{
+		List<Jhsh> listSflgc= null;
+		try {
+			listSflgc = jhshServer.queryJhshSflgc(jhsh);
+			JsonUtils.write(listSflgc, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}		
+	}
 	
+	/**
+	 * 更新示范路工程
+	 * @throws Exception
+	 */
+	public void updateSflgc() throws Exception{
+		try {
+			boolean b=jhshServer.updateSflgc(jhsh);
+			result.put("result", new Boolean(b).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public void querySflgcByXmbm() throws Exception{
+		try {
+			Jhsh sflgcJhsh = new Jhsh();
+			sflgcJhsh = jhshServer.querySflgcByXmbm(jhsh);
+			JsonUtils.write(sflgcJhsh, getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw e;
+		}
+	}
 	
 	/**
 	 * 查询计划审核列表 养护和水毁
@@ -3539,7 +3579,4 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			e1.printStackTrace();
 		}
 	}
-	
-	
-				
 }

@@ -447,15 +447,30 @@
 		${tsdq}
 	</if>
 	<if test="lxbm!='' and lxbm!= null ">
- 			and lxbm like '%'||(#{lxbm})||'%'
- 		</if>
- 		<if test="qlbh!='' and qlbh!= null ">
- 			and qlbh like '%'||(#{qlbh})||'%'
- 		</if>
+ 		and lxbm like '%'||(#{lxbm})||'%'
+ 	</if>
+ 	<if test="qlbh!='' and qlbh!= null ">
+ 		and qlbh like '%'||(#{qlbh})||'%'
+ 	</if>
+ 	<if test="xlxbm !='' and xlxbm != null">
+	    and xlxbm like '%'||(#{xlxbm})||'%'
+	</if>
+	<if test="xqlbm !='' and xqlbm != null">
+	    and xlxbm like '%'||(#{xqlbm})||'%'
+	</if>
+	<if test="xzxzh !='' and xzxzh != null">
+	    and xlxbm like '%'||(#{xlxbm})||'%'
+	</if>
+	<if test="xlxmc !='' and xlxmc != null">
+	    and xlxbm like '%'||(#{xlxbm})||'%'
+	</if>
+	<if test="xqlmc !='' and xqlmc != null">
+	    and xlxbm like '%'||(#{xlxbm})||'%'
+	</if>
  </sql>
  <select id="exportExcel_wqgz" parameterType="jckwqgz" resultType="sjbb">
  	select
-	sbzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10
+	sbzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10,xlxbm v_11,xqlbm v_12,xzxzh v_13,xlxmc v_14,xqlmc v_15
  	from xmk_wqgz where 1=1
  	and sbthcd &lt;=#{sbthcd}
  	<if test="gydw!='' and gydw!= null ">
@@ -494,6 +509,21 @@
 	<if test="tsdq!='' and tsdq!= null ">
 		and tsdq like '%'||(#{tsdq})||'%'
 	</if>
+	<if test="xlxbm !='' and xlxbm != null">
+	    and xlxbm like '%'||(#{xlxbm})||'%'
+	</if>
+	<if test="xqlbm !='' and xqlbm != null">
+	    and xlxbm like '%'||(#{xqlbm})||'%'
+	</if>
+	<if test="xzxzh !='' and xzxzh != null">
+	    and xlxbm like '%'||(#{xlxbm})||'%'
+	</if>
+	<if test="xlxmc !='' and xlxmc != null">
+	    and xlxbm like '%'||(#{xlxbm})||'%'
+	</if>
+	<if test="xqlmc !='' and xqlmc != null">
+	    and xlxbm like '%'||(#{xlxbm})||'%'
+	</if>
  </select>
  <insert id="importWqgz"  parameterType="hashMap">
 	insert into xmk_wqgz(id,gydwbm,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qlbh,qlmc,qlzxzh,
@@ -505,7 +535,7 @@
  </insert>
   <select id="exportExcel_wqgz_sh" parameterType="jckwqgz" resultType="sjbb">
  	select
-	shzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10
+	shzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10,xmnf v_10,xlxbm v_11,xqlbm v_12,xzxzh v_13,xlxmc v_14,xqlmc v_15
  	from xmk_wqgz where sbthcd=7
  	<include refid="wqgz_commonsql"/>
  </select>

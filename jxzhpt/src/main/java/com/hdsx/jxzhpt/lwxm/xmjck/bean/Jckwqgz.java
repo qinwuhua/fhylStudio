@@ -13,7 +13,6 @@ public class Jckwqgz implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private String xqlbh;
-	private String xqlmc;
 	private String qxjk;
 	private String id;
 	private String qlmc;
@@ -145,15 +144,17 @@ public class Jckwqgz implements Serializable{
 	private String sck_sbthcd1;
 	private String zdezj;
 	private String scakjfl;
-	private String xlxbm;
-	private String xqlbm;
-	private String xzxzh;
-	private String xlxmc;
 	private String gldj;
 	private String gydwlx;
 	private String xmklx;
 	private String lsjl;
 	private String lsxmxx;
+	
+	private String xlxbm;//原路线编码
+	private String xqlbm;//原桥梁编码
+	private String xzxzh;//原中心桩号
+	private String xlxmc;//原路线名称
+	private String xqlmc;//原桥梁名称
 	
 	public String getLsxmxx() {
 		return lsxmxx;

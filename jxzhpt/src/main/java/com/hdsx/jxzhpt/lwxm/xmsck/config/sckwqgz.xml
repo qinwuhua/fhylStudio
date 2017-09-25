@@ -314,7 +314,7 @@
 		resultType="sjbb">
 		select
 		shzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc
-		v_7,pddj v_8,xjgjnd v_9,xmnf v_10,jsxz v_11
+		v_7,pddj v_8,xjgjnd v_9,xmnf v_10,jsxz v_11,xlxbm v_12,xqlbm v_13,xzxzh v_14,xlxmc v_15,xqlmc v_16
 		from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1
 		and sck_sbthcd &lt;=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">
@@ -361,7 +361,22 @@
 		</if>
 		 <if test="gldj!='' and gldj!= null ">
 			${gldj}
-		</if> 
+		</if>
+	    <if test="xlxbm !='' and xlxbm != null">
+	        and xlxbm like '%'||(#{xlxbm})||'%'
+	    </if>
+	    <if test="xqlbm !='' and xqlbm != null">
+	        and xlxbm like '%'||(#{xqlbm})||'%'
+	    </if>
+	    <if test="xzxzh !='' and xzxzh != null">
+	        and xlxbm like '%'||(#{xlxbm})||'%'
+	    </if>
+	    <if test="xlxmc !='' and xlxmc != null">
+	        and xlxbm like '%'||(#{xlxbm})||'%'
+	    </if>
+	    <if test="xqlmc !='' and xqlmc != null">
+	        and xlxbm like '%'||(#{xlxbm})||'%'
+	    </if> 
 	</select>
 	<select id="exportExcel_wqgz_scsh" parameterType="sckwqgz"
 		resultType="sjbb">
@@ -413,17 +428,32 @@
 			and qlbh like '%'||(#{qlbh})||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-		${tsdq}
+		    ${tsdq}
 		</if>
 		<if test="xmklx !='' and xmklx != null ">
-		and xmklx like '%'||(#{xmklx})||'%'
+		    and xmklx like '%'||(#{xmklx})||'%'
  		</if>	
  		 <if test="jsdj!='' and jsdj!= null ">
 			${jsdj}
 		</if> 
 		<if test="gldj!='' and gldj!= null ">
 			${gldj}
-		</if> 
+		</if>
+		<if test="xlxbm !='' and xlxbm != null">
+	        and xlxbm like '%'||(#{xlxbm})||'%'
+	    </if>
+	    <if test="xqlbm !='' and xqlbm != null">
+	        and xlxbm like '%'||(#{xqlbm})||'%'
+	    </if>
+	    <if test="xzxzh !='' and xzxzh != null">
+	        and xlxbm like '%'||(#{xlxbm})||'%'
+	    </if>
+	    <if test="xlxmc !='' and xlxmc != null">
+	        and xlxbm like '%'||(#{xlxbm})||'%'
+	    </if>
+	    <if test="xqlmc !='' and xqlmc != null">
+	        and xlxbm like '%'||(#{xlxbm})||'%'
+	    </if> 
 	</select>
 	<select id="insertToSheet" resultType="sjbb" parameterType="hashMap">
 		select

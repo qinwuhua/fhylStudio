@@ -112,7 +112,12 @@ var xzqhstr;
 			        {field:'lxmc',title:'路线名称',width:120,align:'center'},
 			        {field:'pddj',title:'评定等级',width:140,align:'center'},
 			        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
-			        {field:'xmnf',title:'入库时间',width:140,align:'center'}
+			        {field:'xmnf',title:'入库时间',width:140,align:'center'},
+			        {field:'xlxbm',title:'原路线编码',width:140,align:'center'},
+			        {field:'xqlbm',title:'原桥梁编码',width:140,align:'center'},
+			        {field:'xzxzh',title:'原中心桩号',width:140,align:'center'},
+			  	    {field:'xlxmc',title:'原路线名称',width:140,align:'center'},
+			  	    {field:'xqlmc',title:'原桥梁名称',width:140,align:'center'}
 		    ]]    
 		});  
 		var sbthcd;
@@ -605,7 +610,11 @@ var xzqhstr;
 		        {field:'qzlc',title:'总里程',width:140,align:'center'},
 		        {field:'yhlc',title:'隐患里程',width:140,align:'center'},
 		        {field:'gjxjnd',title:'改建/修建年度',width:140,align:'center'},
-		        {field:'xmnf',title:'项目年份',width:140,align:'center'}
+		        {field:'xmnf',title:'项目年份',width:140,align:'center'},
+		        {field:'ylxbm',title:'原路线编码',width:140,align:'center'},
+		        {field:'yqdzh',title:'原起点桩号',width:140,align:'center'},
+		        {field:'yzdzh',title:'原止点桩号',width:140,align:'center'},
+		        {field:'ylxmc',title:'原路线名称',width:140,align:'center'}
 		    ]]    
 		});  
 		var sbthcd;
@@ -860,7 +869,12 @@ function jckshWqgz(){
 		        {field:'lxmc',title:'路线名称',width:120,align:'center'},
 		        {field:'pddj',title:'评定等级',width:140,align:'center'},
 		        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
-		        {field:'xmnf',title:'入库时间',width:140,align:'center'}
+		        {field:'xmnf',title:'入库时间',width:140,align:'center'},
+		        {field:'xlxbm',title:'原路线编码',width:140,align:'center'},
+		        {field:'xqlbm',title:'原桥梁编码',width:140,align:'center'},
+		        {field:'xzxzh',title:'原中心桩号',width:140,align:'center'},
+		  	    {field:'xlxmc',title:'原路线名称',width:140,align:'center'},
+		  	    {field:'xqlmc',title:'原桥梁名称',width:140,align:'center'}
 	    ]]    
 	});  
 	var sbthcd;
@@ -1362,7 +1376,11 @@ function jckshZhfz(){
 	        {field:'qzlc',title:'总里程',width:140,align:'center'},
 	        {field:'yhlc',title:'隐患里程',width:140,align:'center'},
 	        {field:'gjxjnd',title:'改建/修建年度',width:140,align:'center'},
-	        {field:'xmnf',title:'项目年份',width:140,align:'center'}
+	        {field:'xmnf',title:'项目年份',width:140,align:'center'},
+	        {field:'ylxbm',title:'原路线编码',width:140,align:'center'},
+	        {field:'yqdzh',title:'原起点桩号',width:140,align:'center'},
+	        {field:'yzdzh',title:'原止点桩号',width:140,align:'center'},
+	  	    {field:'ylxmc',title:'原路线名称',width:140,align:'center'}
 	    ]]    
 	});  
 	var sbthcd;
@@ -1619,7 +1637,12 @@ function sckglWqgz(){
 		        {field:'pddj',title:'评定等级',width:140,align:'center'},
 		        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
 		        {field:'xmnf',title:'项目年份',width:140,align:'center'},
-		        {field:'jsxz',title:'建设性质',width:140,align:'center'}
+		        {field:'jsxz',title:'建设性质',width:140,align:'center'},
+		        {field:'xlxbm',title:'原路线编码',width:140,align:'center'},
+		        {field:'xqlbm',title:'原桥梁编码',width:140,align:'center'},
+		        {field:'xzxzh',title:'原中心桩号',width:140,align:'center'},
+		        {field:'xlxmc',title:'原路线名称',width:140,align:'center'},
+		        {field:'xqlmc',title:'原桥梁名称',width:140,align:'center'}
 	    ]]    
 	});  
 	var sbthcd;
@@ -1751,7 +1774,12 @@ function sckglWqgz123(){
 		        {field:'pddj',title:'评定等级',width:140,align:'center'},
 		        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
 		        {field:'xmnf',title:'项目年份',width:140,align:'center'},
-		        {field:'jsxz',title:'建设性质',width:140,align:'center'}
+		        {field:'jsxz',title:'建设性质',width:140,align:'center'},
+		        {field:'xlxbm',title:'原路线编码',width:140,align:'center'},
+		        {field:'xqlbm',title:'原桥梁编码',width:140,align:'center'},
+		        {field:'xzxzh',title:'原中心桩号',width:140,align:'center'},
+		        {field:'xlxmc',title:'原路线名称',width:140,align:'center'},
+		        {field:'xqlmc',title:'原桥梁名称',width:140,align:'center'}
 	    ]]    
 	});  
 	var sbthcd;
@@ -2146,7 +2174,11 @@ function sckglZhfz(){
 	        {field:'scyhlc',title:'隐患里程',width:140,align:'center'},
 	        {field:'gjxjnd',title:'改建/修建年度',width:140,align:'center'},
 	        {field:'xmnf',title:'项目年份',width:140,align:'center'},
-	        {field:'jsxz',title:'建设性质',width:140,align:'center'}
+	        {field:'jsxz',title:'建设性质',width:140,align:'center'},
+	        {field:'ylxbm',title:'原路线编码',width:140,align:'center'},
+	        {field:'yqdzh',title:'原起点桩号',width:140,align:'center'},
+	        {field:'yzdzh',title:'原止点桩号',width:140,align:'center'},
+	        {field:'ylxmc',title:'原路线名称',width:140,align:'center'}
 	    ]]    
 	});  
 	var sck_sbthcd;
@@ -2278,7 +2310,11 @@ function sckglZhfz123(){
 	        {field:'scyhlc',title:'隐患里程',width:140,align:'center'},
 	        {field:'gjxjnd',title:'改建/修建年度',width:140,align:'center'},
 	        {field:'xmnf',title:'项目年份',width:140,align:'center'},
-	        {field:'jsxz',title:'建设性质',width:140,align:'center'}
+	        {field:'jsxz',title:'建设性质',width:140,align:'center'},
+	        {field:'ylxbm',title:'原路线编码',width:140,align:'center'},
+	        {field:'yqdzh',title:'原起点桩号',width:140,align:'center'},
+	        {field:'yzdzh',title:'原止点桩号',width:140,align:'center'},
+	        {field:'ylxmc',title:'原路线名称',width:140,align:'center'}
 	    ]]    
 	});  
 	var sck_sbthcd;
@@ -2405,7 +2441,12 @@ function sckshWqgz(){
 		        {field:'pddj',title:'评定等级',width:140,align:'center'},
 		        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
 		        {field:'xmnf',title:'项目年份',width:140,align:'center'},
-		        {field:'jsxz',title:'建设性质',width:140,align:'center'}
+		        {field:'jsxz',title:'建设性质',width:140,align:'center'},
+		        {field:'xlxbm',title:'原路线编码',width:140,align:'center'},
+		        {field:'xqlbm',title:'原桥梁编码',width:140,align:'center'},
+		        {field:'xzxzh',title:'原中心桩号',width:140,align:'center'},
+		  	    {field:'xqlmc',title:'原桥梁名称',width:140,align:'center'},
+		  	    {field:'xlxmc',title:'原路线名称',width:140,align:'center'}
 	    ]]    
 	});  
 	var sbthcd;
@@ -2865,7 +2906,11 @@ function sckshZhfz(){
 	        {field:'scyhlc',title:'隐患里程',width:140,align:'center'},
 	        {field:'gjxjnd',title:'改建/修建年度',width:140,align:'center'},
 	        {field:'xmnf',title:'项目年份',width:140,align:'center'},
-	        {field:'jsxz',title:'建设性质',width:140,align:'center'}
+	        {field:'jsxz',title:'建设性质',width:140,align:'center'},
+	        {field:'ylxbm',title:'原路线编码',width:140,align:'center'},
+	        {field:'yqdzh',title:'原起点桩号',width:140,align:'center'},
+	        {field:'yzdzh',title:'原止点桩号',width:140,align:'center'},
+	  	    {field:'ylxmc',title:'原路线名称',width:140,align:'center'}
 	    ]]    
 	});  
 	var sck_sbthcd;
@@ -3407,7 +3452,12 @@ function sckglWqgz__ck(){
 		        {field:'pddj',title:'评定等级',width:140,align:'center'},
 		        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
 		        {field:'xmnf',title:'项目年份',width:140,align:'center'},
-		        {field:'jsxz',title:'建设性质',width:140,align:'center'}
+		        {field:'jsxz',title:'建设性质',width:140,align:'center'},
+		        {field:'xlxbm',title:'原路线编码',width:140,align:'center'},
+		        {field:'xqlbm',title:'原桥梁编码',width:140,align:'center'},
+		        {field:'xzxzh',title:'原中心桩号',width:140,align:'center'},
+		        {field:'xlxmc',title:'原路线名称',width:140,align:'center'},
+		        {field:'xqlmc',title:'原桥梁名称',width:140,align:'center'}
 	    ]]    
 	});  
 	var sbthcd;
@@ -3640,7 +3690,11 @@ function sckglZhfz__ck(){
 	        {field:'scyhlc',title:'隐患里程',width:140,align:'center'},
 	        {field:'gjxjnd',title:'改建/修建年度',width:140,align:'center'},
 	        {field:'xmnf',title:'项目年份',width:140,align:'center'},
-	        {field:'jsxz',title:'建设性质',width:140,align:'center'}
+	        {field:'jsxz',title:'建设性质',width:140,align:'center'},
+	        {field:'ylxbm',title:'原路线编码',width:140,align:'center'},
+	        {field:'yqdzh',title:'原起点桩号',width:140,align:'center'},
+	        {field:'yzdzh',title:'原止点桩号',width:140,align:'center'},
+	        {field:'ylxmc',title:'原路线名称',width:140,align:'center'}
 	    ]]    
 	});  
 	var sck_sbthcd;

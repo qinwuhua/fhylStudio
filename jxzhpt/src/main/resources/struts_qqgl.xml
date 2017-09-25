@@ -208,6 +208,10 @@
 		<action name="queryJhshLjgsdgz_qx" class="jhshController" method="queryJhshLjgsdgz_qx"></action>
 		<action name="exportJhshxxgsd" class="jhshController" method="exportJhshxxgsd"></action>
 		
+		<!-- 示范路工程 -->
+		<action name="querySflgc" class="jhshController" method="querySflgc"/>
+		<action name="updateSflgc" class="jhshController" method="updateSflgc"/>
+		
 		<action name="plansh" class="jhshController" method="plansh"></action>
 		<action name="thwshjh" class="jhshController" method="thwshjh"></action>
 		<action name="plansb" class="jhshController" method="plansb"></action>

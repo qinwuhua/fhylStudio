@@ -187,7 +187,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			List <SjbbMessage> list=wqgzServer.exportExcel_wqgz(jckwqgz);
 			System.out.println("------------"+list.size()+"--------------");
 			//导出设置
-			String excelHtml="<tr><td>上报状态</td><td>管养单位</td><td>行政区划</td><td>桥梁编号</td><td>桥梁名称</td><td>桥梁中心桩号</td><td>路线编码</td><td>路线名称</td><td>评定等级</td><td>修建/改建年度</td><td>项目年份</td></tr>";
+			String excelHtml="<tr><td>上报状态</td><td>管养单位</td><td>行政区划</td><td>桥梁编号</td><td>桥梁名称</td><td>桥梁中心桩号</td><td>路线编码</td><td>路线名称</td><td>评定等级</td><td>修建/改建年度</td><td>项目年份</td><td>原路线编号</td><td>原桥梁编号</td><td>原中心桩号</td><td>原路线名称</td><td>原桥梁名称</td></tr>";
 			List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
 			SheetBean sheetb = new SheetBean();
 			sheetb.setTableName("危桥改造项目");
@@ -195,7 +195,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			sheetb.setHeader(excelHtml);
 			sheetb.setSheetName("危桥");
 			sheetb.setList(list);
-			sheetb.setColnum((short)11);
+			sheetb.setColnum((short)16);
 			sheetBeans.add(sheetb);
 			String stylefileName="module.xls";
 			String tableName="危桥改造项目";//excel 文件的名字
@@ -305,7 +305,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			List <SjbbMessage> list=wqgzServer.exportExcel_wqgz_sh(jckwqgz);
 			System.out.println("------------"+list.size()+"--------------");
 			//导出设置
-			String excelHtml="<tr><td>审核状态</td><td>管养单位</td><td>行政区划</td><td>桥梁编号</td><td>桥梁名称</td><td>桥梁中心桩号</td><td>路线编码</td><td>路线名称</td><td>评定等级</td><td>修建/改建年度</td><td>项目年份</td></tr>";
+			String excelHtml="<tr><td>上报状态</td><td>管养单位</td><td>行政区划</td><td>桥梁编号</td><td>桥梁名称</td><td>桥梁中心桩号</td><td>路线编码</td><td>路线名称</td><td>评定等级</td><td>修建/改建年度</td><td>项目年份</td><td>原路线编号</td><td>原桥梁编号</td><td>原中心桩号</td><td>原路线名称</td><td>原桥梁名称</td></tr>";
 			List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
 			SheetBean sheetb = new SheetBean();
 			sheetb.setTableName("危桥改造项目");
@@ -313,7 +313,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			sheetb.setHeader(excelHtml);
 			sheetb.setSheetName("危桥");
 			sheetb.setList(list);
-			sheetb.setColnum((short)11);
+			sheetb.setColnum((short)16);
 			sheetBeans.add(sheetb);
 			String stylefileName="module.xls";
 			String tableName="危桥改造项目";//excel 文件的名字

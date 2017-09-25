@@ -171,7 +171,13 @@ function wqxm(jh,lx){
 			        	return row.jckwqgz.qlmc;
 		        	}
 		    	},
-		        {field:'pfztz',title:'批复总投资',width:80,align:'center'}
+		        {field:'pfztz',title:'批复总投资',width:80,align:'center'},
+		        {field:'pfztz',title:'批复总投资',width:80,align:'center'},
+		        {field:'xlxbm',title:'原路线编码',width:140,align:'center'},
+		        {field:'xqlbm',title:'原桥梁编码',width:140,align:'center'},
+		        {field:'xzxzh',title:'原中心桩号',width:140,align:'center'},
+		  	    {field:'xlxmc',title:'原路线名称',width:140,align:'center'},
+		  	    {field:'xqlmc',title:'原桥梁名称',width:140,align:'center'}
 		    ]],
 		    onClickRow:function(rowIndex,rowDate){
 				if(oldIndex!=-1){
@@ -256,7 +262,12 @@ function wqxm_sb(jh,lx){
 			        	return row.jckwqgz.qlmc;
 		        	}
 		    	},
-		        {field:'pfztz',title:'批复总投资',width:80,align:'center'}
+		        {field:'pfztz',title:'批复总投资',width:80,align:'center'},
+		        {field:'xlxbm',title:'原路线编码',width:140,align:'center'},
+		        {field:'xqlbm',title:'原桥梁编码',width:140,align:'center'},
+		        {field:'xzxzh',title:'原中心桩号',width:140,align:'center'},
+		  	    {field:'xlxmc',title:'原路线名称',width:140,align:'center'},
+		  	    {field:'xqlmc',title:'原桥梁名称',width:140,align:'center'}
 		    ]],
 		    onClickRow:function(rowIndex,rowDate){
 				if(oldIndex!=-1){
@@ -354,7 +365,12 @@ function wqxm_sh(jh,lx){
 		    		   return row.jckwqgz.scqlqk;
 		    	   }
 		       },
-		       {field:'pfztz',title:'批复总投资',width:80,align:'center'}
+		       {field:'pfztz',title:'批复总投资',width:80,align:'center'},
+		       {field:'xlxbm',title:'原路线编码',width:140,align:'center'},
+		       {field:'xqlbm',title:'原桥梁编码',width:140,align:'center'},
+		       {field:'xzxzh',title:'原中心桩号',width:140,align:'center'},
+		  	   {field:'xlxmc',title:'原路线名称',width:140,align:'center'},
+		  	   {field:'xqlmc',title:'原桥梁名称',width:140,align:'center'}
 		    ]],
 		    onClickRow:function(rowIndex,rowDate){
 				if(oldIndex!=-1){
@@ -440,7 +456,13 @@ function wqxm_zjxd(jh,lx){
 			        	return row.jckwqgz.qlmc;
 		        	}
 		    	},
-		        {field:'pfztz',title:'批复总投资',width:80,align:'center'}
+		        {field:'pfztz',title:'批复总投资',width:80,align:'center'},
+//		        {field:'pfztz',title:'批复总投资',width:80,align:'center'},
+		        {field:'xlxbm',title:'原路线编码',width:140,align:'center'},
+		        {field:'xqlbm',title:'原桥梁编码',width:140,align:'center'},
+		        {field:'xzxzh',title:'原中心桩号',width:140,align:'center'},
+		  	    {field:'xlxmc',title:'原路线名称',width:140,align:'center'},
+		  	    {field:'xqlmc',title:'原桥梁名称',width:140,align:'center'}
 		    ]],
 		    onClickRow:function(rowIndex,rowDate){
 				if(oldIndex!=-1){

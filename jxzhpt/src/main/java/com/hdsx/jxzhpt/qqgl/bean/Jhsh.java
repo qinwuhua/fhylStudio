@@ -1,6 +1,9 @@
 package com.hdsx.jxzhpt.qqgl.bean;
 
-public class Jhsh {
+import java.io.Serializable;
+
+public class Jhsh implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private String jhxdsj;//计划下达时间
 	private String yjsdj;
 	private String jsjsdj;
@@ -175,6 +178,41 @@ public class Jhsh {
 	private String wbc;
 	private String wbchd;
 	
+	//Jhsh_sfl    计划—示范路表
+	private String tbz;        //厅补助(万元) 
+	private String tbz_jaf;    //建安费(万元)
+	private String tbz_gcjlf;  //工程监理费(万元)
+	private String tbz_qqgzf;  //前期工作费(万元)
+	
+	public Jhsh() {super();}
+	
+	public String getTbz() {
+		return tbz;
+	}
+	public void setTbz(String tbz) {
+		this.tbz = tbz;
+	}
+	public String getTbz_jaf() {
+		return tbz_jaf;
+	}
+	public void setTbz_jaf(String tbz_jaf) {
+		this.tbz_jaf = tbz_jaf;
+	}
+
+	public String getTbz_gcjlf() {
+		return tbz_gcjlf;
+	}
+
+	public void setTbz_gcjlf(String tbz_gcjlf) {
+		this.tbz_gcjlf = tbz_gcjlf;
+	}
+
+	public String getTbz_qqgzf() {
+		return tbz_qqgzf;
+	}
+	public void setTbz_qqgzf(String tbz_qqgzf) {
+		this.tbz_qqgzf = tbz_qqgzf;
+	}
 	public String getWbc() {
 		return wbc;
 	}
@@ -1130,6 +1168,7 @@ public class Jhsh {
 	public void setYjsdj(String yjsdj) {
 		this.yjsdj = yjsdj;
 	}
+	
 	@Override
 	public String toString() {
 		return "Jhsh [jhxdsj=" + jhxdsj + ", yjsdj=" + yjsdj + ", jsjsdj="
@@ -1182,9 +1221,11 @@ public class Jhsh {
 				+ ", ghzdzh=" + ghzdzh + ", gxlxbm=" + gxlxbm + ", gxqdzh="
 				+ gxqdzh + ", gxzdzh=" + gxzdzh + ", zlc=" + zlc + ", xmklx="
 				+ xmklx + ", qdzh1=" + qdzh1 + ", zdzh1=" + zdzh1 + ", lsxmbm="
-				+ lsxmbm + ", lsxmnf=" + lsxmnf + ", lsxmlx=" + lsxmlx + "]";
+				+ lsxmbm + ", lsxmnf=" + lsxmnf + ", lsxmlx=" + lsxmlx
+				+ ", sgtsjwh=" + sgtsjwh + ", sfqx=" + sfqx + ", hszj=" + hszj
+				+ ", jhwj=" + jhwj + ", name=" + name + ", ttc=" + ttc
+				+ ", gydwdm=" + gydwdm + ", parent=" + parent + ", wbc=" + wbc
+				+ ", wbchd=" + wbchd + ", tbz=" + tbz + ", tbz_jaf=" + tbz_jaf
+				+ ", tbz_gcjlf=" + tbz_gcjlf + ", tbz_qqgzf=" + tbz_qqgzf + "]";
 	}
-	
-
-	
 }

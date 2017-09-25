@@ -14,6 +14,15 @@ import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
 public interface JhshServer {
+	
+	public Jhsh querySflgcByXmbm(Jhsh jhsh);
+	/**
+	 * 更新示范路工程
+	 * @param jhsh
+	 * @return
+	 */
+	public boolean updateSflgc(Jhsh jhsh);
+	
 	/**
 	 * 根据项目编码，把需要的信息插入到计划审核表中
 	 * @param xmbm 升级改造项目编码
@@ -392,6 +401,16 @@ public interface JhshServer {
 	public Map<String, String> queryJhshLjSh(Jhsh jhsh);
 	public Map<String, String> queryJhshLjSh_qx(Jhsh jhsh);
 	public List<Lx> queryLsxx1(Jhsh jhsh);
+	
+	/**
+	 * 查询示范路工程数据
+	 * @param jhsh Jhsh对象
+	 * @param page 显示分页
+	 * @param rows 显示行数
+	 * @return
+	 */
+	public List<Jhsh> queryJhshSflgc(Jhsh jhsh);
+	
 	/**
 	 * 查詢 計劃數據---養護中心
 	 * @param jhsh

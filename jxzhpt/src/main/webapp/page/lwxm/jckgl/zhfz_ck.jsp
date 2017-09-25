@@ -45,6 +45,10 @@
 			$("#bz").html(msg.bz);
 			$("#tsdq").html(msg.tsdq);
 			$("#xmklx").html(msg.xmklx);
+			$("#ylxbm").html(msg.ylxbm);
+			$("#yqdzh").html(msg.yqdzh);
+			$("#yzdzh").html(msg.yzdzh);
+			alert(msg.ylxbm);
 			}
 		});
 	}		
@@ -87,6 +91,17 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">总里程：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<span id="qzlc"></span></td>
+			</tr>
+ 			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原路线编码：</td>
+				<td style="background-color: #ffffff; " align="left">
+					<span id="ylxbm"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原起点桩号：</td>
+				<td style="background-color: #ffffff;"align="left">
+					<span id="yqdzh"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原止点桩号：</td>
+				<td style="background-color: #ffffff;" align="left">
+					<span id="yzdzh"></span></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划代码：</td>
