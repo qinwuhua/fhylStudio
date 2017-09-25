@@ -24,9 +24,10 @@
     	var list_map = new Array();
     	for(var i=1;i<25;i++){
     		var obj=$("#tr"+i+" input");
-   			var excel_list = {gydw:"",nf:"",v_0:"",v_1:"",v_2:"",v_3:"",v_4:"",v_5:"",v_6:"",v_7:"",v_8:"",v_9:"",v_10:"",v_11:"",v_12:"",v_13:""};
+   			var excel_list = {gydw:"",nf:"",yf:"",v_0:"",v_1:"",v_2:"",v_3:"",v_4:"",v_5:"",v_6:"",v_7:"",v_8:"",v_9:"",v_10:"",v_11:"",v_12:"",v_13:""};
        		excel_list.gydw+=$.cookie('unit');
        		excel_list.nf+=$("#nf").combobox('getValue');
+       		excel_list.yf+=$("#yf").combobox('getValue');
        		excel_list.v_0+=$(obj[0]).val();
        		excel_list.v_1+=$(obj[1]).val();
        		excel_list.v_2+=$(obj[2]).val();
@@ -46,7 +47,7 @@
        		
     	}
     	var json_data = JSON.stringify(list_map); 
-    	
+    	loadjzt();
     	$.ajax({
 			type:'post',
 			url:'/jxzhpt/gcybb/insertOrUpdatesjss.do',
@@ -54,6 +55,7 @@
 			dataType:'json',
 			success:function(data){
 				alert("保存成功！");
+				disLoadjzt();
 				parent.$('#lxxx').window('destroy');
 			}
 		});
@@ -61,25 +63,98 @@
     }
     
     $(function(){
-		setnf();
+		setnf();setyf();
+		
+		getinsertorupdate();
     })
     
     function setnf(){
-		
 		var id='nf';
 		var myDate = new Date();
 		var years=[];
-		
 		for(var i=2011;i<=2020;i++){
 			years.push({text:(i),value:(i)});
 		}
 		$('#'+id).combobox({    
 		    data:years,
 		    valueField:'text',    
-		    textField:'text'   
+		    textField:'text',
+		    onSelect:function(record){
+		    	getinsertorupdate();
+			}
 		});
 		$('#'+id).combobox("setValue",new Date().getFullYear());
 	}
+	function setyf(){
+		var id='yf';
+		var myDate = new Date();
+		var years=[];
+		for(var i=1;i<=12;i++){
+			years.push({text:(i),value:(i)});
+		}
+		$('#'+id).combobox({    
+		    data:years,
+		    valueField:'text',    
+		    textField:'text',
+		    onSelect:function(record){
+		    	getinsertorupdate();
+			}  
+		});
+		$('#'+id).combobox("setValue",new Date().getMonth());
+	}
+	
+	
+	function getinsertorupdate(){
+	
+		loadjzt();
+		var data="excel_list.nf="+$("#nf").combo('getValue')+"&excel_list.gydw="+$.cookie('unit2')+"&excel_list.yf="+$("#yf").combo('getValue');
+    	$.ajax({
+			type:'post',
+			url:'/jxzhpt/gcybb/getinsertorupdate.do',
+			data:data,
+			dataType:'json',
+			success:function(data){
+				
+				disLoadjzt();
+				
+				if(data.length==24)
+				for(var i=0;i<data.length;i++){
+		    		var obj=$("#tr"+(i+1)+" input");
+		   			$(obj[0]).val(data[i].v_0);
+		   			$(obj[1]).val(data[i].v_1);
+		   			$(obj[2]).val(data[i].v_2);
+		   			$(obj[3]).val(data[i].v_3);
+		   			$(obj[4]).val(data[i].v_4);
+		   			$(obj[5]).val(data[i].v_5);
+		   			$(obj[6]).val(data[i].v_6);
+		   			$(obj[7]).val(data[i].v_7);
+		   			$(obj[8]).val(data[i].v_8);
+		   			$(obj[9]).val(data[i].v_9);
+		   			$(obj[10]).val(data[i].v_10);
+		   			$(obj[11]).val(data[i].v_11);
+		   			$(obj[12]).val(data[i].v_12);
+		   			$(obj[13]).val(data[i].v_13);
+		    	}
+				else{
+					for(var i=0;i<24;i++){
+						var obj=$("#tr"+(i+1)+" input");
+						$(obj[5]).val(0);
+			   			$(obj[6]).val(0);
+			   			$(obj[7]).val(0);
+			   			$(obj[8]).val(0);
+			   			$(obj[9]).val(0);
+			   			$(obj[10]).val(0);
+			   			$(obj[11]).val(0);
+			   			$(obj[12]).val(0);
+			   			$(obj[13]).val(0);
+					}
+					
+				}
+				
+			}
+		});
+	}
+	
   </script>
   <style type="text/css">
 <!--
@@ -125,7 +200,7 @@ a:active {
                     <div  class="easyui-layout" fit="true" >
               <div data-options="region:'center',border:false" style="overflow:auto;">
               <table id='bbtable' width="1160px" >
-                <caption align="top" style="font-size:x-large;font-weight: bolder;"><input type="text" id="nf"  style="width:80px;">年危桥改造等三件实事进展情况汇总表 </caption>
+                <caption align="top" style="font-size:x-large;font-weight: bolder;"><input type="text" id="nf"  style="width:80px;">年<input type="text" id="yf"  style="width:80px;">月危桥改造等三件实事进展情况汇总表 </caption>
                 
                   <tr>
                     <td rowspan="3" colspan="5" style="width: 300px;">项目</td>

@@ -51,7 +51,7 @@
 				data:'xmlx='+4+'&xmbm='+parent.xmbm,
 				dataType:'json',
 				success:function(msg){
-					loadDist("xzqh1",msg.xzqhdm);
+					loadDist("xzqh1",msg.xzqhdm2);
 					loadUnit("gydw1",msg.gydwdm);
 					$('#xmsq').form("load",msg);
 					$('#xmbm1').val(msg.xmbm);

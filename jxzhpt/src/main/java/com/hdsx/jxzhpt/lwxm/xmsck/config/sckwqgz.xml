@@ -310,12 +310,11 @@
  </select>
  
 	
-	<select id="exportExcel_wqgz_scgl" parameterType="sckwqgz"
-		resultType="sjbb">
-		select
-		shzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc
-		v_7,pddj v_8,xjgjnd v_9,xmnf v_10,jsxz v_11,xlxbm v_12,xqlbm v_13,xzxzh v_14,xlxmc v_15,xqlmc v_16
-		from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1
+
+	<select id="exportExcel_wqgz_scgl" parameterType="sckwqgz" resultType="elist">
+		select rownum v_0,x.xzqhmc v_1,x.qlbh v_2,x.qlmc v_3,x.qlzxzh v_4,x.lxbm v_5,x.lxmc v_6,t.scqlqc v_7,
+           t.scqlqk v_8,t.fapgdw v_9,t.fascdw v_10,t.faspsj v_11,t.spwh v_12,t.tzgs v_13,t.jsxz v_14,t.jsnr v_15,t.scxmnf v_16,t.scbz v_17
+           from sck_wqgz t join xmk_wqgz x on xmkid=x.id where 1=1
 		and sck_sbthcd &lt;=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -378,13 +377,11 @@
 	        and xlxbm like '%'||(#{xlxbm})||'%'
 	    </if> 
 	</select>
-	<select id="exportExcel_wqgz_scsh" parameterType="sckwqgz"
-		resultType="sjbb">
-		select
-		shzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc
-		v_7,pddj v_8,xjgjnd v_9,xmnf v_10,jsxz v_11
-		from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 and
-			sck_sbthcd=7
+	<select id="exportExcel_wqgz_scsh" parameterType="sckwqgz" resultType="elist">
+		select rownum v_0,x.xzqhmc v_1,x.qlbh v_2,x.qlmc v_3,x.qlzxzh v_4,x.lxbm v_5,x.lxmc v_6,t.scqlqc v_7,
+           t.scqlqk v_8,t.fapgdw v_9,t.fascdw v_10,t.faspsj v_11,t.spwh v_12,t.tzgs v_13,t.jsxz v_14,t.jsnr v_15,t.scxmnf v_16,t.scbz v_17
+           from sck_wqgz t join xmk_wqgz x on xmkid=x.id where 1=1
+            and sck_sbthcd=7 and t.SFYLRBWQK='是' 
 			and sck_sbthcd>=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -399,7 +396,7 @@
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and scxmnf like '%'||(#{xmnf})||'%'
+			and scxmnf in  (${xmnf})
 		</if>
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
@@ -412,9 +409,6 @@
 			and (sck_shzt like '%'||(#{shzt})||'%' or sck_shzt is null or sck_shzt='')
 			</if>
 		</if>
-		<!-- <if test="jsdj!='' and jsdj!= null ">
-			and jsdj like '%'||(#{jsdj})||'%'
-		</if> -->
 		<if test="akjfl!='' and akjfl!= null ">
 			${akjfl}
 		</if>

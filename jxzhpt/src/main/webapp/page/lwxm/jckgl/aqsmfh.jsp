@@ -236,7 +236,7 @@ function showAll(){
 	 			sbthcd=7;
 	 		}else  sbthcd=$.cookie("unit2").length;
 	 	var data='xmkaqsmfh.sbthcd='+sbthcd+'&xmkaqsmfh.unitcode='+ gydwstr+'&xmkaqsmfh.distcode='+xzqhstr+'&xmkaqsmfh.roadname=' + $('#roadname').val()+'&xmkaqsmfh.throadname=' + $('#throadname').val()+'&xmkaqsmfh.throadcode=' + $('#throadcode').val()+'&xmkaqsmfh.jhnf='+
-	 	'&xmkaqsmfh.xmklx='+$('#xmklx').combobox('getValue')+'&xmkaqsmfh.bzls='+$("#bzls").combobox("getValue")+'&xmkaqsmfh.sbzt='+$("#sbzt").combobox("getValue")+'&xmkaqsmfh.jsdj='+jsdj+'&xmkaqsmfh.roadcode='+$("#roadcode").val()+'&xmkaqsmfh.gldj='+gldj+'&xmkaqsmfh.tsdq='+tsdq;
+	 	'&xmkaqsmfh.xmklx='+$('#xmklx').combobox('getValue')+'&xmkaqsmfh.bzls='+$("#bzls").combobox("getValue")+'&xmkaqsmfh.sbzt='+$("#sbzt").combobox("getValue")+'&xmkaqsmfh.jsdj='+jsdj+'&xmkaqsmfh.roadcode='+$("#roadcode").val()+'&xmkaqsmfh.gldj='+gldj+'&xmkaqsmfh.tsdq='+tsdq.replace(/\+/g,"%2B");
 
 		$.ajax({
 			 type : "POST",
@@ -436,7 +436,7 @@ function showAll(){
 	 	'&xmkaqsmfh.roadcode='+$("#roadcode").val()+
 	 	'&xmkaqsmfh.gldj='+gldj+
 	 	'&xmkaqsmfh.bzls='+$("#bzls").combobox("getValue")+
-	 	'&xmkaqsmfh.tsdq='+tsdq;
+	 	'&xmkaqsmfh.tsdq='+tsdq.replace(/\+/g,"%2B");
 		
 		
 		//特殊地区 条件	

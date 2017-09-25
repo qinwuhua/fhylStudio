@@ -62,10 +62,16 @@ public class Lkmxb implements Serializable {
 	private String xzdj;
 	private String ylxbm;//原路线编码
 	private String yzh;//原桩号
-	
+	private String mqidj;//mqi等级---优良中次差
 	
 
 	
+	public String getMqidj() {
+		return mqidj;
+	}
+	public void setMqidj(String mqidj) {
+		this.mqidj = mqidj;
+	}
 	public String getYlxbm() {
 		return ylxbm;
 	}

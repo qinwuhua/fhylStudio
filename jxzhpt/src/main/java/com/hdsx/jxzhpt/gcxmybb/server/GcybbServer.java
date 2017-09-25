@@ -139,5 +139,7 @@ public interface GcybbServer {
 
 	List<Excel_list> getsjssjzhzbnew(Excel_list excel_list);
 
+	List<Excel_list> getinsertorupdate(Excel_list excel_list);
+
 	
 }

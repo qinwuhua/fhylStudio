@@ -50,6 +50,7 @@
  	<action name="getAbjsqk" class="gcybbController" method="getAbjsqk"/>
  	<action name="getGlgzxjzd" class="gcybbController" method="getGlgzxjzd"/>
  	<action name="insertOrUpdatesjss" class="gcybbController" method="insertOrUpdatesjss"/>
+ 	<action name="getinsertorupdate" class="gcybbController" method="getinsertorupdate"/>
  
  	
  

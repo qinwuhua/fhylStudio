@@ -11,6 +11,7 @@ import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckzhfzServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 @Service
 public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	private Map<String, Object> hm;
@@ -144,11 +145,11 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	}
 
 	@Override
-	public List<SjbbMessage> exportExcel_zhfz(Jckzhfz jckzhfz) {
+	public List<Excel_list> exportExcel_zhfz(Jckzhfz jckzhfz) {
 		return this.queryList("exportExcel_zhfz",jckzhfz);
 	}
 	@Override
-	public List<SjbbMessage> exportExcel_zhfz_sh(Jckzhfz jckzhfz) {
+	public List<Excel_list> exportExcel_zhfz_sh(Jckzhfz jckzhfz) {
 		return this.queryList("exportExcel_zhfz_sh",jckzhfz);
 	}
 	public boolean onceZhfz(Jckzhfz zhfz) {
