@@ -129,7 +129,7 @@
         						<select id="xzqh" style="width:214px;"></select>
         						<span>&nbsp;路线名称：</span>
         						<input name="txtRoad" type="text" id="txtRoad" style="width:100px;" />
-        						<span>&nbsp;是否有补助历史：</span>
+        						<span>&nbsp;补助历史：</span>
 								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
 									<option value="" selected="selected">全部</option>
 									<option value="否">否</option>

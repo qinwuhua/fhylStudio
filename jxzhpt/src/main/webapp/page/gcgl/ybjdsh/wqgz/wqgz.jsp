@@ -91,7 +91,7 @@ text-decoration:none;
 					<tr height="32">
         						<td align="right">管养单位：</td>
         						<td><input id="gydw" style="width: 140px;"></td>
-        						<td align="right">行政等级：</td>
+        						<td align="right">原行政等级：</td>
 								<td><select name="ddlGldj" id="ddlGldj" style="width:80px; vertical-align:middle;"></select></td>
         						<td align="right">路线名称：</td>
         							<td><input type="text" id="lxmc" style="width: 80px;"></td>

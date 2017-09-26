@@ -282,7 +282,7 @@ a:active {
         						<input type="text" id="ybyf"  style="width:80px;">
         						<span>按跨径分类</span>	
         						<input type="text" id="akjfl"  style="width:80px;">
-        						<span>行政等级</span>	
+        						<span>原行政等级</span>	
         						<input type="text" id="xzdj"  style="width:80px;">
         						
         						

@@ -332,7 +332,7 @@ text-decoration:none;
         						
         					<td>首次下达年份：</td>
         						<td><select id="xmnf" style="width: 150px;"></select></td>
-        						<!-- <td align="right">行政等级：</td>
+        						<!-- <td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:150px;" class="easyui-combobox"></select></td>
         						<td align="right">特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:104px;"></select></td>
@@ -347,7 +347,7 @@ text-decoration:none;
         						<td align="right">资金来源：</td>
         						<td><input name="zjly" type="text" id="zjly" style="width:75px;" /></td>
         						
-        						<td align="right">行政等级：</td>
+        						<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td>
 								<td align="right">原路线编码：</td>
         						<td><input name="lxbm" type="text" id="lxbm" style="width:118px;" /></td>
@@ -374,7 +374,7 @@ text-decoration:none;
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:118px;" /></td>
 								 <td align="right">规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:75px;" /></td>
-        						 <td align="right">是否有补助历史：</td>
+        						 <td align="right">补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:80px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>

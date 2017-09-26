@@ -201,7 +201,7 @@ text-decoration:none;
         					<td><select id="xmnf" style="width: 70px;"></select></td>
 							<td>技术等级：</td>
 							<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
-							<td>&nbsp;行政等级：</td>
+							<td>&nbsp;原行政等级：</td>
 							<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
        					</tr>
        					<tr height="32">

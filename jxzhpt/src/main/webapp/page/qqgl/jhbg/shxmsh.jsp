@@ -321,7 +321,7 @@ text-decoration:none;
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td> -->
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:140px;" class="easyui-combobox"></select></td>
 								<td align="right">原路线编码：</td>
         						<td><input name="lxbm" type="text" id="lxbm" style="width:108px;" /></td>
@@ -334,7 +334,7 @@ text-decoration:none;
         						
                             </tr>
                             <tr height="32">
-                            <td align="right">是否有补助历史：</td>
+                            <td align="right">补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:140px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
@@ -345,7 +345,7 @@ text-decoration:none;
 								
         						<!-- <td align="right">规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:100px;" /></td>
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:104px;" class="easyui-combobox"></select></td>
 								<td align="right">重要度排序：</td>
         						<td><input name="zydpx" type="text" class="easyui-numberbox" id="zydpx" style="width:100px;" /></td> -->

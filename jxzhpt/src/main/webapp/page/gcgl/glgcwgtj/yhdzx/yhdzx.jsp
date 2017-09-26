@@ -94,7 +94,7 @@ text-decoration:none;
 								   	<tr height="32">
 								<td align="right">技术等级：</td>
 								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:55px; vertical-align:middle;"></select></td>
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="ddlGldj" id="ddlGldj" style="width:55px; vertical-align:middle;"></select></td>
         						<td align="right">特殊地区：</td>
 								<td><select name="ddlTSDQ" id="ddlTSDQ" style="width:92px; vertical-align:middle;">

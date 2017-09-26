@@ -178,7 +178,7 @@ text-decoration:none;
                               <td  align="right">技术等级：</td>
                               	<td><select id="jsdj" style="width:60px"class="easyui-combobox">
                               	</select></td>
-                              	<td  align="right">行政等级：</td>
+                              	<td  align="right">原行政等级：</td>
                               	<td><select id="gldj" style="width:65px"class="easyui-combobox">
                               	</select></td>
                               	 <td  align="right">项目库类型：</td>

@@ -580,7 +580,7 @@
         						<td style="display: none" ><select id="xmnf" style="width: 114px;"></select></td>
         						<td align="right">技术等级：</td>
         						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:114px;"></select></td>
-        						<td align="right">行政等级：</td>
+        						<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:114px;" class="easyui-combobox"></select></td>
         					<td align="right">特殊地区：</td>
         						<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:114px;"></select></td> -->
@@ -596,7 +596,7 @@
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:114px;" /></td>
         						</tr>
         					<tr height="29">
-        					<td align="right">行政等级：</td>
+        					<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:114px;" class="easyui-combobox"></select></td>
         					
         						<!-- <td align="right">原路线编码：</td>
@@ -619,7 +619,7 @@
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:110px;" /></td>
         						</tr>
         					<tr height="29">
-        					<td align="right">是否有补助历史：</td>
+        					<td align="right">补助历史：</td>
         						<td>
         							<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:114px;">
 										<option value="" selected="selected">全部</option>

@@ -280,7 +280,7 @@
 								<td>技术等级：</td>
 								<td><select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:65px;">
 								</select></td>
-								<td>行政等级：</td>
+								<td>原行政等级：</td>
 								<td><select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:94px;">
 								</select></td>
 								<td>跨径分类：</td>
@@ -294,7 +294,7 @@
         					</tr>
 							<tr height="32">
                               <td colspan="10">
-								<span>是否有补助历史：</span>
+								<span>补助历史：</span>
 								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
 									<option value="" selected="selected">全部</option>
 									<option value="无">否</option>

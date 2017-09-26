@@ -459,7 +459,7 @@ text-decoration:none;
         						<td><select id="xzqh" style="width:150px;"></select></td>
         						<td align="right">项目年份：</td>
         						<td><select  id="ddlYear1" style="width: 80px;"></select></td>
-        						<td align="right">行政等级：</td>
+        						<td align="right">原行政等级：</td>
         						<td><select id="xzdj" class="easyui-combobox" style="width:60px;">
         						</select></td>
         						<td align="right">路线编码：</td>
@@ -531,7 +531,7 @@ text-decoration:none;
 										<td rowspan="3"  style="width: 125px;">路线编码</td>
 										<td rowspan="3" style="width: 125px;">项目名称</td>
 										<td rowspan="3" style="width: 125px;">首次下达计划年度</td>
-										<td rowspan="3" style="width: 125px;">行政等级</td>
+										<td rowspan="3" style="width: 125px;">原行政等级</td>
 										<td rowspan="3" style="width: 125px;">起点桩号</td>
 										<td rowspan="3" style="width: 125px;">讫点桩号</td>
 										<td rowspan="3" style="width: 125px;">原技术等级</td>

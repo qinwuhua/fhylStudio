@@ -147,9 +147,9 @@
 								<select name="tsdq" id="tsdq" class="easyui-combobox" style="width:80px;"></select>
 								<span>&nbsp;技术等级：</span>
 								<select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:65px;"></select>
-								<span>&nbsp;行政等级：</span>
+								<span>&nbsp;原行政等级：</span>
 								<select name="gldj" id="gldj" class="easyui-combobox" style="width:104px;"></select>
-								<span>&nbsp;是否有补助历史：</span>
+								<span>&nbsp;补助历史：</span>
 								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
 									<option value="否" selected="selected">否</option>
 									<option value="是">是</option>

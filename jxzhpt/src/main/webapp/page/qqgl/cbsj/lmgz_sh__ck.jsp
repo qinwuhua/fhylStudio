@@ -306,14 +306,14 @@ text-decoration:none;
 	        						<td><select id="xmnf" style="width: 100px;"></select></td>
 	        						</tr>
 	        					<tr height="32">
-	        					<td>&nbsp;行政等级：</td>
+	        					<td>&nbsp;原行政等级：</td>
 									<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 	        					
 	        						<!-- <td>特殊地区：</td>
 									<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
 	        						<td>项目年份：</td>
 	        						<td><select id="xmnf" style="width: 100px;"></select></td>
-	        						<td>&nbsp;行政等级：</td>
+	        						<td>&nbsp;原行政等级：</td>
 									<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 									<td>建设技术等级：</td>
 									<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select></td>
@@ -333,7 +333,7 @@ text-decoration:none;
 	        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
 	        						</tr>
 								<tr height="32">
-								<td>是否有补助历史：</td>
+								<td>补助历史：</td>
 									<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
 										<option value="" selected="selected">全部</option>
 										<option value="是">是</option>

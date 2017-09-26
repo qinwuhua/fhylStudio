@@ -247,7 +247,7 @@ a:active {
         						<select id="xzqh" style="width:150px;"></select>
         						<span>项目年份：</span>
         						<select  id="ddlYear1" style="width: 80px;"></select>
-        						<span>行政等级：</span>
+        						<span>原行政等级：</span>
         						<input type="text" id="xzdj" style="width:50px;">
         						</p>
 					<p style="margin: 8px 0px 8px 20px;">

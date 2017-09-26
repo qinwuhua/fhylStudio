@@ -383,7 +383,7 @@ text-decoration:none;
                               <td align="right">技术等级：</td>
                               	<td><select id="jsdj" style="width:47px"class="easyui-combobox">
                               	</select></td>
-                              	<td align="right">行政等级：</td>
+                              	<td align="right">原行政等级：</td>
                               	<td><select id="gldj" style="width:50px"class="easyui-combobox">
                               	</select></td>
                               	 <td align="right">路线名称：</td>

@@ -248,7 +248,7 @@ a:active {
         						<td><select id="xzqh" style="width:150px;"></select></td>
         						<td>项目年份：</td>
         						<td><select  id="ddlYear1" style="width: 80px;"></select></td>
-        						<td>行政等级：</td>
+        						<td>原行政等级：</td>
         						<td><input type="text" id="xzdj" style="width:50px;"></td>
 <!--         						<select id="xzdj" style="width:50px;"> -->
 <!--         							<option value="">全部</option> -->

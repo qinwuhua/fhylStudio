@@ -103,7 +103,7 @@ text-decoration:none;
         						<tr height="30">
 								<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:150px;"></select></td>
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="ddlGldj" id="ddlGldj" style="width:60px; vertical-align:middle;"></select></td>
         						<td align="right">特殊地区：</td>
 								<td><select name="ddlTSDQ" id="ddlTSDQ" style="width:77px; vertical-align:middle;">

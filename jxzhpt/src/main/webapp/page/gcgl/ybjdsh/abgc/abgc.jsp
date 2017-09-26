@@ -140,7 +140,7 @@ text-decoration:none;
         						  <tr height="32">
 								<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:150px;"></select></td>							
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="ddlGldj" id="ddlGldj" style="width:70px; vertical-align:middle;"></select></td>
 								<td align="right">路线名称：</td>
         							<td><input type="text" id="lxmc" style="width: 100px;"></td>

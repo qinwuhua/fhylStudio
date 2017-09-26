@@ -954,7 +954,7 @@ text-decoration:none;
 								<td align="right">技术等级：</td>
 								<td><select name="jsdj" id="jsdj" style="width:70px;" class="easyui-combobox">
 								</select></td>
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:70px;" class="easyui-combobox">
 								</select></td>
 								
@@ -970,7 +970,7 @@ text-decoration:none;
 									<option value="拆除重建">拆除重建</option>
 <!-- 									<option value="大修">大修</option> -->
 									</select></td>
-								<td align="right"> 是否有补助历史：</td>
+								<td align="right"> 补助历史：</td>
 								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:55px;">
 									<option value="" selected="selected">全部</option>
 									<option value="无">否</option>

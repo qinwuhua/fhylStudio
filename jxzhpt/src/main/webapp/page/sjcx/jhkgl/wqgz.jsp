@@ -140,7 +140,7 @@
 								<span>&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox">
 								</select>
-								<span>&nbsp;行政等级：</span>
+								<span>&nbsp;原行政等级：</span>
 								<select name="ddlGldj" id="ddlGldj" style="width:94px;" class="easyui-combobox">
 								</select>
 								<span>&nbsp;跨径分类：</span>
@@ -153,7 +153,7 @@
 								</select>
         					</p>
 							<p style="margin:8px 0px 4px 20px;">
-								<span>是否有补助历史：</span>
+								<span>补助历史：</span>
 								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
 									<option value="无" selected="selected">否</option>
 									<option value="是">是</option>

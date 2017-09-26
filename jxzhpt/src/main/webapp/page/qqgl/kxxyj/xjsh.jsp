@@ -242,7 +242,7 @@ text-decoration:none;
 									<td><select name="jsjsdj" id="jsjsdj" style="width:65px;" class="easyui-combobox"></select></td>
 									<td>原路线名称：</td>
 	        						<td><input type="text" id="lxmc" style="width:95px;" /></td>
-									<td>行政等级：</td>
+									<td>原行政等级：</td>
 									<td><select name="gldj" id="gldj" style="width:90px;" class="easyui-combobox"></select></td>
 	        						<td>建设技术等级：</td>
 									<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td> -->
@@ -252,7 +252,7 @@ text-decoration:none;
 	        						<select id="xmnf" style="width:72px;">
 									</select>
 								</td>
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 									<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td>
 									<td align="right">原路线编码：</td>
         							<td><input type="text" id="lxbm" style="width:118px;" /></td>

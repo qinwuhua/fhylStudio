@@ -218,9 +218,9 @@
 								</select></td>
 								<td align="right">技术等级：</td>
 								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:50px; vertical-align:middle;"></select></td>
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="ddlGldj" id="ddlGldj" style="width:80px; vertical-align:middle;"></select></td>
-								<td align="right">是否有补助历史：</td>
+								<td align="right">补助历史：</td>
 								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:80px;">
 									<option value="" selected="selected">全部</option>
 									<option value="无">否</option>

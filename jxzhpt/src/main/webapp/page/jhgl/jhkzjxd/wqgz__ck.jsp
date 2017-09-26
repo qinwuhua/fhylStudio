@@ -241,7 +241,7 @@
 								</select>
 								<span style="vertical-align:middle;">&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;vertical-align:middle;"></select>
-								<span>&nbsp;是否有补助历史：</span>
+								<span>&nbsp;补助历史：</span>
 								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:60px;">
 									<option value="" selected="selected">全部</option>
 									<option value="无">否</option>

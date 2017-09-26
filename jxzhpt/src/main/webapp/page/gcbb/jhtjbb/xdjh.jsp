@@ -139,7 +139,7 @@ function startSearch(){
 									<tr>
 										<td rowspan="2">备注</td>
 										<td rowspan="2">项目名称</td>
-										<td rowspan="2">行政等级</td>
+										<td rowspan="2">原行政等级</td>
 										<td rowspan="2">起点桩号</td>
 										<td rowspan="2">终点桩号</td>
 										<td rowspan="2">路线编码</td>

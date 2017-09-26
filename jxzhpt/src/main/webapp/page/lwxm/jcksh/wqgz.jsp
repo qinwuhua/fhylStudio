@@ -183,7 +183,7 @@ text-decoration:none;
                               	</select></td>
                               <td align="right">桥梁编号：</td>
                               <td>	<input type="text" id="qlbh"style="width:70px"/></td>
-                              <td align="right">行政等级：</td>
+                              <td align="right">原行政等级：</td>
                               	<td><select id="gldj" style="width:70px"class="easyui-combobox">
                               	</select></td>
                         </tr>

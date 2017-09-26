@@ -100,7 +100,7 @@
 		    	getinsertorupdate();
 			}  
 		});
-		$('#'+id).combobox("setValue",new Date().getMonth());
+		$('#'+id).combobox("setValue",new Date().getMonth()+1);
 	}
 	
 	

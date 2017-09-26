@@ -252,7 +252,7 @@ a:active {
         						<select id="xzqh" style="width:150px;"></select>
         						<span>项目年份：</span>
         						<select  id="ddlYear1" style="width: 80px;"></select>
-        						<span>行政等级：</span>
+        						<span>原行政等级：</span>
         						<input type="text" id="xzdj" style="width:50px;">
 								<span>是否部库：</span>
 	                           	<select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 50px">
