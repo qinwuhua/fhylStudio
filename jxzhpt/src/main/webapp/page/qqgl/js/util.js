@@ -114,7 +114,19 @@ function plansb(index){
 	});
 }
 function changeXdzt(index){
-	
+	if(index==null){
+		var rows=$('#grid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请选择要退回的项目！");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].xdzt=='1'){
+				alert("有项目已审核，请检查后操作！");
+				return ;
+			}
+		}
+   }
 }
 
 function plansh(index){
