@@ -644,7 +644,8 @@
 			(
 				select rownum as num,t.* from 
 				(
-		select t.*,qdzh||'-'||zdzh zh,(zdzh-qdzh)*1000 cd,decode(yqdzh||'-'||yzdzh,'-','',yqdzh||'-'||yzdzh) yzh
+		select t.*,qdzh||'-'||zdzh zh,(zdzh-qdzh)*1000 cd,decode(yqdzh||'-'||yzdzh,'-','',yqdzh||'-'||yzdzh) yzh,
+		fn_ReturnFllx(mqi) mqidj
 		from LKPD_MXB_DATA_2014  t left join lkpd_mxb2014 m on t.mxb_id=m.id
 		where 1=1 and jsdj!='高速'
 		<if test="lkmxb.jsdj != null and  lkmxb.jsdj != ''">
@@ -712,8 +713,8 @@
 	select rownum as v_0,t.* from 
         (select lxbh v_1,qdzh||'-'||zdzh v_2,(zdzh-qdzh)*1000 v_3,t.ylxbm v_4,
         decode(yqdzh||'-'||yzdzh,'-','',yqdzh||'-'||yzdzh) v_5,t.jcfx v_6,t.jsdj v_7,t.lmlx v_8,
-        t.mqi v_9,t.pqi v_10,t.pci v_11,t.rqi v_12,t.rdi v_13,t.sri v_14,t.pssi v_15,
-        t.sci v_16,t.bci v_17,t.tci v_18
+        t.mqi v_9,fn_ReturnFllx(t.mqi) v_10,t.pqi v_11,t.pci v_12,t.rqi v_13,t.rdi v_14,t.sri v_15,t.pssi v_16,
+        t.sci v_17,t.bci v_18,t.tci v_19
     from LKPD_MXB_DATA_2014  t left join lkpd_mxb2014 m on t.mxb_id=m.id
     where 1=1 and jsdj!='高速' 
 		<if test="lkmxb.jsdj != null and  lkmxb.jsdj != ''">

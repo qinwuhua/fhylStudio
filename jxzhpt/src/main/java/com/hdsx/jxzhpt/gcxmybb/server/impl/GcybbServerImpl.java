@@ -1365,6 +1365,11 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 	public List<Excel_list> getsjssjzhzbnew(Excel_list excel_list) {
 		return queryList("getsjssjzhzbnew",excel_list);
 	}
+
+	@Override
+	public List<Excel_list> getinsertorupdate(Excel_list excel_list) {
+		return queryList("getinsertorupdate", excel_list);
+	}
 	
 	
 }

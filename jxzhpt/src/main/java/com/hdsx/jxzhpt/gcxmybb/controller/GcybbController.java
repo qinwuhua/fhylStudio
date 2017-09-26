@@ -3370,6 +3370,8 @@ public class GcybbController extends BaseActionSupport{
 					Excel_export.excel_exportsjss(eldata,response);
 					
 				}else{
+					excel_list.setGydw(getcxtj("gydw",excel_list.getGydw()));
+					excel_list.setYf(getcxtjyy("yf",excel_list.getYf()));
 					List<Excel_list> list=gcybbServer.getsjssjzhzbnew(excel_list);
 					JsonUtils.write(list, getresponse().getWriter());
 				}
@@ -3377,6 +3379,16 @@ public class GcybbController extends BaseActionSupport{
 					e.printStackTrace();
 			}
 		}
+		
+		public void getinsertorupdate() {
+			try {
+				List<Excel_list> list = gcybbServer.getinsertorupdate(excel_list);
+				JsonUtils.write(list, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		
 		public String getcxtj(String id,String param){
 			String tj="";
@@ -3387,6 +3399,20 @@ public class GcybbController extends BaseActionSupport{
 					tj+=" and ("+id+" like '%"+s[i]+"%'";
 					else
 					tj+=" or "+id+" like '%"+s[i]+"%'";
+				}
+				tj+=")";
+			}
+			return tj;
+		}
+		public String getcxtjyy(String id,String param){
+			String tj="";
+			if(param!=null&&!"".equals(param)){
+				String[] s=param.split(",");
+				for (int i = 0; i < s.length; i++) {
+					if(i==0)
+					tj+=" and ("+id+" like '"+s[i]+"'";
+					else
+					tj+=" or "+id+" like '"+s[i]+"'";
 				}
 				tj+=")";
 			}

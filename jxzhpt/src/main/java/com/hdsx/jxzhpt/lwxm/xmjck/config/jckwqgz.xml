@@ -426,7 +426,7 @@
 		and qlmc like '%'||(#{qlmc})||'%'
 	</if>
 	<if test="xmnf!='' and xmnf!= null ">
-		and xmnf like '%'||(#{xmnf})||'%'
+		and xmnf in (${xmnf})
 	</if>
 	<if test="xmtype!='' and xmtype!= null ">
 		and xmtype like '%'||(#{xmtype})||'%'
@@ -434,6 +434,9 @@
 	<if test="sbzt!='' and sbzt!= null ">
 		and decode(sbthcd,#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
 	</if>
+	<if test="shzt!='' and shzt!= null ">
+ 		and shzt like '%'||(#{shzt})||'%'
+   </if>
 	<if test="gldj!='' and gldj!= null">
 		${gldj}
 	</if>
@@ -447,16 +450,42 @@
 		${tsdq}
 	</if>
 	<if test="lxbm!='' and lxbm!= null ">
- 			and lxbm like '%'||(#{lxbm})||'%'
- 		</if>
- 		<if test="qlbh!='' and qlbh!= null ">
- 			and qlbh like '%'||(#{qlbh})||'%'
- 		</if>
+ 		and lxbm like '%'||(#{lxbm})||'%'
+ 	</if>
+ 	<if test="qlbh!='' and qlbh!= null ">
+ 		and qlbh like '%'||(#{qlbh})||'%'
+ 	</if>
+
+ 	<if test="xlxbm !='' and xlxbm != null">
+	    and xlxbm like '%'||(#{xlxbm})||'%'
+	</if>
+	<if test="xqlbm !='' and xqlbm != null">
+	    and xlxbm like '%'||(#{xqlbm})||'%'
+	</if>
+	<if test="xzxzh !='' and xzxzh != null">
+	    and xlxbm like '%'||(#{xlxbm})||'%'
+	</if>
+	<if test="xlxmc !='' and xlxmc != null">
+	    and xlxbm like '%'||(#{xlxbm})||'%'
+	</if>
+	<if test="xqlmc !='' and xqlmc != null">
+	    and xlxbm like '%'||(#{xlxbm})||'%'
+	</if>
+
+ 	<if test="xmklx !='' and xmklx != null ">
+ 		and xmklx like '%'||(#{xmklx})||'%'
+ 	</if>
  </sql>
- <select id="exportExcel_wqgz" parameterType="jckwqgz" resultType="sjbb">
- 	select
-	sbzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10
- 	from xmk_wqgz where 1=1
+
+ <select id="exportExcel_wqgz" parameterType="jckwqgz" resultType="elist">
+ 	  select 
+  rownum v_0,gydw v_1,xzqhdm v_2,xzqhmc v_3,ptx v_4,pty v_5,lxbm v_6,lxmc v_7,qlbh v_8,qlmc v_9,qlzxzh v_10,
+  xjgjnd v_11,qlqc v_12,qlkd v_13,kjzc v_14,dkzdkj v_15,akjfl v_16,sbjgxs v_17,pddj v_18,bhnr v_19,xmnf v_20,
+  xmklx v_21,tsdq v_22,bz v_23
+   from xmk_wqgz  where 1=1
+ 	<include refid="wqgz_commonsql"/>
+ 	<!-- 
+>>>>>>> refs/remotes/origin/master
  	and sbthcd &lt;=#{sbthcd}
  	<if test="gydw!='' and gydw!= null ">
 		${gydw}
@@ -494,6 +523,27 @@
 	<if test="tsdq!='' and tsdq!= null ">
 		and tsdq like '%'||(#{tsdq})||'%'
 	</if>
+<<<<<<< HEAD
+	<if test="xlxbm !='' and xlxbm != null">
+	    and xlxbm like '%'||(#{xlxbm})||'%'
+	</if>
+	<if test="xqlbm !='' and xqlbm != null">
+	    and xlxbm like '%'||(#{xqlbm})||'%'
+	</if>
+	<if test="xzxzh !='' and xzxzh != null">
+	    and xlxbm like '%'||(#{xlxbm})||'%'
+	</if>
+	<if test="xlxmc !='' and xlxmc != null">
+	    and xlxbm like '%'||(#{xlxbm})||'%'
+	</if>
+	<if test="xqlmc !='' and xqlmc != null">
+	    and xlxbm like '%'||(#{xlxbm})||'%'
+	</if>
+=======
+	<if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
+ 	</if> -->
+>>>>>>> refs/remotes/origin/master
  </select>
  <insert id="importWqgz"  parameterType="hashMap">
 	insert into xmk_wqgz(id,gydwbm,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qlbh,qlmc,qlzxzh,
@@ -503,10 +553,14 @@
 		<!-- #{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16},#{17}, -->
 		#{9},#{10},sysdate,#{tbbmbm},#{sbthcd},'未上报','未审核')
  </insert>
-  <select id="exportExcel_wqgz_sh" parameterType="jckwqgz" resultType="sjbb">
- 	select
-	shzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10
- 	from xmk_wqgz where sbthcd=7
+
+  <select id="exportExcel_wqgz_sh" parameterType="jckwqgz" resultType="elist">
+ 	  select 
+	  rownum v_0,gydw v_1,xzqhdm v_2,xzqhmc v_3,ptx v_4,pty v_5,lxbm v_6,lxmc v_7,qlbh v_8,qlmc v_9,qlzxzh v_10,
+	  xjgjnd v_11,qlqc v_12,qlkd v_13,kjzc v_14,dkzdkj v_15,akjfl v_16,sbjgxs v_17,pddj v_18,bhnr v_19,xmnf v_20,
+	  xmklx v_21,tsdq v_22,bz v_23
+	   from xmk_wqgz  where sbthcd=7
+
  	<include refid="wqgz_commonsql"/>
  </select>
  

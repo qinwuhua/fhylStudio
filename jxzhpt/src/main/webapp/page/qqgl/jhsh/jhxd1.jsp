@@ -179,10 +179,7 @@
 								</select>
 								<input id="sfsycgs" name="sfsycgs" type="hidden" />
 							</td>
-						</tr>
-						
-						
-						
+						</tr>	
 					</table>
 					<table width="98%" border="0"
 						style="border-style: solid; border-width: 3px 1px 1px 1px; margin-top: 20px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;"

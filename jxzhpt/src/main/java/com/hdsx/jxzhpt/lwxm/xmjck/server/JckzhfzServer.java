@@ -5,6 +5,7 @@ import java.util.Map;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
 public interface JckzhfzServer {
 	boolean insertZhfz(Jckzhfz zhfz);
@@ -21,8 +22,8 @@ public interface JckzhfzServer {
 	int selectZhfzShCount(Jckzhfz zhfz);
 	boolean xgJckZhfzTH(String delstr);
 	boolean importZhfz(List<Map<String,String>> list,String tbbmbm,String sbthcd);
-	List <SjbbMessage> exportExcel_zhfz(Jckzhfz jckzhfz);
-	List<SjbbMessage> exportExcel_zhfz_sh(Jckzhfz jckzhfz);
+	List <Excel_list> exportExcel_zhfz(Jckzhfz jckzhfz);
+	List<Excel_list> exportExcel_zhfz_sh(Jckzhfz jckzhfz);
 	boolean onceZhfz(Jckzhfz zhfz);
 	String yanZhen(List<Map<String,String>> data,String tbbmbm);
 	Jckzhfz selZhfzCount(Jckzhfz zhfz);
