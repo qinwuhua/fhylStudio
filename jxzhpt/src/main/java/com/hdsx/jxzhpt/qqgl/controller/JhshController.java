@@ -2919,6 +2919,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		if(jhsh.getXmlx()==5){
 			bl=jhshServer.plansbsh(jhsh);
 		}
+		if(jhsh.getXmlx()==6){
+			bl=jhshServer.plansflgc(jhsh);
+		}
 		ResponseUtils.write(getresponse(), bl+"");
 	}
 	public void thwshjh(){
@@ -2942,6 +2945,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 		if(jhsh.getXmlx()==5){
 			bl=jhshServer.planshsh(jhsh);
+		}
+		if (jhsh.getXmlx()==6) {
+			bl=jhshServer.planshSflgc(jhsh);
 		}
 		ResponseUtils.write(getresponse(), bl+"");
 	}
@@ -3577,6 +3583,62 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			JsonUtils.write(e, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();
+		}
+	}
+	
+	//计划管理的计划预安排示范路工程数据查询
+	public void querySflgcYap() throws Exception{
+		List<Jhsh> ListSflgcYap = null;
+		try {
+			ListSflgcYap = jhshServer.querySflgcYap(jhsh);
+			JsonUtils.write(ListSflgcYap, getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	//计划管理的计划预下达示范路工程数据查询
+	public void querySflgcXdXmlb() throws Exception{
+		List<Jhsh> listSflgcXdXmlb = null;
+		try {
+			listSflgcXdXmlb = jhshServer.querySflgcXdXmlb(jhsh);
+			JsonUtils.write(listSflgcXdXmlb, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	public void querySflgcXdJhbz() throws Exception{
+		List<Jhsh> listSflgcXdJhbz = null;
+        try {
+        	listSflgcXdJhbz = jhshServer.querySflgcXdJhbz(jhsh);
+			JsonUtils.write(listSflgcXdJhbz, getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public void sflgcXmth()throws Exception{
+		try {
+			boolean b=jhshServer.sflgcXmth(jhsh);
+			result.put("result", new Boolean(b).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public void updateSflgcXdzt() throws Exception{
+		try {
+			boolean b=jhshServer.updateSflgcXdzt(jhsh);
+			result.put("result", new Boolean(b).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
 		}
 	}
 }

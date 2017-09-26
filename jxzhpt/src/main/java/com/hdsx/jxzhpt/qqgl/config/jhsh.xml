@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.jhsh">
-
+    <!-- 更改示范路工程审批状态 -->
+    <update id="updateSflgcXdzt" parameterType="jhsh">
+        update jhsh_sfl js set js.xdzt='0' where js.id=#{id};
+    </update>
+    <!-- 示范路 -->
+    <update id="sflgcXmth" parameterType="jhsh">
+        update jhsh_sfl js set js.sbzt='0', js.thyy=#{thyy} where js.id=#{id}
+    </update>
+    <!-- 示范路下达查询计划编号 -->
+    <select id="querySflgcXdjhbz" parameterType="jhsh" resultType="jhsh">
+       SELECT js.xzqh, js.xmnf, js.xdsj, pz.ztz, pz.stz, pz.dfzc
+       FROM jhsh_sfl js, plan_zjxd pz
+       WHERE js.id =pz.xmid;
+    </select>
+    <!-- 示范路下达查询 -->
+    <select id="querySflgcXdXmlb" parameterType="jhsh" resultType="jhsh">
+       select * from jhsh_sfl sfl where sfl.xdzt='1'
+    </select>
+    <!-- 示范路预安排查询 -->
+    <select id="querySflgcYap" parameterType="jhsh" resultType="jhsh">
+       select * from jhsh_sfl sfl where sfl.sbzt='1'
+    </select>
     <!-- 根据项目编号查询示范路工程数据 -->
     <select id="querySflgcByXmbm" parameterType="jhsh" resultType="jhsh">
        SELECT * FROM jhsh_sfl sfl WHERE sfl.xmbm = #{xmbm}
@@ -6253,16 +6274,14 @@
 		order by xh
 				
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<!-- 更新示范路工程申报状态 -->
+	<update id="plansflgc" parameterType="jhsh">
+		update jhsh_sfl set jhsh_sfl.sbzt='1' where jhsh_sfl.xmbm=#{xmbm}
+	</update>
+	<!-- 更新示范路工程审核状态（为什么不是更新shzt？） -->
+	<update id="planshSflgc" parameterType="jhsh">
+		update jhsh_sfl set xdzt='1',xdsj=to_char(sysdate,'yyyy-mm-dd') where xmbm in (${xmbm})
+	</update>
 	<update id="plansbgj" parameterType="jhsh">
 		update jhsh_sjgz set sbzt='1' where xmbm in (${xmbm})
 	</update>

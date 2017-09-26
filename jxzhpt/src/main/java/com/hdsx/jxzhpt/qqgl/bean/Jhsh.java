@@ -183,9 +183,20 @@ public class Jhsh implements Serializable{
 	private String tbz_jaf;    //建安费(万元)
 	private String tbz_gcjlf;  //工程监理费(万元)
 	private String tbz_qqgzf;  //前期工作费(万元)
+	private String thyy;       //退回原因
 	
 	public Jhsh() {super();}
 	
+	
+	public String getThyy() {
+		return thyy;
+	}
+
+	public void setThyy(String thyy) {
+		this.thyy = thyy;
+	}
+
+
 	public String getTbz() {
 		return tbz;
 	}

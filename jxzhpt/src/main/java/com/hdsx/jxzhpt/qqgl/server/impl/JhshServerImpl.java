@@ -1217,4 +1217,34 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public Jhsh querySflgcByXmbm(Jhsh jhsh) {
 		return queryOne("querySflgcByXmbm", jhsh);
 	}
+	@Override
+	public boolean plansflgc(Jhsh jhsh) {
+		return update("plansflgc", jhsh)==1;
+	}
+	@Override
+	public boolean planshSflgc(Jhsh jhsh) {
+		// TODO Auto-generated method stub
+		return update("planshSflgc", jhsh)>0;
+	}
+	@Override
+	public List<Jhsh> querySflgcYap(Jhsh jhsh) {
+		return queryList("querySflgcYap", jhsh);
+	}
+	@Override
+	public List<Jhsh> querySflgcXdXmlb(Jhsh jhsh) {
+		return queryList("querySflgcXdXmlb", jhsh);
+	}
+	@Override
+	public List<Jhsh> querySflgcXdJhbz(Jhsh jhsh) {
+		return queryList("querySflgcXdJhbz", jhsh);
+
+	}
+	@Override
+	public boolean sflgcXmth(Jhsh jhsh) {
+		return update("sflgcXmth",jhsh) > 0;
+	}
+	@Override
+	public boolean updateSflgcXdzt(Jhsh jhsh) {
+		return update("updateSflgcXdzt",jhsh) > 0;
+	}
 }

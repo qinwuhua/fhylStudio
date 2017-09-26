@@ -3,10 +3,20 @@
     "/xsd/struts-2.1.7.dtd">
 <struts>
 	<package name="qqgl" extends="struts-default" namespace="/qqgl">
+	    <!-- *示范路工程* -->
+		<action name="querySflgc" class="jhshController" method="querySflgc"/>
+		<action name="updateSflgc" class="jhshController" method="updateSflgc"/>
+		<action name="querySflgcByXmbm" class="jhshController" method="querySflgcByXmbm"/>
+		<action name="querySflgcYap" class="jhshController" method="querySflgcYap"/>
+		<action name="querySflgcXdXmlb" class="jhshController" method="querySflgcXdXmlb"/>
+		<action name="querySflgcXdJhbz" class="jhshController" method="querySflgcXdJhbz"/>
+		<action name="sflgcXmth" class="jhshController" method="sflgcXmth"/>
+		<!-- #示范路工程# -->
+		
 		<!-- qwh -->
-		 	<action name="qxxm" class="lxshController" method="qxxm"/>
-		 	<action name="hfxm" class="lxshController" method="hfxm"/>
-			<action name="qxxmth" class="lxshController" method="qxxmth"/>
+		  <action name="qxxm" class="lxshController" method="qxxm"/>
+		  <action name="hfxm" class="lxshController" method="hfxm"/>
+		  <action name="qxxmth" class="lxshController" method="qxxmth"/>
 			
 		  <action name="thxmsqsh" class="lxshController" method="thxmsqsh"/>
   		  <action name="thwshlxsh" class="lxshController" method="thwshlxsh"/>
@@ -207,10 +217,6 @@
 		<action name="queryJhshLjgsdgz" class="jhshController" method="queryJhshLjgsdgz"></action>
 		<action name="queryJhshLjgsdgz_qx" class="jhshController" method="queryJhshLjgsdgz_qx"></action>
 		<action name="exportJhshxxgsd" class="jhshController" method="exportJhshxxgsd"></action>
-		
-		<!-- 示范路工程 -->
-		<action name="querySflgc" class="jhshController" method="querySflgc"/>
-		<action name="updateSflgc" class="jhshController" method="updateSflgc"/>
 		
 		<action name="plansh" class="jhshController" method="plansh"></action>
 		<action name="thwshjh" class="jhshController" method="thwshjh"></action>

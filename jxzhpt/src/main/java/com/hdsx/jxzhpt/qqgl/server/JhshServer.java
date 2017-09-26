@@ -15,6 +15,26 @@ import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
 public interface JhshServer {
 	
+	public boolean updateSflgcXdzt(Jhsh jhsh);
+	
+	public List<Jhsh> querySflgcXdJhbz(Jhsh jhsh);
+	/**
+	 * 计划下达查询数据
+	 * @param jhsh
+	 * @return
+	 */
+	public List<Jhsh> querySflgcXdXmlb(Jhsh jhsh);
+	/**
+	 * 计划预安排查询数据
+	 * @param jhsh
+	 * @return
+	 */
+	public List<Jhsh> querySflgcYap(Jhsh jhsh);
+	/**
+	 * 根据项目编码查询示范路工程
+	 * @param jhsh
+	 * @return
+	 */
 	public Jhsh querySflgcByXmbm(Jhsh jhsh);
 	/**
 	 * 更新示范路工程
@@ -22,6 +42,13 @@ public interface JhshServer {
 	 * @return
 	 */
 	public boolean updateSflgc(Jhsh jhsh);
+	
+	/**
+	 * 退回示范路工程项目
+	 * @param jhsh
+	 * @return
+	 */
+	public boolean sflgcXmth(Jhsh jhsh );
 	
 	/**
 	 * 根据项目编码，把需要的信息插入到计划审核表中
@@ -481,6 +508,19 @@ public interface JhshServer {
 	public List<Jhsh> queryyhxd_qxbz(Jhsh jhsh);
 	public boolean planxdhzadd(List<Jhsh> list);
 	public List<Map<String, String>> getbzyhhzb();
+	/**
+	 * 示范路工程上报状态（sbzt）更新
+	 * @param jhsh
+	 * @return
+	 */
+	public boolean plansflgc(Jhsh jhsh);
+	/**
+	 * 示范路工程审核状态（shzt）
+	 * @param jhsh
+	 * @return
+	 */
+	public boolean planshSflgc(Jhsh jhsh);
+
 	public boolean plansbgj(Jhsh jhsh);
 	public boolean plansblm(Jhsh jhsh);
 	public boolean plansbxj(Jhsh jhsh);

@@ -112,8 +112,11 @@ function plansb(index){
 				
 		}
 	});
+}
+function changeXdzt(index){
 	
 }
+
 function plansh(index){
 	var xmlx="";
 	var xmbm='';
@@ -1552,6 +1555,12 @@ function openxZjxd(){
 function openxZjxd1(){
 	YMLib.Var.xmid=parent.YMLib.Var.xmbm;
 	openWindow('zjxd','资金下达','/jxzhpt/page/qqgl/zjxd/xzjxd1.jsp',800,300);
+}
+
+function openWindowById(id,title,url,width,height,xmid){
+	//alert(xmbm);
+	YMLib.Var.xmid=xmid;
+	YMLib.UI.createWindow1(id,title,url,id,width,height);
 }
 /**
  * 弹出窗口
