@@ -163,7 +163,7 @@ a:active {
 								</select> </td>
 								<td align="right">技术等级：</td>
 								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:140px; vertical-align:middle;"></select></td>
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="ddlGldj" id="ddlGldj" style="width:65px; vertical-align:middle;"></select></td>
         						<td align="right">特殊地区：</td>
 								<td><select name="ddlTSDQ" id="ddlTSDQ" style="width:85px; vertical-align:middle;">

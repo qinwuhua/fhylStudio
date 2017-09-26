@@ -448,12 +448,12 @@ text-decoration:none;
         						<td><select id="xmnf" style="width: 75px;"></select></td>
         						</tr>
         					<tr height="28">
-        					<td align="right">行政等级：</td>
+        					<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:160px;" class="easyui-combobox"></select></td>
         					
         					<!-- 	<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
-        						<td>&nbsp;行政等级：</td>
+        						<td>&nbsp;原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 								<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width: 100px;"></select></td>
@@ -475,7 +475,7 @@ text-decoration:none;
         						<td><input type="text" id="ghlxmc" style="width:75px;" /></td>
         						</tr>
 							<tr height="28">
-							<td align="right">是否有补助历史：</td>
+							<td align="right">补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:160px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>

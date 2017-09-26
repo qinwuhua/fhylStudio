@@ -442,7 +442,7 @@ text-decoration:none;
         						<td><input type="text" id="xmmc" style="width:95px;" /></td>
 								<td align="right">&nbsp;工程分类：</td>
 	       						<td><select name="gcfl" class="easyui-combobox" id="gcfl" style="width:70px;"></select></td>
-	       						<td>&nbsp;行政等级：</td>
+	       						<td>&nbsp;原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 								<td align="right">审核状态：</td>
         						<td><select id="shzt" style="width:71px;" class="easyui-combobox">
@@ -450,7 +450,7 @@ text-decoration:none;
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select></td> -->
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:160px;" class="easyui-combobox"></select></td>
 								<td align="right">原路线编码：</td>
         						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:118px;" /></td>
@@ -463,7 +463,7 @@ text-decoration:none;
         						
 							</tr>
 							<tr height="32">
-							<td align="right">是否有补助历史：</td>
+							<td align="right">补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:160px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>

@@ -81,7 +81,7 @@ a:active {
         					<p style="margin: 1% 0% 1% 2%;">
         						<span>管养单位：</span>
         						<input id="gydw" style="width: 150px;">
-        						<span style=" vertical-align:middle;">行政等级：</span>
+        						<span style=" vertical-align:middle;">原行政等级：</span>
 								<select name="ddlGldj" id="ddlGldj" style="width:102px; vertical-align:middle;"></select>
         						<span>路线名称：</span>
         							<input type="text" id="lxmc" style="width: 100px;">

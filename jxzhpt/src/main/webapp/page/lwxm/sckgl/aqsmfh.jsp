@@ -561,7 +561,7 @@ text-decoration:none;
 							  <td><input type="text" id="throadcode"  style="width:100px;" /></td>
                              </tr>
                             <tr height="32">
-                            	<td>行政等级：</td>
+                            	<td>原行政等级：</td>
                               	<td><select id="gldj" style="width:70px"class="easyui-combobox">
                               	</select></td>
                               	<td>补助历史：</td>

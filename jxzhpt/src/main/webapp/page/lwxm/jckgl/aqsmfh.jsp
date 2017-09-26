@@ -493,7 +493,7 @@ text-decoration:none;
 							  <td><select id="tsdq" style="width:70px"class="easyui-combobox"></select></td>
 							  <td>技术等级：</td>
 							  <td><select id="jsdj" style="width:70px"class="easyui-combobox"></select></td>
-							  <td>行政等级：</td>
+							  <td>原行政等级：</td>
 							  <td><select id="gldj" style="width:70px" class="easyui-combobox"></select></td>
 							  <td>路线名称：</td>
 							  <td><input type="text" id="roadname"  style="width:100px;" /></td>

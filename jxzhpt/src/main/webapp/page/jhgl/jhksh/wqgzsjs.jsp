@@ -341,7 +341,7 @@ text-decoration:none;
 								<option value="四类">四类</option>
 								<option value="五类">五类</option>
                               </select></td>
-								<td>行政等级：</td>
+								<td>原行政等级：</td>
 								<td><select name="ddlGldj" id="gldj" style="width:80px;" class="easyui-combobox">
 								</select></td>
 								
@@ -356,7 +356,7 @@ text-decoration:none;
 									</select></td>	
         					</tr>
 								<tr height="32">
-								<td>是否有补助历史：</td>
+								<td>补助历史：</td>
         						<td>
 									<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:74px;">
 									<option value="" selected="selected">全部</option>

@@ -246,7 +246,7 @@ text-decoration:none;
 	        						<td><input type="text" id="lxmc" style="width:70px;" /></td>
 	                              <td>路线编码：</td>
 	        						<td><input type="text" id="lxbm" style="width:70px;" /></td>
-	                              <td>行政等级：</td>
+	                              <td>原行政等级：</td>
 	                              	<td><select id="gldj" style="width:70px"class="easyui-combobox">
 	                              	</select></td>
 	                              <td colspan="10">

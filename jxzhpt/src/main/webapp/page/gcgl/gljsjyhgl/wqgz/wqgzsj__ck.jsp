@@ -126,7 +126,7 @@ a:active {
         						</select>
         						
         						 <p style="margin: 1% 0% 1% 2%;">
-								<span style=" vertical-align:middle;">行政等级：</span>
+								<span style=" vertical-align:middle;">原行政等级：</span>
 								<select name="ddlGldj" id="ddlGldj" style="width:102px; vertical-align:middle;"></select>
         						<span style=" vertical-align:middle;">特殊地区：</span>
 								<select name="ddlTSDQ" id="ddlTSDQ" style="width:108px; vertical-align:middle;">

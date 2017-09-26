@@ -741,7 +741,7 @@
         						<td><select name="jsjsdj" class="easyui-combobox" id="jsjsdj" style="width:114px;"></select></td>
         						<td align="right">现技术等级：</td>
         						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:55px;"></select></td>
-        						<td align="right">行政等级：</td>
+        						<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:114px;" class="easyui-combobox"></select></td> -->
         						<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:114px;"></select></td>
@@ -774,7 +774,7 @@
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:118px;" /></td>
         						<td align="right">资金来源：</td>
         						<td><input name="zjly" type="text" id="zjly" style="width:90px;" /></td>
-        						<td align="right">行政等级：</td>
+        						<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td>
 								<td align="right">原路线编码：</td>
         						<td><input name="lxbm" type="text" id="lxbm" style="width:118px;" /></td>

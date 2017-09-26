@@ -688,7 +688,7 @@ text-decoration:none;
        							</td>
         						<td><span id="ztspan">上报状态</span>：</td>
        							<td><select id="sqzt" class="easyui-combobox" style="width: 70px;"></select></td> -->
-       							<td align="right">行政等级：</td>
+       							<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:124px;" class="easyui-combobox"></select></td>
 								 <td align="right">原路线编码：</td>
         						<td><input type="text" id="lxbm" style="width:118px;" /></td>
@@ -707,13 +707,13 @@ text-decoration:none;
         						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
         						<td>&nbsp;规划路线名称：</td>
         						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
-       							<td>&nbsp;行政等级：</td>
+       							<td>&nbsp;原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td> -->
 								<!-- <td>&nbsp;管养单位：</td>
        							<td><select id="gydw" style="width:170px;"></select></td> -->
        						</tr>
        						<tr height="29">
-       						<td align="right">是否有补助历史：</td>
+       						<td align="right">补助历史：</td>
        							<td>
        								<select id="lsjl" class="easyui-combobox" style="width: 124px;">
 		       							<option value="" selected="selected">全部</option>

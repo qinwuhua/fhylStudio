@@ -228,7 +228,7 @@ a:active {
         						<span>截止年份：</span>
 		 						<select name="ddlYear" id="ddlYear" style="width: 50px;">
 								</select>
-        						<span>行政等级：</span>
+        						<span>原行政等级：</span>
         						<input type="text" id="xzdj" style="width:50px;">
 
        								<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"

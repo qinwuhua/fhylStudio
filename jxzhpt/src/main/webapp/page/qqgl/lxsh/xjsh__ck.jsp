@@ -225,7 +225,7 @@ text-decoration:none;
 								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
 								<td>建设技术等级：</td>
 								<td><select name="jsjsdj" id="jsjsdj" style="width:65px;" class="easyui-combobox"></select></td>
-								<td>行政等级：</td>
+								<td>原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
         						<td>原路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:95px;" /></td>
@@ -235,7 +235,7 @@ text-decoration:none;
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select></td> -->
-								<td>行政等级：</td>
+								<td>原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 								<td>原路线编码：</td>
         						<td><input type="text" id="lxbm" style="width:95px;" /></td>

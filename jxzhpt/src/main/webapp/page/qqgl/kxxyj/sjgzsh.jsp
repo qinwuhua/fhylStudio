@@ -177,7 +177,7 @@ text-decoration:none;
         					<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width:72px;">
 								</select></td>
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td>
         					
         						<!-- <td>特殊地区：</td>
@@ -208,7 +208,7 @@ text-decoration:none;
         					<td align="right">规划路线名称：</td>
         						<td><input type="text" id="ghlxmc" style="width:70px;" /></td> 
         						
-        					<td align="right">是否有补助历史：</td>
+        					<td align="right">补助历史：</td>
         						<td><select id="lsjl" style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="是">是</option>
@@ -244,7 +244,7 @@ text-decoration:none;
 									</select>
 								</td>
 								
-	        					 <!-- <td>行政等级：</td>
+	        					 <!-- <td>原行政等级：</td>
 									<td><select name="gldj" id="gldj" style="width:90px;" class="easyui-combobox"></select></td>
 								<td>技术等级：</td>
 								<td><select name="jsjsdj" id="jsjsdj" style="width:65px;" class="easyui-combobox"></select></td> 

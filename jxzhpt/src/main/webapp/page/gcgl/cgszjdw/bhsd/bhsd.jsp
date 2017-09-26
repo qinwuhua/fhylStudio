@@ -149,7 +149,7 @@ a:active {
 									<option>已拨付</option>
 									<option>未拨付</option>
 								</select> </td>
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="ddlGldj" id="ddlGldj" style="width:140px; vertical-align:middle;"></select></td>
 <!--         						<span style=" vertical-align:middle;">&nbsp;特殊地区：</span> -->
 <!-- 								<select name="ddlTSDQ" id="ddlTSDQ" style="width:85px; vertical-align:middle;"> -->

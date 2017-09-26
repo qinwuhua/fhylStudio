@@ -293,7 +293,7 @@ text-decoration:none;
         						<td>管养（监管）单位：</td>
         						<td  colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
         						
-								<td>行政等级：</td>
+								<td>原行政等级：</td>
 								<td><select name="ddlGldj" id="gldj" style="width:60px;" class="easyui-combobox">
 								</select></td>
 								<td>跨径分类：</td>
@@ -303,7 +303,7 @@ text-decoration:none;
         						
         						<td>桥梁名称：</td>
         						<td><input name="txtBridge" type="text" id="qlmc" style="width:80px;" /></td>
-        						<td>是否有补助历史：</td>
+        						<td>补助历史：</td>
         						<td>
 									<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:80px;">
 									<option value="" selected="selected">全部</option>

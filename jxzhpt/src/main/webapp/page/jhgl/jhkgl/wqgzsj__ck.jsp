@@ -238,7 +238,7 @@ text-decoration:none;
         						<td  colspan="3" style="width:220px;"><select id="xzqh" style="width:220px;"></select></td>
         						<td>上报年份：</td>
         						<td><select id="sbnf" style="width: 70px;"></select></td>
-								<td>行政等级：</td>
+								<td>原行政等级：</td>
 								<td><select name="ddlGldj" id="gldj" style="width:80px;" class="easyui-combobox">
 								</select></td>
 								<td>跨径分类：</td>
@@ -254,7 +254,7 @@ text-decoration:none;
         						
         					</tr>
 								<tr height="32">
-								<td>是否有补助历史：</td>
+								<td>补助历史：</td>
         						<td>
 									<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:74px;">
 									<option value="" selected="selected">全部</option>

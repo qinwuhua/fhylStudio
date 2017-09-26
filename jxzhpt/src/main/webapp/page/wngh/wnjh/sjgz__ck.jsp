@@ -106,7 +106,7 @@ text-decoration:none;
 								</select></td>
 								<td>技术等级：</td>
 								<td><select name="jsdj" id="jsdj" style="width:65px;" ></select></td>
-								<td>行政等级：</td>
+								<td>原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:80px;" ></select></td>
         						<td>是否有历史记录：</td>
         						<td><select id="lsjl" style="width:127px;" class="easyui-combobox">

@@ -108,7 +108,7 @@ text-decoration:none;
 								</select></td>
 								<td>项目年份：</td>
         						<td><select id="xmnf" style="width:65px;">
-								<td>行政等级：</td>
+								<td>原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" ></select></td>       					
 								<td>原路线编码：</td>
         						<td><input id='lxbm' type="text" /></td>

@@ -193,7 +193,7 @@ text-decoration:none;
                               <td>技术等级：</td>
                               	<td><select id="jsdj" style="width:70px"class="easyui-combobox">
                               	</select></td>
-                              	<td>行政等级：</td>
+                              	<td>原行政等级：</td>
                               	<td><select id="gldj" style="width:104px"class="easyui-combobox">
                               	</select></td>
                               	<td>补助历史：</td>
