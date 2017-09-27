@@ -25,6 +25,9 @@
 <script type="text/javascript" src="/jxzhpt/js/datagrid-cellediting.js"></script>
 <script type="text/javascript">
 $(function(){
+	loadylx('lxbm');
+	loadDist1("xzqh",$.cookie("dist"));
+	xmnf("xmnf");
 	queryFwqXdXmlb();
 	queryFwqXdJhbz();
 });
@@ -177,64 +180,31 @@ function beginEditing (rowIndex,field,value) {
 				<div>
 				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
-						<td align="right">行政区划：</td>
-						<td><select id="xzqh" style="width:114px;"></select></td>
-						<td align="right">项目名称：</td>
-						<td><input name="xmmc" type="text" id="xmmc" style="width:115px;" /></td>
-						<td align="right">建设性质：</td>
-						<td><select name="xmlx" id="xmlx" style="width:90px;" ></select></td>
-						<td align="right">建设技术等级：</td>
-						<td><select name="jsjsdj" class="easyui-combobox" id="jsjsdj" style="width:80px;"></select></td>
-						<td align="right">现技术等级：</td>
-						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:118px;"></select></td>
-						
-					</tr>
-					<tr height="32">
-					<td align="right">首次下达年份：</td>
-						<td><input name="scxdnf" type="text" id="scxdnf" style="width:114px;" /></td>
-						<td align="right">计划下达文号：</td>
-						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:118px;" /></td>
-						<td align="right">资金来源：</td>
-						<td><input name="zjly" type="text" id="zjly" style="width:90px;" /></td>
-						<td align="right">行政等级：</td>
-						<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td>
-						<td align="right">原路线编码：</td>
-						<td><input name="lxbm" type="text" id="lxbm" style="width:118px;" /></td>
-						</tr>
-					<tr height="32">
-					<td align="right">原路线名称：</td>
-						<td><input name="lxmc" type="text" id="lxmc" style="width:110px;" /></td>
-						<td align="right">规划路线编码：</td>
-						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:118px;" /></td>
-						<td align="right">规划路线名称：</td>
-						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:90px;" /></td>
-						<td align="right">历史记录：</td>
-						<td>
-							<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:80px;">
-								<option value="" selected="selected">全部</option>
-								<option value="否">否</option>
-								<option value="是">是</option>
-							</select>
-						</td>
-						<td align="right">特殊地区：</td>
-						<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:118px;"></select></td>
-						</tr>
-					<tr height="32">
-					 <td align="right">管养分类：</td>
-						<td><input name="gyfl" type="text" id="gyfl" style="width:110px;" /></td>
-						<td align="right">下达状态：</td>
-						<td><input name="xdzt" type="text" id="xdzt" style="width:118px;" /></td>
-						<td align="right">前期完成：</td>
-						<td><input name="xdsj" type="text" id="xdsj" style="width:90px;" class='easyui-datebox'/></td>
-					<td align="right">项目库类型：</td>
-						<td>
-							<select id='xmklx' class="easyui-combobox" style="width: 80px;">
-								<option value="">请选择</option>
-								<option value="部库">部库</option>
-								<option value="省库">省库</option>
-							</select>
-						</td>
-						</tr>
+								<td align="right">行政区划：</td>
+								<td><select id="xzqh" style="width: 134px;"></select></td>
+								<td align="right">项目名称：</td>
+								<td><input name="xmmc" id="xmmc" style="width: 100px;"
+									type="text" /></td>
+								<td align="right">项目年份：</td>
+								<td><select id="xmnf" style="width: 100px;"></select></td>
+								
+
+							</tr>
+							<tr height="32">
+								
+								<td align="right">路线名称：</td>
+								<td><input type="text" id="lxmc" style="width: 130px;" /></td>
+								<td align="right">项目编码：</td>
+								<td><input type="text" id="ydbmc" style="width: 100px;" /></td>
+								<td align="right">下达状态：</td>
+								<td><select id="xdzt" class="easyui-combobox"
+									style="width: 100px;">
+										<option value="-1" selected="selected">全部</option>
+										<option value="0">未下达</option>
+										<option value="1">未完成</option>
+										<option value="1">已完成</option>
+								</select></td>
+							</tr>
 						<tr>
 						<td colspan="10">
 							<img onclick="searchlist()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>

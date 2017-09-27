@@ -24,6 +24,9 @@
 <script type="text/javascript">
 
 $(function(){
+	loadylx('lxbm');
+	loadDist1("xzqh",$.cookie("dist"));
+	xmnf("xmnf");
 	queryFwq();
 });
 function queryFwq(){
@@ -147,26 +150,22 @@ a {text-decoration: none;}
 								<td><input name="xmmc" id="xmmc" style="width: 100px;"
 									type="text" /></td>
 								<td align="right">项目年份：</td>
-								<td><select id="xmnf" style="width: 95px;"></select></td>
-								<td align="right">建设性质：</td>
-								<td><select name="jsxz" class="easyui-combobox" id="jsxz"
-									style="width: 60px;"></select></td>
+								<td><select id="xmnf" style="width: 100px;"></select></td>
+								
 
 							</tr>
 							<tr height="32">
-								<td align="right">级别：</td>
-								<td><select name="jb" class="easyui-combobox" id="jb"
-									style="width: 134px;"></select></td>
+								
 								<td align="right">路线名称：</td>
-								<td><input type="text" id="lxmc" style="width: 100px;" /></td>
-								<td align="right">原道班名称：</td>
-								<td><input type="text" id="ydbmc" style="width: 95px;" /></td>
-								<td align="right">审核状态：</td>
+								<td><input type="text" id="lxmc" style="width: 130px;" /></td>
+								<td align="right">项目编码：</td>
+								<td><input type="text" id="ydbmc" style="width: 100px;" /></td>
+								<td align="right">上报状态：</td>
 								<td><select id="xdzt" class="easyui-combobox"
-									style="width: 60px;">
+									style="width: 100px;">
 										<option value="-1" selected="selected">全部</option>
-										<option value="0">未审核</option>
-										<option value="1">已审核</option>
+										<option value="0">未上报</option>
+										<option value="1">已上报</option>
 								</select></td>
 							</tr>
 							<tr height="32">
