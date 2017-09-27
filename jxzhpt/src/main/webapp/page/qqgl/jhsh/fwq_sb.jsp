@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>示范路工程</title>
+<title>服务区_计划申报</title>
 <link rel="stylesheet" type="text/css" href="../../../css/Top.css" />
 <link rel="stylesheet" type="text/css" href="../../../css/style.css" />
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
@@ -21,15 +21,14 @@
 <script type="text/javascript" src="../../../widget/newlhgdialog/lhgdialog.min.js"></script>
 <script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 <script type="text/javascript" src="/jxzhpt/page/qqgl/lxsh/js/sjgz.js"></script>
-
 <script type="text/javascript">
 
 $(function(){
-	querySflgc();
+	queryFwq();
 });
-function querySflgc(){
+function queryFwq(){
 	grid.id="grid";
-	grid.url="../../../qqgl/querySflgc.do";
+	grid.url="../../../qqgl/queryFwq.do";
 
 	//grid.queryParams=params;
 	//loadLj(params);
@@ -42,8 +41,8 @@ function querySflgc(){
 					{field:'cz',title:'操作',width:130,align:'center',
 						formatter: function(value,row,index){
 							var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"','2'"+')">定位</a>';
-							result+='&nbsp;<a href="javascript:openWindow1('+"'sflgcDetail'"+','+"'示范路工程'"+','+
-							"'/jxzhpt/page/qqgl/jhsh/sflgc_detail.jsp'"+",980,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">详细</a>'
+							result+='&nbsp;<a href="javascript:openWindowById('+"'jhxd'"+','+"'示范路工程'"+','+
+							"'/jxzhpt/page/qqgl/jhsh/fwq_detail.jsp'"+",980,400,'"+row.id+"'"+')" style="color:#3399CC;">详细</a>'
 //	 						+'&nbsp;<a href="javascript:qxxm('+row.xmbm+')" style="color:#3399CC;">取消</a>'
                             ;
 							xmlx=4;
@@ -54,10 +53,10 @@ function querySflgc(){
 									result+='&nbsp;编辑';
 								else
 									result+='&nbsp;<a href="javascript:openWindow1('+"'jhxd'"+','+"'编辑'"+','+
-									"'/jxzhpt/page/qqgl/jhsh/sflgc1.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>';
+									"'/jxzhpt/page/qqgl/jhsh/fwq_edit.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>';
 							}else{
 								result+='&nbsp;<a href="javascript:openWindow1('+"'jhxd'"+','+"'编辑'"+','+
-								"'/jxzhpt/page/qqgl/jhsh/sflgc1.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>';
+								"'/jxzhpt/page/qqgl/jhsh/fwq_edit.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>';
 							}	
 							return result;
 						}
@@ -67,7 +66,7 @@ function querySflgc(){
 							var result="";
 							xmlx=4;
 							if(row.sbzt=='0')
-							result='<a href="javascript:plansb('+index+')" style="color:#3399CC;">未上报</a>';
+							result='<a href="javascript:fwqSbById('+index+')" style="color:#3399CC;">未上报</a>';
 							else
 								result='已上报';
 							return result;
@@ -96,31 +95,26 @@ function querySflgc(){
 							}
 						}
 					},
-					
-			        {field: 'xmbm', title: '项目编码', width: 120, align: 'center'},
-			        {field: 'xlxbm', title: '新路线编码', width: 60, align: 'center'},
-			        {field: 'xzqh', title: '行政区化', width: 60, align: 'center'},
-			        {field: 'pfwh', title: '批复文号', width: 60, align: 'center'},
-			        {field: 'xqdzh', title: '新起点桩号', width: 120, align: 'center'},
-			        {field: 'xzdzh', title: '新止点桩号', width: 120, align: 'center'},
-			        
-			        {field:'ztz',title:'总投资(万元)',width:100,align:'center'},
-					{field:'tbz',title:'厅补助(万元)',width:60,align:'center'},
-					{field:'tbz_jaf',title:'建安费(万元)',width:70,align:'center'},
-					{field:'tbz_gcjlf',title:'工程监理费(万元)',width:80,align:'center'},
-				    {field:'tbz_qqgzf',title:'前期工作费(万元)',width:80,align:'center'},
+		            {field:'xmbm',title:'项目编码',width:120,align:'center'},
+		            {field:'xlxbm',title:'新路线编码',width:60,align:'center'},
+		            {field:'pfwh',title:'批复文号',width:60,align:'center'},
+		            {field:'xzh',title:'新桩号',width:120,align:'center'},
+		            {field:'lzh',title:'老桩号',width:120,align:'center'},
+		            
+					{field:'ztz',title:'总投资(万元)',width:100,align:'center'},
+				    {field:'cgs',title:'车购税(万元)',width:80,align:'center'},
 				    {field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
 				    {field:'zydpx',title:'重要度排序',width:100,align:'center'},
-				    
-			        {field: 'sjpfdw', title: '设计批复单位', width: 140, align: 'center'},
-			        {field: 'sjpfsj', title: '设计批复时间', width: 140, align: 'center'},
-			        {field: 'zyjsnr', title: '主要建设内容', width: 140, align: 'center'},
-			        {field: 'gcsl', title: '工程数量', width: 140, align: 'center'}
+		            
+		            {field:'sjpfdw',title:'设计批复单位',width:140,align:'center'},
+		            {field:'sjpfsj',title:'设计批复时间',width:140,align:'center'},
+		            {field:'zyjsnr',title:'主要建设内容',width:140,align:'center'},
+		            {field:'gcsl',title:'工程数量',width:140,align:'center'}
+					
 				]];
 	gridBind1(grid);
 }
 </script>
-
 <style type="text/css">
 TD {font-size: 12px;}
 a {text-decoration: none;}
@@ -130,12 +124,10 @@ a {text-decoration: none;}
 <body>
 	<div id="righttop">
 		<div id="p_top">
-			计划管理>&nbsp;<span id="astext">计划库</span>>&nbsp;<span id="bstext"></span>>&nbsp;示范路工程
+			计划管理>&nbsp;<span id="astext">计划库</span>>&nbsp;<span id="bstext"></span>>&nbsp;计划服务区
 		</div>
 	</div>
-	<table width="99%" border="0"
-		style="margin-top: 1px; margin-left: 1px;" cellspacing="0"
-		cellpadding="0">
+	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 		<tr>
 			<td align="left"
 				style="padding-left: 10px; padding-right: 10px; padding-top: 5px;">
@@ -178,18 +170,11 @@ a {text-decoration: none;}
 								</select></td>
 							</tr>
 							<tr height="32">
-								<td colspan="8"><img onclick="queryYhzx()" alt="搜索"
-									src="../../../images/Button/Serch01.gif"
-									onmouseover="this.src='../../../images/Button/Serch02.gif'"
-									onmouseout="this.src='../../../images/Button/Serch01.gif'"
-									style="vertical-align: middle; padding-left: 8px;" /> <!-- 								<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;"> -->
-									<img onclick="exportJhshxx()" id="btnShangbao"
-									onmouseover="this.src='../../../images/Button/dcecl2.gif'"
-									alt="上报"
-									onmouseout="this.src='../../../images/Button/dcecl1.gif'"
-									src="../../../images/Button/dcecl1.gif"
-									style="border-width: 0px; cursor: hand; vertical-align: middle;" />
-									<!-- 								<img onclick="importJhsh()" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> -->
+								<td colspan="8">
+								    <img onclick="queryFwq()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align: middle; padding-left: 8px;" /> 
+								    <!--<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;"> -->
+									<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width: 0px; cursor: hand; vertical-align: middle;" />
+									<!--<img onclick="importJhsh()" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> -->
 								</td>
 							</tr>
 						</table>

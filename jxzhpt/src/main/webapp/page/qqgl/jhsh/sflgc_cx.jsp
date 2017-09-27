@@ -82,13 +82,25 @@ function querySflgcCx(){
 							}
 						}
 					},
-					{field:'ztz',title:'总投资(万元)',width:100,align:'center'},
+			        {field: 'xmbm', title: '项目编码', width: 120, align: 'center'},
+			        {field: 'xlxbm', title: '新路线编码', width: 60, align: 'center'},
+			        {field: 'xzqh', title: '行政区化', width: 60, align: 'center'},
+			        {field: 'pfwh', title: '批复文号', width: 60, align: 'center'},
+			        {field: 'xqdzh', title: '新起点桩号', width: 120, align: 'center'},
+			        {field: 'xzdzh', title: '新止点桩号', width: 120, align: 'center'},
+			        
+			        {field:'ztz',title:'总投资(万元)',width:100,align:'center'},
 					{field:'tbz',title:'厅补助(万元)',width:60,align:'center'},
 					{field:'tbz_jaf',title:'建安费(万元)',width:70,align:'center'},
 					{field:'tbz_gcjlf',title:'工程监理费(万元)',width:80,align:'center'},
 				    {field:'tbz_qqgzf',title:'前期工作费(万元)',width:80,align:'center'},
 				    {field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
-				    {field:'zydpx',title:'重要度排序',width:100,align:'center'}
+				    {field:'zydpx',title:'重要度排序',width:100,align:'center'},
+				    
+			        {field: 'sjpfdw', title: '设计批复单位', width: 140, align: 'center'},
+			        {field: 'sjpfsj', title: '设计批复时间', width: 140, align: 'center'},
+			        {field: 'zyjsnr', title: '主要建设内容', width: 140, align: 'center'},
+			        {field: 'gcsl', title: '工程数量', width: 140, align: 'center'}
 				]];
 	gridBind1(grid);
 }

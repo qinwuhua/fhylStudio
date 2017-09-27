@@ -571,5 +571,30 @@ public interface JhshServer {
 	public List<Jhsh> queryXmlistshqx(Jhsh jhsh);
 	public int queryXmlistshqxCount(Jhsh jhsh);
 	public List<Lx> queryLxidbyGhlxbm(String string);
+
+	public List<Jhsh> queryYhzxshSb(Jhsh jhsh);
+
+	public Jhsh queryYhzxshById(Jhsh jhsh);
+
+	public boolean updateZhzxsh(Jhsh jhsh);
+
+	public boolean yhzxshXmth(Jhsh jhsh);
+
+	public List<Jhsh> queryYhzxshYap(Jhsh jhsh);
+
+	public List<Jhsh> queryYhzxshJhxd(Jhsh jhsh);
+
+	public List<Jhsh> listFwq(Jhsh jhsh);
+
+	public List<Jhsh> listFwqSbzt(Jhsh jhsh);
+
+	public List<Jhsh> listFwqXdzt(Jhsh jhsh);
+
+	public boolean updateFwq(Jhsh jhsh);
+
+	public Jhsh queryFwqById(Jhsh jhsh);
+
+	public boolean fwqXmth(Jhsh jhsh);
+
 	
 }

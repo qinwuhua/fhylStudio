@@ -184,10 +184,29 @@ public class Jhsh implements Serializable{
 	private String tbz_gcjlf;  //工程监理费(万元)
 	private String tbz_qqgzf;  //前期工作费(万元)
 	private String thyy;       //退回原因
+	private String cgs;         //车购税
 	
+	//jhsh_yhzx  计划—养护中心
+	private String jbzj;
+	
+	public String getCgs() {
+		return cgs;
+	}
+
+	public void setCgs(String cgs) {
+		this.cgs = cgs;
+	}
+
 	public Jhsh() {super();}
 	
-	
+	public String getJbzj() {
+		return jbzj;
+	}
+
+	public void setJbzj(String jbzj) {
+		this.jbzj = jbzj;
+	}
+
 	public String getThyy() {
 		return thyy;
 	}
@@ -1179,7 +1198,7 @@ public class Jhsh implements Serializable{
 	public void setYjsdj(String yjsdj) {
 		this.yjsdj = yjsdj;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Jhsh [jhxdsj=" + jhxdsj + ", yjsdj=" + yjsdj + ", jsjsdj="
@@ -1237,6 +1256,7 @@ public class Jhsh implements Serializable{
 				+ ", jhwj=" + jhwj + ", name=" + name + ", ttc=" + ttc
 				+ ", gydwdm=" + gydwdm + ", parent=" + parent + ", wbc=" + wbc
 				+ ", wbchd=" + wbchd + ", tbz=" + tbz + ", tbz_jaf=" + tbz_jaf
-				+ ", tbz_gcjlf=" + tbz_gcjlf + ", tbz_qqgzf=" + tbz_qqgzf + "]";
+				+ ", tbz_gcjlf=" + tbz_gcjlf + ", tbz_qqgzf=" + tbz_qqgzf
+				+ ", thyy=" + thyy + ", jbzj=" + jbzj + "]";
 	}
 }

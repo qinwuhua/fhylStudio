@@ -64,6 +64,107 @@ function queryylmlx(lxbm,qdzh,zdzh){
 	});
 }
 
+function fwqSbById(index){
+	var da=$("#grid").datagrid('getRows')[index];
+	var xmid=da.id;
+	if(index==null){
+		var rows=$('#grid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请选择要上报的项目！");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].sbzt=='1'){
+				alert("有项目已上报，请检查后操作！");
+				return ;
+			}
+		}
+	}else{
+		var da=$("#grid").datagrid('getRows')[index];
+		if(da.sbzt=='1'){
+			alert("有项目已上报，请检查后操作！");
+			return ;
+		}
+	}
+	if(confirm('您确定上报吗？'))
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/qqgl/updateFwq.do',
+			data:"jhsh.id="+xmid+"&jhsh.sbzt=1",
+			dataType:'json',
+			success:function(msg){
+				if(msg){
+					alert("上报成功");
+					$("#grid").datagrid('reload');
+				}	
+			}
+		});
+}
+
+function changeYhzxshXdzt(index){
+	var da=$("#grid").datagrid('getRows')[index];
+	var xmid=da.id;
+	var xdzth='';
+	if(da.xdzt == '1'){
+		xdzth ='0';
+	}
+	if(da.xdzt == '0'){
+		xdzth = '1';
+	}
+	if(confirm('您确定要更改审核状态？'))
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/qqgl/updateZhzxsh.do',
+			data:"jhsh.id="+xmid+"&jhsh.xdzt="+xdzth,
+			dataType:'json',
+			success:function(msg){
+				if(msg){
+					alert("审核状态更改成功！");
+					$("#grid").datagrid('reload');
+				}	
+			}
+		});
+}
+
+function sbById(index){
+	var da=$("#grid").datagrid('getRows')[index];
+	var xmid=da.id;
+	if(index==null){
+		var rows=$('#grid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请选择要上报的项目！");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].sbzt=='1'){
+				alert("有项目已上报，请检查后操作！");
+				return ;
+			}
+		}
+	}else{
+		var da=$("#grid").datagrid('getRows')[index];
+		if(da.sbzt=='1'){
+			alert("有项目已上报，请检查后操作！");
+			return ;
+		}
+	}
+	if(confirm('您确定上报吗？'))
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/qqgl/updateZhzxsh.do',
+			data:"jhsh.id="+xmid+"&jhsh.sbzt=1",
+			dataType:'json',
+			success:function(msg){
+				if(msg){
+					alert("上报成功");
+					$("#grid").datagrid('reload');
+				}	
+			}
+		});
+}
+
+
+
 function plansb(index){
 	var xmlx="";
 	var xmbm='';
@@ -114,19 +215,46 @@ function plansb(index){
 	});
 }
 function changeXdzt(index){
-	if(index==null){
-		var rows=$('#grid').datagrid('getSelections');
-		if(rows.length==0) {
-			alert("请选择要退回的项目！");
-			return;
-		}
-		for(var i=0;i<rows.length;i++){
-			if(rows[i].xdzt=='1'){
-				alert("有项目已审核，请检查后操作！");
-				return ;
+	var da=$("#grid").datagrid('getRows')[index];
+	var xmid=da.id;
+	if(confirm('您确定要更改审核状态？'))
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/qqgl/updateSflgcXdzt.do',
+			data:"jhsh.id="+xmid,
+			dataType:'json',
+			success:function(msg){
+				if(msg){
+					alert("审核状态更改成功！");
+					$("#grid").datagrid('reload');
+				}	
 			}
-		}
-   }
+		});
+}
+
+function changeFwqXdzt(index){
+	var da=$("#grid").datagrid('getRows')[index];
+	var xmid=da.id;
+	var xdzth='';
+	if(da.xdzt == '1'){
+		xdzth ='0';
+	}
+	if(da.xdzt == '0'){
+		xdzth = '1';
+	}
+	if(confirm('您确定要更改审核状态？'))
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/qqgl/updateFwq.do',
+			data:"jhsh.id="+xmid+"&jhsh.xdzt="+xdzth,
+			dataType:'json',
+			success:function(msg){
+				if(msg){
+					alert("审核状态更改成功！");
+					$("#grid").datagrid('reload');
+				}	
+			}
+		});
 }
 
 function plansh(index){
@@ -172,8 +300,7 @@ function plansh(index){
 			if(msg){
 				alert("审核成功");
 				$("#grid").datagrid('reload');
-			}
-				
+			}	
 		}
 	});
 	
@@ -1570,7 +1697,6 @@ function openxZjxd1(){
 }
 
 function openWindowById(id,title,url,width,height,xmid){
-	//alert(xmbm);
 	YMLib.Var.xmid=xmid;
 	YMLib.UI.createWindow1(id,title,url,id,width,height);
 }

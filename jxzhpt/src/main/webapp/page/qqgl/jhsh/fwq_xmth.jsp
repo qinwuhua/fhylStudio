@@ -1,30 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>示范路工程_项目退回</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.css" />
-	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-form.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath }/page/qqgl/js/util.js"></script>
-	<script type="text/javascript">
+<title>服务区_退回</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-form.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/page/qqgl/js/util.js"></script>
+<script type="text/javascript">
 	$(function() {
 		$('#id').val(parent.YMLib.Var.xmid);
 	});
 	
-	function sflgcXmth() {
-	$('#sflgcFrom').ajaxSubmit({
+	function fwqXmth() {
+	$('#fwqFrom').ajaxSubmit({
 		dataType : 'json',
 		success : function(msg) {
 			if (msg.result) {
@@ -39,6 +39,7 @@
 	});
 }
 </script>
+
 </head>
 <body>
 	<center>
@@ -46,7 +47,7 @@
 			border="0" style="margin-top: 10px; margin-left: 13px;">
 			<tr>
 				<td>
-					<form id="sflgcFrom" action="../../../qqgl/sflgcXmth.do"
+					<form id="fwqFrom" action="../../../qqgl/fwqXmth.do"
 						method="post">
 						<input id="id" name="id" type="hidden" />
 						<table width="98%" border="0"
@@ -67,7 +68,7 @@
 							<tr style="height: 30px;">
 								<td align="center">
 								<td align="center">
-								    <img onclick="sflgcXmth()" alt="保存"
+								    <img onclick="fwqXmth()" alt="保存"
 									onmouseover="this.src='../../../images/Button/baocun2.gif'"
 									onmouseout="this.src='../../../images/Button/baocun1.gif'"
 									src="../../../images/Button/baocun1.gif"> &nbsp; 

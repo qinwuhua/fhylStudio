@@ -1,16 +1,83 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.jhsh">
+    <!-- *服务区* -->
+    <!-- 查询服务区所有信息 -->
+    <select id="listFwq" parameterType="jhsh" resultType="jhsh">
+       select * from jhsh_fwq where 1 = 1
+    </select>
+    <!-- 查询服务区中上报状态为“已上报”的状态 -->
+    <select id="listFwqSbzt" parameterType="jhsh" resultType="jhsh">
+       select * from jhsh_fwq jf where jf.sbzt='1'
+    </select>
+    <!-- 查询服务区中上报上报状态为“已上报”并且下达状态（审批状态）为“已审批”的状态 -->
+    <select id="listFwqXdzt" parameterType="jhsh" resultType="jhsh">
+       select * from jhsh_fwq jf where jf.sbzt='1' and jf.xdzt='1'
+    </select>
+    <!-- 根据Id查询服务区数据 -->
+    <select id="queryFwqById" parameterType="jhsh" resultType="jhsh">
+       SELECT * FROM jhsh_fwq jf WHERE jf.id = #{id}
+    </select>
+    <!-- 更新服务区数据 -->
+     <update id="updateFwq" parameterType="jhsh">
+	  update jhsh_fwq jf
+		<set>
+		  <if test="ztz!=null">ztz=#{ztz},</if>
+		  <if test="cgs!=null">cgs=#{cgs},</if>
+		  <if test="dfzc!=null">dfzc=#{dfzc},</if>
+		  <if test="zydpx!=null">zydpx=#{zydpx},</if>
+		  <if test="sbzt!=null">sbzt=#{sbzt},</if>
+		  <if test="xdzt!=null">xdzt=#{xdzt}</if>
+		</set>
+	  where jf.id=#{id}
+	</update>
+	<update id="fwqXmth" parameterType="jhsh">
+        update jhsh_fwq jf set jf.sbzt='0', jf.thyy=#{thyy} where jf.id=#{id}
+    </update>
+    <!-- #服务区# -->
+    
+    <select id="queryYhzxshJhxd" parameterType="jhsh" resultType="jhsh">
+       select * from jhsh_yhzx jy where jy.sbzt='1' and jy.xdzt='1'
+    </select>
+    <select id="queryYhzxshYap" parameterType="jhsh" resultType="jhsh">
+       select * from jhsh_yhzx jy where jy.sbzt='1'
+    </select>
+    <!-- 根据id查询综合养护中心信息 -->
+    <select id="queryYhzxshById" parameterType="jhsh" resultType="jhsh">
+       SELECT * FROM jhsh_yhzx jy WHERE jy.id = #{id}
+    </select>
+    <!-- 更新综合养护中心信息 -->
+     <update id="updateZhzxsh" parameterType="jhsh">
+	  update jhsh_yhzx
+		<set>
+		  <if test="ztz!=null">ztz=#{ztz},</if>
+		  <if test="jbzj!=null">jbzj=#{jbzj},</if>
+		  <if test="dfzc!=null">dfzc=#{dfzc},</if>
+		  <if test="zydpx!=null">zydpx=#{zydpx},</if>
+		  <if test="sbzt!=null">sbzt=#{sbzt},</if>
+		  <if test="xdzt!=null">xdzt=#{xdzt}</if>
+		</set>
+	  where id=#{id}
+	</update>
+	
+	<update id="yhzxshXmth" parameterType="jhsh">
+        update jhsh_yhzx jy set jy.sbzt='0', jy.thyy=#{thyy} where jy.id=#{id}
+    </update>
+    <!-- 综合养护中心 -->
+    <select id="queryYhzxshSb" parameterType="jhsh" resultType="jhsh">
+           select * from jhsh_yhzx where 1 = 1
+    </select>
+    
     <!-- 更改示范路工程审批状态 -->
     <update id="updateSflgcXdzt" parameterType="jhsh">
-        update jhsh_sfl js set js.xdzt='0' where js.id=#{id};
+        update jhsh_sfl js set js.xdzt='0' where js.id=#{id}
     </update>
     <!-- 示范路 -->
     <update id="sflgcXmth" parameterType="jhsh">
         update jhsh_sfl js set js.sbzt='0', js.thyy=#{thyy} where js.id=#{id}
     </update>
     <!-- 示范路下达查询计划编号 -->
-    <select id="querySflgcXdjhbz" parameterType="jhsh" resultType="jhsh">
+    <select id="querySflgcXdJhbz" parameterType="jhsh" resultType="jhsh">
        SELECT js.xzqh, js.xmnf, js.xdsj, pz.ztz, pz.stz, pz.dfzc
        FROM jhsh_sfl js, plan_zjxd pz
        WHERE js.id =pz.xmid;
@@ -30,7 +97,11 @@
     
     <!-- 示范路工程查询Jhsh_sfl -->
     <select id="querySflgc" parameterType="jhsh" resultType="jhsh">
-       select * from jhsh_sfl sfl where 1 = 1
+      select ss.xmbm, ss.xlxbm, ss.pfwh, ss.xqdzh, ss.xzdzh, ss.sjpfdw, ss.sjpfsj, ss.zyjsnr, ss.gcsl, js.ztz,
+             js.tbz, js.tbz_jaf, js.tbz_gcjlf, js.tbz_qqgzf, js.dfzc, js.zydpx, js.xzqh
+          FROM SGT_SFL ss
+          left join jhsh_sfl js on ss.xmbm = js.xmbm
+         where 1 = 1
     </select>
 
     <!-- 示范路更新Jhsh_sfl -->
