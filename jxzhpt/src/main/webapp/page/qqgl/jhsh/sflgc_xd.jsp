@@ -144,27 +144,9 @@ function querySflgcXdJhbz(){
 		{field:'ztz',title:'总投资(万元)',width:60,align:'center'},
 		{field:'stz',title:'厅补助(万元)',width:60,align:'center'},
 		{field:'dfzc',title:'地方自筹(万元)',width:60,align:'center'}
-		/* {field:'bzpfztz',title:'总投资',width:60,align:'center',editor:{type:'text',options:{required:false}}},
-		{field:'bzcgs',title:'车购税',width:60,align:'center',editor:{type:'text',options:{required:false}}},
-		{field:'bzgz',title:'国债',width:60,align:'center',editor:{type:'text',options:{required:false}}},
-		{field:'bzsz',title:'省债',width:60,align:'center',editor:{type:'text',options:{required:false}}},
-		{field:'bzzq',title:'债券',width:60,align:'center',editor:{type:'text',options:{required:false}}},
-		{field:'bzdk',title:'厅贷款',width:60,align:'center',editor:{type:'text',options:{required:false}}},
-		{field:'bzjl',title:'奖励',width:60,align:'center',editor:{type:'text',options:{required:false}}},
-		{field:'bzqt',title:'其他',width:60,align:'center',editor:{type:'text',options:{required:false}}},
-		{field:'bzdfzc',title:'地方自筹',width:60,align:'center',editor:{type:'text',options:{required:false}}},
-		{field:'bzyhdk',title:'银行贷款',width:60,align:'center',editor:{type:'text',options:{required:false}}}, */
 		
-		/* {field:'zyjsnr',title:'主要建设内容',width:160,align:'center',editor:{type:'text',options:{required:false}}},
-		{field:'xzscnl',title:'新增能力',width:160,align:'center',editor:{type:'text',options:{required:false}}} */
 		
-		/* ,
-		
-		//{field:'bztbsj',title:'填报时间',width:70,align:'center',editor:{type:'datebox',options:{required:false}}},
-		{field:'tbdw',title:'填报单位',width:100,align:'center',
-			formatter: function(value,row,index){
-        		return $.cookie('truename');
-        	}} */
+
 	    ]],
 	    onClickCell: function (rowIndex, field, value) {
 //		    	alert(field);
@@ -172,6 +154,174 @@ function querySflgcXdJhbz(){
 	    	//$('#jhbz').datagrid('enableCellEditing').datagrid('gotoCell', {index: rowIndex,field: field});
 	    }
 	}); 
+}
+
+	
+var editIndex = undefined;
+function beginEditing (rowIndex,field,value) {
+
+    if (rowIndex != editIndex) {
+        if (endEditing()) {
+        	$('#jhbz').datagrid('beginEdit', rowIndex);
+        	
+            editIndex = rowIndex;
+            
+        } else {
+            $('#jhbz').datagrid('selectRow', editIndex);
+        }
+    }
+}
+
+function endEditing() {
+    if (editIndex == undefined) { return true; }
+    
+    if ($('#jhbz').datagrid('validateRow', editIndex)) {
+    	
+        $('#jhbz').datagrid('endEdit', editIndex);
+        //$('#jhbz').datagrid('selectRow', editIndex);
+        editIndex = undefined;
+        
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function createAll(){
+	endEditing();
+	var rows=$('#jhbz').datagrid('getSelections');
+	if(rows.length==0){
+		alert("请勾选要生成统计表的计划");
+		return;
+	}
+//	alert(rows[0].bzpfztz);
+}
+
+function createAll(){
+	endEditing();
+	var rows=$('#jhbz').datagrid('getSelections');
+	if(rows.length==0){
+		alert("请勾选要生成统计表的计划");
+		return;
+	}
+	alert(rows[0].bzpfztz);
+}
+
+function planxdwhAll(){
+	//flagi=1;
+	/* $.messager.defaults = { ok: "确认", cancel: "取消" };
+	 $.messager.prompt("操作提示", "请您输入计划下达文号？", function (data) {
+            if (data) {
+            	planxdAll(data);
+            }else{
+            	alert("计划下达文号不能为空");
+            }
+      }); */
+	endEditing();
+	var rows=$('#jhbz').datagrid('getSelections');
+	if(rows.length==0){
+		alert("请勾选要下达的计划");
+		return;
+	}
+	if($("#zjgl").is(':checked')){
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].bzcgs!='0'){
+				//alert(rows[i].bzcgs);
+				alert("所选项目中车购税未下达完,不能使用资金归0下达");
+				return;
+			}
+		}
+	}  
+	$('#jhxd').dialog("open");
+}
+
+function planxdAll(){
+	if($("#zjgl").is(':checked')){//资金归0下达，即是不需要文件和文号下达
+		$('#jhxd').dialog("close");
+		var jhxdwh=$('#bzxdwh').val();
+		var bztbsj=$('#bztbsj').datebox('getValue');
+		if(bztbsj==''){
+			alert("请填写计划下达时间。");
+			return;
+		}
+		$('#bztbsj').datebox('setValue', formatDate(new Date()));
+		$('#bzxdwh').val("");
+		var rows=$('#jhbz').datagrid('getSelections');
+		if(rows.length==0){
+			alert("请勾选要下达的计划");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			rows[i].jhxdwh=jhxdwh;
+			rows[i].bztbsj=bztbsj;
+			//alert(rows[i].xmbm.substr(10,1));
+			rows[i].xmlx=rows[i].xmbm.substr(10,1);
+		}
+		var json_data = JSON.stringify(rows); 
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/qqgl/planxdAll.do',
+			data:"jhxdwh="+jhxdwh+"&bztbsj="+bztbsj+"&json_data="+json_data,
+			dataType:'json',
+			success:function(msg){
+				if(msg){
+					alert("下达成功");
+/* 					queryxmList();
+					showMxbAll(); */
+					querySflgcXdXmlb();
+					querySflgcXdJhbz();
+				}	
+			}
+		});
+		
+		
+	}else{
+		if($("#sjpfTable").html()==''){
+			alert("请上传该文号对应的文件。");
+			return;
+		}
+		$('#jhxd').dialog("close");
+		//alert($('#bzxdwh').val()+"     "+$('#bztbsj').datebox('getValue'));
+		var jhxdwh=$('#bzxdwh').val();
+		var bztbsj=$('#bztbsj').datebox('getValue');
+		if(jhxdwh==''||bztbsj==''){
+			alert("请填写计划下达文号或计划下达时间。");
+			return;
+		}
+		$('#bztbsj').datebox('setValue', formatDate(new Date()));
+		$('#bzxdwh').val("");
+		var rows=$('#jhbz').datagrid('getSelections');
+		if(rows.length==0){
+			alert("请勾选要下达的计划");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			rows[i].jhxdwh=jhxdwh;
+			rows[i].bztbsj=bztbsj;
+			//alert(rows[i].xmbm.substr(10,1));
+			rows[i].xmlx=rows[i].xmbm.substr(10,1);
+		}
+		var json_data = JSON.stringify(rows); 
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/qqgl/planxdAll.do',
+			data:"jhxdwh="+jhxdwh+"&bztbsj="+bztbsj+"&json_data="+json_data,
+			dataType:'json',
+			success:function(msg){
+				if(msg){
+					alert("下达成功");
+					querySflgcXdXmlb();
+					querySflgcXdJhbz();
+				}
+					
+			}
+		});
+	}
+}
+
+function searchlist(){
+	querySflgcXdXmlb();
+	querySflgcXdJhbz();
 }
 
 
@@ -281,13 +431,13 @@ function querySflgcXdJhbz(){
                 	$("#tt").attr('style','width:'+($(window).width()*0.99)+'px');
      				</script>
 	            		<div title="项目列表" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
-					    	<table id="gridSflgcXmlb"></table>
+					    	<table id="xmlb"></table>
 					    </div>
 					    <div title="计划编制" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
 					    	<a id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:createAll()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">生成汇总</a>
 					    	<a id='mybuttion3' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:planxdwhAll()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion3')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion3')"  class="button button-tiny button-rounded button-raised button-primary">计划下达</a>
 					    	<input id='zjgl' type="checkbox">资金归0
-					    	<table id="gridSflgcJhbz">
+					    	<table id="jhbz">
 					    	</table>
 					    </div>
 				    </div>

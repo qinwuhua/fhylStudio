@@ -30,7 +30,7 @@ $(function(){
 });
 function queryFwqXdXmlb(){
 	
-	grid.id="gridFwqXmlb";
+	grid.id="grid";
 	grid.url="../../../qqgl/listFwqXdzt.do";
 
 	//grid.queryParams=params;
@@ -106,7 +106,7 @@ function queryFwqXdXmlb(){
 	gridBind1(grid);
 }
 function queryFwqXdJhbz(){
-	$('#gridSflgcJhbz').datagrid({    
+	$('#jhbz').datagrid({    
 	    url:'/jxzhpt/qqgl/queryYhzxshXdJhbz.do',
 	    striped:true,
 	    pagination:false,
@@ -139,12 +139,28 @@ function queryFwqXdJhbz(){
 		{field:'dfzc',title:'地方自筹(万元)',width:60,align:'center'}
 	    ]],
 	    onClickCell: function (rowIndex, field, value) {
-//		    	alert(field);
+	    	alert(rowIndex);
+		    alert(field);
+		    alert(value);
 	    	beginEditing(rowIndex,field,value);
-	    	//$('#jhbz').datagrid('enableCellEditing').datagrid('gotoCell', {index: rowIndex,field: field});
 	    }
 	}); 
 }
+
+/* var editIndex = undefined;
+function beginEditing (rowIndex,field,value) {
+    if (rowIndex != editIndex) {
+        if (endEditing()) {
+        	$('#jhbz').datagrid('beginEdit', rowIndex);
+        	
+            editIndex = rowIndex;
+            
+        } else {
+            $('#jhbz').datagrid('selectRow', editIndex);
+        }
+    }
+} */
+
 </script>
 </head>
 <body>
@@ -246,13 +262,13 @@ function queryFwqXdJhbz(){
         	$("#tt").attr('style','width:'+($(window).width()*0.99)+'px');
 				</script>
         		<div title="项目列表" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
-			    	<table id="gridFwqXmlb"></table>
+			    	<table id="grid"></table>
 			    </div>
 			    <div title="计划编制" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
 			    	<a id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:createAll()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">生成汇总</a>
 			    	<a id='mybuttion3' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:planxdwhAll()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion3')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion3')"  class="button button-tiny button-rounded button-raised button-primary">计划下达</a>
 			    	<input id='zjgl' type="checkbox">资金归0
-			    	<table id="gridFwqJhbz">
+			    	<table id="jhbz">
 			    	</table>
 			    </div>
 		    </div>
