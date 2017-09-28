@@ -199,6 +199,56 @@ public class Jhsh implements Serializable{
 	private String sjpfsj;
     private String gcsl;	
     
+    
+    
+    private String tiaojian;
+    
+    
+    
+    private String szds;
+
+    private String xzqhxj;
+
+    private String ghlxzh;
+
+    private String ylxbm;
+
+    private String ylxzh;
+
+    private String jsdjxj;
+
+    private String yj;
+
+    private String ej;
+
+    private String sj;
+
+    private String sij;
+
+    private String jsnf;
+
+    private String tbzhj;
+
+    private String jaf;
+
+    private String jlf;
+
+    private String qqgz;
+
+    private String yxd;
+
+    private String sgtwh;
+
+    private String bz;
+    
+	public String getTiaojian() {
+		return tiaojian;
+	}
+
+	public void setTiaojian(String tiaojian) {
+		this.tiaojian = tiaojian;
+	}
+
 	public String getGcsl() {
 		return gcsl;
 	}
@@ -1325,4 +1375,151 @@ public class Jhsh implements Serializable{
 				+ ", tbz_gcjlf=" + tbz_gcjlf + ", tbz_qqgzf=" + tbz_qqgzf
 				+ ", thyy=" + thyy + ", jbzj=" + jbzj + "]";
 	}
+
+	public String getSzds() {
+		return szds;
+	}
+
+	public void setSzds(String szds) {
+		this.szds = szds;
+	}
+
+	public String getXzqhxj() {
+		return xzqhxj;
+	}
+
+	public void setXzqhxj(String xzqhxj) {
+		this.xzqhxj = xzqhxj;
+	}
+
+	public String getGhlxzh() {
+		return ghlxzh;
+	}
+
+	public void setGhlxzh(String ghlxzh) {
+		this.ghlxzh = ghlxzh;
+	}
+
+	public String getYlxbm() {
+		return ylxbm;
+	}
+
+	public void setYlxbm(String ylxbm) {
+		this.ylxbm = ylxbm;
+	}
+
+	public String getYlxzh() {
+		return ylxzh;
+	}
+
+	public void setYlxzh(String ylxzh) {
+		this.ylxzh = ylxzh;
+	}
+
+	public String getJsdjxj() {
+		return jsdjxj;
+	}
+
+	public void setJsdjxj(String jsdjxj) {
+		this.jsdjxj = jsdjxj;
+	}
+
+	public String getYj() {
+		return yj;
+	}
+
+	public void setYj(String yj) {
+		this.yj = yj;
+	}
+
+	public String getEj() {
+		return ej;
+	}
+
+	public void setEj(String ej) {
+		this.ej = ej;
+	}
+
+	public String getSj() {
+		return sj;
+	}
+
+	public void setSj(String sj) {
+		this.sj = sj;
+	}
+
+	public String getSij() {
+		return sij;
+	}
+
+	public void setSij(String sij) {
+		this.sij = sij;
+	}
+
+	public String getJsnf() {
+		return jsnf;
+	}
+
+	public void setJsnf(String jsnf) {
+		this.jsnf = jsnf;
+	}
+
+	public String getTbzhj() {
+		return tbzhj;
+	}
+
+	public void setTbzhj(String tbzhj) {
+		this.tbzhj = tbzhj;
+	}
+
+	public String getJaf() {
+		return jaf;
+	}
+
+	public void setJaf(String jaf) {
+		this.jaf = jaf;
+	}
+
+	public String getJlf() {
+		return jlf;
+	}
+
+	public void setJlf(String jlf) {
+		this.jlf = jlf;
+	}
+
+	public String getQqgz() {
+		return qqgz;
+	}
+
+	public void setQqgz(String qqgz) {
+		this.qqgz = qqgz;
+	}
+
+	public String getYxd() {
+		return yxd;
+	}
+
+	public void setYxd(String yxd) {
+		this.yxd = yxd;
+	}
+
+	public String getSgtwh() {
+		return sgtwh;
+	}
+
+	public void setSgtwh(String sgtwh) {
+		this.sgtwh = sgtwh;
+	}
+
+	public String getBz() {
+		return bz;
+	}
+
+	public void setBz(String bz) {
+		this.bz = bz;
+	}
+	
+	
+	
 }

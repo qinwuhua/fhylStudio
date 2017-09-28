@@ -33,8 +33,30 @@ function queryFwq(){
 	grid.id="grid";
 	grid.url="../../../qqgl/queryFwq.do";
 
-	//grid.queryParams=params;
-	//loadLj(params);
+	var xzqhdm=$("#xzqh").combotree("getValues");var xzqhstr="";
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
+	var xmnf=$("#xmnf").combobox("getValues").join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
+	var params={'jhsh.xzqhdm':xzqhstr,
+				'jhsh.xmmc':$('#xmmc').val(),
+				'jhsh.xmnf':xmnf,
+				'jhsh.lxmc':$('#lxmc').val(),
+				'jhsh.xmbm':$('#xmbm').val(),
+				'jhsh.sbzt':$("#sbzt").combo('getValue'),
+				'jhsh.xmlx1':'fwqsb'
+				};
+	grid.queryParams=params;
+	loadLj(params);
 	grid.height=$(window).height()-180;
 	grid.width=$('#searchField').width();
 	grid.pageSize=10;
@@ -98,7 +120,6 @@ function queryFwq(){
 							}
 						}
 					},
-		            {field:'xmbm',title:'项目编码',width:120,align:'center'},
 		            {field:'xlxbm',title:'新路线编码',width:60,align:'center'},
 		            {field:'pfwh',title:'批复文号',width:60,align:'center'},
 		            {field:'xzh',title:'新桩号',width:120,align:'center'},
@@ -111,11 +132,28 @@ function queryFwq(){
 		            
 		            {field:'sjpfdw',title:'设计批复单位',width:140,align:'center'},
 		            {field:'sjpfsj',title:'设计批复时间',width:140,align:'center'},
-		            {field:'zyjsnr',title:'主要建设内容',width:140,align:'center'},
-		            {field:'gcsl',title:'工程数量',width:140,align:'center'}
+		            {field:'zyjsnr',title:'主要建设内容',width:140,align:'center'}
 					
 				]];
 	gridBind1(grid);
+}
+
+function loadLj(params){
+	$.ajax({
+		type:'post',
+		url:'../../../qqgl/queryJhshLjsyf.do',
+		data:params,
+		dataType:'json',
+		success:function(msg){
+			if(msg!=null){
+				$('#xmsl').html(msg.XMSL);
+				$('#ztz').html(msg.ZTZ);
+				$('#cgs').html(msg.CGS);
+				$('#dfzc').html(msg.DFZC);
+			}
+			
+		}
+	});
 }
 </script>
 <style type="text/css">
@@ -127,7 +165,7 @@ a {text-decoration: none;}
 <body>
 	<div id="righttop">
 		<div id="p_top">
-			计划管理>&nbsp;<span id="astext">计划库</span>>&nbsp;<span id="bstext"></span>>&nbsp;计划服务区
+			计划管理>&nbsp;<span id="astext">计划申报</span>>&nbsp;服务区
 		</div>
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
@@ -161,9 +199,9 @@ a {text-decoration: none;}
 								<td align="right">项目编码：</td>
 								<td><input type="text" id="ydbmc" style="width: 100px;" /></td>
 								<td align="right">上报状态：</td>
-								<td><select id="xdzt" class="easyui-combobox"
+								<td><select id="sbzt" class="easyui-combobox"
 									style="width: 100px;">
-										<option value="-1" selected="selected">全部</option>
+										<option value="" selected="selected">全部</option>
 										<option value="0">未上报</option>
 										<option value="1">已上报</option>
 								</select></td>
@@ -171,9 +209,7 @@ a {text-decoration: none;}
 							<tr height="32">
 								<td colspan="8">
 								    <img onclick="queryFwq()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align: middle; padding-left: 8px;" /> 
-								    <!--<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;"> -->
-									<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width: 0px; cursor: hand; vertical-align: middle;" />
-									<!--<img onclick="importJhsh()" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> -->
+<!-- 									<img alt='导出' onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width: 0px; cursor: hand; vertical-align: middle;" /> -->
 								</td>
 							</tr>
 						</table>
@@ -183,10 +219,11 @@ a {text-decoration: none;}
 		</tr>
 		<tr>
 			<td style="padding-left: 10px; padding-top: 3px; font-size: 12px;">
-				<div>
-					总投资累计：<span id="spanztz" style="color: red;">0</span>万元; 省补助资金累计：<span
-						id="spansbz" style="color: red;">0</span>万元;
-				</div>
+				<div>项目【<span id="xmsl" style="color: red;">0</span>】个,
+            		总投资【<span id="ztz" style="color: red;">0</span>】万元,
+            		车购税【<span id="cgs" style="color: red;">0</span>】万元,
+            		地方自筹【<span id="dftz" style="color: red;">0</span>】万元.
+            		</div>
 				<div>
 					<table id="grid"></table>
 				</div>

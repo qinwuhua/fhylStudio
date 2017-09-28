@@ -32,9 +32,30 @@ $(function(){
 function queryFwqCx(){
 	grid.id="grid";
 	grid.url="../../../qqgl/listFwqXdzt.do";
-
-	//grid.queryParams=params;
-	//loadLj(params);
+	var xzqhdm=$("#xzqh").combotree("getValues");var xzqhstr="";
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
+	var xmnf=$("#xmnf").combobox("getValues").join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
+	grid.queryParams=params;
+	loadLj(params);
+	var params={'jhsh.xzqhdm':xzqhstr,
+			'jhsh.xmmc':$('#xmmc').val(),
+			'jhsh.xmnf':xmnf,
+			'jhsh.lxmc':$('#lxmc').val(),
+			'jhsh.xmbm':$('#xmbm').val(),
+			'jhsh.sbzt':'',
+			'jhsh.xmlx1':'fwqxd'
+			};
 	grid.height=$(window).height()-180;
 	grid.width=$('#searchField').width();
 	grid.pageSize=10;
@@ -97,8 +118,7 @@ function queryFwqCx(){
 							}
 						}
 					},
-		            {field:'xmbm',title:'项目编码',width:120,align:'center'},
-		            {field:'xlxbm',title:'新路线编码',width:60,align:'center'},
+					{field:'xlxbm',title:'新路线编码',width:60,align:'center'},
 		            {field:'pfwh',title:'批复文号',width:60,align:'center'},
 		            {field:'xzh',title:'新桩号',width:120,align:'center'},
 		            {field:'lzh',title:'老桩号',width:120,align:'center'},
@@ -110,10 +130,27 @@ function queryFwqCx(){
 		            
 		            {field:'sjpfdw',title:'设计批复单位',width:140,align:'center'},
 		            {field:'sjpfsj',title:'设计批复时间',width:140,align:'center'},
-		            {field:'zyjsnr',title:'主要建设内容',width:140,align:'center'},
-		            {field:'gcsl',title:'工程数量',width:140,align:'center'}
+		            {field:'zyjsnr',title:'主要建设内容',width:140,align:'center'}
 				]];
 	gridBind1(grid);
+}
+
+function loadLj(params){
+	$.ajax({
+		type:'post',
+		url:'../../../qqgl/queryJhshLjsyf.do',
+		data:params,
+		dataType:'json',
+		success:function(msg){
+			if(msg!=null){
+				$('#xmsl').html(msg.XMSL);
+				$('#ztz').html(msg.ZTZ);
+				$('#cgs').html(msg.CGS);
+				$('#dfzc').html(msg.DFZC);
+			}
+			
+		}
+	});
 }
 </script>
 <style type="text/css">

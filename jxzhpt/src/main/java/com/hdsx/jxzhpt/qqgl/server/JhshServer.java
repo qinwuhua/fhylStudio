@@ -596,5 +596,21 @@ public interface JhshServer {
 
 	public boolean fwqXmth(Jhsh jhsh);
 
+	public int queryJhshSflgcCount(Jhsh jhsh);
+
+	public Map<String, String> queryJhshLjsyf(Jhsh jhsh);
+
+	public int listFwqCount(Jhsh jhsh);
+
+	public int queryszxmCount(Jhsh jhsh);
+
+	public Map<String, String> queryJhshLjsyfs2w(Jhsh jhsh);
+
+	public List<Map<String, String>> queryszxm(Jhsh jhsh);
+
+	public int listFwqSbztCount(Jhsh jhsh);
+
+	public int listFwqXdztCount(Jhsh jhsh);
+
 	
 }
