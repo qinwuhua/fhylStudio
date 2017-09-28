@@ -48,7 +48,6 @@
 			$("#ylxbm").html(msg.ylxbm);
 			$("#yqdzh").html(msg.yqdzh);
 			$("#yzdzh").html(msg.yzdzh);
-			alert(msg.ylxbm);
 			}
 		});
 	}		

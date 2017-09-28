@@ -54,6 +54,7 @@ var xzqhstr;
 				 	'gydw': gydwstr,
 				 	'xzqhdm':xzqhstr,
 				 	'lxmc' : $('#lxmc').val(),
+				 	'xlxmc' : $('#xlxmc').val(),
 				 	'qlmc':$("#qlmc").val(),
 				 	'xmnf':xmnf,
 				 	'sbzt':$('#sbzt').combobox("getValue"),
@@ -61,6 +62,7 @@ var xzqhstr;
 				 	'gldj':gldj,
 				 	'akjfl':akjfl,
 				 	'lxbm':$("#lxbm").val(),
+				 	'xlxbm':$("#xlxbm").val(),
 				 	'qlbh':$("#qlbh").val(),
 				 	'tsdq':tsdq,
 				 	'xmklx':$('#xmklx').combobox('getValue')
@@ -105,19 +107,19 @@ var xzqhstr;
 					{field:'shzt',title:'审核状态',width:80,align:'center'},
 				 	{field:'gydw',title:'管养单位',width:160,align:'center'},
 			        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
-			        {field:'qlbh',title:'桥梁编号',width:120,align:'center'},
-			        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},
-			        {field:'qlzxzh',title:'桥梁中心桩号',width:120,align:'center'},
-			        {field:'lxbm',title:'路线编码',width:120,align:'center'},
-			        {field:'lxmc',title:'路线名称',width:120,align:'center'},
+			        {field:'qlbh',title:'规划桥梁编号',width:120,align:'center'},
+			        {field:'qlmc',title:'规划桥梁名称',width:120,align:'center'},
+			        {field:'qlzxzh',title:'规划桥梁中心桩号',width:120,align:'center'},
+			        {field:'lxbm',title:'规划路线编码',width:120,align:'center'},
+			        {field:'lxmc',title:'规划路线名称',width:120,align:'center'},
+			        {field:'xqlbm',title:'原桥梁编码',width:140,align:'center'},
+			  	    {field:'xqlmc',title:'原桥梁名称',width:140,align:'center'},
+			        {field:'xzxzh',title:'原桥梁中心桩号',width:140,align:'center'},
+			        {field:'xlxbm',title:'原路线编码',width:140,align:'center'},
+			  	    {field:'xlxmc',title:'原路线名称',width:140,align:'center'},			  	    
 			        {field:'pddj',title:'评定等级',width:140,align:'center'},
 			        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
-			        {field:'xmnf',title:'入库时间',width:140,align:'center'},
-			        {field:'xlxbm',title:'原路线编码',width:140,align:'center'},
-			        {field:'xqlbm',title:'原桥梁编码',width:140,align:'center'},
-			        {field:'xzxzh',title:'原中心桩号',width:140,align:'center'},
-			  	    {field:'xlxmc',title:'原路线名称',width:140,align:'center'},
-			  	    {field:'xqlmc',title:'原桥梁名称',width:140,align:'center'}
+			        {field:'xmnf',title:'入库时间',width:140,align:'center'}
 		    ]]    
 		});  
 		var sbthcd;
@@ -126,7 +128,8 @@ var xzqhstr;
 	 		}else  sbthcd=$.cookie("unit2").length;
 	 	var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
 	 	"&xmnf="+xmnf+"&sbzt="+$('#sbzt').combobox("getValue")+
-	 	'&xmklx='+$('#xmklx').combobox('getValue')+"&tsdq="+tsdq.replace(/\+/g,"%2B")+"&gldj="+gldj+"&jsdj="+jsdj+"&akjfl="+akjfl+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val();
+	 	'&xmklx='+$('#xmklx').combobox('getValue')+"&tsdq="+tsdq.replace(/\+/g,"%2B")+"&gldj="+gldj+"&jsdj="+jsdj+"&akjfl="+akjfl+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+
+	 	"&xlxmc="+$('#xlxmc').val()+"&xlxbm="+$('#xlxbm').val();
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/xmjck/selectWqgzCount.do",
@@ -555,11 +558,13 @@ var xzqhstr;
 				 	'gydw': gydwstr,
 				 	'xzqhdm':xzqhstr,
 				 	'lxmc' : $('#lxmc').val(),
+				 	'ylxmc' : $('#ylxmc').val(),
 				 	'xmnf':xmnf,
 				 	'sbzt':$('#sbzt').combobox("getValue"),
 				 	'jsdj':jsdj,
 				 	'gldj':gldj,
 				 	'lxbm':$("#lxbm").val(),
+				 	'ylxbm':$("#ylxbm").val(),
 				 	'tsdq':tsdq,
 				 	'xmklx':$('#xmklx').combobox('getValue')
 				},
@@ -602,19 +607,19 @@ var xzqhstr;
 				{field:'shzt',title:'审核状态',width:80,align:'center'},
 		        {field:'gydw',title:'管养单位',width:160,align:'center'},
 		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
-		        {field:'lxbm',title:'路线编码',width:120,align:'center'},
-		        {field:'lxmc',title:'路线名称',width:120,align:'center'},
-		        {field:'qdzh',title:'起点桩号',width:140,align:'center'},
-		        {field:'zdzh',title:'止点桩号',width:140,align:'center'},
+		        {field:'lxbm',title:'规划路线编码',width:120,align:'center'},
+		        {field:'lxmc',title:'规划路线名称',width:120,align:'center'},
+		        {field:'qdzh',title:'规划起点桩号',width:140,align:'center'},
+		        {field:'zdzh',title:'规划止点桩号',width:140,align:'center'},
+		        {field:'ylxbm',title:'原路线编码',width:140,align:'center'},
+		        {field:'yqdzh',title:'原起点桩号',width:140,align:'center'},
+		        {field:'yzdzh',title:'原止点桩号',width:140,align:'center'},
+		        {field:'ylxmc',title:'原路线名称',width:140,align:'center'},
 		        {field:'qzlc',title:'起止里程',width:140,align:'center'},
 		        {field:'qzlc',title:'总里程',width:140,align:'center'},
 		        {field:'yhlc',title:'隐患里程',width:140,align:'center'},
 		        {field:'gjxjnd',title:'改建/修建年度',width:140,align:'center'},
-		        {field:'xmnf',title:'项目年份',width:140,align:'center'},
-		        {field:'ylxbm',title:'原路线编码',width:140,align:'center'},
-		        {field:'yqdzh',title:'原起点桩号',width:140,align:'center'},
-		        {field:'yzdzh',title:'原止点桩号',width:140,align:'center'},
-		        {field:'ylxmc',title:'原路线名称',width:140,align:'center'}
+		        {field:'xmnf',title:'项目年份',width:140,align:'center'}
 		    ]]    
 		});  
 		var sbthcd;
@@ -623,7 +628,8 @@ var xzqhstr;
 	 		}else  sbthcd=$.cookie("unit2").length;
 	 	var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&xmnf="+
 	 	xmnf+"&sbzt="+$("#sbzt").combobox("getValue")+
-	 	'&xmklx='+$('#xmklx').combobox('getValue')+"&jsdj="+jsdj+"&lxbm="+$("#lxbm").val()+"&gldj="+gldj+"&tsdq="+tsdq.replace(/\+/g,"%2B");
+	 	'&xmklx='+$('#xmklx').combobox('getValue')+"&jsdj="+jsdj+"&lxbm="+$("#lxbm").val()+"&gldj="+gldj+"&tsdq="+tsdq.replace(/\+/g,"%2B")+
+	 	"&ylxmc="+$('#ylxmc').val()+"&ylxbm="+$("#ylxbm").val();
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/xmjck/selZhfzCount.do",
@@ -820,6 +826,7 @@ function jckshWqgz(){
 			 	'gydw': gydwstr,
 			 	'xzqhdm':xzqhstr,
 			 	'lxmc' : $('#lxmc').val(),
+			 	'xlxmc': $('#xlxmc').val(),
 			 	'qlmc':$("#qlmc").val(),
 			 	'xmnf':'',
 			 	'shzt':$("#shzt").combobox("getValue"),
@@ -827,6 +834,7 @@ function jckshWqgz(){
 			 	'gldj':gldj,
 			 	'akjfl':akjfl,
 			 	'lxbm':$("#lxbm").val(),
+			 	'xlxbm':$("#xlxbm").val(),
 			 	'qlbh':$("#qlbh").val(),
 			 	'tsdq':tsdq,
 			 	'xmklx':$('#xmklx').combobox('getValue')
@@ -861,20 +869,21 @@ function jckshWqgz(){
 				}
 			}},
 			 	{field:'gydw',title:'管养单位',width:160,align:'center'},
-		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
-		        {field:'qlbh',title:'桥梁编号',width:120,align:'center'},
-		        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},
-		        {field:'qlzxzh',title:'桥梁中心桩号',width:120,align:'center'},
-		        {field:'lxbm',title:'路线编码',width:120,align:'center'},
-		        {field:'lxmc',title:'路线名称',width:120,align:'center'},
+		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},       
+		        {field:'qlbh',title:'规划桥梁编号',width:120,align:'center'},
+		        {field:'qlmc',title:'规划桥梁名称',width:120,align:'center'},
+		        {field:'qlzxzh',title:'规划桥梁中心桩号',width:120,align:'center'},
+		        {field:'lxbm',title:'规划路线编码',width:120,align:'center'},
+		        {field:'lxmc',title:'规划路线名称',width:120,align:'center'},
+		        {field:'xqlbm',title:'原桥梁编码',width:140,align:'center'},
+		  	    {field:'xqlmc',title:'原桥梁名称',width:140,align:'center'},       
+		        {field:'xzxzh',title:'原桥梁中心桩号',width:140,align:'center'},
+		        {field:'xlxbm',title:'原路线编码',width:140,align:'center'},
+		  	    {field:'xlxmc',title:'原路线名称',width:140,align:'center'},
 		        {field:'pddj',title:'评定等级',width:140,align:'center'},
 		        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
-		        {field:'xmnf',title:'入库时间',width:140,align:'center'},
-		        {field:'xlxbm',title:'原路线编码',width:140,align:'center'},
-		        {field:'xqlbm',title:'原桥梁编码',width:140,align:'center'},
-		        {field:'xzxzh',title:'原中心桩号',width:140,align:'center'},
-		  	    {field:'xlxmc',title:'原路线名称',width:140,align:'center'},
-		  	    {field:'xqlmc',title:'原桥梁名称',width:140,align:'center'}
+		        {field:'xmnf',title:'入库时间',width:140,align:'center'}
+		        
 	    ]]    
 	});  
 	var sbthcd;
@@ -884,7 +893,8 @@ function jckshWqgz(){
  	var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
  	"&xmnf="+"&shzt="+$('#shzt').combobox("getValue")+
  	"&tsdq="+tsdq.replace(/\+/g,"%2B")+"&gldj="+gldj+"&jsdj="+jsdj+"&akjfl="+akjfl+"&lxbm="+$("#lxbm").val()+
- 	"&qlbh="+$("#qlbh").val()+"&xmklx="+$("#xmklx").combobox('getValue');
+ 	"&qlbh="+$("#qlbh").val()+"&xmklx="+$("#xmklx").combobox('getValue')+
+ 	"&xlxmc="+$('#xlxmc').val()+"&xlxbm="+$("#xlxbm").val();
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/xmjck/selectWqgzShCount.do",
@@ -1324,10 +1334,12 @@ function jckshZhfz(){
 			 	'gydw': gydwstr,
 			 	'xzqhdm':xzqhstr,
 			 	'lxmc' : $('#lxmc').val(),
+			 	'ylxmc' : $('#ylxmc').val(),
 			 	'xmnf':xmnf,
 			 	'shzt':$("#shzt").combobox("getValue"),
 			 	'jsdj':jsdj,
 			 	'lxbm':$("#lxbm").val(),
+			 	'ylxbm':$("#ylxbm").val(),
 			 	'gldj':gldj,
 			 	'tsdq':tsdq,
 			 	'xmklx':$('#xmklx').combobox('getValue')
@@ -1368,19 +1380,19 @@ function jckshZhfz(){
 			}},
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
-	        {field:'lxbm',title:'路线编码',width:120,align:'center'},
-	        {field:'lxmc',title:'路线名称',width:120,align:'center'},
-	        {field:'qdzh',title:'起点桩号',width:140,align:'center'},
-	        {field:'zdzh',title:'止点桩号',width:140,align:'center'},
+	        {field:'lxbm',title:'规划路线编码',width:120,align:'center'},
+	        {field:'lxmc',title:'规划路线名称',width:120,align:'center'},
+	        {field:'qdzh',title:'规划起点桩号',width:140,align:'center'},
+	        {field:'zdzh',title:'规划止点桩号',width:140,align:'center'},
+	        {field:'ylxbm',title:'原路线编码',width:140,align:'center'},
+	  	    {field:'ylxmc',title:'原路线名称',width:140,align:'center'},
+	        {field:'yqdzh',title:'原起点桩号',width:140,align:'center'},
+	        {field:'yzdzh',title:'原止点桩号',width:140,align:'center'},
 	        {field:'qzlc',title:'起止里程',width:140,align:'center'},
 	        {field:'qzlc',title:'总里程',width:140,align:'center'},
 	        {field:'yhlc',title:'隐患里程',width:140,align:'center'},
 	        {field:'gjxjnd',title:'改建/修建年度',width:140,align:'center'},
-	        {field:'xmnf',title:'项目年份',width:140,align:'center'},
-	        {field:'ylxbm',title:'原路线编码',width:140,align:'center'},
-	        {field:'yqdzh',title:'原起点桩号',width:140,align:'center'},
-	        {field:'yzdzh',title:'原止点桩号',width:140,align:'center'},
-	  	    {field:'ylxmc',title:'原路线名称',width:140,align:'center'}
+	        {field:'xmnf',title:'项目年份',width:140,align:'center'}
 	    ]]    
 	});  
 	var sbthcd;
@@ -1389,7 +1401,8 @@ function jckshZhfz(){
  		}else  sbthcd=$.cookie("unit2").length;
  	var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&xmnf="+xmnf+
  	"&shzt="+$("#shzt").combobox("getValue")+"&jsdj="+jsdj+"&tsdq="+tsdq.replace(/\+/g,"%2B")+
- 	'&xmklx='+$('#xmklx').combobox('getValue')+"&lxbm="+$("#lxbm").val()+"&gldj="+gldj;
+ 	'&xmklx='+$('#xmklx').combobox('getValue')+"&lxbm="+$("#lxbm").val()+"&gldj="+gldj+
+ 	"&ylxmc="+$('#ylxmc').val()+"&ylxbm="+$("#ylxbm").val();
 $.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmjck/selZhfzShCount.do",

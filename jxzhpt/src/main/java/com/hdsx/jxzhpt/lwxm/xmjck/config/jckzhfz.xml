@@ -24,6 +24,9 @@
  		<if test="lxmc!='' and lxmc!= null ">
  			and lxmc like '%'||(#{lxmc})||'%'
  		</if>
+ 		 <if test="ylxmc!='' and ylxmc!= null ">
+ 			and ylxmc like '%'||(#{ylxmc})||'%'
+ 		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf in (${xmnf})
  		</if>
@@ -38,6 +41,9 @@
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
  			and lxbm like #{lxbm}||'%'
+ 		</if>
+ 		<if test="ylxbm!='' and ylxbm!= null ">
+ 			and ylxbm like #{ylxbm}||'%'
  		</if>
  		<if test="gldj !='' and gldj!= null ">
  			${gldj}
@@ -159,6 +165,9 @@
  		<if test="lxmc!='' and lxmc!= null ">
  			and lxmc like '%'||(#{lxmc})||'%'
  		</if>
+ 		 <if test="ylxmc!='' and ylxmc!= null ">
+ 			and ylxmc like '%'||(#{ylxmc})||'%'
+ 		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf in (${xmnf})
  		</if>
@@ -176,6 +185,9 @@
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
  			and lxbm like #{lxbm}||'%'
+ 		</if>
+ 		<if test="ylxbm!='' and ylxbm!= null ">
+ 			and ylxbm like #{ylxbm}||'%'
  		</if>
  		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
@@ -283,10 +295,12 @@
 	values(sys_guid(),(select id from xtgl_department where name=#{0}),#{0},#{1},#{2},#{3},#{4},#{5},#{6},to_number(#{6})-to_number(#{5}),#{8},#{9},#{10},#{11},#{12},#{13},'待上报',sysdate,#{tbbmbm},#{sbthcd},'未审核','未上报')
  </insert>
  <select id="exportExcel_zhfz_sh" parameterType="jckzhfz" resultType="elist">
- 	 select rownum v_0,xzqhdm v_1,xzqhmc v_2,gydw v_3,lxbm v_4,lxmc v_5,qdzh v_6,zdzh v_7,qzlc v_8,yhlc v_9,
- gjxjnd v_10,xmnf v_11,xmklx v_12,yhnr v_13,tsdq v_14,bz v_15
-   from xmk_zhfz
- 	where sbthcd=7
+ 	 select rownum v_0,xzqhdm v_1,xzqhmc v_2,gydw v_3, 
+ 	 lxbm v_4, lxmc v_5, qdzh v_6, zdzh v_7, 
+ 	 ylxbm v_8, ylxmc v_9, yqdzh v_10, yzdzh v_11, 
+ 	 qzlc v_12, yhlc v_13, gjxjnd v_14,xmnf v_15,xmklx v_16,yhnr v_17,tsdq v_18,bz v_19
+     from xmk_zhfz
+ 	 where sbthcd=7
  	<include refid="zhfz_commonsql"/>
 			<!-- and sbthcd>=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
@@ -372,6 +386,9 @@
  		<if test="lxmc!='' and lxmc!= null ">
  			and lxmc like '%'||(#{lxmc})||'%'
  		</if>
+ 		<if test="ylxmc!='' and ylxmc!= null ">
+ 			and ylxmc like '%'||(#{ylxmc})||'%'
+ 		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf in (${xmnf})
  		</if>
@@ -386,6 +403,9 @@
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
  			and lxbm like #{lxbm}||'%'
+ 		</if>
+ 		 <if test="ylxbm!='' and ylxbm!= null ">
+ 			and ylxbm like #{ylxbm}||'%'
  		</if>
  		<if test="gldj !='' and gldj!= null ">
  			${gldj}
@@ -409,6 +429,9 @@
  		<if test="lxmc!='' and lxmc!= null ">
  			and lxmc like '%'||(#{lxmc})||'%'
  		</if>
+ 		<if test="ylxmc!='' and ylxmc!= null ">
+ 			and lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf in (${xmnf})
  		</if>
@@ -425,6 +448,9 @@
  			${gldj}
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
+ 			and lxbm like #{lxbm}||'%'
+ 		</if>
+ 		<if test="ylxbm!='' and ylxbm!= null ">
  			and lxbm like #{lxbm}||'%'
  		</if>
  		<if test="bz!='' and bz!= null ">
