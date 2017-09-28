@@ -13,6 +13,11 @@
 		<action name="sflgcXmth" class="jhshController" method="sflgcXmth" />
 		<action name="updateSflgcXdzt" class="jhshController" method="updateSflgcXdzt" />
 		<!-- #示范路工程# -->
+		<action name="queryJhshLjsyf" class="jhshController" method="queryJhshLjsyf" />
+		<action name="queryJhshLjsyfs2w" class="jhshController" method="queryJhshLjsyfs2w" />
+		
+		<action name="queryszxm" class="jhshController" method="queryszxm" />
+		
 
 		<!-- *综合养护中心* -->
 		<action name="queryYhzxshSb" class="jhshController" method="queryYhzxshSb" />

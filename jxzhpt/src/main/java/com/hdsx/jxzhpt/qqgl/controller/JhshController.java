@@ -636,14 +636,69 @@ public class JhshController extends BaseActionSupport implements
 	public void querySflgc() throws Exception {
 		List<Jhsh> listSflgc = null;
 		try {
+			
+			jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "wn.qhdm"));
+			jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "ss.xmnf"));
 			listSflgc = jhshServer.queryJhshSflgc(jhsh);
-			JsonUtils.write(listSflgc, getresponse().getWriter());
+			int total = jhshServer.queryJhshSflgcCount(jhsh);
+			EasyUIPage<Jhsh> e=new EasyUIPage<Jhsh>();
+			e.setRows(listSflgc);e.setTotal(total);
+			JsonUtils.write(e, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
 	}
 
+	//查询三种项目从申报到计划审核。
+	public void queryszxm() throws Exception {
+		List<Map<String, String>> listSflgc = null;
+		try {
+			jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "xzqhdm"));
+			jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "jsnf"));
+			listSflgc = jhshServer.queryszxm(jhsh);
+			int total = jhshServer.queryszxmCount(jhsh);
+			EasyUIPage<Map<String, String>> e=new EasyUIPage<Map<String, String>>();
+			e.setRows(listSflgc);e.setTotal(total);
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	public void queryJhshLjsyfs2w() {
+		Map<String, String> result = new HashMap<String, String>();
+		try {
+
+			jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "xzqhdm"));
+			jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "jsnf"));
+			result = jhshServer.queryJhshLjsyfs2w(jhsh);
+
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void queryJhshLjsyf() {
+		Map<String, String> result = new HashMap<String, String>();
+		try {
+
+			jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "wn.qhdm"));
+			jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "ss.xmnf"));
+			result = jhshServer.queryJhshLjsyf(jhsh);
+
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * 更新示范路工程
 	 * 
@@ -3775,6 +3830,14 @@ public class JhshController extends BaseActionSupport implements
 	public void querySflgcYap() throws Exception {
 		List<Jhsh> ListSflgcYap = null;
 		try {
+			/*jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "wn.qhdm"));
+			jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "ss.xmnf"));
+			listSflgc = jhshServer.queryJhshSflgc(jhsh);
+			int total = jhshServer.queryJhshSflgcCount(jhsh);
+			EasyUIPage<Jhsh> e=new EasyUIPage<Jhsh>();
+			e.setRows(listSflgc);e.setTotal(total);
+			JsonUtils.write(e, getresponse().getWriter());*/
+			
 			ListSflgcYap = jhshServer.querySflgcYap(jhsh);
 			JsonUtils.write(ListSflgcYap, getresponse().getWriter());
 		} catch (Exception e) {
@@ -3788,6 +3851,14 @@ public class JhshController extends BaseActionSupport implements
 	public void querySflgcXdXmlb() throws Exception {
 		List<Jhsh> listSflgcXdXmlb = null;
 		try {
+			/*jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "wn.qhdm"));
+			jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "ss.xmnf"));
+			listSflgc = jhshServer.queryJhshSflgc(jhsh);
+			int total = jhshServer.queryJhshSflgcCount(jhsh);
+			EasyUIPage<Jhsh> e=new EasyUIPage<Jhsh>();
+			e.setRows(listSflgc);e.setTotal(total);
+			JsonUtils.write(e, getresponse().getWriter());*/
+			
 			listSflgcXdXmlb = jhshServer.querySflgcXdXmlb(jhsh);
 			JsonUtils.write(listSflgcXdXmlb, getresponse().getWriter());
 		} catch (Exception e) {
@@ -3902,8 +3973,14 @@ public class JhshController extends BaseActionSupport implements
 	public void queryFwq() throws Exception {
 		List<Jhsh> listFwq = null;
 		try {
+			jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "wn.qhdm"));
+			jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "ss.xmnf"));
 			listFwq = jhshServer.listFwq(jhsh);
-			JsonUtils.write(listFwq, getresponse().getWriter());
+			int total = jhshServer.listFwqCount(jhsh);
+			EasyUIPage<Jhsh> e=new EasyUIPage<Jhsh>();
+			e.setRows(listFwq);e.setTotal(total);
+			JsonUtils.write(e, getresponse().getWriter());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -3912,8 +3989,15 @@ public class JhshController extends BaseActionSupport implements
 	public void listFwqSbzt() throws Exception{
 		List<Jhsh> listFwq = null;
 		try {
+			
+			jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "wn.qhdm"));
+			jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "ss.xmnf"));
 			listFwq = jhshServer.listFwqSbzt(jhsh);
-			JsonUtils.write(listFwq, getresponse().getWriter());
+			int total = jhshServer.listFwqSbztCount(jhsh);
+			EasyUIPage<Jhsh> e=new EasyUIPage<Jhsh>();
+			e.setRows(listFwq);e.setTotal(total);
+			JsonUtils.write(e, getresponse().getWriter());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -3922,8 +4006,13 @@ public class JhshController extends BaseActionSupport implements
 	public void listFwqXdzt() throws Exception{
 		List<Jhsh> listFwq = null;
 		try {
+			jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "wn.qhdm"));
+			jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "ss.xmnf"));
 			listFwq = jhshServer.listFwqXdzt(jhsh);
-			JsonUtils.write(listFwq, getresponse().getWriter());
+			int total = jhshServer.listFwqXdztCount(jhsh);
+			EasyUIPage<Jhsh> e=new EasyUIPage<Jhsh>();
+			e.setRows(listFwq);e.setTotal(total);
+			JsonUtils.write(e, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

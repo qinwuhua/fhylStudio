@@ -1,18 +1,196 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.jhsh">
+    <select id="queryszxm" parameterType="jhsh" resultType="hashMap">
+       
+      select * from (
+      select rownum num,s.*
+      ${tiaojian}
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+      <if test="shzt !='' and shzt != null">and shzt like '%${shzt}%'</if>
+      <if test="xdzt !='' and xdzt != null">and xdzt like '%${xdzt}%'</if>
+      
+      and rownum &lt;=(#{page} * #{rows})  
+      ) t 
+      where t.num>(#{page}-1)*#{rows}
+    </select>
+    <select id="queryszxmCount" parameterType="jhsh" resultType="int">
+      select count(*)
+      ${tiaojian}
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+      <if test="shzt !='' and shzt != null">and shzt like '%${shzt}%'</if>
+      <if test="xdzt !='' and xdzt != null">and xdzt like '%${xdzt}%'</if>
+        
+    </select>
+    <select id="queryszxmlj" parameterType="jhsh" resultType="hashMap">
+      select count(*) xmsl,nvl(sum(ztz),0) ztz
+      ${tiaojian}
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+      <if test="shzt !='' and shzt != null">and shzt like '%${shzt}%'</if>
+      <if test="xdzt !='' and xdzt != null">and xdzt like '%${xdzt}%'</if>
+       
+    </select>
+    
+    
+    
     <!-- *服务区* -->
     <!-- 查询服务区所有信息 -->
     <select id="listFwq" parameterType="jhsh" resultType="jhsh">
-       select * from jhsh_fwq where 1 = 1
+       
+      select * from (
+      select rownum num,ss.xmbm, ss.xlxbm, ss.pfwh, ss.xzh, ss.lzh, ss.sjpfdw, ss.sjpfsj, ss.zyjsnr, ss.gcsl, js.ztz,
+      js.cgs, js.dfzc, js.zydpx, js.xzqh, js.sbzt,js.xdzt
+      FROM SGT_fwq ss
+      left join jhsh_fwq js on ss.xmbm = js.xmbm
+      left join wnjh_fwq wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+      
+      and rownum &lt;=(#{page} * #{rows})  
+      ) t 
+      where t.num>(#{page}-1)*#{rows}
     </select>
+    <select id="listFwqCount" parameterType="jhsh" resultType="int">
+      select count(*)
+      FROM SGT_fwq ss
+      left join jhsh_fwq js on ss.xmbm = js.xmbm
+      left join wnjh_fwq wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+        
+    </select>
+    <select id="queryJhshLjfwqsb" parameterType="jhsh" resultType="hashMap">
+      select count(*) xmsl,nvl(sum(js.ztz),0) ztz,nvl(sum(tbz),0) tbz,nvl(sum(dfzc),0) dfzc
+      FROM SGT_fwq ss
+      left join jhsh_fwq js on ss.xmbm = js.xmbm
+      left join wnjh_fwq wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+        
+    </select>
+    
+    
     <!-- 查询服务区中上报状态为“已上报”的状态 -->
     <select id="listFwqSbzt" parameterType="jhsh" resultType="jhsh">
-       select * from jhsh_fwq jf where jf.sbzt='1'
+       select * from (
+	     select rownum num,ss.xmbm, ss.xlxbm, ss.pfwh, ss.xzh, ss.lzh, ss.sjpfdw, ss.sjpfsj, ss.zyjsnr, ss.gcsl, js.ztz,
+	     js.cgs, js.dfzc, js.zydpx, js.xzqh, js.sbzt,js.xdzt
+	     FROM SGT_fwq ss
+	     left join jhsh_fwq js on ss.xmbm = js.xmbm
+	     left join wnjh_fwq wn on ss.xmkid=wn.id
+	     where 1 = 1 and ss.shzt='已审核' and sbzt='1'
+	     <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+	     <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+	     <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+	     <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+	     <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+	     <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+	     and rownum &lt;=(#{page} * #{rows})  
+	     ) t 
+	     where t.num>(#{page}-1)*#{rows}
     </select>
+    
+    <select id="listFwqSbztCount" parameterType="jhsh" resultType="int">
+      select count(*)
+      FROM SGT_fwq ss
+      left join jhsh_fwq js on ss.xmbm = js.xmbm
+      left join wnjh_fwq wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核' and sbzt='1'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+        
+    </select>
+    <select id="queryJhshLjfwqsh" parameterType="jhsh" resultType="hashMap">
+      select count(*) xmsl,nvl(sum(js.ztz),0) ztz,nvl(sum(tbz),0) tbz,nvl(sum(dfzc),0) dfzc
+      FROM SGT_fwq ss
+      left join jhsh_fwq js on ss.xmbm = js.xmbm
+      left join wnjh_fwq wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核' and sbzt='1'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+        
+    </select>
+    
+    
     <!-- 查询服务区中上报上报状态为“已上报”并且下达状态（审批状态）为“已审批”的状态 -->
     <select id="listFwqXdzt" parameterType="jhsh" resultType="jhsh">
-       select * from jhsh_fwq jf where jf.sbzt='1' and jf.xdzt='1'
+       select * from (
+	     select rownum num,ss.xmbm, ss.xlxbm, ss.pfwh, ss.xzh, ss.lzh, ss.sjpfdw, ss.sjpfsj, ss.zyjsnr, ss.gcsl, js.ztz,
+	     js.cgs, js.dfzc, js.zydpx, js.xzqh, js.sbzt,js.xdzt
+	     FROM SGT_fwq ss
+	     left join jhsh_fwq js on ss.xmbm = js.xmbm
+	     left join wnjh_fwq wn on ss.xmkid=wn.id
+	     where 1 = 1 and ss.shzt='已审核' and xdzt='1'
+	     <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+	     <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+	     <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+	     <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+	     <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+	     <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+	     and rownum &lt;=(#{page} * #{rows})  
+	     ) t 
+	     where t.num>(#{page}-1)*#{rows}
+    </select>
+    
+    <select id="listFwqXdztCount" parameterType="jhsh" resultType="int">
+      select count(*)
+      FROM SGT_fwq ss
+      left join jhsh_fwq js on ss.xmbm = js.xmbm
+      left join wnjh_fwq wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核'  and xdzt='1'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+        
+    </select>
+    <select id="queryJhshLjfwqxd" parameterType="jhsh" resultType="hashMap">
+      select count(*) xmsl,nvl(sum(js.ztz),0) ztz,nvl(sum(tbz),0) tbz,nvl(sum(dfzc),0) dfzc
+      FROM SGT_fwq ss
+      left join jhsh_fwq js on ss.xmbm = js.xmbm
+      left join wnjh_fwq wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核'  and xdzt='1'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+        
     </select>
     <!-- 根据Id查询服务区数据 -->
     <select id="queryFwqById" parameterType="jhsh" resultType="jhsh">
@@ -103,13 +281,56 @@
     
     <!-- 示范路工程查询Jhsh_sfl -->
     <select id="querySflgc" parameterType="jhsh" resultType="jhsh">
-      select ss.xmbm, ss.xlxbm, ss.pfwh, ss.xqdzh, ss.xzdzh, ss.sjpfdw, ss.sjpfsj, ss.zyjsnr, ss.gcsl, js.ztz,
-             js.tbz, js.tbz_jaf, js.tbz_gcjlf, js.tbz_qqgzf, js.dfzc, js.zydpx, js.xzqh
-          FROM SGT_SFL ss
-          left join jhsh_sfl js on ss.xmbm = js.xmbm
-         where 1 = 1
+      
+      select * from (
+      select rownum num,ss.xmbm, ss.xlxbm, ss.pfwh, ss.xqdzh, ss.xzdzh, ss.sjpfdw, ss.sjpfsj, ss.zyjsnr, ss.gcsl, js.ztz,
+      js.tbz, js.tbz_jaf, js.tbz_gcjlf, js.tbz_qqgzf, js.dfzc, js.zydpx, js.sbzt,js.xdzt
+      FROM SGT_SFL ss
+      left join jhsh_sfl js on ss.xmbm = js.xmbm
+      left join wnjh_sfl wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+      
+      and rownum &lt;=(#{page} * #{rows})  
+      ) t 
+      where t.num>(#{page}-1)*#{rows}
+        
     </select>
-
+	<select id="querySflgcCount" parameterType="jhsh" resultType="int">
+      select count(*)
+      FROM SGT_SFL ss
+      left join jhsh_sfl js on ss.xmbm = js.xmbm
+      left join wnjh_sfl wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+        
+    </select>
+    <select id="queryJhshLjsflsb" parameterType="jhsh" resultType="hashMap">
+      select count(*) xmsl,nvl(sum(js.ztz),0) ztz,nvl(sum(tbz),0) tbz,nvl(sum(dfzc),0) dfzc
+      FROM SGT_SFL ss
+      left join jhsh_sfl js on ss.xmbm = js.xmbm
+      left join wnjh_sfl wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+        
+    </select>
+    
+    
     <!-- 示范路更新Jhsh_sfl -->
     <update id="updateJhshSflgc" parameterType="jhsh">
 	  update jhsh_sfl

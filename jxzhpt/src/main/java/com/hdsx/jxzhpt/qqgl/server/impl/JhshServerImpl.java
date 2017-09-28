@@ -1388,6 +1388,31 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	}
 
 	@Override
+	public int queryJhshSflgcCount(Jhsh jhsh) {
+		return queryOne("querySflgcCount", jhsh);
+	}
+	
+	@Override
+	public Map<String, String> queryJhshLjsyf(Jhsh jhsh) {
+		if("sflsb".equals(jhsh.getXmlx1()))
+		return queryOne("queryJhshLjsflsb", jhsh);
+		
+		
+		//服务区
+		if("fwqsb".equals(jhsh.getXmlx1()))
+			return queryOne("queryJhshLjfwqsb", jhsh);
+		if("fwqsh".equals(jhsh.getXmlx1()))
+			return queryOne("queryJhshLjfwqsh", jhsh);
+		if("fwqxd".equals(jhsh.getXmlx1()))
+			return queryOne("queryJhshLjfwqxd", jhsh);
+		
+		
+		else
+			return null;
+	}
+	
+	
+	@Override
 	public Jhsh querySflgcByXmbm(Jhsh jhsh) {
 		return queryOne("querySflgcByXmbm", jhsh);
 	}
@@ -1463,12 +1488,22 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public List<Jhsh> listFwq(Jhsh jhsh) {
 		return queryList("listFwq", jhsh);
 	}
+	@Override
+	public int listFwqCount(Jhsh jhsh) {
+		return queryOne("listFwqCount", jhsh);
+	}
+	
 	
 	@Override
 	public List<Jhsh> listFwqSbzt(Jhsh jhsh) {
 		return queryList("listFwqSbzt", jhsh);
 	}
-
+	
+	@Override
+	public int listFwqSbztCount(Jhsh jhsh) {
+		return queryOne("listFwqSbztCount", jhsh);
+	}
+	
 	@Override
 	public List<Jhsh> listFwqXdzt(Jhsh jhsh) {
 		return queryList("listFwqXdzt", jhsh);
@@ -1487,5 +1522,157 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	@Override
 	public boolean fwqXmth(Jhsh jhsh) {
 		return update("fwqXmth", jhsh) > 0;
+	}
+
+	@Override
+	public List<Map<String, String>> queryszxm(Jhsh jhsh) {
+		if("sflsb".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 ");
+		}
+		if("sflsh".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 and sbzt='1'");
+		}
+		if("sflxd".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 and shzt='1'");
+		}
+		if("sflcx".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 and xdzt='2'");
+		}
+		
+		//养护中心
+		
+		if("yhzxsb".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from YHZXJH_SEW s where 1=1 ");
+		}
+		if("yhzxsh".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from YHZXJH_SEW s where 1=1 and sbzt='1'");
+		}
+		if("yhzxxd".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from YHZXJH_SEW s where 1=1 and shzt='1'");
+		}
+		if("yhzxcx".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from YHZXJH_SEW s where 1=1 and xdzt='2'");
+		}
+		
+		
+		//服务区
+		
+		if("fwqsb".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from FWQJH_SEW s where 1=1 ");
+		}
+		if("fwqsh".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from FWQJH_SEW s where 1=1 and sbzt='1'");
+		}
+		if("fwqxd".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from FWQJH_SEW s where 1=1 and shzt='1'");
+		}
+		if("fwqcx".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from FWQJH_SEW s where 1=1 and xdzt='2'");
+		}
+		
+		
+		return queryList("queryszxm",jhsh);
+	}
+
+	@Override
+	public int queryszxmCount(Jhsh jhsh) {
+		if("sflsb".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 ");
+		}
+		if("sflsh".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 and sbzt='1'");
+		}
+		if("sflxd".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 and shzt='1'");
+		}
+		if("sflcx".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 and xdzt='2'");
+		}
+		
+		//养护中心
+		
+		if("yhzxsb".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from YHZXJH_SEW s where 1=1 ");
+		}
+		if("yhzxsh".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from YHZXJH_SEW s where 1=1 and sbzt='1'");
+		}
+		if("yhzxxd".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from YHZXJH_SEW s where 1=1 and shzt='1'");
+		}
+		if("yhzxcx".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from YHZXJH_SEW s where 1=1 and xdzt='2'");
+		}
+		
+		//服务区
+		
+		if("fwqsb".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from FWQJH_SEW s where 1=1 ");
+		}
+		if("fwqsh".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from FWQJH_SEW s where 1=1 and sbzt='1'");
+		}
+		if("fwqxd".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from FWQJH_SEW s where 1=1 and shzt='1'");
+		}
+		if("fwqcx".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from FWQJH_SEW s where 1=1 and xdzt='2'");
+		}
+		
+		return queryOne("queryszxmCount", jhsh);
+	}
+
+	@Override
+	public Map<String, String> queryJhshLjsyfs2w(Jhsh jhsh) {
+		if("sflsb".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 ");
+		}
+		if("sflsh".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 and sbzt='1'");
+		}
+		if("sflxd".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 and shzt='1'");
+		}
+		if("sflcx".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 and xdzt='2'");
+		}
+		
+		//养护中心
+		
+		if("yhzxsb".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from YHZXJH_SEW s where 1=1 ");
+		}
+		if("yhzxsh".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from YHZXJH_SEW s where 1=1 and sbzt='1'");
+		}
+		if("yhzxxd".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from YHZXJH_SEW s where 1=1 and shzt='1'");
+		}
+		if("yhzxcx".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from YHZXJH_SEW s where 1=1 and xdzt='2'");
+		}
+		
+		
+		//服务区
+		
+		if("fwqsb".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from FWQJH_SEW s where 1=1 ");
+		}
+		if("fwqsh".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from FWQJH_SEW s where 1=1 and sbzt='1'");
+		}
+		if("fwqxd".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from FWQJH_SEW s where 1=1 and shzt='1'");
+		}
+		if("fwqcx".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("from FWQJH_SEW s where 1=1 and xdzt='2'");
+		}
+		
+		return queryOne("queryszxmlj", jhsh);
+	}
+
+	@Override
+	public int listFwqXdztCount(Jhsh jhsh) {
+		return queryOne("listFwqXdztCount", jhsh);
 	}
 }
