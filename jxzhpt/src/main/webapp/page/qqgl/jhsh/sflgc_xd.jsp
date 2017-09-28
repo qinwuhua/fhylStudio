@@ -6,36 +6,34 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>示范路工程计划下达</title>
 <link rel="stylesheet" type="text/css" href="/jxzhpt/css/Top.css" />
-	<link rel="stylesheet" type="text/css" href="/jxzhpt/css/style.css" />
-	<link rel="stylesheet" type="text/css" href="/jxzhpt/css/buttons.css" />
-	<link rel="stylesheet" type="text/css" href="/jxzhpt/easyui/themes/default/easyui.css" />
-	<link rel="stylesheet" type="text/css" href="/jxzhpt/easyui/themes/icon.css" />
-	<script type="text/javascript" src="/jxzhpt/easyui/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="/jxzhpt/easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="/jxzhpt/easyui/datagrid-detailview.js"></script>
-	<script type="text/javascript" src="/jxzhpt/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="/jxzhpt/js/util/jquery.cookie.js"></script>
-	<script type="text/javascript" src="/jxzhpt/js/YMLib.js"></script>
-	<script type="text/javascript" src="/jxzhpt/js/uploader/swfobject.js"></script>
-	<script type="text/javascript" src="/jxzhpt/js/uploader/jquery.uploadify.v2.1.4.js"></script>
-	<script type="text/javascript" src="/jxzhpt/widget/newlhgdialog/lhgcore.min.js"></script>
-	<script type="text/javascript" src="/jxzhpt/widget/newlhgdialog/lhgdialog.min.js"></script>
-	<script type="text/javascript" src="/jxzhpt/page/qqgl/js/util.js"></script>
-
-	<script type="text/javascript" src="/jxzhpt/js/json2.js"></script>
-	<script type="text/javascript" src="/jxzhpt/js/datagrid-cellediting.js"></script>
-
+<link rel="stylesheet" type="text/css" href="/jxzhpt/css/Top.css" />
+<link rel="stylesheet" type="text/css" href="/jxzhpt/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/jxzhpt/css/buttons.css" />
+<link rel="stylesheet" type="text/css" href="/jxzhpt/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="/jxzhpt/easyui/themes/icon.css" />
+<script type="text/javascript" src="/jxzhpt/easyui/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/jxzhpt/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="/jxzhpt/easyui/datagrid-detailview.js"></script>
+<script type="text/javascript" src="/jxzhpt/easyui/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="/jxzhpt/js/util/jquery.cookie.js"></script>
+<script type="text/javascript" src="/jxzhpt/js/YMLib.js"></script>
+<script type="text/javascript" src="/jxzhpt/js/uploader/swfobject.js"></script>
+<script type="text/javascript" src="/jxzhpt/js/uploader/jquery.uploadify.v2.1.4.js"></script>
+<script type="text/javascript" src="/jxzhpt/widget/newlhgdialog/lhgcore.min.js"></script>
+<script type="text/javascript" src="/jxzhpt/widget/newlhgdialog/lhgdialog.min.js"></script>
+<script type="text/javascript" src="/jxzhpt/page/qqgl/js/util.js"></script>
+<script type="text/javascript" src="/jxzhpt/js/json2.js"></script>
+<script type="text/javascript" src="/jxzhpt/js/datagrid-cellediting.js"></script>
 <script type="text/javascript">
 $(function(){
+	querySflgcXdXmlb();
+	querySflgcXdJhbz();
 	loadylx('lxbm');
 	loadDist1("xzqh",$.cookie("dist"));
 	xmnf("xmnf");
-	querySflgcXdXmlb();
-	querySflgcXdJhbz();
 });
 function querySflgcXdXmlb(){
-	
-	grid.id="gridSflgcXmlb";
+	grid.id="xmlb";
 	grid.url="../../../qqgl/querySflgcXdXmlb.do";
 
 	//grid.queryParams=params;
@@ -116,7 +114,7 @@ function querySflgcXdXmlb(){
 }
 
 function querySflgcXdJhbz(){
-	$('#gridSflgcJhbz').datagrid({    
+	$('#jhbz').datagrid({    
 	    url:'/jxzhpt/qqgl/querySflgcXdJhbz.do',
 	    striped:true,
 	    pagination:false,
@@ -142,14 +140,23 @@ function querySflgcXdJhbz(){
         		return row.xmbm.substr(0,4);
         	}
 		},
-		{field:'xmmc',title:'项目名称',width:250,align:'center',editor:{type:'text',options:{required:false}}},
+        {field: 'xmbm', title: '项目编码', width: 120, align: 'center'},
+        {field: 'xlxbm', title: '新路线编码', width: 60, align: 'center'},
+        {field: 'xzqh', title: '行政区化', width: 60, align: 'center'},
+        {field: 'pfwh', title: '批复文号', width: 60, align: 'center'},
+        {field: 'xqdzh', title: '新起点桩号', width: 120, align: 'center'},
+        {field: 'xzdzh', title: '新止点桩号', width: 120, align: 'center'},
+        
 		{field:'bzxdnf',title:'下达年份',width:70,align:'center',editor:{type:'numberbox',options:{required:false}}},
 		{field:'ztz',title:'总投资(万元)',width:60,align:'center'},
 		{field:'stz',title:'厅补助(万元)',width:60,align:'center'},
-		{field:'dfzc',title:'地方自筹(万元)',width:60,align:'center'}
+		{field:'dfzc',title:'地方自筹(万元)',width:60,align:'center'},
+	    
+        {field: 'sjpfdw', title: '设计批复单位', width: 140, align: 'center'},
+        {field: 'sjpfsj', title: '设计批复时间', width: 140, align: 'center'},
+        {field: 'zyjsnr', title: '主要建设内容', width: 140, align: 'center'},
+        {field: 'gcsl', title: '工程数量', width: 140, align: 'center'}
 		
-		
-
 	    ]],
 	    onClickCell: function (rowIndex, field, value) {
 //		    	alert(field);
@@ -159,173 +166,8 @@ function querySflgcXdJhbz(){
 	}); 
 }
 
-	
-var editIndex = undefined;
-function beginEditing (rowIndex,field,value) {
 
-    if (rowIndex != editIndex) {
-        if (endEditing()) {
-        	$('#jhbz').datagrid('beginEdit', rowIndex);
-        	
-            editIndex = rowIndex;
-            
-        } else {
-            $('#jhbz').datagrid('selectRow', editIndex);
-        }
-    }
-}
 
-function endEditing() {
-    if (editIndex == undefined) { return true; }
-    
-    if ($('#jhbz').datagrid('validateRow', editIndex)) {
-    	
-        $('#jhbz').datagrid('endEdit', editIndex);
-        //$('#jhbz').datagrid('selectRow', editIndex);
-        editIndex = undefined;
-        
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function createAll(){
-	endEditing();
-	var rows=$('#jhbz').datagrid('getSelections');
-	if(rows.length==0){
-		alert("请勾选要生成统计表的计划");
-		return;
-	}
-//	alert(rows[0].bzpfztz);
-}
-
-function createAll(){
-	endEditing();
-	var rows=$('#jhbz').datagrid('getSelections');
-	if(rows.length==0){
-		alert("请勾选要生成统计表的计划");
-		return;
-	}
-	alert(rows[0].bzpfztz);
-}
-
-function planxdwhAll(){
-	//flagi=1;
-	/* $.messager.defaults = { ok: "确认", cancel: "取消" };
-	 $.messager.prompt("操作提示", "请您输入计划下达文号？", function (data) {
-            if (data) {
-            	planxdAll(data);
-            }else{
-            	alert("计划下达文号不能为空");
-            }
-      }); */
-	endEditing();
-	var rows=$('#jhbz').datagrid('getSelections');
-	if(rows.length==0){
-		alert("请勾选要下达的计划");
-		return;
-	}
-	if($("#zjgl").is(':checked')){
-		for(var i=0;i<rows.length;i++){
-			if(rows[i].bzcgs!='0'){
-				//alert(rows[i].bzcgs);
-				alert("所选项目中车购税未下达完,不能使用资金归0下达");
-				return;
-			}
-		}
-	}  
-	$('#jhxd').dialog("open");
-}
-
-function planxdAll(){
-	if($("#zjgl").is(':checked')){//资金归0下达，即是不需要文件和文号下达
-		$('#jhxd').dialog("close");
-		var jhxdwh=$('#bzxdwh').val();
-		var bztbsj=$('#bztbsj').datebox('getValue');
-		if(bztbsj==''){
-			alert("请填写计划下达时间。");
-			return;
-		}
-		$('#bztbsj').datebox('setValue', formatDate(new Date()));
-		$('#bzxdwh').val("");
-		var rows=$('#jhbz').datagrid('getSelections');
-		if(rows.length==0){
-			alert("请勾选要下达的计划");
-			return;
-		}
-		for(var i=0;i<rows.length;i++){
-			rows[i].jhxdwh=jhxdwh;
-			rows[i].bztbsj=bztbsj;
-			//alert(rows[i].xmbm.substr(10,1));
-			rows[i].xmlx=rows[i].xmbm.substr(10,1);
-		}
-		var json_data = JSON.stringify(rows); 
-		$.ajax({
-			type:'post',
-			url:'/jxzhpt/qqgl/planxdAll.do',
-			data:"jhxdwh="+jhxdwh+"&bztbsj="+bztbsj+"&json_data="+json_data,
-			dataType:'json',
-			success:function(msg){
-				if(msg){
-					alert("下达成功");
-/* 					queryxmList();
-					showMxbAll(); */
-					querySflgcXdXmlb();
-					querySflgcXdJhbz();
-				}	
-			}
-		});
-		
-		
-	}else{
-		if($("#sjpfTable").html()==''){
-			alert("请上传该文号对应的文件。");
-			return;
-		}
-		$('#jhxd').dialog("close");
-		//alert($('#bzxdwh').val()+"     "+$('#bztbsj').datebox('getValue'));
-		var jhxdwh=$('#bzxdwh').val();
-		var bztbsj=$('#bztbsj').datebox('getValue');
-		if(jhxdwh==''||bztbsj==''){
-			alert("请填写计划下达文号或计划下达时间。");
-			return;
-		}
-		$('#bztbsj').datebox('setValue', formatDate(new Date()));
-		$('#bzxdwh').val("");
-		var rows=$('#jhbz').datagrid('getSelections');
-		if(rows.length==0){
-			alert("请勾选要下达的计划");
-			return;
-		}
-		for(var i=0;i<rows.length;i++){
-			rows[i].jhxdwh=jhxdwh;
-			rows[i].bztbsj=bztbsj;
-			//alert(rows[i].xmbm.substr(10,1));
-			rows[i].xmlx=rows[i].xmbm.substr(10,1);
-		}
-		var json_data = JSON.stringify(rows); 
-		$.ajax({
-			type:'post',
-			url:'/jxzhpt/qqgl/planxdAll.do',
-			data:"jhxdwh="+jhxdwh+"&bztbsj="+bztbsj+"&json_data="+json_data,
-			dataType:'json',
-			success:function(msg){
-				if(msg){
-					alert("下达成功");
-					querySflgcXdXmlb();
-					querySflgcXdJhbz();
-				}
-					
-			}
-		});
-	}
-}
-
-function searchlist(){
-	querySflgcXdXmlb();
-	querySflgcXdJhbz();
-}
 
 
 </script>

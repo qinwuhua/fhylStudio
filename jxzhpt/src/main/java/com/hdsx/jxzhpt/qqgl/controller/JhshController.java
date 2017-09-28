@@ -52,6 +52,7 @@ import com.opensymphony.xwork2.ModelDriven;
 @Controller
 public class JhshController extends BaseActionSupport implements
 		ModelDriven<Jhsh> {
+	private static final long serialVersionUID = 1L;
 	// 回复数据集合
 	private Map<String, Object> result = new HashMap<String, Object>();
 	// 计划审核对象

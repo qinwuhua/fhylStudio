@@ -238,8 +238,7 @@
 
 		<action name="exportZjxdgsd" class="jhshController" method="exportZjxdgsd"></action>
 		<action name="queryJhshLjgsdgz" class="jhshController" method="queryJhshLjgsdgz"></action>
-		<action name="queryJhshLjgsdgz_qx" class="jhshController"
-			method="queryJhshLjgsdgz_qx"></action>
+		<action name="queryJhshLjgsdgz_qx" class="jhshController" method="queryJhshLjgsdgz_qx"></action>
 		<action name="exportJhshxxgsd" class="jhshController" method="exportJhshxxgsd"></action>
 
 		<action name="plansh" class="jhshController" method="plansh"></action>

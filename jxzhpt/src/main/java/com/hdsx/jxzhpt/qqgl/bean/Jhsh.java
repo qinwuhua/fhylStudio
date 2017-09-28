@@ -189,6 +189,72 @@ public class Jhsh implements Serializable{
 	//jhsh_yhzx  计划—养护中心
 	private String jbzj;
 	
+	//新线路编码
+	private String xlxbm;
+	//匹配文号
+	private String pfwh;
+	private String xqdzh;
+	private String xzdzh;
+	private String sjpfdw;
+	private String sjpfsj;
+    private String gcsl;	
+    
+	public String getGcsl() {
+		return gcsl;
+	}
+
+	public void setGcsl(String gcsl) {
+		this.gcsl = gcsl;
+	}
+
+	public String getSjpfsj() {
+		return sjpfsj;
+	}
+
+	public void setSjpfsj(String sjpfsj) {
+		this.sjpfsj = sjpfsj;
+	}
+
+	public String getSjpfdw() {
+		return sjpfdw;
+	}
+
+	public void setSjpfdw(String sjpfdw) {
+		this.sjpfdw = sjpfdw;
+	}
+
+	public String getXzdzh() {
+		return xzdzh;
+	}
+
+	public void setXzdzh(String xzdzh) {
+		this.xzdzh = xzdzh;
+	}
+
+	public String getXqdzh() {
+		return xqdzh;
+	}
+
+	public void setXqdzh(String xqdzh) {
+		this.xqdzh = xqdzh;
+	}
+
+	public String getPfwh() {
+		return pfwh;
+	}
+
+	public void setPfwh(String pfwh) {
+		this.pfwh = pfwh;
+	}
+
+	public String getXlxbm() {
+		return xlxbm;
+	}
+
+	public void setXlxbm(String xlxbm) {
+		this.xlxbm = xlxbm;
+	}
+
 	public String getCgs() {
 		return cgs;
 	}

@@ -78,13 +78,19 @@
     </update>
     <!-- 示范路下达查询计划编号 -->
     <select id="querySflgcXdJhbz" parameterType="jhsh" resultType="jhsh">
-       SELECT js.xzqh, js.xmnf, js.xdsj, pz.ztz, pz.stz, pz.dfzc
-       FROM jhsh_sfl js, plan_zjxd pz
-       WHERE js.id =pz.xmid;
+    SELECT  ss.xmbm, ss.xlxbm, js.xzqh, ss.pfwh, ss.xqdzh, ss.xzdzh, ss.sjpfdw, ss.sjpfsj, ss.zyjsnr, ss.gcsl,
+    (case when pz.xmid is null then '未下达'
+      when nvl(js.ztz,0) = nvl(pz.ztz,0) and nvl(js.dfzc,0) = nvl(pz.dfzc,0) and nvl(js.tbz,0) = nvl(pz.tbz,0) then '已完成'
+      else '未完成' end) xdzttj,
+    (nvl(js.ztz,0)-nvl(pz.ztz,0)) bzpfztz,
+    (nvl(js.tbz,0)-nvl(pz.tbz,0)) bzgz,
+    (nvl(js.dfzc,0)-nvl(pz.dfzc,0)) bzdfzc
+    FROM jhsh_sfl js LEFT JOIN SGT_SFL ss ON js.xmbm = ss.xmbm
+    LEFT JOIN (SELECT xmid,SUM(ztz) ztz,SUM(stz) tbz,SUM(dfzc) dfzc FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm=pz.xmid
     </select>
     <!-- 示范路下达查询 -->
     <select id="querySflgcXdXmlb" parameterType="jhsh" resultType="jhsh">
-       select * from jhsh_sfl sfl where sfl.xdzt='1'
+       select * from jhsh_sfl sfl where sfl.sbzt='1' and sfl.xdzt='1'
     </select>
     <!-- 示范路预安排查询 -->
     <select id="querySflgcYap" parameterType="jhsh" resultType="jhsh">

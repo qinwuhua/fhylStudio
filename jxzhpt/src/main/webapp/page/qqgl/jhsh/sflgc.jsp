@@ -160,15 +160,12 @@ a {text-decoration: none;}
 									type="text" /></td>
 								<td align="right">项目年份：</td>
 								<td><select id="xmnf" style="width: 100px;"></select></td>
-								
-
 							</tr>
 							<tr height="32">
-								
 								<td align="right">路线名称：</td>
 								<td><input type="text" id="lxmc" style="width: 130px;" /></td>
 								<td align="right">项目编码：</td>
-								<td><input type="text" id="ydbmc" style="width: 100px;" /></td>
+								<td><input type="text" id="xmbm" style="width: 100px;" /></td>
 								<td align="right">上报状态：</td>
 								<td><select id="xdzt" class="easyui-combobox"
 									style="width: 100px;">
@@ -178,7 +175,7 @@ a {text-decoration: none;}
 								</select></td>
 							</tr>
 							<tr height="32">
-								<td colspan="8"><img onclick="queryYhzx()" alt="搜索"
+								<td colspan="8"><img onclick="querySflgc()" alt="搜索"
 									src="../../../images/Button/Serch01.gif"
 									onmouseover="this.src='../../../images/Button/Serch02.gif'"
 									onmouseout="this.src='../../../images/Button/Serch01.gif'"
