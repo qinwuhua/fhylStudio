@@ -98,7 +98,15 @@ public class Plan_wqgz implements Serializable{
 	private String xzxzh;//原中心桩号
 	private String xlxmc;//原路线名称
 	private String xqlmc;//原桥梁名称
-
+	
+	private String shengbz;//省补助
+	
+	public String getShengbz() {
+		return shengbz;
+	}
+	public void setShengbz(String shengbz) {
+		this.shengbz = shengbz;
+	}
 	public String getXlxbm() {
 		return xlxbm;
 	}

@@ -37,6 +37,8 @@ function querySumWqgz(jh,lx){
 					$('#lblZTZ').html(data.pfztz);
 				if(data.jhsybzje!=null && data.jhsybzje!="")
 					$('#lblBTZ').html(data.jhsybzje);
+				if(data.shengbz!=null && data.shengbz!="")
+					$('#shengBZ').html(data.shengbz);
 				if(data.jhsydfzcje!=null && data.jhsydfzcje!="")
 					$('#lblDFTZ').html(data.jhsydfzcje);
 			}else{
@@ -44,6 +46,7 @@ function querySumWqgz(jh,lx){
 				$('#lblZLC').html("0");
 				$('#lblZTZ').html("0");
 				$('#lblBTZ').html("0");
+				$('#shengBZ').html("0");
 				$('#lblDFTZ').html("0");
 			}
 		}

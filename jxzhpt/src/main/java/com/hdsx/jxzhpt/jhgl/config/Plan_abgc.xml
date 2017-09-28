@@ -32,6 +32,7 @@
 		<result property="jhyhlc" column="jhyhlc"/>
 		<result property="jhzlc" column="jhzlc"/>
 		<result property="thlxbm" column="thlxbm"/>
+	    <result property="shengbz" column="shengbz"/>	
 		<association property="jckabgc"  resultMap="abgc_lx"></association>
 	</resultMap>
 	<resultMap type="sckabgc"  id="abgc_lx">
@@ -890,11 +891,34 @@
 				 	group by jh.id)
 	</select>
 	<select id="querySumAfgc" resultMap="abgc_jh" parameterType="java.util.Map">
-		select count(id) as id,sum(zlc) as qzlc,sum(yhlc) as yhlc,
-	    sum(pfztz) as pfztz,sum(jhsybbzje) as jhsybbzje,sum(jhsydfzczj) as jhsydfzczj,sum(bz) pfwh from(select count(*) as id,sum(lx.czzlc) as zlc,sum(lx.yhlc) as yhlc,
-	      sum(jh.pfztz) as pfztz,sum(jh.jhsybbzje) as jhsybbzje,sum(jh.jhsydfzczj) as jhsydfzczj,decode(sum(xdzj),null,0,sum(xdzj)) bz
-	      from sck_aqsmfh lx left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(xm.xmklx),',',';') xmklx from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) left join plan_zjxd zj on jh.id=zj.xmid
-	      where 1=1 and lx.gydwdm like '2%'
+	    select count(id) as id,
+           sum(zlc) as qzlc,
+           sum(yhlc) as yhlc,
+           sum(pfztz) as pfztz,
+           sum(jhsybbzje) as jhsybbzje,
+           sum(jhsydfzczj) as jhsydfzczj,
+           sum(shengbz) as shengbz,
+           sum(bz) pfwh
+      from (select count(*) as id,
+                   sum(lx.czzlc) as zlc,
+                   sum(lx.yhlc) as yhlc,
+                   sum(jh.pfztz) as pfztz,
+                   sum(jh.jhsybbzje) as jhsybbzje,
+                   sum(jh.jhsydfzczj) as jhsydfzczj,
+                   decode(sum(jh.shengbz), null, 0, sum(jh.shengbz)) shengbz,
+                   decode(sum(xdzj), null, 0, sum(xdzj)) bz
+              from sck_aqsmfh lx
+              left join (select t.id,
+                               replace(WMSYS.WM_CONCAT(xm.tsdq), ',', ';') tsdq,
+                               replace(WMSYS.WM_CONCAT(xm.xmklx), ',', ';') xmklx
+                          from SCK_AQSMFH t
+                          left join sck_aqsmfh_ld ld on t.xmbm = ld.xmbm
+                          left join xmk_aqsmfh xm on ld.xmkid = xm.id
+                         group by t.id) ts on lx.id = ts.id
+             right join plan_af jh on (lx.id = jh.sckid)
+              left join plan_zjxd zj on jh.id = zj.xmid
+             where 1 = 1
+               and lx.gydwdm like '2%'
 			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
 					</if>

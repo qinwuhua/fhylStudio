@@ -329,37 +329,38 @@
 	 				</if>
 	</select>
 	<select id="querySumWqgz" parameterType="java.util.Map" resultType="plan_wqgz">
-		select count(id) as id,sum(pfztz) as pfztz,sum(jhsybzje) as jhsybzje,
-		sum(jhsydfzcje) as jhsydfzcje,sum(bz) pfwh from (
-			select count(jh.id) as id,sum(jh.pfztz) as pfztz,sum(jh.jhsybzje) as jhsybzje,
-			sum(jh.jhsydfzcje) as jhsydfzcje,decode(sum(xdzj),null,0,sum(xdzj)) bz 
-			from xmk_wqgz lx right join sck_wqgz sc on (lx.id=sc.xmkid) 
-			right join plan_wqgz jh on (sc.sckid=jh.sckid) left join plan_zjxd zj on jh.id=zj.xmid
-			where 1=1 and jh.sfylrbwqk='是' <!-- and lx.gydwbm like '2%' -->
-			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+    select count(id) as id,sum(pfztz) as pfztz,sum(jhsybzje) as jhsybzje,
+    sum(jhsydfzcje) as jhsydfzcje,sum(shengbz) as shengbz, sum(bz) pfwh from (
+      select count(jh.id) as id,sum(jh.pfztz) as pfztz,sum(jh.jhsybzje) as jhsybzje,
+      sum(jh.jhsydfzcje) as jhsydfzcje,decode(sum(jh.shengbz),null,0,sum(jh.shengbz)) as shengbz,decode(sum(xdzj),null,0,sum(xdzj)) bz 
+      from xmk_wqgz lx right join sck_wqgz sc on (lx.id=sc.xmkid) 
+      right join plan_wqgz jh on (sc.sckid=jh.sckid) left join plan_zjxd zj on jh.id=zj.xmid
+      where 1=1 and jh.sfylrbwqk='是'
+			<!-- and lx.gydwbm like '2%' -->
+		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
 		</if>
 		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
 			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 		</if>
 	 	<if test="jh.sbnf!=null and jh.sbnf!=''">
-	 					and jh.sbnf in (${jh.sbnf})
-	 				</if>
-	 				<if test="jh.sbzt!=null and jh.sbzt!=''">
-	 					and jh.sbzt=#{jh.sbzt}
-	 				</if>
-	 				<if test="jh.kgzt!=null and jh.kgzt!=''">
-	 					and jh.kgzt=#{jh.kgzt}
-	 				</if>
-	 				<if test="jh.jgzt!=null and jh.jgzt!=''">
-	 					and jh.jgzt=#{jh.jgzt}
-	 				</if>
-	 				<if test="jh.spzt!=null and jh.spzt!=''">
-	 					and jh.spzt=#{jh.spzt}
-	 				</if>
-	 				<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
-			 			and sc.bzls=#{jh.sfylsjl}
-				 	</if>
+	 		and jh.sbnf in (${jh.sbnf})
+	 	</if>
+	 	<if test="jh.sbzt!=null and jh.sbzt!=''">
+	 		and jh.sbzt=#{jh.sbzt}
+	 	</if>
+	 	<if test="jh.kgzt!=null and jh.kgzt!=''">
+	 		and jh.kgzt=#{jh.kgzt}
+	 	</if>
+	 	<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 		and jh.jgzt=#{jh.jgzt}
+	 	</if>
+	 	<if test="jh.spzt!=null and jh.spzt!=''">
+	 		and jh.spzt=#{jh.spzt}
+	 	</if>
+	 	<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+			 and sc.bzls=#{jh.sfylsjl}
+		</if>
 	 				<if test="lx.gydwbm!=null and lx.gydwbm!=''">
 	 					and ${lx.gydwbm}
 	 				</if>
