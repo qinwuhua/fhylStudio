@@ -292,11 +292,11 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 			et.add(new Excel_tilte("序号",1,1,0,0));
 			et.add(new Excel_tilte("行政区划代码",1,1,1,1));
 			et.add(new Excel_tilte("行政区划名称",1,1,2,2));
-			et.add(new Excel_tilte("管养单位",1,1,3,3));
+			et.add(new Excel_tilte("管养单位",1,1,3,3));			
 			et.add(new Excel_tilte("规划路线编码",1,1,4,4));
-			et.add(new Excel_tilte("规划路线编码",1,1,5,5));
-			et.add(new Excel_tilte("规划路线编码",1,1,6,6));
-			et.add(new Excel_tilte("规划路线编码",1,1,7,7));
+			et.add(new Excel_tilte("规划路线名称",1,1,5,5));
+			et.add(new Excel_tilte("规划路线起点桩号",1,1,6,6));
+			et.add(new Excel_tilte("规划路线止点桩号",1,1,7,7));	
 			et.add(new Excel_tilte("原路线编码",1,1,8,8));
 			et.add(new Excel_tilte("原路线名称",1,1,9,9));
 			et.add(new Excel_tilte("原路线起点桩号",1,1,10,10));

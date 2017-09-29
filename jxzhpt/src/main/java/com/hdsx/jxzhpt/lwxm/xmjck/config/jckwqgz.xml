@@ -249,7 +249,7 @@
  		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥墩类型%' and F002=F023) qdlx,
  		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥台类型%' and F002=F025) qtlx,
  		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥面铺装类型%' and F002=F027) pzlx,
- 		F013 qmjk,F020 qxjk,F015 zqks,decode(d.yqlbm,null,d.yqlbm,q.yqlbh) xqlbh,decode(d.yqlmc,null,d.yqlmc,q.yqlmc) xqlmc,decode(d.yqlzz,null,d.yqlzz,q.yzxzh) xzxzh
+ 		F013 qmjk,F020 qxjk,F015 zqks,decode(d.yqlbm, null,  q.yqlbh, d.yqlbm) xqlbm,decode(d.yqlmc, null, q.yqlmc, d.yqlmc) xqlmc,decode(d.yqlzz, null, q.yzxzh, d.yqlzz) xzxzh
 		from DATA50 d left join qlxlgl q on d.roadbm=q.xqlbh where substr(roadcode,1,1) in('G','S','X','Y','C','Z') and sfxzdm='1' <!-- and F045 in('四类','五类')  -->
 <!-- 		and F044 in(SELECT F002 FROM ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F003 in('四类','五类')) -->
 		<!-- and F010 in('中桥','大桥','特大桥')  -->
