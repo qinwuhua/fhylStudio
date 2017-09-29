@@ -28,7 +28,8 @@ $(function(){
 	loadylx('lxbm');
 	loadDist1("xzqh",$.cookie("dist"));
 	xmnfs2w("xmnf");
-	
+	loadUnit1("gydw",$.cookie("unit"));
+	jhxdwhdx("jhxdwh",'sfl');
 	querySflgc();
 });
 function querySflgc(){
@@ -46,9 +47,23 @@ function querySflgc(){
 	}else{
 		xzqhstr= xzqhdm.join(',');
 	}
+	var gydwdm=$("#gydw").combotree("getValues");var gydwstr="";
+	if(gydwdm.length==0){
+		gydwstr= $.cookie("unit2");
+		
+	}else if(gydwdm.length==1){
+		if(gydwdm[0].substr(gydwdm[0].length-2,gydwdm[0].length)=="00") gydwdm[0]=gydwdm[0].substr(0,gydwdm[0].length-2);
+		if(gydwdm[0].substr(gydwdm[0].length-2,gydwdm[0].length)=="00") gydwdm[0]=gydwdm[0].substr(0,gydwdm[0].length-2);
+		gydwstr=gydwdm[0] ;
+	}else{
+		gydwstr= gydwdm.join(',');
+	}
 	var xmnf=$("#xmnf").combobox("getValues").join(",");
 	if(xmnf.substr(0,1)==',')
 		xmnf=xmnf.substr(1,xmnf.length);
+	var jhxdwh=$("#jhxdwh").combobox("getText").replace("全部","");
+	if(jhxdwh.substr(0,1)==',')
+		jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 	var params={'jhsh.xzqhdm':xzqhstr,
 				'jhsh.xmmc':$('#xmmc').val(),
 				'jhsh.xmnf':xmnf,
@@ -57,7 +72,13 @@ function querySflgc(){
 				'jhsh.xdzt':$("#xdzt").combo('getValue'),
 				'jhsh.sbzt':null,
 				'jhsh.shzt':null,
-				'jhsh.xmlx1':'sflxd'
+				'jhsh.xmlx1':'sflxd',
+				'jhsh.gydwdm':gydwstr,
+				'jhsh.ghlxbm':$('#ghlxbm').val(),
+				'jhsh.ghlxmc':$('#ghlxmc').val(),
+				'jhsh.ylxbm':$('#ylxbm').val(),
+				'jhsh.ylxmc':$('#ylxmc').val(),
+				'jhsh.jhxdwh':jhxdwh
 				};
 	grid.queryParams=params;
 	loadLj(params);
@@ -72,6 +93,7 @@ function querySflgc(){
 		        {field: 'GYDW', title: '管养单位', width: 120, align: 'center'},
 		        {field: 'GHLXBM', title: '规划路线编码', width: 120, align: 'center'},
 		        {field: 'GHLXMC', title: '规划路线名称', width: 120, align: 'center'},
+		        {field: 'GHLXZH', title: '规划路线桩号', width: 120, align: 'center'},
 		        {field: 'YLXBM', title: '原路线编码', width: 120, align: 'center'},
 		        {field: 'YLXMC', title: '原路线名称', width: 120, align: 'center'},
 		        {field: 'YLXZH', title: '原路线桩号', width: 120, align: 'center'},
@@ -151,8 +173,29 @@ a {text-decoration: none;}
 										<option value="1">未完成</option>
 										<option value="2">已完成</option>
 								</select></td>
+								<td align="right">计划下达文号：</td>
+								<td><select id="jhxdwh" class="easyui-combobox"
+									style="width: 100px;">
+										
+								</select></td>
 							</tr>
-							
+							<tr height="32">
+								<td align="right">管养单位：</td>
+								<td><select id="gydw" style="width: 134px;"></select></td>
+								<td align="right">规划路线编码：</td>
+								<td><input name="ghlxbm" id="ghlxbm" style="width: 100px;"
+									type="text" /></td>
+								<td align="right">规划路线名称：</td>
+								<td><input name="ghlxmc" id="ghlxmc" style="width: 96px;"
+									type="text" /></td>
+								<td align="right">原路线编码：</td>
+								<td><input name="ylxbm" id="ylxbm" style="width: 96px;"
+									type="text" /></td>
+								<td align="right">原路线名称：</td>
+								<td><input name="ylxmc" id="ylxmc" style="width: 96px;"
+									type="text" /></td>
+								
+							</tr>
 							<tr height="32">
 								<td colspan="8"><img onclick="querySflgc()" alt="搜索"
 									src="/jxzhpt/images/Button/Serch01.gif"
