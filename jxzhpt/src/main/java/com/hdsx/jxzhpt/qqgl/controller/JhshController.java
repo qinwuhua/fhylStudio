@@ -655,6 +655,8 @@ public class JhshController extends BaseActionSupport implements
 		List<Map<String, String>> listSflgc = null;
 		try {
 			jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "xzqhdm"));
+			jhsh.setGydw(MyUtil.getQueryTJ(jhsh.getGydwdm(), "gydwdm"));
+			jhsh.setJhxdwh(MyUtil.getQueryTJ(jhsh.getJhxdwh(), "jhxdwh"));
 			jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "jsnf"));
 			listSflgc = jhshServer.queryszxm(jhsh);
 			int total = jhshServer.queryszxmCount(jhsh);
@@ -671,6 +673,8 @@ public class JhshController extends BaseActionSupport implements
 		try {
 
 			jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "xzqhdm"));
+			jhsh.setGydw(MyUtil.getQueryTJ(jhsh.getGydwdm(), "gydwdm"));
+			jhsh.setJhxdwh(MyUtil.getQueryTJ(jhsh.getJhxdwh(), "jhxdwh"));
 			jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "jsnf"));
 			result = jhshServer.queryJhshLjsyfs2w(jhsh);
 

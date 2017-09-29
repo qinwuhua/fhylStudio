@@ -1737,7 +1737,7 @@ function gcglxmnf(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -1746,11 +1746,11 @@ function gcglxmnf(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -1764,13 +1764,13 @@ function gcglxmnf(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
@@ -1857,7 +1857,7 @@ function jsdjdx(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -1866,11 +1866,11 @@ function jsdjdx(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -1884,19 +1884,19 @@ function jsdjdx(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 function xzdjdx(id){
@@ -1920,7 +1920,7 @@ function xzdjdx(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -1929,11 +1929,11 @@ function xzdjdx(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -1947,19 +1947,19 @@ function xzdjdx(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	//$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 function getgljjtj(flag){
@@ -2060,7 +2060,7 @@ function setxzdj(id,flag){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -2069,11 +2069,11 @@ function setxzdj(id,flag){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2087,19 +2087,19 @@ function setxzdj(id,flag){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	$('#'+id).combobox("setValues",first);
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 function kjfldx(id){
@@ -2122,7 +2122,7 @@ function kjfldx(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -2131,11 +2131,11 @@ function kjfldx(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2149,19 +2149,19 @@ function kjfldx(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 function tsdqdx(id){
@@ -2192,7 +2192,7 @@ function tsdqdx(id){
 			    multiple:true,
 			    formatter:function(row){
 					var opts = $(this).combobox('options');
-					return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+					return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 				},
 				onSelect:function(record){
 					var opts = $(this).combobox('options');
@@ -2201,11 +2201,11 @@ function tsdqdx(id){
 						var datas = $('#' +id).combobox("getData");
 						$.each(datas,function(index,item){
 							values.push(item.value);
-							$('#id'+item.value).attr('checked', true);
+							$('#'+id+item.value).attr('checked', true);
 						});
 						$('#' +id).combobox("setValues",values);
 					}else{
-						$('#id'+record.value).attr('checked', true);
+						$('#'+id+record.value).attr('checked', true);
 					}
 				},
 				onUnselect:function(record){
@@ -2219,19 +2219,19 @@ function tsdqdx(id){
 						}
 						$.each(datas,function(index,item){
 							if(jQuery.inArray(""+item.value,values)<0){
-								$('#id'+item.value).attr('checked', false);
+								$('#'+id+item.value).attr('checked', false);
 							}
 						});
 						$('#' +id).combobox("setValues",values);
 					}else{
 						$.each(datas,function(index,item){
-							$('#id'+item.value).attr('checked', false);
+							$('#'+id+item.value).attr('checked', false);
 						});
 					}
 				}
 			});
 			$('#'+id).combobox("setText",'全部');
-			//$('#id全部').attr('checked', true);
+			//$('#'+id+'全部').attr('checked', true);
 		}
 		
 	});
@@ -2266,7 +2266,7 @@ function xmnfdx(id){
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2325,7 +2325,7 @@ function xmnfdx1(id){
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2521,7 +2521,7 @@ function setxmnf(id,flag){
 		    multiple:true,
 		    formatter:function(row){
 				var opts = $(this).combobox('options');
-				return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+				return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 			},
 			onSelect:function(record){
 				var opts = $(this).combobox('options');
@@ -2530,11 +2530,11 @@ function setxmnf(id,flag){
 					var datas = $('#' +id).combobox("getData");
 					$.each(datas,function(index,item){
 						values.push(item.value);
-						$('#id'+item.value).attr('checked', true);
+						$('#'+id+item.value).attr('checked', true);
 					});
 					$('#' +id).combobox("setValues",values);
 				}else{
-					$('#id'+record.value).attr('checked', true);
+					$('#'+id+record.value).attr('checked', true);
 				}
 			},
 			onUnselect:function(record){
@@ -2548,13 +2548,13 @@ function setxmnf(id,flag){
 					}
 					$.each(datas,function(index,item){
 						if(jQuery.inArray(""+item.value,values)<0){
-							$('#id'+item.value).attr('checked', false);
+							$('#'+id+item.value).attr('checked', false);
 						}
 					});
 					$('#' +id).combobox("setValues",values);
 				}else{
 					$.each(datas,function(index,item){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					});
 				}
 			}
@@ -2594,7 +2594,7 @@ function xmnfdx1(id){
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2660,7 +2660,7 @@ function bbxmlx(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -2669,11 +2669,11 @@ function bbxmlx(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2687,19 +2687,19 @@ function bbxmlx(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	//$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 
@@ -2725,7 +2725,7 @@ function bbxmlx1(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -2734,11 +2734,11 @@ function bbxmlx1(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2752,19 +2752,19 @@ function bbxmlx1(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	//$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 //报表项目类型
@@ -2787,7 +2787,7 @@ function xmjzzt(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -2796,11 +2796,11 @@ function xmjzzt(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2814,19 +2814,19 @@ function xmjzzt(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	//$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 
@@ -2851,7 +2851,7 @@ function gsdxmlx(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -2860,11 +2860,11 @@ function gsdxmlx(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2878,19 +2878,19 @@ function gsdxmlx(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 
@@ -2916,7 +2916,7 @@ function yhxmlx(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -2925,11 +2925,11 @@ function yhxmlx(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2943,19 +2943,19 @@ function yhxmlx(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 
@@ -2982,7 +2982,7 @@ function xdzt(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -2991,11 +2991,11 @@ function xdzt(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -3009,19 +3009,19 @@ function xdzt(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 //资金来源，根据类型lx区分
@@ -3054,7 +3054,7 @@ function zjly(id,lx){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -3063,11 +3063,11 @@ function zjly(id,lx){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -3081,19 +3081,19 @@ function zjly(id,lx){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 
@@ -3176,7 +3176,7 @@ function jhpcdx(id,xmlx){
 			    multiple:true,
 			    formatter:function(row){
 					var opts = $(this).combobox('options');
-					return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+					return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 				},
 				onSelect:function(record){
 					var opts = $(this).combobox('options');
@@ -3185,11 +3185,11 @@ function jhpcdx(id,xmlx){
 						var datas = $('#' +id).combobox("getData");
 						$.each(datas,function(index,item){
 							values.push(item.value);
-							$('#id'+item.value).attr('checked', true);
+							$('#'+id+item.value).attr('checked', true);
 						});
 						$('#' +id).combobox("setValues",values);
 					}else{
-						$('#id'+record.value).attr('checked', true);
+						$('#'+id+record.value).attr('checked', true);
 					}
 				},
 				onUnselect:function(record){
@@ -3203,19 +3203,19 @@ function jhpcdx(id,xmlx){
 						}
 						$.each(datas,function(index,item){
 							if(jQuery.inArray(""+item.value,values)<0){
-								$('#id'+item.value).attr('checked', false);
+								$('#'+id+item.value).attr('checked', false);
 							}
 						});
 						$('#' +id).combobox("setValues",values);
 					}else{
 						$.each(datas,function(index,item){
-							$('#id'+item.value).attr('checked', false);
+							$('#'+id+item.value).attr('checked', false);
 						});
 					}
 				}
 			});
 			//$('#'+id).combobox("setText",'全部');
-			//$('#id全部').attr('checked', true);
+			//$('#'+id+'全部').attr('checked', true);
 		}
 		
 	});
@@ -3237,11 +3237,7 @@ function jhxdwhdx(id,xmlx){
 			//开始
 			var years=[];
 			years.push({text:'全部',value:''});
-			/*for(var i=0;i<=10;i++){
-				if(i==0)
-					first=myDate.getFullYear()-i;
-				years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
-			}*/
+			
 			for ( var i = 0; i < msg.length; i++) {
 				years.push({text:msg[i].text,value:i+1});
 			}
@@ -3253,7 +3249,7 @@ function jhxdwhdx(id,xmlx){
 			    multiple:true,
 			    formatter:function(row){
 					var opts = $(this).combobox('options');
-					return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+					return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 				},
 				onSelect:function(record){
 					var opts = $(this).combobox('options');
@@ -3262,11 +3258,11 @@ function jhxdwhdx(id,xmlx){
 						var datas = $('#' +id).combobox("getData");
 						$.each(datas,function(index,item){
 							values.push(item.value);
-							$('#id'+item.value).attr('checked', true);
+							$('#'+id+item.value).attr('checked', true);
 						});
 						$('#' +id).combobox("setValues",values);
 					}else{
-						$('#id'+record.value).attr('checked', true);
+						$('#'+id+record.value).attr('checked', true);
 					}
 				},
 				onUnselect:function(record){
@@ -3280,19 +3276,19 @@ function jhxdwhdx(id,xmlx){
 						}
 						$.each(datas,function(index,item){
 							if(jQuery.inArray(""+item.value,values)<0){
-								$('#id'+item.value).attr('checked', false);
+								$('#'+id+item.value).attr('checked', false);
 							}
 						});
 						$('#' +id).combobox("setValues",values);
 					}else{
 						$.each(datas,function(index,item){
-							$('#id'+item.value).attr('checked', false);
+							$('#'+id+item.value).attr('checked', false);
 						});
 					}
 				}
 			});
 			//$('#'+id).combobox("setText",'全部');
-			//$('#id全部').attr('checked', true);
+			//$('#'+id+'全部').attr('checked', true);
 		}
 		
 	});
