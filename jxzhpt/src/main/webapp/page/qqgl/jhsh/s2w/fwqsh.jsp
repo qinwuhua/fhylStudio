@@ -70,7 +70,7 @@ function querySflgc(){
 				'jhsh.xmbm':$('#xmbm').val(),
 				'jhsh.shzt':$("#shzt").combo('getValue'),
 				'jhsh.sbzt':null,
-				'jhsh.xdzt':null,
+				'jhsh.xdzttj':null,
 				'jhsh.xmlx1':'fwqsh',
 				'jhsh.gydwdm':gydwstr,
 				'jhsh.ghlxbm':$('#ghlxbm').val(),
@@ -97,6 +97,10 @@ function querySflgc(){
 		        {field: 'YLXBM', title: '原路线编码', width: 120, align: 'center'},
 		        {field: 'YLXMC', title: '原路线名称', width: 120, align: 'center'},
 		        {field: 'YLXZH', title: '原路线桩号', width: 120, align: 'center'},
+		        {field: 'JSDJXJ', title: '技术等级', width: 120, align: 'center'},
+		        {field: 'XMLX', title: '建设类型', width: 120, align: 'center'},
+		        {field: 'XYSSLX', title: '现有设施类型', width: 120, align: 'center'},
+		        {field: 'JSSSLX', title: '建设设施类型', width: 120, align: 'center'},
 		        {field:'ZTZ',title:'总投资(万元)',width:100,align:'center'},
 				{field:'CGS',title:'车购税(万元)',width:60,align:'center'},
 				{field:'DFZC',title:'地方自筹(万元)',width:70,align:'center'},
@@ -116,7 +120,7 @@ function loadLj(params){
 			if(msg!=null){
 				$('#xmsl').html(msg.XMSL);
 				$('#ztz').html(msg.ZTZ);
-				
+				$('#zbz').html(msg.ZBZ);
 			}
 			
 		}
@@ -207,7 +211,8 @@ a {text-decoration: none;}
 		<tr>
 			<td style="padding-left: 10px; padding-top: 3px; font-size: 12px;">
 				<div>项目【<span id="xmsl" style="color: red;">0</span>】个,
-            		总投资【<span id="ztz" style="color: red;">0</span>】万元.
+            		总投资【<span id="ztz" style="color: red;">0</span>】万元,
+            		补助合计【<span id="zbz" style="color: red;">0</span>】万元。
             		</div>
 
 				<div>

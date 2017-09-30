@@ -17,7 +17,7 @@
       <if test="ylxmc !='' and ylxmc != null">and ylxmc like '%${ylxmc}%'</if>
       <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
       <if test="shzt !='' and shzt != null">and shzt like '%${shzt}%'</if>
-      <if test="xdzt !='' and xdzt != null">and xdzt like '%${xdzt}%'</if>
+      <if test="xdzttj !='' and xdzttj != null">and xdzt like '%${xdzttj}%'</if>
       
       and rownum &lt;=(#{page} * #{rows})  
       ) t 
@@ -37,7 +37,7 @@
       <if test="ylxmc !='' and ylxmc != null">and ylxmc like '%${ylxmc}%'</if>
       <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
       <if test="shzt !='' and shzt != null">and shzt like '%${shzt}%'</if>
-      <if test="xdzt !='' and xdzt != null">and xdzt like '%${xdzt}%'</if>
+      <if test="xdzttj !='' and xdzttj != null">and xdzt like '%${xdzttj}%'</if>
         
     </select>
     <select id="queryszxmlj" parameterType="jhsh" resultType="hashMap">
@@ -54,7 +54,7 @@
       <if test="ylxmc !='' and ylxmc != null">and ylxmc like '%${ylxmc}%'</if>
       <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
       <if test="shzt !='' and shzt != null">and shzt like '%${shzt}%'</if>
-      <if test="xdzt !='' and xdzt != null">and xdzt like '%${xdzt}%'</if>
+      <if test="xdzttj !='' and xdzttj != null">and xdzt like '%${xdzttj}%'</if>
        
     </select>
     

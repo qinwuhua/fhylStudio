@@ -71,7 +71,7 @@ function querySflgc(){
 				'jhsh.xmbm':$('#xmbm').val(),
 				'jhsh.sbzt':null,
 				'jhsh.shzt':null,
-				'jhsh.xdzt':null,
+				'jhsh.xdzttj':null,
 				'jhsh.xmlx1':'sflcx',
 				'jhsh.gydwdm':gydwstr,
 				'jhsh.ghlxbm':$('#ghlxbm').val(),
@@ -93,16 +93,30 @@ function querySflgc(){
 		        {field: 'GYDW', title: '管养单位', width: 120, align: 'center'},
 		        {field: 'GHLXBM', title: '规划路线编码', width: 120, align: 'center'},
 		        {field: 'GHLXMC', title: '规划路线名称', width: 120, align: 'center'},
-		        {field: 'GHLXZH', title: '规划路线桩号', width: 120, align: 'center'},
+		        {field: 'GHQDZH', title: '规划起点桩号', width: 120, align: 'center'},
+		        {field: 'GHZDZH', title: '规划止点桩号', width: 120, align: 'center'},
 		        {field: 'YLXBM', title: '原路线编码', width: 120, align: 'center'},
 		        {field: 'YLXMC', title: '原路线名称', width: 120, align: 'center'},
-		        {field: 'YLXZH', title: '原路线桩号', width: 120, align: 'center'},
+		        {field: 'YQDZH', title: '原起点桩号', width: 120, align: 'center'},
+		        {field: 'YZDZH', title: '原止点桩号', width: 120, align: 'center'},
+		        {field: 'JSDJ', title: '技术等级', width: 120, align: 'center',formatter: function(value,row,index){
+					var result="";
+					
+					if(row.YJ>0) result+="一级 ";
+					if(row.EJ>0) result+="二级 ";
+					if(row.SJ>0) result+="三级 ";
+					if(row.SIJ>0) result+="四级 ";
+					
+					return result;
+				}},
+				{field:'JSDJXJ',title:'里程(公里)',width:100,align:'center'},
 		        {field:'ZTZ',title:'总投资(万元)',width:100,align:'center'},
-				{field:'TBZHJ',title:'厅补助(万元)',width:60,align:'center'},
+				{field:'TBZHJ',title:'省补助(万元)',width:60,align:'center'},
 				{field:'JAF',title:'建安费(万元)',width:70,align:'center'},
 				{field:'JLF',title:'工程监理费(万元)',width:80,align:'center'},
 			    {field:'QQGZ',title:'前期工作费(万元)',width:80,align:'center'},
-			    {field:'BCXD',title:'本次安排厅补助资金（万元）',width:100,align:'center'},
+			    {field:'YXD',title:'已下达省补助资金（万元）',width:100,align:'center'},
+			    {field:'BCXD',title:'本次安排省补助资金（万元）',width:100,align:'center'},
 			    {field: 'SGTWH', title: '施工图批复文号', width: 120, align: 'center'},
 			    {field: 'JHXDWH', title: '计划下达文号', width: 120, align: 'center'},
 			    {field: 'JHXDSJ', title: '计划下达时间', width: 120, align: 'center'},
@@ -121,7 +135,12 @@ function loadLj(params){
 			if(msg!=null){
 				$('#xmsl').html(msg.XMSL);
 				$('#ztz').html(msg.ZTZ);
-				
+				$('#zbz').html(msg.ZBZ);
+				$('#yxd').html(msg.YXD);
+				$('#bcxd').html(msg.BCXD);
+				$('#bccgs').html(msg.BCCGS);
+				$('#bcsb').html(msg.BCSB);
+				$('#bcjl').html(msg.BCJL);
 			}
 			
 		}
@@ -210,7 +229,14 @@ a {text-decoration: none;}
 		<tr>
 			<td style="padding-left: 10px; padding-top: 3px; font-size: 12px;">
 				<div>项目【<span id="xmsl" style="color: red;">0</span>】个,
-            		总投资【<span id="ztz" style="color: red;">0</span>】万元.
+            		总投资【<span id="ztz" style="color: red;">0</span>】万元,
+            		补助合计【<span id="zbz" style="color: red;">0</span>】万元,
+            		已下达【<span id="yxd" style="color: red;">0</span>】万元,
+            		本次下达【<span id="bcxd" style="color: red;">0</span>】万元,
+            		其中：车购税【<span id="bccgs" style="color: red;">0</span>】万元,
+            		省补【<span id="bcsb" style="color: red;">0</span>】万元,
+            		奖励【<span id="bcjl" style="color: red;">0</span>】万元,
+            		
             		</div>
 
 				<div>

@@ -72,7 +72,7 @@ function querySflgc(){
 				'jhsh.xmnf':xmnf,
 				'jhsh.lxmc':$('#lxmc').val(),
 				'jhsh.xmbm':$('#xmbm').val(),
-				'jhsh.xdzt':$("#xdzt").combo('getValue'),
+				'jhsh.xdzttj':$("#xdzt").combo('getValue'),
 				'jhsh.sbzt':null,
 				'jhsh.shzt':null,
 				'jhsh.xmlx1':'fwqxd',
@@ -101,6 +101,10 @@ function querySflgc(){
 		        {field: 'YLXBM', title: '原路线编码', width: 120, align: 'center'},
 		        {field: 'YLXMC', title: '原路线名称', width: 120, align: 'center'},
 		        {field: 'YLXZH', title: '原路线桩号', width: 120, align: 'center'},
+		        {field: 'JSDJXJ', title: '技术等级', width: 120, align: 'center'},
+		        {field: 'XMLX', title: '建设类型', width: 120, align: 'center'},
+		        {field: 'XYSSLX', title: '现有设施类型', width: 120, align: 'center'},
+		        {field: 'JSSSLX', title: '建设设施类型', width: 120, align: 'center'},
 		        {field:'ZTZ',title:'总投资(万元)',width:100,align:'center'},
 				{field:'CGS',title:'本次下达中央车购税资金（万元）',width:60,align:'center'},
 				{field:'DFZC',title:'地方自筹(万元)',width:70,align:'center'},
@@ -122,7 +126,12 @@ function loadLj(params){
 			if(msg!=null){
 				$('#xmsl').html(msg.XMSL);
 				$('#ztz').html(msg.ZTZ);
-				
+				$('#zbz').html(msg.ZBZ);
+				$('#yxd').html(msg.YXD);
+				$('#bcxd').html(msg.BCXD);
+				$('#bccgs').html(msg.BCCGS);
+				$('#bcsb').html(msg.BCSB);
+				$('#bcjl').html(msg.BCJL);
 			}
 			
 		}
@@ -220,7 +229,14 @@ a {text-decoration: none;}
 		<tr>
 			<td style="padding-left: 10px; padding-top: 3px; font-size: 12px;">
 				<div>项目【<span id="xmsl" style="color: red;">0</span>】个,
-            		总投资【<span id="ztz" style="color: red;">0</span>】万元.
+            		总投资【<span id="ztz" style="color: red;">0</span>】万元,
+            		补助合计【<span id="zbz" style="color: red;">0</span>】万元,
+            		已下达【<span id="yxd" style="color: red;">0</span>】万元,
+            		本次下达【<span id="bcxd" style="color: red;">0</span>】万元,
+            		其中：车购税【<span id="bccgs" style="color: red;">0</span>】万元,
+            		省补【<span id="bcsb" style="color: red;">0</span>】万元,
+            		奖励【<span id="bcjl" style="color: red;">0</span>】万元,
+            		
             		</div>
 
 				<div>
