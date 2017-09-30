@@ -1625,47 +1625,47 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	@Override
 	public Map<String, String> queryJhshLjsyfs2w(Jhsh jhsh) {
 		if("sflsb".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 ");
+			jhsh.setTiaojian(",fun_char(sum(nvl(ztz,0)),2) ztz,fun_char(sum(nvl(tbzhj,0)),2) zbz,fun_char(sum(nvl(yxd,0)),2) yxd,fun_char(sum(nvl(bcxd,0)),2) bcxd,0 bccgs,fun_char(sum(nvl(bcxd,0)),2) bcsb,0 bcjl from SFLJH_SEW s where 1=1 ");
 		}
 		if("sflsh".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 and sbzt='1'");
+			jhsh.setTiaojian(",fun_char(sum(nvl(ztz,0)),2) ztz,fun_char(sum(nvl(tbzhj,0)),2) zbz,fun_char(sum(nvl(yxd,0)),2) yxd,fun_char(sum(nvl(bcxd,0)),2) bcxd,0 bccgs,fun_char(sum(nvl(bcxd,0)),2) bcsb,0 bcjl from SFLJH_SEW s where 1=1 and sbzt='1'");
 		}
 		if("sflxd".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 and shzt='1'");
+			jhsh.setTiaojian(",fun_char(sum(nvl(ztz,0)),2) ztz,fun_char(sum(nvl(tbzhj,0)),2) zbz,fun_char(sum(nvl(yxd,0)),2) yxd,fun_char(sum(nvl(bcxd,0)),2) bcxd,0 bccgs,fun_char(sum(nvl(bcxd,0)),2) bcsb,0 bcjl from SFLJH_SEW s where 1=1 and shzt='1'");
 		}
 		if("sflcx".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 and xdzt='2'");
+			jhsh.setTiaojian(",fun_char(sum(nvl(ztz,0)),2) ztz,fun_char(sum(nvl(tbzhj,0)),2) zbz,fun_char(sum(nvl(yxd,0)),2) yxd,fun_char(sum(nvl(bcxd,0)),2) bcxd,0 bccgs,fun_char(sum(nvl(bcxd,0)),2) bcsb,0 bcjl from SFLJH_SEW s where 1=1 and xdzt='2'");
 		}
 		
 		//养护中心
 		
 		if("yhzxsb".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("from YHZXJH_SEW s where 1=1 ");
+			jhsh.setTiaojian(",fun_char(sum(nvl(ztz,0)),2) ztz,fun_char(sum(nvl(zbz,0)),2) zbz,fun_char(sum(nvl(yxd,0)),2) yxd,fun_char(sum(nvl(bcxdhj,0)),2) bcxd,0 bccgs,fun_char(sum(nvl(bcsbz,0)),2) bcsb,fun_char(sum(nvl(bcjl,0)),2) bcjl from YHZXJH_SEW s where 1=1 ");
 		}
 		if("yhzxsh".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("from YHZXJH_SEW s where 1=1 and sbzt='1'");
+			jhsh.setTiaojian(",fun_char(sum(nvl(ztz,0)),2) ztz,fun_char(sum(nvl(zbz,0)),2) zbz,fun_char(sum(nvl(yxd,0)),2) yxd,fun_char(sum(nvl(bcxdhj,0)),2) bcxd,0 bccgs,fun_char(sum(nvl(bcsbz,0)),2) bcsb,fun_char(sum(nvl(bcjl,0)),2) bcjl from YHZXJH_SEW s where 1=1 and sbzt='1'");
 		}
 		if("yhzxxd".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("from YHZXJH_SEW s where 1=1 and shzt='1'");
+			jhsh.setTiaojian(",fun_char(sum(nvl(ztz,0)),2) ztz,fun_char(sum(nvl(zbz,0)),2) zbz,fun_char(sum(nvl(yxd,0)),2) yxd,fun_char(sum(nvl(bcxdhj,0)),2) bcxd,0 bccgs,fun_char(sum(nvl(bcsbz,0)),2) bcsb,fun_char(sum(nvl(bcjl,0)),2) bcjl from YHZXJH_SEW s where 1=1 and shzt='1'");
 		}
 		if("yhzxcx".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("from YHZXJH_SEW s where 1=1 and xdzt='2'");
+			jhsh.setTiaojian(",fun_char(sum(nvl(ztz,0)),2) ztz,fun_char(sum(nvl(zbz,0)),2) zbz,fun_char(sum(nvl(yxd,0)),2) yxd,fun_char(sum(nvl(bcxdhj,0)),2) bcxd,0 bccgs,fun_char(sum(nvl(bcsbz,0)),2) bcsb,fun_char(sum(nvl(bcjl,0)),2) bcjl from YHZXJH_SEW s where 1=1 and xdzt='2'");
 		}
 		
 		
 		//服务区
 		
 		if("fwqsb".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("from FWQJH_SEW s where 1=1 ");
+			jhsh.setTiaojian(",fun_char(sum(nvl(ztz,0)),2) ztz,fun_char(sum(nvl(ztz,0))-sum(nvl(dfzc,0)),2) zbz,0 yxd,fun_char(sum(nvl(cgs,0)),2) bcxd,fun_char(sum(nvl(cgs,0)),2) bccgs,0 bcsb,0 bcjl from FWQJH_SEW s where 1=1 ");
 		}
 		if("fwqsh".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("from FWQJH_SEW s where 1=1 and sbzt='1'");
+			jhsh.setTiaojian(",fun_char(sum(nvl(ztz,0)),2) ztz,fun_char(sum(nvl(ztz,0))-sum(nvl(dfzc,0)),2) zbz,0 yxd,fun_char(sum(nvl(cgs,0)),2) bcxd,fun_char(sum(nvl(cgs,0)),2) bccgs,0 bcsb,0 bcjl from FWQJH_SEW s where 1=1 and sbzt='1'");
 		}
 		if("fwqxd".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("from FWQJH_SEW s where 1=1 and shzt='1'");
+			jhsh.setTiaojian(",fun_char(sum(nvl(ztz,0)),2) ztz,fun_char(sum(nvl(ztz,0))-sum(nvl(dfzc,0)),2) zbz,0 yxd,fun_char(sum(nvl(cgs,0)),2) bcxd,fun_char(sum(nvl(cgs,0)),2) bccgs,0 bcsb,0 bcjl from FWQJH_SEW s where 1=1 and shzt='1'");
 		}
 		if("fwqcx".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("from FWQJH_SEW s where 1=1 and xdzt='2'");
+			jhsh.setTiaojian(",fun_char(sum(nvl(ztz,0)),2) ztz,fun_char(sum(nvl(ztz,0))-sum(nvl(dfzc,0)),2) zbz,0 yxd,fun_char(sum(nvl(cgs,0)),2) bcxd,fun_char(sum(nvl(cgs,0)),2) bccgs,0 bcsb,0 bcjl from FWQJH_SEW s where 1=1 and xdzt='2'");
 		}
 		
 		return queryOne("queryszxmlj", jhsh);

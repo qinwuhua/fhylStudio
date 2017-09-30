@@ -68,6 +68,7 @@
 				height:$(window).height()-120,
 			    width:$(window).width()-20,
 				columns:[[
+					{field:'sjlx',title:'数据类型',width:100,align:'center'},
 					{field:'xmlx',title:'项目类型',width:100,align:'center'},
 					{field:'xmmc',title:'项目名称',width:200,fixed:true,align:'center',
 						formatter:function(value,row,index){
@@ -333,6 +334,7 @@ text-decoration:none;
 	<table id="grid" width="98%" border="0" class="easyui-datagrid" data-options="fitColumns:true" style="margin-top:1px;margin-left:1px;" cellspacing="0" cellpadding="0">
 		 <thead>
         	<tr>
+        		<th data-options="field:'sjlx',width:150,fixed:true,align:'center'">数据类型</th>
         		<th data-options="field:'xmlx',width:150,fixed:true,align:'center'">项目类型</th>
         		<th data-options="field:'scbz',width:150,fixed:true,align:'center'">项目名称</th>
         		<th data-options="field:'jhnf',width:150,fixed:true,align:'center'">计划年份</th>
