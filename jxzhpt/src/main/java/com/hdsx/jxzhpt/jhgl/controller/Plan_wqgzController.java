@@ -458,23 +458,24 @@ public class Plan_wqgzController extends BaseActionSupport {
 		et.add(new Excel_tilte("桥梁全宽（ 米 ）", 1, 2, 12, 12));
 		et.add(new Excel_tilte("建设性质", 1, 2, 13, 13));
 		et.add(new Excel_tilte("总投资（万元）", 1, 2, 14, 14));
-		et.add(new Excel_tilte("中央车购税资金（万元）", 1, 2, 15, 15));
-		et.add(new Excel_tilte("地方自筹资金（万元）", 1, 2, 16, 16));
-		et.add(new Excel_tilte("建设内容", 1, 2, 17, 17));
-		et.add(new Excel_tilte("开工年", 1, 2, 18, 18));
-		et.add(new Excel_tilte("完工年", 1, 2, 19, 19));
-		et.add(new Excel_tilte("批复文号", 1, 2, 20, 20));
-		et.add(new Excel_tilte("管养单位", 1, 2, 21, 21));
-		et.add(new Excel_tilte("备注", 1, 2, 22, 22));
-		et.add(new Excel_tilte("特殊地区", 1, 2, 23, 23));
-		et.add(new Excel_tilte("路线编码", 2, 2, 3, 3));
-		et.add(new Excel_tilte("桥梁编码", 2, 2, 4, 4));
-		et.add(new Excel_tilte("桥梁名称", 2, 2, 5, 5));
-		et.add(new Excel_tilte("中心桩号", 2, 2, 6, 6));
-		et.add(new Excel_tilte("路线编码", 2, 2, 7, 7));
-		et.add(new Excel_tilte("桥梁编码", 2, 2, 8, 8));
-		et.add(new Excel_tilte("桥梁名称", 2, 2, 9, 9));
-		et.add(new Excel_tilte("中心桩号", 2, 2, 10, 10));
+		et.add(new Excel_tilte("中央车购税资金（万元）", 1, 2, 15, 15));	
+		et.add(new Excel_tilte("省级补助（万元）", 1, 2, 16, 16));		
+		et.add(new Excel_tilte("地方自筹资金（万元）", 1, 2, 17, 17));
+		et.add(new Excel_tilte("建设内容", 1, 2, 18, 18));
+		et.add(new Excel_tilte("开工年", 1, 2, 19, 19));
+		et.add(new Excel_tilte("完工年", 1, 2, 20, 20));
+		et.add(new Excel_tilte("批复文号", 1, 2, 21, 21));
+		et.add(new Excel_tilte("管养单位", 1, 2, 22, 22));
+		et.add(new Excel_tilte("备注", 1, 2, 23, 23));
+		et.add(new Excel_tilte("特殊地区", 1, 2, 24, 24));
+		et.add(new Excel_tilte("规划路线编码", 2, 2, 3, 3));
+		et.add(new Excel_tilte("规划桥梁编码", 2, 2, 4, 4));
+		et.add(new Excel_tilte("规划桥梁名称", 2, 2, 5, 5));
+		et.add(new Excel_tilte("规划中心桩号", 2, 2, 6, 6));	
+		et.add(new Excel_tilte("原路线编码", 2, 2, 7, 7));
+		et.add(new Excel_tilte("原桥梁编码", 2, 2, 8, 8));
+		et.add(new Excel_tilte("原桥梁名称", 2, 2, 9, 9));
+		et.add(new Excel_tilte("原中心桩号", 2, 2, 10, 10));
 
 		eldata.setEt(et);// 将表头内容设置到类里面
 		HttpServletResponse response = getresponse();// 获得一个HttpServletResponse

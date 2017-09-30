@@ -221,26 +221,30 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			et.add(new Excel_tilte("行政区划代码",1,1,2,2));
 			et.add(new Excel_tilte("行政区划名称",1,1,3,3));
 			et.add(new Excel_tilte("经度",1,1,4,4));
-			et.add(new Excel_tilte("维度",1,1,5,5));
-			et.add(new Excel_tilte("原路线编码",1,1,6,6));
-			et.add(new Excel_tilte("原路线名称",1,1,7,7));
-			et.add(new Excel_tilte("原桥梁编码",1,1,8,8));
-			et.add(new Excel_tilte("原桥梁名称",1,1,9,9));
-			et.add(new Excel_tilte("原桥梁中心桩号",1,1,10,10));
-			et.add(new Excel_tilte("修建/改建年度",1,1,11,11));
-			et.add(new Excel_tilte("桥梁全长",1,1,12,12));
-			et.add(new Excel_tilte("桥梁全宽",1,1,13,13));
-			et.add(new Excel_tilte("跨径总长",1,1,14,14));
-			et.add(new Excel_tilte("单孔最大跨径",1,1,15,15));
-			et.add(new Excel_tilte("按跨径分类",1,1,16,16));
-			et.add(new Excel_tilte("上部结构形式",1,1,17,17));
-			et.add(new Excel_tilte("评定等级",1,1,18,18));
-			et.add(new Excel_tilte("病害内容",1,1,19,19));
-			et.add(new Excel_tilte("项目年份",1,1,20,20));
-			et.add(new Excel_tilte("项目库类型",1,1,21,21));
-			et.add(new Excel_tilte("特殊地区",1,1,22,22));
-			et.add(new Excel_tilte("备注",1,1,23,23));
-			
+			et.add(new Excel_tilte("维度",1,1,5,5));			
+			et.add(new Excel_tilte("规划路线编码",1,1,6,6));
+			et.add(new Excel_tilte("规划路线名称",1,1,7,7));
+			et.add(new Excel_tilte("规划桥梁编码",1,1,8,8));
+			et.add(new Excel_tilte("规划桥梁名称",1,1,9,9));
+			et.add(new Excel_tilte("规划桥梁中心桩号",1,1,10,10));			
+			et.add(new Excel_tilte("原路线编码",1,1,11,11));
+			et.add(new Excel_tilte("原路线名称",1,1,12,12));
+			et.add(new Excel_tilte("原桥梁编码",1,1,13,13));
+			et.add(new Excel_tilte("原桥梁名称",1,1,14,14));
+			et.add(new Excel_tilte("原桥梁中心桩号",1,1,15,15));			
+			et.add(new Excel_tilte("修建/改建年度",1,1,16,16));
+			et.add(new Excel_tilte("桥梁全长",1,1,17,17));
+			et.add(new Excel_tilte("桥梁全宽",1,1,18,18));
+			et.add(new Excel_tilte("跨径总长",1,1,19,19));
+			et.add(new Excel_tilte("单孔最大跨径",1,1,20,20));
+			et.add(new Excel_tilte("按跨径分类",1,1,21,21));
+			et.add(new Excel_tilte("上部结构形式",1,1,22,22));
+			et.add(new Excel_tilte("评定等级",1,1,23,23));
+			et.add(new Excel_tilte("病害内容",1,1,24,24));
+			et.add(new Excel_tilte("项目年份",1,1,25,25));
+			et.add(new Excel_tilte("项目库类型",1,1,26,26));
+			et.add(new Excel_tilte("特殊地区",1,1,27,27));
+			et.add(new Excel_tilte("备注",1,1,28,28));			
 			eldata.setEt(et);//将表头内容设置到类里面
 			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 			Excel_export.excel_export(eldata,response);
@@ -357,20 +361,17 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			et.add(new Excel_tilte("行政区划代码",1,1,2,2));
 			et.add(new Excel_tilte("行政区划名称",1,1,3,3));
 			et.add(new Excel_tilte("经度",1,1,4,4));
-			et.add(new Excel_tilte("维度",1,1,5,5));
-			
+			et.add(new Excel_tilte("维度",1,1,5,5));		
 			et.add(new Excel_tilte("规划路线编码",1,1,6,6));
 			et.add(new Excel_tilte("规划路线名称",1,1,7,7));
 			et.add(new Excel_tilte("规划桥梁编码",1,1,8,8));
 			et.add(new Excel_tilte("规划桥梁名称",1,1,9,9));
-			et.add(new Excel_tilte("规划桥梁中心桩号",1,1,10,10));
-			
+			et.add(new Excel_tilte("规划桥梁中心桩号",1,1,10,10));		
 			et.add(new Excel_tilte("原路线编码",1,1,11,11));
 			et.add(new Excel_tilte("原路线名称",1,1,12,12));
 			et.add(new Excel_tilte("原桥梁编码",1,1,13,13));
 			et.add(new Excel_tilte("原桥梁名称",1,1,14,14));
-			et.add(new Excel_tilte("原桥梁中心桩号",1,1,15,15));
-			
+			et.add(new Excel_tilte("原桥梁中心桩号",1,1,15,15));		
 			et.add(new Excel_tilte("修建/改建年度",1,1,16,16));
 			et.add(new Excel_tilte("桥梁全长",1,1,17,17));
 			et.add(new Excel_tilte("桥梁全宽",1,1,18,18));
