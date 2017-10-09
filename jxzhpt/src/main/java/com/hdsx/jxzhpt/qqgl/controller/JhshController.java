@@ -3289,8 +3289,9 @@ public class JhshController extends BaseActionSupport implements
 		et.add(new Excel_tilte("计划下达文号", 1, 2, 38, 38));
 		et.add(new Excel_tilte("前期工作情况", 1, 1, 39, 40));
 		et.add(new Excel_tilte("项目编码", 1, 2, 41, 41));
-		et.add(new Excel_tilte("备注", 1, 2, 42, 42));
-		et.add(new Excel_tilte("特殊地区", 1, 2, 43, 43));
+		et.add(new Excel_tilte("项目年份", 1, 2, 42, 42));
+		et.add(new Excel_tilte("备注", 1, 2, 43, 43));
+		et.add(new Excel_tilte("特殊地区", 1, 2, 44, 44));
 		et.add(new Excel_tilte("路线编码", 2, 2, 5, 5));
 		et.add(new Excel_tilte("起点桩号", 2, 2, 6, 6));
 		et.add(new Excel_tilte("止点桩号", 2, 2, 7, 7));
@@ -3406,7 +3407,8 @@ public class JhshController extends BaseActionSupport implements
 		et.add(new Excel_tilte("前期工作批复文号", 1, 2, 27, 27));
 		et.add(new Excel_tilte("计划下达文号", 1, 2, 28, 28));
 		et.add(new Excel_tilte("项目编码", 1, 2, 29, 29));
-		et.add(new Excel_tilte("特殊地区", 1, 2, 30, 30));
+		et.add(new Excel_tilte("项目年份", 1, 2, 30, 30));
+		et.add(new Excel_tilte("特殊地区", 1, 2, 31, 31));
 		et.add(new Excel_tilte("路线编码", 2, 2, 4, 4));
 		et.add(new Excel_tilte("起点桩号", 2, 2, 5, 5));
 		et.add(new Excel_tilte("讫点桩号", 2, 2, 6, 6));
@@ -3710,8 +3712,9 @@ public class JhshController extends BaseActionSupport implements
 		et.add(new Excel_tilte("管养单位", 1, 2, 20, 20));
 		et.add(new Excel_tilte("计划下达文号", 1, 2, 21, 21));
 		et.add(new Excel_tilte("项目编码", 1, 2, 22, 22));
-		et.add(new Excel_tilte("备注", 1, 2, 23, 23));
-		et.add(new Excel_tilte("特殊地区", 1, 2, 24, 24));
+		et.add(new Excel_tilte("项目年份", 1, 2, 23, 23));
+		et.add(new Excel_tilte("备注", 1, 2, 24, 24));
+		et.add(new Excel_tilte("特殊地区", 1, 2, 25, 25));
 		et.add(new Excel_tilte("起点桩号", 2, 2, 5, 5));
 		et.add(new Excel_tilte("讫点桩号", 2, 2, 6, 6));
 		et.add(new Excel_tilte("起点桩号", 2, 2, 7, 7));

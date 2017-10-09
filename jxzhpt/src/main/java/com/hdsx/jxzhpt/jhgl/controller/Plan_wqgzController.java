@@ -466,8 +466,9 @@ public class Plan_wqgzController extends BaseActionSupport {
 		et.add(new Excel_tilte("完工年", 1, 2, 20, 20));
 		et.add(new Excel_tilte("批复文号", 1, 2, 21, 21));
 		et.add(new Excel_tilte("管养单位", 1, 2, 22, 22));
-		et.add(new Excel_tilte("备注", 1, 2, 23, 23));
-		et.add(new Excel_tilte("特殊地区", 1, 2, 24, 24));
+		et.add(new Excel_tilte("项目年份", 1, 2, 23, 23));
+		et.add(new Excel_tilte("备注", 1, 2, 24, 24));
+		et.add(new Excel_tilte("特殊地区", 1, 2, 25, 25));
 		et.add(new Excel_tilte("规划路线编码", 2, 2, 3, 3));
 		et.add(new Excel_tilte("规划桥梁编码", 2, 2, 4, 4));
 		et.add(new Excel_tilte("规划桥梁名称", 2, 2, 5, 5));

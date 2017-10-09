@@ -6718,7 +6718,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
           nvl(sum(jhlj.ztz),0) v_26,nvl(sum(jhlj.btz),0) v_27,nvl(sum(jhlj.dk),0) v_28,nvl(sum(jhlj.jl),0) v_29,
           nvl(sum(jh15.ztz),0) v_30,nvl(sum(jh15.btz),0) v_31,nvl(sum(jh15.dk),0) v_32,nvl(sum(jh15.jl),0) v_33,
           nvl(sum(jh15.dfzc),0) v_34,nvl(sum(jh15.yhdk),0) v_35,'' v_36,'' v_37,'' v_38,
-          '' v_39,'' v_40,'' v_41,'' v_42,'' v_43
+          '' v_39,'' v_40,'' v_41,'' v_42,'' v_43,'' v_44
           from gsdgz j
           left join cbgsdgz cb
           on j.xmbm=cb.xmbm
@@ -6827,8 +6827,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
           nvl(jhlj.ztz,0) v_26,nvl(jhlj.btz,0) v_27,nvl(jhlj.dk,0) v_28,nvl(jhlj.jl,0) v_29,
           nvl(jh15.ztz,0) v_30,nvl(jh15.btz,0) v_31,nvl(jh15.dk,0) v_32,nvl(jh15.jl,0) v_33,
           nvl(jh15.dfzc,0) v_34,nvl(jh15.yhdk,0) v_35,j.zyjsnr v_36,j.xzscnl v_37,j.jhxdwh v_38,
-          kx.gkpfwh v_39,cb.sjpfwh v_40,j.xmbm v_41,j.bz v_42,j.tsdq v_43
+          kx.gkpfwh v_39,cb.sjpfwh v_40,j.xmbm v_41,sbnf.scxdnf v_42,j.bz v_43,j.tsdq v_44
           from gsdgz j
+          left join (select xmid,min(xdnf) scxdnf from plan_zjxd group by xmid) sbnf on j.xmbm = sbnf.xmid
           left join cbgsdgz cb
           on j.xmbm=cb.xmbm
           left join kxgsdgz kx
@@ -7129,7 +7130,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
   to_char(sum(l.silc),'fm9999999990.000') v_15,nvl('',0) v_16,nvl('',0) v_17,'' v_18,
   '' v_19,'' v_20,to_char(nvl(sum(j.pfztz),0)) v_21,
   to_char(sum(decode(xd.stz,0,j.pfztz,xd.btz+xd.stz+xd.dfzc))) v_22,nvl(sum(xd.btz),0) v_23,
-  nvl(sum(xd.stz),0) v_24,nvl(sum(decode(xd.stz,0,(j.pfztz-xd.btz),xd.dfzc)),0) v_25,'' v_26,'' v_27,'' v_28,'' v_29,'' v_30
+  nvl(sum(xd.stz),0) v_24,nvl(sum(decode(xd.stz,0,(j.pfztz-xd.btz),xd.dfzc)),0) v_25,'' v_26,'' v_27,'' v_28,'' v_29,'' v_30,'' v_31
   from   Jhxdsh   j
   left join cbsj_sh c
   on j.xmbm=c.xmbm
@@ -7210,8 +7211,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
   to_char(l.silc,'fm9999999990.000') v_15,nvl('',0) v_16,nvl('',0) v_17,c.jsfa v_18,
   substr(c.kgsj,0,4) v_19,substr(c.wgsj,0,4) v_20,nvl(j.pfztz,0) v_21,
   decode(xd.stz,0,j.pfztz,xd.btz+xd.stz+xd.dfzc) v_22,nvl(xd.btz,0) v_23,
-  nvl(xd.stz,0) v_24,decode(xd.stz,0,(j.pfztz-xd.btz),xd.dfzc) v_25,xd.zyjsnr v_26,c.sjpfwh v_27,j.jhxdwh v_28,j.xmbm v_29,j.tsdqzcg v_30
+  nvl(xd.stz,0) v_24,decode(xd.stz,0,(j.pfztz-xd.btz),xd.dfzc) v_25,xd.zyjsnr v_26,c.sjpfwh v_27,j.jhxdwh v_28,j.xmbm v_29,sbnf.scxdnf v_30,j.tsdqzcg v_31
   from   Jhxdsh   j
+  left join (select xmid,min(xdnf) scxdnf from plan_zjxd group by xmid) sbnf on j.XMBM = sbnf.xmid 
   left join cbsj_sh c
   on j.xmbm=c.xmbm
   left join xmsq_sh x
@@ -8020,7 +8022,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	select '' v_1,'' v_2,'' v_3,'合计' v_4, '' v_5,'' v_6,'' v_7,'' v_8,
        nvl(to_char(sum(lx2.zjhlc),'fm999990.09999'), 0) v_9,'' v_10, '' v_11,'' v_12,'' v_13,'' v_14,'' v_15,
       nvl(sum(j.ZTZ),0) v_16,nvl(sum(j.RYS),0) v_17,nvl(sum(j.DK),0) v_18,
-      '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24,'' v_50
+      '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24,'' v_25,'' v_50
  from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm 
 left join cbsj_yhdzx c on j.xmbm=c.xmbm 
             left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
@@ -8084,7 +8086,7 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
    select '' v_1,'' v_2,'' v_3,'大修' v_4, '' v_5,'' v_6,'' v_7,'' v_8,
       nvl(to_char(sum(lx2.zjhlc),'fm999990.09999'), 0) v_9,'' v_10, '' v_11,'' v_12,'' v_13,'' v_14,'' v_15,
       nvl(sum(j.ZTZ),0) v_16,nvl(sum(j.RYS),0) v_17,nvl(sum(j.DK),0) v_18,
-      '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24,'' v_50
+      '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24,'' v_25,'' v_50
  from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm 
 left join cbsj_yhdzx c on j.xmbm=c.xmbm 
             left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
@@ -8147,7 +8149,7 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
    select '' v_1,'' v_2,'' v_3,'中修' v_4, '' v_5,'' v_6,'' v_7,'' v_8,
       nvl(to_char(sum(lx2.zjhlc),'fm999990.09999'), 0) v_9,'' v_10, '' v_11,'' v_12,'' v_13,'' v_14,'' v_15,
       nvl(sum(j.ZTZ),0) v_16,nvl(sum(j.RYS),0) v_17,nvl(sum(j.DK),0) v_18,
-      '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24,'' v_50
+      '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24,'' v_25,'' v_50
  from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm 
 left join cbsj_yhdzx c on j.xmbm=c.xmbm 
             left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
@@ -8210,7 +8212,7 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
 select '' v_1,'' v_2,'' v_3,'预防性' v_4, '' v_5,'' v_6,'' v_7,'' v_8,
       nvl(to_char(sum(lx2.zjhlc),'fm999990.09999'), 0) v_9,'' v_10, '' v_11,'' v_12,'' v_13,'' v_14,'' v_15,
        nvl(sum(j.ZTZ),0) v_16,nvl(sum(j.RYS),0) v_17,nvl(sum(j.DK),0) v_18,
-      '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24,'' v_50
+      '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24,'' v_25,'' v_50
  from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm 
 left join cbsj_yhdzx c on j.xmbm=c.xmbm 
             left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
@@ -8281,9 +8283,10 @@ to_char(sum(l.zlc),'fm999990.09999') v_9,RemoveSameStr(replace(WMSYS.WM_CONCAT(d
 RemoveSameStr(decode(WMSYS.WM_CONCAT(distinct(l.lxlmkd)),null,max(x.lmkd),0,max(x.lmkd),WMSYS.WM_CONCAT(distinct(l.lxlmkd))),',') v_11,
 WMSYS.WM_CONCAT(distinct(x.ylmlx)) v_12,WMSYS.WM_CONCAT(distinct(x.ylmjg)) v_13,max(j.jsxz) v_14,
 max(c.jsfa) v_15,decode(max(j.ztz),null,0,max(j.ztz)) v_16,decode(max(j.rys),null,0,max(j.rys)) v_17,decode(max(j.dk),null,0,max(j.dk)) v_18,WMSYS.WM_CONCAT(distinct(c.sjpfwh)) v_19,WMSYS.WM_CONCAT(distinct(x.gydw)) v_20,
-max(j.jhxdwh) v_21,j.xmbm v_22,max(decode(substr(x.bz,0,3),'lxs','',x.bz)) v_23,max(x.tsdq) v_24,max(l.sffirst) v_50
-
-from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm 
+max(j.jhxdwh) v_21,j.xmbm v_22,max(sbnf.scxdnf) v_23,max(decode(substr(x.bz,0,3),'lxs','',x.bz)) v_24,max(x.tsdq) v_25,max(l.sffirst) v_50
+from jhxdyh j 
+left join (select xmid,min(xdnf) scxdnf from plan_zjxd group by xmid) sbnf on j.xmbm = sbnf.xmid
+left join xmsq_yhdzx x on j.xmbm=x.xmbm 
 left join cbsj_yhdzx c on j.xmbm=c.xmbm 
   left join ( select p.xmid,
        sum(p.ztz) ztz,

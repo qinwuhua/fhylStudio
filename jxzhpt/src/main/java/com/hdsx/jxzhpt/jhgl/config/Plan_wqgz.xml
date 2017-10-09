@@ -486,8 +486,9 @@
            substr(jh.sjwgsj, 0, 4) v_20,
            jh.pfwh v_21,
            lx.gydw v_22,
-           jh.bz v_23,
-           t.tsdq v_24
+           jh.sbnf v_23,
+           jh.bz v_24,
+           t.tsdq v_25
       from plan_wqgz jh
       left join sck_wqgz sc on (jh.sckid = sc.sckid)
       left join xmk_wqgz lx on (sc.xmkid = lx.id)
