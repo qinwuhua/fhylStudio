@@ -100,14 +100,12 @@ function querySflgc(){
 		        {field: 'YQDZH', title: '原起点桩号', width: 120, align: 'center'},
 		        {field: 'YZDZH', title: '原止点桩号', width: 120, align: 'center'},
 		        {field: 'JSDJ', title: '技术等级', width: 120, align: 'center',formatter: function(value,row,index){
-					var result="";
-					
-					if(row.YJ>0) result+="一级 ";
-					if(row.EJ>0) result+="二级 ";
-					if(row.SJ>0) result+="三级 ";
-					if(row.SIJ>0) result+="四级 ";
-					
-					return result;
+		        	var result="";
+					if(row.YJ>0) result+="一级、";
+					if(row.EJ>0) result+="二级、";
+					if(row.SJ>0) result+="三级、";
+					if(row.SIJ>0) result+="四级、";
+					return result.substring(0,result.length-1);
 				}},
 				{field:'JSDJXJ',title:'里程(公里)',width:100,align:'center'},
 		        {field:'ZTZ',title:'总投资(万元)',width:100,align:'center'},
