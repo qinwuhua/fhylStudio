@@ -49,7 +49,11 @@
 				select rownum as num,t.* from
 				(
 					select jh.id,jh.sckid,jh.jh_sbthcd,jh.sbnf,jh.sbzt,jh.spzt,jh.kgzt,jh.jgzt,jh.jhkgsj,jh.jhwgsj,jh.pfztz,sc.bzls as sfylsjl,
-					sc.scqlqc,sc.scqlqk,lx.gydw,lx.gydwbm,lx.xzqhdm,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qlmc,lx.qlbh,lx.qlzxzh,lx.xlxbm,lx.xqlbm,lx.xzxzh,lx.xlxmc,lx.xqlmc 
+					sc.scqlqc,sc.scqlqk,lx.gydw,lx.gydwbm,lx.xzqhdm,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qlmc,lx.qlbh,
+                    decode(substr(lx.qlzxzh,1,1),'.','0'||lx.qlzxzh,lx.qlzxzh) as qlzxzh,			
+					lx.xlxbm,lx.xqlbm,		
+			        decode(substr(lx.xzxzh,1,1),'.','0'||lx.xzxzh,lx.xzxzh) as xzxzh,
+					lx.xlxmc,lx.xqlmc 
 					from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
 					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是' <!-- and lx.gydwbm like '2%' -->
 	 				<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
@@ -486,8 +490,9 @@
            substr(jh.sjwgsj, 0, 4) v_20,
            jh.pfwh v_21,
            lx.gydw v_22,
-           jh.bz v_23,
-           t.tsdq v_24
+           jh.sbnf v_23,
+           jh.bz v_24,
+           t.tsdq v_25
       from plan_wqgz jh
       left join sck_wqgz sc on (jh.sckid = sc.sckid)
       left join xmk_wqgz lx on (sc.xmkid = lx.id)

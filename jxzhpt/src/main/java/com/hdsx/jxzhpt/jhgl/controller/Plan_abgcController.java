@@ -436,8 +436,9 @@ public class Plan_abgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("建设内容",1,2,15,15));
 		et.add(new Excel_tilte("批复文号",1,2,16,16));
 		et.add(new Excel_tilte("管养单位",1,2,17,17));
-		et.add(new Excel_tilte("备注",1,2,18,18));
-		et.add(new Excel_tilte("特殊地区",1,2,19,19));
+		et.add(new Excel_tilte("项目年份",1,2,18,18));
+		et.add(new Excel_tilte("备注",1,2,19,19));
+		et.add(new Excel_tilte("特殊地区",1,2,20,20));
 		et.add(new Excel_tilte("路线编码",2,2,3,3));
 		et.add(new Excel_tilte("起点桩号",2,2,4,4));
 		et.add(new Excel_tilte("讫点桩号",2,2,5,5));
