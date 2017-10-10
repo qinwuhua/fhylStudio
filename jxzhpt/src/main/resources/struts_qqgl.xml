@@ -18,7 +18,9 @@
 		
 		<action name="queryszxm" class="jhshController" method="queryszxm" />
 		<action name="querySzxmList" class="jhshController" method="querySzxmList" />
-		
+		<action name="updateJhshInfo" class="jhshController" method="updateJhshInfo" />
+		<action name="sbshSzxm" class="jhshController" method="sbshSzxm" />
+		<action name="queryJhshLjSzxm" class="jhshController" method="queryJhshLjSzxm" />
 
 		<!-- *综合养护中心* -->
 		<action name="queryYhzxshSb" class="jhshController" method="queryYhzxshSb" />
