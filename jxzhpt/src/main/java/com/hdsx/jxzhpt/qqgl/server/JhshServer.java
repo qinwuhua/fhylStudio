@@ -603,14 +603,24 @@ public interface JhshServer {
 	public int listFwqCount(Jhsh jhsh);
 
 	public int queryszxmCount(Jhsh jhsh);
+	
+	public int querySzxmListCount(Jhsh jhsh);
 
 	public Map<String, String> queryJhshLjsyfs2w(Jhsh jhsh);
 
 	public List<Map<String, String>> queryszxm(Jhsh jhsh);
 
+	public List<Map<String, String>> querySzxmList(Jhsh jhsh);
+	
 	public int listFwqSbztCount(Jhsh jhsh);
 
 	public int listFwqXdztCount(Jhsh jhsh);
+
+	public boolean updateJhshInfo(Jhsh jhsh);
+
+	public boolean sbshSzxm(Jhsh jhsh);
+
+	public Map<String, String> queryJhshLjSzxm(Jhsh jhsh);
 
 	
 }

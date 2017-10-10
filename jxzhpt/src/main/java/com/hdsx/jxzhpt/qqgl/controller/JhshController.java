@@ -674,11 +674,11 @@ public class JhshController extends BaseActionSupport implements
 		public void querySzxmList() throws Exception {
 			List<Map<String, String>> listSflgc = null;
 			try {
-				jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "wn.qhdm"));
+				jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "sz.xzqhdm"));
 				jhsh.setJhxdwh(MyUtil.getQueryTJ(jhsh.getJhxdwh(), "xd.jhxdwh"));
 				jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "sg.xmnf"));
-				listSflgc = jhshServer.queryszxm(jhsh);
-				int total = jhshServer.queryszxmCount(jhsh);
+				listSflgc = jhshServer.querySzxmList(jhsh);
+				int total = jhshServer.querySzxmListCount(jhsh);
 				EasyUIPage<Map<String, String>> e=new EasyUIPage<Map<String, String>>();
 				e.setRows(listSflgc);e.setTotal(total);
 				JsonUtils.write(e, getresponse().getWriter());
@@ -688,6 +688,24 @@ public class JhshController extends BaseActionSupport implements
 			}
 		}
 	
+		public void queryJhshLjSzxm() {
+			Map<String, String> result = new HashMap<String, String>();
+			try {
+				jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "sz.xzqhdm"));
+				jhsh.setJhxdwh(MyUtil.getQueryTJ(jhsh.getJhxdwh(), "xd.jhxdwh"));
+				jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "sg.xmnf"));
+				result = jhshServer.queryJhshLjSzxm(jhsh);
+
+				JsonUtils.write(result, getresponse().getWriter());
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
 	
 	public void queryJhshLjsyfs2w() {
 		Map<String, String> result = new HashMap<String, String>();
@@ -1000,7 +1018,30 @@ public class JhshController extends BaseActionSupport implements
 			throw e;
 		}
 	}
-
+//修改三种项目类型计划的方法
+	public void updateJhshInfo() throws Exception {
+		boolean b = false;
+		try {
+			b = jhshServer.updateJhshInfo(jhsh);
+			result.put("result", new Boolean(b));
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	//上报三种项目类型的方法
+	public void sbshSzxm() {
+		boolean b = false;
+		try {
+			b = jhshServer.sbshSzxm(jhsh);
+			result.put("result", new Boolean(b));
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * 养护大中修和水毁的计划下达
 	 * 

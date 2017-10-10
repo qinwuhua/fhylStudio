@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.jhsh">
+ <select id="querySzxmList" parameterType="jhsh" resultType="hashMap">
+       
+      select * from (
+      select rownum num,jh.*,sz.*,sg.pfwh
+      ${tiaojian}
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="gydw !='' and gydw != null">${gydw}</if>
+      <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
+      <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
+      <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
+      <if test="ylxbm !='' and ylxbm != null">and sz.ylxbm like '%${ylxbm}%'</if>
+      <if test="ylxmc !='' and ylxmc != null">and sz.ylxmc like '%${ylxmc}%'</if>
+      <if test="sbzt !='' and sbzt != null">and jh.sbzt like '%${sbzt}%'</if>
+      <if test="shzt !='' and shzt != null">and jh.shzt like '%${shzt}%'</if>
+      <if test="xdzttj !='' and xdzttj != null">and jh.xdzt like '%${xdzttj}%'</if>
+       
+      and rownum &lt;=(#{page} * #{rows})  
+      ) t 
+      where t.num>(#{page}-1)*#{rows}
+    </select>
+    <select id="querySzxmListCount" parameterType="jhsh" resultType="int">
+      select count(*)
+      ${tiaojian}
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="gydw !='' and gydw != null">${gydw}</if>
+      <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
+      <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
+      <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
+      <if test="ylxbm !='' and ylxbm != null">and sz.ylxbm like '%${ylxbm}%'</if>
+      <if test="ylxmc !='' and ylxmc != null">and sz.ylxmc like '%${ylxmc}%'</if>
+      <if test="sbzt !='' and sbzt != null">and jh.sbzt like '%${sbzt}%'</if>
+      <if test="shzt !='' and shzt != null">and jh.shzt like '%${shzt}%'</if>
+      <if test="xdzttj !='' and xdzttj != null">and jh.xdzt like '%${xdzttj}%'</if>
+        
+    </select>
+
+	<select id="queryJhshLjSzxm" parameterType="jhsh" resultType="hashMap">
+      select count(*) xmsl
+      ${tiaojian}
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="gydw !='' and gydw != null">${gydw}</if>
+      <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
+      <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
+      <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
+      <if test="ylxbm !='' and ylxbm != null">and sz.ylxbm like '%${ylxbm}%'</if>
+      <if test="ylxmc !='' and ylxmc != null">and sz.ylxmc like '%${ylxmc}%'</if>
+      <if test="sbzt !='' and sbzt != null">and jh.sbzt like '%${sbzt}%'</if>
+      <if test="shzt !='' and shzt != null">and jh.shzt like '%${shzt}%'</if>
+      <if test="xdzttj !='' and xdzttj != null">and jh.xdzt like '%${xdzttj}%'</if>
+       
+    </select>
+
+
+<!--  -->
+
     <select id="queryszxm" parameterType="jhsh" resultType="hashMap">
        
       select * from (
@@ -8681,5 +8742,28 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 		union all 
 		select distinct id from zgb_zxlwzhtx_wnjh where 1=1 ${value}
 	</select>
+	<select id="updateJhshSflInfo" parameterType="jhsh">
+		update JHSH_SFL
+	    <set>
+	      <if test="ztz != null" >ztz = #{ztz},</if>
+	      <if test="tbz != null" >tbz = #{tbz},</if>
+	      <if test="tbz_jaf != null" >tbz_jaf = #{tbz_jaf},</if>
+	      <if test="tbz_gcjlf != null" >tbz_gcjlf = #{tbz_gcjlf},</if>
+	      <if test="tbz_qqgzf != null" >tbz_qqgzf = #{tbz_qqgzf},</if>
+	      <if test="dfzc != null" >dfzc = #{dfzc},</if>
+	      <if test="zydpx != null" >zydpx = #{zydpx},</if>
+	    </set>
+	    where xmbm=#{xmbm} 
+	</select>
+	<select id="sbshSzxmsfl" parameterType="jhsh">
+		update JHSH_SFL
+	    <set>
+	      <if test="sbzt != null and sbzt != ''" >sbzt = #{sbzt},</if>
+	      <if test="shzt != null and shzt != ''" >shzt = #{shzt},qqwcsj=to_char(sysdate,'yyyy-mm-dd'),</if>
+	      <if test="thyy != null and thyy != ''" >thyy = #{thyy},</if>
+	    </set>
+	    where xmbm in (${xmbm})
+	</select>
+	
 	
 </mapper>
