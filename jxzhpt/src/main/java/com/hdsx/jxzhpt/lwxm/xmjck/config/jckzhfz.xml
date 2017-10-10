@@ -298,9 +298,15 @@
  </insert>
  <select id="exportExcel_zhfz_sh" parameterType="jckzhfz" resultType="elist">
  	 select rownum v_0,xzqhdm v_1,xzqhmc v_2,gydw v_3, 
- 	 lxbm v_4, lxmc v_5, qdzh v_6, zdzh v_7, 
- 	 ylxbm v_8, ylxmc v_9, yqdzh v_10, yzdzh v_11, 
- 	 qzlc v_12, yhlc v_13, gjxjnd v_14,xmnf v_15,xmklx v_16,yhnr v_17,tsdq v_18,bz v_19
+ 	 lxbm v_4, lxmc v_5, 
+ 	 to_char(qdzh, 'fm9999999990.000') v_6,
+ 	 to_char(zdzh, 'fm9999999990.000') v_7,
+ 	 ylxbm v_8, ylxmc v_9, 
+ 	 to_char(yqdzh, 'fm9999999990.000') v_10,
+ 	 to_char(yzdzh, 'fm9999999990.000') v_11,
+ 	 to_char(qzlc, 'fm9999999990.000') v_12,
+ 	 to_char(yhlc, 'fm9999999990.000') v_13,
+ 	 gjxjnd v_14,xmnf v_15,xmklx v_16,yhnr v_17,tsdq v_18,bz v_19
      from xmk_zhfz
  	 where sbthcd=7
  	<include refid="zhfz_commonsql"/>

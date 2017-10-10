@@ -579,8 +579,10 @@
   <select id="exportExcel_wqgz_sh" parameterType="jckwqgz" resultType="elist">
  	  select 
 	  rownum v_0, gydw v_1, xzqhdm v_2, xzqhmc v_3, ptx v_4, pty v_5,
-	  lxbm v_6, lxmc v_7, qlbh v_8, qlmc v_9, qlzxzh v_10,
-	  xlxbm v_11, xlxmc v_12, xqlbm v_13, xqlmc v_14, xzxzh v_15,	  
+	  lxbm v_6, lxmc v_7, qlbh v_8, qlmc v_9, 	  
+	  to_char(qlzxzh, 'fm9999999990.000') v_10,	  
+	  xlxbm v_11, xlxmc v_12, xqlbm v_13, xqlmc v_14, 	  
+	  to_char(xzxzh, 'fm9999999990.000') v_15,	  	  
 	  xjgjnd v_16, qlqc v_17, qlkd v_18, kjzc v_19, dkzdkj v_20, akjfl v_21, sbjgxs v_22, pddj v_23, bhnr v_24, xmnf v_25,
 	  xmklx v_26, tsdq v_27, bz v_28
 	   from xmk_wqgz  where sbthcd=7
