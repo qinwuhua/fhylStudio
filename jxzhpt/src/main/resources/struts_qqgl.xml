@@ -17,6 +17,7 @@
 		<action name="queryJhshLjsyfs2w" class="jhshController" method="queryJhshLjsyfs2w" />
 		
 		<action name="queryszxm" class="jhshController" method="queryszxm" />
+		<action name="querySzxmList" class="jhshController" method="querySzxmList" />
 		
 
 		<!-- *综合养护中心* -->

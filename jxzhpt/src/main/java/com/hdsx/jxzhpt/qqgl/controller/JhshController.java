@@ -668,6 +668,27 @@ public class JhshController extends BaseActionSupport implements
 			throw e;
 		}
 	}
+	
+	
+	//查询三种项目最终版从申报到计划审核。
+		public void querySzxmList() throws Exception {
+			List<Map<String, String>> listSflgc = null;
+			try {
+				jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "wn.qhdm"));
+				jhsh.setJhxdwh(MyUtil.getQueryTJ(jhsh.getJhxdwh(), "xd.jhxdwh"));
+				jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "sg.xmnf"));
+				listSflgc = jhshServer.queryszxm(jhsh);
+				int total = jhshServer.queryszxmCount(jhsh);
+				EasyUIPage<Map<String, String>> e=new EasyUIPage<Map<String, String>>();
+				e.setRows(listSflgc);e.setTotal(total);
+				JsonUtils.write(e, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw e;
+			}
+		}
+	
+	
 	public void queryJhshLjsyfs2w() {
 		Map<String, String> result = new HashMap<String, String>();
 		try {
