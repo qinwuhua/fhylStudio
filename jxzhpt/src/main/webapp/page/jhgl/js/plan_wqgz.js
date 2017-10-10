@@ -22,7 +22,8 @@ function querySumWqgz(jh,lx){
 			'jh.sfylsjl':jh.sfylsjl,'jh.jh_sbthcd':jh.jh_sbthcd,
 			"lx.gydwlx":lx.gydwlx,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,
 			"lx.lxbm":lx.lxbm,"lx.qlmc":lx.qlmc,"lx.akjfl":lx.akjfl,"lx.jsxz":lx.jsxz,"lx.lxbm":lx.lxbm,
-			"lx.jsdj":lx.jsdj,"lx.gldj":lx.gldj,"lx.tsdq":lx.tsdq,"lx.xmklx":lx.xmklx};
+			"lx.jsdj":lx.jsdj,"lx.gldj":lx.gldj,"lx.tsdq":lx.tsdq,"lx.xmklx":lx.xmklx,
+			"lx.xlxmc":lx.xlxmc,"lx.xlxbm":lx.xlxbm,"lx.xqlbm":lx.xqlbm,"lx.xqlmc":lx.xqlmc,"lx.qlbh":lx.qlbh};
 
 	
 	$.ajax({

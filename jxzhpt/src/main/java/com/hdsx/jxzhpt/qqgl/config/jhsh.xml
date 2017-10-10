@@ -2061,7 +2061,28 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 		select k.*,xmklx from jhsh_xj k left join lxsh_xj t on k.xmbm=t.xmbm where k.xmbm=#{xmbm}
 	</select>
 	<select id="queryJhshxxYhdzxByXmbm" parameterType="jhsh" resultType="jhsh">
-		select j.*,l.lxbm as ylxbh,l.gpsqdzh,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from jhsh_yhdzx j left join lxsh_lx l on j.xmbm=l.xmid where jdbs='2' and l.sffirst='1' and j.xmbm=#{xmbm}
+	    select j.*,
+           l.lxbm as ylxbh,
+           l.gpsqdzh,
+           l.gpszdzh,
+           l.yilc,
+           l.erlc,
+           l.sanlc,
+           l.silc,
+           l.dwlc,
+           l.wllc,
+           lbz.lxsbzj,
+           sbz.sgtsbzj,
+           sgtxx.tz,
+           sgtxx.bz
+      from jhsh_yhdzx j
+      left join (select sum(sbzj) lxsbzj,xmid from lxsh_lx where jdbs='1' group by xmid) lbz on lbz.xmid = j.xmbm 
+      left join (select sum(sbzj) sgtsbzj,xmid from lxsh_lx where jdbs='1' group by xmid) sbz on sbz.xmid = j.xmbm
+      left join (select xmbm, sum(tz) tz, max(bz) bz from cbsj_yhdzx  group by xmbm) sgtxx on sgtxx.xmbm = j.xmbm
+      left join lxsh_lx l on j.xmbm = l.xmid
+     where jdbs = '2'
+       and l.sffirst = '1'
+       and j.xmbm=#{xmbm}
 	</select>
 	<select id="queryJhshxxShByXmbm" parameterType="jhsh" resultType="jhsh">
 		select j.*,l.lxbm as ylxbh,l.gpsqdzh,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from jhsh_sh j left join lxsh_lx l on j.xmbm=l.xmid where jdbs='2' and l.sffirst='1' and j.xmbm=#{xmbm}

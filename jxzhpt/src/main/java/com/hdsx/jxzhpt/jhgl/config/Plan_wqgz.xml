@@ -348,6 +348,18 @@
 	 				<if test="lx.xmklx != null and lx.xmklx != ''">
 	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
 	 				</if>
+	 				<if test="lx.xlxbm != null and lx.xlxbm != ''">
+	 					and lx.xlxbm like '%'||#{lx.xlxbm}||'%'
+	 				</if>
+	 				<if test="lx.xqlbm != null and lx.xqlbm != ''">
+	 					and lx.xqlbm like '%'||#{lx.xqlbm}||'%'
+	 				</if>
+	 				<if test="lx.xlxmc != null and lx.xlxmc != ''">
+	 					and lx.xlxmc like '%'||#{lx.xlxmc}||'%'
+	 				</if>
+	 				<if test="lx.xqlmc != null and lx.xqlmc != ''">
+	 					and lx.xqlmc like '%'||#{lx.xqlmc}||'%'
+	 				</if>
 	</select>
 	<select id="querySumWqgz" parameterType="java.util.Map" resultType="plan_wqgz">
     select count(id) as id,sum(pfztz) as pfztz,sum(jhsybzje) as jhsybzje,
@@ -417,6 +429,19 @@
 	 				</if>
 	 				<if test="lx.xmklx != null and lx.xmklx != ''">
 	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
+	 				
+	 				<if test="lx.xlxmc!=null and lx.xlxmc!=''">
+	 					and lx.xlxmc like '%'||#{lx.xlxmc}||'%'
+	 				</if>
+	 				<if test="lx.xlxbm!=null and lx.xlxbm!=''">
+	 					and lx.xlxbm like '%'||#{lx.xlxbm}||'%'
+	 				</if>
+	 				<if test="lx.xqlbm!=null and lx.xqlbm!=''">
+	 					and lx.xqlbm like '%'||#{lx.xqlbm}||'%'
+	 				</if>
+	 				<if test="lx.xqlmc!=null and lx.xqlmc!=''">
+	 					and lx.xqlmc like '%'||#{lx.xqlmc}||'%'
 	 				</if>
 	 				 group by jh.id)
 	</select>
