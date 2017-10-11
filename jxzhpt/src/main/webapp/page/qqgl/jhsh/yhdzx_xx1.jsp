@@ -101,25 +101,25 @@
 						$("#snhntmcsshse1").attr('checked','checked');
 					}
 						
-					if(msg.fcbc30hd=='是'){
+					if(data.fcbc30hd=='是'){
 						$("#fcbc30se1").attr('checked','checked');
 					}
-					if(msg.bc6hd=='是'){
+					if(data.bc6hd=='是'){
 						$("#bc6se1").attr('checked','checked');
 					}
-					if(msg.bc25hd=='是'){
+					if(data.bc25hd=='是'){
 						$("#bc25se1").attr('checked','checked');
 					}
-					if(msg.bc30hd=='是'){
+					if(data.bc30hd=='是'){
 						$("#bc30se1").attr('checked','checked');
 					}
-					if(msg.bmc25hd=='是'){
+					if(data.bmc25hd=='是'){
 						$("#bmc25se1").attr('checked','checked');
 					}
-					if(msg.wfchd=='是'){
+					if(data.wfchd=='是'){
 						$("#wfcse1").attr('checked','checked');
 					}
-					if(msg.xjfchd=='是'){
+					if(data.xjfchd=='是'){
 						$("#xjfcse1").attr('checked','checked');
 					}
 					
