@@ -1,9 +1,192 @@
 //三种项目，查看详情
 
 
+//下达之后详情
+function szxmXdInfo(index,flag){
+	YMLib.Var.obj=$('#grid').datagrid('getRows')[index];
+	YMLib.Var.flag=flag;
+	//示范路
+	if(flag=='sfl'){
+		openWindow('mywindow','详情','/jxzhpt/page/qqgl/jhsh/szlx/sfl_xd_Info.jsp',680,470);
+	}
+}
+//下达之前详情
+function szxmInfo(index,flag){
+	YMLib.Var.obj=$('#grid').datagrid('getRows')[index];
+	YMLib.Var.flag=flag;
+	//示范路
+	if(flag=='sfl'){
+		openWindow('mywindow','详情','/jxzhpt/page/qqgl/jhsh/szlx/sfl_Info.jsp',680,470);
+	}
+}
+//编辑
+function editSzxm(index,flag){
+	YMLib.Var.obj=$('#grid').datagrid('getRows')[index];
+	YMLib.Var.flag=flag;
+	//示范路
+	if(flag=='sfl'){
+		openWindow('mywindow','编辑','/jxzhpt/page/qqgl/jhsh/szlx/sfl_edit.jsp',680,270);
+	}
+	//示范路
+	if(flag=='yhzx'){
+		openWindow('mywindow','编辑','/jxzhpt/page/qqgl/jhsh/szlx/yhzx_edit.jsp',680,240);
+	}
+}
+
+//上报
+function sbSzxm(index,flag){
+	var xmbm="";
+	if(index=='无'){
+		var rows=$('#grid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请勾选记录！");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].SBZT==1){
+				alert("所选项目必须为未上报");return;
+			}else{
+				xmbm+=","+rows[i].XMBM;
+			}
+		}
+		
+		xmbm=xmbm.substr(1,xmbm.length);	
+	}else{
+		xmbm=$('#grid').datagrid('getRows')[index].XMBM;
+	}
+	xmbm="'"+xmbm.replace(/,/g, "','")+"'";
+	if(confirm("您确认上报吗？"))
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/sbshSzxm.do',
+		data:"xmbm="+xmbm+"&xmlxs="+flag+"&sbzt=1&shzt=0&thyy=",
+		dataType:'json',
+		success:function(msg){
+			if(msg){
+				alert("上报成功");
+				$("#grid").datagrid('reload');
+				loadLj();
+			}else{
+				alert("上报失败");
+			}
+			
+		}
+	});
+}
+
+//退回下级
+
+function thxjSzxm(index,flag){
+	var xmbm="";
+	if(index=='无'){
+		var rows=$('#grid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请勾选记录！");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].SHZT==1){
+				alert("所选项目必须为未审核");return;
+			}else{
+				xmbm+=","+rows[i].XMBM;
+			}
+		}
+		
+		xmbm=xmbm.substr(1,xmbm.length);	
+	}else{
+		xmbm=$('#grid').datagrid('getRows')[index].XMBM;
+	}
+	xmbm="'"+xmbm.replace(/,/g, "','")+"'";
+	
+	YMLib.Var.xmbm=xmbm;
+	YMLib.Var.flag=flag;
+	//示范路
+	openWindow('mywindow','退回下级','/jxzhpt/page/qqgl/jhsh/szlx/szxm_th.jsp',680,200);
+	
+}
+
+//退回未审核
+function thwshSzxm(index,flag){
+	var xmbm="";
+	if(index=='无'){
+		var rows=$('#grid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请勾选记录！");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].SHZT==0){
+				alert("所选项目必须为已审核");return;
+			}else{
+				xmbm+=","+rows[i].XMBM;
+			}
+		}
+		
+		xmbm=xmbm.substr(1,xmbm.length);	
+	}else{
+		xmbm=$('#grid').datagrid('getRows')[index].XMBM;
+	}
+	xmbm="'"+xmbm.replace(/,/g, "','")+"'";
+	if(confirm("您确认退回未审核吗？"))
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/sbshSzxm.do',
+		data:"xmbm="+xmbm+"&xmlxs="+flag+"&sbzt=1&shzt=0&thyy=",
+		dataType:'json',
+		success:function(msg){
+			if(msg){
+				alert("退回成功");
+				$("#grid").datagrid('reload');
+				loadLj();
+			}else{
+				alert("退回失败");
+			}
+			
+		}
+	});
+}
 
 
-
+//审核
+function shSzxm(index,flag){
+	var xmbm="";
+	if(index=='无'){
+		var rows=$('#grid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请勾选记录！");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].SHZT==1){
+				alert("所选项目必须为未审核");return;
+			}else{
+				xmbm+=","+rows[i].XMBM;
+			}
+		}
+		
+		xmbm=xmbm.substr(1,xmbm.length);	
+	}else{
+		xmbm=$('#grid').datagrid('getRows')[index].XMBM;
+	}
+	xmbm="'"+xmbm.replace(/,/g, "','")+"'";
+	if(confirm("您确认审核吗？"))
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/sbshSzxm.do',
+		data:"xmbm="+xmbm+"&xmlxs="+flag+"&sbzt=1&shzt=1&thyy=",
+		dataType:'json',
+		success:function(msg){
+			if(msg){
+				alert("审核成功");
+				$("#grid").datagrid('reload');
+				loadLj();
+			}else{
+				alert("审核失败");
+			}
+			
+		}
+	});
+}
 
 //获取养护大中修算费单价
 function queryyhdzxsfdj(){
@@ -626,7 +809,7 @@ function xmnf(id){
 
 
 
-function xmnfs2w(id){
+function xmnfs2w(id,flag){
 	var myDate = new Date();
 	var years=[];
 	//var first;
@@ -680,10 +863,16 @@ function xmnfs2w(id){
 			}
 		}
 	});
-	$('#'+id).combobox("setValue",'2015');
-	$('#'+id+'2015').attr('checked', true);
+	
+	if(flag=='无'){
+		
+	}else{
+		$('#'+id).combobox("setValue",'2015');
+		$('#'+id+'2015').attr('checked', true);
+	}
+	
 }
-function xmnfs3w(id){
+function xmnfs3w(id,flag){
 	var myDate = new Date();
 	var years=[];
 	//var first;
@@ -736,8 +925,13 @@ function xmnfs3w(id){
 			}
 		}
 	});
-	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
-	$('#'+id+myDate.getFullYear()).attr('checked', true);
+	
+	if(flag=='无'){
+		
+	}else{
+		$('#'+id).combobox("setValue",myDate.getFullYear()+'');
+		$('#'+id+myDate.getFullYear()).attr('checked', true);
+	}
 }
 	
 

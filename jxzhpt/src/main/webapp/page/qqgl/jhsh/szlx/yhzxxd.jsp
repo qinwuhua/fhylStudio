@@ -234,7 +234,7 @@ a {text-decoration: none;}
             		本次下达【<span id="bcxd" style="color: red;">0</span>】万元,
             		其中：车购税【<span id="bccgs" style="color: red;">0</span>】万元,
             		省补【<span id="bcsb" style="color: red;">0</span>】万元,
-            		奖励【<span id="bcjl" style="color: red;">0</span>】万元,
+            		奖励【<span id="bcjl" style="color: red;">0</span>】万元。
             		
             		</div>
 

@@ -24,9 +24,7 @@
 <script type="text/javascript">
 
 $(function(){
-	loadylx('lxbm');
 	loadDist1("xzqh",$.cookie("dist"));
-	loadUnit1("gydw",$.cookie("unit"));
 	if(getUrlParame('id')=='010113010205')
 	xmnfs3w("xmnf");
 	else
@@ -34,64 +32,7 @@ $(function(){
 	
 	querySflgc();
 });
-//编辑
-function editSzxm(index,flag){
-	YMLib.Var.obj=$('#grid').datagrid('getRows')[index];
-	YMLib.Var.flag=flag;
-	//示范路
-	if(flag=='sfl'){
-		openWindow('mywindow','添加路线','/jxzhpt/page/qqgl/jhsh/szlx/sfl_edit.jsp',680,270);
-	}
-}
-//详情
-function szxmInfo(index,flag){
-	YMLib.Var.obj=$('#grid').datagrid('getRows')[index];
-	YMLib.Var.flag=flag;
-	//示范路
-	if(flag=='sfl'){
-		openWindow('mywindow','详情','/jxzhpt/page/qqgl/jhsh/szlx/sfl_Info.jsp',680,470);
-	}
-}
-//上报
-function sbSzxm(index,flag){
-	var xmbm="";
-	if(index=='无'){
-		var rows=$('#grid').datagrid('getSelections');
-		if(rows.length==0) {
-			alert("请勾选记录！");
-			return;
-		}
-		for(var i=0;i<rows.length;i++){
-			if(rows[i].SBZT==1){
-				alert("所选项目必须为未上报");return;
-			}else{
-				xmbm+=","+rows[i].XMBM;
-			}
-		}
-		
-		xmbm=xmbm.substr(1,xmbm.length);	
-	}else{
-		xmbm=$('#grid').datagrid('getRows')[index].XMBM;
-	}
-	xmbm="'"+xmbm.replace(/,/g, "','")+"'";
-	if(confirm("您确认上报吗？"))
-	$.ajax({
-		type:'post',
-		url:'/jxzhpt/qqgl/sbshSzxm.do',
-		data:"xmbm="+xmbm+"&xmlxs="+flag+"&sbzt=1&shzt=0&thyy=",
-		dataType:'json',
-		success:function(msg){
-			if(msg){
-				alert("上报成功");
-				$("#grid").datagrid('reload');
-				loadLj();
-			}else{
-				alert("上报失败");
-			}
-			
-		}
-	});
-}
+
 var ljparam;
 function querySflgc(){
 	
@@ -196,7 +137,6 @@ function querySflgc(){
 }
 
 function loadLj(){
-	ljparam
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryJhshLjSzxm.do',

@@ -4,12 +4,13 @@
  <select id="querySzxmList" parameterType="jhsh" resultType="hashMap">
        
       select * from (
-      select rownum num,jh.*,sz.*,sg.pfwh
+      select rownum num,jh.*,sz.*,sg.pfwh,sg.xmnf
       ${tiaojian}
       <if test="xzqh !='' and xzqh != null">${xzqh}</if>
       <if test="gydw !='' and gydw != null">${gydw}</if>
       <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
       <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="scxdnf !='' and scxdnf != null">${scxdnf}</if>
       <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
       <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
       <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
@@ -30,6 +31,7 @@
       <if test="gydw !='' and gydw != null">${gydw}</if>
       <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
       <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="scxdnf !='' and scxdnf != null">${scxdnf}</if>
       <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
       <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
       <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
@@ -48,6 +50,7 @@
       <if test="gydw !='' and gydw != null">${gydw}</if>
       <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
       <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="scxdnf !='' and scxdnf != null">${scxdnf}</if>
       <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
       <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
       <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
@@ -58,7 +61,24 @@
       <if test="xdzttj !='' and xdzttj != null">and jh.xdzt like '%${xdzttj}%'</if>
        
     </select>
-
+	<select id="querySzxmxdbz" parameterType="jhsh" resultType="hashMap">
+      select *
+      ${tiaojian}
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="gydw !='' and gydw != null">${gydw}</if>
+      <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="scxdnf !='' and scxdnf != null">${scxdnf}</if>
+      <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
+      <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
+      <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
+      <if test="ylxbm !='' and ylxbm != null">and sz.ylxbm like '%${ylxbm}%'</if>
+      <if test="ylxmc !='' and ylxmc != null">and sz.ylxmc like '%${ylxmc}%'</if>
+      <if test="sbzt !='' and sbzt != null">and jh.sbzt like '%${sbzt}%'</if>
+      <if test="shzt !='' and shzt != null">and jh.shzt like '%${shzt}%'</if>
+      <if test="xdzttj !='' and xdzttj != null">and jh.xdzt like '%${xdzttj}%'</if>
+       
+    </select>
 
 <!--  -->
 
@@ -5918,7 +5938,56 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 		<if test="sfqx != null and sfqx !=''">,#{sfqx}</if>
 		)
 	</insert>
-	
+	<insert id="planxdAllSzxm" parameterType="java.util.List">
+		insert into plan_zjxd(id
+		<if test="XMBM != null">,XMID</if>
+		<if test="BZXDNF != null">,XDNF</if>
+		<if test="TBDW != null">,TBDW</if>
+		<if test="BZTBSJ != null">,TBTIME</if>
+		<if test="BZCGS != null">,BTZZJ</if>
+		<if test="JHXDWH != null">,jhxdwh</if>
+		<if test="BZGZ != null">,gz</if>
+		<if test="BZSZ != null">,sz</if>
+		<if test="BZZTZ != null">,ztz</if>
+		<if test="BZDK != null">,dk</if>
+		<if test="BZZQ != null">,zq</if>
+		<if test="BZQT != null">,qt</if>
+		<if test="BZJL != null">,jl</if>
+		<if test="BZRYS != null">,rys</if>
+		<if test="BZYHDK != null">,yhdk</if>
+		<if test="BZDFZC != null">,dfzc</if>
+		<if test="ZYJSNR != null">,zyjsnr</if>
+		<if test="XZSCNL != null">,xzscnl</if>
+		<if test="SFQX != null and SFQX !=''">,sfqx</if>
+		<if test="STZ != null and STZ !=''">,STZ</if>
+		)
+		values(sys_guid()
+		<if test="XMBM != null">,#{XMBM}</if>
+		<if test="BZXDNF != null">,#{BZXDNF}</if>
+		<if test="TBDW != null">,#{TBDW}</if>
+		<if test="BZTBSJ != null">,#{BZTBSJ}</if>
+		<if test="BZCGS != null">,#{BZCGS}</if>
+		<if test="JHXDWH != null">,#{JHXDWH}</if>
+		<if test="BZGZ != null">,#{BZGZ}</if>
+		<if test="BZSZ != null">,#{BZSZ}</if>
+		<if test="BZZTZ != null">,#{BZZTZ}</if>
+		<if test="BZDK != null">,#{BZDK}</if>
+		<if test="BZZQ != null">,#{BZZQ}</if>
+		<if test="BZQT != null">,#{BZQT}</if>
+		<if test="BZJL != null">,#{BZJL}</if>
+		<if test="BZRYS != null">,#{BZRYS}</if>
+		<if test="BZYHDK != null">,#{BZYHDK}</if>
+		<if test="BZDFZC != null">,to_number(#{BZDFZC})</if>
+		<if test="ZYJSNR != null">,#{ZYJSNR}</if>
+		<if test="XZSCNL != null">,#{XZSCNL}</if>
+		<if test="SFQX != null and SFQX !=''">,#{SFQX}</if>
+		<if test="STZ != null and STZ !=''">,#{STZ}</if>
+		)
+	</insert>
+	<update id="planxdAllSzxmmc" parameterType="java.util.List">
+		update 	${XMLX}
+				set xmmc=#{XMMC} where xmbm=#{XMBM}
+	</update>
 	<insert id="planxdAllmc" parameterType="java.util.List">
 		update 	<if test="xmlx == 1">jhsh_sjgz</if>
 				<if test="xmlx == 2">jhsh_lmgz</if>
@@ -8741,6 +8810,17 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	    </set>
 	    where xmbm=#{xmbm} 
 	</select>
+	<select id="updateJhshYhzxInfo" parameterType="jhsh">
+		update JHSH_YHZX
+	    <set>
+	      <if test="ztz != null" >ztz = #{ztz},</if>
+	      <if test="jbzj != null" >jbzj = #{jbzj},</if>
+	      <if test="dfzc != null" >dfzc = #{dfzc},</if>
+	      <if test="zydpx != null" >zydpx = #{zydpx},</if>
+	    </set>
+	    where xmbm=#{xmbm} 
+	</select>
+	
 	<select id="sbshSzxmsfl" parameterType="jhsh">
 		update JHSH_SFL
 	    <set>
@@ -8750,6 +8830,14 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	    </set>
 	    where xmbm in (${xmbm})
 	</select>
-	
+	<select id="sbshSzxmyhzx" parameterType="jhsh">
+		update JHSH_YHZX
+	    <set>
+	      <if test="sbzt != null" >sbzt = #{sbzt},</if>
+	      <if test="shzt != null" >shzt = #{shzt},qqwcsj=to_char(sysdate,'yyyy-mm-dd'),</if>
+	      <if test="thyy != null" >thyy = #{thyy},</if>
+	    </set>
+	    where xmbm in (${xmbm})
+	</select>
 	
 </mapper>

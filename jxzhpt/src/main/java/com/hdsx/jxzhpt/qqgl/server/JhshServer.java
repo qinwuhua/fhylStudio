@@ -622,5 +622,9 @@ public interface JhshServer {
 
 	public Map<String, String> queryJhshLjSzxm(Jhsh jhsh);
 
+	public List<Map<String, String>> querySzxmxdbz(Jhsh jhsh);
+
+	public boolean planxdAllSzxm(List<Map<String, String>> list);
+
 	
 }

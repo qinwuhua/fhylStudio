@@ -21,7 +21,11 @@
 		<action name="updateJhshInfo" class="jhshController" method="updateJhshInfo" />
 		<action name="sbshSzxm" class="jhshController" method="sbshSzxm" />
 		<action name="queryJhshLjSzxm" class="jhshController" method="queryJhshLjSzxm" />
+		<action name="querySzxmxdbz" class="jhshController" method="querySzxmxdbz" />
+		<action name="planxdAllSzxm" class="jhshController" method="planxdAllSzxm" />
+		
 
+		
 		<!-- *综合养护中心* -->
 		<action name="queryYhzxshSb" class="jhshController" method="queryYhzxshSb" />
 		<action name="queryYhzxshById" class="jhshController" method="queryYhzxshById" />

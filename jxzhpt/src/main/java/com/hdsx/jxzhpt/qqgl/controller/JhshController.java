@@ -677,6 +677,7 @@ public class JhshController extends BaseActionSupport implements
 				jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "sz.xzqhdm"));
 				jhsh.setJhxdwh(MyUtil.getQueryTJ(jhsh.getJhxdwh(), "xd.jhxdwh"));
 				jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "sg.xmnf"));
+				jhsh.setScxdnf(MyUtil.getQueryTJ(jhsh.getScxdnf(), "fun_scxdnf(jh.xmbm)"));
 				listSflgc = jhshServer.querySzxmList(jhsh);
 				int total = jhshServer.querySzxmListCount(jhsh);
 				EasyUIPage<Map<String, String>> e=new EasyUIPage<Map<String, String>>();
@@ -687,13 +688,14 @@ public class JhshController extends BaseActionSupport implements
 				throw e;
 			}
 		}
-	
+		
 		public void queryJhshLjSzxm() {
 			Map<String, String> result = new HashMap<String, String>();
 			try {
 				jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "sz.xzqhdm"));
 				jhsh.setJhxdwh(MyUtil.getQueryTJ(jhsh.getJhxdwh(), "xd.jhxdwh"));
 				jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "sg.xmnf"));
+				jhsh.setScxdnf(MyUtil.getQueryTJ(jhsh.getScxdnf(), "fun_scxdnf(jh.xmbm)"));
 				result = jhshServer.queryJhshLjSzxm(jhsh);
 
 				JsonUtils.write(result, getresponse().getWriter());
@@ -701,6 +703,22 @@ public class JhshController extends BaseActionSupport implements
 				e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
+			}
+		}
+		
+		//查询三种项目最终版计划下达。
+		public void querySzxmxdbz() throws Exception {
+			List<Map<String, String>> listSflgc = null;
+			try {
+				jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "sz.xzqhdm"));
+				jhsh.setJhxdwh(MyUtil.getQueryTJ(jhsh.getJhxdwh(), "xd.jhxdwh"));
+				jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "sg.xmnf"));
+				jhsh.setScxdnf(MyUtil.getQueryTJ(jhsh.getScxdnf(), "fun_scxdnf(jh.xmbm)"));
+				listSflgc = jhshServer.querySzxmxdbz(jhsh);
+				JsonUtils.write(listSflgc, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw e;
 			}
 		}
 		
@@ -3186,6 +3204,22 @@ public class JhshController extends BaseActionSupport implements
 		}
 	}
 
+	public void planxdAllSzxm() {
+
+		try {
+			JSONArray ja = JSONArray.fromObject(json_data);
+			List<Map<String, String>> list = (List<Map<String, String>>) JSONArray.toList(ja, new HashMap<String, String>(),
+					new JsonConfig());
+			
+			
+			boolean bl = jhshServer.planxdAllSzxm(list);
+			ResponseUtils.write(getresponse(), bl + "");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	public void planxdAll_qx() {
 
 		try {
