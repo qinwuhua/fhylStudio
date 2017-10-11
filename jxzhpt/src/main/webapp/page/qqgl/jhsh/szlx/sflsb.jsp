@@ -142,9 +142,9 @@ function querySflgc(){
 						var result="";
 						result='<a href="javascript:szxmInfo('+"'"+index+"','sfl'"+')" style="color:#3399CC;">详情&nbsp;&nbsp;</a>';
 						if(row.SBZT=='1')
-							result+='编辑';	
+							result+='编辑&nbsp;&nbsp;';	
 						else
-							result+='<a href="javascript:editSzxm('+"'"+index+"','sfl'"+')" style="color:#3399CC;">编辑</a>';
+							result+='<a href="javascript:editSzxm('+"'"+index+"','sfl'"+')" style="color:#3399CC;">编辑&nbsp;&nbsp;</a>';
 							return result;
 						}
 					},
@@ -189,7 +189,8 @@ function querySflgc(){
 					{field:'TBZ_GCJLF',title:'工程监理费(万元)',width:80,align:'center'},
 				    {field:'TBZ_QQGZF',title:'前期工作费(万元)',width:80,align:'center'},
 				    {field: 'PFWH', title: '施工图批复文号', width: 120, align: 'center'},
-				    {field: 'BZ', title: '备注', width: 120, align: 'center'}
+				    {field: 'BZ', title: '备注', width: 120, align: 'center'},
+				    {field: 'THYY', title: '退回原因', width: 120, align: 'center'}
 				]];
 	gridBind1(grid);
 }

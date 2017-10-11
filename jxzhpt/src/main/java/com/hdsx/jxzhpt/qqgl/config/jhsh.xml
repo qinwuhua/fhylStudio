@@ -8744,9 +8744,9 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	<select id="sbshSzxmsfl" parameterType="jhsh">
 		update JHSH_SFL
 	    <set>
-	      <if test="sbzt != null and sbzt != ''" >sbzt = #{sbzt},</if>
-	      <if test="shzt != null and shzt != ''" >shzt = #{shzt},qqwcsj=to_char(sysdate,'yyyy-mm-dd'),</if>
-	      <if test="thyy != null and thyy != ''" >thyy = #{thyy},</if>
+	      <if test="sbzt != null" >sbzt = #{sbzt},</if>
+	      <if test="shzt != null" >shzt = #{shzt},qqwcsj=to_char(sysdate,'yyyy-mm-dd'),</if>
+	      <if test="thyy != null" >thyy = #{thyy},</if>
 	    </set>
 	    where xmbm in (${xmbm})
 	</select>
