@@ -99,25 +99,20 @@ function querySflgc(){
 				}
 		},
 		{field: 'XMMC', title: '项目名称', width: 120, align: 'center'},
-        {field: 'XMLX', title: '项目类型', width: 60, align: 'center'},
         {field: 'XZQH', title: '行政区划', width: 60, align: 'center'},
         {field: 'XLXBM', title: '规划路线编码', width: 120, align: 'center'},
         {field: 'XLXMC', title: '规划路线名称', width: 120, align: 'center'},
-        {field: 'GHQDZH', title: '规划起点桩号', width: 120, align: 'center'},
-        {field: 'GHZDZH', title: '规划止点桩号', width: 120, align: 'center'},
+        {field: 'XLXZH', title: '规划路线桩号', width: 120, align: 'center'},
         {field: 'YLXBM', title: '原路线编码', width: 120, align: 'center'},
         {field: 'YLXMC', title: '原路线名称', width: 120, align: 'center'},
-        {field: 'YQDZH', title: '原起点桩号', width: 120, align: 'center'},
-        {field: 'YZDZH', title: '原止点桩号', width: 120, align: 'center'},
-        {field: 'JSDJ', title: '技术等级', width: 120, align: 'center'},
-		{field:'ZLC',title:'里程(公里)',width:100,align:'center'},
+        {field: 'LLXZH', title: '原路线桩号', width: 120, align: 'center'},
+        {field: 'YDBMC', title: '原道班名称', width: 120, align: 'center'},
+        {field: 'XMLX', title: '建设性质', width: 120, align: 'center'},
+        {field: 'XMNF', title: '建设年份', width: 120, align: 'center'},
         {field:'ZTZ',title:'总投资(万元)',width:100,align:'center'},
-		{field:'TBZ',title:'省补助(万元)',width:60,align:'center'},
-		{field:'TBZ_JAF',title:'建安费(万元)',width:70,align:'center'},
-		{field:'TBZ_GCJLF',title:'工程监理费(万元)',width:80,align:'center'},
-	    {field:'TBZ_QQGZF',title:'前期工作费(万元)',width:80,align:'center'},
-	    {field: 'PFWH', title: '施工图批复文号', width: 120, align: 'center'},
-	    {field: 'BZ', title: '备注', width: 120, align: 'center'}
+		{field:'JBZJ',title:'奖补资金合计(万元)',width:60,align:'center'},
+		{field:'DFZC',title:'地方自筹(万元)',width:100,align:'center'},
+		{field: 'BZ', title: '备注', width: 120, align: 'center'}
 	    ]]  
 	}); 
 }

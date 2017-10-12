@@ -106,18 +106,18 @@ function querySflgc(){
 			        {field: 'XZQH', title: '行政区划', width: 60, align: 'center'},
 			        {field: 'XLXBM', title: '规划路线编码', width: 120, align: 'center'},
 			        {field: 'XLXMC', title: '规划路线名称', width: 120, align: 'center'},
-			        {field: 'GHLXZH', title: '规划路线桩号', width: 120, align: 'center'},
+			        {field: 'XLXZH', title: '规划路线桩号', width: 120, align: 'center'},
 			        {field: 'YLXBM', title: '原路线编码', width: 120, align: 'center'},
 			        {field: 'YLXMC', title: '原路线名称', width: 120, align: 'center'},
-			        {field: 'YLXZH', title: '原路线桩号', width: 120, align: 'center'},
-			        {field: 'JSDJXJ', title: '技术等级', width: 120, align: 'center'},
+			        {field: 'LLXZH', title: '原路线桩号', width: 120, align: 'center'},
+			        {field: 'JSDJ', title: '技术等级', width: 120, align: 'center'},
 			        {field: 'XMLX', title: '建设类型', width: 120, align: 'center'},
 			        {field: 'XYSSLX', title: '现有设施类型', width: 120, align: 'center'},
 			        {field: 'JSSSLX', title: '建设设施类型', width: 120, align: 'center'},
 			        {field:'ZTZ',title:'总投资(万元)',width:100,align:'center'},
 					{field:'CGS',title:'车购税(万元)',width:60,align:'center'},
 					{field:'DFZC',title:'地方自筹(万元)',width:70,align:'center'},
-					{field: 'FWLR', title: '建设服务主要内容', width: 220, align: 'center'},
+					{field: 'FWNR', title: '建设服务主要内容', width: 220, align: 'center'},
 			    	{field: 'BZ', title: '备注', width: 120, align: 'center'}
 				]];
 	gridBind1(grid);
