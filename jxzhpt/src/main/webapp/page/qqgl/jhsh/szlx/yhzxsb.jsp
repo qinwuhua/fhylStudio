@@ -122,7 +122,7 @@ function querySflgc(){
 			        {field: 'JSXZ', title: '建设性质', width: 120, align: 'center'},
 			        {field: 'XMNF', title: '建设年份', width: 120, align: 'center'},
 			        {field:'ZTZ',title:'总投资(万元)',width:100,align:'center'},
-					{field:'JBZJ',title:'厅补助(万元)',width:60,align:'center'},
+					{field:'JBZJ',title:'奖补资金合计(万元)',width:60,align:'center'},
 					{field:'DFZC',title:'地方自筹(万元)',width:100,align:'center'},
 					{field: 'BZ', title: '备注', width: 120, align: 'center'},
 				    {field: 'THYY', title: '退回原因', width: 120, align: 'center'}

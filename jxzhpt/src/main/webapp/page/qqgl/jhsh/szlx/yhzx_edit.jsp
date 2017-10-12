@@ -52,6 +52,7 @@
 					if(msg.result){
 						alert("保存成功！");
 						parent.$("#grid").datagrid('reload');
+						parent.loadLj();
 						closeWindow("mywindow");
 					}
 				},

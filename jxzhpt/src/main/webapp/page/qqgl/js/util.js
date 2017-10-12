@@ -9,6 +9,15 @@ function szxmXdInfo(index,flag){
 	if(flag=='sfl'){
 		openWindow('mywindow','详情','/jxzhpt/page/qqgl/jhsh/szlx/sfl_xd_Info.jsp',680,470);
 	}
+	//养护中心
+	if(flag=='yhzx'){
+		openWindow('mywindow','详情','/jxzhpt/page/qqgl/jhsh/szlx/yhzx_xd_Info.jsp',680,470);
+	}
+	//服务区
+	if(flag=='fwq'){
+		openWindow('mywindow','详情','/jxzhpt/page/qqgl/jhsh/szlx/fwq_xd_Info.jsp',680,470);
+	}
+	
 }
 //下达之前详情
 function szxmInfo(index,flag){
@@ -17,6 +26,14 @@ function szxmInfo(index,flag){
 	//示范路
 	if(flag=='sfl'){
 		openWindow('mywindow','详情','/jxzhpt/page/qqgl/jhsh/szlx/sfl_Info.jsp',680,470);
+	}
+	//养护中心
+	if(flag=='yhzx'){
+		openWindow('mywindow','详情','/jxzhpt/page/qqgl/jhsh/szlx/yhzx_Info.jsp',680,470);
+	}
+	//服务区
+	if(flag=='fwq'){
+		openWindow('mywindow','详情','/jxzhpt/page/qqgl/jhsh/szlx/fwq_Info.jsp',680,470);
 	}
 }
 //编辑
@@ -27,10 +44,15 @@ function editSzxm(index,flag){
 	if(flag=='sfl'){
 		openWindow('mywindow','编辑','/jxzhpt/page/qqgl/jhsh/szlx/sfl_edit.jsp',680,270);
 	}
-	//示范路
+	//养护中心
 	if(flag=='yhzx'){
 		openWindow('mywindow','编辑','/jxzhpt/page/qqgl/jhsh/szlx/yhzx_edit.jsp',680,240);
 	}
+	//服务区
+	if(flag=='fwq'){
+		openWindow('mywindow','编辑','/jxzhpt/page/qqgl/jhsh/szlx/fwq_edit.jsp',680,240);
+	}
+	
 }
 
 //上报

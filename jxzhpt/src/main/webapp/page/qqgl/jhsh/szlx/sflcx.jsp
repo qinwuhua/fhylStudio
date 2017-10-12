@@ -225,15 +225,13 @@ a {text-decoration: none;}
 		</tr>
 		<tr>
 			<td style="padding-left: 10px; padding-top: 3px; font-size: 12px;">
-				<div>项目【<span id="xmsl" style="color: red;">0</span>】个,
+				<div>
+            		项目【<span id="xmsl" style="color: red;">0</span>】个,
             		总投资【<span id="ztz" style="color: red;">0</span>】万元,
             		补助合计【<span id="zbz" style="color: red;">0</span>】万元,
-            		已下达【<span id="yxd" style="color: red;">0</span>】万元,
-            		本次下达【<span id="bcxd" style="color: red;">0</span>】万元,
-            		其中：车购税【<span id="bccgs" style="color: red;">0</span>】万元,
-            		省补【<span id="bcsb" style="color: red;">0</span>】万元,
-            		奖励【<span id="bcjl" style="color: red;">0</span>】万元,
-            		
+            		已下达【<span id="xdztz" style="color: red;">0</span>】万元,
+            		其中：省补【<span id="xdstz" style="color: red;">0</span>】万元,
+            		地方自筹【<span id="xddfzc" style="color: red;">0</span>】万元。
             		</div>
 
 				<div>
