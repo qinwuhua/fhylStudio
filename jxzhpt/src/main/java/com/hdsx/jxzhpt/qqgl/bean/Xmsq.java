@@ -15,7 +15,14 @@ public class Xmsq {
 	private String wbc;
 	private String wbchd;
 	
+	private String yxylxbh;
 	
+	public String getYxylxbh() {
+		return yxylxbh;
+	}
+	public void setYxylxbh(String yxylxbh) {
+		this.yxylxbh = yxylxbh;
+	}
 	public String getWbc() {
 		return wbc;
 	}

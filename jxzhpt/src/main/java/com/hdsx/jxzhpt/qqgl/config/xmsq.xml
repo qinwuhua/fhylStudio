@@ -2,9 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.xmsq">
 	<select id="queryAutoghList" parameterType="xmsq" resultType="lx">
-		select distinct substr(ylxbm,0,4) ylxbm,to_char(yqdzh,'FM9999990.000') yqdzh,to_char(yzdzh,'FM9999990.000') yzdzh,substr(xlxbm,0,4) xlxbm,to_char(xqdzh,'FM9999990.000') xqdzh,to_char(xzdzh,'FM9999990.000') xzdzh,xlxmc xlxmc,ylxmc lxmc,cfld,cfqd,cfzd,lmkd,lmlx,xzqh from ghlx where xlxbm like #{ylxbh}||'%'||#{xzqhdm}||'%'
+		select distinct substr(ylxbm,0,4) ylxbm,to_char(yqdzh,'FM9999990.000') yqdzh,to_char(yzdzh,'FM9999990.000') yzdzh,substr(xlxbm,0,4) xlxbm,to_char(xqdzh,'FM9999990.000') xqdzh,to_char(xzdzh,'FM9999990.000') xzdzh,xlxmc xlxmc,ylxmc lxmc,cfld,cfqd,cfzd,lmkd,lmlx,xzqh from ghlx 	
+		where xlxbm like #{ylxbh}||'%'||#{xzqhdm}||'%'
 		order by to_number(xqdzh)
 	</select>
+	
+	<select id="queryAutoyxList" parameterType="xmsq" resultType="lx">
+		select distinct substr(ylxbm,0,4) ylxbm,to_char(yqdzh,'FM9999990.000') yqdzh,to_char(yzdzh,'FM9999990.000') yzdzh,substr(xlxbm,0,4) xlxbm,to_char(xqdzh,'FM9999990.000') xqdzh,to_char(xzdzh,'FM9999990.000') xzdzh,xlxmc xlxmc,ylxmc lxmc,cfld,cfqd,cfzd,lmkd,lmlx,xzqh from ghlx 	
+		where ylxbm like #{yxylxbh}||'%'||#{xzqhdm}||'%'
+		order by to_number(xqdzh)
+	</select>
+	
 	<select id="querySjgzNextXmbm" resultType="string">
 		select NVL(max(substr(c.xmbm,11)),1000)+1 from lxsh_sjgz c where c.xmbm like #{xmnf}||#{xzqhdm}||'%'
 	</select>

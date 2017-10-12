@@ -12,6 +12,9 @@
 		<action name="querySflgcXdJhbz" class="jhshController" method="querySflgcXdJhbz" />
 		<action name="sflgcXmth" class="jhshController" method="sflgcXmth" />
 		<action name="updateSflgcXdzt" class="jhshController" method="updateSflgcXdzt" />
+		
+		<action name="exportSflgcExcel" class="jhshController" method="exportSflgcExcel" />
+				
 		<!-- #示范路工程# -->
 		<action name="queryJhshLjsyf" class="jhshController" method="queryJhshLjsyf" />
 		<action name="queryJhshLjsyfs2w" class="jhshController" method="queryJhshLjsyfs2w" />
@@ -297,6 +300,7 @@
 		<action name="queryNextXmbm" class="xmsqController" method="queryNextXmbm"></action>
 
 		<action name="queryAutoghList" class="xmsqController" method="queryAutoghList"></action>
+		<action name="queryAutoyxList" class="xmsqController" method="queryAutoyxList"></action>
 		<action name="queryAutoList" class="xmsqController" method="queryAutoList"></action>
 		<action name="queryTsdq" class="xmsqController" method="queryTsdq"></action>
 		<action name="queryXmsq" class="xmsqController" method="queryXmsq"></action>

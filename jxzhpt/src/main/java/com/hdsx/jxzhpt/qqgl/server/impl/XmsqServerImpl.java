@@ -852,4 +852,8 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		params1.put("xzqhdm", xzqhdm);
 		return queryList("queryLxFromLxshlxByLevel", params1);
 	}
+	@Override
+	public List<Lx> queryAutoyxList(Xmsq xmsq) {
+		return queryList("queryAutoyxList",xmsq);
+	}
 }

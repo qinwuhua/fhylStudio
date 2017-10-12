@@ -4,7 +4,7 @@
  <select id="querySzxmList" parameterType="jhsh" resultType="hashMap">
        
       select * from (
-      select rownum num,jh.*,sz.*,sg.pfwh,sg.xmnf
+      select rownum num,jh.*,sz.*,sg.pfwh
       ${tiaojian}
       <if test="xzqh !='' and xzqh != null">${xzqh}</if>
       <if test="gydw !='' and gydw != null">${gydw}</if>
@@ -31,7 +31,6 @@
       <if test="gydw !='' and gydw != null">${gydw}</if>
       <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
       <if test="xmnf !='' and xmnf != null">${xmnf}</if>
-      <if test="scxdnf !='' and scxdnf != null">${scxdnf}</if>
       <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
       <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
       <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
@@ -50,7 +49,6 @@
       <if test="gydw !='' and gydw != null">${gydw}</if>
       <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
       <if test="xmnf !='' and xmnf != null">${xmnf}</if>
-      <if test="scxdnf !='' and scxdnf != null">${scxdnf}</if>
       <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
       <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
       <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
@@ -61,24 +59,7 @@
       <if test="xdzttj !='' and xdzttj != null">and jh.xdzt like '%${xdzttj}%'</if>
        
     </select>
-	<select id="querySzxmxdbz" parameterType="jhsh" resultType="hashMap">
-      select *
-      ${tiaojian}
-      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
-      <if test="gydw !='' and gydw != null">${gydw}</if>
-      <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
-      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
-      <if test="scxdnf !='' and scxdnf != null">${scxdnf}</if>
-      <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
-      <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
-      <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
-      <if test="ylxbm !='' and ylxbm != null">and sz.ylxbm like '%${ylxbm}%'</if>
-      <if test="ylxmc !='' and ylxmc != null">and sz.ylxmc like '%${ylxmc}%'</if>
-      <if test="sbzt !='' and sbzt != null">and jh.sbzt like '%${sbzt}%'</if>
-      <if test="shzt !='' and shzt != null">and jh.shzt like '%${shzt}%'</if>
-      <if test="xdzttj !='' and xdzttj != null">and jh.xdzt like '%${xdzttj}%'</if>
-       
-    </select>
+
 
 <!--  -->
 
@@ -8812,51 +8793,23 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	    </set>
 	    where xmbm=#{xmbm} 
 	</select>
-	<select id="updateJhshYhzxInfo" parameterType="jhsh">
-		update JHSH_YHZX
-	    <set>
-	      <if test="ztz != null" >ztz = #{ztz},</if>
-	      <if test="jbzj != null" >jbzj = #{jbzj},</if>
-	      <if test="dfzc != null" >dfzc = #{dfzc},</if>
-	      <if test="zydpx != null" >zydpx = #{zydpx},</if>
-	    </set>
-	    where xmbm=#{xmbm} 
-	</select>
-	<select id="updateJhshFwqInfo" parameterType="jhsh">
-		update JHSH_FWQ
-	    <set>
-	      <if test="ztz != null" >ztz = #{ztz},</if>
-	      <if test="cgs != null" >cgs = #{cgs},</if>
-	      <if test="dfzc != null" >dfzc = #{dfzc},</if>
-	      <if test="zydpx != null" >zydpx = #{zydpx},</if>
-	    </set>
-	    where xmbm=#{xmbm} 
-	</select>
 	<select id="sbshSzxmsfl" parameterType="jhsh">
 		update JHSH_SFL
 	    <set>
-	      <if test="sbzt != null" >sbzt = #{sbzt},</if>
-	      <if test="shzt != null" >shzt = #{shzt},qqwcsj=to_char(sysdate,'yyyy-mm-dd'),</if>
-	      <if test="thyy != null" >thyy = #{thyy},</if>
+	      <if test="sbzt != null and sbzt != ''" >sbzt = #{sbzt},</if>
+	      <if test="shzt != null and shzt != ''" >shzt = #{shzt},qqwcsj=to_char(sysdate,'yyyy-mm-dd'),</if>
+	      <if test="thyy != null and thyy != ''" >thyy = #{thyy},</if>
 	    </set>
 	    where xmbm in (${xmbm})
 	</select>
-	<select id="sbshSzxmyhzx" parameterType="jhsh">
-		update JHSH_YHZX
-	    <set>
-	      <if test="sbzt != null" >sbzt = #{sbzt},</if>
-	      <if test="shzt != null" >shzt = #{shzt},qqwcsj=to_char(sysdate,'yyyy-mm-dd'),</if>
-	      <if test="thyy != null" >thyy = #{thyy},</if>
-	    </set>
-	    where xmbm in (${xmbm})
-	</select>
-	<select id="sbshSzxmfwq" parameterType="jhsh">
-		update JHSH_FWQ
-	    <set>
-	      <if test="sbzt != null" >sbzt = #{sbzt},</if>
-	      <if test="shzt != null" >shzt = #{shzt},qqwcsj=to_char(sysdate,'yyyy-mm-dd'),</if>
-	      <if test="thyy != null" >thyy = #{thyy},</if>
-	    </set>
-	    where xmbm in (${xmbm})
+	
+	<select id="exportSflgcExcel" parameterType="jhsh" resultType="elist">
+	   select to_char(rownum) v_0, ss.szds v_1, ss.xmmc v_2, ss.xmlx v_3, ss.xzqhxj v_4,         
+              ss.gydw v_5, ss.ghlxbm v_6, ss.ghlxmc v_7, ss.ghlxzh v_8, ss.ylxbm v_9,
+              ss.ylxmc v_10, ss.ylxzh v_11, ss.jsdjxj v_12, ss.yj v_13, ss.ej v_14,
+              ss.sj v_15, ss.sij v_16, ss.jsnf v_17, ss.ztz v_18, ss.tbzhj v_19,
+              ss.jaf v_20, ss.jlf v_21, ss.qqgz v_22, ss.yxd v_23, ss.bcxd v_24,
+              ss.sgtwh v_25, ss.bz v_26, ss.jhxdwh v_27, ss.jhxdsj v_28
+       from sfljh_sew ss
 	</select>
 </mapper>
