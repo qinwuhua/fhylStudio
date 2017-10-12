@@ -622,5 +622,7 @@ public interface JhshServer {
 
 	public Map<String, String> queryJhshLjSzxm(Jhsh jhsh);
 
+	public List<Excel_list> exportSflgcExcel(Jhsh jhsh);
+
 	
 }

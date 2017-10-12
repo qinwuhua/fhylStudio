@@ -1756,4 +1756,8 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 				return false;
 	}
 
+	@Override
+	public List<Excel_list> exportSflgcExcel(Jhsh jhsh) {
+		return queryList("exportSflgcExcel", jhsh);
+	}
 }

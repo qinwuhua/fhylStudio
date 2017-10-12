@@ -8751,5 +8751,13 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	    where xmbm in (${xmbm})
 	</select>
 	
-	
+	<select id="exportSflgcExcel" parameterType="jhsh" resultType="elist">
+	   select to_char(rownum) v_0, ss.szds v_1, ss.xmmc v_2, ss.xmlx v_3, ss.xzqhxj v_4,         
+              ss.gydw v_5, ss.ghlxbm v_6, ss.ghlxmc v_7, ss.ghlxzh v_8, ss.ylxbm v_9,
+              ss.ylxmc v_10, ss.ylxzh v_11, ss.jsdjxj v_12, ss.yj v_13, ss.ej v_14,
+              ss.sj v_15, ss.sij v_16, ss.jsnf v_17, ss.ztz v_18, ss.tbzhj v_19,
+              ss.jaf v_20, ss.jlf v_21, ss.qqgz v_22, ss.yxd v_23, ss.bcxd v_24,
+              ss.sgtwh v_25, ss.bz v_26, ss.jhxdwh v_27, ss.jhxdsj v_28
+       from sfljh_sew ss
+	</select>
 </mapper>

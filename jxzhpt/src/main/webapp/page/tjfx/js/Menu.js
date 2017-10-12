@@ -40,6 +40,14 @@ $(function() {
 		href:'../qqgl/jhsh/lsjlSearch.jsp'
 	});
 	
+	createMenu('LeftMenu',{
+		id:'menu_0101070205',
+		title:'新老账号互算小工具',
+		imgSrc:'../../images/bzlscx.png',
+		renderTo:'left_menu2',
+		href:'../qqgl/jhsh/xlzhjhTool.jsp'
+	});
+	
 	
 	createMenu('LeftMenu',{
 		id:'menu_0101070301',

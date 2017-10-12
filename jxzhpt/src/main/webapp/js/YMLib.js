@@ -3416,6 +3416,54 @@ function getghlxinfo(lxbm,qdzh,zdzh){
 	
 }
 
+function autoCompleteYLXBM(){
+	$("#yx_ylxbh").autocomplete("/jxzhpt/qqgl/queryAutoyxList.do", {
+		multiple : false,
+		minChars :2,
+		multipleSeparator : ' ',
+		mustMatch: true,
+  		cacheLength : 0,
+  		delay : 0,
+  		max : 150,
+  		extraParams : {
+  			    yxylxbh:function() {
+  				var d = $("#yx_ylxbh").val();
+  				return d;
+  			},
+	           xzqhdm:function() {
+	           var d = $.cookie("dist2");
+			   return d;
+		}
+  		},
+  		dataType : 'json',// 返回类型
+  		// 对返回的json对象进行解析函数，函数返回一个数组
+  		parse : function(data) {
+  			var aa = [];
+  			aa = $.map(eval(data), function(row) {
+  					return {
+  						data : row,
+  						value : row.ylxbm.replace(/(\s*$)/g,""),
+  						result : row.ylxbm.replace(/(\s*$)/g,"")
+  					};
+  				});
+  			return aa;
+  		},formatItem : function(row, i, max) {
+  			return row.ylxbm.replace(/(\s*$)/g,"")+"("+row.yqdzh+","+row.yzdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
+  		}
+  	}).result(function(e, item) {
+  		//$("#name").val(item.truename)
+  		$('#yx_qdzh').val(item.yqdzh);//原起点桩号
+  		$('#yx_zdzh').val(item.yzdzh);//原止点桩号
+  		$('#yx_ghlxbm').val(item.xlxbm);//规划路线编码
+  		$('#yx_ghqdzh').val(item.xqdzh);//规划止点编码
+  		$('#yx_ghzdzh').val(item.xzdzh);//规划止点编码
+  		$('#yx_lxmc').val(item.lxmc);//原路线名称
+  		$('#yx_ghlxmc').val(item.xlxmc);//规划路线名称
+	});
+}
+
+
+
 //获取规划信息
 function autoCompleteGHLXBM(){
 	var url = "/jxzhpt/qqgl/queryAutoghList.do";
@@ -3447,6 +3495,7 @@ function autoCompleteGHLXBM(){
   		},
   		formatItem : function(row, i, max) {
   			return row.xlxbm.replace(/(\s*$)/g,"")+"("+row.xqdzh+","+row.xzdzh+")"+"<br/>"+row.xlxmc.replace(/(\s*$)/g,"");
+  		alert(row.xlxbm);
   		}
   	}).result(
 		function(e, item) {
