@@ -26,19 +26,15 @@
 			$('#xmbm').val(obj.XMBM);
 			$('#xmlxs').val(parent.YMLib.Var.flag);
 			$('#ztz').val(obj.ZTZ);
-			$('#tbz').val(obj.TBZ);
-			$('#tbz_jaf').val(obj.TBZ_JAF);
-			$('#tbz_gcjlf').val(obj.TBZ_GCJLF);
-			$('#tbz_qqgzf').val(obj.TBZ_QQGZF);
+			$('#jbzj').val(obj.JBZJ);
 			$('#dfzc').val(obj.DFZC);
 			$('#zydpx').val(obj.ZYDPX);
 			
 		});
 		//此方法计算总投资和厅补助为下面的资金加起来之和
 		function jsztz(){
-			var tbz=accAdd($('#tbz_qqgzf').val()==""?0:$('#tbz_qqgzf').val(),accAdd($('#tbz_jaf').val()==""?0:$('#tbz_jaf').val(),$('#tbz_gcjlf').val()==""?0:$('#tbz_gcjlf').val())); 
-			var ztz=accAdd($('#dfzc').val()==""?0:$('#dfzc').val(),tbz);
-			$('#tbz').val(tbz);$('#ztz').val(ztz);
+			var ztz=accAdd($('#dfzc').val()==""?0:$('#dfzc').val(),$('#jbzj').val()==""?0:$('#jbzj').val());
+			$('#ztz').val(ztz);
 		}
 		
 		
@@ -88,54 +84,27 @@
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">省补助(万元)：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<input id="tbz" name="tbz"  type="number" value="0" style="width: 100px;height: 20px;" readonly="readonly"/>万元
+								<input id="jbzj" name="jbzj"  type="number" value="0" style="width: 100px;height: 20px;" onchange="jsztz()"/>万元
 							</td>
 							
 							
 						</tr>
+						
 						<tr style="height: 30px;font-size: 10px;">
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">建安费(万元)：</font></b>
-							</td>
-							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input id="tbz_jaf" name="tbz_jaf"  type="number" value="0" style="width: 100px;height: 20px;" onchange="jsztz()"/>万元
-							</td>
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">工程监理费(万元)：</font></b>
-							</td>
-							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<input id="tbz_gcjlf" name="tbz_gcjlf"  type="number" value="0" style="width: 100px;height: 20px;" onchange="jsztz()"/>万元
-							</td>
 							
-							
-						</tr>
-						<tr style="height: 30px;font-size: 10px;">
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">前期工作费(万元)：</font></b>
-							</td>
-							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input id="tbz_qqgzf" name="tbz_qqgzf"  type="number" value="0" style="width: 100px;height: 20px;" onchange="jsztz()"/>万元
-							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">地方自筹(万元)：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 								<input id="dfzc" name="dfzc"  type="number" value="0" style="width: 100px;height: 20px;" onchange="jsztz()"/>万元
 							</td>
-							
-							
-						</tr>
-						<tr style="height: 30px;font-size: 10px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">重要度排序：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<input id="zydpx" name="zydpx"  type="number" value="0" style="width: 100px;height: 20px;" />万元
 							</td>
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-							</td>
-							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-							</td>
+							
 							
 							
 						</tr>

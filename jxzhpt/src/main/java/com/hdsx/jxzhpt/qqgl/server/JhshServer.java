@@ -624,5 +624,9 @@ public interface JhshServer {
 
 	public List<Excel_list> exportSflgcExcel(Jhsh jhsh);
 
+	public List<Map<String, String>> querySzxmxdbz(Jhsh jhsh);
+
+	public boolean planxdAllSzxm(List<Map<String, String>> list);
+
 	
 }

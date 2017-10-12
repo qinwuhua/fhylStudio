@@ -1050,7 +1050,16 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		return insertBatch("planxdAll", list) == list.size()
 				&& updateBatch("planxdAllmc", list) == list.size();
 	}
-
+	
+	@Override
+	public boolean planxdAllSzxm(List<Map<String, String>> list) {
+		
+		
+		return insertBatch("planxdAllSzxm", list) == list.size()
+				&& updateBatch("planxdAllSzxmmc", list) == list.size();
+		
+	}
+	
 	@Override
 	public boolean planxdAll_qx(List<Jhsh> list) {
 		return insertBatch("planxdAll", list) == list.size()
@@ -1692,10 +1701,37 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 			jhsh.setTiaojian("FROM JHSH_SFL JH LEFT JOIN SGT_SFL sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1'");
 		}
 		if("sflcx".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 and xdzt='2'");
+			jhsh.setTiaojian("FROM JHSH_SFL JH LEFT JOIN SGT_SFL sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1' and fun_scxdnf(jh.xmbm) is not null");
+		}
+		
+		//养护中心
+		if("yhzxsb".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1 ");
+		}
+		if("yhzxsh".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.sbzt='1'");
+		}
+		if("yhzxxd".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1'");
+		}
+		if("yhzxcx".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1' and fun_scxdnf(jh.xmbm) is not null");
 		}
 		
 		
+		//服务区
+		if("fwqsb".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM JHSH_FWQ JH LEFT JOIN SGT_FWQ sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_FWQ WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1 ");
+		}
+		if("fwqsh".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM JHSH_FWQ JH LEFT JOIN SGT_FWQ sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_FWQ WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.sbzt='1'");
+		}
+		if("fwqxd".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM JHSH_FWQ JH LEFT JOIN SGT_FWQ sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_FWQ WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1'");
+		}
+		if("fwqcx".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM JHSH_FWQ JH LEFT JOIN SGT_FWQ sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_FWQ WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1' and fun_scxdnf(jh.xmbm) is not null");
+		}
 		
 		
 		return queryList("querySzxmList",jhsh);
@@ -1714,8 +1750,38 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 			jhsh.setTiaojian("FROM JHSH_SFL JH LEFT JOIN SGT_SFL sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1'");
 		}
 		if("sflcx".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 and xdzt='2'");
+			jhsh.setTiaojian("FROM JHSH_SFL JH LEFT JOIN SGT_SFL sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1' and fun_scxdnf(jh.xmbm) is not null");
 		}
+		
+		//养护中心
+		if("yhzxsb".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1 ");
+		}
+		if("yhzxsh".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.sbzt='1'");
+		}
+		if("yhzxxd".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1'");
+		}
+		if("yhzxcx".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1' and fun_scxdnf(jh.xmbm) is not null");
+		}
+		
+		
+		//服务区
+		if("fwqsb".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM JHSH_FWQ JH LEFT JOIN SGT_FWQ sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_FWQ WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1 ");
+		}
+		if("fwqsh".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM JHSH_FWQ JH LEFT JOIN SGT_FWQ sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_FWQ WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.sbzt='1'");
+		}
+		if("fwqxd".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM JHSH_FWQ JH LEFT JOIN SGT_FWQ sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_FWQ WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1'");
+		}
+		if("fwqcx".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM JHSH_FWQ JH LEFT JOIN SGT_FWQ sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_FWQ WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1' and fun_scxdnf(jh.xmbm) is not null");
+		}
+		
 		
 		return queryOne("querySzxmListCount", jhsh);
 	}
@@ -1731,19 +1797,75 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 			jhsh.setTiaojian(",nvl(fun_char(sum(nvl(jh.ztz,0)),2),0) ztz,nvl(fun_char(sum(nvl(jh.tbz,0)),2),0) zbz FROM JHSH_SFL JH LEFT JOIN SGT_SFL sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.sbzt='1'");
 		}
 		if("sflxd".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian(",nvl(fun_char(sum(nvl(jh.ztz,0)),2),0) ztz,nvl(fun_char(sum(nvl(jh.tbz,0)),2),0) zbz FROM JHSH_SFL JH LEFT JOIN SGT_SFL sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1'");
+			jhsh.setTiaojian(",nvl(fun_char(sum(nvl(jh.ztz,0)),2),0) ztz,nvl(fun_char(sum(nvl(jh.tbz,0)),2),0) zbz,nvl(fun_char(sum(nvl(xdztz, 0)), 2), 0) xdztz, nvl(fun_char(sum(nvl(xdstz, 0)), 2), 0) xdstz,nvl(fun_char(sum(nvl(xddfzc, 0)), 2), 0) xddfzc FROM JHSH_SFL JH LEFT JOIN SGT_SFL sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid left join (select xmid,sum(ztz) xdztz,sum(stz) xdstz,sum(dfzc) xddfzc from plan_zjxd p where jhxdwh is not null group by xmid) xd on jh.xmbm=xd.xmid WHERE 1=1  and jh.shzt='1'");
 		}
 		if("sflcx".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("from SFLJH_SEW s where 1=1 and xdzt='2'");
+			jhsh.setTiaojian(",nvl(fun_char(sum(nvl(jh.ztz,0)),2),0) ztz,nvl(fun_char(sum(nvl(jh.tbz,0)),2),0) zbz,nvl(fun_char(sum(nvl(xdztz, 0)), 2), 0) xdztz, nvl(fun_char(sum(nvl(xdstz, 0)), 2), 0) xdstz,nvl(fun_char(sum(nvl(xddfzc, 0)), 2), 0) xddfzc FROM JHSH_SFL JH LEFT JOIN SGT_SFL sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid left join (select xmid,sum(ztz) xdztz,sum(stz) xdstz,sum(dfzc) xddfzc from plan_zjxd p where jhxdwh is not null group by xmid) xd on jh.xmbm=xd.xmid WHERE 1=1  and jh.shzt='1' and fun_scxdnf(jh.xmbm) is not null");
 		}
+		
+		//养护中心
+		if("yhzxsb".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian(",nvl(fun_char(sum(nvl(jh.ztz,0)),2),0) ztz,nvl(fun_char(sum(nvl(jh.jbzj,0)),2),0) zbz FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1 ");
+		}
+		if("yhzxsh".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian(",nvl(fun_char(sum(nvl(jh.ztz,0)),2),0) ztz,nvl(fun_char(sum(nvl(jh.jbzj,0)),2),0) zbz FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.sbzt='1'");
+		}
+		if("yhzxxd".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian(",nvl(fun_char(sum(nvl(jh.ztz,0)),2),0) ztz,nvl(fun_char(sum(nvl(jh.jbzj,0)),2),0) zbz,nvl(fun_char(sum(nvl(xdztz, 0)), 2), 0) xdztz, nvl(fun_char(sum(nvl(xdstz, 0))-sum(nvl(xdjl, 0)), 2), 0) xdstz,nvl(fun_char(sum(nvl(xdjl, 0)), 2), 0) xdjl,nvl(fun_char(sum(nvl(xddfzc, 0)), 2), 0) xddfzc FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid left join (select xmid,sum(ztz) xdztz,sum(stz) xdstz,sum(zddzjl) xdjl,sum(dfzc) xddfzc from plan_zjxd p where jhxdwh is not null group by xmid) xd on jh.xmbm=xd.xmid WHERE 1=1  and jh.shzt='1'");
+		}
+		if("yhzxcx".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian(",nvl(fun_char(sum(nvl(jh.ztz,0)),2),0) ztz,nvl(fun_char(sum(nvl(jh.jbzj,0)),2),0) zbz,nvl(fun_char(sum(nvl(xdztz, 0)), 2), 0) xdztz, nvl(fun_char(sum(nvl(xdstz, 0))-sum(nvl(xdjl, 0)), 2), 0) xdstz,nvl(fun_char(sum(nvl(xdjl, 0)), 2), 0) xdjl,nvl(fun_char(sum(nvl(xddfzc, 0)), 2), 0) xddfzc FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid left join (select xmid,sum(ztz) xdztz,sum(stz) xdstz,sum(zddzjl) xdjl,sum(dfzc) xddfzc from plan_zjxd p where jhxdwh is not null group by xmid) xd on jh.xmbm=xd.xmid WHERE 1=1  and jh.shzt='1' and fun_scxdnf(jh.xmbm) is not null");
+		}
+		
+		
+		//服务区
+		if("fwqsb".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian(",nvl(fun_char(sum(nvl(jh.ztz,0)),2),0) ztz,nvl(fun_char(sum(nvl(jh.cgs,0)),2),0) zbz FROM JHSH_FWQ JH LEFT JOIN SGT_FWQ sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_FWQ WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1 ");
+		}
+		if("fwqsh".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian(",nvl(fun_char(sum(nvl(jh.ztz,0)),2),0) ztz,nvl(fun_char(sum(nvl(jh.cgs,0)),2),0) zbz FROM JHSH_FWQ JH LEFT JOIN SGT_FWQ sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_FWQ WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.sbzt='1'");
+		}
+		if("fwqxd".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian(",nvl(fun_char(sum(nvl(jh.ztz,0)),2),0) ztz,nvl(fun_char(sum(nvl(jh.cgs,0)),2),0) zbz,nvl(fun_char(sum(nvl(xdztz, 0)), 2), 0) xdztz, nvl(fun_char(sum(nvl(xdcgs, 0)), 2), 0) xdcgs,nvl(fun_char(sum(nvl(xddfzc, 0)), 2), 0) xddfzc FROM JHSH_FWQ JH LEFT JOIN SGT_FWQ sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_FWQ WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid left join (select xmid,sum(ztz) xdztz,sum(btzzj) xdcgs,sum(dfzc) xddfzc from plan_zjxd p where jhxdwh is not null group by xmid) xd on jh.xmbm=xd.xmid WHERE 1=1  and jh.shzt='1'");
+		}
+		if("fwqcx".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian(",nvl(fun_char(sum(nvl(jh.ztz,0)),2),0) ztz,nvl(fun_char(sum(nvl(jh.cgs,0)),2),0) zbz,nvl(fun_char(sum(nvl(xdztz, 0)), 2), 0) xdztz, nvl(fun_char(sum(nvl(xdcgs, 0)), 2), 0) xdcgs,nvl(fun_char(sum(nvl(xddfzc, 0)), 2), 0) xddfzc FROM JHSH_FWQ JH LEFT JOIN SGT_FWQ sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_FWQ WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid left join (select xmid,sum(ztz) xdztz,sum(btzzj) xdcgs,sum(dfzc) xddfzc from plan_zjxd p where jhxdwh is not null group by xmid) xd on jh.xmbm=xd.xmid WHERE 1=1  and jh.shzt='1' and fun_scxdnf(jh.xmbm) is not null");
+		}
+		
 		
 		return queryOne("queryJhshLjSzxm",jhsh);
 	}
 	
 	@Override
+	public List<Map<String, String>> querySzxmxdbz(Jhsh jhsh) {
+		//示范路
+		if("sflxd".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM jhxd_sfl JH LEFT JOIN SGT_SFL sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1' AND JH.XDZTTJ!='已完成'");
+		}
+		
+		//养护中心
+		if("yhzxxd".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM jhxd_yhzx JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1' AND JH.XDZTTJ!='已完成'");
+		}
+		
+		//服务区
+		if("fwqxd".equals(jhsh.getXmlx1())) {
+			jhsh.setTiaojian("FROM jhxd_fwq JH LEFT JOIN SGT_FWQ sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_FWQ WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1' AND JH.XDZTTJ!='已完成'");
+		}
+		
+		return queryList("querySzxmxdbz",jhsh);
+	}
+	
+	
+	
+	@Override
 	public boolean updateJhshInfo(Jhsh jhsh) {
 		if("sfl".equals(jhsh.getXmlxs()))
 		return update("updateJhshSflInfo",jhsh)==1;
+		else if("yhzx".equals(jhsh.getXmlxs()))
+			return update("updateJhshYhzxInfo",jhsh)==1;
+		else if("fwq".equals(jhsh.getXmlxs()))
+			return update("updateJhshFwqInfo",jhsh)==1;
 		else
 			return false;
 	}
@@ -1752,6 +1874,10 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public boolean sbshSzxm(Jhsh jhsh) {
 		if("sfl".equals(jhsh.getXmlxs()))
 			return update("sbshSzxmsfl",jhsh)>=1;
+			else if("yhzx".equals(jhsh.getXmlxs()))
+				return update("sbshSzxmyhzx",jhsh)>=1;
+			else if("fwq".equals(jhsh.getXmlxs()))
+				return update("sbshSzxmfwq",jhsh)>=1;
 			else
 				return false;
 	}

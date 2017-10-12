@@ -196,15 +196,20 @@ public class XmbbController extends BaseActionSupport{
 				list=xmbbServer.setjhxdwh1(tablename);
 			}
 			if(("sfl").equals(xzqh)){
-				tablename="select distinct jhxdwh id,jhxdwh text from sfljh_SEW z where z.jhxdwh is not null";
+				tablename="select distinct z.jhxdwh id,z.jhxdwh text from jhsh_sfl p left join plan_zjxd z on p.xmbm=z.xmid where z.jhxdwh is not null";
+				//tablename="select distinct jhxdwh id,jhxdwh text from sfljh_SEW z where z.jhxdwh is not null";
 				list=xmbbServer.setjhxdwh1(tablename);
 			}
 			if(("fwq").equals(xzqh)){
-				tablename="select distinct jhxdwh id,jhxdwh text from fwqjh_SEW z where z.jhxdwh is not null";
+				//tablename="select distinct jhxdwh id,jhxdwh text from fwqjh_SEW z where z.jhxdwh is not null";
+				tablename="select distinct z.jhxdwh id,z.jhxdwh text from jhsh_fwq p left join plan_zjxd z on p.xmbm=z.xmid where z.jhxdwh is not null";
+				
 				list=xmbbServer.setjhxdwh1(tablename);
 			}
 			if(("yhzx").equals(xzqh)){
-				tablename="select distinct jhxdwh id,jhxdwh text from yhzxjh_SEW z where z.jhxdwh is not null";
+				//tablename="select distinct jhxdwh id,jhxdwh text from yhzxjh_SEW z where z.jhxdwh is not null";
+				tablename="select distinct z.jhxdwh id,z.jhxdwh text from jhsh_yhzx p left join plan_zjxd z on p.xmbm=z.xmid where z.jhxdwh is not null";
+				
 				list=xmbbServer.setjhxdwh1(tablename);
 			}
 			

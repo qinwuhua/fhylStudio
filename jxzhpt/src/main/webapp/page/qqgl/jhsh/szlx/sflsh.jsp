@@ -24,9 +24,7 @@
 <script type="text/javascript">
 
 $(function(){
-	loadylx('lxbm');
 	loadDist1("xzqh",$.cookie("dist"));
-	loadUnit1("gydw",$.cookie("unit"));
 	if(getUrlParame('id')=='010113020205')
 	xmnfs3w("xmnf");
 	else
@@ -35,55 +33,9 @@ $(function(){
 	querySflgc();
 });
 
-//详情
-function szxmInfo(index,flag){
-	YMLib.Var.obj=$('#grid').datagrid('getRows')[index];
-	YMLib.Var.flag=flag;
-	//示范路
-	if(flag=='sfl'){
-		openWindow('mywindow','详情','/jxzhpt/page/qqgl/jhsh/szlx/sfl_Info.jsp',680,470);
-	}
-}
-//上报
-function sbSzxm(index,flag){
-	var xmbm="";
-	if(index=='无'){
-		var rows=$('#grid').datagrid('getSelections');
-		if(rows.length==0) {
-			alert("请勾选记录！");
-			return;
-		}
-		for(var i=0;i<rows.length;i++){
-			if(rows[i].SHZT==1){
-				alert("所选项目必须为未审核");return;
-			}else{
-				xmbm+=","+rows[i].XMBM;
-			}
-		}
-		
-		xmbm=xmbm.substr(1,xmbm.length);	
-	}else{
-		xmbm=$('#grid').datagrid('getRows')[index].XMBM;
-	}
-	xmbm="'"+xmbm.replace(/,/g, "','")+"'";
-	if(confirm("您确认审核吗？"))
-	$.ajax({
-		type:'post',
-		url:'/jxzhpt/qqgl/sbshSzxm.do',
-		data:"xmbm="+xmbm+"&xmlxs="+flag+"&sbzt=1&shzt=1&thyy=",
-		dataType:'json',
-		success:function(msg){
-			if(msg){
-				alert("审核成功");
-				$("#grid").datagrid('reload');
-				loadLj();
-			}else{
-				alert("审核失败");
-			}
-			
-		}
-	});
-}
+
+
+
 var ljparam;
 function querySflgc(){
 	
@@ -128,14 +80,14 @@ function querySflgc(){
 	grid.pageSize=10;
 	grid.pageNumber=1;
 	grid.columns=[[	{field:'ck',checkbox:true},
-					{field:'CZ',title:'操作',width:100,align:'center',
+					{field:'CZ',title:'操作',width:160,align:'center',
 					formatter: function(value,row,index){
 						var result="";
 						result='<a href="javascript:szxmInfo('+"'"+index+"','sfl'"+')" style="color:#3399CC;">详情&nbsp;&nbsp;</a>';
-// 						if(row.SBZT=='1')
-// 							result+='编辑';	
-// 						else
-// 							result+='<a href="javascript:editSzxm('+"'"+index+"','sfl'"+')" style="color:#3399CC;">编辑</a>';
+						if(row.SHZT=='0')
+							result+='<a href="javascript:thxjSzxm('+"'"+index+"','sfl'"+')" style="color:#3399CC;">退回下级&nbsp;&nbsp;</a>'+'退回未审核';	
+						else
+							result+='退回下级&nbsp;&nbsp;'+'<a href="javascript:thwshSzxm('+"'"+index+"','sfl'"+')" style="color:#3399CC;">退回未审核</a>';
 							return result;
 						}
 					},
@@ -145,7 +97,7 @@ function querySflgc(){
 							if(row.SHZT=='1')
 								result='已审核';	
 							else
-								result='<a href="javascript:sbSzxm('+"'"+index+"','sfl'"+')" style="color:#3399CC;">未审核</a>';
+								result='<a href="javascript:shSzxm('+"'"+index+"','sfl'"+')" style="color:#3399CC;">未审核</a>';
 							return result;
 							}
 						},
@@ -176,7 +128,6 @@ function querySflgc(){
 }
 
 function loadLj(){
-	ljparam
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryJhshLjSzxm.do',
@@ -264,8 +215,10 @@ a {text-decoration: none;}
 									onmouseover="this.src='/jxzhpt/images/Button/Serch02.gif'"
 									onmouseout="this.src='/jxzhpt/images/Button/Serch01.gif'"
 									style="vertical-align: middle; padding-left: 8px;" />
-									<img id="shenpi" alt="审批" onclick="sbSzxm('无','sfl')" style="border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/sp2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/sp1.jpg'" src="${pageContext.request.contextPath}/images/Button/sp1.jpg"/>
-									
+									<img id="shenpi" alt="审批" onclick="shSzxm('无','sfl')" style="border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/sp2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/sp1.jpg'" src="${pageContext.request.contextPath}/images/Button/sp1.jpg"/>
+									<img id="thxj"  alt="退回下级" onclick="thxjSzxm('无','sfl');" src="${pageContext.request.contextPath}/images/thxj1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/thxj2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/thxj1.jpg'   " src=""   style="border-width:0px;vertical-align:middle;" />
+									<img id="thwsh" alt="退回未审核" onclick="thwshSzxm('无','sfl')" style="vertical-align:middle;" src="${pageContext.request.contextPath}/images/thwsh1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/thwsh2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/thwsh1.jpg'"/>
+					                
 									
 									
 									 <!-- 								<img onclick="plscbtn()" alt="批量上传计划下达文件" src="/jxzhpt/images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;"> -->

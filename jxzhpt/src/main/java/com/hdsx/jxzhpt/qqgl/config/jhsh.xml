@@ -10,6 +10,7 @@
       <if test="gydw !='' and gydw != null">${gydw}</if>
       <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
       <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="scxdnf !='' and scxdnf != null">${scxdnf}</if>
       <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
       <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
       <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
@@ -5918,7 +5919,58 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 		<if test="sfqx != null and sfqx !=''">,#{sfqx}</if>
 		)
 	</insert>
-	
+	<insert id="planxdAllSzxm" parameterType="java.util.List">
+		insert into plan_zjxd(id
+		<if test="XMBM != null">,XMID</if>
+		<if test="BZXDNF != null">,XDNF</if>
+		<if test="TBDW != null">,TBDW</if>
+		<if test="BZTBSJ != null">,TBTIME</if>
+		<if test="BZCGS != null">,BTZZJ</if>
+		<if test="JHXDWH != null">,jhxdwh</if>
+		<if test="BZGZ != null">,gz</if>
+		<if test="BZSZ != null">,sz</if>
+		<if test="BZZTZ != null">,ztz</if>
+		<if test="BZDK != null">,dk</if>
+		<if test="BZZQ != null">,zq</if>
+		<if test="BZQT != null">,qt</if>
+		<if test="BZJL != null">,jl</if>
+		<if test="BZRYS != null">,rys</if>
+		<if test="BZYHDK != null">,yhdk</if>
+		<if test="BZDFZC != null">,dfzc</if>
+		<if test="ZYJSNR != null">,zyjsnr</if>
+		<if test="XZSCNL != null">,xzscnl</if>
+		<if test="SFQX != null and SFQX !=''">,sfqx</if>
+		<if test="BZSTZ != null and BZSTZ !=''">,STZ</if>
+		<if test="BZZDDZJL != null and BZZDDZJL !=''">,ZDDZJL</if>
+		)
+		values(sys_guid()
+		<if test="XMBM != null">,#{XMBM}</if>
+		<if test="BZXDNF != null">,#{BZXDNF}</if>
+		<if test="TBDW != null">,#{TBDW}</if>
+		<if test="BZTBSJ != null">,#{BZTBSJ}</if>
+		<if test="BZCGS != null">,#{BZCGS}</if>
+		<if test="JHXDWH != null">,#{JHXDWH}</if>
+		<if test="BZGZ != null">,#{BZGZ}</if>
+		<if test="BZSZ != null">,#{BZSZ}</if>
+		<if test="BZZTZ != null">,#{BZZTZ}</if>
+		<if test="BZDK != null">,#{BZDK}</if>
+		<if test="BZZQ != null">,#{BZZQ}</if>
+		<if test="BZQT != null">,#{BZQT}</if>
+		<if test="BZJL != null">,#{BZJL}</if>
+		<if test="BZRYS != null">,#{BZRYS}</if>
+		<if test="BZYHDK != null">,#{BZYHDK}</if>
+		<if test="BZDFZC != null">,to_number(#{BZDFZC})</if>
+		<if test="ZYJSNR != null">,#{ZYJSNR}</if>
+		<if test="XZSCNL != null">,#{XZSCNL}</if>
+		<if test="SFQX != null and SFQX !=''">,#{SFQX}</if>
+		<if test="BZSTZ != null and BZSTZ !=''">,#{BZSTZ}</if>
+		<if test="BZZDDZJL != null and BZZDDZJL !=''">,#{ZDDZJL}</if>
+		)
+	</insert>
+	<update id="planxdAllSzxmmc" parameterType="java.util.List">
+		update 	${XMLX}
+				set xmmc=#{XMMC} where xmbm=#{XMBM}
+	</update>
 	<insert id="planxdAllmc" parameterType="java.util.List">
 		update 	<if test="xmlx == 1">jhsh_sjgz</if>
 				<if test="xmlx == 2">jhsh_lmgz</if>

@@ -60,11 +60,14 @@ a{text-decoration:none;}
 			$("#ghzdzh").focus();
 			return false;
 		} 
+		
+		
 		var params="lx.id="+$('#id').val()+"&lx.lxbm="+$('#ylxbh').val()+"&lx.lxmc="+$('#lxmc').val()
 		+"&lx.gydw="+$("#gydw").combobox("getText")
 		+"&lx.xzqh="+$("#xzqh").combobox("getText")
 		+"&lx.gydwdm="+$("#gydw").combobox("getValues").join(',')
 		+"&lx.xzqhdm="+$("#xzqh").combobox("getValues").join(',')
+		+"&lx.gpsqdzh="+$("#gpsqdzh").val()+"&lx.gpszdzh="+$("#gpszdzh").val()
 		+"&lx.qdmc="+$('#qdmc').val()+"&lx.zdmc="+$('#zdmc').val()+"&lx.jsxz="+$('#jsxz').val()+"&lx.qdzh="+$('#qdzh').val()
 		+"&lx.zdzh="+$('#zdzh').val()+"&lx.lc="+$('#lc').val()+"&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()
 		+"&lx.silc="+$('#silc').val()+"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lx.jsjsdj="+$('#jsjsdj').val()+"&lx.xjsdj="+$('#jsdj').val()
@@ -80,7 +83,7 @@ a{text-decoration:none;}
 			success:function(msg){
 				if(msg.result=="true"){
 					alert("保存成功！");
-					parent.$('#grid').datagrid('reload');
+					parent.$('#datagrid').datagrid('reload');
 					removes('lxxx');
 				}else{
 					alert("保存失败！");
@@ -106,6 +109,7 @@ a{text-decoration:none;}
 			cxqdmc($("#ghlxbm").val(),$("#ghqdzh").val());
 		if($("#ghzdzh").val()!='')
 			cxzdmc($("#ghlxbm").val(),$("#ghzdzh").val());
+		getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 	}
 	function cesuan(){
 		var yi=0;
@@ -152,43 +156,26 @@ a{text-decoration:none;}
 					<span id="span_zdzh"></span>
 				</td>
             </tr>
-		<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>项目编码：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="xmbm"></span>
-					<input id="id" name="id" type="hidden"/>
-				</td>
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>原路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" name="ylxbh" id="ylxbh" style="width: 120px" />
+					<input readonly="readonly" type="text" name="ylxbh" id="ylxbh" style="width: 120px" />
 					<input id="gpsqdzh" name="gpsqdzh" type="hidden"/>
 					<input id="gpszdzh" name="gpszdzh" type="hidden"/>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>原路线名称：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input name="lxmc" id="lxmc" type="text" style="width: 120px;">
-				</td>
-			</tr>
-			
-			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>起点桩号：
+					<font color='red' size='2'>*&nbsp;</font>原起点桩号：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="qdzh" id="qdzh" style="width: 120px" onblur="changeZlc()"/>
+					<input readonly="readonly" type="text" name="qdzh" id="qdzh" style="width: 120px" onblur="changeZlc()"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>止点桩号：
+					<font color='red' size='2'>*&nbsp;</font>原止点桩号：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="zdzh"id="zdzh" style="width: 120px" onblur="changeZlc()"/><br/>
+					<input readonly="readonly" type="text" name="zdzh"id="zdzh" style="width: 120px" onblur="changeZlc()"/><br/>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>里程：
-				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input name="lc" id="lc" type="text" style="width: 100px;"/>&nbsp;公里
-				</td>
+				
 			</tr>
 			
             <tr style="height: 30px;">
@@ -209,6 +196,25 @@ a{text-decoration:none;}
 					<input id="gxzdzh" name="gxzdzh" type="text" style="width: 120px;" readonly="readonly"/>&nbsp;<span style="color: red;">*</span><br/>
 				</td>
             </tr>
+		<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>项目编码：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="xmbm"></span>
+					<input id="id" name="id" type="hidden"/>
+				</td>
+				
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>原路线名称：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input name="lxmc" id="lxmc" type="text" style="width: 120px;">
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>里程：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input name="lc" id="lc" type="text" style="width: 100px;"/>&nbsp;公里
+				</td>
+			</tr>
+			
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>起点名称：
