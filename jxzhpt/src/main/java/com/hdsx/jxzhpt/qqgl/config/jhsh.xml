@@ -31,6 +31,7 @@
       <if test="gydw !='' and gydw != null">${gydw}</if>
       <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
       <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="scxdnf !='' and scxdnf != null">${scxdnf}</if>
       <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
       <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
       <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
@@ -49,6 +50,7 @@
       <if test="gydw !='' and gydw != null">${gydw}</if>
       <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
       <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="scxdnf !='' and scxdnf != null">${scxdnf}</if>
       <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
       <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
       <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
