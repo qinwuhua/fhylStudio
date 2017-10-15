@@ -322,7 +322,7 @@
 		<action name="getghlxinfo" class="xmsqController" method="getghlxinfo"></action>
 
 		<action name="getgxlxinfo" class="xmsqController" method="getgxlxinfo"></action>
-		<action name="getylxinfo" class="xmsqController" method="getylxinfo"></action>
+		<action name="getylxinfo" class="xmsqController" method="getylxinfo"></action>		
 		<action name="getylxlminfo" class="xmsqController" method="getylxlminfo"></action>
 		<action name="queryLj" class="xmsqController" method="queryLj"></action>
 		<action name="queryLjbyyhc" class="xmsqController" method="queryLjbyyhc"></action>

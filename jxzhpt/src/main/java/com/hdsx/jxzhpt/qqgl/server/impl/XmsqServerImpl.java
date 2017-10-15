@@ -543,7 +543,8 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 			return l.get(0);
 			else
 				return null;
-	}
+	}	
+	
 	@Override
 	public Lx getylxlminfo(Xmsq xmsq) {
 		List<Lx> l=queryList("getylxlminfo", xmsq);
