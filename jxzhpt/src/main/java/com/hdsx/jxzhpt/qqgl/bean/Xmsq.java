@@ -14,7 +14,6 @@ public class Xmsq {
 	private String lmlx;
 	private String wbc;
 	private String wbchd;
-	
 	private String yxylxbh;
 	
 	public String getYxylxbh() {

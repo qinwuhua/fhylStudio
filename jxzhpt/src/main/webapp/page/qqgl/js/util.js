@@ -3086,20 +3086,12 @@ function tuihshlxsh(id){
 	var xmlx=xmbm.substr(10,1);
 	var xmlx1='';
 	for(var i=0;i<rows.length;i++){
-		if(xmlx=='4'||xmlx=='5'){
 			if(rows[i].yhcsh=='1'){
-				alert('请您勿勾选已审核的项目');
+				alert(rows[i].xmmc+'养护处已审核，不能退回未审核');
 				return;
 			}
-		}else{
-			if(rows[i].shzt=='1'){
-				alert('请您勿勾选养护处已审核的项目');
-				return;
-			}
-		}
-		
-		
 	}
+
 	if(xmlx==1)
 		xmlx1='sjgz';
 	if(xmlx==2)
