@@ -86,7 +86,11 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 		hm=new HashMap<String, Object>();
 		hm.put("id", delstr);
 		hm.put("xmlx", xmlx);
+		if("xmk_wqgz".equals(xmlx))
+			return this.update("xgShztwqjck", hm)!=0?true:false;
+		else
 		return this.update("xgShzt2", hm)!=0?true:false;
+		
 	}
 	@Override
 	public boolean xgJckAbgcSbzt(String delstr,Jckabgc abgc) {

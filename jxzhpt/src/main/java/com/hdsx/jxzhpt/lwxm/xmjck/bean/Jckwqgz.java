@@ -155,7 +155,14 @@ public class Jckwqgz implements Serializable{
 	private String xzxzh;//原中心桩号
 	private String xlxmc;//原路线名称
 	private String xqlmc;//原桥梁名称
+	private String zgshzt;//综规审核状态
 	
+	public String getZgshzt() {
+		return zgshzt;
+	}
+	public void setZgshzt(String zgshzt) {
+		this.zgshzt = zgshzt;
+	}
 	public String getLsxmxx() {
 		return lsxmxx;
 	}

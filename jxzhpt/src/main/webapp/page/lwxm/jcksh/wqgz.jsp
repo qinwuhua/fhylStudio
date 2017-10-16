@@ -47,7 +47,7 @@ function xgShzt(){
 	}
 	var id=rows[0].id;
 	for(var i=0;i<rows.length;i++){
-		if(rows[i].shzt=='已审核'){
+		if(rows[i].zgshzt=='已审核'){
 			alert("有项目已审核，请勿重复操作！");
 			return ;
 		}
@@ -99,7 +99,7 @@ function tuiHui(){
 		alert("对不起，该项目已上报，不能执行退回操作！");
 		return;
 	}
-	if(rows[i].shzt=='已审核'){
+	if(rows[i].zgshzt=='已审核'){
 		alert("对不起，项目已审核，不能执行退回操作！");
 		return;
 	}
@@ -110,7 +110,7 @@ function tuiHui(){
 	if(confirm('您确定退回该项目？')){
 			$.ajax({
 				 type : "POST",
-				 url : "/jxzhpt/xmjck/xgJckWqgzTH.do",
+				 url : "/jxzhpt/xmjck/xgJckWqgzTHxj.do",
 				 dataType : 'json',
 				 data : 'delstr=' +id,
 				 success : function(msg){

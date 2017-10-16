@@ -853,7 +853,7 @@ function jckshWqgz(){
 					'<a href=javascript:ckJckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  ';
 			}},    
 			{field:'shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
-				if(row.shzt=="未审核"){
+				if(row.zgshzt=="未审核"){
 				return '<a href=javascript:xgShzt() style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
 				}else{
 				//return '<span style="color:grey;">已审核</span>';
@@ -959,7 +959,7 @@ function jckshWqgz123(){
 			 	'lxmc' : $('#lxmc').val(),
 			 	'qlmc':$("#qlmc").val(),
 			 	'xmnf':'',
-			 	'shzt':$("#shzt").combobox("getValue"),
+			 	'zgshzt':$("#shzt").combobox("getValue"),
 			 	'jsdj':jsdj,
 			 	'gldj':gldj,
 			 	'akjfl':akjfl,
