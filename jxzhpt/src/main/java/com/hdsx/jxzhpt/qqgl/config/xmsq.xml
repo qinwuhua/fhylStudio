@@ -2430,10 +2430,11 @@
 	
 	
 	</select>
+	
 	<select id="getylxinfo" parameterType="xmsq" resultType="xmsq">
-		select * from ghlx where xlxbm like #{ylxbm}||'%'||#{xzqh}||'%' and to_number(xzdzh)>to_number(#{qdzh}) and to_number(#{zdzh})>to_number(xqdzh)
-		
+		select * from ghlx where xlxbm like #{ylxbm}||'%'||#{xzqh}||'%' and to_number(xzdzh)>to_number(#{qdzh}) and to_number(#{zdzh})>to_number(xqdzh)		
 	</select>
+	
 	<select id="getylxlminfo" parameterType="xmsq" resultType="lx">
 	
 		<![CDATA[

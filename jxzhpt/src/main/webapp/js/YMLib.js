@@ -3451,14 +3451,34 @@ function autoCompleteYLXBM(){
   			return row.ylxbm.replace(/(\s*$)/g,"")+"("+row.yqdzh+","+row.yzdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
   		}
   	}).result(function(e, item) {
-  		//$("#name").val(item.truename)
-  		$('#yx_qdzh').val(item.yqdzh);//原起点桩号
-  		$('#yx_zdzh').val(item.yzdzh);//原止点桩号
   		$('#yx_ghlxbm').val(item.xlxbm);//规划路线编码
-  		$('#yx_ghqdzh').val(item.xqdzh);//规划止点编码
-  		$('#yx_ghzdzh').val(item.xzdzh);//规划止点编码
+  		$('#yx_ghqdzh').val(item.xqdzh);//规划起点桩号
+  		$('#yx_ghzdzh').val(item.xzdzh);//规划止点桩号		
+  		$('#yx_yghqdzh').val(item.xqdzh);//改变前规划起点桩号
   		$('#yx_lxmc').val(item.lxmc);//原路线名称
   		$('#yx_ghlxmc').val(item.xlxmc);//规划路线名称
+  		$('#yx_yqdzh').val(item.yqdzh);//改变前原起点桩号
+  		$('#yx_yzdzh').val(item.yzdzh);//改变前原起点桩号
+	
+        //如果起点小于止点则交换起止点位置
+		if(parseFloat(item.yqdzh)<parseFloat(item.yzdzh)){
+			$('#yx_qdzh').val(item.yqdzh);
+			$('#yx_zdzh').val(item.yzdzh);
+			$("#yxspan_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+item.yqdzh);
+			$("#yxspan_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+item.yzdzh);
+		}
+		else{
+			$('#yx_qdzh').val(item.yzdzh);
+			$('#yx_zdzh').val(item.yqdzh);
+			$("#yxspan_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+item.yzdzh);
+			$("#yxspan_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+item.yqdzh);
+		}
+		$('#yx_gpsqdzh').val(item.yqdzh);
+		$('#yx_gpsqdzh').val(item.yzdzh);
+		selectGHTSDQ(item.xlxbm,item.xqdzh,item.xzdzh);
+		cxghqdmc($('#yx_ghlxbm').val(),$("#yx_ghqdzh").val());
+		cxghzdmc($('#yx_ghlxbm').val(),$("#yx_ghzdzh").val());
+		
 	});
 }
 
@@ -3498,8 +3518,7 @@ function autoCompleteGHLXBM(){
   		alert(row.xlxbm);
   		}
   	}).result(
-		function(e, item) {
-			
+		function(e, item) {	
 			$('#ghqdzh').val(item.xqdzh);
 			$('#ghzdzh').val(item.xzdzh);
 			$('#ghlxmc').val(item.xlxmc);
@@ -3530,9 +3549,7 @@ function autoCompleteGHLXBM(){
 			$('#gpsqdzh').val(item.xqdzh);
 			$('#gpszdzh').val(item.xzdzh);
 			$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+item.xqdzh);
-			$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+item.xzdzh);
-		
-			
+			$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+item.xzdzh);			
 	});
 }
 
@@ -3557,19 +3574,111 @@ function selectTSDQ1(lxbm,qdzh,zdzh){
 	});	
 }
 
+function queryGhByY(){	
+	var ghqdzh = $('#yx_yghqdzh').val(); //新规划的止点桩号	
+	var yqdzh = $('#yx_yqdzh').val(); //原起点桩号
+	var qdzh = $('#yx_qdzh').val();      //用户输入的原起点桩号	
+	var yzdzh = $('#yx_yzdzh').val();   //原止点桩号
+	var zdzh = $('#yx_zdzh').val();     //用户输入的止点桩号
+/*	if(yqdzh < yzdzh){
+		if(parseFloat(qdzh) < parseFloat(yqdzh) && parseFloat(qdzh) > parseFloat(yzdzh)){		
+			alert("输入的起点桩号必须在"+ parseFloat(yqdzh) + "~" + parseFloat(yzdzh) + "之间！")
+			$("#yx_qdzh").val(yqdzh)
+		}else{
+			var qd=accAdd(accSub(parseFloat(qdzh),parseFloat(yqdzh)),parseFloat(ghqdzh));
+			$("#yx_ghqdzh").val(qd);
+		}
+		if(parseFloat(zdzh) > parseFloat(yzdzh) && parseFloat(zdzh) < parseFloat(yqdzh)){
+			alert("输入的止点桩号必须在"+ parseFloat(yqdzh) + "~" + parseFloat(yzdzh) + "之间！")
+			$("#yx_zdzh").val(yzdzh)
+		}else{
+			var zd=accSub(accAdd(parseFloat(qd),parseFloat(zdzh)),parseFloat(qdzh));
+			$("#yx_ghzdzh").val(zd);
+		}
+	}*/	
+	if(parseFloat(yqdzh)<parseFloat(yzdzh)){
+		var qd=accAdd(accSub(parseFloat(qdzh),parseFloat(yqdzh)),parseFloat(ghqdzh));
+		var zd=accSub(accAdd(parseFloat(qd),parseFloat(zdzh)),parseFloat(qdzh));
+	}
+	if(parseFloat(yqdzh)>parseFloat(yzdzh)){
+		//ghqdzh + ( yzdzh - zdzh );
+		var qd=accAdd(accSub(parseFloat(yzdzh),parseFloat(zdzh)),parseFloat(ghqdzh));
+		//ghqdzh +  (yzdzh - qdzh);
+		var zd= accAdd(accSub(parseFloat(yzdzh),parseFloat(qdzh)),parseFloat(ghqdzh));
+	}
+	$("#yx_ghqdzh").val(qd);
+	$("#yx_ghzdzh").val(zd);
+	
+	//查询起点名称
+	cxghqdmc($('#yx_ghlxbm').val(),$("#yx_ghqdzh").val());
+	//查询止点名称
+	cxghzdmc($('#yx_ghlxbm').val(),$("#yx_ghzdzh").val());	
+	selectGHTSDQ($('#yx_ghlxbm').val(),$("#yx_ghqdzh").val(),$("#yx_ghzdzh").val());
+	}
+
+function cxghqdmc(lxbm,qdzh){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/cxqdmc.do',
+        data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+qdzh,
+		dataType:'json',
+		success:function(msg){
+			$('#yx_qdmc').val(msg.qdmc);
+		}
+	});
+}
+
+function cxghzdmc(lxbm,zdzh){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/cxzdmc.do',
+        data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+zdzh,
+		dataType:'json',
+		success:function(msg){
+			$('#yx_zdmc').val(msg.zdmc);
+		}
+	});
+}
+
+function selectGHTSDQ(lxbm,qdzh,zdzh){
+	$("#yx_tsdq").text("");
+	var data="lxbm="+lxbm+"&qdzh="+qdzh+"&zdzh="+zdzh;
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/xmjck/selectTSDQ.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(msg.length>0){
+				var tsdqstr="";
+				for(var i=0;i<msg.length;i++){
+					tsdqstr=tsdqstr+msg[i]+"、";
+				}
+				tsdqstr=tsdqstr.substr(0,tsdqstr.length-1);
+				$("#yx_tsdq").text(tsdqstr);
+			}
+		}
+	});	
+}
+
+
+
+
 function querymcbygh(){
 	getylxinfo($('#ghlxbm').val(),$('#ghqdzh').val(),$('#ghzdzh').val());
 }
 
 function getylxinfo(lxbm,qdzh,zdzh){
+	
 	$("#gxlxbm").val('');$("#gxqdzh").val('');$("#gxzdzh").val('');
-	queryJsdjAndLc1(lxbm,qdzh,zdzh);
-	selectTSDQ1(lxbm,qdzh,zdzh);
-	cxqdmc1(lxbm,qdzh);
-	cxzdmc1(lxbm,zdzh);
+	queryJsdjAndLc1(lxbm,qdzh,zdzh);  //查询起止点桩号间的技术等级和里程
+	selectTSDQ1(lxbm,qdzh,zdzh);      //查询特殊地区
+	cxqdmc1(lxbm,qdzh);               //根据路线编码和起点桩号查询起点名称
+	cxzdmc1(lxbm,zdzh);               //根据路线编码和起点桩号查询止点名称
+	
 	$('#lc').val(accSub(parseFloat(zdzh),parseFloat(qdzh)));
 	$('#lc').html(accSub(parseFloat(zdzh),parseFloat(qdzh)));
-	getgxlxinfo(lxbm,qdzh,zdzh);
+	getgxlxinfo(lxbm,qdzh,zdzh);      //根据路线编码、起点桩号和止点桩号获取共线信息
 	$.ajax({
 		data:'xmsq.ylxbm='+lxbm+"&xmsq.qdzh="+qdzh+"&xmsq.zdzh="+zdzh+"&xmsq.xzqh="+$.cookie("dist2"),
 		type:'post',

@@ -1140,6 +1140,41 @@ function openwnxmk(xmbm){
 	openWindow('lsjlwindow','五年项目','/jxzhpt/page/qqgl/jhsh/wnxmk.jsp',980,300);
 }
 
+function queryghmc(id){
+	if(id=="yx_ghqdzh"){
+		cxghqdmc($('#yx_ylxbh').val(),$('#yx_qdzh').val());
+	}else if(id=="yx_ghzdzh"){
+		cxghzdmc($('#yx_ylxbh').val(),$('#yx_zdzh').val());
+	}else{
+		cxghqdmc($('#yx_ylxbh').val(),$('#yx_qdzh').val());
+		cxghzdmc($('#yx_ylxbh').val(),$('#yx_zdzh').val());
+	}
+}
+
+function cxghqdmc(lxbm,qdzh){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/cxqdmc.do',
+        data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+qdzh,
+		dataType:'json',
+		success:function(msg){
+			$('#yx_qdmc').val(msg.qdmc);
+		}
+	});
+}
+
+function cxghzdmc(lxbm,zdzh){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/cxzdmc.do',
+        data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+zdzh,
+		dataType:'json',
+		success:function(msg){
+			$('#yx_zdmc').val(msg.zdmc);
+		}
+	});
+}
+
 /**
  * 查询桩号地方名称
  * @param id 桩号元素ID
@@ -1157,10 +1192,12 @@ function querymc(id){
 	//alert();
 	getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 	//queryJsdjAndLc($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+	
 	if(parseFloat($('#ghqdzh').val())<parseFloat($('#ghzdzh').val()))
 	getylxlminfo($('#ghlxbm').val(),$('#ghqdzh').val(),$('#ghzdzh').val());
 	else
 	getylxlminfo($('#ghlxbm').val(),$('#ghzdzh').val(),$('#ghqdzh').val());
+	
 	$('#lc').val(Math.abs(accSub(parseFloat($('#zdzh').val()),parseFloat($('#qdzh').val()))));
 	$('#lc').html(Math.abs(accSub(parseFloat($('#zdzh').val()),parseFloat($('#qdzh').val()))));
 }

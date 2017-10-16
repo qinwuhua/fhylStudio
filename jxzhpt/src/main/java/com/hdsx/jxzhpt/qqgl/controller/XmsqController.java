@@ -2101,6 +2101,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			e.printStackTrace();
 		}
 	}
+	
 	public void getylxlminfo(){
 		Lx l=xmsqServer.getylxlminfo(xmsq);
 		try {
