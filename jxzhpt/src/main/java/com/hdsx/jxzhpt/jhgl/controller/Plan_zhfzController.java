@@ -212,8 +212,9 @@ public class Plan_zhfzController  extends BaseActionSupport{
 		et.add(new Excel_tilte("批复文号",1,2,18,18));
 		et.add(new Excel_tilte("建设年度",1,2,19,19));
 		et.add(new Excel_tilte("管养单位",1,2,20,20));
-		et.add(new Excel_tilte("备注",1,2,21,21));
-		et.add(new Excel_tilte("特殊地区",1,2,22,22));
+		et.add(new Excel_tilte("项目年份",1,2,21,21));
+		et.add(new Excel_tilte("备注",1,2,22,22));
+		et.add(new Excel_tilte("特殊地区",1,2,23,23));
 		et.add(new Excel_tilte("路线编码",2,2,3,3));
 		et.add(new Excel_tilte("路线名称",2,2,4,4));
 		et.add(new Excel_tilte("起点桩号",2,2,5,5));

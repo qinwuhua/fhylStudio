@@ -22,7 +22,8 @@ function querySumWqgz(jh,lx){
 			'jh.sfylsjl':jh.sfylsjl,'jh.jh_sbthcd':jh.jh_sbthcd,
 			"lx.gydwlx":lx.gydwlx,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,
 			"lx.lxbm":lx.lxbm,"lx.qlmc":lx.qlmc,"lx.akjfl":lx.akjfl,"lx.jsxz":lx.jsxz,"lx.lxbm":lx.lxbm,
-			"lx.jsdj":lx.jsdj,"lx.gldj":lx.gldj,"lx.tsdq":lx.tsdq,"lx.xmklx":lx.xmklx};
+			"lx.jsdj":lx.jsdj,"lx.gldj":lx.gldj,"lx.tsdq":lx.tsdq,"lx.xmklx":lx.xmklx,
+			"lx.xlxmc":lx.xlxmc,"lx.xlxbm":lx.xlxbm,"lx.xqlbm":lx.xqlbm,"lx.xqlmc":lx.xqlmc,"lx.qlbh":lx.qlbh};
 
 	
 	$.ajax({
@@ -86,17 +87,18 @@ function wqxm(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
 			'jh.sfylsjl':jh.sfylsjl,'jh.jh_sbthcd':jh.jh_sbthcd,
 			"lx.gydwlx":lx.gydwlx,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,
-			"lx.lxbm":lx.lxbm,"lx.qlmc":lx.qlmc,"lx.akjfl":lx.akjfl,"lx.jsxz":lx.jsxz,"lx.lxbm":lx.lxbm,"lx.jsdj":lx.jsdj,"lx.gldj":lx.gldj,"lx.tsdq":lx.tsdq,"lx.xmklx":lx.xmklx};
-
+			"lx.lxbm":lx.lxbm,"lx.qlmc":lx.qlmc,"lx.qlbh":lx.qlbh,"lx.akjfl":lx.akjfl,"lx.jsxz":lx.jsxz,"lx.lxbm":lx.lxbm,"lx.jsdj":lx.jsdj,"lx.gldj":lx.gldj,"lx.tsdq":lx.tsdq,"lx.xmklx":lx.xmklx,
+			"lx.xlxmc":lx.xlxmc,"lx.xlxbm":lx.xlxbm,"lx.xqlbm":lx.xqlbm,"lx.xqlmc":lx.xqlmc};
 	
-	queryParams='lx.gydwlx='+lx.gydwlx+'&jh.sbzt='+jh.sbzt+'&jh.spzt='+jh.spzt+'&jh.sbnf='+jh.sbnf+'&lx.gydwbm='+lx.gydwbm+
-	'&lx.xzqhdm='+lx.xzqhdm+'&lx.lxmc='+lx.lxmc+"&lx.lxbm"+lx.lxbm+"&lx.lxbm"+lx.lxbm+"&lx.qlmc"+lx.qlmc+"&lx.akjfl"+lx.akjfl+"&lx.xmklx="+lx.xmklx;
+	queryParams='lx.gydwlx='+lx.gydwlx+'&jh.sbzt='+jh.sbzt+'&jh.spzt='+jh.spzt+'&jh.sbnf='+jh.sbnf+'&lx.gydwbm='+lx.gydwbm+'&lx.qlbh='+lx.qlbh+
+	'&lx.xzqhdm='+lx.xzqhdm+'&lx.lxmc='+lx.lxmc+"&lx.lxbm"+lx.lxbm+"&lx.lxbm"+lx.lxbm+"&lx.qlmc"+lx.qlmc+"&lx.akjfl"+lx.akjfl+"&lx.xmklx="+lx.xmklx+
+	'&lx.xlxmc='+lx.xlxmc+'&lx.xlxbm='+lx.xlxbm+'&lx.xqlbm='+lx.xqlbm+'&lx.xqlmc='+lx.xqlmc;
 	var grid={id:'grid',url:'../../../jhgl/queryWqgzList.do',pagination:true,rownumbers:false,
 		    pageNumber:1,pageSize:10,height:$(window).height()-210,width:$('#searchField').width(),queryParams:params,
 		    columns:[[
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-		        	var result='<a href="javascript:locationQl('+"'"+row.jckwqgz.qlbh+"',"+"'"+row.jckwqgz.qlzxzh+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
+		        	var result='<a href="javascript:locationQl('+"'"+row.jckwqgz.qlbh+"',"+"'"+row.jckwqgz.qlzxzh+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>';
 		        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		        	result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 		        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
@@ -154,22 +156,22 @@ function wqxm(jh,lx){
 		        		return row.jckwqgz.xzqhmc;
 		        	}
 		        },
-		        {field:'lxbm',title:'路线编码',width:80,align:'center',
+		        {field:'lxbm',title:'规划路线编码',width:80,align:'center',
 		        	formatter:function(value,row,index){
 			        	return row.jckwqgz.lxbm;
 		        	}
 		        },
-		        {field:'lxmc',title:'路线名称',width:80,align:'center',
+		        {field:'lxmc',title:'规划路线名称',width:80,align:'center',
 		        	formatter:function(value,row,index){
 			        	return row.jckwqgz.lxmc;
 		        	}
 		        },
-		        {field:'qlbm',title:'桥梁编码',width:60,align:'center',
+		        {field:'qlbm',title:'规划桥梁编码',width:60,align:'center',
 		        	formatter:function(value,row,index){
 			        	return row.jckwqgz.qlbh;
 		        	}
 		       },
-		        {field:'qlmc',title:'桥梁名称',width:60,align:'center',
+		        {field:'qlmc',title:'规划桥梁名称',width:60,align:'center',
 		    	   formatter:function(value,row,index){
 			        	return row.jckwqgz.qlmc;
 		        	}

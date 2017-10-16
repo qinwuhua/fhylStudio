@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>江西省公路业务综合管理平台</title>
+<title>江西省公路计划项目管理系统</title>
 <link rel="stylesheet" type="text/css" href="./easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="./easyui/themes/icon.css" />
 <link rel="stylesheet" type="text/css" href="./css/Top.css" />

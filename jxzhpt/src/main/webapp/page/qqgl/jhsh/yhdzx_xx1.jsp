@@ -84,7 +84,10 @@
 				success:function(data){
 					$('#cbsj1').form("load",data);
 					fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
+					$("#cbsj1 textarea[id='jsfa']").attr("disabled","disabled");
+					$("#cbsj1 textarea[id='bz']").attr("disabled","disabled");
 					$('#sfbj').val(1);
+					//$('#bz').val(1);
 					if(data.xfchd=='是'){
 						$("#xfcse1").attr('checked','checked');
 					}
@@ -97,27 +100,26 @@
 					if(data.snhntmcsshhd=='是'){
 						$("#snhntmcsshse1").attr('checked','checked');
 					}
-					
-					
-					if(msg.fcbc30hd=='是'){
+						
+					if(data.fcbc30hd=='是'){
 						$("#fcbc30se1").attr('checked','checked');
 					}
-					if(msg.bc6hd=='是'){
+					if(data.bc6hd=='是'){
 						$("#bc6se1").attr('checked','checked');
 					}
-					if(msg.bc25hd=='是'){
+					if(data.bc25hd=='是'){
 						$("#bc25se1").attr('checked','checked');
 					}
-					if(msg.bc30hd=='是'){
+					if(data.bc30hd=='是'){
 						$("#bc30se1").attr('checked','checked');
 					}
-					if(msg.bmc25hd=='是'){
+					if(data.bmc25hd=='是'){
 						$("#bmc25se1").attr('checked','checked');
 					}
-					if(msg.wfchd=='是'){
+					if(data.wfchd=='是'){
 						$("#wfcse1").attr('checked','checked');
 					}
-					if(msg.xjfchd=='是'){
+					if(data.xjfchd=='是'){
 						$("#xjfcse1").attr('checked','checked');
 					}
 					
@@ -1097,6 +1099,14 @@
 						<textarea id="jsfa" name="jsfa" style="width: 650px;height: 50px;"></textarea>
 					</td>
 				</tr>
+				<tr style="height: 70px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						备注
+					</td>
+					<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<textarea id="bz" name="bz" style="width: 650px;height: 50px;"></textarea>
+					</td>
+				</tr>
 				<tr style="height: 30px;">
 					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 						设计批复文件
@@ -1593,23 +1603,22 @@
 								<input id="ztz" name="ztz" class="easyui-numberbox" type="text" value="0" style="width: 100px;height: 20px;" />万元
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">燃油税：</font></b>
+								燃油税
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 								<input id="rys" name="rys" class="easyui-numberbox" type="text" value="0" style="width: 100px;height: 20px;" />万元
 							</td>
 							</tr>
 						<tr style="height: 30px;font-size: 10px;">
-
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">厅贷款：</font></b>
+								厅贷款
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 								<input id="dk" name="dk" type="text" class="easyui-numberbox" value="0" style="width: 100px;height: 20px;" />万元
 							</td>
 						
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">其他：</font></b>
+								其他
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 								<input id="qt" name="qt" type="text" class="easyui-numberbox" value="0" style="width: 100px;height: 20px;" />万元
@@ -1618,13 +1627,13 @@
 						<tr style="height: 30px;font-size: 10px;">
 							
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">重要度排序：</font></b>
+								重要度排序
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<input id="zydpx" name="zydpx" type="text" class="easyui-numberbox"   style="width: 100px;height: 20px;" />
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">是否使用车购税：</font></b>
+								是否使用车购税
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 								<select id="sfsycgs1" class="easyui-combobox" style="width: 105px" data-options="panelHeight:'80'"> 
@@ -1635,6 +1644,38 @@
 								<input id="sfsycgs" name="sfsycgs" type="hidden" />
 							</td>
 						</tr>
+							<tr style="height: 30px;font-size: 10px;">
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								施工图预算
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+								<input id="tz" name="tz" type="text" class="easyui-numberbox" value="0" style="width: 100px;height: 20px;" />万元
+							</td>
+						
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								立项阶段省补
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+								<input id="lxsbzj" name="lxsbzj" type="text" class="easyui-numberbox" value="0" style="width: 100px;height: 20px;" />万元
+							</td>
+						</tr>
+						</tr>
+							<tr style="height: 30px;font-size: 10px;">
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								施工图阶段省补
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+								<input id="sgtsbzj" name="sgtsbzj" type="text" class="easyui-numberbox" value="0" style="width: 100px;height: 20px;" />万元
+							</td>	
+						</tr>
+						<tr style="height: 70px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						备注
+					</td>
+					<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<textarea id="bz" name="bz" style="width: 650px;height: 50px;" disabled></textarea>
+					</td>
+				</tr>
 			</table>
 		</form>
 	</div>

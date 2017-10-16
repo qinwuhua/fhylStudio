@@ -30,7 +30,14 @@ public class Plan_zjxd {
 	private String zyjsnr;//主要建设内容
 	private String xzscnl;//新增能力
 	private String zbz;//总补助
+	private String zddzjl;//重点奖励
 	
+	public String getZddzjl() {
+		return zddzjl;
+	}
+	public void setZddzjl(String zddzjl) {
+		this.zddzjl = zddzjl;
+	}
 	public String getZbz() {
 		return zbz;
 	}

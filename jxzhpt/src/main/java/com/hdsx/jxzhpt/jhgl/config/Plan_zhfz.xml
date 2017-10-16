@@ -38,7 +38,13 @@
 			(
 				select rownum as num,t.* from (
 					select jh.jh_sbthcd,jh.sbzt,jh.spzt,jh.kgzt,jh.jgzt,jh.jhkgsj,jh.jhwgsj,jh.sbnf,jh.id,jh.sckid,jh.pfztz,sc.bzls as sfylsjl,
-					lx.lxmc,lx.lxbm,lx.gydw,lx.gydwbm,lx.qdzh,lx.zdzh,lx.yhlc,lx.xzqhmc,lx.xzqhdm,lx.ylxbm,lx.yqdzh,lx.yzdzh,lx.ylxmc
+					lx.lxmc,lx.lxbm,lx.gydw,lx.gydwbm,
+					decode(substr(lx.qdzh,1,1),'.','0'||lx.qdzh,lx.qdzh) as qdzh,
+					decode(substr(lx.zdzh,1,1),'.','0'||lx.zdzh,lx.zdzh) as zdzh,										
+					lx.yhlc,lx.xzqhmc,lx.xzqhdm,lx.ylxbm,
+					decode(substr(lx.yqdzh,1,1),'.','0'||lx.yqdzh,lx.yqdzh) as yqdzh,										
+					decode(substr(lx.yzdzh,1,1),'.','0'||lx.yzdzh,lx.yzdzh) as yzdzh,															
+					lx.ylxmc
 					from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid)
 					left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1
 				 	<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
@@ -252,20 +258,21 @@
 		 </if>
 	</select>
 	<select id="exportExcel_jh" parameterType="hashMap" resultType="elist">
-		select rownum v_0,(select name from xtgl_xzqh where id=substr(lx.xzqhdm,0,4)||'00') v_1,lx.xzqhmc v_2,
-        '' v_3,'' v_4,'' v_5,'' v_6,lx.lxbm v_7,lx.lxmc v_8, 
-        to_char(jh.jhqdzh,'fm9999999990.000') v_9,to_char(jh.jhzdzh,'fm9999999990.000') v_10,
-        to_char(sc.sczlc,'fm9999999990.000') v_11,to_char(sc.scyhlc,'fm9999999990.000') v_12,
-       nvl(jh.pfztz,0) v_13,nvl(jh.jhsybzje,0) v_14,nvl(jh.jhsydfzcje,0) v_15,sc.jsxz v_16,
-       sc.jsnr v_17,jh.pfwh v_18,jh.sbnf v_19,
-       lx.gydw v_20,jh.bz v_21,t.tsdq v_22
-    from plan_zhfz jh
-    left join sck_zhfz sc on (jh.sckid = sc.sckid)
-    left join xmk_zhfz lx on (sc.xmkid = lx.id) 
-    left join (select  replace(WMSYS.WM_CONCAT(distinct(to_char(t.name))),',',',') tsdq,x.xzqhdm 
-                from xtgl_xzqhtsdq x left join xtgl_tsdq t on x.parent=t.id  group by x.xzqhdm) t 
-               on lx.xzqhdm=t.xzqhdm
-    where 1=1
+	      select rownum v_0,(select name from xtgl_xzqh where id = substr(lx.xzqhdm, 0, 4) || '00') v_1,
+                 lx.xzqhmc v_2, lx.lxbm v_3, lx.lxmc v_4, to_char(lx.qdzh, 'fm9999999990.000') v_5,
+                 to_char(lx.zdzh, 'fm9999999990.000') v_6, lx.ylxbm v_7, lx.ylxmc v_8, to_char(lx.yqdzh, 'fm9999999990.000') v_9,
+                 to_char(lx.yzdzh, 'fm9999999990.000') v_10, to_char(sc.sczlc, 'fm9999999990.000') v_11,
+                 to_char(sc.scyhlc, 'fm9999999990.000') v_12, nvl(jh.pfztz, 0) v_13, nvl(jh.jhsybzje, 0) v_14,
+                 nvl(jh.jhsydfzcje, 0) v_15, sc.jsxz v_16, sc.jsnr v_17, jh.pfwh v_18, jh.sbnf v_19, lx.gydw v_20,
+                 jh.sbnf v_21, jh.bz v_22, t.tsdq v_23
+          from plan_zhfz jh
+          left join sck_zhfz sc on (jh.sckid = sc.sckid)
+          left join xmk_zhfz lx on (sc.xmkid = lx.id)
+          left join (select replace(WMSYS.WM_CONCAT(distinct(to_char(t.name))), ',', ',') tsdq, x.xzqhdm
+               from xtgl_xzqhtsdq x
+               left join xtgl_tsdq t on x.parent = t.id
+               group by x.xzqhdm) t on lx.xzqhdm = t.xzqhdm
+               where 1 = 1
 		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
 					</if>

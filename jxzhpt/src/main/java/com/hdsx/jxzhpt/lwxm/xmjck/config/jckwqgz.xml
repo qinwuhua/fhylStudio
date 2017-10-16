@@ -195,13 +195,15 @@
  </update>
  
  <update id="xgJckwqgzShzt" parameterType="hashmap" >
- 	update xmk_wqgz set shzt='已审核',shsj=sysdate,shbm=#{shbm} where id=#{id}
+ 	update xmk_wqgz set zgshzt='已审核',shsj=sysdate,shbm=#{shbm} where id=#{id}
  </update>
 
   <update id="xgJckWqgzTH" parameterType="java.util.List" >
  	update xmk_wqgz set sbthcd=(sbthcd+2) where id =#{String}
  </update>
- 
+ <update id="xgJckWqgzTHxj" parameterType="java.util.List" >
+ 	update xmk_wqgz set shzt='未审核' where id =#{String}
+ </update>
   <select id="selectGpsroad"  parameterType="hashmap" resultType="jckwqgz">
  	select roadbm qlbh,F002 qlmc,roadpos qlzxzh,gydw,<!-- DISTNAME xzqhmc -->
  	(select name from jxzhpt.xtgl_xzqh where id =substr(roadcode,length(roadcode)-5,6)) xzqhmc,
@@ -249,7 +251,7 @@
  		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥墩类型%' and F002=F023) qdlx,
  		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥台类型%' and F002=F025) qtlx,
  		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥面铺装类型%' and F002=F027) pzlx,
- 		F013 qmjk,F020 qxjk,F015 zqks,decode(d.yqlbm,null,d.yqlbm,q.yqlbh) xqlbh,decode(d.yqlmc,null,d.yqlmc,q.yqlmc) xqlmc,decode(d.yqlzz,null,d.yqlzz,q.yzxzh) xzxzh
+ 		F013 qmjk,F020 qxjk,F015 zqks,decode(d.yqlbm, null,  q.yqlbh, d.yqlbm) xqlbm,decode(d.yqlmc, null, q.yqlmc, d.yqlmc) xqlmc,decode(d.yqlzz, null, q.yzxzh, d.yqlzz) xzxzh
 		from DATA50 d left join qlxlgl q on d.roadbm=q.xqlbh where substr(roadcode,1,1) in('G','S','X','Y','C','Z') and sfxzdm='1' <!-- and F045 in('四类','五类')  -->
 <!-- 		and F044 in(SELECT F002 FROM ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F003 in('四类','五类')) -->
 		<!-- and F010 in('中桥','大桥','特大桥')  -->
@@ -317,7 +319,7 @@
  
   <select id="selectJckShwqgz" parameterType="jckwqgz" resultType="jckwqgz">
  	select * from (
- 		select rownum num ,t.* from xmk_wqgz t where sbthcd=7 and SFYLRBWQK='是'
+ 		select rownum num ,t.* from xmk_wqgz t where sbthcd=7 and SFYLRBWQK='是' and shzt='已审核'
 		and sbthcd>=#{sbthcd} and (sfwg!='是' or sfwg is null)
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -341,7 +343,7 @@
  			and xmtype like '%'||(#{xmtype})||'%'
  		</if>
  		<if test="shzt!='' and shzt!= null ">
- 			and shzt like '%'||(#{shzt})||'%'
+ 			and zgshzt like '%'||(#{shzt})||'%'
  		</if>
  		<if test="jsdj!='' and jsdj!= null ">
  			${jsdj}
@@ -371,7 +373,7 @@
  			order by shzt desc
  </select>
   <select id="selectWqgzShCount" parameterType="jckwqgz" resultType="int">
- 		select count(*) from xmk_wqgz t where sbthcd=7 and SFYLRBWQK='是' and sbthcd>=#{sbthcd}  and (sfwg!='是' or sfwg is null)
+ 		select count(*) from xmk_wqgz t where sbthcd=7 and SFYLRBWQK='是' and sbthcd>=#{sbthcd}  and (sfwg!='是' or sfwg is null)  and shzt='已审核'
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -394,7 +396,7 @@
  			and xmtype like '%'||(#{xmtype})||'%'
  		</if>
  		<if test="shzt!='' and shzt!= null ">
- 			and shzt like '%'||(#{shzt})||'%'
+ 			and zgshzt like '%'||(#{shzt})||'%'
  		</if>
  		<if test="jsdj!='' and jsdj!= null ">
  			${jsdj}
@@ -503,13 +505,14 @@
 
  <select id="exportExcel_wqgz" parameterType="jckwqgz" resultType="elist">
  	  select 
-  rownum v_0,gydw v_1,xzqhdm v_2,xzqhmc v_3,ptx v_4,pty v_5,lxbm v_6,lxmc v_7,qlbh v_8,qlmc v_9,qlzxzh v_10,
-  xjgjnd v_11,qlqc v_12,qlkd v_13,kjzc v_14,dkzdkj v_15,akjfl v_16,sbjgxs v_17,pddj v_18,bhnr v_19,xmnf v_20,
-  xmklx v_21,tsdq v_22,bz v_23
+  rownum v_0,gydw v_1,xzqhdm v_2,xzqhmc v_3,ptx v_4,pty v_5,  
+  lxbm v_6, lxmc v_7, qlbh v_8, qlmc v_9, qlzxzh v_10,
+  xlxbm v_11, xlxmc v_12, xqlbm v_13, xqlmc v_14, xzxzh v_15,
+  xjgjnd v_16, qlqc v_17, qlkd v_18, kjzc v_19, dkzdkj v_20, akjfl v_21, sbjgxs v_22, pddj v_23, bhnr v_24, xmnf v_25,
+  xmklx v_26, tsdq v_27, bz v_28
    from xmk_wqgz  where 1=1
  	<include refid="wqgz_commonsql"/>
  	<!-- 
->>>>>>> refs/remotes/origin/master
  	and sbthcd &lt;=#{sbthcd}
  	<if test="gydw!='' and gydw!= null ">
 		${gydw}
@@ -547,7 +550,6 @@
 	<if test="tsdq!='' and tsdq!= null ">
 		and tsdq like '%'||(#{tsdq})||'%'
 	</if>
-<<<<<<< HEAD
 	<if test="xlxbm !='' and xlxbm != null">
 	    and xlxbm like '%'||(#{xlxbm})||'%'
 	</if>
@@ -563,11 +565,9 @@
 	<if test="xqlmc !='' and xqlmc != null">
 	    and xlxbm like '%'||(#{xlxbm})||'%'
 	</if>
-=======
 	<if test="xmklx !='' and xmklx != null ">
  			and xmklx like '%'||(#{xmklx})||'%'
  	</if> -->
->>>>>>> refs/remotes/origin/master
  </select>
  <insert id="importWqgz"  parameterType="hashMap">
 	insert into xmk_wqgz(id,gydwbm,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qlbh,qlmc,qlzxzh,
@@ -581,8 +581,10 @@
   <select id="exportExcel_wqgz_sh" parameterType="jckwqgz" resultType="elist">
  	  select 
 	  rownum v_0, gydw v_1, xzqhdm v_2, xzqhmc v_3, ptx v_4, pty v_5,
-	  lxbm v_6, lxmc v_7, qlbh v_8, qlmc v_9, qlzxzh v_10,
-	  xlxbm v_11, xlxmc v_12, xqlbm v_13, xqlmc v_14, xzxzh v_15,	  
+	  lxbm v_6, lxmc v_7, qlbh v_8, qlmc v_9, 	  
+	  to_char(qlzxzh, 'fm9999999990.000') v_10,	  
+	  xlxbm v_11, xlxmc v_12, xqlbm v_13, xqlmc v_14, 	  
+	  to_char(xzxzh, 'fm9999999990.000') v_15,	  	  
 	  xjgjnd v_16, qlqc v_17, qlkd v_18, kjzc v_19, dkzdkj v_20, akjfl v_21, sbjgxs v_22, pddj v_23, bhnr v_24, xmnf v_25,
 	  xmklx v_26, tsdq v_27, bz v_28
 	   from xmk_wqgz  where sbthcd=7

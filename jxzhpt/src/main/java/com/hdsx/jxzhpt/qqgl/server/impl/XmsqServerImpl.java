@@ -543,7 +543,8 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 			return l.get(0);
 			else
 				return null;
-	}
+	}	
+	
 	@Override
 	public Lx getylxlminfo(Xmsq xmsq) {
 		List<Lx> l=queryList("getylxlminfo", xmsq);
@@ -851,5 +852,9 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		params1.put("level", level);
 		params1.put("xzqhdm", xzqhdm);
 		return queryList("queryLxFromLxshlxByLevel", params1);
+	}
+	@Override
+	public List<Lx> queryAutoyxList(Xmsq xmsq) {
+		return queryList("queryAutoyxList",xmsq);
 	}
 }

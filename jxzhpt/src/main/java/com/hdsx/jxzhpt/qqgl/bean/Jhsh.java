@@ -241,6 +241,25 @@ public class Jhsh implements Serializable{
 
     private String bz;
     
+    private String lxsbzj; //立项阶段省补助  
+    private String sgtsbzj;//施工图阶段省补助
+    
+	public String getLxsbzj() {
+		return lxsbzj;
+	}
+
+	public void setLxsbzj(String lxsbzj) {
+		this.lxsbzj = lxsbzj;
+	}
+
+	public String getSgtsbzj() {
+		return sgtsbzj;
+	}
+
+	public void setSgtsbzj(String sgtsbzj) {
+		this.sgtsbzj = sgtsbzj;
+	}
+
 	public String getTiaojian() {
 		return tiaojian;
 	}
@@ -1315,67 +1334,6 @@ public class Jhsh implements Serializable{
 		this.yjsdj = yjsdj;
 	}
 
-	@Override
-	public String toString() {
-		return "Jhsh [jhxdsj=" + jhxdsj + ", yjsdj=" + yjsdj + ", jsjsdj="
-				+ jsjsdj + ", xjsdj=" + xjsdj + ", tz=" + tz + ", ghxlxbm="
-				+ ghxlxbm + ", ghxlxmc=" + ghxlxmc + ", scxdnf=" + scxdnf
-				+ ", xzdj=" + xzdj + ", xdzttj=" + xdzttj + ", zjly=" + zjly
-				+ ", xmnf=" + xmnf + ", gyfl=" + gyfl + ", bzxdnf=" + bzxdnf
-				+ ", bzpfztz=" + bzpfztz + ", bzgz=" + bzgz + ", bzsz=" + bzsz
-				+ ", bzzq=" + bzzq + ", bzdk=" + bzdk + ", bzjl=" + bzjl
-				+ ", bzqt=" + bzqt + ", bzdfzc=" + bzdfzc + ", bzyhdk="
-				+ bzyhdk + ", bzcgs=" + bzcgs + ", bztbsj=" + bztbsj
-				+ ", tbdw=" + tbdw + ", xzqhmc=" + xzqhmc + ", jhlc=" + jhlc
-				+ ", zq=" + zq + ", jl=" + jl + ", qt=" + qt + ", sfsycgs="
-				+ sfsycgs + ", rys=" + rys + ", bzrys=" + bzrys + ", zydpx="
-				+ zydpx + ", sbzt=" + sbzt + ", shzt=" + shzt + ", page="
-				+ page + ", rows=" + rows + ", bcxd=" + bcxd + ", bcxdwh="
-				+ bcxdwh + ", bcxdsj=" + bcxdsj + ", bcztz=" + bcztz
-				+ ", bccgs=" + bccgs + ", bcstz=" + bcstz + ", yhdk=" + yhdk
-				+ ", gz=" + gz + ", sz=" + sz + ", jhxdwh=" + jhxdwh + ", stc="
-				+ stc + ", dk=" + dk + ", gzzq=" + gzzq + ", szzq=" + szzq
-				+ ", id=" + id + ", xmmc=" + xmmc + ", xmbm=" + xmbm
-				+ ", xzqh=" + xzqh + ", qdzh=" + qdzh + ", zdzh=" + zdzh
-				+ ", kgsj=" + kgsj + ", wgsj=" + wgsj + ", gq=" + gq
-				+ ", gkpfwh=" + gkpfwh + ", sjpfwh=" + sjpfwh + ", xdwh="
-				+ xdwh + ", xdsj=" + xdsj + ", pfztz=" + pfztz + ", bbzzj="
-				+ bbzzj + ", sbzzj=" + sbzzj + ", xdzt=" + xdzt + ", ghlxbh="
-				+ ghlxbh + ", xzqhdm=" + xzqhdm + ", lsjl=" + lsjl + ", xmlx="
-				+ xmlx + ", xmlxs=" + xmlxs + ", xmlx1=" + xmlx1 + ", tsdq="
-				+ tsdq + ", ylxbh=" + ylxbh + ", gcfl=" + gcfl + ", jhkgsj="
-				+ jhkgsj + ", jhwgsj=" + jhwgsj + ", lc=" + lc + ", ztz=" + ztz
-				+ ", sysbbzj=" + sysbbzj + ", yqdbcgs=" + yqdbcgs + ", mclmlx="
-				+ mclmlx + ", mclx=" + mclx + ", mcsl=" + mcsl + ", mcje="
-				+ mcje + ", jclx=" + jclx + ", jcsl=" + jcsl + ", jcje=" + jcje
-				+ ", xfcsl=" + xfcsl + ", xfcje=" + xfcje + ", bxsl=" + bxsl
-				+ ", bxje=" + bxje + ", gfcd=" + gfcd + ", gfje=" + gfje
-				+ ", llcl=" + llcl + ", jsdj=" + jsdj + ", jszlc=" + jszlc
-				+ ", gydw=" + gydw + ", qdmc=" + qdmc + ", zdmc=" + zdmc
-				+ ", gpsqdzh=" + gpsqdzh + ", gpszdzh=" + gpszdzh + ", yilc="
-				+ yilc + ", erlc=" + erlc + ", sanlc=" + sanlc + ", silc="
-				+ silc + ", dwlc=" + dwlc + ", wllc=" + wllc + ", lxmc=" + lxmc
-				+ ", ylxmc=" + ylxmc + ", lxbm=" + lxbm + ", kgzt=" + kgzt
-				+ ", xdnf=" + xdnf + ", xdzj=" + xdzj + ", btzzj=" + btzzj
-				+ ", stz=" + stz + ", xmsl=" + xmsl + ", qsmc=" + qsmc
-				+ ", xjmc=" + xjmc + ", jb=" + jb + ", jsxz=" + jsxz
-				+ ", ydbmc=" + ydbmc + ", zbzzj=" + zbzzj + ", zddzjl="
-				+ zddzjl + ", dfzc=" + dfzc + ", lxzh=" + lxzh + ", gldj="
-				+ gldj + ", zyjsnr=" + zyjsnr + ", xzscnl=" + xzscnl
-				+ ", ylmlx=" + ylmlx + ", ylmjg=" + ylmjg + ", ghlxbm="
-				+ ghlxbm + ", ghlxmc=" + ghlxmc + ", ghqdzh=" + ghqdzh
-				+ ", ghzdzh=" + ghzdzh + ", gxlxbm=" + gxlxbm + ", gxqdzh="
-				+ gxqdzh + ", gxzdzh=" + gxzdzh + ", zlc=" + zlc + ", xmklx="
-				+ xmklx + ", qdzh1=" + qdzh1 + ", zdzh1=" + zdzh1 + ", lsxmbm="
-				+ lsxmbm + ", lsxmnf=" + lsxmnf + ", lsxmlx=" + lsxmlx
-				+ ", sgtsjwh=" + sgtsjwh + ", sfqx=" + sfqx + ", hszj=" + hszj
-				+ ", jhwj=" + jhwj + ", name=" + name + ", ttc=" + ttc
-				+ ", gydwdm=" + gydwdm + ", parent=" + parent + ", wbc=" + wbc
-				+ ", wbchd=" + wbchd + ", tbz=" + tbz + ", tbz_jaf=" + tbz_jaf
-				+ ", tbz_gcjlf=" + tbz_gcjlf + ", tbz_qqgzf=" + tbz_qqgzf
-				+ ", thyy=" + thyy + ", jbzj=" + jbzj + "]";
-	}
-
 	public String getSzds() {
 		return szds;
 	}
@@ -1519,7 +1477,48 @@ public class Jhsh implements Serializable{
 	public void setBz(String bz) {
 		this.bz = bz;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Jhsh [jhxdsj=" + jhxdsj + ", yjsdj=" + yjsdj + ", jsjsdj=" + jsjsdj + ", xjsdj=" + xjsdj + ", tz=" + tz
+				+ ", ghxlxbm=" + ghxlxbm + ", ghxlxmc=" + ghxlxmc + ", scxdnf=" + scxdnf + ", xzdj=" + xzdj
+				+ ", xdzttj=" + xdzttj + ", zjly=" + zjly + ", xmnf=" + xmnf + ", gyfl=" + gyfl + ", bzxdnf=" + bzxdnf
+				+ ", bzpfztz=" + bzpfztz + ", bzgz=" + bzgz + ", bzsz=" + bzsz + ", bzzq=" + bzzq + ", bzdk=" + bzdk
+				+ ", bzjl=" + bzjl + ", bzqt=" + bzqt + ", bzdfzc=" + bzdfzc + ", bzyhdk=" + bzyhdk + ", bzcgs=" + bzcgs
+				+ ", bztbsj=" + bztbsj + ", tbdw=" + tbdw + ", xzqhmc=" + xzqhmc + ", jhlc=" + jhlc + ", zq=" + zq
+				+ ", jl=" + jl + ", qt=" + qt + ", sfsycgs=" + sfsycgs + ", rys=" + rys + ", bzrys=" + bzrys
+				+ ", zydpx=" + zydpx + ", sbzt=" + sbzt + ", shzt=" + shzt + ", page=" + page + ", rows=" + rows
+				+ ", bcxd=" + bcxd + ", bcxdwh=" + bcxdwh + ", bcxdsj=" + bcxdsj + ", bcztz=" + bcztz + ", bccgs="
+				+ bccgs + ", bcstz=" + bcstz + ", yhdk=" + yhdk + ", gz=" + gz + ", sz=" + sz + ", jhxdwh=" + jhxdwh
+				+ ", stc=" + stc + ", dk=" + dk + ", gzzq=" + gzzq + ", szzq=" + szzq + ", id=" + id + ", xmmc=" + xmmc
+				+ ", xmbm=" + xmbm + ", xzqh=" + xzqh + ", qdzh=" + qdzh + ", zdzh=" + zdzh + ", kgsj=" + kgsj
+				+ ", wgsj=" + wgsj + ", gq=" + gq + ", gkpfwh=" + gkpfwh + ", sjpfwh=" + sjpfwh + ", xdwh=" + xdwh
+				+ ", xdsj=" + xdsj + ", pfztz=" + pfztz + ", bbzzj=" + bbzzj + ", sbzzj=" + sbzzj + ", xdzt=" + xdzt
+				+ ", ghlxbh=" + ghlxbh + ", xzqhdm=" + xzqhdm + ", lsjl=" + lsjl + ", xmlx=" + xmlx + ", xmlxs=" + xmlxs
+				+ ", xmlx1=" + xmlx1 + ", tsdq=" + tsdq + ", ylxbh=" + ylxbh + ", gcfl=" + gcfl + ", jhkgsj=" + jhkgsj
+				+ ", jhwgsj=" + jhwgsj + ", lc=" + lc + ", ztz=" + ztz + ", sysbbzj=" + sysbbzj + ", yqdbcgs=" + yqdbcgs
+				+ ", mclmlx=" + mclmlx + ", mclx=" + mclx + ", mcsl=" + mcsl + ", mcje=" + mcje + ", jclx=" + jclx
+				+ ", jcsl=" + jcsl + ", jcje=" + jcje + ", xfcsl=" + xfcsl + ", xfcje=" + xfcje + ", bxsl=" + bxsl
+				+ ", bxje=" + bxje + ", gfcd=" + gfcd + ", gfje=" + gfje + ", llcl=" + llcl + ", jsdj=" + jsdj
+				+ ", jszlc=" + jszlc + ", gydw=" + gydw + ", qdmc=" + qdmc + ", zdmc=" + zdmc + ", gpsqdzh=" + gpsqdzh
+				+ ", gpszdzh=" + gpszdzh + ", yilc=" + yilc + ", erlc=" + erlc + ", sanlc=" + sanlc + ", silc=" + silc
+				+ ", dwlc=" + dwlc + ", wllc=" + wllc + ", lxmc=" + lxmc + ", ylxmc=" + ylxmc + ", lxbm=" + lxbm
+				+ ", kgzt=" + kgzt + ", xdnf=" + xdnf + ", xdzj=" + xdzj + ", btzzj=" + btzzj + ", stz=" + stz
+				+ ", xmsl=" + xmsl + ", qsmc=" + qsmc + ", xjmc=" + xjmc + ", jb=" + jb + ", jsxz=" + jsxz + ", ydbmc="
+				+ ydbmc + ", zbzzj=" + zbzzj + ", zddzjl=" + zddzjl + ", dfzc=" + dfzc + ", lxzh=" + lxzh + ", gldj="
+				+ gldj + ", zyjsnr=" + zyjsnr + ", xzscnl=" + xzscnl + ", ylmlx=" + ylmlx + ", ylmjg=" + ylmjg
+				+ ", ghlxbm=" + ghlxbm + ", ghlxmc=" + ghlxmc + ", ghqdzh=" + ghqdzh + ", ghzdzh=" + ghzdzh
+				+ ", gxlxbm=" + gxlxbm + ", gxqdzh=" + gxqdzh + ", gxzdzh=" + gxzdzh + ", zlc=" + zlc + ", xmklx="
+				+ xmklx + ", qdzh1=" + qdzh1 + ", zdzh1=" + zdzh1 + ", lsxmbm=" + lsxmbm + ", lsxmnf=" + lsxmnf
+				+ ", lsxmlx=" + lsxmlx + ", sgtsjwh=" + sgtsjwh + ", sfqx=" + sfqx + ", hszj=" + hszj + ", jhwj=" + jhwj
+				+ ", name=" + name + ", ttc=" + ttc + ", gydwdm=" + gydwdm + ", parent=" + parent + ", wbc=" + wbc
+				+ ", wbchd=" + wbchd + ", tbz=" + tbz + ", tbz_jaf=" + tbz_jaf + ", tbz_gcjlf=" + tbz_gcjlf
+				+ ", tbz_qqgzf=" + tbz_qqgzf + ", thyy=" + thyy + ", cgs=" + cgs + ", jbzj=" + jbzj + ", xlxbm=" + xlxbm
+				+ ", pfwh=" + pfwh + ", xqdzh=" + xqdzh + ", xzdzh=" + xzdzh + ", sjpfdw=" + sjpfdw + ", sjpfsj="
+				+ sjpfsj + ", gcsl=" + gcsl + ", tiaojian=" + tiaojian + ", szds=" + szds + ", xzqhxj=" + xzqhxj
+				+ ", ghlxzh=" + ghlxzh + ", ylxbm=" + ylxbm + ", ylxzh=" + ylxzh + ", jsdjxj=" + jsdjxj + ", yj=" + yj
+				+ ", ej=" + ej + ", sj=" + sj + ", sij=" + sij + ", jsnf=" + jsnf + ", tbzhj=" + tbzhj + ", jaf=" + jaf
+				+ ", jlf=" + jlf + ", qqgz=" + qqgz + ", yxd=" + yxd + ", sgtwh=" + sgtwh + ", bz=" + bz + ", lxsbzj="
+				+ lxsbzj + ", sgtsbzj=" + sgtsbzj + "]";
+	}	
 }

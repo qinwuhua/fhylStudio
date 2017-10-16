@@ -53,6 +53,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	public Xmsq getModel() {
 		return xmsq;
 	}
+	
 	//分页参数
 	private int page = 1;
 	private int rows = 10;
@@ -119,6 +120,18 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			throw e;
 		}
 	}
+	
+	public void queryAutoyxList() throws Exception{
+		try{
+			if(xmsq.getYxylxbh()==null||"".equals(xmsq.getYxylxbh()))
+				return;
+			JsonUtils.write(xmsqServer.queryAutoyxList(xmsq), getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	
 	public void queryYlmlxByLxInfo(){
 		try{
@@ -2088,6 +2101,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			e.printStackTrace();
 		}
 	}
+	
 	public void getylxlminfo(){
 		Lx l=xmsqServer.getylxlminfo(xmsq);
 		try {

@@ -177,20 +177,23 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 			et.add(new Excel_tilte("序号",1,1,0,0));
 			et.add(new Excel_tilte("行政区划代码",1,1,1,1));
 			et.add(new Excel_tilte("行政区划名称",1,1,2,2));
-			et.add(new Excel_tilte("管养单位",1,1,3,3));
-			et.add(new Excel_tilte("原路线编码",1,1,4,4));
-			et.add(new Excel_tilte("原路线名称",1,1,5,5));
-			et.add(new Excel_tilte("原路线起点桩号",1,1,6,6));
-			et.add(new Excel_tilte("原路线止点桩号",1,1,7,7));
-			et.add(new Excel_tilte("总里程",1,1,8,8));
-			et.add(new Excel_tilte("隐患里程",1,1,9,9));
-			et.add(new Excel_tilte("修建/改建年度",1,1,10,10));
-			et.add(new Excel_tilte("项目年份",1,1,11,11));
-			et.add(new Excel_tilte("项目库类型",1,1,12,12));
-			et.add(new Excel_tilte("隐患内容",1,1,13,13));
-			et.add(new Excel_tilte("特殊地区",1,1,14,14));
-			et.add(new Excel_tilte("备注",1,1,15,15));
-			
+			et.add(new Excel_tilte("管养单位",1,1,3,3));			
+			et.add(new Excel_tilte("规划路线编码",1,1,4,4));
+			et.add(new Excel_tilte("规划路线名称",1,1,5,5));
+			et.add(new Excel_tilte("规划路线起点桩号",1,1,6,6));
+			et.add(new Excel_tilte("规划路线止点桩号",1,1,7,7));		
+			et.add(new Excel_tilte("原路线编码",1,1,8,8));
+			et.add(new Excel_tilte("原路线名称",1,1,9,9));
+			et.add(new Excel_tilte("原路线起点桩号",1,1,10,10));
+			et.add(new Excel_tilte("原路线止点桩号",1,1,11,11));	
+			et.add(new Excel_tilte("总里程",1,1,12,12));
+			et.add(new Excel_tilte("隐患里程",1,1,13,13));
+			et.add(new Excel_tilte("修建/改建年度",1,1,14,14));
+			et.add(new Excel_tilte("项目年份",1,1,15,15));
+			et.add(new Excel_tilte("项目库类型",1,1,16,16));
+			et.add(new Excel_tilte("隐患内容",1,1,17,17));
+			et.add(new Excel_tilte("特殊地区",1,1,18,18));
+			et.add(new Excel_tilte("备注",1,1,19,19));		
 			eldata.setEt(et);//将表头内容设置到类里面
 			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 			Excel_export.excel_export(eldata,response);
@@ -292,11 +295,11 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 			et.add(new Excel_tilte("序号",1,1,0,0));
 			et.add(new Excel_tilte("行政区划代码",1,1,1,1));
 			et.add(new Excel_tilte("行政区划名称",1,1,2,2));
-			et.add(new Excel_tilte("管养单位",1,1,3,3));
+			et.add(new Excel_tilte("管养单位",1,1,3,3));			
 			et.add(new Excel_tilte("规划路线编码",1,1,4,4));
-			et.add(new Excel_tilte("规划路线编码",1,1,5,5));
-			et.add(new Excel_tilte("规划路线编码",1,1,6,6));
-			et.add(new Excel_tilte("规划路线编码",1,1,7,7));
+			et.add(new Excel_tilte("规划路线名称",1,1,5,5));
+			et.add(new Excel_tilte("规划路线起点桩号",1,1,6,6));
+			et.add(new Excel_tilte("规划路线止点桩号",1,1,7,7));	
 			et.add(new Excel_tilte("原路线编码",1,1,8,8));
 			et.add(new Excel_tilte("原路线名称",1,1,9,9));
 			et.add(new Excel_tilte("原路线起点桩号",1,1,10,10));
