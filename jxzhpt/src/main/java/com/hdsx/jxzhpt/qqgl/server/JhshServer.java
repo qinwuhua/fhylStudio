@@ -14,6 +14,42 @@ import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
 public interface JhshServer {
+	
+	public boolean updateSflgcXdzt(Jhsh jhsh);
+	
+	public List<Jhsh> querySflgcXdJhbz(Jhsh jhsh);
+	/**
+	 * 计划下达查询数据
+	 * @param jhsh
+	 * @return
+	 */
+	public List<Jhsh> querySflgcXdXmlb(Jhsh jhsh);
+	/**
+	 * 计划预安排查询数据
+	 * @param jhsh
+	 * @return
+	 */
+	public List<Jhsh> querySflgcYap(Jhsh jhsh);
+	/**
+	 * 根据项目编码查询示范路工程
+	 * @param jhsh
+	 * @return
+	 */
+	public Jhsh querySflgcByXmbm(Jhsh jhsh);
+	/**
+	 * 更新示范路工程
+	 * @param jhsh
+	 * @return
+	 */
+	public boolean updateSflgc(Jhsh jhsh);
+	
+	/**
+	 * 退回示范路工程项目
+	 * @param jhsh
+	 * @return
+	 */
+	public boolean sflgcXmth(Jhsh jhsh );
+	
 	/**
 	 * 根据项目编码，把需要的信息插入到计划审核表中
 	 * @param xmbm 升级改造项目编码
@@ -392,6 +428,16 @@ public interface JhshServer {
 	public Map<String, String> queryJhshLjSh(Jhsh jhsh);
 	public Map<String, String> queryJhshLjSh_qx(Jhsh jhsh);
 	public List<Lx> queryLsxx1(Jhsh jhsh);
+	
+	/**
+	 * 查询示范路工程数据
+	 * @param jhsh Jhsh对象
+	 * @param page 显示分页
+	 * @param rows 显示行数
+	 * @return
+	 */
+	public List<Jhsh> queryJhshSflgc(Jhsh jhsh);
+	
 	/**
 	 * 查詢 計劃數據---養護中心
 	 * @param jhsh
@@ -462,6 +508,19 @@ public interface JhshServer {
 	public List<Jhsh> queryyhxd_qxbz(Jhsh jhsh);
 	public boolean planxdhzadd(List<Jhsh> list);
 	public List<Map<String, String>> getbzyhhzb();
+	/**
+	 * 示范路工程上报状态（sbzt）更新
+	 * @param jhsh
+	 * @return
+	 */
+	public boolean plansflgc(Jhsh jhsh);
+	/**
+	 * 示范路工程审核状态（shzt）
+	 * @param jhsh
+	 * @return
+	 */
+	public boolean planshSflgc(Jhsh jhsh);
+
 	public boolean plansbgj(Jhsh jhsh);
 	public boolean plansblm(Jhsh jhsh);
 	public boolean plansbxj(Jhsh jhsh);
@@ -512,5 +571,62 @@ public interface JhshServer {
 	public List<Jhsh> queryXmlistshqx(Jhsh jhsh);
 	public int queryXmlistshqxCount(Jhsh jhsh);
 	public List<Lx> queryLxidbyGhlxbm(String string);
+
+	public List<Jhsh> queryYhzxshSb(Jhsh jhsh);
+
+	public Jhsh queryYhzxshById(Jhsh jhsh);
+
+	public boolean updateZhzxsh(Jhsh jhsh);
+
+	public boolean yhzxshXmth(Jhsh jhsh);
+
+	public List<Jhsh> queryYhzxshYap(Jhsh jhsh);
+
+	public List<Jhsh> queryYhzxshJhxd(Jhsh jhsh);
+
+	public List<Jhsh> listFwq(Jhsh jhsh);
+
+	public List<Jhsh> listFwqSbzt(Jhsh jhsh);
+
+	public List<Jhsh> listFwqXdzt(Jhsh jhsh);
+
+	public boolean updateFwq(Jhsh jhsh);
+
+	public Jhsh queryFwqById(Jhsh jhsh);
+
+	public boolean fwqXmth(Jhsh jhsh);
+
+	public int queryJhshSflgcCount(Jhsh jhsh);
+
+	public Map<String, String> queryJhshLjsyf(Jhsh jhsh);
+
+	public int listFwqCount(Jhsh jhsh);
+
+	public int queryszxmCount(Jhsh jhsh);
+	
+	public int querySzxmListCount(Jhsh jhsh);
+
+	public Map<String, String> queryJhshLjsyfs2w(Jhsh jhsh);
+
+	public List<Map<String, String>> queryszxm(Jhsh jhsh);
+
+	public List<Map<String, String>> querySzxmList(Jhsh jhsh);
+	
+	public int listFwqSbztCount(Jhsh jhsh);
+
+	public int listFwqXdztCount(Jhsh jhsh);
+
+	public boolean updateJhshInfo(Jhsh jhsh);
+
+	public boolean sbshSzxm(Jhsh jhsh);
+
+	public Map<String, String> queryJhshLjSzxm(Jhsh jhsh);
+
+	public List<Excel_list> exportSflgcExcel(Jhsh jhsh);
+
+	public List<Map<String, String>> querySzxmxdbz(Jhsh jhsh);
+
+	public boolean planxdAllSzxm(List<Map<String, String>> list);
+
 	
 }

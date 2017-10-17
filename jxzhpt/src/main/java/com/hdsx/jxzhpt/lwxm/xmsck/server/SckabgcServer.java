@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
 public interface SckabgcServer {
 		boolean insertSckabgc(Sckabgc abgc);
@@ -20,8 +21,8 @@ public interface SckabgcServer {
 		boolean xgSckAbgcTH(String delstr);
 		boolean bzAbgc(Sckabgc abgc);
 		boolean onceSckAbgc(Sckabgc abgc);
-		List<SjbbMessage> exportExcel_abgc_scgl(Sckabgc abgc);
-		List<SjbbMessage> exportExcel_abgc_scsh(Sckabgc abgc);
+		List<Excel_list> exportExcel_abgc_scgl(Sckabgc abgc);
+		List<Excel_list> exportExcel_abgc_scsh(Sckabgc abgc);
 		List<SjbbMessage> insertToSheet(Map map);
 		boolean importAbgc_sc(List<Map<String,String>> list,String tbbmbm,String sbthcd);
 		boolean lrjhSckabgc(String delstr,String nf,String jh_sbthcd);

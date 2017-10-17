@@ -206,7 +206,7 @@ var xzqhdm=$("#xzqhmc").combotree("getValues");
 	var data="xmkaqsmfh.sbthbmcd="+sbthbmcd+"&xmkaqsmfh.gydw="+gydwstr+"&xmkaqsmfh.xzqh="+xzqhstr+"&xmkaqsmfh.lxmc="+$('#lxmc').val()+'&xmkaqsmfh.throadname=' + $('#throadname').val()+'&xmkaqsmfh.throadcode=' + $('#throadcode').val()+
 	"&xmkaqsmfh.jhnf="+xmnf+"&xmkaqsmfh.sbzt="+$("#sbzt").combobox("getValue")+
 	"&xmkaqsmfh.jsdj="+jsdj+"&xmkaqsmfh.lxbm="+$("#lxbm").val()+"&xmkaqsmfh.bzls="+$("#bzls").combobox("getValue")+
-	'&xmkaqsmfh.xmklx='+$('#xmklx').combobox('getValue')+"&xmkaqsmfh.gldj="+gldj+"&xmkaqsmfh.tsdq="+tsdq;
+	'&xmkaqsmfh.xmklx='+$('#xmklx').combobox('getValue')+"&xmkaqsmfh.gldj="+gldj+"&xmkaqsmfh.tsdq="+tsdq.replace(/\+/g,"%2B");
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/aqsmfh/loadSckaqsmfhshCount.do",
@@ -270,7 +270,7 @@ function dcExcel(){
 	var data=ata="xmkaqsmfh.sbthbmcd="+sbthcd+"&xmkaqsmfh.lxmc="+$('#lxmc').val()+
 	"&xmkaqsmfh.jhnf="+xmnf+"&xmkaqsmfh.sbzt="+$("#sbzt").combobox("getValue")+
 	"&xmkaqsmfh.jsdj="+jsdj+"&xmkaqsmfh.lxbm="+$("#lxbm").val()+"&xmkaqsmfh.bzls="+$("#bzls").combobox("getValue")+
-	"&xmkaqsmfh.gldj="+gldj+"&xmkaqsmfh.tsdq="+tsdq;
+	"&xmkaqsmfh.gldj="+gldj+"&xmkaqsmfh.tsdq="+tsdq.replace(/\+/g,"%2B");
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 		window.location.href='/jxzhpt/aqsmfh/dcaqsmfhsckshExcel.do?'+data;
 	 });
@@ -374,7 +374,7 @@ text-decoration:none;
 							  <td><input type="text" id="throadcode"  style="width:70px;" /></td>
                              </tr>
                             <tr height="29">
-                            	<td align="right">行政等级：</td>
+                            	<td align="right">原行政等级：</td>
                               	<td><select id="gldj" style="width:70px"class="easyui-combobox">
                               	</select></td>
                               	<td align="right">补助历史：</td>

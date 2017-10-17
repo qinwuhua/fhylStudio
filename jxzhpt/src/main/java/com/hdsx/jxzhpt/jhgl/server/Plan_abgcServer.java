@@ -76,8 +76,8 @@ public interface Plan_abgcServer {
 	 * @param jck
 	 * @return
 	 */
-	List<SjbbMessage> exportExcel_jh(Plan_abgc jh,Jckabgc lx);
-	List<SjbbMessage> exportExcel_jh1(Plan_abgc jh,Jckabgc lx);
+	List<Excel_list> exportExcel_jh(Plan_abgc jh,Jckabgc lx);
+	List<Excel_list> exportExcel_jh1(Plan_abgc jh,Jckabgc lx);
 	/**
 	 * 修改安保工程计划信息
 	 * @return

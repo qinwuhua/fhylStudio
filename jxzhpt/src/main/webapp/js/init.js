@@ -19,7 +19,7 @@ function edit(){
 }
 $(function(){
 	selSes();
-	$("#index_user").html(getQxfromSession('truename'));
+	$("#index_user").html(getQxfromSession('name'));
 	menuQx();
 	
 	$("#Menu_1,#Menu_2,#Menu_9,#Menu_8,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7,#Menu_10,#Menu_11,#Menu_12,#Menu_13,#Menu_14,#Menu_15").click(function(e){

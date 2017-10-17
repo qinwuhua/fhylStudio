@@ -225,9 +225,9 @@ text-decoration:none;
 								<td><select name="tsdq" id="tsdq" style="width:75px;" class="easyui-combobox"></select></td>
 								<td>技术等级：</td>
 								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox"></select></td>
-								<td>行政等级：</td>
+								<td>原行政等级：</td>
 								<td><select name="ddlGldj" id="ddlGldj" style="width:104px;" class="easyui-combobox"></select></td>
-								<td>是否有补助历史：</td>
+								<td>补助历史：</td>
 								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
 									<option value="" selected="selected">全部</option>
 									<option value="无">否</option>

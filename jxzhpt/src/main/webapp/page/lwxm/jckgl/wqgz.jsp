@@ -270,11 +270,11 @@ text-decoration:none;
                               	  <td colspan="3" style="width:220px;"><select id="gydw" style="width:220px"></select></td>
                              	<td>行政区划：</td>
                               	<td colspan="3" style="width:220px"><select id="xzqhmc" style="width:220px"></select></td>
-                               <td align="right">路线名称：</td>
+                               <td align="right">规划路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:70px;" /></td>
-        						<td>路线编码：</td>
+        						<td>规划路线编码：</td>
                               	<td><input type="text" id="lxbm"style="width:70px"/></td>
-                              <td>桥梁名称：</td>
+                              <td>规划桥梁名称：</td>
                               	<td><input type="text" id="qlmc"style="width:70px"/></td>
 						</tr>
                         <tr height="32">
@@ -289,9 +289,9 @@ text-decoration:none;
                               <td><select id="jsdj" style="width:70px"class="easyui-combobox"></select></td>
                               <td>按跨径分类：</td>
                               <td><select id="akjfl" style="width:74px"class="easyui-combobox"></select></td>
-                              <td>桥梁编号：</td>
+                              <td>规划桥梁编号：</td>
                               <td><input type="text" id="qlbh"style="width:70px"/></td>
-                              <td>行政等级：</td>
+                              <td>原行政等级：</td>
                               <td><select id="gldj" style="width:70px"class="easyui-combobox"></select></td>
                            </tr>
                            
@@ -301,11 +301,16 @@ text-decoration:none;
 									<select class="easyui-combobox" id='xmklx'>
 										<option value="" selected>请选择</option>
 										<option value="部库">部库</option>
-										<option value="省库">省库</option>
-										
+										<option value="省库">省库</option>									
 									</select>
 								</td>
-                              <td colspan="10">
+								<td>原路线名称：</td>
+                              	<td><input type="text" id="xlxmc"style="width:70px"/></td>
+                                <td>原路线编码：</td>
+                              	<td><input type="text" id="xlxbm"style="width:70px"/></td>
+                            </tr>
+                            <tr>
+                            <td colspan="10">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="jckglWqgz();" style="border-width:0px;cursor: hand;" />
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   "onclick="shangB()"  style="border-width:0px;" />
 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" />
@@ -314,8 +319,9 @@ text-decoration:none;
                                 <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('wqgz_add.jsp','900','450');" style="border-width:0px;" />
                                 <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="delJckwqgz();" style="border-width:0px;" />
                                 <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="exportExcel_wqgz();" style="border-width:0px;cursor: hand;" />
-                           </td>
-                            </tr></table>
+                            </td>
+                            </tr>                           
+                            </table>
 					</div>
 				</fieldset>
 			</td>

@@ -286,7 +286,7 @@ text-decoration:none;
 								<td>项目年份：</td>
         						<td><select id="xmnf" style="width:70px;">
 								</select></td>
-								<td>行政等级：</td>
+								<td>原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 								<td>原路线编码：</td>
         						<td><input type="text" id="lxbm" style="width:75px;" /></td>
@@ -298,7 +298,7 @@ text-decoration:none;
         						<td><input type="text" id="ghlxmc" style="width:75px;" /></td>
         			</tr>
         			<tr>
-                                <td>是否有补助历史：</td>
+                                <td>补助历史：</td>
         						<td><select id="lsjl" style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="是">是</option>
@@ -337,7 +337,7 @@ text-decoration:none;
 								</td>
                              <td colspan="10">
         						<img onclick="showgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-				                <img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dclxshModule('gsdgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
+				                <img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dclxshModule('gsdgz','sb');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
 							  </td>
                             </tr></table>
         				</div>

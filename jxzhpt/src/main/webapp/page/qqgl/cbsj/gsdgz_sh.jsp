@@ -59,8 +59,8 @@
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
 			var xmnf=$("#xmnf").combobox('getValues').join(",");
-			if(xmnf=='')
-				xmnf=new Date().getFullYear();
+// 			if(xmnf=='')
+// 				xmnf=new Date().getFullYear();
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
 			var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
@@ -84,7 +84,7 @@
 					'cbsj.sbzt':1,
 					'cbsj.shzt':$('#shzt').combo("getValue"),
 					'cbsj.xmklx':$('#xmklx').combo("getValue"),
-					'cbsj.xmbm':xmnf,
+					'cbsj.xmnf':xmnf,
 					'tsdq':tsdq,
 					'ghlxbm':$("#ghlxbm").combotree('getText'),
 					'ghlxmc':$("#ghlxmc").val(),
@@ -92,7 +92,9 @@
 					'lsjl':$('#lsjl').combobox("getValue"),
 					'ylxbh':$('#gldj').combobox("getValues").join(','),
 					'lsxmnf':lsxmnf,
-					'lsxmlx':lsxmlx};
+					'lsxmlx':lsxmlx,
+					'cbsj.xmbm':$("#xmbm").val()
+					};
 			grid.queryParams=params;
 			loadcbsjTjxx(params);
 			grid.height=$(window).height()-$('#searchField').height()-65;
@@ -296,8 +298,8 @@
 			var ghlxmc=$("#ghlxmc").val();
 			var ghlxbm=$("#ghlxbm").combotree('getText');
 			var xmnf=$("#xmnf").combobox('getValues').join(",");
-			if(xmnf=='')
-				xmnf=new Date().getFullYear();
+// 			if(xmnf=='')
+// 				xmnf=new Date().getFullYear();
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
 			var yjsdj="";
@@ -319,11 +321,12 @@
 				if(lsxmlx.substr(0,1)==',')
 				lsxmlx=lsxmlx.substr(1,lsxmlx.length);	
 				
-			var param='xmlx=11&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+xmnf+
+			var param='xmlx=11&xzqhdm='+getxzqhdm('xzqh')+'&xmnf='+xmnf+
 			'&ghlxbh='+$('#txtlxbm').combotree('getText')+'&xjsdj='+yjsdj+'&jsjsdj='+jsjsdj+
 			'&tsdq='+tsdq+'&xmlx1='+xmlx+'&ylxbh='+gldj+
 			'&lxmc='+lxmc+'&ghlxmc='+ghlxmc+'&ghlxbm='+ghlxbm+'&lsjl='+$('#lsjl').combobox("getValue")+'&lsxmnf='+lsxmnf+
-			'&lsxmlx='+lsxmlx+'&sbzt=1'+'&shzt='+$('#shzt').combo("getValue")+'&xmklx='+$('#xmklx').combo("getValue");
+			'&lsxmlx='+lsxmlx+'&sbzt=1'+'&shzt='+$('#shzt').combo("getValue")+'&xmklx='+$('#xmklx').combo("getValue")+
+			'&xmbm='+$("#xmbm").val();
 			
 // 			alert(param);
 			
@@ -392,12 +395,12 @@ text-decoration:none;
 	        					<tr height="29">
 	        					<td align="right"> 项目年份：</td>
 	        						<td><select id="xmnf" style="width:160px;"></select></td>
-	        					<td align="right">行政等级：</td>
+	        					<td align="right">原行政等级：</td>
 									<td><select name="gldj" id="gldj" style="width:70px;" class="easyui-combobox"></select></td>
 									
 	        						<!-- <td>特殊地区：</td>
 									<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
-	        						<td>&nbsp;行政等级：</td>
+	        						<td>&nbsp;原行政等级：</td>
 									<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 	        						<td>规划路线编码：</td>
 	        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
@@ -422,7 +425,7 @@ text-decoration:none;
 	                            <td align="right">规划路线名称：</td>
 	        						<td><input type="text" id="ghlxmc" style="width:158px;" /></td>
 	        						
-	                            <td align="right">是否有补助历史：</td>
+	                            <td align="right">补助历史：</td>
 	                            <td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
 										<option value="" selected="selected">全部</option>
 										<option value="是">是</option>
@@ -465,6 +468,8 @@ text-decoration:none;
 									<select id='lsxmnf' class="easyui-combobox" style="width: 70px;">
 									</select>
 								</td>
+								<td align="right">项目编码：</td>
+	        					<td><input type="text" id="xmbm" style="width:125px;" /></td>
 								</tr><tr height="29">
 									<td colspan="10">
 										<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>

@@ -1,4 +1,214 @@
+//三种项目，查看详情
 
+
+//下达之后详情
+function szxmXdInfo(index,flag){
+	YMLib.Var.obj=$('#grid').datagrid('getRows')[index];
+	YMLib.Var.flag=flag;
+	//示范路
+	if(flag=='sfl'){
+		openWindow('mywindow','详情','/jxzhpt/page/qqgl/jhsh/szlx/sfl_xd_Info.jsp',680,470);
+	}
+	//养护中心
+	if(flag=='yhzx'){
+		openWindow('mywindow','详情','/jxzhpt/page/qqgl/jhsh/szlx/yhzx_xd_Info.jsp',680,470);
+	}
+	//服务区
+	if(flag=='fwq'){
+		openWindow('mywindow','详情','/jxzhpt/page/qqgl/jhsh/szlx/fwq_xd_Info.jsp',680,470);
+	}
+	
+}
+//下达之前详情
+function szxmInfo(index,flag){
+	YMLib.Var.obj=$('#grid').datagrid('getRows')[index];
+	YMLib.Var.flag=flag;
+	//示范路
+	if(flag=='sfl'){
+		openWindow('mywindow','详情','/jxzhpt/page/qqgl/jhsh/szlx/sfl_Info.jsp',680,470);
+	}
+	//养护中心
+	if(flag=='yhzx'){
+		openWindow('mywindow','详情','/jxzhpt/page/qqgl/jhsh/szlx/yhzx_Info.jsp',680,470);
+	}
+	//服务区
+	if(flag=='fwq'){
+		openWindow('mywindow','详情','/jxzhpt/page/qqgl/jhsh/szlx/fwq_Info.jsp',680,470);
+	}
+}
+//编辑
+function editSzxm(index,flag){
+	YMLib.Var.obj=$('#grid').datagrid('getRows')[index];
+	YMLib.Var.flag=flag;
+	//示范路
+	if(flag=='sfl'){
+		openWindow('mywindow','编辑','/jxzhpt/page/qqgl/jhsh/szlx/sfl_edit.jsp',680,270);
+	}
+	//养护中心
+	if(flag=='yhzx'){
+		openWindow('mywindow','编辑','/jxzhpt/page/qqgl/jhsh/szlx/yhzx_edit.jsp',680,240);
+	}
+	//服务区
+	if(flag=='fwq'){
+		openWindow('mywindow','编辑','/jxzhpt/page/qqgl/jhsh/szlx/fwq_edit.jsp',680,240);
+	}
+	
+}
+
+//上报
+function sbSzxm(index,flag){
+	var xmbm="";
+	if(index=='无'){
+		var rows=$('#grid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请勾选记录！");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].SBZT==1){
+				alert("所选项目必须为未上报");return;
+			}else{
+				xmbm+=","+rows[i].XMBM;
+			}
+		}
+		
+		xmbm=xmbm.substr(1,xmbm.length);	
+	}else{
+		xmbm=$('#grid').datagrid('getRows')[index].XMBM;
+	}
+	xmbm="'"+xmbm.replace(/,/g, "','")+"'";
+	if(confirm("您确认上报吗？"))
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/sbshSzxm.do',
+		data:"xmbm="+xmbm+"&xmlxs="+flag+"&sbzt=1&shzt=0&thyy=",
+		dataType:'json',
+		success:function(msg){
+			if(msg){
+				alert("上报成功");
+				$("#grid").datagrid('reload');
+				loadLj();
+			}else{
+				alert("上报失败");
+			}
+			
+		}
+	});
+}
+
+//退回下级
+
+function thxjSzxm(index,flag){
+	var xmbm="";
+	if(index=='无'){
+		var rows=$('#grid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请勾选记录！");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].SHZT==1){
+				alert("所选项目必须为未审核");return;
+			}else{
+				xmbm+=","+rows[i].XMBM;
+			}
+		}
+		
+		xmbm=xmbm.substr(1,xmbm.length);	
+	}else{
+		xmbm=$('#grid').datagrid('getRows')[index].XMBM;
+	}
+	xmbm="'"+xmbm.replace(/,/g, "','")+"'";
+	
+	YMLib.Var.xmbm=xmbm;
+	YMLib.Var.flag=flag;
+	//示范路
+	openWindow('mywindow','退回下级','/jxzhpt/page/qqgl/jhsh/szlx/szxm_th.jsp',680,200);
+	
+}
+
+//退回未审核
+function thwshSzxm(index,flag){
+	var xmbm="";
+	if(index=='无'){
+		var rows=$('#grid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请勾选记录！");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].SHZT==0){
+				alert("所选项目必须为已审核");return;
+			}else{
+				xmbm+=","+rows[i].XMBM;
+			}
+		}
+		
+		xmbm=xmbm.substr(1,xmbm.length);	
+	}else{
+		xmbm=$('#grid').datagrid('getRows')[index].XMBM;
+	}
+	xmbm="'"+xmbm.replace(/,/g, "','")+"'";
+	if(confirm("您确认退回未审核吗？"))
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/sbshSzxm.do',
+		data:"xmbm="+xmbm+"&xmlxs="+flag+"&sbzt=1&shzt=0&thyy=",
+		dataType:'json',
+		success:function(msg){
+			if(msg){
+				alert("退回成功");
+				$("#grid").datagrid('reload');
+				loadLj();
+			}else{
+				alert("退回失败");
+			}
+			
+		}
+	});
+}
+
+
+//审核
+function shSzxm(index,flag){
+	var xmbm="";
+	if(index=='无'){
+		var rows=$('#grid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请勾选记录！");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].SHZT==1){
+				alert("所选项目必须为未审核");return;
+			}else{
+				xmbm+=","+rows[i].XMBM;
+			}
+		}
+		
+		xmbm=xmbm.substr(1,xmbm.length);	
+	}else{
+		xmbm=$('#grid').datagrid('getRows')[index].XMBM;
+	}
+	xmbm="'"+xmbm.replace(/,/g, "','")+"'";
+	if(confirm("您确认审核吗？"))
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/sbshSzxm.do',
+		data:"xmbm="+xmbm+"&xmlxs="+flag+"&sbzt=1&shzt=1&thyy=",
+		dataType:'json',
+		success:function(msg){
+			if(msg){
+				alert("审核成功");
+				$("#grid").datagrid('reload');
+				loadLj();
+			}else{
+				alert("审核失败");
+			}
+			
+		}
+	});
+}
 
 //获取养护大中修算费单价
 function queryyhdzxsfdj(){
@@ -64,6 +274,107 @@ function queryylmlx(lxbm,qdzh,zdzh){
 	});
 }
 
+function fwqSbById(index){
+	var da=$("#grid").datagrid('getRows')[index];
+	var xmid=da.id;
+	if(index==null){
+		var rows=$('#grid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请选择要上报的项目！");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].sbzt=='1'){
+				alert("有项目已上报，请检查后操作！");
+				return ;
+			}
+		}
+	}else{
+		var da=$("#grid").datagrid('getRows')[index];
+		if(da.sbzt=='1'){
+			alert("有项目已上报，请检查后操作！");
+			return ;
+		}
+	}
+	if(confirm('您确定上报吗？'))
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/qqgl/updateFwq.do',
+			data:"jhsh.id="+xmid+"&jhsh.sbzt=1",
+			dataType:'json',
+			success:function(msg){
+				if(msg){
+					alert("上报成功");
+					$("#grid").datagrid('reload');
+				}	
+			}
+		});
+}
+
+function changeYhzxshXdzt(index){
+	var da=$("#grid").datagrid('getRows')[index];
+	var xmid=da.id;
+	var xdzth='';
+	if(da.xdzt == '1'){
+		xdzth ='0';
+	}
+	if(da.xdzt == '0'){
+		xdzth = '1';
+	}
+	if(confirm('您确定要更改审核状态？'))
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/qqgl/updateZhzxsh.do',
+			data:"jhsh.id="+xmid+"&jhsh.xdzt="+xdzth,
+			dataType:'json',
+			success:function(msg){
+				if(msg){
+					alert("审核状态更改成功！");
+					$("#grid").datagrid('reload');
+				}	
+			}
+		});
+}
+
+function sbById(index){
+	var da=$("#grid").datagrid('getRows')[index];
+	var xmid=da.id;
+	if(index==null){
+		var rows=$('#grid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请选择要上报的项目！");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].sbzt=='1'){
+				alert("有项目已上报，请检查后操作！");
+				return ;
+			}
+		}
+	}else{
+		var da=$("#grid").datagrid('getRows')[index];
+		if(da.sbzt=='1'){
+			alert("有项目已上报，请检查后操作！");
+			return ;
+		}
+	}
+	if(confirm('您确定上报吗？'))
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/qqgl/updateZhzxsh.do',
+			data:"jhsh.id="+xmid+"&jhsh.sbzt=1",
+			dataType:'json',
+			success:function(msg){
+				if(msg){
+					alert("上报成功");
+					$("#grid").datagrid('reload');
+				}	
+			}
+		});
+}
+
+
+
 function plansb(index){
 	var xmlx="";
 	var xmbm='';
@@ -112,8 +423,50 @@ function plansb(index){
 				
 		}
 	});
-	
 }
+function changeXdzt(index){
+	var da=$("#grid").datagrid('getRows')[index];
+	var xmid=da.id;
+	if(confirm('您确定要更改审核状态？'))
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/qqgl/updateSflgcXdzt.do',
+			data:"jhsh.id="+xmid,
+			dataType:'json',
+			success:function(msg){
+				if(msg){
+					alert("审核状态更改成功！");
+					$("#grid").datagrid('reload');
+				}	
+			}
+		});
+}
+
+function changeFwqXdzt(index){
+	var da=$("#grid").datagrid('getRows')[index];
+	var xmid=da.id;
+	var xdzth='';
+	if(da.xdzt == '1'){
+		xdzth ='0';
+	}
+	if(da.xdzt == '0'){
+		xdzth = '1';
+	}
+	if(confirm('您确定要更改审核状态？'))
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/qqgl/updateFwq.do',
+			data:"jhsh.id="+xmid+"&jhsh.xdzt="+xdzth,
+			dataType:'json',
+			success:function(msg){
+				if(msg){
+					alert("审核状态更改成功！");
+					$("#grid").datagrid('reload');
+				}	
+			}
+		});
+}
+
 function plansh(index){
 	var xmlx="";
 	var xmbm='';
@@ -157,8 +510,7 @@ function plansh(index){
 			if(msg){
 				alert("审核成功");
 				$("#grid").datagrid('reload');
-			}
-				
+			}	
 		}
 	});
 	
@@ -476,6 +828,137 @@ function xmnf(id){
 	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
 	$('#id'+myDate.getFullYear()).attr('checked', true);
 }
+
+
+
+function xmnfs2w(id,flag){
+	var myDate = new Date();
+	var years=[];
+	//var first;
+	years.push({text:'全部',value:''});
+	for(var i=2011;i<=2015;i++){
+		
+		years.push({text:i,value:i});
+	}
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#'+id+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#'+id+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#'+id+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#'+id+item.value).attr('checked', false);
+				});
+			}
+		}
+	});
+	
+	if(flag=='无'){
+		
+	}else{
+		$('#'+id).combobox("setValue",'2015');
+		$('#'+id+'2015').attr('checked', true);
+	}
+	
+}
+function xmnfs3w(id,flag){
+	var myDate = new Date();
+	var years=[];
+	//var first;
+	years.push({text:'全部',value:''});
+	for(var i=2016;i<=2020;i++){
+		years.push({text:i,value:i});
+	}
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#'+id+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#'+id+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#'+id+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#'+id+item.value).attr('checked', false);
+				});
+			}
+		}
+	});
+	
+	if(flag=='无'){
+		
+	}else{
+		$('#'+id).combobox("setValue",myDate.getFullYear()+'');
+		$('#'+id+myDate.getFullYear()).attr('checked', true);
+	}
+}
+	
+
+
+
 /**
  * 判断项目类型，返回文字
  * @param xmbm 项目编码
@@ -657,6 +1140,41 @@ function openwnxmk(xmbm){
 	openWindow('lsjlwindow','五年项目','/jxzhpt/page/qqgl/jhsh/wnxmk.jsp',980,300);
 }
 
+function queryghmc(id){
+	if(id=="yx_ghqdzh"){
+		cxghqdmc($('#yx_ylxbh').val(),$('#yx_qdzh').val());
+	}else if(id=="yx_ghzdzh"){
+		cxghzdmc($('#yx_ylxbh').val(),$('#yx_zdzh').val());
+	}else{
+		cxghqdmc($('#yx_ylxbh').val(),$('#yx_qdzh').val());
+		cxghzdmc($('#yx_ylxbh').val(),$('#yx_zdzh').val());
+	}
+}
+
+function cxghqdmc(lxbm,qdzh){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/cxqdmc.do',
+        data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+qdzh,
+		dataType:'json',
+		success:function(msg){
+			$('#yx_qdmc').val(msg.qdmc);
+		}
+	});
+}
+
+function cxghzdmc(lxbm,zdzh){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/cxzdmc.do',
+        data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+zdzh,
+		dataType:'json',
+		success:function(msg){
+			$('#yx_zdmc').val(msg.zdmc);
+		}
+	});
+}
+
 /**
  * 查询桩号地方名称
  * @param id 桩号元素ID
@@ -674,10 +1192,12 @@ function querymc(id){
 	//alert();
 	getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 	//queryJsdjAndLc($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+	
 	if(parseFloat($('#ghqdzh').val())<parseFloat($('#ghzdzh').val()))
 	getylxlminfo($('#ghlxbm').val(),$('#ghqdzh').val(),$('#ghzdzh').val());
 	else
 	getylxlminfo($('#ghlxbm').val(),$('#ghzdzh').val(),$('#ghqdzh').val());
+	
 	$('#lc').val(Math.abs(accSub(parseFloat($('#zdzh').val()),parseFloat($('#qdzh').val()))));
 	$('#lc').html(Math.abs(accSub(parseFloat($('#zdzh').val()),parseFloat($('#qdzh').val()))));
 }
@@ -1383,7 +1903,7 @@ function queryZjxdgsdzh(xmbm){
 			}
 		},
 		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
-		{field : 'zbz',title : '总补助资金',width : 150,align : 'center'},
+		{field : 'xdzj',title : '总补助资金',width : 150,align : 'center'},
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
 		{field : 'gz',title : '国债',width : 150,align : 'center'}, 
 		{field : 'sz',title : '省债',width : 150,align : 'center'}, 
@@ -1391,11 +1911,48 @@ function queryZjxdgsdzh(xmbm){
 		{field : 'dk',title : '厅贷款',width : 150,align : 'center'}, 
 		{field : 'jl',title : '奖励',width : 150,align : 'center'}, 
 		{field : 'qt',title : '其他',width : 150,align : 'center'}, 
-		
+		{field : 'dfzc',title : '地方自筹',width : 150,align : 'center'}, 
 		{field : 'jhxdwh',title : '下达文号',width : 150,align : 'center'}, 
 		{field : 'tbtime',title : '下达时间',width : 150,align : 'center'}]];
 	gridBind1(grid);
 }
+
+function queryZjxdzh(xmbm){
+	grid.id="zjxdList";
+	grid.url="/jxzhpt/jhgl/queryZjxdByXmId.do";
+	var params={'zjxd.xmid':xmbm};
+	grid.queryParams=params;
+	grid.height=$(window).height()-180;
+	grid.width=$('#searchField').width();
+	grid.pageSize=5;
+	grid.pageNumber=1;
+	grid.columns=[[
+		/*{field : 'sfzj',title : '是否追加',width : 100,align : 'center',
+			formatter : function(value, row, index) {
+				return row.sfzj == "0" ? "否" : "是";
+			}
+		},*/
+		{field:'cz',title:'删除',width:60,align:'center',
+			formatter: function(value,row,index){
+				var result='<a href="javascript:delzjxd('+"'"+row.id+"',"+"'"+row.xmid+"'"+')" style="color:#3399CC;">删除</a>';
+				return result;
+			}
+		},
+		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
+		{field : 'xdzj',title : '总补助资金',width : 150,align : 'center',
+			formatter: function(value,row,index){
+				var result=(row.btzzj*1000+row.dk*1000)/1000;
+				return result;
+			}},
+		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
+		{field : 'dk',title : '省补助',width : 150,align : 'center'}, 
+		{field : 'qt',title : '其他',width : 150,align : 'center'}, 
+		{field : 'dfzc',title : '地方自筹',width : 150,align : 'center'}, 
+		{field : 'jhxdwh',title : '下达文号',width : 150,align : 'center'}, 
+		{field : 'tbtime',title : '下达时间',width : 150,align : 'center'}]];
+	gridBind1(grid);
+}
+
 
 function queryZjxd1(xmbm){
 	grid.id="zjxdList";
@@ -1421,6 +1978,39 @@ function queryZjxd1(xmbm){
 		]];
 	gridBind1(grid);
 }
+function queryZjxd1sh(xmbm){
+	grid.id="zjxdList";
+	grid.url="/jxzhpt/jhgl/queryZjxdByXmId.do";
+	var params={'zjxd.xmid':xmbm};
+	grid.queryParams=params;
+	grid.height=$(window).height()-180;
+	grid.width=$('#searchField').width();
+	grid.pageSize=5;
+	grid.pageNumber=1;
+	grid.columns=[[
+		/*{field : 'sfzj',title : '是否追加',width : 100,align : 'center',
+			formatter : function(value, row, index) {
+				return row.sfzj == "0" ? "否" : "是";
+			}
+		},*/
+		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
+		{field : 'xdzj',title : '总补助资金',width : 150,align : 'center',
+			formatter: function(value,row,index){
+				var result=(row.btzzj*1000+row.dk*1000)/1000;
+				return result;
+			}},
+		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
+		{field : 'stz',title : '省补助',width : 150,align : 'center',
+			formatter : function(value, row, index) {
+				return row.dk;
+			}}, 
+		{field : 'dfzc',title : '地方自筹',width : 150,align : 'center'}, 
+		{field : 'jhxdwh',title : '下达文号',width : 150,align : 'center'}, 
+		{field : 'tbtime',title : '下达时间',width : 150,align : 'center'}
+		]];
+	gridBind1(grid);
+}
+
 /**
  * 删除资金下达
  * @param id
@@ -1482,6 +2072,11 @@ function openxZjxd(){
 function openxZjxd1(){
 	YMLib.Var.xmid=parent.YMLib.Var.xmbm;
 	openWindow('zjxd','资金下达','/jxzhpt/page/qqgl/zjxd/xzjxd1.jsp',800,300);
+}
+
+function openWindowById(id,title,url,width,height,xmid){
+	YMLib.Var.xmid=xmid;
+	YMLib.UI.createWindow1(id,title,url,id,width,height);
 }
 /**
  * 弹出窗口
@@ -2480,4 +3075,63 @@ function cbjsrollback(){
 	}
 	YMLib.UI.createWindow('lxxx','退回项目','cbsj_th.jsp','lxxx',400,200);	
 }
+//综规处立项审核退回未审核
+function tuihshlxsh(id){
+	var rows=$('#'+id).datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要退回的项目！");
+		return;
+	}
+	var xmbm=rows[0].xmbm;
+	var xmlx=xmbm.substr(10,1);
+	var xmlx1='';
+	for(var i=0;i<rows.length;i++){
+			if(rows[i].yhcsh=='1'){
+				alert(rows[i].xmmc+'养护处已审核，不能退回未审核');
+				return;
+			}
+	}
 
+	if(xmlx==1)
+		xmlx1='sjgz';
+	if(xmlx==2)
+		xmlx1='lmgz';
+	if(xmlx==3)
+		xmlx1='xj';
+	if(xmlx==4)
+		xmlx1='yhdzx';
+	if(xmlx==5)
+		xmlx1='sh';
+	for(var i=1;i<rows.length;i++){
+		xmbm+=","+rows[i].xmbm;
+	}
+  	
+	$.ajax({
+		 type : "POST",
+		 url : "/jxzhpt/qqgl/thlxshsbyhc.do",
+		 dataType : 'json',
+		 data : 'lxsh.xmbm=' +xmbm+"&lxsh.thyyyhc="+$("#shyj2").val()+"&lxsh.xmlx="+xmlx+"&lxsh.sbzt=0"+"&lxsh.sbthcd=9",
+		 success : function(msg){
+			 if(msg){
+				 alert('退回成功！');
+				 //parent.$("#datagrid").datagrid('reload');
+				 //parent.showkxxTjxx(xmlx1);
+				 if(xmlx==1)
+					 showAllsjsh();
+				 if(xmlx==2)
+					showAlllmsh();
+				 if(xmlx==3)
+					 showAllxjsh();
+				 if(xmlx==4)
+					 queryYhdzx();
+				 if(xmlx==5)
+					 queryShxm();
+			 }else{
+				 YMLib.Tools.Show('退回失败！',3000);
+			 }
+		 },
+		 error : function(){
+			 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+		 }
+	});
+}

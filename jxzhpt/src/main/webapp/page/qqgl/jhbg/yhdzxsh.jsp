@@ -67,7 +67,7 @@
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.zydpx':$('#zydpx').combobox('getValue'),
 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.sbzt':1,'jhsh.shzt':$('#shzt').combobox("getValue"),
-					'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly};
+					'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly,'jhsh.xmbm':$("#xmbm").val()};
 			grid.queryParams=params;
 			loadLj(params);
 			grid.height=$(window).height()-220;
@@ -326,7 +326,7 @@ text-decoration:none;
         						<td><input name="xmmc" type="text" id="xmmc" style="width:100px;" /></td>
 								<td>项目年份：</td>
         						<td><select id="xmnf" style="width: 104px;"></select></td>
-        						<td>行政等级：</td>
+        						<td>原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:104px;" class="easyui-combobox"></select></td>
         						<td>技术等级：</td>
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:55px;"></select></td> -->
@@ -367,7 +367,7 @@ text-decoration:none;
 									<option value="1">已审核</option>
 									<option value="0">未审核</option>
 								</select></td> -->
-								<td>行政等级：</td>
+								<td>原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:108px;" class="easyui-combobox"></select></td>
 								<td>原路线编码：</td>
         						<td><input name="lxbm" type="text" id="lxbm" style="width:108px;" /></td>
@@ -382,7 +382,7 @@ text-decoration:none;
         						
                             <td>规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:80px;" /></td>
-        						<td>是否有补助历史：</td>
+        						<td>补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:108px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
@@ -422,7 +422,10 @@ text-decoration:none;
 									<option value="" selected="selected">全部</option>
 									<option value="1">已审核</option>
 									<option value="0">未审核</option>
-								</select></td></tr>
+								</select></td>
+						<td align="right">项目编码：</td>
+        						<td><input name="xmbm" type="text" id="xmbm" style="width:108px;" /></td>		
+						</tr>
        						<!-- <td>资金来源：</td>
         						<td><input name="zjly" type="text" id="zjly" style="width:104px;" /></td>
        						<td>是否使用车购税：</td>

@@ -156,10 +156,10 @@ text-decoration:none;
                              	<td  align="right">行政区划：</td>
                               	 <td colspan="3" ><select id="xzqhmc" style="width:200px">
                               	</select></td>
-                               <td  align="right">路线名称：</td>
-        						<td><input type="text" id="lxmc"  style="width:70px;" /></td>
-        						<td  align="right">路线编码：</td>
-        						<td><input type="text" id="lxbm"  style="width:50px;" /></td>
+                               <td  align="right">规划路线名称：</td>
+        						<td><input type="text" id="lxmc"  style="width:60px;" /></td>
+        						<td  align="right">规划路线编码：</td>
+        						<td><input type="text" id="lxbm"  style="width:60px;" /></td>
 						</tr>
                            <tr height="32">
 							  <!-- <td>项目年份：</td>
@@ -178,19 +178,23 @@ text-decoration:none;
                               <td  align="right">技术等级：</td>
                               	<td><select id="jsdj" style="width:60px"class="easyui-combobox">
                               	</select></td>
-                              	<td  align="right">行政等级：</td>
+                              	<td  align="right">原行政等级：</td>
                               	<td><select id="gldj" style="width:65px"class="easyui-combobox">
                               	</select></td>
-                              	 <td  align="right">项目库类型：</td>
+                                <td  align="right">原路线名称：</td>
+        						<td><input type="text" id="ylxmc"  style="width:60px;" /></td>
+        						<td  align="right">原路线编码：</td>
+        						<td><input type="text" id="ylxbm"  style="width:60px;" /></td>	
+                             </tr>
+                             <tr height="32">
+                                <td  align="right">项目库类型：</td>
 								<td " style="background-color: #ffffff; height: 20px;" align="left">
 									<select class="easyui-combobox" id='xmklx' style="width:70px;">
 										<option value="" selected>请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
-										
 									</select>
                              </tr>
-                           
 								<tr>
                               <td colspan="10">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="jckshZhfz();"style="border-width:0px;cursor: hand;" />

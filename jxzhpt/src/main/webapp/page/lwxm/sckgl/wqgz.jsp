@@ -232,7 +232,7 @@ function exportExcel_wqgz_scgl1(){
  	'&qlbh='+$("#qlbh").val()+
  	'&bzls='+$("#bzls").combobox("getValue")+
  	'&sck_sbthcd='+cd+
- 	'&tsdq='+tsdq+
+ 	'&tsdq='+tsdq.replace(/\+/g,"%2B")+
  	'&gldj='+gldj;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmsck/exportExcel_wqgz_scgl.do?"+param;
@@ -301,7 +301,7 @@ text-decoration:none;
                               	 
                              </tr>
                             <tr height="32">
-                            <td>行政等级：</td>
+                            <td>原行政等级：</td>
                               	<td><select id="gldj" style="width:70px"class="easyui-combobox">
                               	</select></td>
                               	<td>项目库类型：</td>

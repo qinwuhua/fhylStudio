@@ -174,7 +174,7 @@ text-decoration:none;
 								</select></td>
 								<td>技术等级：</td>
 								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
-								<td>行政等级：</td>
+								<td>原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:68px;" class="easyui-combobox"></select></td>
         					</tr>
         					<tr height="32">

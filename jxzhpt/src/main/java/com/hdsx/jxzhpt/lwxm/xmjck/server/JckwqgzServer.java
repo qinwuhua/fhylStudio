@@ -6,6 +6,7 @@ import java.util.Map;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
 public interface JckwqgzServer {
 	boolean insertWqgz(Jckwqgz wqgz);
@@ -20,12 +21,12 @@ public interface JckwqgzServer {
 	boolean deleteWqgzById(String delstr);
 	boolean xgJckWqgzShzt(String delstr,Jckwqgz wqgz);
 	boolean xgJckWqgzSbzt(String delstr,Jckwqgz wqgz);
-	List<SjbbMessage> exportExcel_wqgz(Jckwqgz jckwqgz);
+	List<Excel_list> exportExcel_wqgz(Jckwqgz jckwqgz);
 	boolean importWqgz(List<Map<String,String>> list,String tbbmbm,String sbthcd);
 	List<Jckwqgz> selectJckShwqgz(Jckwqgz wqgz);
 	int selectWqgzShCount(Jckwqgz wqgz);
 	boolean xgJckWqgzTH(String delstr);
-	List<SjbbMessage> exportExcel_wqgz_sh(Jckwqgz wqgz);
+	List<Excel_list> exportExcel_wqgz_sh(Jckwqgz wqgz);
 	boolean onceWqgz(Jckwqgz wqgz);
 	public String yanZhen(List<Map<String, String>> data, String tbbmbm);
 	Jckwqgz selJsdj(Jckwqgz wqgz);
@@ -33,4 +34,5 @@ public interface JckwqgzServer {
 	List<String> selectTSDQ(Jckwqgz wqgz);
 	String selectWqgzCount1(Jckwqgz jckwqgz);
 	List<String> selectTSDQ1(String xzqhdm1);
+	boolean xgJckWqgzTHxj(String delstr);
 }

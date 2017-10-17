@@ -60,8 +60,8 @@
 
 			var xmmc=$("#xmmc").val();
 			var xmnf=$("#xmnf").combobox('getValues').join(",");
-			if(xmnf=='')
-				xmnf=new Date().getFullYear();
+// 			if(xmnf=='')
+// 				xmnf=new Date().getFullYear();
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
@@ -121,7 +121,8 @@
 					'lxsh.lxmc':$("#lxmc").val(),
 					'lxsh.xmklx':$("#xmklx").combobox('getValue'),
 					'lxsh.lsxmnf':lsxmnf,
-					'lxsh.lsxmlx':lsxmlx
+					'lxsh.lsxmlx':lsxmlx,
+					'lxsh.xmbm':$("#xmbm").val()
 				},
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -295,7 +296,7 @@ text-decoration:none;
 	        						 <td align="right">项目年份：</td>
 	        						<td><select id="xmnf" style="width:72px;">
 									</select></td>
-									<td align="right">行政等级：</td>
+									<td align="right">原行政等级：</td>
 									<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td>
 									<!-- <td>项目年份：</td>
 	        						<td><select id="xmnf" style="width:70px;">
@@ -305,7 +306,7 @@ text-decoration:none;
 									<td>建设技术等级：</td>
 									<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
 									
-									<td>行政等级：</td>
+									<td>原行政等级：</td>
 									<td><select name="gldj" id="gldj" style="width:90px;" class="easyui-combobox"></select></td>
 	        						<td>是否有历史记录：</td>
 	        						<td><select id="lsjl" style="width:80px;" class="easyui-combobox">
@@ -334,7 +335,7 @@ text-decoration:none;
 									</select></td> -->
 	                              	<td align="right">规划路线名称：</td>
 	        						<td><input type="text" id="ghlxmc" style="width:70px;" /></td>
-	        						<td align="right">是否有补助历史：</td>
+	        						<td align="right">补助历史：</td>
 	        						<td><select id="lsjl" style="width:80px;" class="easyui-combobox">
 										<option selected="selected" value="">全部</option>
 										<option value="是">是</option>
@@ -374,6 +375,8 @@ text-decoration:none;
 									<select id='lsxmnf' class="easyui-combobox" style="width: 118px;">
 									</select>
 								</td>
+								<td align="right">项目编码：</td>
+	        					<td><input type="text" id="xmbm" style="width:100px;" /></td>
 								</tr><tr height="29">
 	                            	<td colspan="10">
 	        						<img onclick="showAllgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>

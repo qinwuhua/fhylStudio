@@ -47,7 +47,7 @@
 			grid.url="../../../qqgl/queryJhsh2.do";
 			var params={'jhsh.xmlx':5,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
 					'jhsh.xmnf':xmnf,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),
-					'jhsh.gldj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
+					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.zydpx':$('#zydpx').combobox('getValue'),'jhsh.sbzt':1,
 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.shzt':$('#shzt').combobox("getValue")
@@ -293,7 +293,7 @@ text-decoration:none;
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td> -->
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:150px;" class="easyui-combobox"></select></td>
 								<td align="right">原路线编码：</td>
         						<td><input name="lxbm" type="text" id="lxbm" style="width:118px;" /></td>
@@ -306,7 +306,7 @@ text-decoration:none;
         						
                             </tr>
                             <tr height="29">
-                            <td align="right">是否有补助历史：</td>
+                            <td align="right">补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:150px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
@@ -317,7 +317,7 @@ text-decoration:none;
 								
         						<!-- <td align="right">规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:100px;" /></td>
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:104px;" class="easyui-combobox"></select></td>
 								<td align="right">重要度排序：</td>
         						<td><input name="zydpx" type="text" class="easyui-numberbox" id="zydpx" style="width:100px;" /></td> -->

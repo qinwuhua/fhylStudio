@@ -22,6 +22,7 @@ public class Cbsj{
 	private String xmklx;//项目库类型
 	private String lsxmlx;
 	private String lsxmnf;
+	private String xmnf;
 	//补助
 		private String lqhntmc;
 		private String gxlqhntmc;  
@@ -103,7 +104,21 @@ public class Cbsj{
 		private String sbzj;//省补资金
 		private String wbc;
 		private String wbchd;
+		private String lxbm;
 		
+		
+		public String getXmnf() {
+			return xmnf;
+		}
+		public void setXmnf(String xmnf) {
+			this.xmnf = xmnf;
+		}
+		public String getLxbm() {
+			return lxbm;
+		}
+		public void setLxbm(String lxbm) {
+			this.lxbm = lxbm;
+		}
 		public String getWbc() {
 			return wbc;
 		}

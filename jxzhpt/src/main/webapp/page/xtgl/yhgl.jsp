@@ -115,10 +115,44 @@ function startSearch(){
 			title : '角色',
 			width : 100,
 			align : 'center'
-		}
+		},
+		{field : 'zt',title : '状态',width : 100,align : 'center',
+			formatter : function(value,rec,index){
+				return '<input type=button onclick=updatezt("'+rec.id+'","'+rec.zt+'") style="width:60px;border:1px #8db2e3 solid;" value='+rec.zt+' />';
+			}
+		},
 		]]
 	});
 }
+
+function updatezt(id,zt){
+	if(zt=="启用"){
+		zt="禁用";
+		}else{
+		zt="启用";
+	}
+	$.ajax({
+		 type : "POST",
+		 url : "../../xtgl/updatezt.do",
+		 dataType : 'json',
+		 data : {
+				'yhm' : id,
+				'yhzt' : zt
+			},
+		 success : function(msg){
+			 if(msg){
+				alert(zt+'成功！');
+				 $("#jsgl_table").datagrid('reload');
+			 }else{
+				 YMLib.Tools.Show('更改状态失败',3000);
+			 }
+		 },
+		 error : function(){
+			 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+		 }
+	});
+}
+
 $(function(){
 	loadUnit("unit",$.cookie("unit"));
 	startSearch();

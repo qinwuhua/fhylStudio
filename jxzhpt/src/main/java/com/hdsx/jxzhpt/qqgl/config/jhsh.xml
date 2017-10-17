@@ -1,6 +1,438 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.jhsh">
+ <select id="querySzxmList" parameterType="jhsh" resultType="hashMap">
+       
+      select * from (
+      select rownum num,jh.*,sz.*,sg.pfwh
+      ${tiaojian}
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="gydw !='' and gydw != null">${gydw}</if>
+      <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="scxdnf !='' and scxdnf != null">${scxdnf}</if>
+      <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
+      <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
+      <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
+      <if test="ylxbm !='' and ylxbm != null">and sz.ylxbm like '%${ylxbm}%'</if>
+      <if test="ylxmc !='' and ylxmc != null">and sz.ylxmc like '%${ylxmc}%'</if>
+      <if test="sbzt !='' and sbzt != null">and jh.sbzt like '%${sbzt}%'</if>
+      <if test="shzt !='' and shzt != null">and jh.shzt like '%${shzt}%'</if>
+      <if test="xdzttj !='' and xdzttj != null">and jh.xdzt like '%${xdzttj}%'</if>
+       
+      and rownum &lt;=(#{page} * #{rows})  
+      ) t 
+      where t.num>(#{page}-1)*#{rows}
+    </select>
+    <select id="querySzxmListCount" parameterType="jhsh" resultType="int">
+      select count(*)
+      ${tiaojian}
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="gydw !='' and gydw != null">${gydw}</if>
+      <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="scxdnf !='' and scxdnf != null">${scxdnf}</if>
+      <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
+      <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
+      <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
+      <if test="ylxbm !='' and ylxbm != null">and sz.ylxbm like '%${ylxbm}%'</if>
+      <if test="ylxmc !='' and ylxmc != null">and sz.ylxmc like '%${ylxmc}%'</if>
+      <if test="sbzt !='' and sbzt != null">and jh.sbzt like '%${sbzt}%'</if>
+      <if test="shzt !='' and shzt != null">and jh.shzt like '%${shzt}%'</if>
+      <if test="xdzttj !='' and xdzttj != null">and jh.xdzt like '%${xdzttj}%'</if>
+        
+    </select>
+
+	<select id="queryJhshLjSzxm" parameterType="jhsh" resultType="hashMap">
+      select count(*) xmsl
+      ${tiaojian}
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="gydw !='' and gydw != null">${gydw}</if>
+      <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="scxdnf !='' and scxdnf != null">${scxdnf}</if>
+      <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
+      <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
+      <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
+      <if test="ylxbm !='' and ylxbm != null">and sz.ylxbm like '%${ylxbm}%'</if>
+      <if test="ylxmc !='' and ylxmc != null">and sz.ylxmc like '%${ylxmc}%'</if>
+      <if test="sbzt !='' and sbzt != null">and jh.sbzt like '%${sbzt}%'</if>
+      <if test="shzt !='' and shzt != null">and jh.shzt like '%${shzt}%'</if>
+      <if test="xdzttj !='' and xdzttj != null">and jh.xdzt like '%${xdzttj}%'</if>
+       
+    </select>
+
+
+<!--  -->
+
+    <select id="queryszxm" parameterType="jhsh" resultType="hashMap">
+       
+      select * from (
+      select rownum num,s.*
+      ${tiaojian}
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="gydw !='' and gydw != null">${gydw}</if>
+      <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="ghlxbm !='' and ghlxbm != null">and ghlxbm like '%${ghlxbm}%'</if>
+      <if test="ghlxmc !='' and ghlxmc != null">and ghlxmc like '%${ghlxmc}%'</if>
+      <if test="ylxbm !='' and ylxbm != null">and ylxbm like '%${ylxbm}%'</if>
+      <if test="ylxmc !='' and ylxmc != null">and ylxmc like '%${ylxmc}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+      <if test="shzt !='' and shzt != null">and shzt like '%${shzt}%'</if>
+      <if test="xdzttj !='' and xdzttj != null">and xdzt like '%${xdzttj}%'</if>
+      
+      and rownum &lt;=(#{page} * #{rows})  
+      ) t 
+      where t.num>(#{page}-1)*#{rows}
+    </select>
+    <select id="queryszxmCount" parameterType="jhsh" resultType="int">
+      select count(*)
+      ${tiaojian}
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="gydw !='' and gydw != null">${gydw}</if>
+      <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="ghlxbm !='' and ghlxbm != null">and ghlxbm like '%${ghlxbm}%'</if>
+      <if test="ghlxmc !='' and ghlxmc != null">and ghlxmc like '%${ghlxmc}%'</if>
+      <if test="ylxbm !='' and ylxbm != null">and ylxbm like '%${ylxbm}%'</if>
+      <if test="ylxmc !='' and ylxmc != null">and ylxmc like '%${ylxmc}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+      <if test="shzt !='' and shzt != null">and shzt like '%${shzt}%'</if>
+      <if test="xdzttj !='' and xdzttj != null">and xdzt like '%${xdzttj}%'</if>
+        
+    </select>
+    <select id="queryszxmlj" parameterType="jhsh" resultType="hashMap">
+      select count(*) xmsl,nvl(sum(ztz),0) ztz
+      ${tiaojian}
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="gydw !='' and gydw != null">${gydw}</if>
+      <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="ghlxbm !='' and ghlxbm != null">and ghlxbm like '%${ghlxbm}%'</if>
+      <if test="ghlxmc !='' and ghlxmc != null">and ghlxmc like '%${ghlxmc}%'</if>
+      <if test="ylxbm !='' and ylxbm != null">and ylxbm like '%${ylxbm}%'</if>
+      <if test="ylxmc !='' and ylxmc != null">and ylxmc like '%${ylxmc}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+      <if test="shzt !='' and shzt != null">and shzt like '%${shzt}%'</if>
+      <if test="xdzttj !='' and xdzttj != null">and xdzt like '%${xdzttj}%'</if>
+       
+    </select>
+    
+    
+    
+    <!-- *服务区* -->
+    <!-- 查询服务区所有信息 -->
+    <select id="listFwq" parameterType="jhsh" resultType="jhsh">
+       
+      select * from (
+      select rownum num,ss.xmbm, ss.xlxbm, ss.pfwh, ss.xzh, ss.lzh, ss.sjpfdw, ss.sjpfsj, ss.zyjsnr, ss.gcsl, js.ztz,
+      js.cgs, js.dfzc, js.zydpx, js.xzqh, js.sbzt,js.xdzt
+      FROM SGT_fwq ss
+      left join jhsh_fwq js on ss.xmbm = js.xmbm
+      left join wnjh_fwq wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+      
+      and rownum &lt;=(#{page} * #{rows})  
+      ) t 
+      where t.num>(#{page}-1)*#{rows}
+    </select>
+    <select id="listFwqCount" parameterType="jhsh" resultType="int">
+      select count(*)
+      FROM SGT_fwq ss
+      left join jhsh_fwq js on ss.xmbm = js.xmbm
+      left join wnjh_fwq wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+        
+    </select>
+    <select id="queryJhshLjfwqsb" parameterType="jhsh" resultType="hashMap">
+      select count(*) xmsl,nvl(sum(js.ztz),0) ztz,nvl(sum(tbz),0) tbz,nvl(sum(dfzc),0) dfzc
+      FROM SGT_fwq ss
+      left join jhsh_fwq js on ss.xmbm = js.xmbm
+      left join wnjh_fwq wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+        
+    </select>
+    
+    
+    <!-- 查询服务区中上报状态为“已上报”的状态 -->
+    <select id="listFwqSbzt" parameterType="jhsh" resultType="jhsh">
+       select * from (
+	     select rownum num,ss.xmbm, ss.xlxbm, ss.pfwh, ss.xzh, ss.lzh, ss.sjpfdw, ss.sjpfsj, ss.zyjsnr, ss.gcsl, js.ztz,
+	     js.cgs, js.dfzc, js.zydpx, js.xzqh, js.sbzt,js.xdzt
+	     FROM SGT_fwq ss
+	     left join jhsh_fwq js on ss.xmbm = js.xmbm
+	     left join wnjh_fwq wn on ss.xmkid=wn.id
+	     where 1 = 1 and ss.shzt='已审核' and sbzt='1'
+	     <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+	     <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+	     <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+	     <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+	     <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+	     <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+	     and rownum &lt;=(#{page} * #{rows})  
+	     ) t 
+	     where t.num>(#{page}-1)*#{rows}
+    </select>
+    
+    <select id="listFwqSbztCount" parameterType="jhsh" resultType="int">
+      select count(*)
+      FROM SGT_fwq ss
+      left join jhsh_fwq js on ss.xmbm = js.xmbm
+      left join wnjh_fwq wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核' and sbzt='1'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+        
+    </select>
+    <select id="queryJhshLjfwqsh" parameterType="jhsh" resultType="hashMap">
+      select count(*) xmsl,nvl(sum(js.ztz),0) ztz,nvl(sum(tbz),0) tbz,nvl(sum(dfzc),0) dfzc
+      FROM SGT_fwq ss
+      left join jhsh_fwq js on ss.xmbm = js.xmbm
+      left join wnjh_fwq wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核' and sbzt='1'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+        
+    </select>
+    
+    
+    <!-- 查询服务区中上报上报状态为“已上报”并且下达状态（审批状态）为“已审批”的状态 -->
+    <select id="listFwqXdzt" parameterType="jhsh" resultType="jhsh">
+       select * from (
+	     select rownum num,ss.xmbm, ss.xlxbm, ss.pfwh, ss.xzh, ss.lzh, ss.sjpfdw, ss.sjpfsj, ss.zyjsnr, ss.gcsl, js.ztz,
+	     js.cgs, js.dfzc, js.zydpx, js.xzqh, js.sbzt,js.xdzt
+	     FROM SGT_fwq ss
+	     left join jhsh_fwq js on ss.xmbm = js.xmbm
+	     left join wnjh_fwq wn on ss.xmkid=wn.id
+	     where 1 = 1 and ss.shzt='已审核' and xdzt='1'
+	     <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+	     <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+	     <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+	     <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+	     <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+	     <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+	     and rownum &lt;=(#{page} * #{rows})  
+	     ) t 
+	     where t.num>(#{page}-1)*#{rows}
+    </select>
+    
+    <select id="listFwqXdztCount" parameterType="jhsh" resultType="int">
+      select count(*)
+      FROM SGT_fwq ss
+      left join jhsh_fwq js on ss.xmbm = js.xmbm
+      left join wnjh_fwq wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核'  and xdzt='1'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+        
+    </select>
+    <select id="queryJhshLjfwqxd" parameterType="jhsh" resultType="hashMap">
+      select count(*) xmsl,nvl(sum(js.ztz),0) ztz,nvl(sum(tbz),0) tbz,nvl(sum(dfzc),0) dfzc
+      FROM SGT_fwq ss
+      left join jhsh_fwq js on ss.xmbm = js.xmbm
+      left join wnjh_fwq wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核'  and xdzt='1'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+        
+    </select>
+    <!-- 根据Id查询服务区数据 -->
+    <select id="queryFwqById" parameterType="jhsh" resultType="jhsh">
+       SELECT * FROM jhsh_fwq jf WHERE jf.id = #{id}
+    </select>
+    <!-- 更新服务区数据 -->
+     <update id="updateFwq" parameterType="jhsh">
+	  update jhsh_fwq jf
+		<set>
+		  <if test="ztz!=null">ztz=#{ztz},</if>
+		  <if test="cgs!=null">cgs=#{cgs},</if>
+		  <if test="dfzc!=null">dfzc=#{dfzc},</if>
+		  <if test="zydpx!=null">zydpx=#{zydpx},</if>
+		  <if test="sbzt!=null">sbzt=#{sbzt},</if>
+		  <if test="xdzt!=null">xdzt=#{xdzt}</if>
+		</set>
+	  where jf.id=#{id}
+	</update>
+	<update id="fwqXmth" parameterType="jhsh">
+        update jhsh_fwq jf set jf.sbzt='0', jf.thyy=#{thyy} where jf.id=#{id}
+    </update>
+    <!-- #服务区# -->
+    
+    <select id="queryYhzxshJhxd" parameterType="jhsh" resultType="jhsh">
+       select * from jhsh_yhzx jy where jy.sbzt='1' and jy.xdzt='1'
+    </select>
+    <select id="queryYhzxshYap" parameterType="jhsh" resultType="jhsh">
+       select * from jhsh_yhzx jy where jy.sbzt='1'
+    </select>
+    <!-- 根据id查询综合养护中心信息 -->
+    <select id="queryYhzxshById" parameterType="jhsh" resultType="jhsh">
+       SELECT * FROM jhsh_yhzx jy WHERE jy.id = #{id}
+    </select>
+    <!-- 更新综合养护中心信息 -->
+     <update id="updateZhzxsh" parameterType="jhsh">
+	  update jhsh_yhzx
+		<set>
+		  <if test="ztz!=null">ztz=#{ztz},</if>
+		  <if test="jbzj!=null">jbzj=#{jbzj},</if>
+		  <if test="dfzc!=null">dfzc=#{dfzc},</if>
+		  <if test="zydpx!=null">zydpx=#{zydpx},</if>
+		  <if test="sbzt!=null">sbzt=#{sbzt},</if>
+		  <if test="xdzt!=null">xdzt=#{xdzt}</if>
+		</set>
+	  where id=#{id}
+	</update>
+	
+	<update id="yhzxshXmth" parameterType="jhsh">
+        update jhsh_yhzx jy set jy.sbzt='0', jy.thyy=#{thyy} where jy.id=#{id}
+    </update>
+    <!-- 综合养护中心 -->
+    <select id="queryYhzxshSb" parameterType="jhsh" resultType="jhsh">
+           select * from jhsh_yhzx where 1 = 1
+    </select>
+    
+    <!-- 更改示范路工程审批状态 -->
+    <update id="updateSflgcXdzt" parameterType="jhsh">
+        update jhsh_sfl js set js.xdzt='0' where js.id=#{id}
+    </update>
+    <!-- 示范路 -->
+    <update id="sflgcXmth" parameterType="jhsh">
+        update jhsh_sfl js set js.sbzt='0', js.thyy=#{thyy} where js.id=#{id}
+    </update>
+    <!-- 示范路下达查询计划编号 -->
+    <select id="querySflgcXdJhbz" parameterType="jhsh" resultType="jhsh">
+SELECT js.xmbm, ss.xlxbm, js.xzqh, ss.pfwh, ss.xqdzh, ss.xzdzh, js.xdsj, ss.sjpfdw, ss.sjpfsj, ss.zyjsnr, ss.gcsl,
+(case when pz.xmid is null then '未完成'
+      when nvl(js.ztz, 0) = nvl(pz.ztz, 0) and
+           nvl(js.dfzc, 0) = nvl(pz.dfzc, 0) and
+           nvl(js.tbz, 0) = nvl(pz.tbz, 0) then '已完成'
+      else '未完成' end) xdzttj, 
+(nvl(js.ztz, 0) - nvl(pz.ztz, 0)) ztz,
+(nvl(js.tbz, 0) - nvl(pz.tbz, 0)) stz,
+(nvl(js.dfzc, 0) - nvl(pz.dfzc, 0)) dfzc              
+FROM jhsh_sfl js
+LEFT JOIN SGT_SFL ss ON js.xmbm = ss.xmbm
+LEFT JOIN (SELECT xmid, SUM(ztz) ztz, SUM(stz) tbz, SUM(dfzc) dfzc
+FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
+    </select>
+    <!-- 示范路下达查询 -->
+    <select id="querySflgcXdXmlb" parameterType="jhsh" resultType="jhsh">
+       select * from jhsh_sfl sfl where sfl.sbzt='1' and sfl.xdzt='1'
+    </select>
+    <!-- 示范路预安排查询 -->
+    <select id="querySflgcYap" parameterType="jhsh" resultType="jhsh">
+       select * from jhsh_sfl sfl where sfl.sbzt='1'
+    </select>
+    <!-- 根据项目编号查询示范路工程数据 -->
+    <select id="querySflgcByXmbm" parameterType="jhsh" resultType="jhsh">
+       SELECT * FROM jhsh_sfl sfl WHERE sfl.xmbm = #{xmbm}
+    </select>
+    
+    <!-- 示范路工程查询Jhsh_sfl -->
+    <select id="querySflgc" parameterType="jhsh" resultType="jhsh">
+      
+      select * from (
+      select rownum num,ss.xmbm, ss.xlxbm, ss.pfwh, ss.xqdzh, ss.xzdzh, ss.sjpfdw, ss.sjpfsj, ss.zyjsnr, ss.gcsl, js.ztz,
+      js.tbz, js.tbz_jaf, js.tbz_gcjlf, js.tbz_qqgzf, js.dfzc, js.zydpx, js.sbzt,js.xdzt
+      FROM SGT_SFL ss
+      left join jhsh_sfl js on ss.xmbm = js.xmbm
+      left join wnjh_sfl wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+      
+      and rownum &lt;=(#{page} * #{rows})  
+      ) t 
+      where t.num>(#{page}-1)*#{rows}
+        
+    </select>
+	<select id="querySflgcCount" parameterType="jhsh" resultType="int">
+      select count(*)
+      FROM SGT_SFL ss
+      left join jhsh_sfl js on ss.xmbm = js.xmbm
+      left join wnjh_sfl wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+        
+    </select>
+    <select id="queryJhshLjsflsb" parameterType="jhsh" resultType="hashMap">
+      select count(*) xmsl,nvl(sum(js.ztz),0) ztz,nvl(sum(tbz),0) tbz,nvl(sum(dfzc),0) dfzc
+      FROM SGT_SFL ss
+      left join jhsh_sfl js on ss.xmbm = js.xmbm
+      left join wnjh_sfl wn on ss.xmkid=wn.id
+      where 1 = 1 and ss.shzt='已审核'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="xmmc !='' and xmmc != null">and xmmc like '%${xmmc}%'</if>
+      <if test="lxmc !='' and lxmc != null">and lxmc like '%${lxmc}%'</if>
+      <if test="xmbm !='' and xmbm != null">and xmbm like '%${xmbm}%'</if>
+      <if test="sbzt !='' and sbzt != null">and sbzt like '%${sbzt}%'</if>
+        
+    </select>
+    
+    
+    <!-- 示范路更新Jhsh_sfl -->
+    <update id="updateJhshSflgc" parameterType="jhsh">
+	  update jhsh_sfl
+		<set>
+		  <if test="xmbm!=null">xmbm=#{xmbm},</if>
+		  <if test="ztz!=null">ztz=#{ztz},</if>
+		  <if test="tbz!=null">tbz=#{tbz},</if>
+		  <if test="tbz_jaf!=null">tbz_jaf=#{tbz_jaf},</if>
+		  <if test="tbz_gcjlf!=null">tbz_gcjlf=#{tbz_gcjlf},</if>
+		  <if test="tbz_qqgzf!=null">tbz_qqgzf=#{tbz_qqgzf},</if>
+		  <if test="dfzc!=null">dfzc=#{dfzc},</if>
+		  <if test="zydpx!=null">zydpx=#{zydpx}</if>
+		</set>
+	  where xmbm=#{xmbm}
+	</update>
+        
 	<insert id="insertJhshLmsjFromCbsj" parameterType="java.util.List">
 		<!-- insert into jhsh_sjgz (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh,jszlc)
 		select sys_guid(),c.xmbm,c.xmmc,c.xzqh,c.qdzh,c.zdzh,c.kgsj,c.wgsj,c.gq,k.gkpfwh,c.sjpfwh,c.jszlc
@@ -14,9 +446,9 @@
 	     gq=(select gq from cbsj_sjgz c where c.xmbm=#{xmbm}),
 	     sjpfwh=(select sjpfwh from cbsj_sjgz c where c.xmbm=#{xmbm}),
 	     jszlc=(select jszlc from cbsj_sjgz c where c.xmbm=#{xmbm})
-	    where j.xmbm=#{xmbm}
-		
+	    where j.xmbm=#{xmbm}	
 	</insert>
+	
 	<insert id="insertJhshLmgzFromCbsj" parameterType="java.util.List">
 		<!-- insert into jhsh_lmgz (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh)
 		select sys_guid(),c.xmbm,c.xmmc,c.xzqh,c.qdzh,c.zdzh,c.kgsj,c.wgsj,c.gq,k.gkpfwh,c.sjpfwh
@@ -251,7 +683,10 @@
 	<select id="queryJhshYhdzx" parameterType="jhsh" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,lxbm,qdzh1,zdzh1,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,to_char(lx.lc,'fm9999999990.000') jhlc,sl.zlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh,lxg.tsdq,lxg.lxmc<if test="jhxdwh !=null and jhxdwh !=''">,wh.bcxdwh bcxdwh,wh.bcxdsj bcxdsj,wh.bcztz,wh.bccgs,wh.bcstz</if> from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
+				select j.*,lxbm,qdzh1,zdzh1,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,to_char(lx.lc,'fm9999999990.000') jhlc,
+				sl.zlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh,lxg.tsdq,lxg.lxmc
+				,wh.bcxdwh bcxdwh,wh.bcxdsj bcxdsj,wh.bcztz,wh.bccgs,wh.bcstz
+				 from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 	            left join (select  xmid,jsxz,
 	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
 	            
@@ -271,7 +706,6 @@
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
-	             <if test="jhxdwh !=null and jhxdwh !=''">
 		           left join (select j.xmid,
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
@@ -282,9 +716,13 @@
 	          		from jhxdyh g
 	          		left join plan_zjxd j
 	          		on g.xmbm = j.xmid
-	         		where 1 = 1 ${jhxdwh}  group by j.xmid) wh on j.xmbm=wh.xmid
-		        </if>
-	              where 1=1 
+	         		where 1 = 1 
+	         		<if test="jhxdwh !=null and jhxdwh !=''">
+	         		${jhxdwh}  
+	         		</if>
+	         		group by j.xmid) wh on j.xmbm=wh.xmid
+	            
+	             where 1=1  and j.jhxdwh  like '%'
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				
 				
@@ -330,6 +768,7 @@
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				order by <if test="zydpx=='升序'">j.zydpx,</if><if test="zydpx=='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc
 				
 			) t 
@@ -410,6 +849,7 @@
 				<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
 				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
@@ -479,7 +919,9 @@
 	<select id="queryJhshSh" parameterType="jhsh" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,lxbm,qdzh1,zdzh1,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,to_char(lx.lc,'fm9999999990.000') jhlc,sl.zlc,sl.xmsl xmsl,lxg.jsdj,lxg.xzqh xzqhmc,cb.sjpfwh,lxg.tsdq,lxg.lxmc<if test="jhxdwh !=null and jhxdwh !=''">,wh.bcxdwh bcxdwh,wh.bcxdsj bcxdsj,wh.bcztz,wh.bccgs,wh.bcstz</if> from jhxdsh j left join (select xmbm,sjpfwh from cbsj_sh) cb on j.xmbm=cb.xmbm  left join xmsq_sh lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
+				select j.*,lxbm,qdzh1,zdzh1,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,to_char(lx.lc,'fm9999999990.000') jhlc,sl.zlc,sl.xmsl xmsl,lxg.jsdj,lxg.xzqh xzqhmc,cb.sjpfwh,lxg.tsdq,lxg.lxmc
+				,wh.bcxdwh bcxdwh,wh.bcxdsj bcxdsj,j.pfztz bcztz,wh.bccgs,wh.stz bcstz 
+				from jhxdsh j left join (select xmbm,sjpfwh from cbsj_sh) cb on j.xmbm=cb.xmbm  left join xmsq_sh lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
 	            left join (select  xmid,jsxz,
 	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
 	            
@@ -499,31 +941,27 @@
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
-	             <if test="jhxdwh !=null and jhxdwh !=''">
 	             left join (select j.xmid,
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
 	             	sum(j.ztz) bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.jl),0) bcstz,
-	            	sum(j.btzzj) bccgs
+	            	sum(j.btzzj) bccgs,sum(j.dk) stz
 	          		from jhxdsh g
 	          		left join plan_zjxd j
 	          		on g.xmbm = j.xmid
-	         		where 1 = 1 ${jhxdwh}  group by j.xmid) wh on j.xmbm=wh.xmid
-		        </if>
-	              where 1=1
+	         		where 1 = 1 
+	         		<if test="jhxdwh !=null and jhxdwh !=''">
+	         		${jhxdwh}  
+	         		</if>
+	         		group by j.xmid) wh on j.xmbm=wh.xmid
+		        
+	              where 1=1 and j.jhxdwh  like '%'
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
-				
-				<!-- <if test="ghxlxbm!=null and ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<!-- <if test="ghxlxmc !=null and ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if> -->
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and j.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
 				</if>
@@ -554,6 +992,7 @@
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				order by <if test="zydpx=='升序'">j.zydpx,</if><if test="zydpx=='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc
 			) t 
 		) 
@@ -631,6 +1070,7 @@
 					and ${xzdj}
 				</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
 				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
@@ -942,7 +1382,7 @@
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
-	             <if test="jhxdwh !=null and jhxdwh !=''">
+	             
 					left join (select j.xmid,
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
@@ -953,8 +1393,12 @@
 	          		from jhxdyh g
 	          		left join plan_zjxd j
 	          		on g.xmbm = j.xmid
-	         		where 1 = 1 ${jhxdwh}  group by j.xmid) wh on j.xmbm=wh.xmid		        </if>
-	              where 1=1 
+	         		where 1 = 1 
+	         		<if test="jhxdwh !=null and jhxdwh !=''">
+	         		${jhxdwh}  
+	         		</if>
+	         		group by j.xmid) wh on j.xmbm=wh.xmid		        
+	              where 1=1  and j.jhxdwh  like '%'
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				
 				<!-- <if test="ghxlxbm!=null and ghxlxbm!=''">
@@ -1005,6 +1449,7 @@
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 	</select>
@@ -1077,6 +1522,7 @@
 				<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
 				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
@@ -1138,7 +1584,7 @@
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
-	             <if test="jhxdwh !=null and jhxdwh !=''">
+	            
 	             left join (select j.xmid,
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
@@ -1149,9 +1595,10 @@
 	          		from jhxdsh g
 	          		left join plan_zjxd j
 	          		on g.xmbm = j.xmid
-	         		where 1 = 1 ${jhxdwh}  group by j.xmid) wh on j.xmbm=wh.xmid
-		        </if>
-	              where 1=1
+	         		where 1 = 1 
+	         		 <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh} </if> 
+	         		group by j.xmid) wh on j.xmbm=wh.xmid
+	              where 1=1 and j.jhxdwh  like '%'
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
 				<if test="xmnf !=null and xmnf !=''">
@@ -1192,6 +1639,7 @@
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 	</select>
@@ -1233,6 +1681,7 @@
 	              where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(j.xmbm,0,4) in (${xmnf})
 				</if>
@@ -1558,6 +2007,7 @@
 		<if test="dk != null">c.dk=#{dk},</if>
 		<if test="jl != null">c.jl=#{jl},</if>
 		<if test="qt != null">c.qt=#{qt},</if>
+		<if test="dfzc != null">c.dfzc=#{dfzc},</if>
 		<if test="zydpx != null">c.zydpx=#{zydpx},</if>
 		xdzt='0' where c.xmbm=#{xmbm}
 	</update>
@@ -1565,8 +2015,8 @@
 	<select id="queryLxshLmsjByXmbm" parameterType="java.util.Map" resultType="lxsh">
 		select xmmc,xmklx,l1.lxbm ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.wnid,l.sfbflx,
 		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm,l.xzqhdm2,l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, 
-		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
-		decode(gpsqdzh,null,l1.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l1.zdzh,gpszdzh) gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc,l.jszlc,l1.ghlxbm,l1.ghlxmc,l1.ghqdzh,l1.ghzdzh,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh
+		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
+		decode(gpsqdzh,null,l1.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l1.zdzh,gpszdzh) gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc,nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0) jszlc,l1.ghlxbm,l1.ghlxmc,l1.ghqdzh,l1.ghzdzh,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh
 		from lxsh_sjgz l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
 	</select>
 	<select id="queryLxshLmgzByXmbm" parameterType="java.util.Map" resultType="lxsh">
@@ -1579,15 +2029,15 @@
 	<select id="queryLxshXjByXmbm" parameterType="java.util.Map" resultType="lxsh">
 		select xmmc,xmklx,l1.lxbm ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj, xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm,l.xzqhdm2,l.wnid,l.sfbflx,
 		l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, xmid, lxbm, l1.lxmc,l1.qdzh, 
-		l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
+		l1.zdzh, l1.jsjsdj, nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
 		decode(gpsqdzh,null,l1.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l1.zdzh,gpszdzh) gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,l1.xjlxbm,l1.xjqdzh,l1.xjzdzh,l1.xjlc,l1.ghlxbm,l1.ghlxmc,l1.ghqdzh,l1.ghzdzh,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh 
 		from lxsh_xj l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
 	</select>
 	<select id="queryLxshLmsjqxByXmbm" parameterType="java.util.Map" resultType="lxsh">
 		select xmmc,xmklx,l1.lxbm ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.wnid,l.sfbflx,
 		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm,l.xzqhdm2,l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, 
-		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
-		decode(gpsqdzh,null,l1.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l1.zdzh,gpszdzh) gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc,l.jszlc,l1.ghlxbm,l1.ghlxmc,l1.ghqdzh,l1.ghzdzh,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh
+		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
+		decode(gpsqdzh,null,l1.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l1.zdzh,gpszdzh) gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc,nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0) jszlc,l1.ghlxbm,l1.ghlxmc,l1.ghqdzh,l1.ghzdzh,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh
 		from lxsh_sjgz_qx l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
 	</select>
 	<select id="queryLxshLmgzqxByXmbm" parameterType="java.util.Map" resultType="lxsh">
@@ -1600,7 +2050,7 @@
 	<select id="queryLxshXjqxByXmbm" parameterType="java.util.Map" resultType="lxsh">
 		select xmmc,xmklx,l1.lxbm ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj, xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm,l.xzqhdm2,l.wnid,l.sfbflx,
 		l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, xmid, lxbm, l1.lxmc,l1.qdzh, 
-		l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
+		l1.zdzh, l1.jsjsdj, nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
 		decode(gpsqdzh,null,l1.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l1.zdzh,gpszdzh) gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,l1.xjlxbm,l1.xjqdzh,l1.xjzdzh,l1.xjlc,l1.ghlxbm,l1.ghlxmc,l1.ghqdzh,l1.ghzdzh,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh 
 		from lxsh_xj_qx l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
 	</select>
@@ -1614,51 +2064,58 @@
 		select k.*,xmklx from jhsh_xj k left join lxsh_xj t on k.xmbm=t.xmbm where k.xmbm=#{xmbm}
 	</select>
 	<select id="queryJhshxxYhdzxByXmbm" parameterType="jhsh" resultType="jhsh">
-		select j.*,l.lxbm as ylxbh,l.gpsqdzh,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from jhsh_yhdzx j left join lxsh_lx l on j.xmbm=l.xmid where jdbs='2' and l.sffirst='1' and j.xmbm=#{xmbm}
+	  select j.*, l.lxbm as ylxbh, l.gpsqdzh, l.gpszdzh, l.yilc, l.erlc, l.sanlc,
+           l.silc, l.dwlc, l.wllc, lbz.lxsbzj, sbz.sgtsbzj, sgtxx.tz, sgtxx.bz
+      from jhsh_yhdzx j
+      left join (select sum(sbzj) lxsbzj,xmid from lxsh_lx where jdbs='1' group by xmid) lbz on lbz.xmid = j.xmbm 
+      left join (select sum(sbzj) sgtsbzj,xmid from lxsh_lx where jdbs='2' group by xmid) sbz on sbz.xmid = j.xmbm
+      left join (select xmbm, tz, bz from cbsj_yhdzx) sgtxx on sgtxx.xmbm = j.xmbm
+      left join lxsh_lx l on j.xmbm = l.xmid
+      where jdbs = '2' and l.sffirst = '1' and j.xmbm=#{xmbm}
 	</select>
 	<select id="queryJhshxxShByXmbm" parameterType="jhsh" resultType="jhsh">
 		select j.*,l.lxbm as ylxbh,l.gpsqdzh,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from jhsh_sh j left join lxsh_lx l on j.xmbm=l.xmid where jdbs='2' and l.sffirst='1' and j.xmbm=#{xmbm}
 	</select>
 	<select id="queryLmsjKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
-		select k.*,t.xmklx,l.XMID, l.LXBM, l.LXMC, l.XZQH, l.XZQHDM, l.GYDW, decode(k.gydwdm1,null,l.gydwdm) gydwdm, l.QDZH, l.ZDZH, l.JSJSDJ, l.LC, l.XJSDJ, l.JSXZ, l.QDMC, l.ZDMC, l.BZCS, l.SFFIRST, l.JDBS, l.JSFA, l.YILC, l.ERLC, l.SANLC, l.SILC, l.DWLC, l.WLLC, l.JHYILC, l.JHERLC, l.JHSANLC, l.JHSILC, l.JHDWLC, l.JHWLLC, l.XJLXBM, l.XJQDZH, l.XJZDZH, l.XJLC, l.JHLC, l.GHLXBM, l.GHLXMC, l.LXLMKD, l.XZQHDM2, l.XZQHMC2, l.GXLXBM, l.GXQDZH, l.GXZDZH, l.GHQDZH, l.GHZDZH ,
+		select k.XMMC,k.XMBM,k.JSDW,k.XZQH,k.QDZH,k.ZDZH,k.DQ,k.SD,k.KGNY,k.WGNY,k.JSJSDJ,k.JSXZ,k.GKPFWH,k.PFSJ,k.TZGS,k.BZDW,k.XZQHDM,k.SHZT,k.SBZT,k.SBTHCD,k.DQ_M,k.SD_M,k.TBBMBM,k.DFZC,k.YHDK,k.TZXZ,k.TZSJ,k.GYDW1,k.GYDWDM1,k.THYY,k.BZ,k.KXXYJ_SJGZ,nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0) jszlc,t.xmklx,l.XMID, l.LXBM, l.LXMC, l.XZQH, l.XZQHDM, l.GYDW, decode(k.gydwdm1,null,l.gydwdm) gydwdm, l.QDZH, l.ZDZH, l.JSJSDJ,nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) LC, l.XJSDJ, l.JSXZ, l.QDMC, l.ZDMC, l.BZCS, l.SFFIRST, l.JDBS, l.JSFA, l.YILC, l.ERLC, l.SANLC, l.SILC, l.DWLC, l.WLLC, l.JHYILC, l.JHERLC, l.JHSANLC, l.JHSILC, l.JHDWLC, l.JHWLLC, l.XJLXBM, l.XJQDZH, l.XJZDZH, l.XJLC, l.JHLC, l.GHLXBM, l.GHLXMC, l.LXLMKD, l.XZQHDM2, l.XZQHMC2, l.GXLXBM, l.GXQDZH, l.GXZDZH, l.GHQDZH, l.GHZDZH ,
 		decode(gpsqdzh,null,l.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l.zdzh,gpszdzh) gpszdzh from kxxyj_sjgz k left join lxsh_sjgz t on k.xmbm=t.xmbm left join lxsh_lx l on k.xmbm=l.xmid
 		left join(select max(gpszdzh) gpszdzh1,min(gpsqdzh) gpsqdzh1,xmid from LXSH_LX group by xmid) lxx on k.xmbm=lxx.xmid
 	    where k.xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
 	</select>
 	<select id="queryLmgzKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
-		select k.*,t.xmklx,l.XMID, l.LXBM, l.LXMC, l.XZQH, l.XZQHDM, l.GYDW, decode(k.gydwdm1,null,l.gydwdm) gydwdm, l.QDZH, l.ZDZH, l.JSJSDJ, l.LC, l.XJSDJ, l.JSXZ, l.QDMC, l.ZDMC, l.BZCS, l.SFFIRST, l.JDBS, l.JSFA, l.YILC, l.ERLC, l.SANLC, l.SILC, l.DWLC, l.WLLC, l.JHYILC, l.JHERLC, l.JHSANLC, l.JHSILC, l.JHDWLC, l.JHWLLC, l.XJLXBM, l.XJQDZH, l.XJZDZH, l.XJLC, l.JHLC, l.GHLXBM, l.GHLXMC, l.LXLMKD, l.XZQHDM2, l.XZQHMC2, l.GXLXBM, l.GXQDZH, l.GXZDZH, l.GHQDZH, l.GHZDZH ,
+		select k.*,t.xmklx,l.XMID, l.LXBM, l.LXMC, l.XZQH, l.XZQHDM, l.GYDW, decode(k.gydwdm1,null,l.gydwdm) gydwdm, l.QDZH, l.ZDZH, l.JSJSDJ, nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) LC, l.XJSDJ, l.JSXZ, l.QDMC, l.ZDMC, l.BZCS, l.SFFIRST, l.JDBS, l.JSFA, l.YILC, l.ERLC, l.SANLC, l.SILC, l.DWLC, l.WLLC, l.JHYILC, l.JHERLC, l.JHSANLC, l.JHSILC, l.JHDWLC, l.JHWLLC, l.XJLXBM, l.XJQDZH, l.XJZDZH, l.XJLC, l.JHLC, l.GHLXBM, l.GHLXMC, l.LXLMKD, l.XZQHDM2, l.XZQHMC2, l.GXLXBM, l.GXQDZH, l.GXZDZH, l.GHQDZH, l.GHZDZH ,
 		decode(gpsqdzh,null,l.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l.zdzh,gpszdzh) gpszdzh from kxxyj_lmgz k left join lxsh_lmgz t on k.xmbm=t.xmbm  left join lxsh_lx l on k.xmbm=l.xmid
 		left join(select max(gpszdzh) gpszdzh1,min(gpsqdzh) gpsqdzh1,xmid from LXSH_LX group by xmid) lxx on k.xmbm=lxx.xmid
 	    where k.xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
 	</select>
 	<select id="queryXjKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
-		select k.*,t.xmklx,l.XMID, l.LXBM, l.LXMC, l.XZQH, l.XZQHDM, l.GYDW, decode(k.gydwdm1,null,l.gydwdm) gydwdm, l.QDZH, l.ZDZH, l.JSJSDJ, l.LC, l.XJSDJ, l.JSXZ, l.QDMC, l.ZDMC, l.BZCS, l.SFFIRST, l.JDBS, l.JSFA, l.YILC, l.ERLC, l.SANLC, l.SILC, l.DWLC, l.WLLC, l.JHYILC, l.JHERLC, l.JHSANLC, l.JHSILC, l.JHDWLC, l.JHWLLC, l.XJLXBM, l.XJQDZH, l.XJZDZH, l.XJLC, l.JHLC, l.GHLXBM, l.GHLXMC, l.LXLMKD, l.XZQHDM2, l.XZQHMC2, l.GXLXBM, l.GXQDZH, l.GXZDZH, l.GHQDZH, l.GHZDZH ,
+		select k.*,t.xmklx,l.XMID, l.LXBM, l.LXMC, l.XZQH, l.XZQHDM, l.GYDW, decode(k.gydwdm1,null,l.gydwdm) gydwdm, l.QDZH, l.ZDZH, l.JSJSDJ, nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) LC, l.XJSDJ, l.JSXZ, l.QDMC, l.ZDMC, l.BZCS, l.SFFIRST, l.JDBS, l.JSFA, l.YILC, l.ERLC, l.SANLC, l.SILC, l.DWLC, l.WLLC, l.JHYILC, l.JHERLC, l.JHSANLC, l.JHSILC, l.JHDWLC, l.JHWLLC, l.XJLXBM, l.XJQDZH, l.XJZDZH, l.XJLC, l.JHLC, l.GHLXBM, l.GHLXMC, l.LXLMKD, l.XZQHDM2, l.XZQHMC2, l.GXLXBM, l.GXQDZH, l.GXZDZH, l.GHQDZH, l.GHZDZH ,
 		decode(gpsqdzh,null,l.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l.zdzh,gpszdzh) gpszdzh from kxxyj_xj k left join lxsh_xj t on k.xmbm=t.xmbm  left join lxsh_lx l on k.xmbm=l.xmid
 		left join(select max(gpszdzh) gpszdzh1,min(gpsqdzh) gpsqdzh1,xmid from LXSH_LX group by xmid) lxx on k.xmbm=lxx.xmid
 		where k.xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
 	</select>
 	
 	<select id="queryLmsjKxxyjqxByXmbm" parameterType="jhsh" resultType="kxxyj">
-		select k.*,t.xmklx,l.XMID, l.LXBM, l.LXMC, l.XZQH, l.XZQHDM, l.GYDW, decode(k.gydwdm1,null,l.gydwdm) gydwdm, l.QDZH, l.ZDZH, l.JSJSDJ, l.LC, l.XJSDJ, l.JSXZ, l.QDMC, l.ZDMC, l.BZCS, l.SFFIRST, l.JDBS, l.JSFA, l.YILC, l.ERLC, l.SANLC, l.SILC, l.DWLC, l.WLLC, l.JHYILC, l.JHERLC, l.JHSANLC, l.JHSILC, l.JHDWLC, l.JHWLLC, l.XJLXBM, l.XJQDZH, l.XJZDZH, l.XJLC, l.JHLC, l.GHLXBM, l.GHLXMC, l.LXLMKD, l.XZQHDM2, l.XZQHMC2, l.GXLXBM, l.GXQDZH, l.GXZDZH, l.GHQDZH, l.GHZDZH ,
+		select k.*,t.xmklx,l.XMID, l.LXBM, l.LXMC, l.XZQH, l.XZQHDM, l.GYDW, decode(k.gydwdm1,null,l.gydwdm) gydwdm, l.QDZH, l.ZDZH, l.JSJSDJ, nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) LC, l.XJSDJ, l.JSXZ, l.QDMC, l.ZDMC, l.BZCS, l.SFFIRST, l.JDBS, l.JSFA, l.YILC, l.ERLC, l.SANLC, l.SILC, l.DWLC, l.WLLC, l.JHYILC, l.JHERLC, l.JHSANLC, l.JHSILC, l.JHDWLC, l.JHWLLC, l.XJLXBM, l.XJQDZH, l.XJZDZH, l.XJLC, l.JHLC, l.GHLXBM, l.GHLXMC, l.LXLMKD, l.XZQHDM2, l.XZQHMC2, l.GXLXBM, l.GXQDZH, l.GXZDZH, l.GHQDZH, l.GHZDZH ,
 		decode(gpsqdzh,null,l.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l.zdzh,gpszdzh) gpszdzh from kxxyj_sjgz_qx k left join lxsh_sjgz_qx t on k.xmbm=t.xmbm left join lxsh_lx l on k.xmbm=l.xmid
 		left join(select max(gpszdzh) gpszdzh1,min(gpsqdzh) gpsqdzh1,xmid from LXSH_LX group by xmid) lxx on k.xmbm=lxx.xmid
 	    where k.xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
 	</select>
 	<select id="queryLmgzKxxyjqxByXmbm" parameterType="jhsh" resultType="kxxyj">
-		select k.*,t.xmklx,l.XMID, l.LXBM, l.LXMC, l.XZQH, l.XZQHDM, l.GYDW, decode(k.gydwdm1,null,l.gydwdm) gydwdm, l.QDZH, l.ZDZH, l.JSJSDJ, l.LC, l.XJSDJ, l.JSXZ, l.QDMC, l.ZDMC, l.BZCS, l.SFFIRST, l.JDBS, l.JSFA, l.YILC, l.ERLC, l.SANLC, l.SILC, l.DWLC, l.WLLC, l.JHYILC, l.JHERLC, l.JHSANLC, l.JHSILC, l.JHDWLC, l.JHWLLC, l.XJLXBM, l.XJQDZH, l.XJZDZH, l.XJLC, l.JHLC, l.GHLXBM, l.GHLXMC, l.LXLMKD, l.XZQHDM2, l.XZQHMC2, l.GXLXBM, l.GXQDZH, l.GXZDZH, l.GHQDZH, l.GHZDZH ,
+		select k.*,t.xmklx,l.XMID, l.LXBM, l.LXMC, l.XZQH, l.XZQHDM, l.GYDW, decode(k.gydwdm1,null,l.gydwdm) gydwdm, l.QDZH, l.ZDZH, l.JSJSDJ, nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) LC, l.XJSDJ, l.JSXZ, l.QDMC, l.ZDMC, l.BZCS, l.SFFIRST, l.JDBS, l.JSFA, l.YILC, l.ERLC, l.SANLC, l.SILC, l.DWLC, l.WLLC, l.JHYILC, l.JHERLC, l.JHSANLC, l.JHSILC, l.JHDWLC, l.JHWLLC, l.XJLXBM, l.XJQDZH, l.XJZDZH, l.XJLC, l.JHLC, l.GHLXBM, l.GHLXMC, l.LXLMKD, l.XZQHDM2, l.XZQHMC2, l.GXLXBM, l.GXQDZH, l.GXZDZH, l.GHQDZH, l.GHZDZH ,
 		decode(gpsqdzh,null,l.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l.zdzh,gpszdzh) gpszdzh from kxxyj_lmgz_qx k left join lxsh_lmgz_qx t on k.xmbm=t.xmbm  left join lxsh_lx l on k.xmbm=l.xmid
 		left join(select max(gpszdzh) gpszdzh1,min(gpsqdzh) gpsqdzh1,xmid from LXSH_LX group by xmid) lxx on k.xmbm=lxx.xmid
 	    where k.xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
 	</select>
 	<select id="queryXjKxxyjqxByXmbm" parameterType="jhsh" resultType="kxxyj">
-		select k.*,t.xmklx,l.XMID, l.LXBM, l.LXMC, l.XZQH, l.XZQHDM, l.GYDW, decode(k.gydwdm1,null,l.gydwdm) gydwdm, l.QDZH, l.ZDZH, l.JSJSDJ, l.LC, l.XJSDJ, l.JSXZ, l.QDMC, l.ZDMC, l.BZCS, l.SFFIRST, l.JDBS, l.JSFA, l.YILC, l.ERLC, l.SANLC, l.SILC, l.DWLC, l.WLLC, l.JHYILC, l.JHERLC, l.JHSANLC, l.JHSILC, l.JHDWLC, l.JHWLLC, l.XJLXBM, l.XJQDZH, l.XJZDZH, l.XJLC, l.JHLC, l.GHLXBM, l.GHLXMC, l.LXLMKD, l.XZQHDM2, l.XZQHMC2, l.GXLXBM, l.GXQDZH, l.GXZDZH, l.GHQDZH, l.GHZDZH ,
+		select k.*,t.xmklx,l.XMID, l.LXBM, l.LXMC, l.XZQH, l.XZQHDM, l.GYDW, decode(k.gydwdm1,null,l.gydwdm) gydwdm, l.QDZH, l.ZDZH, l.JSJSDJ, nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) LC, l.XJSDJ, l.JSXZ, l.QDMC, l.ZDMC, l.BZCS, l.SFFIRST, l.JDBS, l.JSFA, l.YILC, l.ERLC, l.SANLC, l.SILC, l.DWLC, l.WLLC, l.JHYILC, l.JHERLC, l.JHSANLC, l.JHSILC, l.JHDWLC, l.JHWLLC, l.XJLXBM, l.XJQDZH, l.XJZDZH, l.XJLC, l.JHLC, l.GHLXBM, l.GHLXMC, l.LXLMKD, l.XZQHDM2, l.XZQHMC2, l.GXLXBM, l.GXQDZH, l.GXZDZH, l.GHQDZH, l.GHZDZH ,
 		decode(gpsqdzh,null,l.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l.zdzh,gpszdzh) gpszdzh from kxxyj_xj_qx k left join lxsh_xj_qx t on k.xmbm=t.xmbm  left join lxsh_lx l on k.xmbm=l.xmid
 		left join(select max(gpszdzh) gpszdzh1,min(gpsqdzh) gpsqdzh1,xmid from LXSH_LX group by xmid) lxx on k.xmbm=lxx.xmid
 		where k.xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
 	</select>
 	
 	<select id="queryShKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
-		select k.*,l.XMID, l.LXBM, l.LXMC, l.XZQH, l.XZQHDM, l.GYDW, decode(k.gydwdm1,null,l.gydwdm) gydwdm, l.QDZH, l.ZDZH, l.JSJSDJ, l.LC, l.XJSDJ, l.JSXZ, l.QDMC, l.ZDMC, l.BZCS, l.SFFIRST, l.JDBS, l.JSFA, l.YILC, l.ERLC, l.SANLC, l.SILC, l.DWLC, l.WLLC, l.JHYILC, l.JHERLC, l.JHSANLC, l.JHSILC, l.JHDWLC, l.JHWLLC, l.XJLXBM, l.XJQDZH, l.XJZDZH, l.XJLC, l.JHLC, l.GHLXBM, l.GHLXMC, l.LXLMKD, l.XZQHDM2, l.XZQHMC2, l.GXLXBM, l.GXQDZH, l.GXZDZH, l.GHQDZH, l.GHZDZH ,
+		select k.*,l.XMID, l.LXBM, l.LXMC, l.XZQH, l.XZQHDM, l.GYDW, decode(k.gydwdm1,null,l.gydwdm) gydwdm, l.QDZH, l.ZDZH, l.JSJSDJ, nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) LC, l.XJSDJ, l.JSXZ, l.QDMC, l.ZDMC, l.BZCS, l.SFFIRST, l.JDBS, l.JSFA, l.YILC, l.ERLC, l.SANLC, l.SILC, l.DWLC, l.WLLC, l.JHYILC, l.JHERLC, l.JHSANLC, l.JHSILC, l.JHDWLC, l.JHWLLC, l.XJLXBM, l.XJQDZH, l.XJZDZH, l.XJLC, l.JHLC, l.GHLXBM, l.GHLXMC, l.LXLMKD, l.XZQHDM2, l.XZQHMC2, l.GXLXBM, l.GXQDZH, l.GXZDZH, l.GHQDZH, l.GHZDZH ,
 		decode(gpsqdzh,null,l.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l.zdzh,gpszdzh) gpszdzh from kxxyj_sh k left join lxsh_lx l on k.xmbm=l.xmid
 		left join(select max(gpszdzh) gpszdzh1,min(gpsqdzh) gpsqdzh1,xmid from LXSH_LX group by xmid) lxx on k.xmbm=lxx.xmid
 	    where xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
@@ -3807,17 +4264,10 @@
 	
 	<select id="queryJhshLjYhdzx" parameterType="jhsh" resultType="java.util.Map">
 		select 
-		<if test="jhxdwh ==null or jhxdwh ==''">
-		count(*) sl,nvl(sum(yqdbcgs),0) cgs,nvl(sum(rys),0) rys,nvl(sum(dk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(ztz),0) tz,'0' sjl,'0' dftz
-		</if>
-		<if test="jhxdwh !=null and jhxdwh !=''">
-		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcrys),0) rys,nvl(sum(bcdk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(bcztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz
-		</if>
+		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcrys),0) rys,nvl(sum(bcdk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(ztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz
 		 from (
 				select j.*,lx2.zjhlc jhlc,sl.zlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh
-				<if test="jhxdwh !=null and jhxdwh !=''">
 					,bcztz,bccgs,bcrys,bcdk,bcjl,bcdftz
-				</if>
 				 from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 	            left join (select  xmid,jsxz,
 	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
@@ -3838,7 +4288,7 @@
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
-	            <if test="jhxdwh !=null and jhxdwh !=''">
+	           
 	            	left join (select j.xmid,
 	            	sum(j.jl) bcjl,
 	            	sum(j.rys) bcrys,
@@ -3853,9 +4303,13 @@
 	          		from jhxdyh g
 	          		left join plan_zjxd j
 	          		on g.xmbm = j.xmid
-	         		where 1 = 1 ${jhxdwh}  group by j.xmid) wh on j.xmbm=wh.xmid
-		        </if>
-	              where 1=1
+	         		where 1 = 1
+	         		<if test="jhxdwh !=null and jhxdwh !=''">
+	         		 ${jhxdwh}  
+	         		</if>
+	         		 group by j.xmid) wh on j.xmbm=wh.xmid
+		        
+	              where 1=1 and j.jhxdwh  like '%'
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				
 				<!-- <if test="ghxlxbm!=null and ghxlxbm!=''">
@@ -3906,6 +4360,7 @@
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 		
@@ -3995,6 +4450,7 @@
 				<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
 				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
@@ -4035,18 +4491,12 @@
 	</select>
 	<select id="queryJhshLjSh" parameterType="jhsh" resultType="java.util.Map">
 		select 
-		<if test="jhxdwh ==null or jhxdwh ==''">
-		count(*) sl,nvl(sum(bbzzj),0) cgs,nvl((sum(jl)+sum(dk)),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(pfztz),0) tz,'0' sjl,'0' dftz
-		</if>
-		<if test="jhxdwh !=null and jhxdwh !=''">
-		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcstz),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(bcztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz
-		</if>
+		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcdk),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(pfztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz
 		 from (
 				select j.*,lx2.zjhlc jhlc,sl.zlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh
-				<if test="jhxdwh !=null and jhxdwh !=''">
-					,bcztz,bccgs,bcstz,bcjl,bcdftz
-				</if>
-				from jhxdsh j left join (select xmbm,sjpfwh from cbsj_sh) cb on j.xmbm=cb.xmbm  left join xmsq_sh lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
+				,bcztz,bccgs,bcstz,bcjl,bcdftz,bcdk
+				from jhxdsh j left join (select xmbm,sjpfwh from cbsj_sh) cb on j.xmbm=cb.xmbm  
+				left join xmsq_sh lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
 	            left join (select  xmid,jsxz,
 	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
 	            
@@ -4066,8 +4516,7 @@
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
-	            <if test="jhxdwh !=null and jhxdwh !=''">
-	            	left join (select j.xmid,
+	            left join (select j.xmid,
 	            	sum(j.jl) bcjl,
 	            	sum(j.rys) bcrys,
 	            	sum(j.dk) bcdk,
@@ -4081,9 +4530,13 @@
 	          		from jhxdsh g
 	          		left join plan_zjxd j
 	          		on g.xmbm = j.xmid
-	         		where 1 = 1 ${jhxdwh}  group by j.xmid) wh on j.xmbm=wh.xmid
-		        </if>
-	              where 1=1 
+	         		where 1 = 1 
+	         		<if test="jhxdwh !=null and jhxdwh !=''">
+	         		${jhxdwh}  
+	         		</if>
+	         		group by j.xmid) wh on j.xmbm=wh.xmid
+		        
+	              where 1=1  and  j.jhxdwh  like '%'
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
 				<if test="xmnf !=null and xmnf !=''">
@@ -4108,9 +4561,7 @@
 					and j.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghxlxbm})
 				</if>
 			<if test="ghxlxmc != '' and ghxlxmc != null ">
-				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
-				
-				)
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%'))
 			</if>
 				<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
 				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
@@ -4119,6 +4570,7 @@
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 		
@@ -4176,6 +4628,7 @@
 	              where 1=1 
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(j.xmbm,0,4) in (${xmnf})
 				</if>
@@ -4354,7 +4807,10 @@
 	<select id="queryGsdgz" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,lxbm,qdzh1,zdzh1,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,to_char(lx.lc,'fm9999999990.000') lc,sl.zlc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj,lxg.lxmc<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">,wh.bccgs bcxd</if> from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
+				select j.*,lxbm,qdzh1,zdzh1,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,to_char(lx.lc,'fm9999999990.000') lc,
+				sl.zlc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj,lxg.lxmc
+				,wh.bcxd bcxd,wh.bcstz
+				from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 		        left join (select  xmid,jsxz,
 		        (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
 	            
@@ -4374,12 +4830,11 @@
 		        else ''
 		        end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 		        from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
-		        <if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">
 		        	left join (select j.xmid,
 	            	sum(j.jl) bcjl,
 	            	sum(j.rys) bcrys,
 	            	sum(j.dk) bcdk,
-	                sum(j.btzzj) bcxd,
+	                sum(j.ztz) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
 	             	sum(j.ztz) bcztz,
@@ -4389,11 +4844,13 @@
 	          		from gsdgz g
 	          		left join plan_zjxd j
 	          		on g.xmbm = j.xmid
-	         		where 1 = 1 ${jhsh.jhxdwh}  group by j.xmid) wh on j.xmbm=wh.xmid
+	         		where 1 = 1 
+	         		<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">
+	         		${jhsh.jhxdwh}  
+	         		</if>
+	         		group by j.xmid) wh on j.xmbm=wh.xmid
 		        
-		        </if>
-		        
-	            where 1=1
+	            where 1=1 and j.jhxdwh  like '%'
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
 				<if test="jhsh.xmnf !=null and jhsh.xmnf !=''">
@@ -4438,6 +4895,9 @@
 				</if>
 				<if test="jhsh.xmklx !=null and jhsh.xmklx !=''">
 					and xmklx like '%'||#{jhsh.xmklx}||'%'
+				</if>
+				<if test="jhsh.xmbm !=null and jhsh.xmbm !=''">
+					and j.xmbm like '%'||#{jhsh.xmbm}||'%'
 				</if>
 				order by <if test="jhsh.zydpx =='升序'">j.zydpx,</if><if test="jhsh.zydpx =='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc
 			) t 
@@ -4490,6 +4950,7 @@
 	            where 1=1
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
+				<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and j.xmbm like '%'||#{jhsh.xmbm}||'%'</if>
 				<if test="jhsh.xmnf !=null and jhsh.xmnf !=''">
 					and substr(xmbm,0,4) in (${jhsh.xmnf})
 				</if>
@@ -4700,7 +5161,7 @@
 		        else ''
 		        end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 		        from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
-		         <if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">
+		        
 		         left join (select j.xmid,
 	            	sum(j.jl) bcjl,
 	            	sum(j.rys) bcrys,
@@ -4715,10 +5176,12 @@
 	          		from gsdgz g
 	          		left join plan_zjxd j
 	          		on g.xmbm = j.xmid
-	         		where 1 = 1 ${jhsh.jhxdwh}  group by j.xmid) wh on j.xmbm=wh.xmid
-		        
-		        </if>
-	            where 1=1
+	         		where 1 = 1
+	         		 <if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">
+	         		 ${jhsh.jhxdwh}  
+	         		 </if>
+	         		  group by j.xmid) wh on j.xmbm=wh.xmid
+	            where 1=1 and j.jhxdwh  like '%'
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
 				<if test="jhsh.xmnf !=null and jhsh.xmnf !=''">
@@ -4763,6 +5226,9 @@
 				</if>
 				<if test="jhsh.xmklx !=null and jhsh.xmklx !=''">
 					and xmklx like '%'||#{jhsh.xmklx}||'%'
+				</if>
+				<if test="jhsh.xmbm !=null and jhsh.xmbm !=''">
+					and j.xmbm like '%'||#{jhsh.xmbm}||'%'
 				</if>
 				order by <if test="jhsh.zydpx =='升序'">j.zydpx,</if><if test="jhsh.zydpx =='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc
 			) t 
@@ -4811,6 +5277,7 @@
 	            where 1=1
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
+				<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and j.xmbm like '%'||#{jhsh.xmbm}||'%'</if>
 				<if test="jhsh.xmnf !=null and jhsh.xmnf !=''">
 					and substr(xmbm,0,4) in (${jhsh.xmnf})
 				</if>
@@ -4861,19 +5328,10 @@
 	
 	<select id="queryJhshLjgsdgz" parameterType="jhsh" resultType="java.util.Map">
 		select 
-		<if test="jhxdwh ==null or jhxdwh ==''">
-		count(*) sl,nvl(sum(bbzzj),0) cgs,nvl((sum(jl)+sum(dk)),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(pfztz),0) tz,'0' sjl,
-<!-- 				nvl(sum(gz),0)+nvl(sum(sz),0)+nvl(sum(zq),0)+nvl(sum(yhdk),0) dftz -->
-		nvl(sum(dfzc),0) dftz,nvl(sum(yhdk),0) yhdk
-		</if>
-		<if test="jhxdwh !=null and jhxdwh !=''">
-		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bccgs),0) bcxd,nvl(sum(bcstz),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(bcztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz,nvl(sum(bcyhdk),0) yhdk
-		</if>
+		count(*) sl,nvl(sum(bbzzj),0) cgs,nvl(sum(bcztz),0) bcxd,nvl(sum(bcstz),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(pfztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz,nvl(sum(bcyhdk),0) yhdk
 		 from (
 				select j.*,lx2.zjhlc jhlc,sl.zlc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj
-				<if test="jhxdwh !=null and jhxdwh !=''">
 					,bcztz,bccgs,bcstz,bcjl,bcdftz,bcyhdk
-				</if>
 				from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 		        left join (select  xmid,jsxz,
 		        (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
@@ -4894,7 +5352,6 @@
 		        else ''
 		        end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 		        from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
-		         <if test="jhxdwh !=null and jhxdwh !=''">
 		         left join (select j.xmid,
 	            	sum(j.jl) bcjl,
 	            	sum(j.rys) bcrys,
@@ -4912,10 +5369,12 @@
 	          		from gsdgz g
 	          		left join plan_zjxd j
 	          		on g.xmbm = j.xmid
-	         		where 1 = 1 ${jhxdwh}  group by j.xmid) wh on j.xmbm=wh.xmid
-		        
-		        </if>
-	            where 1=1
+	         		where 1 = 1
+	         		<if test="jhxdwh !=null and jhxdwh !=''">
+	         		 ${jhxdwh} 
+	         		 </if>
+	         		  group by j.xmid) wh on j.xmbm=wh.xmid
+	            where 1=1 and j.jhxdwh  like '%'
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
 				<if test="xmnf !=null and xmnf !=''">
@@ -4960,6 +5419,9 @@
 				</if>
 				<if test="xmklx !=null and xmklx !=''">
 					and xmklx like '%'||#{xmklx}||'%'
+				</if>
+				<if test="xmbm !=null and xmbm !=''">
+					and j.xmbm like '%'||#{xmbm}||'%'
 				</if>
 				order <if test="zydpx=='升序'">j.zydpx,</if><if test="zydpx=='降序'">j.zydpx desc,</if>by j.xdzt,j.xmbm desc
 			) t 
@@ -5023,6 +5485,7 @@
 	            where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(xmbm,0,4) in (${xmnf})
 				</if>
@@ -5458,7 +5921,58 @@
 		<if test="sfqx != null and sfqx !=''">,#{sfqx}</if>
 		)
 	</insert>
-	
+	<insert id="planxdAllSzxm" parameterType="java.util.List">
+		insert into plan_zjxd(id
+		<if test="XMBM != null">,XMID</if>
+		<if test="BZXDNF != null">,XDNF</if>
+		<if test="TBDW != null">,TBDW</if>
+		<if test="BZTBSJ != null">,TBTIME</if>
+		<if test="BZCGS != null">,BTZZJ</if>
+		<if test="JHXDWH != null">,jhxdwh</if>
+		<if test="BZGZ != null">,gz</if>
+		<if test="BZSZ != null">,sz</if>
+		<if test="BZZTZ != null">,ztz</if>
+		<if test="BZDK != null">,dk</if>
+		<if test="BZZQ != null">,zq</if>
+		<if test="BZQT != null">,qt</if>
+		<if test="BZJL != null">,jl</if>
+		<if test="BZRYS != null">,rys</if>
+		<if test="BZYHDK != null">,yhdk</if>
+		<if test="BZDFZC != null">,dfzc</if>
+		<if test="ZYJSNR != null">,zyjsnr</if>
+		<if test="XZSCNL != null">,xzscnl</if>
+		<if test="SFQX != null and SFQX !=''">,sfqx</if>
+		<if test="BZSTZ != null and BZSTZ !=''">,STZ</if>
+		<if test="BZZDDZJL != null and BZZDDZJL !=''">,ZDDZJL</if>
+		)
+		values(sys_guid()
+		<if test="XMBM != null">,#{XMBM}</if>
+		<if test="BZXDNF != null">,#{BZXDNF}</if>
+		<if test="TBDW != null">,#{TBDW}</if>
+		<if test="BZTBSJ != null">,#{BZTBSJ}</if>
+		<if test="BZCGS != null">,#{BZCGS}</if>
+		<if test="JHXDWH != null">,#{JHXDWH}</if>
+		<if test="BZGZ != null">,#{BZGZ}</if>
+		<if test="BZSZ != null">,#{BZSZ}</if>
+		<if test="BZZTZ != null">,#{BZZTZ}</if>
+		<if test="BZDK != null">,#{BZDK}</if>
+		<if test="BZZQ != null">,#{BZZQ}</if>
+		<if test="BZQT != null">,#{BZQT}</if>
+		<if test="BZJL != null">,#{BZJL}</if>
+		<if test="BZRYS != null">,#{BZRYS}</if>
+		<if test="BZYHDK != null">,#{BZYHDK}</if>
+		<if test="BZDFZC != null">,to_number(#{BZDFZC})</if>
+		<if test="ZYJSNR != null">,#{ZYJSNR}</if>
+		<if test="XZSCNL != null">,#{XZSCNL}</if>
+		<if test="SFQX != null and SFQX !=''">,#{SFQX}</if>
+		<if test="BZSTZ != null and BZSTZ !=''">,#{BZSTZ}</if>
+		<if test="BZZDDZJL != null and BZZDDZJL !=''">,#{ZDDZJL}</if>
+		)
+	</insert>
+	<update id="planxdAllSzxmmc" parameterType="java.util.List">
+		update 	${XMLX}
+				set xmmc=#{XMMC} where xmbm=#{XMBM}
+	</update>
 	<insert id="planxdAllmc" parameterType="java.util.List">
 		update 	<if test="xmlx == 1">jhsh_sjgz</if>
 				<if test="xmlx == 2">jhsh_lmgz</if>
@@ -6202,16 +6716,14 @@
 		order by xh
 				
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<!-- 更新示范路工程申报状态 -->
+	<update id="plansflgc" parameterType="jhsh">
+		update jhsh_sfl set jhsh_sfl.sbzt='1' where jhsh_sfl.xmbm=#{xmbm}
+	</update>
+	<!-- 更新示范路工程审核状态（为什么不是更新shzt？） -->
+	<update id="planshSflgc" parameterType="jhsh">
+		update jhsh_sfl set xdzt='1',xdsj=to_char(sysdate,'yyyy-mm-dd') where xmbm in (${xmbm})
+	</update>
 	<update id="plansbgj" parameterType="jhsh">
 		update jhsh_sjgz set sbzt='1' where xmbm in (${xmbm})
 	</update>
@@ -6314,28 +6826,27 @@
 	</select>
 	
 	<select id="queryGsdgz_dcexcel1" parameterType="jhsh" resultType="elist">
-	select 
-          rownum v_0,'江西省' v_1,j.ds v_2,j.xzqh v_3,j.xmmc v_4,
-          decode(instr(RemoveSameStr(l.ghlxbm,','),','),0,RemoveSameStr(l.ghlxbm,','),l.ghlxbm) v_5,
-          l.ghqdzh v_6,l.ghzdzh v_7,
-          decode(instr(RemoveSameStr(l.ylxbm,','),','),0,RemoveSameStr(l.ylxbm,','),l.ylxbm) v_8,
-          l.qdzh v_9,l.zdzh v_10,j.xmlx1 v_11,
-          to_char(l.zjhlc,'fm9999999990.000') v_12,to_char(yilc,'fm9999999990.000') v_13,
-          to_char(erlc,'fm9999999990.000') v_14,to_char(sanlc,'fm9999999990.000') v_15,
-          to_char(silc,'fm9999999990.000') v_16,
-          nvl(decode(cb.ql_ym,'无','0',cb.ql_ym),0)  v_17,nvl(decode(cb.sd_ym,'无','0',cb.sd_ym),0) v_18,
-          j.kgsj v_19,j.wgsj v_20,nvl(j.pfztz,0) v_21,nvl(j.bbzzj,0) v_22,nvl(jh15.btz,0) v_23,
-          nvl(wc14.ztz14,0) v_24,nvl(wc14.btz14,0) v_25,nvl(jh15.ztz,0) v_26,nvl(jh15.btz,0) v_27,
-          nvl(jh15.dfzc,0) v_28,j.zyjsnr v_29,j.xzscnl v_30,j.jhxdwh v_31,
-          kx.gkpfwh v_32,cb.sjpfwh v_33,j.xmbm v_34,j.bz v_35,j.tsdq v_36
+	
+	 select 
+           '合计' v_0,'' v_1,'' v_2,'' v_3,to_char(count(j.xmbm)) v_4,
+          '' v_5,'' v_6,'' v_7, '' v_8,
+          '' v_9,'' v_10,'' v_11,
+          to_char(sum(l.zjhlc),'fm9999999990.000') v_12,to_char(sum(yilc),'fm9999999990.000') v_13,
+          to_char(sum(erlc),'fm9999999990.000') v_14,to_char(sum(sanlc),'fm9999999990.000') v_15,
+          to_char(sum(silc),'fm9999999990.000') v_16,
+          nvl('',0)  v_17,nvl('',0) v_18, 
+          '' v_19,'' v_20,to_char(nvl(sum(j.pfztz),0)) v_21,to_char(nvl(sum(j.bbzzj),0)) v_22,
+          nvl(sum(jhxd.btz),0) v_23,nvl(sum(jhxd.dk),0) v_24,nvl(sum(jhxd.jl),0) v_25,
+          nvl(sum(jhlj.ztz),0) v_26,nvl(sum(jhlj.btz),0) v_27,nvl(sum(jhlj.dk),0) v_28,nvl(sum(jhlj.jl),0) v_29,
+          nvl(sum(jh15.ztz),0) v_30,nvl(sum(jh15.btz),0) v_31,nvl(sum(jh15.dk),0) v_32,nvl(sum(jh15.jl),0) v_33,
+          nvl(sum(jh15.dfzc),0) v_34,nvl(sum(jh15.yhdk),0) v_35,'' v_36,'' v_37,'' v_38,
+          '' v_39,'' v_40,'' v_41,'' v_42,'' v_43,'' v_44
           from gsdgz j
           left join cbgsdgz cb
           on j.xmbm=cb.xmbm
           left join kxgsdgz kx
           on j.xmbm=kx.xmbm
-          
-           left join
-          
+           left join         
          (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
               replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
               replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
@@ -6356,17 +6867,27 @@
                WMSYS.WM_CONCAT((case when ghqdzh like '.%' then 0||ghqdzh when ghqdzh like '%,.%' then replace(ghqdzh, ',.', ',0.') else ghqdzh end ))over( PARTITION BY xmid ORDER BY id,ghqdzh) ghqdzh,
                WMSYS.WM_CONCAT((case when ghzdzh like '.%' then 0||ghzdzh when ghzdzh like '%,.%' then replace(ghzdzh, ',.', ',0.') else ghzdzh end ))over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh
               from LXSH_LX  where jdbs='2') group by xmid) l on j.xmbm=l.xmid 
-          left join (
-          select jhid,sum(nvl(lm.wc_btz,0))+sum(nvl(lm.wc_stz,0))+sum(nvl(lm.wc_qttz,0)) ztz14,sum(nvl(lm.wc_btz,0)) btz14 from gcgl_gcgzgj lm where substr(lm.sbyf,0,4)&lt;=to_char(to_number(substr(#{xmnf},0,4))-1) group by lm.jhid
-          union all
-          select jhid,sum(nvl(lm.wc_btz,0))+sum(nvl(lm.wc_stz,0))+sum(nvl(lm.wc_qttz,0)) ztz14,sum(nvl(lm.wc_btz,0)) btz14 from gcgl_xj lm where substr(lm.sbyf,0,4)&lt;=to_char(to_number(substr(#{xmnf},0,4))-1) group by lm.jhid
-          union all
-          select jhid,sum(nvl(sj.bywctze,0))+sum(nvl(sj.zycgs,0)) ztz14,sum(nvl(sj.zycgs,0)) btz14 from gcgl_gcgzsj sj where substr(sj.sbyf,0,4)&lt;=to_char(to_number(substr(#{xmnf},0,4))-1) group by sj.jhid
-          ) wc14 on j.xmbm=wc14.jhid
           left join(
-          select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk from plan_zjxd p where p.xdnf=#{xmnf} group by p.xmid 
+          select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk,sum(dk) dk,sum(jl) jl from plan_zjxd p 
+           group by p.xmid 
+          ) jhxd on j.xmbm=jhxd.xmid
+          left join(
+          select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk,sum(p.dk) dk,sum(p.jl) jl from plan_zjxd p
+          where 1=1 
+          <if test="jhxdwh !=null and jhxdwh !=''">
+           and p.xdnf&lt; (select min(j.xdnf) from plan_zjxd j where 1=1 ${jhxdwh})
+          </if>
+          group by p.xmid 
+          ) jhlj on j.xmbm=jhlj.xmid
+          left join(
+          select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,sum(j.dfzc) dfzc,sum(j.yhdk) yhdk,sum(j.dk) dk,sum(j.jl) jl,
+          replace(WMSYS.WM_CONCAT(j.zyjsnr),',',',') zyjsnr, replace(WMSYS.WM_CONCAT(j.xzscnl),',',',') xzscnl
+          from plan_zjxd j 
+          where 1=1
+          <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> 
+          group by j.xmid 
           ) jh15 on j.xmbm=jh15.xmid
-               where 1=1
+               where 1=1 and j.jhxdwh  like '%'
                 <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
@@ -6408,6 +6929,119 @@
 				<if test="gyfl !=null and gyfl !=''">
 					
 				</if> 
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
+				
+  union all
+               
+	select 
+           to_char(rownum) v_0,to_char('江西省') v_1,to_char(j.ds) v_2,to_char(j.xzqh) v_3,j.xmmc v_4,
+          decode(instr(RemoveSameStr(l.ghlxbm,','),','),0,RemoveSameStr(l.ghlxbm,','),l.ghlxbm) v_5,
+          to_char(l.ghqdzh) v_6,to_char(l.ghzdzh) v_7,
+          decode(instr(RemoveSameStr(l.ylxbm,','),','),0,RemoveSameStr(l.ylxbm,','),l.ylxbm) v_8,
+          to_char(l.qdzh) v_9,to_char(l.zdzh) v_10,to_char(j.xmlx1) v_11,
+          to_char(l.zjhlc,'fm9999999990.000') v_12,to_char(yilc,'fm9999999990.000') v_13,
+          to_char(erlc,'fm9999999990.000') v_14,to_char(sanlc,'fm9999999990.000') v_15,
+          to_char(silc,'fm9999999990.000') v_16,
+<!--           nvl(decode(cb.ql_ym,'无','0',cb.ql_ym),0)  v_17,nvl(decode(cb.sd_ym,'无','0',cb.sd_ym),0) v_18, -->
+         nvl('',0)  v_17,nvl('',0) v_18, 
+          substr(j.kgsj,0,4) v_19,substr(j.wgsj,0,4) v_20,nvl(j.pfztz,0) v_21,nvl(j.bbzzj,0) v_22,
+          nvl(jhxd.btz,0) v_23,nvl(jhxd.dk,0) v_24,nvl(jhxd.jl,0) v_25,
+          nvl(jhlj.ztz,0) v_26,nvl(jhlj.btz,0) v_27,nvl(jhlj.dk,0) v_28,nvl(jhlj.jl,0) v_29,
+          nvl(jh15.ztz,0) v_30,nvl(jh15.btz,0) v_31,nvl(jh15.dk,0) v_32,nvl(jh15.jl,0) v_33,
+          nvl(jh15.dfzc,0) v_34,nvl(jh15.yhdk,0) v_35,j.zyjsnr v_36,j.xzscnl v_37,j.jhxdwh v_38,
+          kx.gkpfwh v_39,cb.sjpfwh v_40,j.xmbm v_41,sbnf.scxdnf v_42,j.bz v_43,j.tsdq v_44
+          from gsdgz j
+          left join (select xmid,min(xdnf) scxdnf from plan_zjxd group by xmid) sbnf on j.xmbm = sbnf.xmid
+          left join cbgsdgz cb
+          on j.xmbm=cb.xmbm
+          left join kxgsdgz kx
+          on j.xmbm=kx.xmbm
+          
+           left join
+          
+         (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+              replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
+              replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
+              replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,
+             replace(max(qdzh), ',.', ',0.') qdzh,replace(max(zdzh), ',.', ',0.') zdzh,replace(max(ghqdzh), ',.', ',0.') ghqdzh,replace(max(ghzdzh), ',.', ',0.') ghzdzh
+             ,max(ghlxbm) ghlxbm,max(ylxbm) ylxbm,
+              decode(substr(xmid,11,1),'1',(sum(nvl(jhyilc,0))),(sum(nvl(yilc,0)))) yilc,decode(substr(xmid,11,1),'1',(sum(nvl(jherlc,0))),(sum(nvl(erlc,0)))) erlc,
+             decode(substr(xmid,11,1),'1',(sum(nvl(jhsanlc,0))),(sum(nvl(sanlc,0)))) sanlc,decode(substr(xmid,11,1),'1',(sum(nvl(jhsilc,0))),(sum(nvl(silc,0)))) silc
+              from (select  xmid,
+              (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0))
+              else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0))
+              end) jhlc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,yilc,erlc,sanlc,silc,dwlc,wllc,
+               lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm  else '' end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj,
+               WMSYS.WM_CONCAT(ghlxbm)over( PARTITION BY xmid ORDER BY id,ghlxbm) ghlxbm,
+               WMSYS.WM_CONCAT(lxbm)over( PARTITION BY xmid ORDER BY id,lxbm) ylxbm,
+               WMSYS.WM_CONCAT((case when qdzh like '.%' then 0||qdzh when qdzh like '%,.%' then replace(qdzh, ',.', ',0.') else qdzh end ))over( PARTITION BY xmid ORDER BY id,qdzh) qdzh,
+               WMSYS.WM_CONCAT((case when zdzh like '.%' then 0||zdzh when zdzh like '%,.%' then replace(zdzh, ',.', ',0.') else zdzh end ))over( PARTITION BY xmid ORDER BY id,zdzh) zdzh,
+               WMSYS.WM_CONCAT((case when ghqdzh like '.%' then 0||ghqdzh when ghqdzh like '%,.%' then replace(ghqdzh, ',.', ',0.') else ghqdzh end ))over( PARTITION BY xmid ORDER BY id,ghqdzh) ghqdzh,
+               WMSYS.WM_CONCAT((case when ghzdzh like '.%' then 0||ghzdzh when ghzdzh like '%,.%' then replace(ghzdzh, ',.', ',0.') else ghzdzh end ))over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh
+              from LXSH_LX  where jdbs='2') group by xmid) l on j.xmbm=l.xmid 
+          left join(
+          select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk,sum(dk) dk,sum(jl) jl from plan_zjxd p 
+           group by p.xmid 
+          ) jhxd on j.xmbm=jhxd.xmid
+          left join(
+          select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk,sum(p.dk) dk,sum(p.jl) jl from plan_zjxd p
+          where 1=1
+          <if test="jhxdwh !=null and jhxdwh !=''">
+           and p.xdnf&lt; (select min(j.xdnf) from plan_zjxd j where 1=1 ${jhxdwh})
+          </if>
+          group by p.xmid 
+          ) jhlj on j.xmbm=jhlj.xmid
+          left join(
+          select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,sum(j.dfzc) dfzc,sum(j.yhdk) yhdk,sum(j.dk) dk,sum(j.jl) jl,
+          replace(WMSYS.WM_CONCAT(j.zyjsnr),',',',') zyjsnr, replace(WMSYS.WM_CONCAT(j.xzscnl),',',',') xzscnl
+          from plan_zjxd j 
+          where 1=1
+          <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> 
+          group by j.xmid 
+          ) jh15 on j.xmbm=jh15.xmid
+               where 1=1 and j.jhxdwh  like '%'
+                <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+				<if test="lxmc !=null and lxmc !=''">
+					and ghlxmctj like '%'||#{lxmc}||'%'
+				</if>
+				<if test="ghlxbh!=null and ghlxbh!=''">
+					and j.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
+				</if>
+				<if test="ghxlxbm != null and ghxlxbm != ''">
+					and j.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghxlxbm})
+				</if>
+			    <if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%'))
+			    </if>
+				<if test="xmnf !=null and xmnf !=''">
+					and fun_scxdnf(xmbm) in (${xmnf})
+				</if>
+<!-- 				<if test="scxdnf !=null and scxdnf !=''"> -->
+<!-- 					and scxdnf in (${scxdnf}) -->
+<!-- 				</if> -->
+				<if test="tsdq !=null and tsdq !=''">
+					${tsdq}
+				</if>
+				<if test="xzdj !=null and xzdj !=''">
+					and ${xzdj}
+				</if>
+				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xdzt>=0">and j.xdzt=${xdzt}</if>
+				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsdj}</if>
+				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
+				<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
+				<if test="zjly !=null and zjly !=''">
+					${zjly}
+				</if>
+				<if test="xdzttj !=null and xdzttj !=''">
+					${xdzttj}
+				</if>
+				<if test="gyfl !=null and gyfl !=''">
+					
+				</if> 
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 	</select> 
 	
 	<select id="queryGsdgz_dcexcel" parameterType="jhsh" resultType="elist">
@@ -6609,6 +7243,166 @@
 		
 	</select>
 <!-- 下面是导出灾毁恢复的sql -->	
+<select id="queryZhhf_dcexcel1" parameterType="jhsh" resultType="elist">
+ select 
+  '合计' v_0, '' v_1,'' v_2, to_char(count(j.xmbm)) v_3,
+  '' v_4,'' v_5,'' v_6,'' v_7,'' v_8,'' v_9,'' v_10, 
+  to_char(sum(l.zjhlc) ,'fm9999999990.000') v_11,to_char(sum(l.yilc) ,'fm9999999990.000') v_12,
+  to_char(sum(l.erlc) ,'fm9999999990.000') v_13,to_char(sum(l.sanlc),'fm9999999990.000') v_14,
+  to_char(sum(l.silc),'fm9999999990.000') v_15,nvl('',0) v_16,nvl('',0) v_17,'' v_18,
+  '' v_19,'' v_20,to_char(nvl(sum(j.pfztz),0)) v_21,
+  to_char(sum(decode(xd.stz,0,j.pfztz,xd.btz+xd.stz+xd.dfzc))) v_22,nvl(sum(xd.btz),0) v_23,
+  nvl(sum(xd.stz),0) v_24,nvl(sum(decode(xd.stz,0,(j.pfztz-xd.btz),xd.dfzc)),0) v_25,'' v_26,'' v_27,'' v_28,'' v_29,'' v_30,'' v_31
+  from   Jhxdsh   j
+  left join cbsj_sh c
+  on j.xmbm=c.xmbm
+  left join xmsq_sh x
+  on j.xmbm=x.xmbm
+   left join
+  (select j.xmid,nvl(sum(j.ztz),0) ztz,nvl(sum(j.btzzj),0) btz,nvl(sum(j.dk),0) stz,nvl(sum(j.dfzc),0) dfzc
+   ,nvl(sum(j.yhdk),0) yhdk,nvl(sum(gz)+sum(sz)+sum(zq),0) dftz,
+   replace(WMSYS.WM_CONCAT(j.zyjsnr),',',',') zyjsnr
+  from plan_zjxd j where 1=1 
+  <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> 
+  group by j.xmid) xd on j.xmbm=xd.xmid
+  left join (
+ select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+              replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
+              replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
+              replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,
+             replace(max(qdzh), ',.', ',0.') qdzh,replace(max(zdzh), ',.', ',0.') zdzh,replace(max(ghqdzh), ',.', ',0.') ghqdzh,replace(max(ghzdzh), ',.', ',0.') ghzdzh
+             ,max(ghlxbm) ghlxbm,max(ylxbm) ylxbm,
+              decode(substr(xmid,11,1),'1',(sum(nvl(jhyilc,0))),(sum(nvl(yilc,0)))) yilc,decode(substr(xmid,11,1),'1',(sum(nvl(jherlc,0))),(sum(nvl(erlc,0)))) erlc,
+             decode(substr(xmid,11,1),'1',(sum(nvl(jhsanlc,0))),(sum(nvl(sanlc,0)))) sanlc,decode(substr(xmid,11,1),'1',(sum(nvl(jhsilc,0))),(sum(nvl(silc,0)))) silc
+              from (select  xmid,
+              (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0))
+              else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0))
+              end) jhlc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,yilc,erlc,sanlc,silc,dwlc,wllc,
+               lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm  else '' end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj,
+               WMSYS.WM_CONCAT(ghlxbm)over( PARTITION BY xmid ORDER BY id,ghlxbm) ghlxbm,
+               WMSYS.WM_CONCAT(lxbm)over( PARTITION BY xmid ORDER BY id,lxbm) ylxbm,
+               WMSYS.WM_CONCAT((case when qdzh like '.%' then 0||qdzh when qdzh like '%,.%' then replace(qdzh, ',.', ',0.') else qdzh end ))over( PARTITION BY xmid ORDER BY id,qdzh) qdzh,
+               WMSYS.WM_CONCAT((case when zdzh like '.%' then 0||zdzh when zdzh like '%,.%' then replace(zdzh, ',.', ',0.') else zdzh end ))over( PARTITION BY xmid ORDER BY id,zdzh) zdzh,
+               WMSYS.WM_CONCAT((case when ghqdzh like '.%' then 0||ghqdzh when ghqdzh like '%,.%' then replace(ghqdzh, ',.', ',0.') else ghqdzh end ))over( PARTITION BY xmid ORDER BY id,ghqdzh) ghqdzh,
+               WMSYS.WM_CONCAT((case when ghzdzh like '.%' then 0||ghzdzh when ghzdzh like '%,.%' then replace(ghzdzh, ',.', ',0.') else ghzdzh end ))over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh
+              from LXSH_LX  where jdbs='2') group by xmid) l on j.xmbm=l.xmid 
+   where 1=1 and j.jhxdwh  like '%'
+      <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+		<if test="lxmc !=null and lxmc !=''">
+			and ghlxmctj like '%'||#{lxmc}||'%'
+		</if>
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
+		</if>
+		<if test="ghxlxbm != null and ghxlxbm != ''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghxlxbm})
+		</if>
+		<if test="ghxlxmc != '' and ghxlxmc != null ">
+			and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%'))
+		</if>
+		<if test="xmnf !=null and xmnf !=''">
+			and fun_scxdnf(j.xmbm) in (${xmnf})
+		</if>
+		<if test="tsdq !=null and tsdq !=''">
+			${tsdq}
+		</if>
+		<if test="xzdj !=null and xzdj !=''">
+			and ${xzdj}
+		</if>
+		<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
+		<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
+		<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+		<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
+		<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
+		<if test="xdzttj !=null and xdzttj !=''">
+			${xdzttj}
+		</if>
+		<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
+		
+   union all 
+   
+  select 
+   to_char(rownum) v_0, to_char(j.ds) v_1,to_char(j.xzqh) v_2, j.xmmc v_3,
+  decode(instr(RemoveSameStr(l.ghlxbm,','),','),0,RemoveSameStr(l.ghlxbm,','),l.ghlxbm) v_4,
+  l.ghqdzh v_5,l.ghzdzh v_6,
+  decode(instr(RemoveSameStr(l.ylxbm,','),','),0,RemoveSameStr(l.ylxbm,','),l.ylxbm) v_7,
+  l.qdzh v_8,l.zdzh v_9,
+  j.jsxz v_10, to_char(l.zjhlc ,'fm9999999990.000') v_11,to_char(l.yilc ,'fm9999999990.000') v_12,
+  to_char(l.erlc ,'fm9999999990.000') v_13,to_char(l.sanlc,'fm9999999990.000') v_14,
+  to_char(l.silc,'fm9999999990.000') v_15,nvl('',0) v_16,nvl('',0) v_17,c.jsfa v_18,
+  substr(c.kgsj,0,4) v_19,substr(c.wgsj,0,4) v_20,nvl(j.pfztz,0) v_21,
+  decode(xd.stz,0,j.pfztz,xd.btz+xd.stz+xd.dfzc) v_22,nvl(xd.btz,0) v_23,
+  nvl(xd.stz,0) v_24,decode(xd.stz,0,(j.pfztz-xd.btz),xd.dfzc) v_25,xd.zyjsnr v_26,c.sjpfwh v_27,j.jhxdwh v_28,j.xmbm v_29,sbnf.scxdnf v_30,j.tsdqzcg v_31
+  from   Jhxdsh   j
+  left join (select xmid,min(xdnf) scxdnf from plan_zjxd group by xmid) sbnf on j.XMBM = sbnf.xmid 
+  left join cbsj_sh c
+  on j.xmbm=c.xmbm
+  left join xmsq_sh x
+  on j.xmbm=x.xmbm
+   left join
+  (select j.xmid,nvl(sum(j.ztz),0) ztz,nvl(sum(j.btzzj),0) btz,nvl(sum(j.dk),0) stz,nvl(sum(j.dfzc),0) dfzc
+   ,nvl(sum(j.yhdk),0) yhdk,nvl(sum(gz)+sum(sz)+sum(zq),0) dftz,
+   replace(WMSYS.WM_CONCAT(j.zyjsnr),',',',') zyjsnr
+  from plan_zjxd j where 1=1
+   <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> 
+  group by j.xmid) xd on j.xmbm=xd.xmid
+  left join (
+ select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+              replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
+              replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
+              replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,
+             replace(max(qdzh), ',.', ',0.') qdzh,replace(max(zdzh), ',.', ',0.') zdzh,replace(max(ghqdzh), ',.', ',0.') ghqdzh,replace(max(ghzdzh), ',.', ',0.') ghzdzh
+             ,max(ghlxbm) ghlxbm,max(ylxbm) ylxbm,
+              decode(substr(xmid,11,1),'1',(sum(nvl(jhyilc,0))),(sum(nvl(yilc,0)))) yilc,decode(substr(xmid,11,1),'1',(sum(nvl(jherlc,0))),(sum(nvl(erlc,0)))) erlc,
+             decode(substr(xmid,11,1),'1',(sum(nvl(jhsanlc,0))),(sum(nvl(sanlc,0)))) sanlc,decode(substr(xmid,11,1),'1',(sum(nvl(jhsilc,0))),(sum(nvl(silc,0)))) silc
+              from (select  xmid,
+              (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0))
+              else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0))
+              end) jhlc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,yilc,erlc,sanlc,silc,dwlc,wllc,
+               lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm  else '' end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj,
+               WMSYS.WM_CONCAT(ghlxbm)over( PARTITION BY xmid ORDER BY id,ghlxbm) ghlxbm,
+               WMSYS.WM_CONCAT(lxbm)over( PARTITION BY xmid ORDER BY id,lxbm) ylxbm,
+               WMSYS.WM_CONCAT((case when qdzh like '.%' then 0||qdzh when qdzh like '%,.%' then replace(qdzh, ',.', ',0.') else qdzh end ))over( PARTITION BY xmid ORDER BY id,qdzh) qdzh,
+               WMSYS.WM_CONCAT((case when zdzh like '.%' then 0||zdzh when zdzh like '%,.%' then replace(zdzh, ',.', ',0.') else zdzh end ))over( PARTITION BY xmid ORDER BY id,zdzh) zdzh,
+               WMSYS.WM_CONCAT((case when ghqdzh like '.%' then 0||ghqdzh when ghqdzh like '%,.%' then replace(ghqdzh, ',.', ',0.') else ghqdzh end ))over( PARTITION BY xmid ORDER BY id,ghqdzh) ghqdzh,
+               WMSYS.WM_CONCAT((case when ghzdzh like '.%' then 0||ghzdzh when ghzdzh like '%,.%' then replace(ghzdzh, ',.', ',0.') else ghzdzh end ))over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh
+              from LXSH_LX  where jdbs='2') group by xmid) l on j.xmbm=l.xmid 
+   where 1=1 and j.jhxdwh  like '%'
+        <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+		<if test="lxmc !=null and lxmc !=''">
+			and ghlxmctj like '%'||#{lxmc}||'%'
+		</if>
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
+		</if>
+		<if test="ghxlxbm != null and ghxlxbm != ''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghxlxbm})
+		</if>
+		<if test="ghxlxmc != '' and ghxlxmc != null ">
+			and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%'))
+		</if>
+		<if test="xmnf !=null and xmnf !=''">
+			and fun_scxdnf(j.xmbm) in (${xmnf})
+		</if>
+		<if test="tsdq !=null and tsdq !=''">
+			${tsdq}
+		</if>
+		<if test="xzdj !=null and xzdj !=''">
+			and ${xzdj}
+		</if>
+		<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
+		<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
+		<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+		<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
+		<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
+		<if test="xdzttj !=null and xdzttj !=''">
+			${xdzttj}
+		</if>
+		<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
+</select>
+
 	<select id="queryZhhf_dcexcel" parameterType="jhsh" resultType="elist">
 	select 
 		null v_0,null v_1,'全省汇总' v_2,count(*)||'' v_3,sum(v_4) v_4,sum(v_5) v_5,
@@ -7150,11 +7944,11 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
   decode(substr(lxbm,0,1),'S',(case when j.jsxz = '中修'  then to_number(xd.ztz) else 0 end),0) sdgztz,
   decode(substr(lxbm,0,1),'S',(case when j.jsxz = '预防性' then to_number(xd.ztz) else 0 end),0) sdyfxtz,l.xzqhdm xzqh
   from jhxdyh j
-   left join ( select p.xmid,
-       nvl(sum(p.btzzj),0)+nvl(sum(p.rys),0)+nvl(sum(p.dk),0)+nvl(sum(p.jl),0) ztz
-    from plan_zjxd p
-   where p.xdnf = #{xmnf}
-   group by p.xmid )  xd  on  j.xmbm=xd.xmid
+   left join ( select j.xmid,
+       nvl(sum(j.btzzj),0)+nvl(sum(j.rys),0)+nvl(sum(j.dk),0)+nvl(sum(j.jl),0) ztz
+    from plan_zjxd j
+   where 1=1 <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> 
+   group by j.xmid )  xd  on  j.xmbm=xd.xmid
   left  join(
            select xmid,decode(substr(xmid, 11, 1),
                          '1',
@@ -7184,7 +7978,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
             where jdbs = '2'
             group by xmid)  l
             on j.XMBM=l.xmid left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm
-   where 1=1
+   where 1=1 and j.jhxdwh  like '%'
    <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				
 				<if test="lxmc !=null and lxmc !=''">
@@ -7227,6 +8021,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
    
  ) t 
   union all
@@ -7258,11 +8053,11 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	decode(substr(lxbm,0,1),'S',(case when j.jsxz = '中修'  then to_number(xd.ztz) else 0 end),0) sdgztz,
 	decode(substr(lxbm,0,1),'S',(case when j.jsxz = '预防性' then to_number(xd.ztz) else 0 end),0) sdyfxtz,l.xzqhdm xzqh
 	from jhxdyh j
-	 left join ( select p.xmid,
-       nvl(sum(p.btzzj),0)+nvl(sum(p.rys),0)+nvl(sum(p.dk),0)+nvl(sum(p.jl),0) ztz
-    from plan_zjxd p
-   where p.xdnf = #{xmnf}
-   group by p.xmid )  xd  on  j.xmbm=xd.xmid
+	 left join ( select j.xmid,
+       nvl(sum(j.btzzj),0)+nvl(sum(j.rys),0)+nvl(sum(j.dk),0)+nvl(sum(j.jl),0) ztz
+    from plan_zjxd j
+   where 1=1 <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> 
+   group by j.xmid )  xd  on  j.xmbm=xd.xmid
 	left  join(
            select xmid,decode(substr(xmid, 11, 1),
                          '1',
@@ -7292,7 +8087,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
             where jdbs = '2'
             group by xmid)  l
             on j.XMBM=l.xmid  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm
-   where 1=1
+   where 1=1 and j.jhxdwh  like '%'
   <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				
 				<if test="lxmc !=null and lxmc !=''">
@@ -7337,6 +8132,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
    
 ) t group by t.xzqh order by xzqh
 
@@ -7348,7 +8144,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	select '' v_1,'' v_2,'' v_3,'合计' v_4, '' v_5,'' v_6,'' v_7,'' v_8,
        nvl(to_char(sum(lx2.zjhlc),'fm999990.09999'), 0) v_9,'' v_10, '' v_11,'' v_12,'' v_13,'' v_14,'' v_15,
       nvl(sum(j.ZTZ),0) v_16,nvl(sum(j.RYS),0) v_17,nvl(sum(j.DK),0) v_18,
-      '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24,'' v_50
+      '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24,'' v_25,'' v_50
  from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm 
 left join cbsj_yhdzx c on j.xmbm=c.xmbm 
             left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
@@ -7363,7 +8159,7 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
-   where 1=1 and j.jsxz in ('大修','中修','预防性')
+   where 1=1 and j.jsxz in ('大修','中修','预防性') and j.jhxdwh  like '%'
    <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
@@ -7405,13 +8201,14 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
    
    union all
    
    select '' v_1,'' v_2,'' v_3,'大修' v_4, '' v_5,'' v_6,'' v_7,'' v_8,
       nvl(to_char(sum(lx2.zjhlc),'fm999990.09999'), 0) v_9,'' v_10, '' v_11,'' v_12,'' v_13,'' v_14,'' v_15,
       nvl(sum(j.ZTZ),0) v_16,nvl(sum(j.RYS),0) v_17,nvl(sum(j.DK),0) v_18,
-      '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24,'' v_50
+      '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24,'' v_25,'' v_50
  from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm 
 left join cbsj_yhdzx c on j.xmbm=c.xmbm 
             left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
@@ -7426,7 +8223,7 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
               else ''
               end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
               from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
-   where 1=1 and j.jsxz in ('大修')
+   where 1=1 and j.jsxz in ('大修') and j.jhxdwh  like '%'
     <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
@@ -7468,12 +8265,13 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
    union all
    
    select '' v_1,'' v_2,'' v_3,'中修' v_4, '' v_5,'' v_6,'' v_7,'' v_8,
       nvl(to_char(sum(lx2.zjhlc),'fm999990.09999'), 0) v_9,'' v_10, '' v_11,'' v_12,'' v_13,'' v_14,'' v_15,
       nvl(sum(j.ZTZ),0) v_16,nvl(sum(j.RYS),0) v_17,nvl(sum(j.DK),0) v_18,
-      '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24,'' v_50
+      '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24,'' v_25,'' v_50
  from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm 
 left join cbsj_yhdzx c on j.xmbm=c.xmbm 
             left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
@@ -7488,7 +8286,7 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
               else ''
               end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
               from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
-   where 1=1 and j.jsxz in ('中修')
+   where 1=1 and j.jsxz in ('中修') and j.jhxdwh  like '%'
     <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
@@ -7530,12 +8328,13 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
    union all
    
 select '' v_1,'' v_2,'' v_3,'预防性' v_4, '' v_5,'' v_6,'' v_7,'' v_8,
       nvl(to_char(sum(lx2.zjhlc),'fm999990.09999'), 0) v_9,'' v_10, '' v_11,'' v_12,'' v_13,'' v_14,'' v_15,
        nvl(sum(j.ZTZ),0) v_16,nvl(sum(j.RYS),0) v_17,nvl(sum(j.DK),0) v_18,
-      '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24,'' v_50
+      '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24,'' v_25,'' v_50
  from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm 
 left join cbsj_yhdzx c on j.xmbm=c.xmbm 
             left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
@@ -7550,7 +8349,7 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
               else ''
               end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
               from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
-   where 1=1 and j.jsxz in ('预防性')
+   where 1=1 and j.jsxz in ('预防性') and j.jhxdwh  like '%'
     <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
@@ -7592,6 +8391,7 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
    
    union all
   select * from (
@@ -7605,9 +8405,10 @@ to_char(sum(l.zlc),'fm999990.09999') v_9,RemoveSameStr(replace(WMSYS.WM_CONCAT(d
 RemoveSameStr(decode(WMSYS.WM_CONCAT(distinct(l.lxlmkd)),null,max(x.lmkd),0,max(x.lmkd),WMSYS.WM_CONCAT(distinct(l.lxlmkd))),',') v_11,
 WMSYS.WM_CONCAT(distinct(x.ylmlx)) v_12,WMSYS.WM_CONCAT(distinct(x.ylmjg)) v_13,max(j.jsxz) v_14,
 max(c.jsfa) v_15,decode(max(j.ztz),null,0,max(j.ztz)) v_16,decode(max(j.rys),null,0,max(j.rys)) v_17,decode(max(j.dk),null,0,max(j.dk)) v_18,WMSYS.WM_CONCAT(distinct(c.sjpfwh)) v_19,WMSYS.WM_CONCAT(distinct(x.gydw)) v_20,
-max(j.jhxdwh) v_21,j.xmbm v_22,max(decode(substr(x.bz,0,3),'lxs','',x.bz)) v_23,max(x.tsdq) v_24,max(l.sffirst) v_50
-
-from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm 
+max(j.jhxdwh) v_21,j.xmbm v_22,max(sbnf.scxdnf) v_23,max(decode(substr(x.bz,0,3),'lxs','',x.bz)) v_24,max(x.tsdq) v_25,max(l.sffirst) v_50
+from jhxdyh j 
+left join (select xmid,min(xdnf) scxdnf from plan_zjxd group by xmid) sbnf on j.xmbm = sbnf.xmid
+left join xmsq_yhdzx x on j.xmbm=x.xmbm 
 left join cbsj_yhdzx c on j.xmbm=c.xmbm 
   left join ( select p.xmid,
        sum(p.ztz) ztz,
@@ -7676,7 +8477,7 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
                WMSYS.WM_CONCAT((case when ghqdzh like '.%' then 0||ghqdzh when ghqdzh like '%,.%' then replace(ghqdzh, ',.', ',0.') else ghqdzh end ))over( PARTITION BY xmid ORDER BY id,ghqdzh) ghqdzh,
                WMSYS.WM_CONCAT((case when ghzdzh like '.%' then 0||ghzdzh when ghzdzh like '%,.%' then replace(ghzdzh, ',.', ',0.') else ghzdzh end ))over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh
               from LXSH_LX  where jdbs='2') group by xmid) lx2 on j.xmbm=lx2.xmid
-   where 1=1
+   where 1=1 and j.jhxdwh  like '%'
             <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
@@ -7718,6 +8519,7 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
    group by j.xmbm order by j.xmbm desc) a 
 	
 	</select>
@@ -7980,5 +8782,36 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 		union all 
 		select distinct id from zgb_zxlwzhtx_wnjh where 1=1 ${value}
 	</select>
+	<select id="updateJhshSflInfo" parameterType="jhsh">
+		update JHSH_SFL
+	    <set>
+	      <if test="ztz != null" >ztz = #{ztz},</if>
+	      <if test="tbz != null" >tbz = #{tbz},</if>
+	      <if test="tbz_jaf != null" >tbz_jaf = #{tbz_jaf},</if>
+	      <if test="tbz_gcjlf != null" >tbz_gcjlf = #{tbz_gcjlf},</if>
+	      <if test="tbz_qqgzf != null" >tbz_qqgzf = #{tbz_qqgzf},</if>
+	      <if test="dfzc != null" >dfzc = #{dfzc},</if>
+	      <if test="zydpx != null" >zydpx = #{zydpx},</if>
+	    </set>
+	    where xmbm=#{xmbm} 
+	</select>
+	<select id="sbshSzxmsfl" parameterType="jhsh">
+		update JHSH_SFL
+	    <set>
+	      <if test="sbzt != null and sbzt != ''" >sbzt = #{sbzt},</if>
+	      <if test="shzt != null and shzt != ''" >shzt = #{shzt},qqwcsj=to_char(sysdate,'yyyy-mm-dd'),</if>
+	      <if test="thyy != null and thyy != ''" >thyy = #{thyy},</if>
+	    </set>
+	    where xmbm in (${xmbm})
+	</select>
 	
+	<select id="exportSflgcExcel" parameterType="jhsh" resultType="elist">
+	   select to_char(rownum) v_0, ss.szds v_1, ss.xmmc v_2, ss.xmlx v_3, ss.xzqhxj v_4,         
+              ss.gydw v_5, ss.ghlxbm v_6, ss.ghlxmc v_7, ss.ghlxzh v_8, ss.ylxbm v_9,
+              ss.ylxmc v_10, ss.ylxzh v_11, ss.jsdjxj v_12, ss.yj v_13, ss.ej v_14,
+              ss.sj v_15, ss.sij v_16, ss.jsnf v_17, ss.ztz v_18, ss.tbzhj v_19,
+              ss.jaf v_20, ss.jlf v_21, ss.qqgz v_22, ss.yxd v_23, ss.bcxd v_24,
+              ss.sgtwh v_25, ss.bz v_26, ss.jhxdwh v_27, ss.jhxdsj v_28
+       from sfljh_sew ss
+	</select>
 </mapper>

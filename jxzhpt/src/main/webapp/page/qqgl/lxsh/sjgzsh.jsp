@@ -211,7 +211,7 @@ text-decoration:none;
 								</select></td>
 								</tr>
         					<tr height="32">
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:115px;" class="easyui-combobox"></select></td>
         						<td align="right">原路线编码：</td>
         						<td><input type="text" id="lxbm" style="width:118px;" /></td>	
@@ -221,7 +221,7 @@ text-decoration:none;
         						<td><input type="text" id="ghlxbm" style="width:118px;" /></td>
         						<td align="right">规划路线名称：</td>
         						<td><input type="text" id="ghlxmc" style="width:65px;" /></td>
-                               	<td align="right">是否有补助历史：</td>
+                               	<td align="right">补助历史：</td>
 		        				<td><select id="lsjl" style="width:55px;" class="easyui-combobox">
 											<option selected="selected" value="">全部</option>
 											<option value="是">是</option>
@@ -260,6 +260,8 @@ text-decoration:none;
 								<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" style="width:65px;" >
 								</select></td>
+								<td align="right">项目编码：</td>
+        				        <td><input type="text" id="xmbm" style="width:100px;" /></td>
 								</tr>
 								
 							<tr height="32">	
@@ -273,7 +275,7 @@ text-decoration:none;
 								
 								<img name="tuiH" id="tuiH" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'   " src=""  onclick="thwshlxshgsd();" style="border-width:0px;vertical-align:middle;" />
 								
-								<img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dclxshModule('sjgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
+								<img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dclxshModule('sjgz','sh');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
 <%-- 				                <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="dropOne()" style="vertical-align:middle;"> --%>
 <%-- 				                <img onclick="exportExcel('abgc')" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
 				             </td>

@@ -281,10 +281,21 @@ public class Plan_abgcController extends BaseActionSupport{
 	 * 导出的excel将要设置sheet名，数据，表头，以及excel文件名
 	 */
 	public void exportExcel_jh_abgc(){
-		if("af".equals(jh.getXmlx()))
-			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwdm"));
-		else
-			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+		if(lx.getGydwbm()!=null){
+				if("af".equals(jh.getXmlx())){
+					lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwdm"));
+					if(lx.getGydwlx()!=null&&!"".equals(lx.getGydwlx())){
+						lx.setGydwbm(lx.getGydwbm()+"  and lx.gydwdm like '"+lx.getGydwlx()+"%'");
+					}
+				}
+					
+				else {
+					lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+					if(lx.getGydwlx()!=null&&!"".equals(lx.getGydwlx())){
+						lx.setGydwbm(lx.getGydwbm()+"  and lx.gydwbm like '"+lx.getGydwlx()+"%'");
+					}
+				}
+			}
 		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		if(lx.getTsdq()!=null)
 			if(lx.getTsdq().length()>0){
@@ -384,7 +395,7 @@ public class Plan_abgcController extends BaseActionSupport{
 					}
 			}
 		
-		List<SjbbMessage> list = new ArrayList<SjbbMessage>();
+		List<Excel_list> list = new ArrayList<Excel_list>();
 		ExportExcel_new ee = new ExportExcel_new();
 		List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
 		SheetBean sheetb = new SheetBean();
@@ -394,8 +405,56 @@ public class Plan_abgcController extends BaseActionSupport{
 			list = abgcServer.exportExcel_jh1(jh, lx);
 		else
 			list = abgcServer.exportExcel_jh(jh, lx);
-		System.out.println("行政区划："+lx.getXzqhdm()+"    管养单位："+lx.getGydwbm());
-		excelHtml="<tr><td>计划状态</td><td>上报年份</td><td>计划开工时间</td><td>计划完工时间</td><td>管养单位</td><td>行政区划名称</td><td>路线编码</td><td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>隐患里程</td><td>批复总投资</td></tr>";
+		
+//		System.out.println("行政区划："+lx.getXzqhdm()+"    管养单位："+lx.getGydwbm());
+		
+		ExcelData eldata=new ExcelData();//创建一个类
+		if("af".equals(jh.getXmlx())){
+		eldata.setTitleName("普通公路路网结构改造工程计划表（安全生命防护工程）");//设置第一行
+		eldata.setSheetName("安全生命防护工程");//设置sheeet名
+		eldata.setFileName("普通公路路网结构改造工程计划表（安全生命防护工程）");//设置文件名
+		}
+		else{
+			eldata.setTitleName("普通公路路网结构改造工程计划表（安保工程）");//设置第一行
+			eldata.setSheetName("安保工程项目");//设置sheeet名
+			eldata.setFileName("普通公路路网结构改造工程计划表（安保工程）");//设置文件名
+		}
+		
+		eldata.setEl(list);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("序号",1,2,0,0));
+		et.add(new Excel_tilte("设区市",1,2,1,1));
+		et.add(new Excel_tilte("县（市、区）",1,2,2,2));
+		et.add(new Excel_tilte("最新年报桩号",1,1,3,5));
+		et.add(new Excel_tilte("路网规划前",1,1,6,8));
+		et.add(new Excel_tilte("建设性质",1,2,9,9));
+		et.add(new Excel_tilte("总里程（公里）",1,2,10,10));
+		et.add(new Excel_tilte("项目隐患里程（公里）",1,2,11,11));
+		et.add(new Excel_tilte("总投资（万元）",1,2,12,12));
+		et.add(new Excel_tilte("中央车购税资金（万元）",1,2,13,13));
+		et.add(new Excel_tilte("地方自筹（万元）",1,2,14,14));
+		et.add(new Excel_tilte("建设内容",1,2,15,15));
+		et.add(new Excel_tilte("批复文号",1,2,16,16));
+		et.add(new Excel_tilte("管养单位",1,2,17,17));
+		et.add(new Excel_tilte("项目年份",1,2,18,18));
+		et.add(new Excel_tilte("备注",1,2,19,19));
+		et.add(new Excel_tilte("特殊地区",1,2,20,20));
+		et.add(new Excel_tilte("路线编码",2,2,3,3));
+		et.add(new Excel_tilte("起点桩号",2,2,4,4));
+		et.add(new Excel_tilte("讫点桩号",2,2,5,5));
+		et.add(new Excel_tilte("路线编码",2,2,6,6));
+		et.add(new Excel_tilte("起点桩号",2,2,7,7));
+		et.add(new Excel_tilte("讫点桩号",2,2,8,8));
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		try {
+			Excel_export.excel_export(eldata,response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		/*excelHtml="<tr><td>计划状态</td><td>上报年份</td><td>计划开工时间</td><td>计划完工时间</td><td>管养单位</td><td>行政区划名称</td><td>路线编码</td><td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>隐患里程</td><td>批复总投资</td></tr>";
 		if("af".equals(jh.getXmlx())){
 			sheetb.setTableName("安防工程项目");
 			sheetb.setHeader(excelHtml);
@@ -417,7 +476,7 @@ public class Plan_abgcController extends BaseActionSupport{
 		//导出excel
 		ee.initStyle(ee.workbook, stylefileName);
 		HttpServletResponse response= getresponse();
-		ee.makeExcel(tableName, sheetBeans, response);
+		ee.makeExcel(tableName, sheetBeans, response);*/
 	}
 	/**
 	 * 查询安保工程的列表信息

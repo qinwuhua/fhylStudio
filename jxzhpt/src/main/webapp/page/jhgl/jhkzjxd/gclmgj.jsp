@@ -153,7 +153,7 @@
 								<select name="ddlPDDJ" id="ddlPDDJ" class="easyui-combobox" style="width:65px;vertical-align:middle;"></select>
 								<span style="vertical-align:middle;">&nbsp;行政等级：</span>
 								<select name="ddlGldj" id="ddlGldj" class="easyui-combobox" style="width:104px;vertical-align:middle;"></select>
-								<span>&nbsp;是否有补助历史：</span>
+								<span>&nbsp;补助历史：</span>
 								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
 									<option value="" selected="selected">全部</option>
 									<option value="否">否</option>

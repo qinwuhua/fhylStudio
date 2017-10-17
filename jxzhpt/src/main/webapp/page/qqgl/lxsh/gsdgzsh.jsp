@@ -80,8 +80,6 @@
 			
 			var xmmc=$("#xmmc").val();
 			var xmnf=$("#xmnf").combobox('getValues').join(",");
-			if(xmnf=='')
-				xmnf=new Date().getFullYear();
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
 			var sbzt=$("#sbzt").combobox('getValue');
@@ -116,7 +114,8 @@
 					//gydw:gydwstr,
 					xmmc:xmmc,
 					xmnf:xmnf,
-					sbzt:sbzt,
+					sbzt:'1',
+					'lxsh.shzt':sbzt,
 					//ghlxbh:$("#lxbm").val().toUpperCase(),
 					lxmc:$("#lxmc").val(),
 					tsdq:tsdq,
@@ -131,7 +130,8 @@
 					'lxsh.xmlx1':xmlx,
 					'lxsh.xmklx':$("#xmklx").combobox('getValue'),
 					'lxsh.lsxmnf':lsxmnf,
-					'lxsh.lsxmlx':lsxmlx},
+					'lxsh.lsxmlx':lsxmlx,
+					'lxsh.xmbm':$("#xmbm").val()},
 				dataType:'json',
 				success:function(msg){
 					 $("#xmsl").html(msg.XMSL);
@@ -159,9 +159,11 @@
 			    	//gydw:gydwstr,
 			    	xmmc:xmmc,
 					xmnf:xmnf,
-					sbzt:sbzt,
+					sbzt:'1',
+					'lxsh.shzt':sbzt,
 					tsdq:tsdq,
 					jsdj:jsdj,
+					jsjsdj:jsjsdj,
 					gldj:gldj,
 					sbthcd:sbthcd,
 					//ghlxbh:$("#lxbm").val(),
@@ -170,11 +172,11 @@
 					ghlxbh:$("#lxbm").combotree('getText'),
 					ghlxbm:$("#ghlxbm").combotree('getText'),
 					ghlxmc:$("#ghlxmc").val(),
-					jsjsdj:$("#jsjsdj").val(),
 					lxmc:$("#lxmc").val(),
 					'lxsh.xmklx':$("#xmklx").combobox('getValue'),
 					'lxsh.lsxmnf':lsxmnf,
-					'lxsh.lsxmlx':lsxmlx
+					'lxsh.lsxmlx':lsxmlx,
+					'lxsh.xmbm':$("#xmbm").val()
 				},
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -314,7 +316,7 @@ text-decoration:none;
 								<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width:50px;">
 								</select></td>
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:118px;" class="easyui-combobox"></select></td>
 								<td align="right">原路线编码：</td>
         						<td><input type="text" id="lxbm" style="width:118px;" /></td>
@@ -326,7 +328,7 @@ text-decoration:none;
         						<td><input type="text" id="ghlxmc" style="width:65px;" /></td>
         			</tr>
         			<tr>
-                                <td align="right">是否有补助历史：</td>
+                                <td align="right">补助历史：</td>
         						<td><select id="lsjl" style="width:50px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="是">是</option>
@@ -361,11 +363,15 @@ text-decoration:none;
 									</select>
 								</td>
 								</tr>
+						<tr height="32">
+						<td align="right">项目编码：</td>
+        				<td colspan="2"><input type="text" id="xmbm" style="width:150px;" /></td>
+						</tr>
 								
 							<tr height="32">
 							<td colspan="10">
         						<img onclick="showgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-				                <img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dclxshModule('gsdgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
+				                <img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dclxshModule('gsdgz','sh');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
 							  </td>
                         </tr>
                         </tr>

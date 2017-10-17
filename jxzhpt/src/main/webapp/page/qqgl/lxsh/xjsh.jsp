@@ -214,7 +214,7 @@ text-decoration:none;
 								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
 								<td>建设技术等级：</td>
 								<td><select name="jsjsdj" id="jsjsdj" style="width:65px;" class="easyui-combobox"></select></td>
-								<td>行政等级：</td>
+								<td>原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
         						<td>原路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:95px;" /></td>
@@ -224,7 +224,7 @@ text-decoration:none;
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select></td> -->
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:118px;" class="easyui-combobox"></select></td>
 								<td align="right">原路线编码：</td>
         						<td><input type="text" id="lxbm" style="width:118px;" /></td>
@@ -264,6 +264,8 @@ text-decoration:none;
 								<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" style="width:118px;" >
 								</select></td>
+								<td align="right">项目编码：</td>
+        				        <td ><input type="text" id="xmbm" style="width:100px;" /></td>
 								</tr>
 							<tr height="32">
 								<!-- <td>规划路线名称：</td>
@@ -281,7 +283,7 @@ text-decoration:none;
 								<img name="thxj" id="thxj" src="../../../images/thxj1.jpg" onmouseover="this.src='../../../images/thxj2.jpg'" onmouseout="this.src='../../../images/thxj1.jpg'   " src=""  onclick="tuihxjlxsh('datagrid');" style="border-width:0px;vertical-align:middle;" />
 								
 								<img name="tuiH" id="tuiH" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'   " src=""  onclick="thwshlxshgsd();" style="border-width:0px;vertical-align:middle;" />
-								<img  name="btnDCMB" onclick="dclxshModule('xj');" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" />
+								<img  name="btnDCMB" onclick="dclxshModule('xj','sh');" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" />
 <%-- 				                <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="dropOne()" style="vertical-align:middle;"> --%>
 <%-- 				                <img onclick="exportExcel('abgc')" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
 				             </td>

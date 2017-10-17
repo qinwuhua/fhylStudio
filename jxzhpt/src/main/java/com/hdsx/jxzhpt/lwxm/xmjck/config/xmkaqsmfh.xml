@@ -968,7 +968,8 @@
  		<!-- 审查库 -->
  		<select id="selectSckaqsmfh" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
 		select * from (
-	 		select rownum num ,t.*,decode(sbthbmcd,'7','已上报',#{sbthbmcd},'未上报',sbzt) sbzt2 from (select sc.*,xmld.tsdq,xmld.xmklx,xmld.throadname,xmld.throadcode from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT( distinct xm.xmklx) xmklx,WMSYS.WM_CONCAT( distinct xm.tsdq) tsdq,WMSYS.WM_CONCAT(xm.throadcode) throadcode,WMSYS.WM_CONCAT(xm.roadname) throadname from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
+	 		select rownum num ,t.*,decode(sbthbmcd,'7','已上报',#{sbthbmcd},'未上报',sbzt) sbzt2 
+	 		from (select sc.*,xmld.tsdq,xmld.xmklx,xmld.throadname,xmld.throadcode from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT( distinct xm.xmklx) xmklx,WMSYS.WM_CONCAT( distinct xm.tsdq) tsdq,WMSYS.WM_CONCAT(xm.throadcode) throadcode,WMSYS.WM_CONCAT(xm.roadname) throadname from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
 	 			and  to_number(sbthbmcd) &lt;=to_number(#{sbthbmcd}) 
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
@@ -1756,7 +1757,7 @@
 			 from SCK_AQSMFH t where id=#{id}
  		</insert>
  		<select id="dcaqsmfhsckExcel" parameterType="xmkaqsmfh" resultType="elist">
- 			select ld.xuh v_0,ld.province v_1,ld.town v_2,ld.county v_3,ld.lxbm v_4,
+ 			<!-- select ld.xuh v_0,ld.province v_1,ld.town v_2,ld.county v_3,ld.lxbm v_4,
 		      decode(ld.xuh,ld1.xuh,ld.gydw,'') v_5,decode(ld.xuh,ld1.xuh,ld.xzqhdm,'') v_6,decode(ld.xuh,ld1.xuh,sc.lxmc,'') v_7,
 		      decode(ld.xuh,ld1.xuh,sc.jsdj,'') v_8,decode(ld.xuh,ld1.xuh,sc.qdzh,'') v_9,decode(ld.xuh,ld1.xuh,sc.zdzh,'') v_10,
 		      decode(ld.xuh,ld1.xuh,sc.yhlc,'') v_11,decode(ld.xuh,ld1.xuh,sc.czzlc,'') v_12,decode(ld.xuh,ld1.xuh,sc.xjgjnd,'') v_13,
@@ -1765,8 +1766,26 @@
 		      decode(ld.xuh,ld1.xuh,sc.ablbzsqwh,'') v_21,decode(ld.xuh,ld1.xuh,sc.jsxz,'') v_22,decode(ld.xuh,ld1.xuh,sc.jsnr,'') v_23,
 		      decode(ld.xuh,ld1.xuh,sc.bz,'') v_24
 	        from sck_aqsmfh_ld ld,xmk_aqsmfh xm,SCK_AQSMFH sc,(select min(xuh) xuh,xmbm from sck_aqsmfh_ld group by xmbm) ld1 
-	        where ld.xmkid=xm.id and ld.xmbm=sc.xmbm and ld.xmbm=ld1.xmbm(+)and sc.jhnf is not null
-			  <if test="gydw!='' and gydw!= null ">
+	        where ld.xmkid=xm.id and ld.xmbm=sc.xmbm and ld.xmbm=ld1.xmbm(+)and sc.jhnf is not null -->
+  select * from(   
+	  select '' v_0,decode(ld.id,ld1.mid,1,0) v_50 ,ld.xzqhdm v_1,ld.xzqh v_2,ld.lxbm v_3,sc.lxmc v_4,ld.qdzh v_5,ld.zdzh v_6,
+          to_char(ld.zlc,'fm9999999990.000') v_7,to_char(ld.yhlc,'fm9999999990.000') v_8,sc.xjgjnd v_9,sc.fapgdw v_10,sc.fascdw v_11,sc.faspsj v_12,sc.spwh v_13,sc.cztzgs v_14,
+          sc.jsxz v_15,sc.jsnr v_16,sc.jhnf v_17,sc.bz v_18,sc.xmbm v_30
+          from sck_aqsmfh sc 
+           left join 
+           (select ld.id,ld.gydwdm, ld.xmbm, ld.xzqhdm,ld.xzqh,ld.lxbm,ld.qdzh,ld.zdzh,ld.yhlc,ld.yhlc zlc           
+           from sck_aqsmfh_ld ld ) ld 
+           on ld.xmbm=sc.xmbm
+           left join 
+           (select ld.xmbm,WMSYS.WM_CONCAT( distinct xm.xmklx) xmklx,
+       WMSYS.WM_CONCAT( distinct xm.tsdq) tsdq,WMSYS.WM_CONCAT(xm.throadcode) throadcode,
+       WMSYS.WM_CONCAT(xm.roadname) throadname from sck_aqsmfh_ld ld 
+       left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld 
+       on sc.xmbm=xmld.xmbm
+       left join 
+       (select min(id) mid,xmbm from sck_aqsmfh_ld group by xmbm) ld1 on ld1.xmbm=sc.xmbm
+       where 1=1 and sc.jhnf is not null
+			<if test="gydw!='' and gydw!= null ">
 				${gydw}
 			</if>
 			<if test="xzqhdm!='' and xzqhdm!= null ">
@@ -1796,11 +1815,11 @@
 	 		<if test="bzls!='' and bzls!= null ">
 	 			and bzls like '%'||(#{bzls})||'%'
 	 		</if>
-	 		order by ld.xmbm,ld.xuh
+	 		) order by v_30,v_50 desc
  		</select>
  		
  		<select id="dcaqsmfhsckshExcel" parameterType="xmkaqsmfh" resultType="elist">
- 			select ld.xuh v_0,ld.province v_1,ld.town v_2,ld.county v_3,ld.lxbm v_4,
+ 			<!-- select ld.xuh v_0,ld.province v_1,ld.town v_2,ld.county v_3,ld.lxbm v_4,
 		      decode(ld.xuh,ld1.xuh,ld.gydw,'') v_5,decode(ld.xuh,ld1.xuh,ld.xzqhdm,'') v_6,decode(ld.xuh,ld1.xuh,sc.lxmc,'') v_7,
 		      decode(ld.xuh,ld1.xuh,sc.jsdj,'') v_8,decode(ld.xuh,ld1.xuh,sc.qdzh,'') v_9,decode(ld.xuh,ld1.xuh,sc.zdzh,'') v_10,
 		      decode(ld.xuh,ld1.xuh,sc.yhlc,'') v_11,decode(ld.xuh,ld1.xuh,sc.czzlc,'') v_12,decode(ld.xuh,ld1.xuh,sc.xjgjnd,'') v_13,
@@ -1809,7 +1828,26 @@
 		      decode(ld.xuh,ld1.xuh,sc.ablbzsqwh,'') v_21,decode(ld.xuh,ld1.xuh,sc.jsxz,'') v_22,decode(ld.xuh,ld1.xuh,sc.jsnr,'') v_23,
 		      decode(ld.xuh,ld1.xuh,sc.bz,'') v_24
 	        from sck_aqsmfh_ld ld,xmk_aqsmfh xm,SCK_AQSMFH sc,(select min(xuh) xuh,xmbm from sck_aqsmfh_ld group by xmbm) ld1 
-	        where ld.xmkid=xm.id and ld.xmbm=sc.xmbm and ld.xmbm=ld1.xmbm(+)and sc.jhnf is not null
+	        where ld.xmkid=xm.id and ld.xmbm=sc.xmbm and ld.xmbm=ld1.xmbm(+)and sc.jhnf is not null -->
+	        
+	        select * from (  
+          select '' v_0,decode(ld.id,ld1.mid,1,0) v_50 ,ld.xzqhdm v_1,ld.xzqh v_2,ld.lxbm v_3,sc.lxmc v_4,ld.qdzh v_5,ld.zdzh v_6,
+          to_char(ld.zlc,'fm9999999990.000') v_7,to_char(ld.yhlc,'fm9999999990.000') v_8,sc.xjgjnd v_9,sc.fapgdw v_10,sc.fascdw v_11,sc.faspsj v_12,sc.spwh v_13,sc.cztzgs v_14,
+          sc.jsxz v_15,sc.jsnr v_16,sc.jhnf v_17,sc.bz v_18,sc.xmbm v_30
+          from sck_aqsmfh sc 
+           left join 
+           (select ld.id, ld.gydwdm,ld.xmbm, ld.xzqhdm,ld.xzqh,ld.lxbm,ld.qdzh,ld.zdzh,ld.yhlc,ld.yhlc zlc           
+           from sck_aqsmfh_ld ld ) ld 
+           on ld.xmbm=sc.xmbm
+           left join 
+           (select ld.xmbm,WMSYS.WM_CONCAT( distinct xm.xmklx) xmklx,
+       WMSYS.WM_CONCAT( distinct xm.tsdq) tsdq,WMSYS.WM_CONCAT(xm.throadcode) throadcode,
+       WMSYS.WM_CONCAT(xm.roadname) throadname from sck_aqsmfh_ld ld 
+       left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld 
+       on sc.xmbm=xmld.xmbm
+       left join 
+       (select min(id) mid,xmbm from sck_aqsmfh_ld group by xmbm) ld1 on ld1.xmbm=sc.xmbm
+       where  1=1 and sc.jhnf is not null
 			  and  (to_number(sbthbmcd) &lt;=7)
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
@@ -1821,7 +1859,7 @@
 	 			and lxmc like '%'||(#{lxmc})||'%'
 	 		</if>
 	 		<if test="jhnf!='' and jhnf!= null ">
-	 			and sc.jhnf like '%'||(#{jhnf})||'%'
+	 			and sc.jhnf in (${jhnf})
 	 		</if>
 	 		<if test="sbzt!='' and sbzt!= null ">
 	 			<if test="sbzt == '未审核'">
@@ -1832,21 +1870,21 @@
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
- 				and jsdj like '%'||(#{jsdj})||'%'
+ 				${jsdj}
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and lxbm like '%'||(#{gldj})||'%'
+ 				${gldj}
  			</if> 
 	 		<if test="lxbm!='' and lxbm!= null ">
 	 			and lxbm like '%'||(#{lxbm})||'%'
 	 		</if>
 	 		<if test="tsdq!='' and tsdq!= null ">
-	 			and tsdq like '%'||(#{tsdq})||'%'
+	 			${tsdq}
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
 	 			and bzls like '%'||(#{bzls})||'%'
 	 		</if>
-	 		order by ld.xmbm,ld.xuh
+	 		 ) order by v_30,v_50 desc  
  		</select>
  		
  		<select id="sfcfbntj" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
@@ -1858,11 +1896,24 @@
  		
  		<!-- shm路网项目     基础库管理   安全生命防护   导出excel -->
  		<select id="xmkaqsmfhDoExcel" parameterType="xmkaqsmfh" resultType="elist">
-		select rownum v_0,t.ZSZT v_1,t.roadcode v_2,t.ROADNAME v_3,t.THROADSTART v_4,
+		<!-- select rownum v_0,t.ZSZT v_1,t.roadcode v_2,t.ROADNAME v_3,t.THROADSTART v_4,
                t.THROADEND v_5,t.JSDJ v_6,t.GLDJ v_7,t.FANGX v_8,t.PCSJ v_9,t.LDFL v_10,
                t.UNIT v_11,t.DIST v_12,t.TZGS v_13,t.JHNF v_14,
                decode(sbthcd, '7', '已上报', 7, '未上报', sbzt) v_15
           from XMK_AQSMFH t
+          left join (select count(*) jhsl, a4.id
+                      from plan_af a1
+                      left join sck_aqsmfh a2 on a1.sckid = a2.id
+                      left join sck_aqsmfh_ld a3 on a2.xmbm = a3.xmbm
+                      left join xmk_aqsmfh a4 on a3.xmkid = a4.id
+                     group by a4.id) t1 on t.id = t1.id
+         where 1 = 1 -->
+         select rownum v_0,t.province v_1,t.town v_2,t.county v_3,t.roadcode v_4,t.roadname v_5,t.roadstart v_6,t.roadend v_7,
+			t.jsdj v_8,t.fangx v_9,to_char(t.yhlc,'fm9999999990.000') v_10,t.pcsj v_11,t.ldfl v_12,t.jtsgpcf v_13,t.jtsgfxdj v_14,t.gltjpcf v_15,t.glfxdj v_16,
+			t.sgpb v_17,t.dgjw v_18,t.lxjw v_19,t.lxxp v_20,t.doup v_21,t.sjbl v_22, t.lcxy v_23,t.hjfz v_24,t.jtlpbzb v_25,t.xchbc v_26,t.csxsss v_27,
+			t.hul v_28,t.bzbx v_29,t.jshsxyd v_30,t.aqssqt v_31,t.tjgc v_32,t.hjzz v_33,t.bzbxcz v_34,t.jckcz v_35,t.jzhl v_36,t.jshsxydcz v_37,
+			t.aqssqtcz v_38,t.tzgs v_39,t.jhnf v_40
+			   from XMK_AQSMFH t
           left join (select count(*) jhsl, a4.id
                       from plan_af a1
                       left join sck_aqsmfh a2 on a1.sckid = a2.id
@@ -1895,22 +1946,38 @@
 	 		<if test="roadcode!='' and roadcode!= null ">
 	 			and roadcode like '%'||(#{roadcode})||'%'
 	 		</if>
-	 		<if test="tsdq!='' and tsdq!= null ">
+ 			<if test="tsdq!='' and tsdq!= null ">
 	 			${tsdq}
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
- 			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
+ 			   and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
  			</if>
+ 			<if test="xmklx !='' and xmklx != null ">
+ 			   and xmklx like '%'||(#{xmklx})||'%'
+ 		    </if>
 	 			<!-- order by decode(sbthcd,#{sbthcd},'未上报',sbzt) desc  -->
 	 			order by v_0 asc
 	</select>
 	<!-- wdd路网项目     基础库审核   安全生命防护   导出excel start-->
  	<select id="shaqsmfhDoExcel" parameterType="xmkaqsmfh" resultType="elist">
-		select rownum v_0,t.ZSZT v_1,t.roadcode v_2,t.ROADNAME v_3,t.THROADSTART v_4,
+		<!-- select rownum v_0,t.ZSZT v_1,t.roadcode v_2,t.ROADNAME v_3,t.THROADSTART v_4,
                t.THROADEND v_5,t.JSDJ v_6,t.GLDJ v_7,t.FANGX v_8,t.PCSJ v_9,t.LDFL v_10,
                t.UNIT v_11,t.DIST v_12,t.TZGS v_13,t.JHNF v_14,
                decode(sbthcd, '7', '已上报', 7, '未上报', sbzt) v_15
           from XMK_AQSMFH t
+          left join (select count(*) jhsl, a4.id
+                      from plan_af a1
+                      left join sck_aqsmfh a2 on a1.sckid = a2.id
+                      left join sck_aqsmfh_ld a3 on a2.xmbm = a3.xmbm
+                      left join xmk_aqsmfh a4 on a3.xmkid = a4.id
+                     group by a4.id) t1 on t.id = t1.id
+         where 1 = 1 -->
+         select rownum v_0,t.province v_1,t.town v_2,t.county v_3,t.roadcode v_4,t.roadname v_5,t.roadstart v_6,t.roadend v_7,
+			t.jsdj v_8,t.fangx v_9,to_char(t.yhlc,'fm9999999990.000') v_10,t.pcsj v_11,t.ldfl v_12,t.jtsgpcf v_13,t.jtsgfxdj v_14,t.gltjpcf v_15,t.glfxdj v_16,
+			t.sgpb v_17,t.dgjw v_18,t.lxjw v_19,t.lxxp v_20,t.doup v_21,t.sjbl v_22, t.lcxy v_23,t.hjfz v_24,t.jtlpbzb v_25,t.xchbc v_26,t.csxsss v_27,
+			t.hul v_28,t.bzbx v_29,t.jshsxyd v_30,t.aqssqt v_31,t.tjgc v_32,t.hjzz v_33,t.bzbxcz v_34,t.jckcz v_35,t.jzhl v_36,t.jshsxydcz v_37,
+			t.aqssqtcz v_38,t.tzgs v_39,t.jhnf v_40
+			   from XMK_AQSMFH t
           left join (select count(*) jhsl, a4.id
                       from plan_af a1
                       left join sck_aqsmfh a2 on a1.sckid = a2.id
@@ -1931,8 +1998,24 @@
 	 		<if test="jhnf!='' and jhnf!= null ">
 	 			and jhnf like '%'||(#{jhnf})||'%'
 	 		</if>
+<!-- 	 		<if test="sbzt!='' and sbzt!= null "> -->
+<!-- 	 			and decode(sbthcd,'7','已上报',#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%' -->
+<!-- 	 		</if> -->
 	 		<if test="sbzt!='' and sbzt!= null ">
-	 			and decode(sbthcd,'7','已上报',#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
+	 			
+				<if test="sbzt == '未审核'">
+ 					and (zszt like '%'||(#{sbzt})||'%' or zszt is null) and sbthcd=7
+				</if>
+				<if test="sbzt == '已审核'">
+	 					and (decode(zszt,null,'未审核',zszt) like '%'||(#{sbzt})||'%' or  (zsyj is not null and sbthcd != 7))
+				</if>
+				<if test="sbzt == '审核不同意'">
+	 					and zsyj is not null and sbthcd != 7
+				</if>
+				<if test="sbzt == '审核同意'">
+	 					and zsyj = '同意' and sbthcd = 7 and (decode(zszt,null,'未审核',zszt) like '已审核')
+				</if>
+				
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
  				${jsdj}
@@ -1947,8 +2030,11 @@
 	 			${tsdq}
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
- 			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
+ 			   and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
  			</if>
+ 			<if test="xmklx !='' and xmklx != null ">
+ 			   and xmklx like '%'||(#{xmklx})||'%'
+ 		    </if>
 	 			<!-- order by decode(sbthcd,#{sbthcd},'未上报',sbzt) desc  -->
 	 			order by v_0 asc
 	</select>	

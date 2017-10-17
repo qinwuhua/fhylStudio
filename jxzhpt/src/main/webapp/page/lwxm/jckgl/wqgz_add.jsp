@@ -139,7 +139,7 @@ function autoCompleteLXBM(){
 			function(e, item) {
 				if(item==undefined) return ;
 				selectTSDQ(item.xzqhdm);
-				$("#qlmc,#qlzxzh,#gydw,#xzqhdm,#xzqhmc,#lxmc,#lxbm,#kjzc,#qlqc,#qlkd,#dkzdkj,#pddj,#xjgjnd,#akjfl,#sbjgxs,#bhnr,#bz").attr("value",'');
+				$("#qlmc,#qlzxzh,#gydw,#xzqhdm,#xzqhmc,#lxmc,#lxbm,#kjzc,#qlqc,#qlkd,#dkzdkj,#pddj,#xjgjnd,#akjfl,#sbjgxs,#bhnr,#bz,#xlxbm,#xqlmc,#xqlbm,#xzxzh").attr("value",'');
 				ptx=item.ptx;
 				pty=item.pty;
 				$("#jd").val(item.ptx);
@@ -173,6 +173,10 @@ function autoCompleteLXBM(){
 				$("#sqs").val(item.sqs);
 				$("#xsq").val(item.xsq);
 				$("#szxz").val(item.szxz);
+				$("#xlxbm").val(item.xqlbm.split('L')[0]);
+				$("#xqlbm").val(item.xqlbm);
+				$("#xqlmc").val(item.xqlmc);
+				$("#xzxzh").val(item.xzxzh);		
 			});
 }
 function saveWqgz(){
@@ -398,20 +402,20 @@ function newGuid()
 			</tr>
 			
 				<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新路线编码：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="xlxbm" /></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新路线名称：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原桥梁名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="xlxmc" /></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新桥梁编码：</td>
+					<input type="text" id="xqlmc" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原桥梁编码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="xqlbm" />
 					</td>
 				
 			</tr>
 			<tr style="height: 35px;">
-			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新中心桩号：</td>
+			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原中心桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="xzxzh" />
 				</td>

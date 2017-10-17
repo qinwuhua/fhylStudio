@@ -49,7 +49,7 @@
 			if($.cookie('unit2').length==7)
 			params={'jhsh.xmlx':5,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
 					'jhsh.xmnf':xmnf,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),
-					'jhsh.gldj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
+					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.zydpx':$('#zydpx').combobox('getValue'),
 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.sbzt':$('#sbzt').combobox("getValue")
@@ -57,7 +57,7 @@
 			else
 			params={'jhsh.xmlx':5,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
 					'jhsh.xmnf':xmnf,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),
-					'jhsh.gldj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
+					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.zydpx':$('#zydpx').combobox('getValue'),
 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.sbzt':$('#sbzt').combobox("getValue")
@@ -85,10 +85,10 @@
 								result+='&nbsp;编辑';
 							else
 								result+='&nbsp;<a href="javascript:openWindow1('+"'jhxd'"+','+"'编辑'"+','+
-								"'/jxzhpt/page/qqgl/jhsh/jhxd2.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>';
+								"'/jxzhpt/page/qqgl/jhsh/jhxd2.jsp'"+",900,250,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>';
 						}else{
 							result+='&nbsp;<a href="javascript:openWindow1('+"'jhxd'"+','+"'编辑'"+','+
-							"'/jxzhpt/page/qqgl/jhsh/jhxd2.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>';
+							"'/jxzhpt/page/qqgl/jhsh/jhxd2.jsp'"+",900,250,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>';
 						}	
 						
 						return result;
@@ -287,7 +287,7 @@ text-decoration:none;
         						<td><select id="xmnf" style="width: 104px;"></select></td>
         						<td align="right">技术等级：</td>
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:104px;"></select></td>
-        						<td align="right">行政等级：</td>
+        						<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:104px;" class="easyui-combobox"></select></td> -->
         						<td align="right" >行政区划：</td>
         						<td><select id="xzqh" style="width:150px;"></select></td>
@@ -307,7 +307,7 @@ text-decoration:none;
         						
         					</tr>
         					<tr height="32">
-        					<td align="right">行政等级：</td>
+        					<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:150px;" class="easyui-combobox"></select></td>
         						<!-- <td align="right">特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:150px;"></select></td>
@@ -344,7 +344,7 @@ text-decoration:none;
 								</select></td>
 								<td align="right">重要度排序：</td>
         						<td><input name="zydpx" type="text" class="easyui-numberbox" id="zydpx" style="width:100px;" /></td> -->
-								<td align="right">是否有补助历史：</td>
+								<td align="right">补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:150px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>

@@ -266,7 +266,7 @@ text-decoration:none;
 	        						<td><input type="text" id="lxmc" style="width:70px;" /></td>
 	                              <td align="right">路线编码：</td>
 	        						<td><input type="text" id="lxbm" style="width:60px;" /></td>
-	                              <td align="right">行政等级：</td>
+	                              <td align="right">原行政等级：</td>
 	                              	<td><select id="gldj" style="width:60px"class="easyui-combobox">
 	                              	</select></td>
 	                              <td align="right">项目库类型：</td>

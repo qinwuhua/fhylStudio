@@ -103,11 +103,12 @@
 					'ghlxbm':$("#ghlxbm").combotree('getText'),
 					'ghlxmc':$("#ghlxmc").val(),
 					'jsxz':jsxz,
-					'xmbm':xmnf,
+					'xmnf':xmnf,
 					//'gcfl':$('#gcfl').combobox("getValues").join(","),
 					"ylxbh":$('#gldj').combobox("getValues").join(","),
 					'lsxmlx':lsxmlx,
-					'lsxmnf':lsxmnf};
+					'lsxmnf':lsxmnf,
+					'xmbm':$("#xmbm").val()};
 			var sqzt = $('#sqzt').combobox("getValue");
 			
 			if(userPanduan($.cookie("unit2"))!="省"){
@@ -336,7 +337,8 @@
 				}
 			});
 		}
-		function deleteYhdzx(){
+  function deleteYhdzx(){
+		if(confirm('您确定删除该项目？')){
 			var selRow = $('#grid').datagrid("getSelections");
 			
 			var y=true;
@@ -345,9 +347,8 @@
 					y=false;
 					return;
 				}
-			}
+			});
 			
-			);
 			if(!y){
 				alert("只能删除未申请的信息！");
 				return;
@@ -375,6 +376,7 @@
 			}else{
 				alert("请选择要删除的信息！");
 			}
+		 }
 		}
 		function sb(xmbm){
 			$.ajax({
@@ -678,12 +680,13 @@
 			
 			loadjzt();
 			
-			var param='xmlx=4&sqzt='+sqzt+'&xzqhdm='+getxzqhdm('xzqh')+'&gydwdm='+""+
-			'&xmbm='+$('#xmnf').combobox("getValues").join(',')+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
+			var param='xmlx=4&sqzt='+sqzt+'&xzqhdm='+getxzqhdm('xzqh')+
+			'&xmnf='+$('#xmnf').combobox("getValues").join(',')+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
 			'&tsdq='+tsdq+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue")+
 			'&ylxbh='+$('#gldj').combobox("getValues").join(",")+"&wnxmk="+$("#wnxmk").combobox("getValue")+
 			'&ghlxbh='+$("#lxbm").combotree('getText')+'&lxmc='+$("#lxmc").val()+'&ghlxbm='+$("#ghlxbm").combotree('getText')+
-			'&ghlxmc='+$("#ghlxmc").val()+"&lsxmlx="+lsxmlx+"&lsxmnf="+lsxmnf+"&jdbs="+YMLib.Var.jdbs+"&jsxz="+$("#xmlx").combobox("getValues").join(",");;
+			'&ghlxmc='+$("#ghlxmc").val()+"&lsxmlx="+lsxmlx+"&lsxmnf="+lsxmnf+"&jdbs="+YMLib.Var.jdbs+"&jsxz="+$("#xmlx").combobox("getValues").join(",")+
+			'&xmbm='+$("#xmbm").val();
 			
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{tsdq:tsdq},function(){
 				window.location.href="/jxzhpt/qqgl/exportExcelXmsq1.do?"+param;
@@ -760,6 +763,7 @@
 			}
 		}
 		}
+		
 	</script>
 		<style type="text/css">
 TD {
@@ -836,7 +840,7 @@ text-decoration:none;
        							</td>
         						<td><span id="ztspan">上报状态</span>：</td>
        							<td><select id="sqzt" class="easyui-combobox" style="width: 70px;"></select></td> -->
-       							<td align="right">行政等级：</td>
+       							<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:124px;" class="easyui-combobox"></select></td>
 								 <td align="right">原路线编码：</td>
         						<td><input type="text" id="lxbm" style="width:118px;" /></td>
@@ -855,13 +859,13 @@ text-decoration:none;
         						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
         						<td>&nbsp;规划路线名称：</td>
         						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
-       							<td>&nbsp;行政等级：</td>
+       							<td>&nbsp;原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td> -->
 								<!-- <td>&nbsp;管养单位：</td>
        							<td><select id="gydw" style="width:170px;"></select></td> -->
        						</tr>
        						<tr height="29">
-       						<td align="right">是否有补助历史：</td>
+       						<td align="right">补助历史：</td>
        							<td>
        								<select id="lsjl" class="easyui-combobox" style="width: 124px;">
 		       							<option value="" selected="selected">全部</option>
@@ -887,7 +891,6 @@ text-decoration:none;
 									<select id='lsxmlx' class="easyui-combobox" style="width: 85px;">
 									</select>
 								</td>
-								
        							</tr>
        							<tr height="29">
        							<td align="right">历史计划年份：</td>
@@ -895,6 +898,8 @@ text-decoration:none;
 									<select id='lsxmnf' class="easyui-combobox" style="width: 124px;">
 									</select>
 								</td>
+								<td align="right">项目编码：</td>
+								<td><input type="text" id="xmbm" style="width:115px;" /></td>
 								</tr>
 								<tr height="29">
        							<td colspan="8">
@@ -905,8 +910,7 @@ text-decoration:none;
 									<img id="sp" name="sheng" alt="审批" onclick="batchSp()" style="display:none;border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg"/>
 <!-- 					                <img id="th" name="sheng" alt="退回" onclick="tuiHui()" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'"/> -->
 					                <img name="sheng" id="thxj" src="../../../images/thxj1.jpg" onmouseover="this.src='../../../images/thxj2.jpg'" onmouseout="this.src='../../../images/thxj1.jpg'   " src=""  onclick="tuihxjlxsh('grid');" style="border-width:0px;vertical-align:middle;" />
-								
-<!-- 					                 <img id="thwsh" name="sheng" alt="退回" onclick="thwshlxsh()" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'"/> -->
+				                <img id="thwsh" name="sheng" alt="退回" onclick="tuihshlxsh('grid');" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'"/>
 					                <img id="dcExcel" name="sheng" onclick="exportXmsq()" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 					                <img id="drExcel" name="dishi" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
 					                <img id="dcmoban" name="dishi" onclick="exportTemplet('Lxsh_Yhdzx')" alt="导出模版" onmouseover="this.src='../../../images/Button/DC2.gif'" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

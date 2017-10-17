@@ -15,6 +15,10 @@
 		<result property="jhsybzje" column="jhsybzje"/>
 		<result property="jhsydfzcje" column="jhsydfzcje"/>
 		<result property="sfylsjl" column="sfylsjl"/>
+		<result property="ylxbm" column="ylxbm"/>
+        <result property="yqdzh" column="yqdzh"/>
+        <result property="yzdzh" column="yzdzh"/>
+        <result property="ylxmc" column="ylxmc"/>
 		<association property="jckzhfz"  column="SCK_ZHFZ_ID"  resultMap="zhfz_lx"></association>
 	</resultMap>
 	<resultMap type="sckzhfz"  id="zhfz_lx">
@@ -34,7 +38,13 @@
 			(
 				select rownum as num,t.* from (
 					select jh.jh_sbthcd,jh.sbzt,jh.spzt,jh.kgzt,jh.jgzt,jh.jhkgsj,jh.jhwgsj,jh.sbnf,jh.id,jh.sckid,jh.pfztz,sc.bzls as sfylsjl,
-					lx.lxmc,lx.lxbm,lx.gydw,lx.gydwbm,lx.qdzh,lx.zdzh,lx.yhlc,lx.xzqhmc,lx.xzqhdm
+					lx.lxmc,lx.lxbm,lx.gydw,lx.gydwbm,
+					decode(substr(lx.qdzh,1,1),'.','0'||lx.qdzh,lx.qdzh) as qdzh,
+					decode(substr(lx.zdzh,1,1),'.','0'||lx.zdzh,lx.zdzh) as zdzh,										
+					lx.yhlc,lx.xzqhmc,lx.xzqhdm,lx.ylxbm,
+					decode(substr(lx.yqdzh,1,1),'.','0'||lx.yqdzh,lx.yqdzh) as yqdzh,										
+					decode(substr(lx.yzdzh,1,1),'.','0'||lx.yzdzh,lx.yzdzh) as yzdzh,															
+					lx.ylxmc
 					from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid)
 					left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1
 				 	<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
@@ -44,7 +54,7 @@
 						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 					</if>
 				 	<if test="jh.sbnf!=null and jh.sbnf!=''">
-	 					and jh.sbnf=#{jh.sbnf}
+	 					${jh.sbnf}
 	 				</if>
 	 				<if test="jh.sbzt!=null and jh.sbzt!=''">
 	 					and jh.sbzt=#{jh.sbzt}
@@ -77,7 +87,7 @@
 	 					${lx.lxbm}
 	 				</if>
 	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
-	 					and lx.lxjsdj = #{lx.lxjsdj}
+	 					and lx.lxjsdj like '%'|| #{lx.lxjsdj}||'%'
 	 				</if>
 	 				<if test="lx.tsdq!=null and lx.tsdq!=''">
 				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
@@ -168,7 +178,7 @@
 						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 					</if>
 				 	<if test="jh.sbnf!=null and jh.sbnf!=''">
-	 					and jh.sbnf=#{jh.sbnf}
+	 					${jh.sbnf}
 	 				</if>
 	 				<if test="jh.sbzt!=null and jh.sbzt!=''">
 	 					and jh.sbzt=#{jh.sbzt}
@@ -197,15 +207,18 @@
 	 				<if test="lx.gldj!=null and lx.gldj!=''">
 	 					${lx.gldj}
 	 				</if>
-	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
-	 					and lx.lxjsdj = #{lx.lxjsdj}
-	 				</if>
 	 				<if test="lx.xmklx != null and lx.xmklx != ''">
 	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
 	 				</if>
 	 				<if test="lx.lxbm !=null and lx.lxbm !=''">
 	 					${lx.lxbm}
 	 				</if>
+	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
+	 					and lx.lxjsdj like '%'|| #{lx.lxjsdj}||'%'
+	 				</if>
+	 				<if test="lx.tsdq!=null and lx.tsdq!=''">
+				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+				 	</if>
 	</select>
 	<select id="queryZhfzNfs"  resultType="treenode">
 		select distinct t.sbnf as text from PLAN_zhfz t order by t.sbnf
@@ -244,16 +257,30 @@
 		 	and scbmbm like #{tbdw}||'%'
 		 </if>
 	</select>
-	<select id="exportExcel_jh" parameterType="hashMap" resultType="sjbb">
-		select decode(jh.sbzt,0,'未上报',decode(jh.spzt,0,'上报待审批','已审批')) v_0,jh.sbnf v_1,to_char(jh.jhkgsj,'yyyy-mm-dd') v_2,to_char(jh.jhwgsj,'yyyy-mm-dd') v_3,lx.gydw v_4,lx.xzqhmc v_5,lx.lxbm v_6,lx.lxmc v_7,lx.qdzh v_8,lx.zdzh v_9,'' v_10,jh.pfztz v_11 
-		from plan_zhfz jh
-		left join sck_zhfz sc on (jh.sckid = sc.sckid)
-		left join xmk_zhfz lx on (sc.xmkid = lx.id) where 1=1
-		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
-			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
-		</if>
+	<select id="exportExcel_jh" parameterType="hashMap" resultType="elist">
+	      select rownum v_0,(select name from xtgl_xzqh where id = substr(lx.xzqhdm, 0, 4) || '00') v_1,
+                 lx.xzqhmc v_2, lx.lxbm v_3, lx.lxmc v_4, to_char(lx.qdzh, 'fm9999999990.000') v_5,
+                 to_char(lx.zdzh, 'fm9999999990.000') v_6, lx.ylxbm v_7, lx.ylxmc v_8, to_char(lx.yqdzh, 'fm9999999990.000') v_9,
+                 to_char(lx.yzdzh, 'fm9999999990.000') v_10, to_char(sc.sczlc, 'fm9999999990.000') v_11,
+                 to_char(sc.scyhlc, 'fm9999999990.000') v_12, nvl(jh.pfztz, 0) v_13, nvl(jh.jhsybzje, 0) v_14,
+                 nvl(jh.jhsydfzcje, 0) v_15, sc.jsxz v_16, sc.jsnr v_17, jh.pfwh v_18, jh.sbnf v_19, lx.gydw v_20,
+                 jh.sbnf v_21, jh.bz v_22, t.tsdq v_23
+          from plan_zhfz jh
+          left join sck_zhfz sc on (jh.sckid = sc.sckid)
+          left join xmk_zhfz lx on (sc.xmkid = lx.id)
+          left join (select replace(WMSYS.WM_CONCAT(distinct(to_char(t.name))), ',', ',') tsdq, x.xzqhdm
+               from xtgl_xzqhtsdq x
+               left join xtgl_tsdq t on x.parent = t.id
+               group by x.xzqhdm) t on lx.xzqhdm = t.xzqhdm
+               where 1 = 1
+		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+						and jh.jh_sbthcd=#{jh.jh_sbthcd}
+					</if>
+					<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+					</if>
 	 	<if test="jh.sbnf!=null and jh.sbnf!=''">
-				and jh.sbnf=#{jh.sbnf}
+				${jh.sbnf}
 			</if>
 			<if test="jh.sbzt!=null and jh.sbzt!=''">
 				and jh.sbzt=#{jh.sbzt}
@@ -270,16 +297,21 @@
 			<if test="lx.lxmc!=null and lx.lxmc!=''">
 				and lx.lxmc like '%'||#{lx.lxmc}||'%'
 			</if>
-<!-- 			<if test="lx.lxbm!=null and lx.lxbm!=''"> -->
-<!-- 				and lx.lxbm like #{lx.lxbm}||'%' -->
-<!-- 			</if> -->
+            <if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+			 	and sc.bzls=#{jh.sfylsjl}
+			</if>
 			<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
-				and lx.lxjsdj = #{lx.lxjsdj}
+				and lx.lxjsdj like '%'|| #{lx.lxjsdj}||'%'
 			</if>
 			<if test="lx.lxbm !=null and lx.lxbm !=''">
 	 					${lx.lxbm}
 	 		</if>
-		order by jh.sbnf desc
+	 		<if test="lx.tsdq!=null and lx.tsdq!=''">
+				 and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+			</if>
+			<if test="lx.xmklx != null and lx.xmklx != ''">
+	 			and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 		</if>
 	</select>
 	<select id="queryZhfzById" parameterType="string" resultType="plan_zhfz">
 		select  id,sckid,sbnf,jhkgsj,jhwgsj, sjdw,sjpfdw,pfwh, pfsj,pfztz, jhsybzje, jhsydfzcje, sfsqablbz,ablbzsqwh, bz,tbsj,
@@ -360,7 +392,7 @@
 						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 					</if>
 				 	<if test="jh.sbnf!=null and jh.sbnf!=''">
-	 					and jh.sbnf=#{jh.sbnf}
+	 					${jh.sbnf}
 	 				</if>
 	 				<if test="jh.sbzt!=null and jh.sbzt!=''">
 	 					and jh.sbzt=#{jh.sbzt}
@@ -390,7 +422,7 @@
 	 					${lx.gldj}
 	 				</if>
 	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
-	 					and lx.lxjsdj = #{lx.lxjsdj}
+	 					and lx.lxjsdj like '%'|| #{lx.lxjsdj}||'%'
 	 				</if>
 	 				<if test="lx.xmklx != null and lx.xmklx != ''">
 	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
@@ -398,6 +430,9 @@
 	 				<if test="lx.lxbm !=null and lx.lxbm !=''">
 	 					${lx.lxbm}
 	 				</if>
+	 				<if test="lx.tsdq!=null and lx.tsdq!=''">
+				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+				 	</if>
 	 				group by jh.id)
 	</select>
 	<update id="updateLrztBySckid" parameterType="java.util.List">

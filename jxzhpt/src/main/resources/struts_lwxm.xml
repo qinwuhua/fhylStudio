@@ -39,6 +39,9 @@
 	<action name="JckWqgzRoad" class="jckwqgzController" method="JckWqgzRoad"/>
 	<action name="selectJckShwqgz" class="jckwqgzController" method="selectJckShwqgz"/>
 	<action name="xgJckWqgzTH" class="jckwqgzController" method="xgJckWqgzTH"/>
+	<action name="xgJckWqgzTHxj" class="jckwqgzController" method="xgJckWqgzTHxj"/>
+	
+	
 	<action name="importWqgz" class="jckwqgzController" method="importWqgz"/>
 	<action name="exportExcel_wqgz" class="jckwqgzController" method="exportExcel_wqgz"/>
 	<action name="exportExcel_wqgz_sh" class="jckwqgzController" method="exportExcel_wqgz_sh"/>

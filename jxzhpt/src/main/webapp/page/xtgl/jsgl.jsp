@@ -58,6 +58,13 @@ function checkDeleteJs(_id){
 	});
 }
 $(function(){
+	startSearch();
+	$("#role_btn_search").click(function(){
+		startSearch();
+	});
+});
+
+function startSearch(){
 	$("#jsgl_table").datagrid({
 		border:true,
 		fit : true,
@@ -114,18 +121,34 @@ $(function(){
 					checkDeleteJs(_id);
 				}
 			}
-		}]
+		}
+		]
 	});
-});
+}
 </script>
 <div style="width:100%;">
-    <div  style="height:34px;" border="false">
+    <div  style="height:96px;" border="false">
 	    <div id="righttop">
 			<div id="p_top">当前位置>&nbsp;系统管理>&nbsp;角色分配管理</div>
 		</div>
+		<div  style="padding-left: 10px; padding-right: 10px;padding-top:8px;">
+			<fieldset style="width:99%; text-align: left; vertical-align: middle;	border:1px solid #b0caf3;">
+ 				<legend style="padding: 3px 0 3px 0; font-weight: bold; color: Gray; font-size: 12px;">
+ 					
+ 				</legend>
+ 				<div>
+ 					<p style="margin: 5px;">
+ 						<span>角色名称：</span>
+ 						<input id="jsgl_name" style="width:227px;"/>
+ 						<a id="role_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search">查　询</a>
+ 					</p>
+ 				</div>
+ 			</fieldset>
+        </div>
     </div>
-    <div style="height:500px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
-    	<table id="jsgl_table" style="height:100%;" ></table>
+    <div style="height:350px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
+    	<table id="jsgl_table" style="height:100%;" >
+    	</table>
     </div>
 </div>
 </body>

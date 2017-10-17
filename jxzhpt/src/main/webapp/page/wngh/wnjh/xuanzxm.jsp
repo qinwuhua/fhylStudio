@@ -286,7 +286,7 @@
         					<tr height="42" >
         						<td>行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:170px;" ></select></td>       					
-								<td>是否有补助历史：</td>
+								<td>补助历史：</td>
 								<td  width="65px;"><select id="lsjl" style="width:170px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="是">是</option>

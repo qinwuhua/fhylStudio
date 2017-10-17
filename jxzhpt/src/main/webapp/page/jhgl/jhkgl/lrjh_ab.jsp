@@ -205,7 +205,7 @@
                               <span>&nbsp;技术等级：</span>
                               	<select id="lxjsdj" style="width:70px"class="easyui-combobox">
                               	</select>
-                              	<span>&nbsp;行政等级：</span>
+                              	<span>&nbsp;原行政等级：</span>
                               	<select id="bz" style="width:70px"class="easyui-combobox"></select>
                               	<span>&nbsp;补助历史：</span>
                               	<select id="bzls" style="width:104px"class="easyui-combobox"></select>

@@ -326,7 +326,7 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		+" (nvl(jh.bbzzj, 0) + nvl(jh.gz, 0) + nvl(jh.sz, 0) + nvl(jh.zq, 0) +nvl(jh.dk, 0) + nvl(jh.jl, 0) + nvl(jh.qt, 0) + nvl(jh.dfzc, 0) + nvl(jh.yhdk, 0)) v_18,"
 		+" jh.bbzzj v_19,jh.gz v_20,jh.sz v_21,jh.zq v_22,jh.dk v_23,jh.jl v_24,jh.qt v_25,jh.dfzc v_26,jh.yhdk v_27,xd.bnjh v_28,xd.qzbtz v_29,"
 		+" jz.bndsslc v_30,(case when jh.kgzt = '1'and jh.jgzt = '0' then  '1' else '0' end) v_31,(case when jh.kgzt = '1'and jh.jgzt = '1' then '1' else '0' end) v_32,(case when jh.kgzt = '0'and jh.jgzt = '0' then '1' else '0' end) v_33,"
-		+" jh.sjkgsj v_34,jh.sjwgsj v_35,(nvl(cgs.cgs, 0) + nvl(cgs.gz, 0) + nvl(cgs.sz, 0) + nvl(cgs.zq, 0) +nvl(cgs.dk, 0) + nvl(cgs.jl, 0) + nvl(cgs.qt, 0) + nvl(cgs.dfzc, 0) +nvl(cgs.yhdk, 0)) v_36,"
+		+" substr(cb.kgsj,0,4) v_34,substr(cb.wgsj,0,4) v_35,(nvl(cgs.cgs, 0) + nvl(cgs.gz, 0) + nvl(cgs.sz, 0) + nvl(cgs.zq, 0) +nvl(cgs.dk, 0) + nvl(cgs.jl, 0) + nvl(cgs.qt, 0) + nvl(cgs.dfzc, 0) +nvl(cgs.yhdk, 0)) v_36,"
 		+" cgs.cgs v_37,cgs.gz v_38,cgs.sz v_39,cgs.zq v_40,cgs.dk v_41,cgs.jl v_42,cgs.qt v_43,cgs.dfzc v_44,cgs.yhdk v_45,jz1.ztz v_46,"
 		+" decode((nvl(cgs.cgs, 0) + nvl(cgs.gz, 0) + nvl(cgs.sz, 0) +nvl(cgs.zq, 0) + nvl(cgs.dk, 0) + nvl(cgs.jl, 0) + nvl(cgs.qt, 0) + nvl(cgs.dfzc, 0) + nvl(cgs.yhdk, 0)),'0','0',null,'0',round((jz1.ztz /(nvl(cgs.cgs, 0) + nvl(cgs.gz, 0) + nvl(cgs.sz, 0) +nvl(cgs.zq, 0) + nvl(cgs.dk, 0) + nvl(cgs.jl, 0) +nvl(cgs.qt, 0) + nvl(cgs.dfzc, 0) + nvl(cgs.yhdk, 0))) * 100), 2) v_47,"
 		+" jz1.wclc v_48,jz1.yiji v_49,jz1.erji v_50,jz1.sanji v_51,jz1.siji v_52,jz1.lq v_53,jz1.sn v_54,jz.ssdctc v_55,byxz.xzzj v_56,byxz1.wclc v_57,byxz1.wczj v_58,"
@@ -367,7 +367,7 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		+" (nvl(jh.bbzzj, 0) + nvl(jh.gz, 0) + nvl(jh.sz, 0) + nvl(jh.zq, 0) +nvl(jh.dk, 0) + nvl(jh.jl, 0) + nvl(jh.qt, 0) + nvl(jh.dfzc, 0) + nvl(jh.yhdk, 0)) v_18,"
 		+" jh.bbzzj v_19,jh.gz v_20,jh.sz v_21,jh.zq v_22,jh.dk v_23,jh.jl v_24,jh.qt v_25,jh.dfzc v_26,jh.yhdk v_27,xd.bnjh v_28,xd.qzbtz v_29,"
 		+" jz.bndsslc v_30,(case when jh.kgzt = '1'and jh.jgzt = '0' then  '1' else '0' end) v_31,(case when jh.kgzt = '1'and jh.jgzt = '1' then '1' else '0' end) v_32,(case when jh.kgzt = '0'and jh.jgzt = '0' then '1' else '0' end) v_33,"
-		+" jh.sjkgsj v_34,jh.sjwgsj v_35,(nvl(cgs.cgs, 0) + nvl(cgs.gz, 0) + nvl(cgs.sz, 0) + nvl(cgs.zq, 0) +nvl(cgs.dk, 0) + nvl(cgs.jl, 0) + nvl(cgs.qt, 0) + nvl(cgs.dfzc, 0) +nvl(cgs.yhdk, 0)) v_36,"
+		+" substr(cb.kgsj,0,4) v_34,substr(cb.wgsj,0,4) v_35,(nvl(cgs.cgs, 0) + nvl(cgs.gz, 0) + nvl(cgs.sz, 0) + nvl(cgs.zq, 0) +nvl(cgs.dk, 0) + nvl(cgs.jl, 0) + nvl(cgs.qt, 0) + nvl(cgs.dfzc, 0) +nvl(cgs.yhdk, 0)) v_36,"
 		+" cgs.cgs v_37,cgs.gz v_38,cgs.sz v_39,cgs.zq v_40,cgs.dk v_41,cgs.jl v_42,cgs.qt v_43,cgs.dfzc v_44,cgs.yhdk v_45,jz1.ztz v_46,"
 		+" decode((nvl(cgs.cgs, 0) + nvl(cgs.gz, 0) + nvl(cgs.sz, 0) +nvl(cgs.zq, 0) + nvl(cgs.dk, 0) + nvl(cgs.jl, 0) + nvl(cgs.qt, 0) + nvl(cgs.dfzc, 0) + nvl(cgs.yhdk, 0)),'0','0',null,'0',round((jz1.ztz /(nvl(cgs.cgs, 0) + nvl(cgs.gz, 0) + nvl(cgs.sz, 0) +nvl(cgs.zq, 0) + nvl(cgs.dk, 0) + nvl(cgs.jl, 0) +nvl(cgs.qt, 0) + nvl(cgs.dfzc, 0) + nvl(cgs.yhdk, 0))) * 100), 2) v_47,"
 		+" jz1.wclc v_48,jz1.yiji v_49,jz1.erji v_50,jz1.sanji v_51,jz1.siji v_52,jz1.lq v_53,jz1.sn v_54,jz.ssdctc v_55,byxz.xzzj v_56,byxz1.wclc v_57,byxz1.wczj v_58,"
@@ -408,7 +408,7 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		+" (nvl(jh.bbzzj, 0) + nvl(jh.gz, 0) + nvl(jh.sz, 0) + nvl(jh.zq, 0) +nvl(jh.dk, 0) + nvl(jh.jl, 0) + nvl(jh.qt, 0) + nvl(jh.dfzc, 0) + nvl(jh.yhdk, 0)) v_18,"
 		+" jh.bbzzj v_19,jh.gz v_20,jh.sz v_21,jh.zq v_22,jh.dk v_23,jh.jl v_24,jh.qt v_25,jh.dfzc v_26,jh.yhdk v_27,xd.bnjh v_28,xd.qzbtz v_29,"
 		+" jz.bndsslc v_30,(case when jh.kgzt = '1'and jh.jgzt = '0' then  '1' else '0' end) v_31,(case when jh.kgzt = '1'and jh.jgzt = '1' then '1' else '0' end) v_32,(case when jh.kgzt = '0'and jh.jgzt = '0' then '1' else '0' end) v_33,"
-		+" jh.sjkgsj v_34,jh.sjwgsj v_35,(nvl(cgs.cgs, 0) + nvl(cgs.gz, 0) + nvl(cgs.sz, 0) + nvl(cgs.zq, 0) +nvl(cgs.dk, 0) + nvl(cgs.jl, 0) + nvl(cgs.qt, 0) + nvl(cgs.dfzc, 0) +nvl(cgs.yhdk, 0)) v_36,"
+		+" substr(cb.kgsj,0,4) v_34,substr(cb.wgsj,0,4) v_35,(nvl(cgs.cgs, 0) + nvl(cgs.gz, 0) + nvl(cgs.sz, 0) + nvl(cgs.zq, 0) +nvl(cgs.dk, 0) + nvl(cgs.jl, 0) + nvl(cgs.qt, 0) + nvl(cgs.dfzc, 0) +nvl(cgs.yhdk, 0)) v_36,"
 		+" cgs.cgs v_37,cgs.gz v_38,cgs.sz v_39,cgs.zq v_40,cgs.dk v_41,cgs.jl v_42,cgs.qt v_43,cgs.dfzc v_44,cgs.yhdk v_45,jz1.ztz v_46,"
 		+" decode((nvl(cgs.cgs, 0) + nvl(cgs.gz, 0) + nvl(cgs.sz, 0) +nvl(cgs.zq, 0) + nvl(cgs.dk, 0) + nvl(cgs.jl, 0) + nvl(cgs.qt, 0) + nvl(cgs.dfzc, 0) + nvl(cgs.yhdk, 0)),'0','0',null,'0',round((jz1.ztz /(nvl(cgs.cgs, 0) + nvl(cgs.gz, 0) + nvl(cgs.sz, 0) +nvl(cgs.zq, 0) + nvl(cgs.dk, 0) + nvl(cgs.jl, 0) +nvl(cgs.qt, 0) + nvl(cgs.dfzc, 0) + nvl(cgs.yhdk, 0))) * 100), 2) v_47,"
 		+" jz1.wclc v_48,jz1.yiji v_49,jz1.erji v_50,jz1.sanji v_51,jz1.siji v_52,jz1.lq v_53,jz1.sn v_54,jz.ssdctc v_55,byxz.xzzj v_56,byxz1.wclc v_57,byxz1.wczj v_58,"
@@ -449,7 +449,7 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		+" (nvl(jh.bbzzj, 0) + nvl(jh.gz, 0) + nvl(jh.sz, 0) + nvl(jh.zq, 0) +nvl(jh.dk, 0) + nvl(jh.jl, 0) + nvl(jh.qt, 0)) v_18,"
 		+" jh.bbzzj v_19,jh.gz v_20,jh.sz v_21,jh.zq v_22,jh.dk v_23,jh.jl v_24,jh.qt v_25,0 v_26,0 v_27,xd.bnjh v_28,xd.qzbtz v_29,"
 		+" jz.bndsslc v_30,(case when jh.kgzt = '1'and jh.jgzt = '0' then  '1' else '0' end) v_31,(case when jh.kgzt = '1'and jh.jgzt = '1' then '1' else '0' end) v_32,(case when jh.kgzt = '0'and jh.jgzt = '0' then '1' else '0' end) v_33,"
-		+" jh.sjkgsj v_34,jh.sjwgsj v_35,(nvl(cgs.cgs, 0) + nvl(cgs.gz, 0) + nvl(cgs.sz, 0) + nvl(cgs.zq, 0) +nvl(cgs.dk, 0) + nvl(cgs.jl, 0) + nvl(cgs.qt, 0) + nvl(cgs.dfzc, 0) +nvl(cgs.yhdk, 0)) v_36,"
+		+" substr(cb.kgsj,0,4) v_34,substr(cb.wgsj,0,4) v_35,(nvl(cgs.cgs, 0) + nvl(cgs.gz, 0) + nvl(cgs.sz, 0) + nvl(cgs.zq, 0) +nvl(cgs.dk, 0) + nvl(cgs.jl, 0) + nvl(cgs.qt, 0) + nvl(cgs.dfzc, 0) +nvl(cgs.yhdk, 0)) v_36,"
 		+" cgs.cgs v_37,cgs.gz v_38,cgs.sz v_39,cgs.zq v_40,cgs.dk v_41,cgs.jl v_42,cgs.qt v_43,cgs.dfzc v_44,cgs.yhdk v_45,jz1.ztz v_46,"
 		+" decode((nvl(cgs.cgs, 0) + nvl(cgs.gz, 0) + nvl(cgs.sz, 0) +nvl(cgs.zq, 0) + nvl(cgs.dk, 0) + nvl(cgs.jl, 0) + nvl(cgs.qt, 0) + nvl(cgs.dfzc, 0) + nvl(cgs.yhdk, 0)),'0','0',null,'0',round((jz1.ztz /(nvl(cgs.cgs, 0) + nvl(cgs.gz, 0) + nvl(cgs.sz, 0) +nvl(cgs.zq, 0) + nvl(cgs.dk, 0) + nvl(cgs.jl, 0) +nvl(cgs.qt, 0) + nvl(cgs.dfzc, 0) + nvl(cgs.yhdk, 0))) * 100), 2) v_47,"
 		+" jz1.wclc v_48,jz1.yiji v_49,jz1.erji v_50,jz1.sanji v_51,jz1.siji v_52,jz1.lq v_53,jz1.sn v_54,jz.ssdctc v_55,byxz.xzzj v_56,byxz1.wclc v_57,byxz1.wczj v_58,"
@@ -1353,4 +1353,23 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 	public List<Excel_list> getGsgxsjgzjd(String sql2) {
 		return queryList("getGsgxsjgzjd",sql2);
 	}
+
+	@Override
+	public boolean insertOrUpdatesjss(List<Excel_list> list1) {
+		deleteBatch("deletesjss", list1);
+		insertBatch("insertOrUpdatesjss", list1);
+		return true;
+	}
+
+	@Override
+	public List<Excel_list> getsjssjzhzbnew(Excel_list excel_list) {
+		return queryList("getsjssjzhzbnew",excel_list);
+	}
+
+	@Override
+	public List<Excel_list> getinsertorupdate(Excel_list excel_list) {
+		return queryList("getinsertorupdate", excel_list);
+	}
+	
+	
 }

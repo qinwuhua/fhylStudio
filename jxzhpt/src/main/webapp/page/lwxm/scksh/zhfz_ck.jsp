@@ -56,6 +56,9 @@
 				$("#jsxz").html(msg.jsxz);
 				$("#jsnr").html(msg.jsnr);
 				$("#scbz").html(msg.scbz);
+				$("#ylxbm").html(msg.ylxbm);
+				$("#yqdzh").html(msg.yqdzh);
+				$("#yzdzh").html(msg.yzdzh);
 				}
 			});
 		}		
@@ -140,6 +143,17 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff; " align="left">
 					<span id="gydw"></span>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原起点编号：</td>
+				<td style="background-color: #ffffff; " align="left">
+					<span id="ylxbm"></span>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原起点桩号：</td>
+				<td style="background-color: #ffffff; " align="left">
+					<span id="yqdzh"></span>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原止点桩号：</td>
+				<td style="background-color: #ffffff; " align="left">
+					<span id="yzdzh"></span>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>

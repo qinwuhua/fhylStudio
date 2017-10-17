@@ -253,7 +253,7 @@ text-decoration:none;
         						<td><select id="xzqh" style="width:150px;"></select></td>
         						<td>项目年份：</td>
         						<td><select  id="ddlYear1" style="width: 80px;"></select></td>
-        						<td>行政等级：</td>
+        						<td>原行政等级：</td>
         						<td><select id="xzdj" class="easyui-combobox" style="width:60px;"></select></td>
         						<td>路线名称：</td>
         						<td><input id="lxmc" type="text"  style="width: 100px"/></td>

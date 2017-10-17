@@ -12,6 +12,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 /**
@@ -64,7 +65,7 @@ public interface Plan_wqgzServer {
 	 * @param jck
 	 * @return
 	 */
-	List<SjbbMessage> exportExcel_jh(Plan_wqgz jh,Jckwqgz lx);
+	List<Excel_list> exportExcel_jh(Plan_wqgz jh,Jckwqgz lx);
 	/**
 	 * 根据ID删除危桥改造项目
 	 * @param id

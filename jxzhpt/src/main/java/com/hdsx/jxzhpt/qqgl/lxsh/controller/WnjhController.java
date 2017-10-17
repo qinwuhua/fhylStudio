@@ -382,8 +382,8 @@ public class WnjhController extends BaseActionSupport{
 		}
 		lxsh.setJsdj(jsdjtj);
 		String jsjsdj="";
-		if((!"".equals(jsdj))&&jsdj!=null){
-			String[] jsdjs = jsdj.split(",");
+		if((!"".equals(lxsh.getJsjsdj()))&&lxsh.getJsjsdj()!=null){
+			String[] jsdjs = lxsh.getJsjsdj().split(",");
 			for (int i = 0; i < jsdjs.length; i++) {
 				if(i==0)
 					jsjsdj=jsjsdj+"and (jsjsdjtj like '%'||'"+jsdjs[i]+"'||'%' ";
@@ -1087,24 +1087,25 @@ public class WnjhController extends BaseActionSupport{
 			System.out.println(lxsh.getXmklx());
 			HttpServletRequest request = ServletActionContext.getRequest();
 			HttpSession session = request.getSession();
-			gydw=(String) session.getAttribute("gydwbb");	
+//			gydw=(String) session.getAttribute("gydwbb");	
 			xzqh=(String) session.getAttribute("xzqhbb");
 			lxsh.setTsdq((String) session.getAttribute("tsdq"));
 			
-			String tiaojian1="";
 			String tiaojian2="";
-			if(gydw.indexOf(",")==-1){
-				tiaojian1="and t.gydwdm like '%"+gydw+"%'";
-			}else{
-				tiaojian1=" and t.gydwdm in ("+gydw+")";
-			}
+//			if(gydw.indexOf(",")==-1){
+//				tiaojian1="and t.gydwdm like '%"+gydw+"%'";
+//			}else{
+//				tiaojian1=" and t.gydwdm in ("+gydw+")";
+//			}
+//			lxsh.setGydw(tiaojian1);
+			
 			if(xzqh.indexOf(",")==-1){
 				tiaojian2=" and t.xzqhdm like '%"+xzqh+"%'";
 			}else{
 				tiaojian2=" and t.xzqhdm in ("+xzqh+")";
 			}
 			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
-			lxsh.setGydw(tiaojian1);
+			
 			String gldjtj="";
 			if((!"".equals(lxsh.getGldj()))&&lxsh.getGldj()!=null){
 				String[] jsdjs = lxsh.getGldj().split(",");
@@ -1169,29 +1170,30 @@ public class WnjhController extends BaseActionSupport{
 			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "ghlxbmtj"));
 			lxsh.setGhxlxbm(MyUtil.getQueryTJ(lxsh.getGhxlxbm(), "ghxlxbmtj"));
 			
+			if(lxsh.getXmlx1()!=null)
+				if(lxsh.getXmlx1().length()>0){
+					String[] tsdqs=lxsh.getXmlx1().split(",");
+					String tsdq="";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+						else
+							tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					lxsh.setXmlx1(tsdq);
+				}
+			
 			List<Excel_list> elist=new ArrayList<Excel_list>();
 			if("gsdgz".equals(lxsh.getXmlx())){
-				if(lxsh.getXmlx1()!=null)
-					if(lxsh.getXmlx1().length()>0){
-						String[] tsdqs=lxsh.getXmlx1().split(",");
-						String tsdq="";
-						for (int i = 0; i < tsdqs.length; i++) {
-							if("全部".equals(tsdqs[i])){
-								tsdq="";
-								break;
-							}
-							if(i==0)
-								tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
-							else
-								tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
-						}
-						if(tsdq==""){
-							tsdq="";
-						}else{
-							tsdq+=")";
-						}
-						lxsh.setXmlx1(tsdq);
-					}
 				xmbt="国省道改造";
 				elist=wnjhServer.querywnjhGsdgz(lxsh);
 			}
@@ -1214,34 +1216,35 @@ public class WnjhController extends BaseActionSupport{
 			eldata.setFileName(xmbt+"工程项目五年规划信息表");//设置文件名
 			eldata.setEl(elist);//将实体list放入类中
 			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
-			et.add(new Excel_tilte("项目名称",1,1,0,0));
-			et.add(new Excel_tilte("原路线编码",1,1,1,1));
-			et.add(new Excel_tilte("原路线名称",1,1,2,2));
-			et.add(new Excel_tilte("原起点桩号",1,1,3,3));
-			et.add(new Excel_tilte("原止点桩号",1,1,4,4));
-			et.add(new Excel_tilte("规划路线编码",1,1,5,5));
-			et.add(new Excel_tilte("规划路线名称",1,1,6,6));
-			et.add(new Excel_tilte("规划起点桩号",1,1,7,7));
-			et.add(new Excel_tilte("规划止点桩号",1,1,8,8));
-			et.add(new Excel_tilte("共线路线编码",1,1,9,9));
-			et.add(new Excel_tilte("共线起点桩号",1,1,10,10));
-			et.add(new Excel_tilte("共线止点桩号",1,1,11,11));
-			et.add(new Excel_tilte("里程",1,1,12,12));
-			et.add(new Excel_tilte("起点名称",1,1,13,13));
-			et.add(new Excel_tilte("止点名称",1,1,14,14));
-			et.add(new Excel_tilte("建设性质",1,1,15,15));
-			et.add(new Excel_tilte("管养单位",1,1,16,16));		
-			et.add(new Excel_tilte("行政区划",1,1,17,17));
-			et.add(new Excel_tilte("特殊地区",1,1,18,18));
-			et.add(new Excel_tilte("建设技术等级",1,1,19,19));
-			et.add(new Excel_tilte("现技术等级",1,1,20,20));
-			et.add(new Excel_tilte("项目年份",1,1,21,21));
-			et.add(new Excel_tilte("计划开工年",1,1,22,22));
-			et.add(new Excel_tilte("计划完工年",1,1,23,23));
-			et.add(new Excel_tilte("投资(万元)",1,1,24,24));
-			et.add(new Excel_tilte("补助测算(万元)",1,1,25,25));
-			et.add(new Excel_tilte("项目库类型",1,1,26,26));
-			et.add(new Excel_tilte("备注",1,1,27,27));
+			et.add(new Excel_tilte("序号",1,1,0,0));
+			et.add(new Excel_tilte("项目名称",1,1,1,1));
+			et.add(new Excel_tilte("原路线编码",1,1,2,2));
+			et.add(new Excel_tilte("原路线名称",1,1,3,3));
+			et.add(new Excel_tilte("原起点桩号",1,1,4,4));
+			et.add(new Excel_tilte("原止点桩号",1,1,5,5));
+			et.add(new Excel_tilte("规划路线编码",1,1,6,6));
+			et.add(new Excel_tilte("规划路线名称",1,1,7,7));
+			et.add(new Excel_tilte("规划起点桩号",1,1,8,8));
+			et.add(new Excel_tilte("规划止点桩号",1,1,9,9));
+			et.add(new Excel_tilte("共线路线编码",1,1,10,10));
+			et.add(new Excel_tilte("共线起点桩号",1,1,11,11));
+			et.add(new Excel_tilte("共线止点桩号",1,1,12,12));
+			et.add(new Excel_tilte("里程",1,1,13,13));
+			et.add(new Excel_tilte("起点名称",1,1,14,14));
+			et.add(new Excel_tilte("止点名称",1,1,15,15));
+			et.add(new Excel_tilte("建设性质",1,1,16,16));
+			et.add(new Excel_tilte("管养单位",1,1,17,17));		
+			et.add(new Excel_tilte("行政区划",1,1,18,18));
+			et.add(new Excel_tilte("特殊地区",1,1,19,19));
+			et.add(new Excel_tilte("建设技术等级",1,1,20,20));
+			et.add(new Excel_tilte("现技术等级",1,1,21,21));
+			et.add(new Excel_tilte("项目年份",1,1,22,22));
+			et.add(new Excel_tilte("计划开工年",1,1,23,23));
+			et.add(new Excel_tilte("计划完工年",1,1,24,24));
+			et.add(new Excel_tilte("投资(万元)",1,1,25,25));
+			et.add(new Excel_tilte("补助测算(万元)",1,1,26,26));
+			et.add(new Excel_tilte("项目库类型",1,1,27,27));
+			et.add(new Excel_tilte("备注",1,1,28,28));
 			eldata.setEt(et);//将表头内容设置到类里面
 			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 			Excel_export.excel_export(eldata,response);

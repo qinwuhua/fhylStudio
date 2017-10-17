@@ -52,14 +52,15 @@
 				xdzt=xdzt.substr(1,xdzt.length);
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh2.do";
-			if(jhxdwh==null||jhxdwh=='')
-				jhxdwh='%';
+			/* if(jhxdwh==null||jhxdwh=='')
+				jhxdwh='%'; */
 			var params={'jhsh.xmlx':5,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
 					'jhsh.xmnf':xmnf,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),
-					'jhsh.gldj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
+					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText').toUpperCase( ),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText').toUpperCase( ),'jhsh.ghxlxmc':$('#ghlxmc').val(),
-					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':jhxdwh,'jhsh.xdzttj':xdzt,'jhsh.scxdnf':1
+					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':jhxdwh,'jhsh.xdzttj':xdzt,'jhsh.scxdnf':1,
+					'jhsh.xmbm':$('#xmbm').val()
 					};
 			
 			grid.queryParams=params;
@@ -156,7 +157,7 @@
 						 $("#sbz").html(msg.SBZ);
 						 $("#sjl").html(msg.SJL);
 						 $("#lc").html(msg.LC);
-						 $("#dftz").html(msg.DFTZ);
+// 						 $("#dftz").html(msg.DFTZ);
 					}else{
 						$('#spanbbz').html("0");
 						$('#spansbz').html("0");
@@ -179,13 +180,16 @@
 				var xdzt=$("#xdzt").combobox("getValues").join(",");
 				if(xdzt.substr(0,1)==',')
 					xdzt=xdzt.substr(1,xdzt.length);
+				
 				var param="jhsh.xmlx="+'5'+"&jhsh.xzqhdm="+getxzqhdm('xzqh')+"&jhsh.xmmc="+$("#xmmc").val()+
 				"&jhsh.xmnf="+xmnf+"&jhsh.jsdj="+$("#jsdj").combobox("getValues").join(",")+
 				"&jhsh.gldj="+$("#gldj").combobox("getValues").join(",")+"&jhsh.tsdq="+tsdq.replace(/\+/g,"%2B")+
 				"&jhsh.ghlxbh="+$("#lxbm").combotree('getText')+"&jhsh.lxmc="+$("#lxmc").val()+
 				"&jhsh.ghxlxbm="+$("#ghlxbm").combotree('getText')+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+
-				"&jhsh.lsjl="+$("#lsjl").combobox("getValue")+"&jhsh.jhxdwh="+jhxdwh+'&jhsh.xdzttj='+xdzt+'&jhsh.scxdnf='+1;
-		window.location.href="/jxzhpt/qqgl/exportJhshShExcel.do?"+param;
+				"&jhsh.lsjl="+$("#lsjl").combobox("getValue")+"&jhsh.jhxdwh="+jhxdwh+'&jhsh.xdzttj='+xdzt+'&jhsh.scxdnf='+1+
+				'&jhsh.xmbm='+$('#xmbm').val();
+				
+		         window.location.href="/jxzhpt/qqgl/exportJhshShExcel.do?"+param;
 		}
 		function importJhsh(){
 			importExcel("/jxzhpt/qqgl/importExcelJhxdSh.do","shjhxd");
@@ -273,7 +277,7 @@ text-decoration:none;
         						<td><select id="xmnf" style="width: 104px;"></select></td>
         						<td align="right">技术等级：</td>
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:104px;"></select></td>
-        						<td align="right">行政等级：</td>
+        						<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:104px;" class="easyui-combobox"></select></td> -->
         						 <td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:150px;"></select></td>
@@ -287,7 +291,7 @@ text-decoration:none;
         					<tr height="29">
         					<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:150px;" /></td>
-        						<td align="right">行政等级：</td>
+        						<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td> 
         					
         						<!-- <td align="right">特殊地区：</td>
@@ -311,7 +315,7 @@ text-decoration:none;
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:150px;" /></td>
         						<td align="right">规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:78px;" /></td> 
-        						<td align="right">是否有补助历史：</td>
+        						<td align="right">补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:118px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
@@ -333,6 +337,10 @@ text-decoration:none;
        					<tr height="29">
        							<td align="right">下达状态：</td>
         						<td><input name="xdzt" type="text" id="xdzt" style="width:150px;" /></td>
+        						<td align="right">项目编码：</td>
+								<td>
+									<input name="xmbm" type="text" id="xmbm" style="width:118px;" />
+								</td>
         						</tr>
         						<tr height="29">
        						<td colspan="8">
@@ -354,8 +362,8 @@ text-decoration:none;
             		总投资【<span id="tz" style="color: red;">0</span>】万元,
             		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
             		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
-            		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
-            		地方自筹【<span id="dftz" style="color: red;">0</span>】万元。
+            		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元。
+<!--             		地方自筹【<span id="dftz" style="color: red;">0</span>】万元。 -->
             		</div>
            		<div><table id="grid"></table></div>
            	</td>

@@ -30,6 +30,10 @@ import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 /**
@@ -99,27 +103,100 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 			}else{
 				jckzhfz.setXzqhdm("and xzqhdm in ("+jckzhfz.getXzqhdm()+")");
 			}
+			
+			if(jckzhfz.getTsdq().length()>0){
+				String[] tsdqs=jckzhfz.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jckzhfz.setTsdq(tsdq);
+			}
+			if(jckzhfz.getGldj().length()>0){
+				String[] tsdqs=jckzhfz.getGldj().split(",");
+				String tsdq="and substr(lxbm,0,1) in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i]+"'";
+					else
+						tsdq+=",'"+tsdqs[i]+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jckzhfz.setGldj(tsdq);
+			}
+			if(jckzhfz.getJsdj().length()>0){
+				String[] tsdqs=jckzhfz.getJsdj().split(",");
+				String tsdq="and substr(lxjsdj,0,1) in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i].substring(0, 1)+"'";
+					else
+						tsdq+=",'"+tsdqs[i].substring(0, 1)+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jckzhfz.setJsdj(tsdq);
+			}
 			//先得到导出的数据集
-			List <SjbbMessage> list=zhfzServer.exportExcel_zhfz(jckzhfz);
+			List <Excel_list> list=zhfzServer.exportExcel_zhfz(jckzhfz);
 			System.out.println("------------"+list.size()+"--------------");
 			//导出设置
-			String excelHtml="<tr><td>上报状态</td><td>管养单位</td><td>行政区划</td><td>路线编码</td><td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>起止里程</td><td>总里程</td><td>隐患里程</td><td>修建/改建年度</td><td>项目年份</td></tr>";
-			List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
-			SheetBean sheetb = new SheetBean();
-			sheetb.setTableName("灾害防治项目");
-			sheetb.setFooter(null);
-			sheetb.setHeader(excelHtml);
-			sheetb.setSheetName("灾害");
-			sheetb.setList(list);
-			sheetb.setColnum((short)12);
-			sheetBeans.add(sheetb);
-			String stylefileName="module.xls";
-			String tableName="灾害防治项目";//excel 文件的名字
-			//导出excel
-			ExportExcel_new <Jckwqgz> ee = new ExportExcel_new<Jckwqgz>();
-			ee.initStyle(ee.workbook, stylefileName);
-			HttpServletResponse response= getresponse();
-			ee.makeExcel(tableName, sheetBeans, response);
+			ExcelData eldata=new ExcelData();//创建一个类
+			eldata.setTitleName("灾害防治项目");//设置第一行 
+			eldata.setSheetName("灾害防治");//设置sheeet名
+			eldata.setFileName("灾害防治项目");//设置文件名
+			eldata.setEl(list);//将实体list放入类中
+			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+			et.add(new Excel_tilte("序号",1,1,0,0));
+			et.add(new Excel_tilte("行政区划代码",1,1,1,1));
+			et.add(new Excel_tilte("行政区划名称",1,1,2,2));
+			et.add(new Excel_tilte("管养单位",1,1,3,3));			
+			et.add(new Excel_tilte("规划路线编码",1,1,4,4));
+			et.add(new Excel_tilte("规划路线名称",1,1,5,5));
+			et.add(new Excel_tilte("规划路线起点桩号",1,1,6,6));
+			et.add(new Excel_tilte("规划路线止点桩号",1,1,7,7));		
+			et.add(new Excel_tilte("原路线编码",1,1,8,8));
+			et.add(new Excel_tilte("原路线名称",1,1,9,9));
+			et.add(new Excel_tilte("原路线起点桩号",1,1,10,10));
+			et.add(new Excel_tilte("原路线止点桩号",1,1,11,11));	
+			et.add(new Excel_tilte("总里程",1,1,12,12));
+			et.add(new Excel_tilte("隐患里程",1,1,13,13));
+			et.add(new Excel_tilte("修建/改建年度",1,1,14,14));
+			et.add(new Excel_tilte("项目年份",1,1,15,15));
+			et.add(new Excel_tilte("项目库类型",1,1,16,16));
+			et.add(new Excel_tilte("隐患内容",1,1,17,17));
+			et.add(new Excel_tilte("特殊地区",1,1,18,18));
+			et.add(new Excel_tilte("备注",1,1,19,19));		
+			eldata.setEt(et);//将表头内容设置到类里面
+			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+			Excel_export.excel_export(eldata,response);
 		} catch (Exception e) {
 			System.out.println("---------------------导出有误-----------------------");
 			e.printStackTrace();
@@ -206,26 +283,38 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 			}
 			
 			//先得到导出的数据集
-			List <SjbbMessage> list=zhfzServer.exportExcel_zhfz_sh(jckzhfz);
+			List <Excel_list> list=zhfzServer.exportExcel_zhfz_sh(jckzhfz);
 			System.out.println("------------"+list.size()+"--------------");
 			//导出设置
-			String excelHtml="<tr><td>审核状态</td><td>管养单位</td><td>行政区划</td><td>路线编码</td><td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>起止里程</td><td>总里程</td><td>隐患里程</td><td>修建/改建年度</td><td>项目年份</td></tr>";
-			List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
-			SheetBean sheetb = new SheetBean();
-			sheetb.setTableName("灾害防治项目");
-			sheetb.setFooter(null);
-			sheetb.setHeader(excelHtml);
-			sheetb.setSheetName("灾害");
-			sheetb.setList(list);
-			sheetb.setColnum((short)12);
-			sheetBeans.add(sheetb);
-			String stylefileName="module.xls";
-			String tableName="灾害防治项目";//excel 文件的名字
-			//导出excel
-			ExportExcel_new ee = new ExportExcel_new();
-			ee.initStyle(ee.workbook, stylefileName);
-			HttpServletResponse response= getresponse();
-			ee.makeExcel(tableName, sheetBeans, response);
+			ExcelData eldata=new ExcelData();//创建一个类
+			eldata.setTitleName("灾害防治项目");//设置第一行 
+			eldata.setSheetName("灾害防治");//设置sheeet名
+			eldata.setFileName("灾害防治项目");//设置文件名
+			eldata.setEl(list);//将实体list放入类中
+			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+			et.add(new Excel_tilte("序号",1,1,0,0));
+			et.add(new Excel_tilte("行政区划代码",1,1,1,1));
+			et.add(new Excel_tilte("行政区划名称",1,1,2,2));
+			et.add(new Excel_tilte("管养单位",1,1,3,3));			
+			et.add(new Excel_tilte("规划路线编码",1,1,4,4));
+			et.add(new Excel_tilte("规划路线名称",1,1,5,5));
+			et.add(new Excel_tilte("规划路线起点桩号",1,1,6,6));
+			et.add(new Excel_tilte("规划路线止点桩号",1,1,7,7));	
+			et.add(new Excel_tilte("原路线编码",1,1,8,8));
+			et.add(new Excel_tilte("原路线名称",1,1,9,9));
+			et.add(new Excel_tilte("原路线起点桩号",1,1,10,10));
+			et.add(new Excel_tilte("原路线止点桩号",1,1,11,11));
+			et.add(new Excel_tilte("总里程",1,1,12,12));
+			et.add(new Excel_tilte("隐患里程",1,1,13,13));
+			et.add(new Excel_tilte("修建/改建年度",1,1,14,14));
+			et.add(new Excel_tilte("项目年份",1,1,15,15));
+			et.add(new Excel_tilte("项目库类型",1,1,16,16));
+			et.add(new Excel_tilte("隐患内容",1,1,17,17));
+			et.add(new Excel_tilte("特殊地区",1,1,18,18));
+			et.add(new Excel_tilte("备注",1,1,19,19));		
+			eldata.setEt(et);//将表头内容设置到类里面
+			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+			Excel_export.excel_export(eldata,response);
 		} catch (Exception e) {
 			System.out.println("---------------------导出有误-----------------------");
 			e.printStackTrace();

@@ -87,7 +87,7 @@ function loadGrid(){
 		    pageSize:10,
 		    fitColumns:true,
 		    height:$(window).height()-150,
-			width:$(window).width()-10,
+			width:$(window).width(),
 			url:'/jxzhpt/tjfx/queryLkpdmx.do',
 			queryParams : {
 				 	'lkmxb.jsdj':jsdj,
@@ -95,22 +95,25 @@ function loadGrid(){
 				 	'lkmxb.jcfx':jcfx,
 				 	'lkmxb.lxbh':$('#roadcode').combotree("getValues").join(","),
 				 	'lkmxb.mqi':mqi,
-				 	'lkmxb.tbnf':$('#lkpdbb').combobox("getValue"),
+				 	'lkmxb.tbnf':$('#lkpdbb').combobox("getValue")
 				},
 	    columns:[
 	      [
-			{field:'lxbh',title:'路线编码',width:80,align:'center',rowspan:2},
-	        {field:'zh',title:'桩号',width:160,align:'center',rowspan:2},
+			{field:'lxbh',title:'路线编码',width:140,align:'center',rowspan:2},
+	        {field:'zh',title:'桩号',width:240,align:'center',rowspan:2},
 	        {field:'cd',title:'长度',width:120,align:'center',rowspan:2},
-	        {field:'jcfx',title:'检查方向',width:120,align:'center',rowspan:2},
-	        {field:'jsdj',title:'技术等级',width:120,align:'center',rowspan:2},
-	        {field:'lmlx',title:'路面类型',width:120,align:'center',rowspan:2},
+	        {field:'ylxbm',title:'原路线编码',width:150,align:'center',rowspan:2},
+	        {field:'yzh',title:'原桩号',width:240,align:'center',rowspan:2},
+	        {field:'jcfx',title:'检查方向',width:130,align:'center',rowspan:2},
+	        {field:'jsdj',title:'技术等级',width:130,align:'center',rowspan:2},
+	        {field:'lmlx',title:'路面类型',width:130,align:'center',rowspan:2},
 	        {field:'mqi',title:'MQI',width:120,align:'center',rowspan:2},
-	        {field:'pqi',title:'路面PQI',width:120,align:'center',rowspan:2},
+	        {field:'mqidj',title:'MQI等级',width:140,align:'center',rowspan:2},
+	        {field:'pqi',title:'路面PQI',width:140,align:'center',rowspan:2},
 	        {title:'路面分项指标',colspan:5},
 	        {field:'sci',title:'路基SCI',width:140,align:'center',rowspan:2},
-	        {field:'bci',title:'桥隧构造物BCI',width:140,align:'center',rowspan:2},
-	        {field:'tci',title:'沿线设施TCI',width:140,align:'center',rowspan:2},
+	        {field:'bci',title:'桥隧构造物BCI',width:160,align:'center',rowspan:2},
+	        {field:'tci',title:'沿线设施TCI',width:160,align:'center',rowspan:2},
          ],
 		[	
 		    {field:'pci',title:'PCI',width:140,align:'center',rowspan:1},
@@ -121,9 +124,31 @@ function loadGrid(){
 	    ]  
 	]		
 	});  
-	
 }
 
+function dcLkmxExcel(){
+	
+	var jsdj=$('#jsdj').combobox("getValues").join(",");
+	if(jsdj.substr(0,1)==',')
+		jsdj=jsdj.substr(1,jsdj.length);
+	var lmlx=$('#lmlx').combobox("getValues").join(",");
+	if(lmlx.substr(0,1)==',')
+		lmlx=lmlx.substr(1,lmlx.length);
+	var jcfx=$('#jcfx').combobox("getValues").join(",");
+	if(jcfx.substr(0,1)==',')
+		jcfx=jcfx.substr(1,jcfx.length);
+	var mqi=$('#mqi').combobox("getValues").join(",");
+	if(mqi.substr(0,1)==',')
+		mqi=mqi.substr(1,mqi.length);
+	
+	var param='lkmxb.jsdj='+jsdj+'&lkmxb.lmlx='+lmlx+'&lkmxb.jcfx='+jcfx+
+	'&lkmxb.lxbh='+$('#roadcode').combotree("getValues").join(",")+'&lkmxb.mqi='+mqi+
+ 	'&lkmxb.tbnf='+$('#lkpdbb').combobox("getValue");
+	
+// 	alert(param);
+
+	window.location.href="/jxzhpt/tjfx/exportLkpdmx.do?"+param;
+}
 </script>
 <style type="text/css">
 TD {
@@ -172,7 +197,8 @@ text-decoration:none;
 							  </tr>
 							  <tr >
 							   <td colspan="10">
-							 	<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  onclick="loadGrid();"style="border-width:0px;cursor: hand;" />
+							 	<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  onclick="loadGrid();"style="border-width:0px;cursor: hand;vertical-align:middle;" />
+							    <img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dcLkmxExcel();" style="border-width:0px;cursor: hand;vertical-align:middle;" />
 							  </td>
 							</tr>
 							</table>

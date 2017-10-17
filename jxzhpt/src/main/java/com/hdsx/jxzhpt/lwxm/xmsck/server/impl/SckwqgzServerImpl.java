@@ -14,6 +14,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckwqgzServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 @Service
 public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 	private Map<String, Object> hm;
@@ -123,11 +124,11 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 	}
 
 	@Override
-	public List<SjbbMessage> exportExcel_wqgz_scgl(Sckwqgz wqgz) {
+	public List<Excel_list> exportExcel_wqgz_scgl(Sckwqgz wqgz) {
 		return this.queryList("exportExcel_wqgz_scgl",wqgz);
 	}
 	@Override
-	public List<SjbbMessage> exportExcel_wqgz_scsh(Sckwqgz wqgz) {
+	public List<Excel_list> exportExcel_wqgz_scsh(Sckwqgz wqgz) {
 		return this.queryList("exportExcel_wqgz_scsh",wqgz);
 	}
 

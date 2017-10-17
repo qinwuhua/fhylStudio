@@ -53,8 +53,8 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-			if(jhxdwh==null||jhxdwh=='')
-				jhxdwh='%';
+// 			if(jhxdwh==null||jhxdwh=='')
+// 				jhxdwh='%';
 			var xdzt=$("#xdzt").combobox("getValues").join(",");
 			if(xdzt.substr(0,1)==',')
 				xdzt=xdzt.substr(1,xdzt.length);
@@ -68,7 +68,8 @@
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText').toUpperCase( ),'jhsh.lxmc':$('#lxmc').val(),'jhsh.xdzttj':xdzt,
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText').toUpperCase( ),'jhsh.ghxlxmc':$('#ghlxmc').val(),
-					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':jhxdwh,'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly,'jhsh.xmklx':$('#xmklx').combobox('getValue'),'jhsh.scxdnf':1
+					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':jhxdwh,'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly,'jhsh.xmklx':$('#xmklx').combobox('getValue'),'jhsh.scxdnf':1,
+					'jhsh.xmbm':$('#xmbm').val()
 					};
 			grid.queryParams=params;
  			loadLj(params);
@@ -154,7 +155,7 @@
 				{field:'pfztz',title:'批复总投资',width:100,align:'center'},
 				{field:'bbzzj',title:'部补助投资',width:100,align:'center'},
 				{field:'bcxd',title:'本次下达',width:100,align:'center'},
-				{field:'sbzzj',title:'省补助资金',width:100,align:'center'},
+				{field:'bcstz',title:'省补助资金',width:100,align:'center'},
 				{field:'jhxdwh',title:'计划下达文号',width:120,align:'center',
 					formatter: function(value,row,index){
 						if($.cookie('unit2').length==7)
@@ -199,39 +200,40 @@
 			});
 		}
 		function exportJhshxx(){
-			var xmlx=$("#xmlx").combobox("getValues").join(",");
+			var xmlx=$("#xmlx").combobox("getValues").join(",");		
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
-			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			
+			var tsdq=$("#tsdq").combobox("getValues").join(",");			
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
+			
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
+			
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-			if(jhxdwh==null||jhxdwh=='')
-				jhxdwh='%';
+			
+// 			if(jhxdwh==null||jhxdwh=='')
+// 				jhxdwh='%';
 			var xdzt=$("#xdzt").combobox("getValues").join(",");
 			if(xdzt.substr(0,1)==',')
 				xdzt=xdzt.substr(1,xdzt.length);
+			
 			var zjly=$("#zjly").combobox("getValues").join(",");
 			if(zjly.substr(0,1)==',')
 				zjly=zjly.substr(1,zjly.length);
-			  var param='jhsh.xmbm='+xmnf+'&jhsh.xmlx1='+xmlx
+			
+			  var param='jhsh.xmnf='+xmnf+'&jhsh.xmlx1='+xmlx
 				+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#lxbm').combotree('getText')+'&jhsh.scxdnf='+xmnf
 				+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+$('#tsdq').combobox("getValues").join(",").replace(/\+/g,"%2B")
 				+'&jhsh.xdzt=1'+'&jhsh.jsdj='+$('#jsdj').combobox("getValues").join(",")+'&lsjl='+$('#lsjl').combobox("getValue")
 				+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+'&jhsh.jsjsdj='+$("#jsjsdj").combobox("getValues").join(",")+'&jhsh.jhxdwh='+jhxdwh
-				+'&jhsh.xmnf='+xmnf+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.scxdnf='+1; 
+				+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.scxdnf='+1+'&jhsh.xmbm='+$('#xmbm').val(); 
 			  
-			  if(xmnf==''||xmnf.indexOf(',')>0){
-				  alert("项目年份请单选！");
-			  }
-			  else{
 			window.location.href="/jxzhpt/qqgl/exportJhshxxgsdexcel.do?"+param;
-			  }
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
@@ -334,9 +336,9 @@ text-decoration:none;
         					</tr>
         					<tr height="28">
         						
-        					<td>项目年份：</td>
+        					<td>首次下达年份：</td>
         						<td><select id="xmnf" style="width: 150px;"></select></td>
-        						<!-- <td align="right">行政等级：</td>
+        						<!-- <td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:150px;" class="easyui-combobox"></select></td>
         						<td align="right">特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:104px;"></select></td>
@@ -351,7 +353,7 @@ text-decoration:none;
         						<td align="right">资金来源：</td>
         						<td><input name="zjly" type="text" id="zjly" style="width:75px;" /></td>
         						
-        						<td align="right">行政等级：</td>
+        						<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td>
 								<td align="right">原路线编码：</td>
         						<td><input name="lxbm" type="text" id="lxbm" style="width:118px;" /></td>
@@ -378,7 +380,7 @@ text-decoration:none;
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:118px;" /></td>
 								 <td align="right">规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:75px;" /></td>
-        						 <td align="right">是否有补助历史：</td>
+        						 <td align="right">补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:80px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
@@ -401,6 +403,10 @@ text-decoration:none;
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
 									</select>
+								</td>
+							<td align="right">项目编码：</td>
+								<td>
+									<input name="xmbm" type="text" id="xmbm" style="width:118px;" />
 								</td>
 								</tr>
 								<tr height="28">

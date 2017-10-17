@@ -129,7 +129,7 @@
 					//'cbsj.jsjsdj':$('#gjhjsdj').combobox("getValues").join(","),
 					'cbsj.sbzt':sbzt,
 					'cbsj.shzt':$('#shzt').combobox("getValue"),
-					'cbsj.xmbm':xmnf,
+					'cbsj.xmnf':xmnf,
 					'tsdq':tsdq,
 					'lsjl':$('#lsjl').combobox("getValue")
 					,"jdbs":2,
@@ -139,7 +139,9 @@
 					'lxmc':$("#txtlxmc").val(),
 					'ylxbh':$('#gldj').combobox("getValues").join(','),
 					'lsxmnf':lsxmnf,
-					'lsxmlx':lsxmlx};
+					'lsxmlx':lsxmlx,
+					'cbsj.xmbm':$("#xmbm").val()
+					};
 			loadLj(params);
 			grid.queryParams=params;
 			grid.height=$(window).height()-165;
@@ -153,7 +155,7 @@
 						var result="";
 						result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"',"+"'2'"+')">定位</a>';
 						result+='&nbsp;<a href="javascript:openWindow1('+"'yhdzxxx'"+','+"'养护大中修项目'"+','+
-							"'/jxzhpt/page/qqgl/cbsj/yhdzx_xx.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">详细</a>';
+							"'/jxzhpt/page/qqgl/cbsj/yhdzx_xx.jsp'"+",1000,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">详细</a>';
 						//if(row.shzt==0){
 							/* if($.cookie("unit2").length!=7)
 								result+='&nbsp;编辑';
@@ -362,10 +364,10 @@
 			if(lsxmlx.substr(0,1)==',')
 			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
 			
-			var param='xmlx=4&shzt='+$('#shzt').combobox("getValue")+'&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+xmnf+
+			var param='xmlx=4&shzt='+$('#shzt').combobox("getValue")+'&xzqhdm='+getxzqhdm('xzqh')+'&xmnf='+xmnf+
 			'&ghlxbh='+$('#txtlxbm').combotree('getText')+'&xjsdj='+yjsdj+
 			'&tsdq='+tsdq+'&lsjl='+$('#lsjl').combobox("getValue")+'&ylxbh='+gldj+'&ghlxmc='+ghlxmc+'&ghlxbm='+ghlxbm+'&lxmc='+lxmc+
-			'&xmlx1='+xmlx+'&xmmc='+$('#xmmc').val()+'&lsxmnf='+lsxmnf+'&lsxmlx='+lsxmlx;
+			'&xmlx1='+xmlx+'&xmmc='+$('#xmmc').val()+'&lsxmnf='+lsxmnf+'&lsxmlx='+lsxmlx+'&xmbm='+$("#xmbm").val()+'&sbzt='+sbzt;
 			
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{tsdq:tsdq},function(){
 				window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
@@ -440,7 +442,7 @@ text-decoration:none;
         						<td><input type="text" id="xmmc" style="width:95px;" /></td>
 								<td align="right">&nbsp;工程分类：</td>
 	       						<td><select name="gcfl" class="easyui-combobox" id="gcfl" style="width:70px;"></select></td>
-	       						<td>&nbsp;行政等级：</td>
+	       						<td>&nbsp;原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 								<td align="right">审核状态：</td>
         						<td><select id="shzt" style="width:71px;" class="easyui-combobox">
@@ -448,7 +450,7 @@ text-decoration:none;
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select></td> -->
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:160px;" class="easyui-combobox"></select></td>
 								<td align="right">原路线编码：</td>
         						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:118px;" /></td>
@@ -461,7 +463,7 @@ text-decoration:none;
         						
 							</tr>
 							<tr height="32">
-							<td align="right">是否有补助历史：</td>
+							<td align="right">补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:160px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
@@ -492,6 +494,10 @@ text-decoration:none;
 									<select id='lsxmnf' class="easyui-combobox" style="width: 95px;">
 									</select>
 								</td>
+                        	</tr>
+                        	<tr height="32">
+                        	<td align="right">项目编码：</td>
+	        					<td><input type="text" id="xmbm" style="width:150px;" /></td>
                         	</tr>
                         	<tr><tr height="32">
                         		<td colspan="8">

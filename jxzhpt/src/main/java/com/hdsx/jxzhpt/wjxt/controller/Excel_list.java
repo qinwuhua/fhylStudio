@@ -26,10 +26,23 @@ public class Excel_list implements Serializable {
 	public String hight;
 	int row1,row2,col1,col2;
 	public String width;
-	
+	private String nf;
 	private String ssbb;
 	private String treeno;
+	private String yf;
 	
+	public String getYf() {
+		return yf;
+	}
+	public void setYf(String yf) {
+		this.yf = yf;
+	}
+	public String getNf() {
+		return nf;
+	}
+	public void setNf(String nf) {
+		this.nf = nf;
+	}
 	public String getSsbb() {
 		return ssbb;
 	}

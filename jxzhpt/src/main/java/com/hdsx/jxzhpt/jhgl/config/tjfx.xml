@@ -644,7 +644,8 @@
 			(
 				select rownum as num,t.* from 
 				(
-		select t.*,qdzh||'-'||zdzh zh,(zdzh-qdzh)*1000 cd 
+		select t.*,qdzh||'-'||zdzh zh,(zdzh-qdzh)*1000 cd,decode(yqdzh||'-'||yzdzh,'-','',yqdzh||'-'||yzdzh) yzh,
+		fn_ReturnFllx(mqi) mqidj
 		from LKPD_MXB_DATA_2014  t left join lkpd_mxb2014 m on t.mxb_id=m.id
 		where 1=1 and jsdj!='高速'
 		<if test="lkmxb.jsdj != null and  lkmxb.jsdj != ''">
@@ -706,6 +707,42 @@
 			and fn_ReturnFllx(mqi) in ${lkmxb.mqi}
 		</if>
 		order by lxbh
+	</select>
+	
+	<select id="exportLkpdmx"  parameterType="java.util.Map" resultType="elist">
+	select rownum as v_0,t.* from 
+        (select lxbh v_1,qdzh||'-'||zdzh v_2,(zdzh-qdzh)*1000 v_3,t.ylxbm v_4,
+        decode(yqdzh||'-'||yzdzh,'-','',yqdzh||'-'||yzdzh) v_5,t.jcfx v_6,t.jsdj v_7,t.lmlx v_8,
+        t.mqi v_9,fn_ReturnFllx(t.mqi) v_10,t.pqi v_11,t.pci v_12,t.rqi v_13,t.rdi v_14,t.sri v_15,t.pssi v_16,
+        t.sci v_17,t.bci v_18,t.tci v_19
+    from LKPD_MXB_DATA_2014  t left join lkpd_mxb2014 m on t.mxb_id=m.id
+    where 1=1 and jsdj!='高速' 
+		<if test="lkmxb.jsdj != null and  lkmxb.jsdj != ''">
+			and jsdj in ${lkmxb.jsdj}
+		</if>
+		<if test="lkmxb.lmlx != null and  lkmxb.lmlx != ''">
+			and lmlx in ${lkmxb.lmlx}
+		</if>
+		<if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
+			and jcfx in ${lkmxb.jcfx}
+		</if>
+		<if test="lkmxb.lxbh != null and  lkmxb.lxbh != ''">
+			${lkmxb.lxbh}
+		</if>
+		<if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
+		    and m.tbnf in ${lkmxb.tbnf} 
+		</if>
+		<if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
+			and to_number(t.zdzh) >= to_number(#{lkmxb.qdzh})
+		</if> 
+		<if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
+			and to_number(t.qdzh) &lt;= to_number(#{lkmxb.zdzh})
+		</if>
+		<if test="lkmxb.mqi != null and  lkmxb.mqi != ''">
+			and fn_ReturnFllx(mqi) in ${lkmxb.mqi}
+		</if>
+		order by lxbh,qdzh
+		  ) t
 	</select>
 	
 	<select id="queryLkpdmxList" resultType="lkmxb" parameterType="java.util.Map">

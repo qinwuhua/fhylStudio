@@ -446,7 +446,7 @@ text-decoration:none;
 								<td>补助历史：</td>
                               	<td><select id="bzls" style="width:70px"class="easyui-combobox">
                               	</select></td>
-                              	<td>行政等级：</td>
+                              	<td>原行政等级：</td>
 						   		 <td><select id="gldj" style="width:70px" class="easyui-combobox"></select></td>
 						  
                               <td colspan="6">

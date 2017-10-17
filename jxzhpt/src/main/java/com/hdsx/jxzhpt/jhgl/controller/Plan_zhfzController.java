@@ -43,6 +43,10 @@ import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 @Scope("prototype")
@@ -122,6 +126,27 @@ public class Plan_zhfzController  extends BaseActionSupport{
 					}
 					lx.setGldj(tsdq);
 				}
+			if(jh.getSbnf()!=null)
+				if(jh.getSbnf().length()>0){
+					String[] sbnfs=jh.getSbnf().split(",");
+					String sbnf="and jh.sbnf in (";
+					for (int i = 0; i < sbnfs.length; i++) {
+						if("全部".equals(sbnfs[i])){
+							sbnf="";
+							break;
+						}
+						if(i==0)
+							sbnf+="'"+sbnfs[i]+"'";
+						else
+							sbnf+=",'"+sbnfs[i]+"'";
+					}
+					if(sbnf==""){
+						sbnf="";
+					}else{
+						sbnf+=")";
+					}
+					jh.setSbnf(sbnf);
+				}
 			lx.setLxbm(MyUtil.getQueryTJ(lx.getLxbm(), "lxbm"));
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(zhfzServer.querySumZhfz(jh,lx), getresponse().getWriter());
@@ -141,14 +166,73 @@ public class Plan_zhfzController  extends BaseActionSupport{
 		lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		lx.setLxbm(MyUtil.getQueryTJ(lx.getLxbm(), "lxbm"));
-		List<SjbbMessage> list = new ArrayList<SjbbMessage>();
-		ExportExcel_new ee = new ExportExcel_new();
-		List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
-		SheetBean sheetb = new SheetBean();
-		String excelHtml="";
-		String tableName="";
+		List<Excel_list> list = new ArrayList<Excel_list>();
+		if(jh.getSbnf()!=null)
+			if(jh.getSbnf().length()>0){
+				String[] sbnfs=jh.getSbnf().split(",");
+				String sbnf="and jh.sbnf in (";
+				for (int i = 0; i < sbnfs.length; i++) {
+					if("全部".equals(sbnfs[i])){
+						sbnf="";
+						break;
+					}
+					if(i==0)
+						sbnf+="'"+sbnfs[i]+"'";
+					else
+						sbnf+=",'"+sbnfs[i]+"'";
+				}
+				if(sbnf==""){
+					sbnf="";
+				}else{
+					sbnf+=")";
+				}
+				jh.setSbnf(sbnf);
+			}
 		list = zhfzServer.exportExcel_jh(jh, lx);
-		excelHtml="<tr><td>计划状态</td><td>上报年份</td><td>计划开工时间</td><td>计划完工时间</td><td>管养单位</td><td>行政区划名称</td><td>路线编码</td><td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>建设规模</td><td>批复总投资</td></tr>";
+		
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("普通公路路网结构改造工程计划表（灾害防治工程）");//设置第一行
+		eldata.setSheetName("灾害防治工程");//设置sheeet名
+		eldata.setFileName("普通公路路网结构改造工程计划表（灾害防治工程）");//设置文件名
+		
+		eldata.setEl(list);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("序号",1,2,0,0));
+		et.add(new Excel_tilte("设区市",1,2,1,1));
+		et.add(new Excel_tilte("县（市、区）",1,2,2,2));
+		et.add(new Excel_tilte("最新年报桩号",1,1,3,6));
+		et.add(new Excel_tilte("路网规划前",1,1,7,10));
+		et.add(new Excel_tilte("总里程（公里）",1,2,11,11));
+		et.add(new Excel_tilte("隐患里程（ 公 里 ）",1,2,12,12));
+		et.add(new Excel_tilte("总投资（万元）",1,2,13,13));
+		et.add(new Excel_tilte("中央车购税资金（万元）",1,2,14,14));
+		et.add(new Excel_tilte("地方自筹",1,2,15,15));
+		et.add(new Excel_tilte("建设性质",1,2,16,16));
+		et.add(new Excel_tilte("建设内容",1,2,17,17));
+		et.add(new Excel_tilte("批复文号",1,2,18,18));
+		et.add(new Excel_tilte("建设年度",1,2,19,19));
+		et.add(new Excel_tilte("管养单位",1,2,20,20));
+		et.add(new Excel_tilte("项目年份",1,2,21,21));
+		et.add(new Excel_tilte("备注",1,2,22,22));
+		et.add(new Excel_tilte("特殊地区",1,2,23,23));
+		et.add(new Excel_tilte("路线编码",2,2,3,3));
+		et.add(new Excel_tilte("路线名称",2,2,4,4));
+		et.add(new Excel_tilte("起点桩号",2,2,5,5));
+		et.add(new Excel_tilte("讫点桩号",2,2,6,6));
+		et.add(new Excel_tilte("路线编码",2,2,7,7));
+		et.add(new Excel_tilte("路线名称",2,2,8,8));
+		et.add(new Excel_tilte("起点桩号",2,2,9,9));
+		et.add(new Excel_tilte("讫点桩号",2,2,10,10));
+		
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		try {
+			Excel_export.excel_export(eldata,response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		/*excelHtml="<tr><td>计划状态</td><td>上报年份</td><td>计划开工时间</td><td>计划完工时间</td><td>管养单位</td><td>行政区划名称</td><td>路线编码</td><td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>建设规模</td><td>批复总投资</td></tr>";
 		sheetb.setTableName("灾害防治项目");
 		sheetb.setHeader(excelHtml);
 		sheetb.setSheetName("灾害");
@@ -161,7 +245,7 @@ public class Plan_zhfzController  extends BaseActionSupport{
 		//导出excel
 		ee.initStyle(ee.workbook, stylefileName);
 		HttpServletResponse response= getresponse();
-		ee.makeExcel(tableName, sheetBeans, response);
+		ee.makeExcel(tableName, sheetBeans, response);*/
 	}
 	/**
 	 * 导入灾害计划
@@ -223,7 +307,29 @@ public class Plan_zhfzController  extends BaseActionSupport{
 					lx.setGldj(tsdq);
 				}
 			
+			if(jh.getSbnf()!=null)
+				if(jh.getSbnf().length()>0){
+					String[] sbnfs=jh.getSbnf().split(",");
+					String sbnf="and jh.sbnf in (";
+					for (int i = 0; i < sbnfs.length; i++) {
+						if("全部".equals(sbnfs[i])){
+							sbnf="";
+							break;
+						}
+						if(i==0)
+							sbnf+="'"+sbnfs[i]+"'";
+						else
+							sbnf+=",'"+sbnfs[i]+"'";
+					}
+					if(sbnf==""){
+						sbnf="";
+					}else{
+						sbnf+=")";
+					}
+					jh.setSbnf(sbnf);
+				}
 			lx.setLxbm(MyUtil.getQueryTJ(lx.getLxbm(), "lxbm"));
+			
 			
 			List<Plan_zhfz> list = zhfzServer.queryZhfzList(page, rows, jh, lx);
 			System.out.println("个数："+list.size());

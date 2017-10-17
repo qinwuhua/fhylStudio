@@ -189,6 +189,8 @@ public class XtglController extends BaseActionSupport{
 			HttpServletRequest request = ServletActionContext.getRequest();
 			HttpSession session = request.getSession();
 			session.setAttribute("truename", bl.get("TRUENAME"));
+			session.setAttribute("name", bl.get("NAME"));
+			session.setAttribute("rolename", bl.get("ROLENAME"));
 			try {
 				JsonUtils.write(bl, getresponse().getWriter());
 			} catch (Exception e1) {
@@ -211,6 +213,8 @@ public class XtglController extends BaseActionSupport{
 			HttpServletRequest request = ServletActionContext.getRequest();
 			HttpSession session = request.getSession();
 			session.setAttribute("truename", bl.get("TRUENAME"));
+			session.setAttribute("name", bl.get("NAME"));
+			session.setAttribute("rolename", bl.get("ROLENAME"));
 			try {
 				JsonUtils.write(bl, getresponse().getWriter());
 			} catch (Exception e1) {
@@ -253,6 +257,7 @@ public class XtglController extends BaseActionSupport{
 		HttpSession session = request.getSession();
 		if(session.getAttribute("truename") != null){
 			session.setAttribute("truename",null);
+			session.setAttribute("name", null);
 		}
 		ResponseUtils.write(getresponse(), "true");
 	}
@@ -291,6 +296,22 @@ public class XtglController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 修改状态
+	 */
+	public void updatezt(){
+		HashMap hm=new HashMap();
+		hm.put("id", yhm);
+		hm.put("zt", yhzt);
+		boolean bl = xtglServer.updatezt(hm);
+		if(bl == true){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
 	/**
 	 * 选择角色列表
 	 */
@@ -321,20 +342,6 @@ public class XtglController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}else{
 			ResponseUtils.write(getresponse(), "true");
-		}
-	}
-	/**
-	 * 添加用户
-	 */
-	public void updatezt(){
-		HashMap hm=new HashMap();
-		hm.put("id", yhm);
-		hm.put("zt", yhzt);
-		boolean bl = xtglServer.updatezt(hm);
-		if(bl == true){
-			ResponseUtils.write(getresponse(), "true");
-		}else{
-			ResponseUtils.write(getresponse(), "false");
 		}
 	}
 	/**
@@ -1382,6 +1389,8 @@ public class XtglController extends BaseActionSupport{
 					HttpServletRequest request = ServletActionContext.getRequest();
 					HttpSession session = request.getSession();
 					session.setAttribute("truename", bl.get("TRUENAME"));
+					session.setAttribute("name", bl.get("NAME"));
+					session.setAttribute("rolename", bl.get("ROLENAME"));
 					try {
 						JsonUtils.write(bl, getresponse().getWriter());
 					} catch (Exception e1) {

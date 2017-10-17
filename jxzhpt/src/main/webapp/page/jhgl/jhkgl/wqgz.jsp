@@ -97,8 +97,20 @@
 			if($('#txtBridge').val()!=''){
 				lx.qlmc=$('#txtBridge').val();
 			}
-			if($('#txtqlbm').val()!=''){
-				lx.qlbh=$('#txtqlbm').val();
+			if($('#qlbh').val()!=''){
+				lx.qlbh=$('#qlbh').val();
+			}
+			if($('#xlxmc').val()!=''){
+				lx.xlxmc=$('#xlxmc').val();
+			}
+			if($('#xlxbm').val()!=''){
+				lx.xlxbm=$('#xlxbm').val();
+			}
+			if($('#xqlbm').val()!=''){
+				lx.xqlbm=$('#xqlbm').val();
+			}
+			if($('#xqlmc').val()!=''){
+				lx.xqlmc=$('#xqlmc').val();
 			}
 			
 			if($('#ddlSHZT').combo("getValue")!="" && $('#ddlSHZT').combo("getValue")!='全部'){
@@ -151,15 +163,29 @@
 				tsdq=tsdq.substr(1,tsdq.length);
 			
 			var jh={jhnf:xmnf,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
-			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,jsdj:jsdj,gldj:gldj,lxbm:$('#lxbm').val(),qlmc:null,qlbh:null,akjfl:akjfl,jsxz:$("#jsxz").combobox('getValue'),tsdq:tsdq,xmklx:$("#xmklx").combobox('getValue')};
+			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,jsdj:jsdj,gldj:gldj,
+					lxbm:$('#lxbm').val(),qlmc:null,qlbh:null,akjfl:akjfl,jsxz:$("#jsxz").combobox('getValue'),
+					tsdq:tsdq,xmklx:$("#xmklx").combobox('getValue')};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
 			if($('#txtBridge').val()!=''){
 				lx.qlmc=$('#txtBridge').val();
 			}
-			if($('#txtqlbm').val()!=''){
-				lx.qlbh=$('#txtqlbm').val();
+			if($('#qlbh').val()!=''){
+				lx.qlbh=$('#qlbh').val();
+			}
+			if($('#xlxmc').val()!=''){
+				lx.xlxmc=$('#xlxmc').val();
+			}
+			if($('#xlxbm').val()!=''){
+				lx.xlxbm=$('#xlxbm').val();
+			}
+			if($('#xqlbm').val()!=''){
+				lx.xqlbm=$('#xqlbm').val();
+			}
+			if($('#xqlmc').val()!=''){
+				lx.xqlmc=$('#xqlmc').val();
 			}
 			
 			if($('#ddlSHZT').combo("getValue")!="" && $('#ddlSHZT').combo("getValue")!='全部'){
@@ -198,7 +224,7 @@
 			$('#grid').datagrid('resize'); 
 		});
 	</script>
-				<style type="text/css">
+<style type="text/css">
 TD {
 font-size: 12px;
 }
@@ -226,11 +252,11 @@ text-decoration:none;
         						<td  colspan="3" ><select id="gydw" style="width:175px;"></select></td>
         						<td align="right">行政区划：</td>
         						<td  colspan="3" ><select id="xzqh" style="width:185px;"></select></td>
-        						<td align="right">路线名称：</td>
+        						<td align="right">规划路线名称：</td>
         						<td><input name="txtRoad" type="text" id="txtRoad" style="width:65px;" /></td>
-        						<td align="right">桥梁名称：</td>
+        						<td align="right">规划桥梁名称：</td>
         						<td><input name="txtBridge" type="text" id="txtBridge" style="width:65px;" /></td>
-        						<td align="right">路线编码：</td>
+        						<td align="right">规划路线编码：</td>
         						<td><input name="txtRoad" type="text" id="lxbm" style="width:50px;" /></td>
         						
         					</tr>
@@ -258,7 +284,7 @@ text-decoration:none;
 								<td align="right">技术等级：</td>
 								<td><select name="jsdj" id="jsdj" style="width:45px;" class="easyui-combobox">
 								</select></td>
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:65px;" class="easyui-combobox">
 								</select></td>
 								<td align="right">跨径分类：</td>
@@ -278,14 +304,14 @@ text-decoration:none;
 									</select></td>	
         					</tr>
 								<tr height="29">
-								<td align="right">是否有补助历史：</td>
+								<td align="right">补助历史：</td>
 								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:55px;">
 									<option value="" selected="selected">全部</option>
 									<option value="无">否</option>
 									<option value="是">是</option>
 								</select></td>
-								<td align="right">桥梁编码：</td>
-        						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:43px;" />
+								<td align="right">规划桥梁编码：</td>
+        						<td><input name="qlbh" type="text" id="qlbh" style="width:43px;" />
 								</td>
 									<td align="right"> 项目库类型：</td>
 									<td>	
@@ -294,8 +320,16 @@ text-decoration:none;
 												<option value="部库">部库</option>
 												<option value="省库">省库</option>
 											</select></td>
-											</tr>
-											<tr height="29">
+							    <td align="right">原路线名称：</td>
+        						<td><input name="xlxmc" type="text" id="xlxmc" style="width:65px;" /></td>
+        						<td align="right">原路线编码：</td>
+        						<td><input name="xlxbm" type="text" id="xlxbm" style="width:65px;" /></td>
+        						<td align="right">原桥梁名称：</td>
+        						<td><input name="xqlmc" type="text" id="xqlmc" style="width:65px;" /></td>
+        						<td align="right">原桥梁编码：</td>
+        						<td><input name="xqlbm" type="text" id="xqlbm" style="width:65px;" /></td>		
+								</tr>
+							<tr height="29">
                               <td colspan="12">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;"/>
 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Bridge')"/>
@@ -314,6 +348,7 @@ text-decoration:none;
         			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个危桥改造项目，
         			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			省级补助【&nbsp;<span id="shengBZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
         		</td>
         	</tr>

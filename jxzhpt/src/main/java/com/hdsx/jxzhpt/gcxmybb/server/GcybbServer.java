@@ -135,5 +135,11 @@ public interface GcybbServer {
 
 	List<Excel_list> getGsgxsjgzjd(String sql2);
 
+	boolean insertOrUpdatesjss(List<Excel_list> list1);
+
+	List<Excel_list> getsjssjzhzbnew(Excel_list excel_list);
+
+	List<Excel_list> getinsertorupdate(Excel_list excel_list);
+
 	
 }

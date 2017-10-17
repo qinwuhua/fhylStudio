@@ -251,11 +251,12 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
 		</if>
  </select>	
 	
-  <select id="exportExcel_zhfz_scgl" parameterType="sckzhfz" resultType="sjbb">
- 	select
-	sbzt v_0,gydw v_1,xzqhmc v_2,lxbm v_3,lxmc v_4,qdzh v_5,zdzh v_6,qzlc v_7,qzlc v_8,yhlc v_9,gjxjnd v_10,xmnf v_11,jsxz v_12
- 	from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id
- 	where 1=1
+  <select id="exportExcel_zhfz_scgl" parameterType="sckzhfz" resultType="elist">
+ 	select rownum v_0,x.xzqhdm v_1,x.xzqhmc v_2,x.lxbm v_3,x.lxmc v_4,t.scqdzh v_5,t.sczdzh v_6,t.sczlc v_7,t.scyhlc v_8,
+       x.gjxjnd v_9,t.fapgdw v_10,t.fascdw v_11,t.faspsj v_12,t.spwh v_13,t.tzgs v_14,
+       t.jsxz v_15,t.jsnr v_16,t.scxmnf v_17,t.scbz v_18
+   from sck_zhfz t join xmk_zhfz x on xmkid=x.id 
+   where 1=1
  	and sck_sbthcd &lt;=#{sck_sbthcd}
  	<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -263,11 +264,11 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
 		<if test="xzqhdm!='' and xzqhdm!= null ">
 			${xzqhdm}
 		</if>
-	<if test="lxmc!='' and lxmc!= null ">
+	    <if test="lxmc!='' and lxmc!= null ">
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and scxmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf in (${xmnf})
  		</if>
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
@@ -275,8 +276,8 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		<if test="sbzt!='' and sbzt!= null ">
  			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
  		</if>
- 		<if test="lxjsdj!='' and lxjsdj!= null ">
- 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			${jsdj}
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
  			and sck_lxbm like #{lxbm}||'%'
@@ -287,12 +288,22 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		<if test="bz!='' and bz!= null ">
  			and sck_lxbm like #{bz}||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 				${tsdq}
+ 	    </if>
+ 	    <if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>
+ 		<if test="gldj!='' and gldj!= null ">
+ 			${gldj}
+ 		</if>
  </select>
-  <select id="exportExcel_zhfz_scsh" parameterType="sckzhfz" resultType="sjbb">
- 	select
-	sbzt v_0,gydw v_1,xzqhmc v_2,lxbm v_3,lxmc v_4,t.scqdzh v_5,t.sczdzh v_6,t.sczlc v_7,t.sczlc v_8,t.scyhlc v_9,gjxjnd v_10,xmnf v_11,jsxz v_12
- 	from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id 
- 	where 1=1 and sck_sbthcd=7
+  <select id="exportExcel_zhfz_scsh" parameterType="sckzhfz" resultType="elist">
+ 	select rownum v_0,x.xzqhdm v_1,x.xzqhmc v_2,x.lxbm v_3,x.lxmc v_4,t.scqdzh v_5,t.sczdzh v_6,t.sczlc v_7,t.scyhlc v_8,
+       x.gjxjnd v_9,t.fapgdw v_10,t.fascdw v_11,t.faspsj v_12,t.spwh v_13,t.tzgs v_14,
+       t.jsxz v_15,t.jsnr v_16,t.scxmnf v_17,t.scbz v_18
+   from sck_zhfz t join xmk_zhfz x on xmkid=x.id 
+   where 1=1 and sck_sbthcd=7
  	and sck_sbthcd >=#{sck_sbthcd}
  	<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -304,7 +315,7 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and scxmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf in (${xmnf})
  		</if>
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'

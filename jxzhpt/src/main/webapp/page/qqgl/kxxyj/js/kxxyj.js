@@ -171,7 +171,8 @@ function showkxxTjxx(xmlx){
 	'&lxsh.ghlxbh='+$("#lxbm").combotree('getText')+
 	'&lxsh.lxmc='+$("#lxmc").val()+
 	'&lxsh.xmlx='+xmlx+
-	'&lxsh.xmklx='+$("#xmklx").combobox('getValue')+'&lxsh.lsxmnf='+lsxmnf+'&lxsh.lsxmlx='+lsxmlx;
+	'&lxsh.xmklx='+$("#xmklx").combobox('getValue')+'&lxsh.lsxmnf='+lsxmnf+'&lxsh.lsxmlx='+lsxmlx+
+	'&lxsh.xmbm='+$("#xmbm").val();
 	
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{jsdj:jsdj,jsjsdj:jsjsdj,gldj:gldj,tsdq:tsdq},function(){
 	$.ajax({
@@ -1002,7 +1003,8 @@ function showAllsjsh(){
 			'lxsh.lxmc':$("#lxmc").val(),
 			'lxsh.xmklx':$("#xmklx").combobox('getValue'),
 			'lxsh.lsxmnf':lsxmnf,
-			'lxsh.lsxmlx':lsxmlx
+			'lxsh.lsxmlx':lsxmlx,
+			'lxsh.xmbm':$("#xmbm").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -1386,7 +1388,8 @@ function showAlllmsh(){
 			'lxsh.lxmc':$("#lxmc").val(),
 			'lxsh.xmklx':$("#xmklx").combobox('getValue'),
 			'lxsh.lsxmnf':lsxmnf,
-			'lxsh.lsxmlx':lsxmlx
+			'lxsh.lsxmlx':lsxmlx,
+			'lxsh.xmbm':$("#xmbm").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -1757,7 +1760,8 @@ function showAllxjsh(){
 			'lxsh.lxmc':$("#lxmc").val(),
 			'lxsh.xmklx':$("#xmklx").combobox('getValue'),
 			'lxsh.lsxmnf':lsxmnf,
-			'lxsh.lsxmlx':lsxmlx
+			'lxsh.lsxmlx':lsxmlx,
+			'lxsh.xmbm':$("#xmbm").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},

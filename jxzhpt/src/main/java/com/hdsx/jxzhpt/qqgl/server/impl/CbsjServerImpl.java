@@ -15,6 +15,7 @@ import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.WnjhServer;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.impl.WnjhServerImpl;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 @Service
 public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 	public CbsjServerImpl(){
@@ -393,27 +394,27 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		return updateBatch("shCbsjShByXmbm", list)==list.size();
 	}
 	@Override
-	public List<Object> queryLmgzExcel(Cbsj cbsj) {
+	public List<Excel_list> queryLmgzExcel(Cbsj cbsj) {
 		return queryList("queryLmgzExcel",cbsj);
 	}
 	@Override
-	public List<Object> querygsdExcel(Cbsj cbsj) {
+	public List<Excel_list> querygsdExcel(Cbsj cbsj) {
 		return queryList("querygsdExcel",cbsj);
 	}
 	@Override
-	public List<Object> queryYhdzxExcel(Cbsj cbsj) {
+	public List<Excel_list> queryYhdzxExcel(Cbsj cbsj) {
 		return queryList("queryYhdzxExcel",cbsj);
 	}
 	@Override
-	public List<Object> queryShExcel(Cbsj cbsj) {
+	public List<Excel_list> queryShExcel(Cbsj cbsj) {
 		return queryList("queryShExcel",cbsj);
 	}
 	@Override
-	public List<Object> queryLmsjExcel(Cbsj cbsj) {
+	public List<Excel_list> queryLmsjExcel(Cbsj cbsj) {
 		return queryList("queryLmsjExcel",cbsj);
 	}
 	@Override
-	public List<Object> queryXjExcel(Cbsj cbsj) {
+	public List<Excel_list> queryXjExcel(Cbsj cbsj) {
 		return queryList("queryXjExcel",cbsj);
 	}
 	@Override

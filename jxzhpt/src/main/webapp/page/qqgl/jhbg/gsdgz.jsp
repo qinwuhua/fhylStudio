@@ -64,7 +64,8 @@
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),
 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.zydpx':$('#zydpx').combobox('getValue'),'jhsh.sbzt':1,
-					'jhsh.shzt':$('#shzt').combobox("getValue"),'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly,'jhsh.xmklx':$('#xmklx').combobox('getValue')
+					'jhsh.shzt':$('#shzt').combobox("getValue"),'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly,'jhsh.xmklx':$('#xmklx').combobox('getValue'),
+					'jhsh.xmbm':$("#xmbm").val()
 					};
 			grid.queryParams=params;
 			loadLj(params);
@@ -322,11 +323,11 @@ text-decoration:none;
 								
         					</tr>
         					<tr height="29">
-        					<td align="right">项目年份：</td>
+        					<td align="right">首次下达年份：</td>
         						<td><select id="xmnf" style="width: 140px;"></select></td>
         						<td align="right">资金来源：</td>
         						<td><input name="zjly" type="text" id="zjly" style="width:82px;" /></td>
-        						<!-- <td>行政等级：</td>
+        						<!-- <td>原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:150px;" class="easyui-combobox"></select></td>
 								<td>原路线编码：</td>
         						<td><input name="lxbm" type="text" id="lxbm" style="width:100px;" /></td>
@@ -347,7 +348,7 @@ text-decoration:none;
 										<option value="降序">降序</option>
 									</select>
         						</td>
-        						<td align="right">行政等级：</td>
+        						<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:108px;" class="easyui-combobox"></select></td>
 								<td align="right">原路线编码：</td>
         						<td><input name="lxbm" type="text" id="lxbm" style="width:108px;" /></td>
@@ -360,7 +361,7 @@ text-decoration:none;
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:80px;" /></td>
 								<td align="right">规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:80px;" /></td>
-        						<td align="right">是否有补助历史：</td>
+        						<td align="right">补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:108px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
@@ -400,7 +401,10 @@ text-decoration:none;
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
 									</select>
-								</td></tr>
+								</td>
+								<td align="right">项目编码：</td>
+        						<td><input name="xmbm" type="text" id="xmbm" style="width:108px;" /></td>
+								</tr>
                            		<!-- <td>建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:104px;" ></select></td>
                             	<td>资金来源：</td>

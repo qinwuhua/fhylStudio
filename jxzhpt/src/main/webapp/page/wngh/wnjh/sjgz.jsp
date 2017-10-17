@@ -113,7 +113,7 @@ text-decoration:none;
 								
 								<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width:119px"></select></td>
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:104px" ></select></td>       					
 								
 								<td align="right">原路线编码：</td>
@@ -127,7 +127,7 @@ text-decoration:none;
         						
         						<td align="right">规划路线名称：</td>
         						<td><input id='ghxlxmc' type="text" style="width:118px" /></td>
-        						<td align="right">是否有补助历史：</td>
+        						<td align="right">补助历史：</td>
 								<td ><select id="lsjl" style="width:104px" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="是">是</option>

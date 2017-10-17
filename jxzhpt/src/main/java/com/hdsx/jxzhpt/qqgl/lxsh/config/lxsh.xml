@@ -189,7 +189,7 @@
 	</insert>
 	<insert id="insertLx1" parameterType="lxsh">
 		insert into lxsh_lx (xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, jdbs,gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc ,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,xjlxbm,xjqdzh,xjzdzh,xjlc,jhlc,ghlxbm,ghlxmc,lqhntmchd,lqhntmc,gxlqhntmchd,gxlqhntmc,snhntmchd,snhntmc,lqlmjdrzshd,lqlmjdrzs,lqlmcbrzshd,lqlmcbrzs,swjchd,swjc,lqlmpmlqjdlzshd,lqlmpmlqjdlzs,lqlmrhlqjdlzshd,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs,xzrxjchd,xzrxjc,swjclzshd,swjclzs,xfchd,xfc,wcsnmbhd,wcsnmb,wcswjchd,wcswjc,snhntmchbhd,snhntmchb,bxhd,bx,snhntmcsshhd,snhntmcssh,sbzj,lxlmkd,xzqhdm2,xzqhmc2,gxlxbm,gxqdzh,gxzdzh,ghqdzh,ghzdzh,snhntmchbmj)
-		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})),qdzh,zdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc   ,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,xjlxbm,xjqdzh,xjzdzh,xjlc,jhlc,ghlxbm,ghlxmc,lqhntmchd,lqhntmc,gxlqhntmchd,gxlqhntmc,snhntmchd,snhntmc,lqlmjdrzshd,lqlmjdrzs,lqlmcbrzshd,lqlmcbrzs,swjchd,swjc,lqlmpmlqjdlzshd,lqlmpmlqjdlzs,lqlmrhlqjdlzshd,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs,xzrxjchd,xzrxjc,swjclzshd,swjclzs,xfchd,xfc,wcsnmbhd,wcsnmb,wcswjchd,wcswjc,snhntmchbhd,snhntmchb,bxhd,bx,snhntmcsshhd,snhntmcssh,sbzj,lxlmkd,xzqhdm2,xzqhmc2,gxlxbm,gxqdzh,gxzdzh,ghqdzh,ghzdzh,snhntmchbmj from lxsh_lx where xmid = #{xmbm} and jdbs=to_char(to_number(#{jdbs})-1)
+		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})),gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc   ,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,xjlxbm,xjqdzh,xjzdzh,xjlc,jhlc,ghlxbm,ghlxmc,lqhntmchd,lqhntmc,gxlqhntmchd,gxlqhntmc,snhntmchd,snhntmc,lqlmjdrzshd,lqlmjdrzs,lqlmcbrzshd,lqlmcbrzs,swjchd,swjc,lqlmpmlqjdlzshd,lqlmpmlqjdlzs,lqlmrhlqjdlzshd,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs,xzrxjchd,xzrxjc,swjclzshd,swjclzs,xfchd,xfc,wcsnmbhd,wcsnmb,wcswjchd,wcswjc,snhntmchbhd,snhntmchb,bxhd,bx,snhntmcsshhd,snhntmcssh,sbzj,lxlmkd,xzqhdm2,xzqhmc2,gxlxbm,gxqdzh,gxzdzh,ghqdzh,ghzdzh,snhntmchbmj from lxsh_lx where xmid = #{xmbm} and jdbs=to_char(to_number(#{jdbs})-1)
 		<!-- insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh)
 		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},#{sffirst},#{jdbs},#{gpsqdzh},#{gpszdzh}) -->
 	</insert>
@@ -378,13 +378,14 @@
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">and sbzt=#{sbzt1}</if>
 		<if test="shzt!='' and shzt!= null ">and shzt=#{shzt}</if>
 		
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="jsjsdj!='' and jsjsdj!= null ">and ${jsjsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null ">and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
@@ -417,14 +418,15 @@
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">and sbzt=#{sbzt1}</if>
 		<if test="shzt!='' and shzt!= null ">
 			and shzt=#{shzt}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="jsjsdj!='' and jsjsdj!= null ">and ${jsjsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null ">and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
@@ -465,14 +467,15 @@
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">and sbzt=#{sbzt1}</if>
 		<if test="shzt!='' and shzt!= null ">
 			and shzt=#{shzt}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="jsjsdj!='' and jsjsdj!= null ">and ${jsjsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%2___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
@@ -504,14 +507,15 @@
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">and sbzt=#{sbzt1}</if>
 		<if test="shzt!='' and shzt!= null ">
 			and shzt=#{shzt}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="jsjsdj!='' and jsjsdj!= null ">and ${jsjsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%2___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
@@ -545,14 +549,15 @@
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">and sbzt=#{sbzt1}</if>
 		<if test="shzt!='' and shzt!= null ">
 			and shzt=#{shzt}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="jsjsdj!='' and jsjsdj!= null ">and ${jsjsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%3___' and ${gldj})</if>
 		
 		<if test="lxmc !='' and lxmc != null ">
@@ -584,14 +589,15 @@
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">and sbzt=#{sbzt1}</if>
 		<if test="shzt!='' and shzt!= null ">
 			and shzt=#{shzt}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="jsjsdj!='' and jsjsdj!= null ">and ${jsjsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%3___' and ${gldj})</if>
 		
 		<if test="lxmc !='' and lxmc != null ">
@@ -864,29 +870,81 @@
 	</select>
 	
 	<select id="querylxshSjgz" parameterType="lxsh" resultType="elist">
-		select decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,lx.lxbm v_2,lx.lxmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.ghlxbm v_6,lx.ghlxmc v_7,lx.ghqdzh v_8,lx.ghzdzh v_9,
+		<!--select decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,lx.lxbm v_2,lx.lxmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.ghlxbm v_6,lx.ghlxmc v_7,lx.ghqdzh v_8,lx.ghzdzh v_9,
 		lx.gxlxbm v_10,lx.gxqdzh v_11,lx.gxzdzh v_12,lx.qdmc v_13,lx.zdmc v_14,lx.jsxz v_15,lx.gydw v_16,lx.xzqh v_17,t.tsdq v_18,lx.jsjsdj v_19,
 		lx.xjsdj v_20,substr(t.xmbm,0,4) v_21,t.jhkgn v_22,t.jhwgn v_23,t.tz v_24,lx.bzcs v_25
 		from LXSH_SJGZ t right join
 		(select * from lxsh_lx where 1=1 and jdbs='0' order by sffirst desc) lx on t.xmbm=lx.xmid where 1=1
-<!-- 		and sbthcd &lt;=#{sbthcd} -->
+ 		and sbthcd &lt;=#{sbthcd} -->
+  select  rownum v_0,	
+    t.xmbm v_1,t.xmmc v_2,	
+    decode(instr(RemoveSameStr(lx.ylxbm,','),','),0,RemoveSameStr(lx.ylxbm,','),lx.ylxbm) v_3,	
+    decode(instr(RemoveSameStr(lx.ylxmc,','),','),0,RemoveSameStr(lx.ylxmc,','),lx.ylxmc) v_4,	
+    lx.qdzh v_5,lx.zdzh v_6,	
+    decode(instr(RemoveSameStr(lx.ghlxbm,','),','),0,RemoveSameStr(lx.ghlxbm,','),lx.ghlxbm)  v_7,	
+    decode(instr(RemoveSameStr(lx.ghlxmc,','),','),0,RemoveSameStr(lx.ghlxmc,','),lx.ghlxmc) v_8,	
+    lx.ghqdzh v_9,lx.ghzdzh v_10,	
+     decode(instr(RemoveSameStr(lx.gxlxbm,','),','),0,RemoveSameStr(lx.gxlxbm,','),lx.gxlxbm) v_11,	
+     lx.gxqdzh v_12,lx.gxzdzh v_13,	
+     decode(instr(RemoveSameStr(lx.qdmc,','),','),0,RemoveSameStr(lx.qdmc,','),lx.qdmc) v_14,	
+     decode(instr(RemoveSameStr(lx.zdmc,','),','),0,RemoveSameStr(lx.zdmc,','),lx.zdmc) v_15,	
+      lx.jsxz v_16,t.gydw v_17,lx.xzqh v_18,
+     t.tsdq v_19,RemoveSameStr(lx.jsjsdjtj,',') v_20,RemoveSameStr(lx.xjsdjtj,',') v_21,
+    substr(t.xmbm,0,4) v_22,t.jhkgn v_23,t.jhwgn v_24,t.tz v_25,lx.bzcs v_26,t.xmklx v_27,t.bz v_28
+    ,(decode(t.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and t.lsxmbm like '%'||xmbm||'%'),' ')) v_29	
+    from  LXSH_SJGZ t
+    left join (
+    select xmid,sum(jhlc) zjhlc,sum(sbzj) sbzj,sum(bzcs) bzcs,
+              replace(WMSYS.WM_CONCAT(distinct(lxlmkd)),',',',') lxlmkd,replace(WMSYS.WM_CONCAT(distinct(jsxz)),',',',') jsxz,
+              replace(WMSYS.WM_CONCAT(distinct(gydw)),',',',') gydw,replace(WMSYS.WM_CONCAT(distinct(xzqh)),',',',') xzqh,
+              replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+              replace(WMSYS.WM_CONCAT(jsjsdj),'、',',') jsjsdjtj,
+              replace(WMSYS.WM_CONCAT(xjsdj),'、',',') xjsdjtj,
+              replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,
+             replace(max(qdzh), ',.', ',0.') qdzh,replace(max(zdzh), ',.', ',0.') zdzh,replace(max(ghqdzh), ',.', ',0.') ghqdzh,replace(max(ghzdzh), ',.', ',0.') ghzdzh,
+             replace(max(gxqdzh), ',.', ',0.') gxqdzh,replace(max(gxzdzh), ',.', ',0.') gxzdzh,
+             max(ghlxbm) ghlxbm,max(ylxbm) ylxbm,max(ghlxmc) ghlxmc,max(ylxmc) ylxmc,max(gxlxbm) gxlxbm,max(qdmc) qdmc,max(zdmc) zdmc
+              from (select  xmid,jsxz,sbzj,lxlmkd,gydw,xzqh,bzcs,
+              (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) 
+              else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+              end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
+              else ''
+              end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj,
+               WMSYS.WM_CONCAT(ghlxmc)over( PARTITION BY xmid ORDER BY id,ghlxmc) ghlxmc,
+               WMSYS.WM_CONCAT(lxmc)over( PARTITION BY xmid ORDER BY id,lxmc) ylxmc,
+               WMSYS.WM_CONCAT(ghlxbm)over( PARTITION BY xmid ORDER BY id,ghlxbm) ghlxbm,
+               WMSYS.WM_CONCAT(lxbm)over( PARTITION BY xmid ORDER BY id,lxbm) ylxbm,
+               WMSYS.WM_CONCAT((case when qdzh like '.%' then 0||qdzh when qdzh like '%,.%' then replace(qdzh, ',.', ',0.') else qdzh end ))over( PARTITION BY xmid ORDER BY id,qdzh) qdzh,
+               WMSYS.WM_CONCAT((case when zdzh like '.%' then 0||zdzh when zdzh like '%,.%' then replace(zdzh, ',.', ',0.') else zdzh end ))over( PARTITION BY xmid ORDER BY id,zdzh) zdzh,
+               WMSYS.WM_CONCAT((case when ghqdzh like '.%' then 0||ghqdzh when ghqdzh like '%,.%' then replace(ghqdzh, ',.', ',0.') else ghqdzh end ))over( PARTITION BY xmid ORDER BY id,ghqdzh) ghqdzh,
+               WMSYS.WM_CONCAT((case when ghzdzh like '.%' then 0||ghzdzh when ghzdzh like '%,.%' then replace(ghzdzh, ',.', ',0.') else ghzdzh end ))over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh,
+               WMSYS.WM_CONCAT(gxlxbm)over( PARTITION BY xmid ORDER BY id,gxlxbm) gxlxbm,
+               WMSYS.WM_CONCAT((case when gxqdzh like '.%' then 0||gxqdzh when gxqdzh like '%,.%' then replace(gxqdzh, ',.', ',0.') else gxqdzh end ))over( PARTITION BY xmid ORDER BY id,gxqdzh) gxqdzh,
+               WMSYS.WM_CONCAT((case when gxzdzh like '.%' then 0||gxzdzh when gxzdzh like '%,.%' then replace(gxzdzh, ',.', ',0.') else gxzdzh end ))over( PARTITION BY xmid ORDER BY id,gxzdzh) gxzdzh,
+               WMSYS.WM_CONCAT(qdmc)over( PARTITION BY xmid ORDER BY id,qdmc) qdmc,
+               WMSYS.WM_CONCAT(zdmc)over( PARTITION BY xmid ORDER BY id,zdmc) zdmc
+              from LXSH_LX  where jdbs='0') group by xmid
+    ) lx on t.xmbm=lx.xmid
+    where 1=1
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and to_char(sbzt) like '%'||#{sbzt1}||'%'
+<!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
+<!-- 			and to_char(sbzt) like '%'||#{sbzt1}||'%' -->
+<!-- 		</if> -->
+		<if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
+		<if test="shzt!='' and shzt!= null ">
+				and shzt=#{shzt}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
-		
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
-		</if>
-		<if test="jsjsdj !='' and jsjsdj !=null">
-			and ${jsjsdj}
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
 			and xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
@@ -902,32 +960,80 @@
 		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
 		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
-		order by t.xmbm desc,lx.sffirst desc
 	</select>
 	<select id="querylxshLmgz" parameterType="lxsh" resultType="elist">
-		select decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,lx.lxbm v_2,lx.lxmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.ghlxbm v_6,lx.ghlxmc v_7,lx.ghqdzh v_8,lx.ghzdzh v_9,
+	<!--	select decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,lx.lxbm v_2,lx.lxmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.ghlxbm v_6,lx.ghlxmc v_7,lx.ghqdzh v_8,lx.ghzdzh v_9,
 		lx.gxlxbm v_10,lx.gxqdzh v_11,lx.gxzdzh v_12,lx.qdmc v_13,lx.zdmc v_14,lx.jsxz v_15,lx.gydw v_16,lx.xzqh v_17,t.tsdq v_18,lx.jsjsdj v_19,
 		lx.xjsdj v_20,substr(t.xmbm,0,4) v_21,t.jhkgn v_22,t.jhwgn v_23,t.tz v_24,lx.bzcs v_25
 		from LXSH_LMGZ t right join
 		(select * from lxsh_lx where 1=1 and jdbs='0' order by sffirst desc) lx on t.xmbm=lx.xmid where 1=1
-<!-- 		and sbthcd &lt;=#{sbthcd} -->
+ 		and sbthcd &lt;=#{sbthcd} -->
+ select  rownum v_0,		
+    t.xmbm v_1,t.xmmc v_2,		
+    decode(instr(RemoveSameStr(lx.ylxbm,','),','),0,RemoveSameStr(lx.ylxbm,','),lx.ylxbm) v_3,		
+    decode(instr(RemoveSameStr(lx.ylxmc,','),','),0,RemoveSameStr(lx.ylxmc,','),lx.ylxmc) v_4,		
+    lx.qdzh v_5,lx.zdzh v_6,		
+    decode(instr(RemoveSameStr(lx.ghlxbm,','),','),0,RemoveSameStr(lx.ghlxbm,','),lx.ghlxbm)  v_7,		
+    decode(instr(RemoveSameStr(lx.ghlxmc,','),','),0,RemoveSameStr(lx.ghlxmc,','),lx.ghlxmc) v_8,		
+    lx.ghqdzh v_9,lx.ghzdzh v_10,		
+     decode(instr(RemoveSameStr(lx.gxlxbm,','),','),0,RemoveSameStr(lx.gxlxbm,','),lx.gxlxbm) v_11,		
+     lx.gxqdzh v_12,lx.gxzdzh v_13,		
+     decode(instr(RemoveSameStr(lx.qdmc,','),','),0,RemoveSameStr(lx.qdmc,','),lx.qdmc) v_14,		
+     decode(instr(RemoveSameStr(lx.zdmc,','),','),0,RemoveSameStr(lx.zdmc,','),lx.zdmc) v_15,		
+      lx.jsxz v_16,t.gydw v_17,lx.xzqh v_18,
+     t.tsdq v_19,RemoveSameStr(lx.jsjsdjtj,',') v_20,RemoveSameStr(lx.xjsdjtj,',') v_21,
+    substr(t.xmbm,0,4) v_22,t.jhkgn v_23,t.jhwgn v_24,t.tz v_25,lx.bzcs v_26,t.xmklx v_27,t.bz v_28
+    ,(decode(t.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and t.lsxmbm like '%'||xmbm||'%'),' ')) v_29	
+    from  	LXSH_LMGZ	t
+    left join (
+    select xmid,sum(jhlc) zjhlc,sum(sbzj) sbzj,sum(bzcs) bzcs,
+              replace(WMSYS.WM_CONCAT(distinct(lxlmkd)),',',',') lxlmkd,replace(WMSYS.WM_CONCAT(distinct(jsxz)),',',',') jsxz,
+              replace(WMSYS.WM_CONCAT(distinct(gydw)),',',',') gydw,replace(WMSYS.WM_CONCAT(distinct(xzqh)),',',',') xzqh,
+              replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+              replace(WMSYS.WM_CONCAT(jsjsdj),'、',',') jsjsdjtj,
+              replace(WMSYS.WM_CONCAT(xjsdj),'、',',') xjsdjtj,
+              replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,
+             replace(max(qdzh), ',.', ',0.') qdzh,replace(max(zdzh), ',.', ',0.') zdzh,replace(max(ghqdzh), ',.', ',0.') ghqdzh,replace(max(ghzdzh), ',.', ',0.') ghzdzh,
+             replace(max(gxqdzh), ',.', ',0.') gxqdzh,replace(max(gxzdzh), ',.', ',0.') gxzdzh,
+             max(ghlxbm) ghlxbm,max(ylxbm) ylxbm,max(ghlxmc) ghlxmc,max(ylxmc) ylxmc,max(gxlxbm) gxlxbm,max(qdmc) qdmc,max(zdmc) zdmc
+              from (select  xmid,jsxz,sbzj,lxlmkd,gydw,xzqh,bzcs,
+              (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) 
+              else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+              end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
+              else ''
+              end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj,
+               WMSYS.WM_CONCAT(ghlxmc)over( PARTITION BY xmid ORDER BY id,ghlxmc) ghlxmc,
+               WMSYS.WM_CONCAT(lxmc)over( PARTITION BY xmid ORDER BY id,lxmc) ylxmc,
+               WMSYS.WM_CONCAT(ghlxbm)over( PARTITION BY xmid ORDER BY id,ghlxbm) ghlxbm,
+               WMSYS.WM_CONCAT(lxbm)over( PARTITION BY xmid ORDER BY id,lxbm) ylxbm,
+               WMSYS.WM_CONCAT((case when qdzh like '.%' then 0||qdzh when qdzh like '%,.%' then replace(qdzh, ',.', ',0.') else qdzh end ))over( PARTITION BY xmid ORDER BY id,qdzh) qdzh,
+               WMSYS.WM_CONCAT((case when zdzh like '.%' then 0||zdzh when zdzh like '%,.%' then replace(zdzh, ',.', ',0.') else zdzh end ))over( PARTITION BY xmid ORDER BY id,zdzh) zdzh,
+               WMSYS.WM_CONCAT((case when ghqdzh like '.%' then 0||ghqdzh when ghqdzh like '%,.%' then replace(ghqdzh, ',.', ',0.') else ghqdzh end ))over( PARTITION BY xmid ORDER BY id,ghqdzh) ghqdzh,
+               WMSYS.WM_CONCAT((case when ghzdzh like '.%' then 0||ghzdzh when ghzdzh like '%,.%' then replace(ghzdzh, ',.', ',0.') else ghzdzh end ))over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh,
+               WMSYS.WM_CONCAT(gxlxbm)over( PARTITION BY xmid ORDER BY id,gxlxbm) gxlxbm,
+               WMSYS.WM_CONCAT((case when gxqdzh like '.%' then 0||gxqdzh when gxqdzh like '%,.%' then replace(gxqdzh, ',.', ',0.') else gxqdzh end ))over( PARTITION BY xmid ORDER BY id,gxqdzh) gxqdzh,
+               WMSYS.WM_CONCAT((case when gxzdzh like '.%' then 0||gxzdzh when gxzdzh like '%,.%' then replace(gxzdzh, ',.', ',0.') else gxzdzh end ))over( PARTITION BY xmid ORDER BY id,gxzdzh) gxzdzh,
+               WMSYS.WM_CONCAT(qdmc)over( PARTITION BY xmid ORDER BY id,qdmc) qdmc,
+               WMSYS.WM_CONCAT(zdmc)over( PARTITION BY xmid ORDER BY id,zdmc) zdmc
+              from LXSH_LX  where jdbs='0') group by xmid
+    ) lx on t.xmbm=lx.xmid
+    where 1=1
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and to_char(sbzt) like '%'||#{sbzt1}||'%'
+		<if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
+		<if test="shzt!='' and shzt!= null ">
+				and shzt=#{shzt}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%2___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
-		
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
-		</if>
-		<if test="jsjsdj !='' and jsjsdj !=null">
-			and ${jsjsdj}
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
 			and xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
@@ -943,32 +1049,81 @@
 		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
 		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
-		order by t.xmbm,lx.sffirst desc
 	</select>
 	<select id="querylxshXj" parameterType="lxsh" resultType="elist">
-		select decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,lx.lxbm v_2,lx.lxmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.ghlxbm v_6,lx.ghlxmc v_7,lx.ghqdzh v_8,lx.ghzdzh v_9,
+	<!--	select decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,lx.lxbm v_2,lx.lxmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.ghlxbm v_6,lx.ghlxmc v_7,lx.ghqdzh v_8,lx.ghzdzh v_9,
 		lx.gxlxbm v_10,lx.gxqdzh v_11,lx.gxzdzh v_12,lx.qdmc v_13,lx.zdmc v_14,lx.jsxz v_15,lx.gydw v_16,lx.xzqh v_17,t.tsdq v_18,lx.jsjsdj v_19,
 		lx.xjsdj v_20,substr(t.xmbm,0,4) v_21,t.jhkgn v_22,t.jhwgn v_23,t.tz v_24,lx.bzcs v_25
 		from LXSH_XJ t,
 		(select * from lxsh_lx where 1=1 and jdbs='0' order by sffirst desc) lx  where 1=1 and t.xmbm(+)=lx.xmid
-<!-- 		and sbthcd &lt;=#{sbthcd} -->
+ 		and sbthcd &lt;=#{sbthcd} -->
+  select  rownum v_0,
+    t.xmbm v_1,t.xmmc v_2,
+    decode(instr(RemoveSameStr(lx.ylxbm,','),','),0,RemoveSameStr(lx.ylxbm,','),lx.ylxbm) v_3,
+    decode(instr(RemoveSameStr(lx.ylxmc,','),','),0,RemoveSameStr(lx.ylxmc,','),lx.ylxmc) v_4,
+    lx.qdzh v_5,lx.zdzh v_6,
+    decode(instr(RemoveSameStr(lx.ghlxbm,','),','),0,RemoveSameStr(lx.ghlxbm,','),lx.ghlxbm)  v_7,
+    decode(instr(RemoveSameStr(lx.ghlxmc,','),','),0,RemoveSameStr(lx.ghlxmc,','),lx.ghlxmc) v_8,
+    lx.ghqdzh v_9,lx.ghzdzh v_10,
+     decode(instr(RemoveSameStr(lx.gxlxbm,','),','),0,RemoveSameStr(lx.gxlxbm,','),lx.gxlxbm) v_11,
+     lx.gxqdzh v_12,lx.gxzdzh v_13,
+     decode(instr(RemoveSameStr(lx.qdmc,','),','),0,RemoveSameStr(lx.qdmc,','),lx.qdmc) v_14,
+     decode(instr(RemoveSameStr(lx.zdmc,','),','),0,RemoveSameStr(lx.zdmc,','),lx.zdmc) v_15,
+      lx.jsxz v_16,t.gydw v_17,lx.xzqh v_18,
+     t.tsdq v_19,RemoveSameStr(lx.jsjsdjtj,',') v_20,RemoveSameStr(lx.xjsdjtj,',') v_21,
+    substr(t.xmbm,0,4) v_22,t.jhkgn v_23,t.jhwgn v_24,t.tz v_25,lx.bzcs v_26,t.xmklx v_27,t.bz v_28
+    ,(decode(t.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and t.lsxmbm like '%'||xmbm||'%'),' ')) v_29
+    from LXSH_XJ t 
+    left join (
+    select xmid,sum(jhlc) zjhlc,sum(sbzj) sbzj,sum(bzcs) bzcs,
+              replace(WMSYS.WM_CONCAT(distinct(lxlmkd)),',',',') lxlmkd,replace(WMSYS.WM_CONCAT(distinct(jsxz)),',',',') jsxz,
+              replace(WMSYS.WM_CONCAT(distinct(gydw)),',',',') gydw,replace(WMSYS.WM_CONCAT(distinct(xzqh)),',',',') xzqh,
+              replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+              replace(WMSYS.WM_CONCAT(jsjsdj),'、',',') jsjsdjtj,
+              replace(WMSYS.WM_CONCAT(xjsdj),'、',',') xjsdjtj,
+              replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,
+             replace(max(qdzh), ',.', ',0.') qdzh,replace(max(zdzh), ',.', ',0.') zdzh,replace(max(ghqdzh), ',.', ',0.') ghqdzh,replace(max(ghzdzh), ',.', ',0.') ghzdzh,
+             replace(max(gxqdzh), ',.', ',0.') gxqdzh,replace(max(gxzdzh), ',.', ',0.') gxzdzh,
+             max(ghlxbm) ghlxbm,max(ylxbm) ylxbm,max(ghlxmc) ghlxmc,max(ylxmc) ylxmc,max(gxlxbm) gxlxbm,max(qdmc) qdmc,max(zdmc) zdmc
+              from (select  xmid,jsxz,sbzj,lxlmkd,gydw,xzqh,bzcs,
+              (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) 
+              else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+              end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
+              else ''
+              end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj,
+               WMSYS.WM_CONCAT(ghlxmc)over( PARTITION BY xmid ORDER BY id,ghlxmc) ghlxmc,
+               WMSYS.WM_CONCAT(lxmc)over( PARTITION BY xmid ORDER BY id,lxmc) ylxmc,
+               WMSYS.WM_CONCAT(ghlxbm)over( PARTITION BY xmid ORDER BY id,ghlxbm) ghlxbm,
+               WMSYS.WM_CONCAT(lxbm)over( PARTITION BY xmid ORDER BY id,lxbm) ylxbm,
+               WMSYS.WM_CONCAT((case when qdzh like '.%' then 0||qdzh when qdzh like '%,.%' then replace(qdzh, ',.', ',0.') else qdzh end ))over( PARTITION BY xmid ORDER BY id,qdzh) qdzh,
+               WMSYS.WM_CONCAT((case when zdzh like '.%' then 0||zdzh when zdzh like '%,.%' then replace(zdzh, ',.', ',0.') else zdzh end ))over( PARTITION BY xmid ORDER BY id,zdzh) zdzh,
+               WMSYS.WM_CONCAT((case when ghqdzh like '.%' then 0||ghqdzh when ghqdzh like '%,.%' then replace(ghqdzh, ',.', ',0.') else ghqdzh end ))over( PARTITION BY xmid ORDER BY id,ghqdzh) ghqdzh,
+               WMSYS.WM_CONCAT((case when ghzdzh like '.%' then 0||ghzdzh when ghzdzh like '%,.%' then replace(ghzdzh, ',.', ',0.') else ghzdzh end ))over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh,
+               WMSYS.WM_CONCAT(gxlxbm)over( PARTITION BY xmid ORDER BY id,gxlxbm) gxlxbm,
+               WMSYS.WM_CONCAT((case when gxqdzh like '.%' then 0||gxqdzh when gxqdzh like '%,.%' then replace(gxqdzh, ',.', ',0.') else gxqdzh end ))over( PARTITION BY xmid ORDER BY id,gxqdzh) gxqdzh,
+               WMSYS.WM_CONCAT((case when gxzdzh like '.%' then 0||gxzdzh when gxzdzh like '%,.%' then replace(gxzdzh, ',.', ',0.') else gxzdzh end ))over( PARTITION BY xmid ORDER BY id,gxzdzh) gxzdzh,
+               WMSYS.WM_CONCAT(qdmc)over( PARTITION BY xmid ORDER BY id,qdmc) qdmc,
+               WMSYS.WM_CONCAT(zdmc)over( PARTITION BY xmid ORDER BY id,zdmc) zdmc
+              from LXSH_LX  where jdbs='0') group by xmid
+    ) lx on t.xmbm=lx.xmid
+    where 1=1		
+ 		
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and to_char(sbzt) like '%'||#{sbzt1}||'%'
+		<if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
+		<if test="shzt!='' and shzt!= null ">
+				and shzt=#{shzt}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%3___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
-		
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
-		</if>
-		<if test="jsjsdj !='' and jsjsdj !=null">
-			and ${jsjsdj}
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
 			and xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
@@ -984,11 +1139,10 @@
 		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
 		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
-		order by t.xmbm,lx.sffirst desc
 	</select>
 	
 	<select id="querykxxSjgz" parameterType="lxsh" resultType="elist">
-		select decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,
+		<!-- select decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,
 		lx.xzqh v_2,lx.lxbm v_3,lx.lxmc v_4,lx.qdzh v_5,lx.zdzh v_6,
 		lx.ghlxbm v_7,lx.ghlxmc v_8,lx.ghqdzh v_9,lx.ghzdzh v_10,
 		lx.gxlxbm v_11,lx.gxqdzh v_12,lx.gxzdzh v_13,
@@ -1001,21 +1155,74 @@
 		from KXXYJ_SJGZ t 
 		Left join (select xmbm xmbh,lsjl,xmklx,tsdq,lsxmbm from lxsh_sjgz) t1 on t.xmbm=t1.xmbh
 		right join
-		(select * from lxsh_lx where 1=1 and jdbs='1' ) lx on t.xmbm=lx.xmid where 1=1
+		(select * from lxsh_lx where 1=1 and jdbs='1' ) lx on t.xmbm=lx.xmid where 1=1 -->
+		
+		select rownum v_0,t.xmbm v_1,t.xmmc v_2,t1.xzqh v_3,
+    decode(instr(RemoveSameStr(lx.ylxbm,','),','),0,RemoveSameStr(lx.ylxbm,','),lx.ylxbm) v_4,
+    decode(instr(RemoveSameStr(lx.ylxmc,','),','),0,RemoveSameStr(lx.ylxmc,','),lx.ylxmc) v_5,
+    lx.qdzh v_6,lx.zdzh v_7,
+    decode(instr(RemoveSameStr(lx.ghlxbm,','),','),0,RemoveSameStr(lx.ghlxbm,','),lx.ghlxbm)  v_8,
+    decode(instr(RemoveSameStr(lx.ghlxmc,','),','),0,RemoveSameStr(lx.ghlxmc,','),lx.ghlxmc) v_9,
+    lx.ghqdzh v_10,lx.ghzdzh v_11,
+    decode(instr(RemoveSameStr(lx.gxlxbm,','),','),0,RemoveSameStr(lx.gxlxbm,','),lx.gxlxbm) v_12,
+    lx.gxqdzh v_13,lx.gxzdzh v_14,
+    to_char(lx.lc,'fm9999999990.000') v_15, to_char(lx.yilc,'fm9999999990.000') v_16, to_char(lx.erlc,'fm9999999990.000') v_17, 
+    to_char(lx.sanlc,'fm9999999990.000') v_18, to_char(lx.silc,'fm9999999990.000') v_19, to_char(lx.dwlc,'fm9999999990.000') v_20, 
+    to_char(lx.wllc,'fm9999999990.000') v_21,
+    to_char(lx.jhyilc,'fm9999999990.000') v_22, to_char(lx.jherlc,'fm9999999990.000') v_23, 
+    to_char(lx.jhsanlc,'fm9999999990.000') v_24, to_char(lx.jhsilc,'fm9999999990.000') v_25, to_char(lx.jhdwlc,'fm9999999990.000') v_26, 
+    to_char(lx.jhwllc,'fm9999999990.000') v_27,lx.jsxz v_28,nvl(t.dq_m,0) v_29,nvl(t.dq,0) v_30,RemoveSameStr(lx.jsjsdjtj,',') v_31,
+    nvl(t.sd_m,0) v_32,nvl(t.sd,0) v_33,t.kgny v_34,t.wgny v_35,t.bzdw v_36,nvl(t.tzgs,0) v_37,nvl(t.dfzc,0) v_38,nvl(t.yhdk,0) v_39,t.gkpfwh v_40,t.pfsj v_41 
+    from KXXYJ_SJGZ t 
+    Left join (select xmbm xmbh,lsjl,xmklx,tsdq,lsxmbm,xzqh,xzqhdm2 from lxsh_sjgz) t1 on t.xmbm=t1.xmbh
+    left join (
+    select xmid,sum(jhlc) zjhlc,sum(sbzj) sbzj,sum(bzcs) bzcs,
+              replace(WMSYS.WM_CONCAT(distinct(lxlmkd)),',',',') lxlmkd,replace(WMSYS.WM_CONCAT(distinct(jsxz)),',',',') jsxz,
+              replace(WMSYS.WM_CONCAT(distinct(gydw)),',',',') gydw,replace(WMSYS.WM_CONCAT(distinct(xzqh)),',',',') xzqh,
+              replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+              replace(WMSYS.WM_CONCAT(jsjsdj),'、',',') jsjsdjtj,
+              replace(WMSYS.WM_CONCAT(xjsdj),'、',',') xjsdjtj,
+              replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,
+             replace(max(qdzh), ',.', ',0.') qdzh,replace(max(zdzh), ',.', ',0.') zdzh,replace(max(ghqdzh), ',.', ',0.') ghqdzh,replace(max(ghzdzh), ',.', ',0.') ghzdzh,
+             replace(max(gxqdzh), ',.', ',0.') gxqdzh,replace(max(gxzdzh), ',.', ',0.') gxzdzh,
+             max(ghlxbm) ghlxbm,max(ylxbm) ylxbm,max(ghlxmc) ghlxmc,max(ylxmc) ylxmc,max(gxlxbm) gxlxbm,max(qdmc) qdmc,max(zdmc) zdmc,
+             sum(nvl(jhyilc,0)) jhyilc,sum(nvl(yilc,0)) yilc,sum(nvl(jherlc,0)) jherlc,sum(nvl(erlc,0)) erlc,
+             sum(nvl(jhsanlc,0)) jhsanlc,sum(nvl(sanlc,0)) sanlc,sum(nvl(jhsilc,0)) jhsilc,sum(nvl(silc,0)) silc,
+             sum(nvl(jhdwlc,0)) jhdwlc,sum(nvl(dwlc,0)) dwlc,sum(nvl(jhwllc,0)) jhwllc,sum(nvl(wllc,0)) wllc,sum(nvl(lc,0)) lc
+              from (select  xmid,jsxz,sbzj,lxlmkd,gydw,xzqh,bzcs,
+              (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) 
+              else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+              end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
+              else ''
+              end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,yilc,erlc,sanlc,silc,dwlc,wllc,lc,
+               WMSYS.WM_CONCAT(ghlxmc)over( PARTITION BY xmid ORDER BY id,ghlxmc) ghlxmc,
+               WMSYS.WM_CONCAT(lxmc)over( PARTITION BY xmid ORDER BY id,lxmc) ylxmc,
+               WMSYS.WM_CONCAT(ghlxbm)over( PARTITION BY xmid ORDER BY id,ghlxbm) ghlxbm,
+               WMSYS.WM_CONCAT(lxbm)over( PARTITION BY xmid ORDER BY id,lxbm) ylxbm,
+               WMSYS.WM_CONCAT((case when qdzh like '.%' then 0||qdzh when qdzh like '%,.%' then replace(qdzh, ',.', ',0.') else qdzh end ))over( PARTITION BY xmid ORDER BY id,qdzh) qdzh,
+               WMSYS.WM_CONCAT((case when zdzh like '.%' then 0||zdzh when zdzh like '%,.%' then replace(zdzh, ',.', ',0.') else zdzh end ))over( PARTITION BY xmid ORDER BY id,zdzh) zdzh,
+               WMSYS.WM_CONCAT((case when ghqdzh like '.%' then 0||ghqdzh when ghqdzh like '%,.%' then replace(ghqdzh, ',.', ',0.') else ghqdzh end ))over( PARTITION BY xmid ORDER BY id,ghqdzh) ghqdzh,
+               WMSYS.WM_CONCAT((case when ghzdzh like '.%' then 0||ghzdzh when ghzdzh like '%,.%' then replace(ghzdzh, ',.', ',0.') else ghzdzh end ))over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh,
+               WMSYS.WM_CONCAT(gxlxbm)over( PARTITION BY xmid ORDER BY id,gxlxbm) gxlxbm,
+               WMSYS.WM_CONCAT((case when gxqdzh like '.%' then 0||gxqdzh when gxqdzh like '%,.%' then replace(gxqdzh, ',.', ',0.') else gxqdzh end ))over( PARTITION BY xmid ORDER BY id,gxqdzh) gxqdzh,
+               WMSYS.WM_CONCAT((case when gxzdzh like '.%' then 0||gxzdzh when gxzdzh like '%,.%' then replace(gxzdzh, ',.', ',0.') else gxzdzh end ))over( PARTITION BY xmid ORDER BY id,gxzdzh) gxzdzh,
+               WMSYS.WM_CONCAT(qdmc)over( PARTITION BY xmid ORDER BY id,qdmc) qdmc,
+               WMSYS.WM_CONCAT(zdmc)over( PARTITION BY xmid ORDER BY id,zdmc) zdmc
+              from LXSH_LX lx where jdbs='1') group by xmid
+    ) lx on t.xmbm=lx.xmid
+    where 1=1
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
-		
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
-		</if>
-		<if test="jsjsdj !='' and jsjsdj !=null">
-			and ${jsjsdj}
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
 			and xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
@@ -1037,10 +1244,10 @@
 		<if test="sbzt!='' and sbzt!= null ">
 			and to_char(t.sbzt) like '%'||#{sbzt}||'%' 
 		</if>
-		order by t.xmbm, lx.sffirst desc
+		
 	</select>
 	<select id="querykxxLmgz" parameterType="lxsh" resultType="elist">
-		select decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,
+		<!-- select decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,
 		lx.xzqh v_2,lx.lxbm v_3,lx.lxmc v_4,lx.qdzh v_5,lx.zdzh v_6,
 		lx.ghlxbm v_7,lx.ghlxmc v_8,lx.ghqdzh v_9,lx.ghzdzh v_10,
 		lx.gxlxbm v_11,lx.gxqdzh v_12,lx.gxzdzh v_13,
@@ -1051,13 +1258,70 @@
 		decode(lx.sffirst,'1',t.yhdk,'') v_38,decode(lx.sffirst,'1',t.gkpfwh,'') v_39,decode(lx.sffirst,'1',t.pfsj,'') v_40 
 		from KXXYJ_LMGZ t 
 		Left join (select xmbm xmbh,lsjl,xmklx,tsdq,lsxmbm from lxsh_lmgz) t1 on t.xmbm=t1.xmbh
-		right join (select * from lxsh_lx where 1=1 and jdbs='1') lx on t.xmbm=lx.xmid where 1=1
+		right join (select * from lxsh_lx where 1=1 and jdbs='1') lx on t.xmbm=lx.xmid where 1=1 -->
+select rownum v_0,t.xmbm v_1,t.xmmc v_2,t1.xzqh v_3,
+    decode(instr(RemoveSameStr(lx.ylxbm,','),','),0,RemoveSameStr(lx.ylxbm,','),lx.ylxbm) v_4,
+    decode(instr(RemoveSameStr(lx.ylxmc,','),','),0,RemoveSameStr(lx.ylxmc,','),lx.ylxmc) v_5,
+    lx.qdzh v_6,lx.zdzh v_7,
+    decode(instr(RemoveSameStr(lx.ghlxbm,','),','),0,RemoveSameStr(lx.ghlxbm,','),lx.ghlxbm)  v_8,
+    decode(instr(RemoveSameStr(lx.ghlxmc,','),','),0,RemoveSameStr(lx.ghlxmc,','),lx.ghlxmc) v_9,
+    lx.ghqdzh v_10,lx.ghzdzh v_11,
+    decode(instr(RemoveSameStr(lx.gxlxbm,','),','),0,RemoveSameStr(lx.gxlxbm,','),lx.gxlxbm) v_12,
+    lx.gxqdzh v_13,lx.gxzdzh v_14,
+    to_char(lx.lc,'fm9999999990.000') v_15, to_char(lx.yilc,'fm9999999990.000') v_16, to_char(lx.erlc,'fm9999999990.000') v_17, 
+    to_char(lx.sanlc,'fm9999999990.000') v_18, to_char(lx.silc,'fm9999999990.000') v_19, to_char(lx.dwlc,'fm9999999990.000') v_20, 
+    to_char(lx.wllc,'fm9999999990.000') v_21,
+    to_char(lx.jhyilc,'fm9999999990.000') v_22, to_char(lx.jherlc,'fm9999999990.000') v_23, 
+    to_char(lx.jhsanlc,'fm9999999990.000') v_24, to_char(lx.jhsilc,'fm9999999990.000') v_25, to_char(lx.jhdwlc,'fm9999999990.000') v_26, 
+    to_char(lx.jhwllc,'fm9999999990.000') v_27,lx.jsxz v_28,nvl(t.dq_m,0) v_29,nvl(t.dq,0) v_30,RemoveSameStr(lx.jsjsdjtj,',') v_31,
+    nvl(t.sd_m,0) v_32,nvl(t.sd,0) v_33,t.kgny v_34,t.wgny v_35,t.bzdw v_36,nvl(t.tzgs,0) v_37,nvl(t.dfzc,0) v_38,nvl(t.yhdk,0) v_39,t.gkpfwh v_40,t.pfsj v_41 
+    from KXXYJ_LMGZ t 
+    Left join (select xmbm xmbh,lsjl,xmklx,tsdq,lsxmbm,xzqh,xzqhdm2 from lxsh_lmgz) t1 on t.xmbm=t1.xmbh
+    left join (
+    select xmid,sum(jhlc) zjhlc,sum(sbzj) sbzj,sum(bzcs) bzcs,
+              replace(WMSYS.WM_CONCAT(distinct(lxlmkd)),',',',') lxlmkd,replace(WMSYS.WM_CONCAT(distinct(jsxz)),',',',') jsxz,
+              replace(WMSYS.WM_CONCAT(distinct(gydw)),',',',') gydw,replace(WMSYS.WM_CONCAT(distinct(xzqh)),',',',') xzqh,
+              replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+              replace(WMSYS.WM_CONCAT(jsjsdj),'、',',') jsjsdjtj,
+              replace(WMSYS.WM_CONCAT(xjsdj),'、',',') xjsdjtj,
+              replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,
+             replace(max(qdzh), ',.', ',0.') qdzh,replace(max(zdzh), ',.', ',0.') zdzh,replace(max(ghqdzh), ',.', ',0.') ghqdzh,replace(max(ghzdzh), ',.', ',0.') ghzdzh,
+             replace(max(gxqdzh), ',.', ',0.') gxqdzh,replace(max(gxzdzh), ',.', ',0.') gxzdzh,
+             max(ghlxbm) ghlxbm,max(ylxbm) ylxbm,max(ghlxmc) ghlxmc,max(ylxmc) ylxmc,max(gxlxbm) gxlxbm,max(qdmc) qdmc,max(zdmc) zdmc,
+             sum(nvl(jhyilc,0)) jhyilc,sum(nvl(yilc,0)) yilc,sum(nvl(jherlc,0)) jherlc,sum(nvl(erlc,0)) erlc,
+             sum(nvl(jhsanlc,0)) jhsanlc,sum(nvl(sanlc,0)) sanlc,sum(nvl(jhsilc,0)) jhsilc,sum(nvl(silc,0)) silc,
+             sum(nvl(jhdwlc,0)) jhdwlc,sum(nvl(dwlc,0)) dwlc,sum(nvl(jhwllc,0)) jhwllc,sum(nvl(wllc,0)) wllc,sum(nvl(lc,0)) lc
+              from (select  xmid,jsxz,sbzj,lxlmkd,gydw,xzqh,bzcs,
+              (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) 
+              else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+              end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
+              else ''
+              end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,yilc,erlc,sanlc,silc,dwlc,wllc,lc,
+               WMSYS.WM_CONCAT(ghlxmc)over( PARTITION BY xmid ORDER BY id,ghlxmc) ghlxmc,
+               WMSYS.WM_CONCAT(lxmc)over( PARTITION BY xmid ORDER BY id,lxmc) ylxmc,
+               WMSYS.WM_CONCAT(ghlxbm)over( PARTITION BY xmid ORDER BY id,ghlxbm) ghlxbm,
+               WMSYS.WM_CONCAT(lxbm)over( PARTITION BY xmid ORDER BY id,lxbm) ylxbm,
+               WMSYS.WM_CONCAT((case when qdzh like '.%' then 0||qdzh when qdzh like '%,.%' then replace(qdzh, ',.', ',0.') else qdzh end ))over( PARTITION BY xmid ORDER BY id,qdzh) qdzh,
+               WMSYS.WM_CONCAT((case when zdzh like '.%' then 0||zdzh when zdzh like '%,.%' then replace(zdzh, ',.', ',0.') else zdzh end ))over( PARTITION BY xmid ORDER BY id,zdzh) zdzh,
+               WMSYS.WM_CONCAT((case when ghqdzh like '.%' then 0||ghqdzh when ghqdzh like '%,.%' then replace(ghqdzh, ',.', ',0.') else ghqdzh end ))over( PARTITION BY xmid ORDER BY id,ghqdzh) ghqdzh,
+               WMSYS.WM_CONCAT((case when ghzdzh like '.%' then 0||ghzdzh when ghzdzh like '%,.%' then replace(ghzdzh, ',.', ',0.') else ghzdzh end ))over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh,
+               WMSYS.WM_CONCAT(gxlxbm)over( PARTITION BY xmid ORDER BY id,gxlxbm) gxlxbm,
+               WMSYS.WM_CONCAT((case when gxqdzh like '.%' then 0||gxqdzh when gxqdzh like '%,.%' then replace(gxqdzh, ',.', ',0.') else gxqdzh end ))over( PARTITION BY xmid ORDER BY id,gxqdzh) gxqdzh,
+               WMSYS.WM_CONCAT((case when gxzdzh like '.%' then 0||gxzdzh when gxzdzh like '%,.%' then replace(gxzdzh, ',.', ',0.') else gxzdzh end ))over( PARTITION BY xmid ORDER BY id,gxzdzh) gxzdzh,
+               WMSYS.WM_CONCAT(qdmc)over( PARTITION BY xmid ORDER BY id,qdmc) qdmc,
+               WMSYS.WM_CONCAT(zdmc)over( PARTITION BY xmid ORDER BY id,zdmc) zdmc
+              from LXSH_LX lx where jdbs='1') group by xmid
+    ) lx on t.xmbm=lx.xmid
+    where 1=1		
+		
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%2___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">
 			and lsjl like '%'||#{lsjl}||'%'
@@ -1066,9 +1330,6 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
-		<if test="jsjsdj !='' and jsjsdj !=null">
-			and ${jsjsdj}
-		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
 			and xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
 		</if>
@@ -1089,26 +1350,82 @@
 		<if test="sbzt!='' and sbzt!= null ">
 			and to_char(t.sbzt) like '%'||#{sbzt}||'%' 
 		</if>
-		order by t.xmbm desc,lx.sffirst desc
+		
 	</select>
 	<select id="querykxxXj" parameterType="lxsh" resultType="elist">
-		select decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,lx.xzqh v_2,lx.lxbm v_3,lx.qdzh v_4,lx.zdzh v_5,lx.lc v_6,lx.xjlxbm v_7,lx.xjqdzh v_8,lx.xjzdzh v_9,lx.xjlc v_10,
+		<!-- select decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,lx.xzqh v_2,lx.lxbm v_3,lx.qdzh v_4,lx.zdzh v_5,lx.lc v_6,lx.xjlxbm v_7,lx.xjqdzh v_8,lx.xjzdzh v_9,lx.xjlc v_10,
 		lx.yilc v_11,lx.erlc v_12,lx.sanlc v_13,lx.silc v_14,lx.dwlc v_15,lx.wllc v_16,'新建' v_17,t.dq_m v_18,t.dq v_19,t.jsjsdj v_20,t.sd_m v_21,t.sd v_22,
 		t.kgny v_23,t.wgny v_24,t.bzdw v_25,decode(lx.sffirst,'1',t.tzgs,'') v_26,decode(lx.sffirst,'1',t.dfzc,'') v_27,decode(lx.sffirst,'1',t.yhdk,'') v_28,decode(lx.sffirst,'1',t.gkpfwh,'') v_29,decode(lx.sffirst,'1',t.pfsj,'') v_30 
 		from KXXYJ_XJ t 
 		Left join (select xmbm xmbh,lsjl,xmklx,tsdq,lsxmbm from lxsh_xj) t1 on t.xmbm=t1.xmbh
 		right join
-		(select * from lxsh_lx where 1=1 and jdbs='1' ) lx on t.xmbm=lx.xmid where 1=1
+		(select * from lxsh_lx where 1=1 and jdbs='1' ) lx on t.xmbm=lx.xmid where 1=1 -->
+select rownum v_0,t.xmbm v_1,t.xmmc v_2,t1.xzqh v_3,
+    decode(instr(RemoveSameStr(lx.ylxbm,','),','),0,RemoveSameStr(lx.ylxbm,','),lx.ylxbm) v_4,
+    decode(instr(RemoveSameStr(lx.ylxmc,','),','),0,RemoveSameStr(lx.ylxmc,','),lx.ylxmc) v_5,
+    lx.qdzh v_6,lx.zdzh v_7,
+    decode(instr(RemoveSameStr(lx.ghlxbm,','),','),0,RemoveSameStr(lx.ghlxbm,','),lx.ghlxbm)  v_8,
+    decode(instr(RemoveSameStr(lx.ghlxmc,','),','),0,RemoveSameStr(lx.ghlxmc,','),lx.ghlxmc) v_9,
+    lx.ghqdzh v_10,lx.ghzdzh v_11,
+    decode(instr(RemoveSameStr(lx.gxlxbm,','),','),0,RemoveSameStr(lx.gxlxbm,','),lx.gxlxbm) v_12,
+    lx.gxqdzh v_13,lx.gxzdzh v_14,
+    to_char(lx.lc,'fm9999999990.000') v_15, to_char(lx.yilc,'fm9999999990.000') v_16, to_char(lx.erlc,'fm9999999990.000') v_17, 
+    to_char(lx.sanlc,'fm9999999990.000') v_18, to_char(lx.silc,'fm9999999990.000') v_19, to_char(lx.dwlc,'fm9999999990.000') v_20, 
+    to_char(lx.wllc,'fm9999999990.000') v_21,
+    to_char(lx.jhyilc,'fm9999999990.000') v_22, to_char(lx.jherlc,'fm9999999990.000') v_23, 
+    to_char(lx.jhsanlc,'fm9999999990.000') v_24, to_char(lx.jhsilc,'fm9999999990.000') v_25, to_char(lx.jhdwlc,'fm9999999990.000') v_26, 
+    to_char(lx.jhwllc,'fm9999999990.000') v_27,lx.jsxz v_28,nvl(t.dq_m,0) v_29,nvl(t.dq,0) v_30,RemoveSameStr(lx.jsjsdjtj,',') v_31,
+    nvl(t.sd_m,0) v_32,nvl(t.sd,0) v_33,t.kgny v_34,t.wgny v_35,t.bzdw v_36,nvl(t.tzgs,0) v_37,nvl(t.dfzc,0) v_38,nvl(t.yhdk,0) v_39,t.gkpfwh v_40,t.pfsj v_41 
+    from KXXYJ_XJ t 
+    Left join (select xmbm xmbh,lsjl,xmklx,tsdq,lsxmbm,xzqh,xzqhdm2 from lxsh_xj) t1 on t.xmbm=t1.xmbh
+    left join (
+    select xmid,sum(jhlc) zjhlc,sum(sbzj) sbzj,sum(bzcs) bzcs,
+              replace(WMSYS.WM_CONCAT(distinct(lxlmkd)),',',',') lxlmkd,replace(WMSYS.WM_CONCAT(distinct(jsxz)),',',',') jsxz,
+              replace(WMSYS.WM_CONCAT(distinct(gydw)),',',',') gydw,replace(WMSYS.WM_CONCAT(distinct(xzqh)),',',',') xzqh,
+              replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+              replace(WMSYS.WM_CONCAT(jsjsdj),'、',',') jsjsdjtj,
+              replace(WMSYS.WM_CONCAT(xjsdj),'、',',') xjsdjtj,
+              replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,
+             replace(max(qdzh), ',.', ',0.') qdzh,replace(max(zdzh), ',.', ',0.') zdzh,replace(max(ghqdzh), ',.', ',0.') ghqdzh,replace(max(ghzdzh), ',.', ',0.') ghzdzh,
+             replace(max(gxqdzh), ',.', ',0.') gxqdzh,replace(max(gxzdzh), ',.', ',0.') gxzdzh,
+             max(ghlxbm) ghlxbm,max(ylxbm) ylxbm,max(ghlxmc) ghlxmc,max(ylxmc) ylxmc,max(gxlxbm) gxlxbm,max(qdmc) qdmc,max(zdmc) zdmc,
+             sum(nvl(jhyilc,0)) jhyilc,sum(nvl(yilc,0)) yilc,sum(nvl(jherlc,0)) jherlc,sum(nvl(erlc,0)) erlc,
+             sum(nvl(jhsanlc,0)) jhsanlc,sum(nvl(sanlc,0)) sanlc,sum(nvl(jhsilc,0)) jhsilc,sum(nvl(silc,0)) silc,
+             sum(nvl(jhdwlc,0)) jhdwlc,sum(nvl(dwlc,0)) dwlc,sum(nvl(jhwllc,0)) jhwllc,sum(nvl(wllc,0)) wllc,sum(nvl(lc,0)) lc
+              from (select  xmid,jsxz,sbzj,lxlmkd,gydw,xzqh,bzcs,
+              (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) 
+              else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+              end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
+              else ''
+              end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,yilc,erlc,sanlc,silc,dwlc,wllc,lc,
+               WMSYS.WM_CONCAT(ghlxmc)over( PARTITION BY xmid ORDER BY id,ghlxmc) ghlxmc,
+               WMSYS.WM_CONCAT(lxmc)over( PARTITION BY xmid ORDER BY id,lxmc) ylxmc,
+               WMSYS.WM_CONCAT(ghlxbm)over( PARTITION BY xmid ORDER BY id,ghlxbm) ghlxbm,
+               WMSYS.WM_CONCAT(lxbm)over( PARTITION BY xmid ORDER BY id,lxbm) ylxbm,
+               WMSYS.WM_CONCAT((case when qdzh like '.%' then 0||qdzh when qdzh like '%,.%' then replace(qdzh, ',.', ',0.') else qdzh end ))over( PARTITION BY xmid ORDER BY id,qdzh) qdzh,
+               WMSYS.WM_CONCAT((case when zdzh like '.%' then 0||zdzh when zdzh like '%,.%' then replace(zdzh, ',.', ',0.') else zdzh end ))over( PARTITION BY xmid ORDER BY id,zdzh) zdzh,
+               WMSYS.WM_CONCAT((case when ghqdzh like '.%' then 0||ghqdzh when ghqdzh like '%,.%' then replace(ghqdzh, ',.', ',0.') else ghqdzh end ))over( PARTITION BY xmid ORDER BY id,ghqdzh) ghqdzh,
+               WMSYS.WM_CONCAT((case when ghzdzh like '.%' then 0||ghzdzh when ghzdzh like '%,.%' then replace(ghzdzh, ',.', ',0.') else ghzdzh end ))over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh,
+               WMSYS.WM_CONCAT(gxlxbm)over( PARTITION BY xmid ORDER BY id,gxlxbm) gxlxbm,
+               WMSYS.WM_CONCAT((case when gxqdzh like '.%' then 0||gxqdzh when gxqdzh like '%,.%' then replace(gxqdzh, ',.', ',0.') else gxqdzh end ))over( PARTITION BY xmid ORDER BY id,gxqdzh) gxqdzh,
+               WMSYS.WM_CONCAT((case when gxzdzh like '.%' then 0||gxzdzh when gxzdzh like '%,.%' then replace(gxzdzh, ',.', ',0.') else gxzdzh end ))over( PARTITION BY xmid ORDER BY id,gxzdzh) gxzdzh,
+               WMSYS.WM_CONCAT(qdmc)over( PARTITION BY xmid ORDER BY id,qdmc) qdmc,
+               WMSYS.WM_CONCAT(zdmc)over( PARTITION BY xmid ORDER BY id,zdmc) zdmc
+              from LXSH_LX lx where jdbs='1') group by xmid
+    ) lx on t.xmbm=lx.xmid
+    where 1=1
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="tsdq!='' and tsdq!= null ">
 			${tsdq}
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%3___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">
 			and lsjl like '%'||#{lsjl}||'%'
@@ -1117,9 +1434,6 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
-		<if test="jsjsdj !='' and jsjsdj !=null">
-			and ${jsjsdj}
-		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
 			and xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
 		</if>
@@ -1140,7 +1454,7 @@
 		<if test="sbzt!='' and sbzt!= null ">
 			and to_char(t.sbzt) like '%'||#{sbzt}||'%' 
 		</if>
-		order by t.xmbm desc,lx.sffirst desc
+		
 	</select>
 	<insert id="importsjgzlxsh" parameterType="hashMap">
 		insert into LXSH_SJGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm)
@@ -1289,6 +1603,7 @@
 			<if test="gydw!='' and gydw!= null ">${gydw}</if>
 			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+			<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 			<if test="sbzt1!='' and sbzt1!= null ">and sbzt=#{sbzt1}</if>
 			<if test="shzt!='' and shzt!= null ">
@@ -1329,6 +1644,7 @@
 			<if test="gydw!='' and gydw!= null ">${gydw}</if>
 			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+			<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 			<if test="sbzt1!='' and sbzt1!= null ">
 				and to_char(sbzt) like '%'||#{sbzt1}||'%'
@@ -1370,14 +1686,15 @@
 			<if test="gydw!='' and gydw!= null ">${gydw}</if>
 			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+			<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 			<if test="sbzt1!='' and sbzt1!= null ">and sbzt=#{sbzt1}</if>
 			<if test="shzt!='' and shzt!= null ">
 				and shzt=#{shzt}
 			</if>
 			<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-			<if test="jsjsdj!='' and jsjsdj!= null ">and ${jsjsdj}</if>
+			<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0' and ${jsjsdj})</if>
 			<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%2___' and ${gldj})</if>
 			<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 			<if test="ghlxbh !='' and ghlxbh != null ">
@@ -1410,6 +1727,7 @@
 			<if test="gydw!='' and gydw!= null ">${gydw}</if>
 			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+			<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 			<if test="sbzt1!='' and sbzt1!= null ">
 				and to_char(sbzt) like '%'||#{sbzt1}||'%'
@@ -1449,14 +1767,15 @@
 			<if test="gydw!='' and gydw!= null ">${gydw}</if>
 			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+			<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 			<if test="sbzt1!='' and sbzt1!= null ">and sbzt=#{sbzt1}</if>
 			<if test="shzt!='' and shzt!= null ">
 				and shzt=#{shzt}
 			</if>
 			<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-			<if test="jsjsdj!='' and jsjsdj!= null ">and ${jsjsdj}</if>
+			<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0' and ${jsjsdj})</if>
 			<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%3___' and ${gldj})</if>
 			<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 			<if test="ghlxbh !='' and ghlxbh != null ">
@@ -1600,9 +1919,12 @@
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
+		<if test="shzt!='' and shzt!= null ">
+				and shzt=#{shzt}
+		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="jsjsdj!='' and jsjsdj!= null ">and ${jsjsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null ">and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0' and ${jsjsdj})</if>
 		
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
@@ -1627,6 +1949,7 @@
 			${xmlx1}
 		</if>
 		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by xmbm desc,sbzt1 
 	</select>
@@ -1640,9 +1963,12 @@
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and shzt=#{shzt}
+		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="jsjsdj!='' and jsjsdj!= null ">and ${jsjsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 		
@@ -1666,11 +1992,12 @@
 		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
 		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
 		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 	</select>
 	<select id="queryLxshLjgsd" resultType="java.util.Map" parameterType="lxsh">
     	select count(xmbm) xmsl,nvl(sum(tz),0) tz,nvl(sum(lc),0) lc,nvl(sum(bzcs),0) bzcs,(sum(tz)-sum(bzcs)) dftz,'0' sbz,'0' sjl from(
 			select t.xmbm,t.tz ,sum(lx.lc) lc,sum(t.bzys) bzcs from lxgsdgz t left join 
-			(select  xmid,jsxz,
+			(select  xmid,jsxz,jsjsdj,xjsdj,
 					(case when substr(xmid,11,1)='1' then to_number(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
 					  else nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) 
 					end) lc from lxsh_lx where jdbs='0' 
@@ -1684,12 +2011,14 @@
 			<if test="sbzt1!='' and sbzt1!= null ">
 				and to_char(sbzt) like '%'||#{sbzt1}||'%'
 			</if>
+			<if test="shzt!='' and shzt!= null ">
+				and shzt=#{shzt}
+		    </if>
 			<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 			<if test="jsjsdj!='' and jsjsdj!= null ">and ${jsjsdj}</if>
 			<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
 			<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
-			
 			<if test="lxmc !='' and lxmc != null ">
 				and lxmc like '%'||#{lxmc}||'%'
 			</if>
@@ -1698,52 +2027,96 @@
 			</if>
 			<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
 			<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
-			
 			<if test="ghlxbh !='' and ghlxbh != null ">
 			and xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
-		</if>
-		<if test="ghlxbm!=null and ghlxbm!=''">
+		    </if>
+		    <if test="ghlxbm!=null and ghlxbm!=''">
 			and t.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbm})
-		</if>
-		<if test="ghlxmc!='' and ghlxmc!= null ">
-			and (t.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghlxmc}||'%')
-			
-			)
-		</if>
-		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
+		    </if>
+		    <if test="ghlxmc!='' and ghlxmc!= null ">
+			and (t.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghlxmc}||'%'))
+		    </if>
+			<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
+			<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 			group by xmbm,tz
 		)
 	</select>
 	<select id="querylxshgsd" parameterType="lxsh" resultType="elist">
-		select 
+		<!-- select 
 		decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,lx.lxbm v_2,lx.lxmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.ghlxbm v_6,lx.ghlxmc v_7,lx.ghqdzh v_8,lx.ghzdzh v_9,
 		lx.gxlxbm v_10,lx.gxqdzh v_11,lx.gxzdzh v_12,lx.qdmc v_13,lx.zdmc v_14,lx.jsxz v_15,lx.gydw v_16,lx.xzqh v_17,t.tsdq v_18,lx.jsjsdj v_19,
 		lx.xjsdj v_20,substr(t.xmbm,0,4) v_21,t.jhkgn v_22,t.jhwgn v_23,t.tz v_24,lx.bzcs v_25
 		from lxgsdgz t right join
-		(select * from lxsh_lx where 1=1 and jdbs='0' ) lx on t.xmbm=lx.xmid where 1=1
+		(select * from lxsh_lx where 1=1 and jdbs='0' ) lx on t.xmbm=lx.xmid where 1=1 -->
+   select  rownum v_0,
+    t.xmbm v_1,t.xmmc v_2,
+    decode(instr(RemoveSameStr(lx.ylxbm,','),','),0,RemoveSameStr(lx.ylxbm,','),lx.ylxbm) v_3,
+    decode(instr(RemoveSameStr(lx.ylxmc,','),','),0,RemoveSameStr(lx.ylxmc,','),lx.ylxmc) v_4,
+    lx.qdzh v_5,lx.zdzh v_6,
+    decode(instr(RemoveSameStr(lx.ghlxbm,','),','),0,RemoveSameStr(lx.ghlxbm,','),lx.ghlxbm)  v_7,
+    decode(instr(RemoveSameStr(lx.ghlxmc,','),','),0,RemoveSameStr(lx.ghlxmc,','),lx.ghlxmc) v_8,
+    lx.ghqdzh v_9,lx.ghzdzh v_10,
+     decode(instr(RemoveSameStr(lx.gxlxbm,','),','),0,RemoveSameStr(lx.gxlxbm,','),lx.gxlxbm) v_11,
+     lx.gxqdzh v_12,lx.gxzdzh v_13,
+     decode(instr(RemoveSameStr(lx.qdmc,','),','),0,RemoveSameStr(lx.qdmc,','),lx.qdmc) v_14,
+     decode(instr(RemoveSameStr(lx.zdmc,','),','),0,RemoveSameStr(lx.zdmc,','),lx.zdmc) v_15,
+     lx.jsxz v_16,t.gydw v_17,lx.xzqh v_18,
+     t.tsdq v_19,RemoveSameStr(lx.jsjsdjtj,',') v_20,RemoveSameStr(lx.xjsdjtj,',') v_21,
+    substr(t.xmbm,0,4) v_22,t.jhkgn v_23,t.jhwgn v_24,t.tz v_25,lx.bzcs v_26,t.xmklx v_27,t.bz v_28
+    ,(decode(t.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and t.lsxmbm like '%'||xmbm||'%'),' ')) v_29
+    from lxgsdgz t 
+    left join (
+    select xmid,sum(jhlc) zjhlc,sum(sbzj) sbzj,sum(bzcs) bzcs,
+              replace(WMSYS.WM_CONCAT(distinct(lxlmkd)),',',',') lxlmkd,replace(WMSYS.WM_CONCAT(distinct(jsxz)),',',',') jsxz,
+              replace(WMSYS.WM_CONCAT(distinct(gydw)),',',',') gydw,replace(WMSYS.WM_CONCAT(distinct(xzqh)),',',',') xzqh,
+              replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+              replace(WMSYS.WM_CONCAT(jsjsdj),'、',',') jsjsdjtj,
+              replace(WMSYS.WM_CONCAT(xjsdj),'、',',') xjsdjtj,
+              replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,
+             replace(max(qdzh), ',.', ',0.') qdzh,replace(max(zdzh), ',.', ',0.') zdzh,replace(max(ghqdzh), ',.', ',0.') ghqdzh,replace(max(ghzdzh), ',.', ',0.') ghzdzh,
+             replace(max(gxqdzh), ',.', ',0.') gxqdzh,replace(max(gxzdzh), ',.', ',0.') gxzdzh,
+             max(ghlxbm) ghlxbm,max(ylxbm) ylxbm,max(ghlxmc) ghlxmc,max(ylxmc) ylxmc,max(gxlxbm) gxlxbm,max(qdmc) qdmc,max(zdmc) zdmc
+              from (select  xmid,jsxz,sbzj,lxlmkd,gydw,xzqh,bzcs,
+              (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) 
+              else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+              end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
+              else ''
+              end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj,
+               WMSYS.WM_CONCAT(ghlxmc)over( PARTITION BY xmid ORDER BY id,ghlxmc) ghlxmc,
+               WMSYS.WM_CONCAT(lxmc)over( PARTITION BY xmid ORDER BY id,lxmc) ylxmc,
+               WMSYS.WM_CONCAT(ghlxbm)over( PARTITION BY xmid ORDER BY id,ghlxbm) ghlxbm,
+               WMSYS.WM_CONCAT(lxbm)over( PARTITION BY xmid ORDER BY id,lxbm) ylxbm,
+               WMSYS.WM_CONCAT((case when qdzh like '.%' then 0||qdzh when qdzh like '%,.%' then replace(qdzh, ',.', ',0.') else qdzh end ))over( PARTITION BY xmid ORDER BY id,qdzh) qdzh,
+               WMSYS.WM_CONCAT((case when zdzh like '.%' then 0||zdzh when zdzh like '%,.%' then replace(zdzh, ',.', ',0.') else zdzh end ))over( PARTITION BY xmid ORDER BY id,zdzh) zdzh,
+               WMSYS.WM_CONCAT((case when ghqdzh like '.%' then 0||ghqdzh when ghqdzh like '%,.%' then replace(ghqdzh, ',.', ',0.') else ghqdzh end ))over( PARTITION BY xmid ORDER BY id,ghqdzh) ghqdzh,
+               WMSYS.WM_CONCAT((case when ghzdzh like '.%' then 0||ghzdzh when ghzdzh like '%,.%' then replace(ghzdzh, ',.', ',0.') else ghzdzh end ))over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh,
+               WMSYS.WM_CONCAT(gxlxbm)over( PARTITION BY xmid ORDER BY id,gxlxbm) gxlxbm,
+               WMSYS.WM_CONCAT((case when gxqdzh like '.%' then 0||gxqdzh when gxqdzh like '%,.%' then replace(gxqdzh, ',.', ',0.') else gxqdzh end ))over( PARTITION BY xmid ORDER BY id,gxqdzh) gxqdzh,
+               WMSYS.WM_CONCAT((case when gxzdzh like '.%' then 0||gxzdzh when gxzdzh like '%,.%' then replace(gxzdzh, ',.', ',0.') else gxzdzh end ))over( PARTITION BY xmid ORDER BY id,gxzdzh) gxzdzh,
+               WMSYS.WM_CONCAT(qdmc)over( PARTITION BY xmid ORDER BY id,qdmc) qdmc,
+               WMSYS.WM_CONCAT(zdmc)over( PARTITION BY xmid ORDER BY id,zdmc) zdmc
+              from LXSH_LX lx where jdbs='0') group by xmid
+    ) lx on t.xmbm=lx.xmid
+    where 1=1
 
 		and sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and to_char(sbzt) like '%'||#{sbzt1}||'%'
+		<if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
+		<if test="shzt!='' and shzt!= null ">
+				and shzt=#{shzt}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
-		
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
 		<if test="xmlx1 !='' and xmlx1 != null ">
 			${xmlx1}
-		</if>
-		
-		<if test="jsjsdj !='' and jsjsdj !=null">
-			${jsjsdj}
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
 			and xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
@@ -1752,15 +2125,14 @@
 			and t.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbm})
 		</if>
 		<if test="ghlxmc!='' and ghlxmc!= null ">
-			and (t.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghlxmc}||'%')
-			
-			)
+			and (t.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghlxmc}||'%'))
 		</if>
 		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
-		order by t.xmbm desc,lx.sffirst desc
+		<if test="jsdj!='' and jsdj!= null ">and t.xmbm in (select distinct xmid from lxsh_lx lx where jdbs='0' and ${jsdj})</if>
+        <if test="jsjsdj !='' and jsjsdj !=null">and t.xmbm in (select distinct xmid from lxsh_lx lx where jdbs='0' and ${jsjsdj})</if>
 	</select>
 	<select id="querykxxgsd" parameterType="lxsh" resultType="elist">
-		select decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,
+		<!-- select decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,
 		lx.xzqh v_2,lx.lxbm v_3,lx.lxmc v_4,lx.qdzh v_5,lx.zdzh v_6,
 		lx.ghlxbm v_7,lx.ghlxmc v_8,lx.ghqdzh v_9,lx.ghzdzh v_10,
 		lx.gxlxbm v_11,lx.gxqdzh v_12,lx.gxzdzh v_13,
@@ -1772,13 +2144,70 @@
 		from kxgsdgz t 
 		Left join (select xmbm xmbh,lsjl,xmklx,tsdq,lsxmbm from lxgsdgz) t1 on t.xmbm=t1.xmbh
 		right join
-		(select * from lxsh_lx where 1=1 and jdbs='1' ) lx on t.xmbm=lx.xmid where 1=1
+		(select * from lxsh_lx where 1=1 and jdbs='1' ) lx on t.xmbm=lx.xmid where 1=1 -->
+		
+		select rownum v_0,t.xmbm v_1,t.xmmc v_2,t1.xzqh v_3,
+    decode(instr(RemoveSameStr(lx.ylxbm,','),','),0,RemoveSameStr(lx.ylxbm,','),lx.ylxbm) v_4,
+    decode(instr(RemoveSameStr(lx.ylxmc,','),','),0,RemoveSameStr(lx.ylxmc,','),lx.ylxmc) v_5,
+    lx.qdzh v_6,lx.zdzh v_7,
+    decode(instr(RemoveSameStr(lx.ghlxbm,','),','),0,RemoveSameStr(lx.ghlxbm,','),lx.ghlxbm)  v_8,
+    decode(instr(RemoveSameStr(lx.ghlxmc,','),','),0,RemoveSameStr(lx.ghlxmc,','),lx.ghlxmc) v_9,
+    lx.ghqdzh v_10,lx.ghzdzh v_11,
+    decode(instr(RemoveSameStr(lx.gxlxbm,','),','),0,RemoveSameStr(lx.gxlxbm,','),lx.gxlxbm) v_12,
+    lx.gxqdzh v_13,lx.gxzdzh v_14,
+    to_char(lx.lc,'fm9999999990.000') v_15, to_char(lx.yilc,'fm9999999990.000') v_16, to_char(lx.erlc,'fm9999999990.000') v_17, 
+    to_char(lx.sanlc,'fm9999999990.000') v_18, to_char(lx.silc,'fm9999999990.000') v_19, to_char(lx.dwlc,'fm9999999990.000') v_20, 
+    to_char(lx.wllc,'fm9999999990.000') v_21,
+    to_char(lx.jhyilc,'fm9999999990.000') v_22, to_char(lx.jherlc,'fm9999999990.000') v_23, 
+    to_char(lx.jhsanlc,'fm9999999990.000') v_24, to_char(lx.jhsilc,'fm9999999990.000') v_25, to_char(lx.jhdwlc,'fm9999999990.000') v_26, 
+    to_char(lx.jhwllc,'fm9999999990.000') v_27,lx.jsxz v_28,nvl(t.dq_m,0) v_29,nvl(t.dq,0) v_30,RemoveSameStr(lx.jsjsdjtj,',') v_31,
+    nvl(t.sd_m,0) v_32,nvl(t.sd,0) v_33,t.kgny v_34,t.wgny v_35,t.bzdw v_36,nvl(t.tzgs,0) v_37,nvl(t.dfzc,0) v_38,nvl(t.yhdk,0) v_39,t.gkpfwh v_40,t.pfsj v_41 
+    from kxgsdgz t 
+    Left join (select xmbm xmbh,lsjl,xmklx,tsdq,lsxmbm,xzqh,xzqhdm2 from lxgsdgz) t1 on t.xmbm=t1.xmbh
+    left join (
+    select xmid,sum(jhlc) zjhlc,sum(sbzj) sbzj,sum(bzcs) bzcs,
+              replace(WMSYS.WM_CONCAT(distinct(lxlmkd)),',',',') lxlmkd,replace(WMSYS.WM_CONCAT(distinct(jsxz)),',',',') jsxz,
+              replace(WMSYS.WM_CONCAT(distinct(gydw)),',',',') gydw,replace(WMSYS.WM_CONCAT(distinct(xzqh)),',',',') xzqh,
+              replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+              replace(WMSYS.WM_CONCAT(jsjsdj),'、',',') jsjsdjtj,
+              replace(WMSYS.WM_CONCAT(xjsdj),'、',',') xjsdjtj,
+              replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,
+             replace(max(qdzh), ',.', ',0.') qdzh,replace(max(zdzh), ',.', ',0.') zdzh,replace(max(ghqdzh), ',.', ',0.') ghqdzh,replace(max(ghzdzh), ',.', ',0.') ghzdzh,
+             replace(max(gxqdzh), ',.', ',0.') gxqdzh,replace(max(gxzdzh), ',.', ',0.') gxzdzh,
+             max(ghlxbm) ghlxbm,max(ylxbm) ylxbm,max(ghlxmc) ghlxmc,max(ylxmc) ylxmc,max(gxlxbm) gxlxbm,max(qdmc) qdmc,max(zdmc) zdmc,
+             sum(nvl(jhyilc,0)) jhyilc,sum(nvl(yilc,0)) yilc,sum(nvl(jherlc,0)) jherlc,sum(nvl(erlc,0)) erlc,
+             sum(nvl(jhsanlc,0)) jhsanlc,sum(nvl(sanlc,0)) sanlc,sum(nvl(jhsilc,0)) jhsilc,sum(nvl(silc,0)) silc,
+             sum(nvl(jhdwlc,0)) jhdwlc,sum(nvl(dwlc,0)) dwlc,sum(nvl(jhwllc,0)) jhwllc,sum(nvl(wllc,0)) wllc,sum(nvl(lc,0)) lc
+              from (select  xmid,jsxz,sbzj,lxlmkd,gydw,xzqh,bzcs,
+              (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) 
+              else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+              end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
+              else ''
+              end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,yilc,erlc,sanlc,silc,dwlc,wllc,lc,
+               WMSYS.WM_CONCAT(ghlxmc)over( PARTITION BY xmid ORDER BY id,ghlxmc) ghlxmc,
+               WMSYS.WM_CONCAT(lxmc)over( PARTITION BY xmid ORDER BY id,lxmc) ylxmc,
+               WMSYS.WM_CONCAT(ghlxbm)over( PARTITION BY xmid ORDER BY id,ghlxbm) ghlxbm,
+               WMSYS.WM_CONCAT(lxbm)over( PARTITION BY xmid ORDER BY id,lxbm) ylxbm,
+               WMSYS.WM_CONCAT((case when qdzh like '.%' then 0||qdzh when qdzh like '%,.%' then replace(qdzh, ',.', ',0.') else qdzh end ))over( PARTITION BY xmid ORDER BY id,qdzh) qdzh,
+               WMSYS.WM_CONCAT((case when zdzh like '.%' then 0||zdzh when zdzh like '%,.%' then replace(zdzh, ',.', ',0.') else zdzh end ))over( PARTITION BY xmid ORDER BY id,zdzh) zdzh,
+               WMSYS.WM_CONCAT((case when ghqdzh like '.%' then 0||ghqdzh when ghqdzh like '%,.%' then replace(ghqdzh, ',.', ',0.') else ghqdzh end ))over( PARTITION BY xmid ORDER BY id,ghqdzh) ghqdzh,
+               WMSYS.WM_CONCAT((case when ghzdzh like '.%' then 0||ghzdzh when ghzdzh like '%,.%' then replace(ghzdzh, ',.', ',0.') else ghzdzh end ))over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh,
+               WMSYS.WM_CONCAT(gxlxbm)over( PARTITION BY xmid ORDER BY id,gxlxbm) gxlxbm,
+               WMSYS.WM_CONCAT((case when gxqdzh like '.%' then 0||gxqdzh when gxqdzh like '%,.%' then replace(gxqdzh, ',.', ',0.') else gxqdzh end ))over( PARTITION BY xmid ORDER BY id,gxqdzh) gxqdzh,
+               WMSYS.WM_CONCAT((case when gxzdzh like '.%' then 0||gxzdzh when gxzdzh like '%,.%' then replace(gxzdzh, ',.', ',0.') else gxzdzh end ))over( PARTITION BY xmid ORDER BY id,gxzdzh) gxzdzh,
+               WMSYS.WM_CONCAT(qdmc)over( PARTITION BY xmid ORDER BY id,qdmc) qdmc,
+               WMSYS.WM_CONCAT(zdmc)over( PARTITION BY xmid ORDER BY id,zdmc) zdmc
+              from LXSH_LX lx where jdbs='1') group by xmid
+    ) lx on t.xmbm=lx.xmid
+    where 1=1
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
@@ -1793,7 +2222,6 @@
 		<if test="xmlx1 !='' and xmlx1 != null ">
 			${xmlx1}
 		</if>
-		<if test="jsjsdj!='' and jsjsdj!= null ">and ${jsjsdj}</if>
 		<if test="ghlxmc !='' and ghlxmc != null ">
 			and lx.ghlxmc like '%'||#{ghlxmc}||'%'
 		</if>
@@ -1806,7 +2234,6 @@
 		<if test="sbzt!='' and sbzt!= null ">
 			and to_char(t.sbzt) like '%'||#{sbzt}||'%' 
 		</if>
-		order by t.xmbm desc,lx.sffirst desc
 	</select>
 	<select id="selectWqjlbz" resultType="wqbzbz">
 		select * from xtgl_wqjlbz 
@@ -1833,7 +2260,7 @@
 		update ${bz} set sqzt='0',thyy=#{thyy} where xmbm in (${xmbm})
 	</update>
 	<update id="thlxshsbyhshyhc" parameterType="lxsh">
-		update ${bz} set sqzt='9',thyyyhc=#{thyyyhc} where xmbm in (${xmbm})
+		update ${bz} set sqzt='9',thyyyhc=#{thyyyhc} where xmbm in (${xmbm}) 
 	</update>
 	<select id="sfkythlxwsh" parameterType="lxsh" resultType="lxsh">
 		select * from ${bzcs} where xmbm in (${xmbm}) 

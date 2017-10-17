@@ -475,12 +475,9 @@
 				{field:'bzxdnf',title:'下达年份',width:70,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
 				{field:'bzpfztz',title:'总投资',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
 				{field:'bzcgs',title:'车购税',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
-				{field:'bzgz',title:'国债',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
-				{field:'bzsz',title:'省债',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
-				{field:'bzzq',title:'债券',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
-				{field:'bzdk',title:'厅贷款',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
-				{field:'bzjl',title:'奖励',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
+				{field:'bzdk',title:'厅统筹',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
 				{field:'bzqt',title:'其他',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
+				{field:'bzdfzc',title:'地方自筹',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
 				//{field:'bztbsj',title:'填报时间',width:70,align:'center',editor:{type:'datebox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
 				{field:'tbdw',title:'填报单位',width:100,align:'center',
 					formatter: function(value,row,index){
@@ -583,7 +580,7 @@
         						<td style="display: none" ><select id="xmnf" style="width: 114px;"></select></td>
         						<td align="right">技术等级：</td>
         						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:114px;"></select></td>
-        						<td align="right">行政等级：</td>
+        						<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:114px;" class="easyui-combobox"></select></td>
         					<td align="right">特殊地区：</td>
         						<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:114px;"></select></td> -->
@@ -599,7 +596,7 @@
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:114px;" /></td>
         						</tr>
         					<tr height="29">
-        					<td align="right">行政等级：</td>
+        					<td align="right">原行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:114px;" class="easyui-combobox"></select></td>
         					
         						<!-- <td align="right">原路线编码：</td>
@@ -622,7 +619,7 @@
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:110px;" /></td>
         						</tr>
         					<tr height="29">
-        					<td align="right">是否有补助历史：</td>
+        					<td align="right">补助历史：</td>
         						<td>
         							<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:114px;">
 										<option value="" selected="selected">全部</option>

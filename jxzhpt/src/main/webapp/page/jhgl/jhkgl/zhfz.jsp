@@ -58,13 +58,14 @@
 			zhfzxm(jh,lx);
 		});
 		function searchZhfz(){
-			var jh={jhnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
-			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,xmklx:$("#xmklx").combobox('getValue')};
+			var jh={jhnf:'',sbzt:'',spzt:'',sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:'',lxjsdj:'',lxbm:'',
+					xmklx:$("#xmklx").combobox('getValue'),tsdq:''};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
 			if($('#sbnf').combobox('getText')!=""){
-				jh.jhnf=$('#sbnf').combobox('getValue');
+				jh.jhnf=$('#sbnf').combobox('getValues').join(',');
 			}
 			if($('#ddlSHZT').combo("getValue")!="" && $('#ddlSHZT').combo("getValue")!='全部'){
 				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
@@ -163,12 +164,12 @@ text-decoration:none;
 								<td><select name="tsdq" id="tsdq" style="width:75px;" class="easyui-combobox"></select></td>
 								<td align="right">技术等级：</td>
 								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:55px;" class="easyui-combobox"></select></td>
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="ddlGldj" id="ddlGldj" style="width:104px;" class="easyui-combobox"></select></td>
 								
         					</tr>
         					<tr height="32">
-        						<td align="right">是否有补助历史：</td>
+        						<td align="right">补助历史：</td>
 								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:55px;">
 									<option value="" selected="selected">全部</option>
 									<option value="无">否</option>

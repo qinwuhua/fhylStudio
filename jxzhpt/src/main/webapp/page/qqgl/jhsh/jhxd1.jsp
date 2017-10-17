@@ -131,7 +131,7 @@
 					<table width="98%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0" cellpadding="0">
 						<tr style="height: 30px;font-size: 10px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								总投资
+								总投资：
 							</td>
 							
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
@@ -180,9 +180,38 @@
 								<input id="sfsycgs" name="sfsycgs" type="hidden" />
 							</td>
 						</tr>
+						<tr style="height: 30px;font-size: 10px;">
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">施工图预算：</font></b>
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+								<input id="tz" name="tz" type="text" class="easyui-numberbox" value="0" style="width: 100px;height: 20px;" disabled="disabled"/>万元
+							</td>
 						
-						
-						
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">立项阶段省补：</font></b>
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+								<input id="lxsbzj" name="lxsbzj" type="text" class="easyui-numberbox" value="0" style="width: 100px;height: 20px;" disabled="disabled"/>万元
+							</td>
+						</tr>
+						</tr>
+							<tr style="height: 30px;font-size: 10px;">
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">施工阶段省补：</font></b>
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+								<input id="sgtsbzj" name="sgtsbzj" type="text" class="easyui-numberbox" value="0" style="width: 100px;height: 20px;" disabled="disabled"/>万元
+							</td>	
+						</tr>
+						<tr style="height: 70px;">
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">备注：</font></b>
+							</td>
+					<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<textarea id="bz" name="bz" style="width: 650px;height: 50px;" disabled></textarea>
+					</td>
+				</tr>							
 					</table>
 					<table width="98%" border="0"
 						style="border-style: solid; border-width: 3px 1px 1px 1px; margin-top: 20px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;"

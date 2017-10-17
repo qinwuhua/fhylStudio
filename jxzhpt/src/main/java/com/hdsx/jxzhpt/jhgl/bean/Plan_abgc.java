@@ -281,6 +281,14 @@ public class Plan_abgc {
 	    private String xmlx;
 	    private String thlxbm;
 	    
+	    private String shengbz;	    
+	    
+	public String getShengbz() {
+			return shengbz;
+		}
+		public void setShengbz(String shengbz) {
+			this.shengbz = shengbz;
+		}
 	public String getThlxbm() {
 			return thlxbm;
 		}

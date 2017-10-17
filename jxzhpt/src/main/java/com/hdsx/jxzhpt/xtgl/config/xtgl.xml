@@ -18,10 +18,10 @@
 	select PASSWORD from xtgl_master M WHERE M.truename=#{value}
 	</select>
 	<select id="loginnum" parameterType="hashmap" resultType="hashmap">
-	select TRUENAME, UNIT, NAME, SEX, IDCARD, TEL, PHONE, ROLEID, CZSJ, ID from xtgl_master M WHERE M.truename=#{truename} AND M.PASSWORD=#{password}
+	select TRUENAME, UNIT, NAME, SEX, IDCARD, TEL, PHONE, ROLEID, CZSJ, ID,(select rolename from xtgl_role x where x.roleid=m.roleid) rolename  from xtgl_master M WHERE M.zt='启用' and M.truename=#{truename} AND M.PASSWORD=#{password}
 	</select>
 	<select id="loginCheck" parameterType="hashmap" resultType="hashmap">
-	select TRUENAME, UNIT, NAME, SEX, IDCARD, TEL, PHONE, ROLEID, CZSJ, ID from xtgl_master M WHERE M.truename=#{truename}
+	select TRUENAME, UNIT, NAME, SEX, IDCARD, TEL, PHONE, ROLEID, CZSJ, ID,(select rolename from xtgl_role x where x.roleid=m.roleid) rolename  from xtgl_master M WHERE M.truename=#{truename}
 	</select>
 	<select id="selAllXzqh" parameterType="String" resultType="treenode">
 	    select distinct x.id ,x.name text,'closed' state from xtgl_xzqh x where  x.id = #{yhdw} order by id
@@ -32,7 +32,9 @@
 	<select id="selectYhList" parameterType="hashmap" resultType="master">
 		select * from (
 		select m.*,rownum rn from (
-			select id,truename,name,(select distinct min(name) from xtgl_department where id=t.unit) unit,sex,idcard,tel,phone,(select rolename from xtgl_role where roleid=t.roleid) roleid from xtgl_master t
+			select id,truename,name,(select distinct min(name) from xtgl_department where id=t.unit) unit,sex,idcard,tel,phone,
+			(select rolename from xtgl_role where roleid=t.roleid) roleid,zt
+			 from xtgl_master t
 		where 1=1
 		 <if test="yhm != null and  yhm != ''">
 		and truename like #{yhm}||'%'
@@ -60,12 +62,12 @@
 		select roleid,rolename from xtgl_role order by roleid
 	</select>
 	<insert id="insertYh" parameterType="master">
-		insert into xtgl_master (id,truename,password,tel,phone,unit,name,sex,roleid,czsj,idcard) 
+		insert into xtgl_master (id,truename,password,tel,phone,unit,name,sex,roleid,czsj,idcard,zt) 
 		values (SYS_GUID(),#{truename},#{password}
-		,#{tel},#{phone},#{unit},#{name},#{sex},#{roleid},SYSDATE,#{idcard})
+		,#{tel},#{phone},#{unit},#{name},#{sex},#{roleid},SYSDATE,#{idcard},'启用')
 	</insert>
 	<update id="updatezt" parameterType="hashmap">
-		update master set zt=#{zt} where id=#{id}
+		update xtgl_master set zt=#{zt} where id=#{id}
 	</update>
 	<update id="mimareset" parameterType="hashmap">
 		update xtgl_master set password=#{password} where id=#{id}
@@ -102,7 +104,10 @@
 		where id=#{id}
 	</update>
 	<select id="selectJsList" parameterType="param" resultType="param">
-		select * from xtgl_role
+		select * from xtgl_role where 1=1
+			<if test="name != null and  name != ''">
+			 and rolename like '%'||#{name}||'%' 
+		</if>
 	</select>
 	<insert id="insertJs" parameterType="param">
 		insert into xtgl_role(roleid,rolename,desr) values (#{roleid},#{rolename},#{desr})
@@ -229,43 +234,43 @@
 	  select  distinct x.id , x.name text from xtgl_resource x where  x.parent = #{yhdw} and id is not null and parent is not null order by id
 	</select>
 	<select id="selectJsById" parameterType="param" resultType="param">
-		select roleid,rolename,desr,(select F_LINK_LOB(sourceid) from xtgl_role_resource where  roleid=t.roleid) sourceid from xtgl_role t
+		select roleid,rolename,desr,(select F_LINK_LOB(sourceid) from xtgl_role_resource where  roleid=t.roleid and sourceid not like '010112010208' and sourceid not like '010112010108') sourceid from xtgl_role t
 		where roleid=#{roleid}
 	</select>
 	<update id="updateJs" parameterType="param">
 		update xtgl_role set rolename=#{rolename},desr=#{desr} where roleid=#{id}
 	</update>
 	<select id="selQxByUser" parameterType="param" resultType="param">
-		select sourceid id from xtgl_role_resource t where roleid=#{roleid}
+		select sourceid id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,4) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,4) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,6) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,6) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,8) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,8) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,10) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,10) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,12) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,12) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,14) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,14) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,16) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,16) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,18) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,18) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,20) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,20) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 	</select>
 	<select id="selQxByUser1" parameterType="param" resultType="param">
-		select sourceid id from xtgl_role_resource t where roleid=#{roleid}
+		select sourceid id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,4) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,4) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,6) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,6) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,8) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,8) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,10) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,10) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		
 	</select>
 	
@@ -353,10 +358,14 @@
 		<if test="value != null and  value != ''">
 		and truename like '%'||trim(#{value})||'%'
 		and truename not like '%养护'
+		and truename not like '省局养护处'
+		and truename not like '省局领导'
+		and truename not like '省局财审处'
+		and zt='启用'
 		</if>
 	</select>
 	<select id="createMenu" parameterType="unit" resultType="treenode">
-		select * from (select t.*,t.name text,url attributes from xtgl_resource t where t.id like #{parent}||'%') where id in (${id}) order by id
+		select * from (select t.*,t.name text,url attributes from xtgl_resource t where t.id like #{parent}||'%' ) where id in (${id}) and id not like '010112010208' and id not like '010112010108' order by id
 	</select>
 	<update id="insertxmsx" parameterType="param">
 		update XTGL_XMSS

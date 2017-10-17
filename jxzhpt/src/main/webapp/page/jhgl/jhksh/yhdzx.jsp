@@ -163,7 +163,7 @@
 								<span>&nbsp;特殊地区：</span>
 								<select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;">
 								</select>
-								<span>&nbsp;行政等级：</span>
+								<span>&nbsp;原行政等级：</span>
 								<select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:170px;">
 								</select>
 								<span>&nbsp;技术等级：</span>

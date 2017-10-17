@@ -42,6 +42,7 @@
 				setxzdj('ddlGldj',urlid);
 			}
 			gljjtj=getgljjtj(urlid);
+			$("#gljjtj").val(gljjtj);
 			
 			jsdjdx('ddlPDDJ');
 			tsdqdx('ddlTSDQ');
@@ -64,7 +65,8 @@
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
-			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:jsdj,lxbm:null,gldj:gldj,tsdq:tsdq};
+			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:jsdj,lxbm:null,
+					gldj:gldj,tsdq:tsdq};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
@@ -124,7 +126,8 @@
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
-			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:jsdj,lxbm:null,gldj:gldj,tsdq:tsdq,xmklx:$('#xmklx').combobox('getValue')};
+			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:jsdj,lxbm:null,
+					gldj:gldj,tsdq:tsdq,xmklx:$('#xmklx').combobox('getValue')};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
@@ -186,6 +189,7 @@ text-decoration:none;
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
+        	<input type="text" id="gljjtj" style="display: none"></input>
         		<td align="left" style="padding-left: 10px; padding-top: 5px;">
         			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
@@ -219,9 +223,9 @@ text-decoration:none;
 								<td><select name="ddlTSDQ" id="ddlTSDQ" style="width:70px;" class="easyui-combobox"></select></td>
 								<td align="right">技术等级：</td>
 								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:55px;" class="easyui-combobox"></select></td>
-								<td align="right">行政等级：</td>
+								<td align="right">原行政等级：</td>
 								<td><select name="ddlGldj" id="ddlGldj" style="width:80px;" class="easyui-combobox"></select></td>
-								<td align="right">是否有补助历史：</td>
+								<td align="right">补助历史：</td>
 								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:52px;">
 									<option value="" selected="selected">全部</option>
 									<option value="无">否</option>
@@ -257,6 +261,7 @@ text-decoration:none;
         			隐患里程共【&nbsp;<span id="lblYHLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
         			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			省级补助【&nbsp;<span id="shengBZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
         		</td>
         	</tr>

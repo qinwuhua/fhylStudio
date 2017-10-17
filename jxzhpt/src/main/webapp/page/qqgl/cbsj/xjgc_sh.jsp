@@ -50,6 +50,9 @@
 	}
 
 		$(function(){
+			 if(getQxfromSession('rolename')!="省局综规处"){
+				window.location.href='/jxzhpt/page/qqgl/cbsj/xjgc_sh2.jsp?&id='+getUrlParame('id');
+			}; 
 			if($.cookie("unit2").length!=7){
 				$("img[name='bxs']").attr('style','display:none');
 				title='上报状态';
@@ -109,10 +112,13 @@
 					'lxmc':$("#txtlxmc").val(),
 					'cbsj.shzt':$('#shzt').combo("getValue"),
 					'cbsj.xmklx':$('#xmklx').combo("getValue"),
-					'cbsj.xmbm':xmnf,
+					'cbsj.xmnf':xmnf,
+					'lsjl':$('#lsjl').combobox("getValue"),
 					'ylxbh':$('#gldj').combobox("getValues").join(','),
 					'lsxmnf':lsxmnf,
-					'lsxmlx':lsxmlx};
+					'lsxmlx':lsxmlx,
+					'cbsj.xmbm':$("#xmbm").val()
+					};
 			grid.queryParams=params;
 			loadcbsjTjxx(params);
 			grid.height=$(window).height()-215;
@@ -351,7 +357,7 @@
 				xmnf=xmnf.substring(1,xmnf.length);
 			var lxmc = $("#txtlxmc").val();
 			var ghlxmc=$("#ghlxmc").val();
-			var ghlxbm=$("#ghlxbm").val().combotree('getText');
+			var ghlxbm=$("#ghlxbm").combotree('getText');
 			
 			var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
 			if(lsxmnf=='')
@@ -363,11 +369,12 @@
 			lsxmlx='';
 			if(lsxmlx.substr(0,1)==',')
 			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
-			var param='xmlx=3&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+xmnf+
-			'&ghlxbh='+$('#txtlxbm').combotree('getText');+'&xjsdj='+yjsdj+'&jsjsdj='+jsjsdj+
+			var param='xmlx=3&xzqhdm='+getxzqhdm('xzqh')+'&xmnf='+xmnf+
+			'&ghlxbh='+$('#txtlxbm').combotree('getText')+'&xjsdj='+yjsdj+'&jsjsdj='+jsjsdj+
 			'&tsdq='+tsdq+'&ylxbh='+gldj+'&lxmc='+lxmc+
 			'&ghlxmc='+ghlxmc+'&ghlxbm='+ghlxbm+'&lsjl='+$('#lsjl').combobox("getValue")+'&lsxmnf='+lsxmnf+
-			'&lsxmlx='+lsxmlx+'&sbzt='+sbzt+'&shzt='+$('#shzt').combo("getValue")+'&xmklx='+$('#xmklx').combo("getValue");
+			'&lsxmlx='+lsxmlx+'&sbzt='+sbzt+'&shzt='+$('#shzt').combo("getValue")+'&xmklx='+$('#xmklx').combo("getValue")+
+			'&xmbm='+$("#xmbm").val();
 			
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{tsdq:tsdq},function(){
 				window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
@@ -445,7 +452,7 @@ text-decoration:none;
 										<option value="0">未审核</option>
 										<option value="1">已审核</option>
 									</select></td> -->
-									 <td align="right">行政等级：</td>
+									 <td align="right">原行政等级：</td>
 									<td><select name="gldj" id="gldj" style="width:160px;" class="easyui-combobox"></select></td>
 	        					
 									<td align="right">原路线编码：</td>
@@ -458,7 +465,7 @@ text-decoration:none;
 		        					<td><input type="text" id="ghlxmc" style="width:75px;" /></td>
 		        					</tr>
 								<tr height="28">
-								<td align="right">是否有补助历史：</td>
+								<td align="right">补助历史：</td>
 									<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:160px;">
 										<option value="" selected="selected">全部</option>
 										<option value="是">是</option>
@@ -467,7 +474,7 @@ text-decoration:none;
 									<td align="right">特殊地区：</td>
 									<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:118px;"></select></td>
 								
-									<!-- <td>&nbsp;行政等级：</td>
+									<!-- <td>&nbsp;原行政等级：</td>
 									<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 	        						<td>规划路线编码：</td>
 	        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
@@ -499,6 +506,8 @@ text-decoration:none;
 									<select id='lsxmnf' class="easyui-combobox" style="width: 160px;">
 									</select>
 								</td>
+								<td align="right">项目编码：</td>
+	        					<td><input type="text" id="xmbm" style="width:125px;" /></td>
 							</tr>
 							<tr height="28">
 	                            

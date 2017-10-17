@@ -219,7 +219,7 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 								<thead>
 									<tr>
 										<td width="150px;">项目名称</td>
-										<td width="150px;">行政等级</td>
+										<td width="150px;">原行政等级</td>
 										<td width="150px;">座/项目数</td>
 										<td width="150px;">延米</td>
 										<td width="150px;">处治里程(公里)</td>

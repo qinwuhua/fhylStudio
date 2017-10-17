@@ -15,6 +15,7 @@ import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 @Service
@@ -60,7 +61,7 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 	}
 
 	@Override
-	public List<SjbbMessage> exportExcel_jh(Plan_zhfz jh,Jckzhfz lx) {
+	public List<Excel_list> exportExcel_jh(Plan_zhfz jh,Jckzhfz lx) {
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("jh", jh);
 		params.put("lx", lx);

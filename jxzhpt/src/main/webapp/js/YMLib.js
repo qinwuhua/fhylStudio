@@ -1404,7 +1404,7 @@ function loadUnitadd(id, dwbm) {
 				checkbox : true,
 				multiple:true,
 				async:false,
-				url : '/jxzhpt/gcgl/selAllUnit11.do?yhdw=' + dwbm,
+				url : '/jxzhpt/gcgl/selAllUnit1.do?yhdw=' + dwbm,
 				onLoadSuccess : function (node){
 					//$('#' + id).combotree('setValue', dwbm);
 				}
@@ -1418,7 +1418,7 @@ function loadUnitedit(id, dwbm,dwbm2) {
 				checkbox : true,
 				multiple:true,
 				async:false,
-				url : '/jxzhpt/gcgl/selAllUnit11.do?yhdw=' + dwbm,
+				url : '/jxzhpt/gcgl/selAllUnit1.do?yhdw=' + dwbm,
 				onLoadSuccess : function (node){
 					$('#' + id).combotree('setValues', dwbm2.split(","));
 				},
@@ -1737,7 +1737,7 @@ function gcglxmnf(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -1746,11 +1746,11 @@ function gcglxmnf(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -1764,13 +1764,13 @@ function gcglxmnf(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
@@ -1857,7 +1857,7 @@ function jsdjdx(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -1866,11 +1866,11 @@ function jsdjdx(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -1884,19 +1884,19 @@ function jsdjdx(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 function xzdjdx(id){
@@ -1920,7 +1920,7 @@ function xzdjdx(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -1929,11 +1929,11 @@ function xzdjdx(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -1947,19 +1947,19 @@ function xzdjdx(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	//$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 function getgljjtj(flag){
@@ -2060,7 +2060,7 @@ function setxzdj(id,flag){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -2069,11 +2069,11 @@ function setxzdj(id,flag){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2087,19 +2087,19 @@ function setxzdj(id,flag){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	$('#'+id).combobox("setValues",first);
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 function kjfldx(id){
@@ -2122,7 +2122,7 @@ function kjfldx(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -2131,11 +2131,11 @@ function kjfldx(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2149,19 +2149,19 @@ function kjfldx(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 function tsdqdx(id){
@@ -2192,7 +2192,7 @@ function tsdqdx(id){
 			    multiple:true,
 			    formatter:function(row){
 					var opts = $(this).combobox('options');
-					return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+					return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 				},
 				onSelect:function(record){
 					var opts = $(this).combobox('options');
@@ -2201,11 +2201,11 @@ function tsdqdx(id){
 						var datas = $('#' +id).combobox("getData");
 						$.each(datas,function(index,item){
 							values.push(item.value);
-							$('#id'+item.value).attr('checked', true);
+							$('#'+id+item.value).attr('checked', true);
 						});
 						$('#' +id).combobox("setValues",values);
 					}else{
-						$('#id'+record.value).attr('checked', true);
+						$('#'+id+record.value).attr('checked', true);
 					}
 				},
 				onUnselect:function(record){
@@ -2219,19 +2219,19 @@ function tsdqdx(id){
 						}
 						$.each(datas,function(index,item){
 							if(jQuery.inArray(""+item.value,values)<0){
-								$('#id'+item.value).attr('checked', false);
+								$('#'+id+item.value).attr('checked', false);
 							}
 						});
 						$('#' +id).combobox("setValues",values);
 					}else{
 						$.each(datas,function(index,item){
-							$('#id'+item.value).attr('checked', false);
+							$('#'+id+item.value).attr('checked', false);
 						});
 					}
 				}
 			});
 			$('#'+id).combobox("setText",'全部');
-			//$('#id全部').attr('checked', true);
+			//$('#'+id+'全部').attr('checked', true);
 		}
 		
 	});
@@ -2266,7 +2266,7 @@ function xmnfdx(id){
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2325,7 +2325,7 @@ function xmnfdx1(id){
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2521,7 +2521,7 @@ function setxmnf(id,flag){
 		    multiple:true,
 		    formatter:function(row){
 				var opts = $(this).combobox('options');
-				return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+				return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 			},
 			onSelect:function(record){
 				var opts = $(this).combobox('options');
@@ -2530,11 +2530,11 @@ function setxmnf(id,flag){
 					var datas = $('#' +id).combobox("getData");
 					$.each(datas,function(index,item){
 						values.push(item.value);
-						$('#id'+item.value).attr('checked', true);
+						$('#'+id+item.value).attr('checked', true);
 					});
 					$('#' +id).combobox("setValues",values);
 				}else{
-					$('#id'+record.value).attr('checked', true);
+					$('#'+id+record.value).attr('checked', true);
 				}
 			},
 			onUnselect:function(record){
@@ -2548,13 +2548,13 @@ function setxmnf(id,flag){
 					}
 					$.each(datas,function(index,item){
 						if(jQuery.inArray(""+item.value,values)<0){
-							$('#id'+item.value).attr('checked', false);
+							$('#'+id+item.value).attr('checked', false);
 						}
 					});
 					$('#' +id).combobox("setValues",values);
 				}else{
 					$.each(datas,function(index,item){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					});
 				}
 			}
@@ -2594,7 +2594,7 @@ function xmnfdx1(id){
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2660,7 +2660,7 @@ function bbxmlx(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -2669,11 +2669,11 @@ function bbxmlx(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2687,19 +2687,19 @@ function bbxmlx(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	//$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 
@@ -2725,7 +2725,7 @@ function bbxmlx1(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -2734,11 +2734,11 @@ function bbxmlx1(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2752,19 +2752,19 @@ function bbxmlx1(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	//$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 //报表项目类型
@@ -2787,7 +2787,7 @@ function xmjzzt(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -2796,11 +2796,11 @@ function xmjzzt(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2814,19 +2814,19 @@ function xmjzzt(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	//$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 
@@ -2851,7 +2851,7 @@ function gsdxmlx(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -2860,11 +2860,11 @@ function gsdxmlx(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2878,19 +2878,19 @@ function gsdxmlx(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 
@@ -2916,7 +2916,7 @@ function yhxmlx(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -2925,11 +2925,11 @@ function yhxmlx(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -2943,19 +2943,19 @@ function yhxmlx(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 
@@ -2982,7 +2982,7 @@ function xdzt(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -2991,11 +2991,11 @@ function xdzt(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -3009,19 +3009,19 @@ function xdzt(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 //资金来源，根据类型lx区分
@@ -3054,7 +3054,7 @@ function zjly(id,lx){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -3063,11 +3063,11 @@ function zjly(id,lx){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+item.value).attr('checked', true);
+					$('#'+id+item.value).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#id'+record.value).attr('checked', true);
+				$('#'+id+record.value).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -3081,19 +3081,19 @@ function zjly(id,lx){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+item.value).attr('checked', false);
+						$('#'+id+item.value).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#id'+item.value).attr('checked', false);
+					$('#'+id+item.value).attr('checked', false);
 				});
 			}
 		}
 	});
 	$('#'+id).combobox("setText",'全部');
-	//$('#id全部').attr('checked', true);
+	//$('#'+id+'全部').attr('checked', true);
 	
 }
 
@@ -3176,7 +3176,7 @@ function jhpcdx(id,xmlx){
 			    multiple:true,
 			    formatter:function(row){
 					var opts = $(this).combobox('options');
-					return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+					return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 				},
 				onSelect:function(record){
 					var opts = $(this).combobox('options');
@@ -3185,11 +3185,11 @@ function jhpcdx(id,xmlx){
 						var datas = $('#' +id).combobox("getData");
 						$.each(datas,function(index,item){
 							values.push(item.value);
-							$('#id'+item.value).attr('checked', true);
+							$('#'+id+item.value).attr('checked', true);
 						});
 						$('#' +id).combobox("setValues",values);
 					}else{
-						$('#id'+record.value).attr('checked', true);
+						$('#'+id+record.value).attr('checked', true);
 					}
 				},
 				onUnselect:function(record){
@@ -3203,19 +3203,19 @@ function jhpcdx(id,xmlx){
 						}
 						$.each(datas,function(index,item){
 							if(jQuery.inArray(""+item.value,values)<0){
-								$('#id'+item.value).attr('checked', false);
+								$('#'+id+item.value).attr('checked', false);
 							}
 						});
 						$('#' +id).combobox("setValues",values);
 					}else{
 						$.each(datas,function(index,item){
-							$('#id'+item.value).attr('checked', false);
+							$('#'+id+item.value).attr('checked', false);
 						});
 					}
 				}
 			});
 			//$('#'+id).combobox("setText",'全部');
-			//$('#id全部').attr('checked', true);
+			//$('#'+id+'全部').attr('checked', true);
 		}
 		
 	});
@@ -3237,11 +3237,7 @@ function jhxdwhdx(id,xmlx){
 			//开始
 			var years=[];
 			years.push({text:'全部',value:''});
-			/*for(var i=0;i<=10;i++){
-				if(i==0)
-					first=myDate.getFullYear()-i;
-				years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
-			}*/
+			
 			for ( var i = 0; i < msg.length; i++) {
 				years.push({text:msg[i].text,value:i+1});
 			}
@@ -3253,7 +3249,7 @@ function jhxdwhdx(id,xmlx){
 			    multiple:true,
 			    formatter:function(row){
 					var opts = $(this).combobox('options');
-					return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+					return '<input id="'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 				},
 				onSelect:function(record){
 					var opts = $(this).combobox('options');
@@ -3262,11 +3258,11 @@ function jhxdwhdx(id,xmlx){
 						var datas = $('#' +id).combobox("getData");
 						$.each(datas,function(index,item){
 							values.push(item.value);
-							$('#id'+item.value).attr('checked', true);
+							$('#'+id+item.value).attr('checked', true);
 						});
 						$('#' +id).combobox("setValues",values);
 					}else{
-						$('#id'+record.value).attr('checked', true);
+						$('#'+id+record.value).attr('checked', true);
 					}
 				},
 				onUnselect:function(record){
@@ -3280,19 +3276,19 @@ function jhxdwhdx(id,xmlx){
 						}
 						$.each(datas,function(index,item){
 							if(jQuery.inArray(""+item.value,values)<0){
-								$('#id'+item.value).attr('checked', false);
+								$('#'+id+item.value).attr('checked', false);
 							}
 						});
 						$('#' +id).combobox("setValues",values);
 					}else{
 						$.each(datas,function(index,item){
-							$('#id'+item.value).attr('checked', false);
+							$('#'+id+item.value).attr('checked', false);
 						});
 					}
 				}
 			});
 			//$('#'+id).combobox("setText",'全部');
-			//$('#id全部').attr('checked', true);
+			//$('#'+id+'全部').attr('checked', true);
 		}
 		
 	});
@@ -3420,6 +3416,74 @@ function getghlxinfo(lxbm,qdzh,zdzh){
 	
 }
 
+function autoCompleteYLXBM(){
+	$("#yx_ylxbh").autocomplete("/jxzhpt/qqgl/queryAutoyxList.do", {
+		multiple : false,
+		minChars :2,
+		multipleSeparator : ' ',
+		mustMatch: true,
+  		cacheLength : 0,
+  		delay : 0,
+  		max : 150,
+  		extraParams : {
+  			    yxylxbh:function() {
+  				var d = $("#yx_ylxbh").val();
+  				return d;
+  			},
+	           xzqhdm:function() {
+	           var d = $.cookie("dist2");
+			   return d;
+		}
+  		},
+  		dataType : 'json',// 返回类型
+  		// 对返回的json对象进行解析函数，函数返回一个数组
+  		parse : function(data) {
+  			var aa = [];
+  			aa = $.map(eval(data), function(row) {
+  					return {
+  						data : row,
+  						value : row.ylxbm.replace(/(\s*$)/g,""),
+  						result : row.ylxbm.replace(/(\s*$)/g,"")
+  					};
+  				});
+  			return aa;
+  		},formatItem : function(row, i, max) {
+  			return row.ylxbm.replace(/(\s*$)/g,"")+"("+row.yqdzh+","+row.yzdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
+  		}
+  	}).result(function(e, item) {
+  		$('#yx_ghlxbm').val(item.xlxbm);//规划路线编码
+  		$('#yx_ghqdzh').val(item.xqdzh);//规划起点桩号
+  		$('#yx_ghzdzh').val(item.xzdzh);//规划止点桩号		
+  		$('#yx_yghqdzh').val(item.xqdzh);//改变前规划起点桩号
+  		$('#yx_lxmc').val(item.lxmc);//原路线名称
+  		$('#yx_ghlxmc').val(item.xlxmc);//规划路线名称
+  		$('#yx_yqdzh').val(item.yqdzh);//改变前原起点桩号
+  		$('#yx_yzdzh').val(item.yzdzh);//改变前原起点桩号
+	
+        //如果起点小于止点则交换起止点位置
+		if(parseFloat(item.yqdzh)<parseFloat(item.yzdzh)){
+			$('#yx_qdzh').val(item.yqdzh);
+			$('#yx_zdzh').val(item.yzdzh);
+			$("#yxspan_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+item.yqdzh);
+			$("#yxspan_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+item.yzdzh);
+		}
+		else{
+			$('#yx_qdzh').val(item.yzdzh);
+			$('#yx_zdzh').val(item.yqdzh);
+			$("#yxspan_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+item.yzdzh);
+			$("#yxspan_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+item.yqdzh);
+		}
+		$('#yx_gpsqdzh').val(item.yqdzh);
+		$('#yx_gpsqdzh').val(item.yzdzh);
+		selectGHTSDQ(item.xlxbm,item.xqdzh,item.xzdzh);
+		cxghqdmc($('#yx_ghlxbm').val(),$("#yx_ghqdzh").val());
+		cxghzdmc($('#yx_ghlxbm').val(),$("#yx_ghzdzh").val());
+		
+	});
+}
+
+
+
 //获取规划信息
 function autoCompleteGHLXBM(){
 	var url = "/jxzhpt/qqgl/queryAutoghList.do";
@@ -3451,10 +3515,10 @@ function autoCompleteGHLXBM(){
   		},
   		formatItem : function(row, i, max) {
   			return row.xlxbm.replace(/(\s*$)/g,"")+"("+row.xqdzh+","+row.xzdzh+")"+"<br/>"+row.xlxmc.replace(/(\s*$)/g,"");
+  		alert(row.xlxbm);
   		}
   	}).result(
-		function(e, item) {
-			
+		function(e, item) {	
 			$('#ghqdzh').val(item.xqdzh);
 			$('#ghzdzh').val(item.xzdzh);
 			$('#ghlxmc').val(item.xlxmc);
@@ -3485,9 +3549,7 @@ function autoCompleteGHLXBM(){
 			$('#gpsqdzh').val(item.xqdzh);
 			$('#gpszdzh').val(item.xzdzh);
 			$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+item.xqdzh);
-			$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+item.xzdzh);
-		
-			
+			$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+item.xzdzh);			
 	});
 }
 
@@ -3512,19 +3574,111 @@ function selectTSDQ1(lxbm,qdzh,zdzh){
 	});	
 }
 
+function queryGhByY(){	
+	var ghqdzh = $('#yx_yghqdzh').val(); //新规划的止点桩号	
+	var yqdzh = $('#yx_yqdzh').val(); //原起点桩号
+	var qdzh = $('#yx_qdzh').val();      //用户输入的原起点桩号	
+	var yzdzh = $('#yx_yzdzh').val();   //原止点桩号
+	var zdzh = $('#yx_zdzh').val();     //用户输入的止点桩号
+/*	if(yqdzh < yzdzh){
+		if(parseFloat(qdzh) < parseFloat(yqdzh) && parseFloat(qdzh) > parseFloat(yzdzh)){		
+			alert("输入的起点桩号必须在"+ parseFloat(yqdzh) + "~" + parseFloat(yzdzh) + "之间！")
+			$("#yx_qdzh").val(yqdzh)
+		}else{
+			var qd=accAdd(accSub(parseFloat(qdzh),parseFloat(yqdzh)),parseFloat(ghqdzh));
+			$("#yx_ghqdzh").val(qd);
+		}
+		if(parseFloat(zdzh) > parseFloat(yzdzh) && parseFloat(zdzh) < parseFloat(yqdzh)){
+			alert("输入的止点桩号必须在"+ parseFloat(yqdzh) + "~" + parseFloat(yzdzh) + "之间！")
+			$("#yx_zdzh").val(yzdzh)
+		}else{
+			var zd=accSub(accAdd(parseFloat(qd),parseFloat(zdzh)),parseFloat(qdzh));
+			$("#yx_ghzdzh").val(zd);
+		}
+	}*/	
+	if(parseFloat(yqdzh)<parseFloat(yzdzh)){
+		var qd=accAdd(accSub(parseFloat(qdzh),parseFloat(yqdzh)),parseFloat(ghqdzh));
+		var zd=accSub(accAdd(parseFloat(qd),parseFloat(zdzh)),parseFloat(qdzh));
+	}
+	if(parseFloat(yqdzh)>parseFloat(yzdzh)){
+		//ghqdzh + ( yzdzh - zdzh );
+		var qd=accAdd(accSub(parseFloat(yzdzh),parseFloat(zdzh)),parseFloat(ghqdzh));
+		//ghqdzh +  (yzdzh - qdzh);
+		var zd= accAdd(accSub(parseFloat(yzdzh),parseFloat(qdzh)),parseFloat(ghqdzh));
+	}
+	$("#yx_ghqdzh").val(qd);
+	$("#yx_ghzdzh").val(zd);
+	
+	//查询起点名称
+	cxghqdmc($('#yx_ghlxbm').val(),$("#yx_ghqdzh").val());
+	//查询止点名称
+	cxghzdmc($('#yx_ghlxbm').val(),$("#yx_ghzdzh").val());	
+	selectGHTSDQ($('#yx_ghlxbm').val(),$("#yx_ghqdzh").val(),$("#yx_ghzdzh").val());
+	}
+
+function cxghqdmc(lxbm,qdzh){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/cxqdmc.do',
+        data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+qdzh,
+		dataType:'json',
+		success:function(msg){
+			$('#yx_qdmc').val(msg.qdmc);
+		}
+	});
+}
+
+function cxghzdmc(lxbm,zdzh){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/cxzdmc.do',
+        data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+zdzh,
+		dataType:'json',
+		success:function(msg){
+			$('#yx_zdmc').val(msg.zdmc);
+		}
+	});
+}
+
+function selectGHTSDQ(lxbm,qdzh,zdzh){
+	$("#yx_tsdq").text("");
+	var data="lxbm="+lxbm+"&qdzh="+qdzh+"&zdzh="+zdzh;
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/xmjck/selectTSDQ.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(msg.length>0){
+				var tsdqstr="";
+				for(var i=0;i<msg.length;i++){
+					tsdqstr=tsdqstr+msg[i]+"、";
+				}
+				tsdqstr=tsdqstr.substr(0,tsdqstr.length-1);
+				$("#yx_tsdq").text(tsdqstr);
+			}
+		}
+	});	
+}
+
+
+
+
 function querymcbygh(){
 	getylxinfo($('#ghlxbm').val(),$('#ghqdzh').val(),$('#ghzdzh').val());
 }
 
 function getylxinfo(lxbm,qdzh,zdzh){
+	
 	$("#gxlxbm").val('');$("#gxqdzh").val('');$("#gxzdzh").val('');
-	queryJsdjAndLc1(lxbm,qdzh,zdzh);
-	selectTSDQ1(lxbm,qdzh,zdzh);
-	cxqdmc1(lxbm,qdzh);
-	cxzdmc1(lxbm,zdzh);
+	queryJsdjAndLc1(lxbm,qdzh,zdzh);  //查询起止点桩号间的技术等级和里程
+	selectTSDQ1(lxbm,qdzh,zdzh);      //查询特殊地区
+	cxqdmc1(lxbm,qdzh);               //根据路线编码和起点桩号查询起点名称
+	cxzdmc1(lxbm,zdzh);               //根据路线编码和起点桩号查询止点名称
+	
 	$('#lc').val(accSub(parseFloat(zdzh),parseFloat(qdzh)));
 	$('#lc').html(accSub(parseFloat(zdzh),parseFloat(qdzh)));
-	getgxlxinfo(lxbm,qdzh,zdzh);
+	getgxlxinfo(lxbm,qdzh,zdzh);      //根据路线编码、起点桩号和止点桩号获取共线信息
 	$.ajax({
 		data:'xmsq.ylxbm='+lxbm+"&xmsq.qdzh="+qdzh+"&xmsq.zdzh="+zdzh+"&xmsq.xzqh="+$.cookie("dist2"),
 		type:'post',

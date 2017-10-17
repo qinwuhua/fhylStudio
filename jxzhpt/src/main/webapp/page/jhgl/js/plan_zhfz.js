@@ -3,7 +3,8 @@ var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
 function querySumZhfz(jh,lx){
 	var param={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,'jh.sfylsjl':jh.sfylsjl,
-			"lx.gydwlx":lx.gydwlx,"lx.lxbm":lx.lxbm,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'jh.jh_sbthcd':jh.jh_sbthcd,"lx.xmklx":lx.xmklx};
+			"lx.gydwlx":lx.gydwlx,"lx.lxbm":lx.lxbm,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'jh.jh_sbthcd':jh.jh_sbthcd,"lx.xmklx":lx.xmklx,
+			"lx.tsdq":lx.tsdq,"lx.lxjsdj":lx.lxjsdj};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/querySumZhfz.do',
@@ -69,7 +70,8 @@ function openEditWindow(id){
 }
 function zhfzxm(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,'jh.sfylsjl':jh.sfylsjl,
-			"lx.gydwlx":lx.gydwlx,"lx.lxbm":lx.lxbm,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'jh.jh_sbthcd':jh.jh_sbthcd,"lx.xmklx":lx.xmklx};
+			"lx.gydwlx":lx.gydwlx,"lx.lxbm":lx.lxbm,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'jh.jh_sbthcd':jh.jh_sbthcd,"lx.xmklx":lx.xmklx,
+			"lx.tsdq":lx.tsdq,"lx.lxjsdj":lx.lxjsdj};
 	
 	var grid={id:'grid',url:'../../../jhgl/queryZhfzList.do',pagination:true,rownumbers:false,
 		pageNumber:1,pageSize:10,height:$(window).height()-200,width:$('#searchField').width(),queryParams:params,
@@ -158,7 +160,11 @@ function zhfzxm(jh,lx){
 					return row.jckzhfz.yhlc;
 				}
 	    	},
-	        {field:'pfztz',title:'批复总投资',width:80,align:'center'}
+	        {field:'pfztz',title:'批复总投资',width:80,align:'center'},
+	        {field:'ylxbm',title:'原路线编码',width:140,align:'center'},
+	        {field:'yqdzh',title:'原起点桩号',width:140,align:'center'},
+	        {field:'yzdzh',title:'原止点桩号',width:140,align:'center'},
+	  	    {field:'ylxmc',title:'原路线名称',width:140,align:'center'}
 	    ]],
 	    onClickRow:function(rowIndex,rowDate){
 			if(oldIndex!=-1){
@@ -246,7 +252,11 @@ function zhfzxm_sb(jh,lx){
 					return row.jckzhfz.yhlc;
 				}
 	    	},
-	        {field:'pfztz',title:'批复总投资',width:80,align:'center'}
+	        {field:'pfztz',title:'批复总投资',width:80,align:'center'},
+	        {field:'ylxbm',title:'原路线编码',width:140,align:'center'},
+	        {field:'yqdzh',title:'原起点桩号',width:140,align:'center'},
+	        {field:'yzdzh',title:'原止点桩号',width:140,align:'center'},
+	  	    {field:'ylxmc',title:'原路线名称',width:140,align:'center'}
 	    ]],
 	    onClickRow:function(rowIndex,rowDate){
 			if(oldIndex!=-1){
@@ -334,7 +344,11 @@ function zhfzxm_sh(jh,lx){
 					return row.jckzhfz.yhlc;
 				}
 	    	},
-	        {field:'pfztz',title:'批复总投资',width:80,align:'center'}
+	        {field:'pfztz',title:'批复总投资',width:80,align:'center'},
+	        {field:'ylxbm',title:'原路线编码',width:140,align:'center'},
+	        {field:'yqdzh',title:'原起点桩号',width:140,align:'center'},
+	        {field:'yzdzh',title:'原止点桩号',width:140,align:'center'},
+	  	    {field:'ylxmc',title:'原路线名称',width:140,align:'center'}
 	    ]],
 	    onClickRow:function(rowIndex,rowDate){
 			if(oldIndex!=-1){
@@ -419,7 +433,11 @@ function zhfzxm_zjxd(jh,lx){
 					return row.jckzhfz.yhlc;
 				}
 	    	},
-	        {field:'pfztz',title:'批复总投资',width:80,align:'center'}
+	        {field:'pfztz',title:'批复总投资',width:80,align:'center'},
+	        {field:'ylxbm',title:'原路线编码',width:140,align:'center'},
+	        {field:'yqdzh',title:'原起点桩号',width:140,align:'center'},
+	        {field:'yzdzh',title:'原止点桩号',width:140,align:'center'},
+	  	    {field:'ylxmc',title:'原路线名称',width:140,align:'center'}
 	    ]],
 	    onClickRow:function(rowIndex,rowDate){
 			if(oldIndex!=-1){

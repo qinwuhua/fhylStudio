@@ -3653,4 +3653,71 @@
 	group by xzqh,xdnf order by xzqh,v_1
 	</select>
 	
+	<delete id="deletesjss" parameterType="elist">
+	
+	delete from sjssbb where gydw like '%'||#{gydw}||'%' and nf=#{nf} and yf=#{yf}
+	</delete>
+	
+	
+	<insert id="insertOrUpdatesjss" parameterType="elist">
+		insert into sjssbb
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	    	<if test="gydw != null and gydw != ''" >gydw,</if>
+	    	<if test="nf != null and nf != ''" >nf,</if>
+	    	<if test="yf != null and yf != ''" >yf,</if>
+	    	<if test="v_0 != null and v_0 != ''" >v_0,</if>
+	    	<if test="v_1 != null and v_1 != ''" >v_1,</if>
+	    	<if test="v_2 != null and v_2 != ''" >v_2,</if>
+	    	<if test="v_3 != null and v_3 != ''" >v_3,</if>
+	    	<if test="v_4 != null and v_4 != ''" >v_4,</if>
+	    	<if test="v_5 != null and v_5 != ''" >v_5,</if>
+	    	<if test="v_6 != null and v_6 != ''" >v_6,</if>
+	    	<if test="v_7 != null and v_7 != ''" >v_7,</if>
+	    	<if test="v_8 != null and v_8 != ''" >v_8,</if>
+	    	<if test="v_9 != null and v_9 != ''" >v_9,</if>
+	    	<if test="v_10 != null and v_10 != ''" >v_10,</if>
+	    	<if test="v_11 != null and v_11 != ''" >v_11,</if>
+	    	<if test="v_12 != null and v_12 != ''" >v_12,</if>
+	    	<if test="v_13 != null and v_13 != ''" >v_13,</if>
+	    	
+	  	</trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	    	<if test="gydw != null and gydw != ''" >#{gydw},</if>
+	    	<if test="nf != null and nf != ''" >#{nf},</if>
+	    	<if test="yf != null and yf != ''" >#{yf},</if>
+	    	<if test="v_0 != null and v_0 != ''" >#{v_0},</if>
+	    	<if test="v_1 != null and v_1 != ''" >#{v_1},</if>
+	    	<if test="v_2 != null and v_2 != ''" >#{v_2},</if>
+	    	<if test="v_3 != null and v_3 != ''" >#{v_3},</if>
+	    	<if test="v_4 != null and v_4 != ''" >#{v_4},</if>
+	    	<if test="v_5 != null and v_5 != ''" >#{v_5},</if>
+	    	<if test="v_6 != null and v_6 != ''" >#{v_6},</if>
+	    	<if test="v_7 != null and v_7 != ''" >#{v_7},</if>
+	    	<if test="v_8 != null and v_8 != ''" >#{v_8},</if>
+	    	<if test="v_9 != null and v_9 != ''" >#{v_9},</if>
+	    	<if test="v_10 != null and v_10 != ''" >#{v_10},</if>
+	    	<if test="v_11 != null and v_11 != ''" >#{v_11},</if>
+	    	<if test="v_12 != null and v_12 != ''" >#{v_12},</if>
+	    	<if test="v_13 != null and v_13 != ''" >#{v_13},</if>
+		</trim>
+	</insert>
+	
+	<select id="getsjssjzhzbnew" parameterType="elist" resultType="elist">
+		select 
+		v_4,min(v_0) v_0,min(v_1) v_1,min(v_2) v_2,min(v_3) v_3,
+		sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,
+		sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,sum(nvl(v_10,0)) v_10,
+		sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13
+		from SJSSBB where 1=1
+		<if test="gydw != null"> ${gydw}</if>
+		<if test="nf != null"> and nf = #{nf}</if>
+		<if test="yf != null"> ${yf}</if>
+		group by v_4 order by to_number(v_4)
+	</select>
+	
+	<select id="getinsertorupdate" parameterType="elist" resultType="elist">
+		select * from SJSSBB where 1=1 and gydw like '%'||#{gydw}||'%'
+		and nf=#{nf} and yf=#{yf}
+		order by to_number(v_4)
+	</select>
 </mapper>

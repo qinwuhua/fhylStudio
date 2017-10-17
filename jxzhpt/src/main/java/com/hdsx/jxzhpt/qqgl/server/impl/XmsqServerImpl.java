@@ -261,6 +261,10 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		return queryList("queryShExport",xmsq);
 	}
 	@Override
+	public List<Excel_list> queryZhcjExport(Xmsq xmsq) {
+		return queryList("queryZhcjExport",xmsq);
+	}
+	@Override
 	public boolean insertLx(List<Lx> lxlist) {
 		return insertBatch("insertLx", lxlist)==lxlist.size();
 	}
@@ -539,7 +543,8 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 			return l.get(0);
 			else
 				return null;
-	}
+	}	
+	
 	@Override
 	public Lx getylxlminfo(Xmsq xmsq) {
 		List<Lx> l=queryList("getylxlminfo", xmsq);
@@ -847,5 +852,9 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		params1.put("level", level);
 		params1.put("xzqhdm", xzqhdm);
 		return queryList("queryLxFromLxshlxByLevel", params1);
+	}
+	@Override
+	public List<Lx> queryAutoyxList(Xmsq xmsq) {
+		return queryList("queryAutoyxList",xmsq);
 	}
 }
