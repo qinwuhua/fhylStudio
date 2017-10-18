@@ -3075,4 +3075,63 @@ function cbjsrollback(){
 	}
 	YMLib.UI.createWindow('lxxx','退回项目','cbsj_th.jsp','lxxx',400,200);	
 }
+//综规处立项审核退回未审核
+function tuihshlxsh(id){
+	var rows=$('#'+id).datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要退回的项目！");
+		return;
+	}
+	var xmbm=rows[0].xmbm;
+	var xmlx=xmbm.substr(10,1);
+	var xmlx1='';
+	for(var i=0;i<rows.length;i++){
+			if(rows[i].yhcsh=='1'){
+				alert(rows[i].xmmc+'养护处已审核，不能退回未审核');
+				return;
+			}
+	}
 
+	if(xmlx==1)
+		xmlx1='sjgz';
+	if(xmlx==2)
+		xmlx1='lmgz';
+	if(xmlx==3)
+		xmlx1='xj';
+	if(xmlx==4)
+		xmlx1='yhdzx';
+	if(xmlx==5)
+		xmlx1='sh';
+	for(var i=1;i<rows.length;i++){
+		xmbm+=","+rows[i].xmbm;
+	}
+  	
+	$.ajax({
+		 type : "POST",
+		 url : "/jxzhpt/qqgl/thlxshsbyhc.do",
+		 dataType : 'json',
+		 data : 'lxsh.xmbm=' +xmbm+"&lxsh.thyyyhc="+$("#shyj2").val()+"&lxsh.xmlx="+xmlx+"&lxsh.sbzt=0"+"&lxsh.sbthcd=9",
+		 success : function(msg){
+			 if(msg){
+				 alert('退回成功！');
+				 //parent.$("#datagrid").datagrid('reload');
+				 //parent.showkxxTjxx(xmlx1);
+				 if(xmlx==1)
+					 showAllsjsh();
+				 if(xmlx==2)
+					showAlllmsh();
+				 if(xmlx==3)
+					 showAllxjsh();
+				 if(xmlx==4)
+					 queryYhdzx();
+				 if(xmlx==5)
+					 queryShxm();
+			 }else{
+				 YMLib.Tools.Show('退回失败！',3000);
+			 }
+		 },
+		 error : function(){
+			 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+		 }
+	});
+}

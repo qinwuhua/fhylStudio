@@ -2260,7 +2260,7 @@ select rownum v_0,t.xmbm v_1,t.xmmc v_2,t1.xzqh v_3,
 		update ${bz} set sqzt='0',thyy=#{thyy} where xmbm in (${xmbm})
 	</update>
 	<update id="thlxshsbyhshyhc" parameterType="lxsh">
-		update ${bz} set sqzt='9',thyyyhc=#{thyyyhc} where xmbm in (${xmbm})
+		update ${bz} set sqzt='9',thyyyhc=#{thyyyhc} where xmbm in (${xmbm}) 
 	</update>
 	<select id="sfkythlxwsh" parameterType="lxsh" resultType="lxsh">
 		select * from ${bzcs} where xmbm in (${xmbm}) 

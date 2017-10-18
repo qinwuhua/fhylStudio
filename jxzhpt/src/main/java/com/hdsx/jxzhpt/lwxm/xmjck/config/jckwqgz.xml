@@ -195,13 +195,15 @@
  </update>
  
  <update id="xgJckwqgzShzt" parameterType="hashmap" >
- 	update xmk_wqgz set shzt='已审核',shsj=sysdate,shbm=#{shbm} where id=#{id}
+ 	update xmk_wqgz set zgshzt='已审核',shsj=sysdate,shbm=#{shbm} where id=#{id}
  </update>
 
   <update id="xgJckWqgzTH" parameterType="java.util.List" >
  	update xmk_wqgz set sbthcd=(sbthcd+2) where id =#{String}
  </update>
- 
+ <update id="xgJckWqgzTHxj" parameterType="java.util.List" >
+ 	update xmk_wqgz set shzt='未审核' where id =#{String}
+ </update>
   <select id="selectGpsroad"  parameterType="hashmap" resultType="jckwqgz">
  	select roadbm qlbh,F002 qlmc,roadpos qlzxzh,gydw,<!-- DISTNAME xzqhmc -->
  	(select name from jxzhpt.xtgl_xzqh where id =substr(roadcode,length(roadcode)-5,6)) xzqhmc,
@@ -317,7 +319,7 @@
  
   <select id="selectJckShwqgz" parameterType="jckwqgz" resultType="jckwqgz">
  	select * from (
- 		select rownum num ,t.* from xmk_wqgz t where sbthcd=7 and SFYLRBWQK='是'
+ 		select rownum num ,t.* from xmk_wqgz t where sbthcd=7 and SFYLRBWQK='是' and shzt='已审核'
 		and sbthcd>=#{sbthcd} and (sfwg!='是' or sfwg is null)
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -341,7 +343,7 @@
  			and xmtype like '%'||(#{xmtype})||'%'
  		</if>
  		<if test="shzt!='' and shzt!= null ">
- 			and shzt like '%'||(#{shzt})||'%'
+ 			and zgshzt like '%'||(#{shzt})||'%'
  		</if>
  		<if test="jsdj!='' and jsdj!= null ">
  			${jsdj}
@@ -371,7 +373,7 @@
  			order by shzt desc
  </select>
   <select id="selectWqgzShCount" parameterType="jckwqgz" resultType="int">
- 		select count(*) from xmk_wqgz t where sbthcd=7 and SFYLRBWQK='是' and sbthcd>=#{sbthcd}  and (sfwg!='是' or sfwg is null)
+ 		select count(*) from xmk_wqgz t where sbthcd=7 and SFYLRBWQK='是' and sbthcd>=#{sbthcd}  and (sfwg!='是' or sfwg is null)  and shzt='已审核'
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -394,7 +396,7 @@
  			and xmtype like '%'||(#{xmtype})||'%'
  		</if>
  		<if test="shzt!='' and shzt!= null ">
- 			and shzt like '%'||(#{shzt})||'%'
+ 			and zgshzt like '%'||(#{shzt})||'%'
  		</if>
  		<if test="jsdj!='' and jsdj!= null ">
  			${jsdj}

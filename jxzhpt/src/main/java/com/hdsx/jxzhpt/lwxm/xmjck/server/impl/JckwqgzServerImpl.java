@@ -171,7 +171,16 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 		if(updateBatch("xgJckWqgzTH", list)>0) return true;
 		else return false;
 	}
-
+	@Override
+	public boolean xgJckWqgzTHxj(String delstr) {
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		if(updateBatch("xgJckWqgzTHxj", list)>0) return true;
+		else return false;
+	}
 	@Override
 	public List<Excel_list> exportExcel_wqgz_sh(Jckwqgz wqgz) {
 		return this.queryList("exportExcel_wqgz_sh",wqgz);

@@ -19,23 +19,28 @@
 <script type="text/javascript">
 $(function(){
 	var feature=parent.YMLib.Var.feature;
+	console.log(feature);
+	var feature=parent.YMLib.Var.feature;
 	var html = "";
-	for (var o in feature.attributes) {
+	var lxdm,zxzh;
+	for (var o in feature.getProperties()) {
 	    //此处可过滤需要显示的属性字段，并且翻译字段名称等
-	    if(o=="ROADCODE"){
-	    	html+="<tr><td>路线编码：</td><td>"+feature.attributes[o]+"</td></tr>";
+	    if(o=="LXBM"){
+	    	lxdm = feature.getProperties()[o];
+	    	html+="<tr><td>路线编码：</td><td>"+feature.getProperties()[o]+"</td></tr>";
 	    }
-	    if(o=="ROADNAME"){
-	    	html+="<tr><td>路线名称：</td><td>"+feature.attributes[o]+"</td></tr>";
+	    if(o=="LXMC"){
+	    	html+="<tr><td>路线名称：</td><td>"+feature.getProperties()[o]+"</td></tr>";
 	    }
-	    if(o=="ROADBM"){
-	    	html+="<tr><td>桥梁编码：</td><td>"+feature.attributes[o]+"</td></tr>";
+	    if(o=="QLDM"){
+	    	html+="<tr><td>桥梁编码：</td><td>"+feature.getProperties()[o]+"</td></tr>";
 	    }
-	    if(o=="F002"){
-	    	html+="<tr><td>桥梁名称：</td><td>"+feature.attributes[o]+"</td></tr>";
+	    if(o=="QLMC"){
+	    	html+="<tr><td>桥梁名称：</td><td>"+feature.getProperties()[o]+"</td></tr>";
 	    }
-	    if(o=="ROADPOS"){
-	    	html+="<tr><td>中心桩号：</td><td>"+feature.attributes[o]+"</td></tr>";
+	    if(o=="QLZXZH"){
+	    	zxzh=parseFloat(feature.getProperties()[o]);
+	    	html+="<tr><td>中心桩号：</td><td>"+zxzh+"</td></tr>";
 	    }
 	}
 	$("#lxjcsj").html(html);
@@ -46,7 +51,7 @@ $(function(){
 		loadMsg : '正在加载请稍候...',
 		url:'../../xtgl/selectExistQlProgramList.do',
 		queryParams : {
-			'param.sourceid' : parent.YMLib.Var.bm[0].ROADBM
+			'param.sourceid' : lxdm
 		},
 		striped : true,
 		singleSelect : false,
@@ -83,7 +88,7 @@ $(function(){
 	});
 });
 function onclickXx(id){
-	url="/jxzhpt/page/jhgl/jhkxx/wqgz.jsp";
+	url="/jxyhgc/page/jhgl/jhkxx/wqgz.jsp";
 	parent.YMLib.Var.jhbm=id;
 	parent.YMLib.Var.bz="xx";
 	parent.YMLib.UI.createWindow('xmxx_xx','项目信息',url,'xmxx',1000,500);
@@ -109,7 +114,7 @@ border-collapse: collapse; border:1px solid #cde0f3; margin:0 auto;}
 </style>
 <div style="width:100%;">
 	<div class="lxxx">
-		<span>路段基本信息</span>
+		<span>桥梁基本信息</span>
     	<table id="lxjcsj" class="table"></table>
     </div>
     <div style="height:500px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">

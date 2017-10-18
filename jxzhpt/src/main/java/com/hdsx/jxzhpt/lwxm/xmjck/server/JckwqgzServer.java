@@ -34,4 +34,5 @@ public interface JckwqgzServer {
 	List<String> selectTSDQ(Jckwqgz wqgz);
 	String selectWqgzCount1(Jckwqgz jckwqgz);
 	List<String> selectTSDQ1(String xzqhdm1);
+	boolean xgJckWqgzTHxj(String delstr);
 }
