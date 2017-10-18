@@ -628,5 +628,7 @@ public interface JhshServer {
 
 	public boolean planxdAllSzxm(List<Map<String, String>> list);
 
-	
+	public List<Excel_list> exportFwqjhExcel(Jhsh jhsh);
+
+	public List<Excel_list> exportYhzxjhExcel(Jhsh jhsh);
 }

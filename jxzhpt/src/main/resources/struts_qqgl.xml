@@ -14,7 +14,9 @@
 		<action name="updateSflgcXdzt" class="jhshController" method="updateSflgcXdzt" />
 		
 		<action name="exportSflgcExcel" class="jhshController" method="exportSflgcExcel" />
-				
+		<action name="exportFwqjhExcel" class="jhshController" method="exportFwqjhExcel" />	
+		<action name="exportYhzxExcel" class="jhshController" method="exportYhzxExcel" />
+					
 		<!-- #示范路工程# -->
 		<action name="queryJhshLjsyf" class="jhshController" method="queryJhshLjsyf" />
 		<action name="queryJhshLjsyfs2w" class="jhshController" method="queryJhshLjsyfs2w" />
