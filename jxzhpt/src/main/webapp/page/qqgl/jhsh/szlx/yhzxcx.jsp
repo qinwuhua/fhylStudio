@@ -34,8 +34,7 @@ $(function(){
 	jhxdwhdx("jhxdwh",'yhzx');
 	querySflgc();
 });
-function querySflgc(){
-	
+function querySflgc(){	
 	var xmnf='';
 	if(getUrlParame('id').substr(0,10)=='0101130301')
 		xmnf='2011,2012,2013,2014,2015';
@@ -139,6 +138,10 @@ function loadLj(){
 	});
 }
 
+function exportJhshxx(){
+	window.location.href="/jxzhpt/qqgl/exportYhzxExcel.do";
+}
+
 </script>
 
 <style type="text/css">
@@ -205,13 +208,14 @@ a {text-decoration: none;}
 									src="/jxzhpt/images/Button/Serch01.gif"
 									onmouseover="this.src='/jxzhpt/images/Button/Serch02.gif'"
 									onmouseout="this.src='/jxzhpt/images/Button/Serch01.gif'"
-									style="vertical-align: middle; padding-left: 8px;" /> <!-- 								<img onclick="plscbtn()" alt="批量上传计划下达文件" src="/jxzhpt/images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;"> -->
-									<!-- <img onclick="exportJhshxx()" id="btnShangbao"
+									style="vertical-align: middle; padding-left: 8px;" /> 
+									<!-- <img onclick="plscbtn()" alt="批量上传计划下达文件" src="/jxzhpt/images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;"> -->
+ 									<img onclick="exportJhshxx()" id="btnShangbao"
 									onmouseover="this.src='/jxzhpt/images/Button/dcecl2.gif'"
 									alt="导出"
 									onmouseout="this.src='/jxzhpt/images/Button/dcecl1.gif'"
 									src="/jxzhpt/images/Button/dcecl1.gif"
-									style="border-width: 0px; cursor: hand; vertical-align: middle;" /> -->
+									style="border-width: 0px; cursor: hand; vertical-align: middle;" />
 								</td>
 							</tr>
 						</table>

@@ -3419,7 +3419,7 @@ function getghlxinfo(lxbm,qdzh,zdzh){
 function autoCompleteYLXBM(){
 	$("#yx_ylxbh").autocomplete("/jxzhpt/qqgl/queryAutoyxList.do", {
 		multiple : false,
-		minChars :2,
+		minChars :4,
 		multipleSeparator : ' ',
 		mustMatch: true,
   		cacheLength : 0,

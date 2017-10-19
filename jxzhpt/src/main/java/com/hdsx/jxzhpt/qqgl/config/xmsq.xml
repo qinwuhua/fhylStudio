@@ -10,7 +10,7 @@
 	<select id="queryAutoyxList" parameterType="xmsq" resultType="lx">
 		select distinct substr(ylxbm,0,4) ylxbm,to_char(yqdzh,'FM9999990.000') yqdzh,to_char(yzdzh,'FM9999990.000') yzdzh,substr(xlxbm,0,4) xlxbm,to_char(xqdzh,'FM9999990.000') xqdzh,to_char(xzdzh,'FM9999990.000') xzdzh,xlxmc xlxmc,ylxmc lxmc,cfld,cfqd,cfzd,lmkd,lmlx,xzqh from ghlx 	
 		where ylxbm like #{yxylxbh}||'%'||#{xzqhdm}||'%'
-		order by to_number(xqdzh)
+		order by to_number(yqdzh)
 	</select>
 	
 	<select id="querySjgzNextXmbm" resultType="string">
