@@ -3369,8 +3369,7 @@ public class JhshController extends BaseActionSupport implements
 		et.add(new Excel_tilte("所在省市", 1, 2, 1, 1));
 		et.add(new Excel_tilte("市", 1, 2, 2, 2));
 		et.add(new Excel_tilte("县", 1, 2, 3, 3));
-		et.add(new Excel_tilte("项目名称", 1, 2, 4, 4));
-		
+		et.add(new Excel_tilte("项目名称", 1, 2, 4, 4));		
 		et.add(new Excel_tilte("最新年报桩号", 1, 1, 5, 7));
 		
 		et.add(new Excel_tilte("路网规划前", 1, 1, 8, 10));
@@ -3391,21 +3390,25 @@ public class JhshController extends BaseActionSupport implements
 		et.add(new Excel_tilte("项目年份", 1, 2, 42, 42));
 		et.add(new Excel_tilte("备注", 1, 2, 43, 43));
 		et.add(new Excel_tilte("特殊地区", 1, 2, 44, 44));
+		
 		et.add(new Excel_tilte("路线编码", 2, 2, 5, 5));
 		et.add(new Excel_tilte("起点桩号", 2, 2, 6, 6));
 		et.add(new Excel_tilte("止点桩号", 2, 2, 7, 7));
 		et.add(new Excel_tilte("路线编码", 2, 2, 8, 8));
 		et.add(new Excel_tilte("起点桩号", 2, 2, 9, 9));
 		et.add(new Excel_tilte("止点桩号", 2, 2, 10, 10));
+		
 		et.add(new Excel_tilte("合计", 2, 2, 12, 12));
 		et.add(new Excel_tilte("一级公路", 2, 2, 13, 13));
 		et.add(new Excel_tilte("二级公路", 2, 2, 14, 14));
 		et.add(new Excel_tilte("三级公路", 2, 2, 15, 15));
 		et.add(new Excel_tilte("四级公路", 2, 2, 16, 16));
+		
 		et.add(new Excel_tilte("大桥", 2, 2, 17, 17));
 		et.add(new Excel_tilte("隧道", 2, 2, 18, 18));
 		et.add(new Excel_tilte("开工年", 2, 2, 19, 19));
 		et.add(new Excel_tilte("完工年", 2, 2, 20, 20));
+		
 		et.add(new Excel_tilte("合计", 2, 2, 26, 26));
 		et.add(new Excel_tilte("内：中央车购税", 2, 2, 27, 27));
 		et.add(new Excel_tilte("内：厅贷款", 2, 2, 28, 28));
@@ -3419,6 +3422,7 @@ public class JhshController extends BaseActionSupport implements
 		et.add(new Excel_tilte("主要建设内容", 2, 2, 36, 36));
 		et.add(new Excel_tilte("新增生产能力", 2, 2, 37, 37));
 		et.add(new Excel_tilte("工可批复文号", 2, 2, 39, 39));
+		
 		et.add(new Excel_tilte("设计批复文号", 2, 2, 40, 40));
 
 		eldata.setEt(et);// 将表头内容设置到类里面
@@ -4157,8 +4161,14 @@ public class JhshController extends BaseActionSupport implements
 	/**#服务区代码区块#**/
 	
 	public void exportSflgcExcel(){
-		
-		
+		//设置行政区划
+		jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "sz.xzqhdm"));
+		//设置计划下达文号
+		jhsh.setJhxdwh(MyUtil.getQueryTJ(jhsh.getJhxdwh(), "xd.jhxdwh"));
+		//设置项目年份
+		jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "sg.xmnf"));
+		//设置首次下达时间
+		jhsh.setScxdnf(MyUtil.getQueryTJ(jhsh.getScxdnf(), "fun_scxdnf(jh.xmbm)"));
 		List<Excel_list> l = jhshServer.exportSflgcExcel(jhsh);
 		ExcelData eldata = new ExcelData();// 创建一个类
 		eldata.setTitleName("示范路建设计划表");// 设置第一行
@@ -4177,33 +4187,34 @@ public class JhshController extends BaseActionSupport implements
 		et.add(new Excel_tilte("管养单位", 1, 2, 5, 5));
 		et.add(new Excel_tilte("规划路线编码", 1, 2, 6, 6));
 		et.add(new Excel_tilte("规划路线名称", 1, 2, 7, 7));	
-		et.add(new Excel_tilte("规划路线桩号", 1, 2, 8, 8));	
-		et.add(new Excel_tilte("原路线编码", 1, 2, 9, 9));
-		et.add(new Excel_tilte("原路线名称", 1, 2, 10, 10));
-		et.add(new Excel_tilte("原路线桩号", 1, 2, 11, 11));	
-		
-		et.add(new Excel_tilte("技术等级及里程（公里）", 1, 2, 12, 16));
-		et.add(new Excel_tilte("小计", 2, 2, 12, 12));
-		et.add(new Excel_tilte("一级", 2, 2, 13, 13));
-		et.add(new Excel_tilte("二级", 2, 2, 14, 14));
-		et.add(new Excel_tilte("三级", 2, 2, 15, 15));
-		et.add(new Excel_tilte("四级", 2, 2, 16, 16));
-		
-		et.add(new Excel_tilte("建设年份", 1, 2, 17, 17));
-		et.add(new Excel_tilte("总投资", 1, 2, 18, 18));	
-		
-		et.add(new Excel_tilte("厅补助资金合计（万元）", 1, 2, 19, 22));
-		et.add(new Excel_tilte("合计", 2, 2, 19, 19));
-		et.add(new Excel_tilte("建安费", 2, 2, 20, 20));
-		et.add(new Excel_tilte("工程监理费", 2, 2, 21, 21));
-		et.add(new Excel_tilte("前期工作费", 2, 2, 22, 22));
-		
-		et.add(new Excel_tilte("已下达厅补助资金（万元）", 1, 2, 23, 23));
-		et.add(new Excel_tilte("本次安排厅补助资金（万元）", 1, 2, 24, 24));
-		et.add(new Excel_tilte("施工图批复文号", 1, 2, 25, 25));
-		et.add(new Excel_tilte("备注", 1, 2, 26, 26));
-		et.add(new Excel_tilte("计划下达文号", 1, 2, 27, 27));
-		et.add(new Excel_tilte("计划下达时间", 1, 2, 28, 28));		
+		//et.add(new Excel_tilte("规划路线桩号", 1, 2, 8, 8));	
+		et.add(new Excel_tilte("规划起点桩号", 1, 2, 8, 8));	
+		et.add(new Excel_tilte("规划止点桩号", 1, 2, 9, 9));	
+		et.add(new Excel_tilte("原路线编码", 1, 2, 10, 10));
+		et.add(new Excel_tilte("原路线名称", 1, 2, 11, 11));
+		//et.add(new Excel_tilte("原路线桩号", 1, 2, 11, 11));
+		et.add(new Excel_tilte("原起点桩号", 1, 2, 12, 12));
+		et.add(new Excel_tilte("原止点桩号", 1, 2, 13, 13));	
+		et.add(new Excel_tilte("技术等级及里程（公里）", 1, 1, 14, 18));
+		et.add(new Excel_tilte("建设年份", 1, 2, 19, 19));
+		et.add(new Excel_tilte("总投资", 1, 2, 20, 20));	
+		et.add(new Excel_tilte("厅补助资金合计（万元）", 1, 1, 21, 24));
+		et.add(new Excel_tilte("已下达厅补助资金（万元）", 1, 2, 25, 25));
+		et.add(new Excel_tilte("本次安排厅补助资金（万元）", 1, 2, 26, 26));
+		et.add(new Excel_tilte("施工图批复文号", 1, 2, 27, 27));
+		et.add(new Excel_tilte("项目年份", 1, 2, 28, 28));
+		et.add(new Excel_tilte("备注", 1, 2, 29, 29));
+		et.add(new Excel_tilte("计划下达文号", 1, 2, 30, 30));
+		et.add(new Excel_tilte("计划下达时间", 1, 2, 31, 31));
+		et.add(new Excel_tilte("小计", 2, 2, 14, 14));
+		et.add(new Excel_tilte("一级", 2, 2, 15, 15));
+		et.add(new Excel_tilte("二级", 2, 2, 16, 16));
+		et.add(new Excel_tilte("三级", 2, 2, 17, 17));
+		et.add(new Excel_tilte("四级", 2, 2, 18, 18));
+		et.add(new Excel_tilte("合计", 2, 2, 21, 21));
+		et.add(new Excel_tilte("建安费", 2, 2, 22, 22));
+		et.add(new Excel_tilte("工程监理费", 2, 2, 23, 23));
+		et.add(new Excel_tilte("前期工作费", 2, 2, 24, 24));
 		eldata.setEt(et);// 将表头内容设置到类里面
 		HttpServletResponse response = getresponse();// 获得一个HttpServletResponse
 		try {
@@ -4211,5 +4222,91 @@ public class JhshController extends BaseActionSupport implements
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
+	}
+	public void exportFwqjhExcel() {
+		List<Excel_list> l = jhshServer.exportFwqjhExcel(jhsh);
+		
+		ExcelData eldata = new ExcelData();// 创建一个类
+		eldata.setTitleName("普通国省干线公路服务设施建设项目计划表");// 设置第一行
+		eldata.setSheetName("服务区建设项目");// 设置sheeet名
+		eldata.setFileName("普通国省干线公路服务设施建设项目计划表");// 设置文件名
+		eldata.setEl(l);// 将实体list放入类中
+		List<Excel_tilte> et = new ArrayList<Excel_tilte>();// 创建一个list存放表头	
+		et.add(new Excel_tilte("序号", 1, 2, 0, 0));
+		et.add(new Excel_tilte("行政区划", 1, 2, 1, 1));
+		et.add(new Excel_tilte("行政区划", 1, 2, 2, 2));
+		et.add(new Excel_tilte("管养单位", 1, 2, 3, 3));
+		et.add(new Excel_tilte("建设项目名称", 1, 2, 4, 4));
+		et.add(new Excel_tilte("规划路线编码", 1, 2, 5, 5));
+		et.add(new Excel_tilte("规划路线名称", 1, 2, 6, 6));
+		et.add(new Excel_tilte("规划路线桩号", 1, 2, 7, 7));
+		et.add(new Excel_tilte("原路线编码", 1, 2, 8, 8));		
+		et.add(new Excel_tilte("原路线名称", 1, 2, 9, 9));
+		et.add(new Excel_tilte("原路线桩号", 1, 2, 10, 10));
+		et.add(new Excel_tilte("技术等级", 1, 2, 11, 11));
+		et.add(new Excel_tilte("建设类型", 1, 2, 12, 12));
+		et.add(new Excel_tilte("现有设施类型", 1, 2, 13, 13));
+		et.add(new Excel_tilte("建设设施类型", 1, 2, 14, 14));
+		et.add(new Excel_tilte("建设服务主要内容", 1, 2, 15, 15));
+		et.add(new Excel_tilte("建设占地面积（m2）", 1, 2, 16, 16));
+		et.add(new Excel_tilte("项目年份", 1, 2, 17, 17));
+		et.add(new Excel_tilte("备注", 1, 2, 18, 18));
+		et.add(new Excel_tilte("总投资（万元）", 1, 2, 19, 19));
+		et.add(new Excel_tilte("本次下达中央车购税资金（万元）", 1, 2, 20, 20));
+		et.add(new Excel_tilte("自筹资金（万元）", 1, 2, 21, 21));
+		et.add(new Excel_tilte("计划下达文号", 1, 2, 22, 22));
+		et.add(new Excel_tilte("计划下达时间", 1, 2, 23, 23));
+		eldata.setEt(et);// 将表头内容设置到类里面
+		HttpServletResponse response = getresponse();// 获得一个HttpServletResponse
+		try {
+			Excel_export.excel_export(eldata, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	public void exportYhzxExcel() {
+		List<Excel_list> l = jhshServer.exportYhzxjhExcel(jhsh);
+		ExcelData eldata = new ExcelData();// 创建一个类
+		eldata.setTitleName("普通国省干线公路服务设施建设项目计划表");// 设置第一行
+		eldata.setSheetName("服务区建设项目");// 设置sheeet名
+		eldata.setFileName("普通国省干线公路服务设施建设项目计划表");// 设置文件名
+		eldata.setEl(l);// 将实体list放入类中
+		List<Excel_tilte> et = new ArrayList<Excel_tilte>();// 创建一个list存放表头
+		et.add(new Excel_tilte("序号", 1, 2, 0, 0));
+		et.add(new Excel_tilte("行政区划", 1, 1, 1, 2));
+		et.add(new Excel_tilte("项目名称", 1, 2, 3, 3));
+		et.add(new Excel_tilte("级别", 1, 2, 4, 4));
+		et.add(new Excel_tilte("管养单位", 1, 2, 5, 5));
+		et.add(new Excel_tilte("规划路线编码", 1, 2, 6, 6));
+		et.add(new Excel_tilte("规划路线名称", 1, 2, 7, 7));
+		et.add(new Excel_tilte("规划路线桩号", 1, 2, 8, 8));
+		et.add(new Excel_tilte("原路线编码", 1, 2, 9, 9));
+		et.add(new Excel_tilte("原路线名称", 1, 2, 10, 10));
+		et.add(new Excel_tilte("原路线桩号", 1, 2, 11, 11));
+		et.add(new Excel_tilte("建设性质", 1, 2, 12, 12));
+		et.add(new Excel_tilte("建设年份", 1, 2, 13, 13));
+		et.add(new Excel_tilte("原道班名称", 1, 2, 14, 14));
+		et.add(new Excel_tilte("总投资（万元）", 1, 2, 15, 15));
+		et.add(new Excel_tilte("奖补资金总额度（万元）", 1, 2, 16, 16));
+		et.add(new Excel_tilte("已下达计划补助资金（万元）", 1, 2, 17, 17));			
+		et.add(new Excel_tilte("本次计划下达（万元）", 1, 1, 18, 20));	
+		et.add(new Excel_tilte("地方自筹（万元）", 1, 2, 21, 21));
+		et.add(new Excel_tilte("项目年份", 1, 2, 22, 22));
+		et.add(new Excel_tilte("备注", 1, 2, 23, 23));
+		et.add(new Excel_tilte("计划下达文号", 1, 2, 24, 24));
+		et.add(new Excel_tilte("计划下达时间", 1, 2, 25, 25));
+		et.add(new Excel_tilte("设区市", 2, 2, 1, 1));
+		et.add(new Excel_tilte("县（市、区）", 2, 2, 2, 2));
+		et.add(new Excel_tilte("合计", 2, 2, 18, 18));
+		et.add(new Excel_tilte("省补助资金（万元）", 2, 2, 19, 19));
+		et.add(new Excel_tilte("重点打造奖励（万元）", 2, 2, 20, 20));
+		eldata.setEt(et);// 将表头内容设置到类里面
+		HttpServletResponse response = getresponse();// 获得一个HttpServletResponse
+		try {
+			Excel_export.excel_export(eldata, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
