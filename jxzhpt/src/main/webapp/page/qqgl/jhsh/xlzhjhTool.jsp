@@ -45,7 +45,7 @@ text-decoration:none;
 			<table style="width: 100%; background-color: #aacbf8; font-size: 12px" border="0" cellpadding="3" cellspacing="1">		
 			<tr style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					规划路线编码 -> 原路线编码
+					<input type='hidden' id='gydw'>&nbsp;规划路线编码 -> 原路线编码
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -54,7 +54,6 @@ text-decoration:none;
 					
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="ghlxbm" name="ghlxbm" type="text" style="width: 120px;"/>
-					<input type='hidden' id='gydw'>
 					<!-- &nbsp;<span style="color: red;">*</span> -->
 				</td>					
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
@@ -140,7 +139,7 @@ text-decoration:none;
 		   <table style="width: 100%; background-color: #aacbf8; font-size: 12px" border="0" cellpadding="3" cellspacing="1">		
 					<tr style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					原路线编码 -> 规划路线编码
+					<input type='hidden' id='xzqh'>&nbsp;原路线编码 -> 规划路线编码
 				</td>
 			</tr>	
 			<tr style="height: 30px;">
@@ -151,7 +150,6 @@ text-decoration:none;
  					<input id="yx_xmlx" name="yx_xmlx" value="4" type="hidden"/>
 					<input id="yx_gpsqdzh" name="yx_gpsqdzh" type="hidden"/>
 					<input id="yx_gpszdzh" name="yx_gpszdzh" type="hidden"/>
-					<input type='hidden' id='xzqh'>
 					<!-- &nbsp;<span style="color: red;">*</span> -->				
 				</td>		
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
@@ -190,6 +188,7 @@ text-decoration:none;
 					规划止点桩号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="yx_ghzdzh" disabled="disabled" name="yx_ghzdzh" type="text" style="width: 120px;" onchange="queryghmc('yx_ghzdzh')" />&nbsp;<span style="color: red;"></span><br/>
+					<input id="yx_yghzdzh" name="yx_yghzdzh" type="hidden" style="width: 120px;"/>
 				</td>
             </tr>
             

@@ -142,7 +142,7 @@
 						<b><font color="#009ACD" style="cursor: hand; font-size: 12px">建设性质：</font></b>
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="XMLX" name="XMLX"  type="text"  readonly="readonly"/>
+						<input id="JSXZ" name="JSXZ"  type="text"  readonly="readonly"/>
 					</td>
 				</tr>
 				

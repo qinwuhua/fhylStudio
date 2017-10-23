@@ -4233,7 +4233,7 @@ public class JhshController extends BaseActionSupport implements
 		eldata.setEl(l);// 将实体list放入类中
 		List<Excel_tilte> et = new ArrayList<Excel_tilte>();// 创建一个list存放表头	
 		et.add(new Excel_tilte("序号", 1, 2, 0, 0));
-		et.add(new Excel_tilte("行政区划", 1, 2, 1, 1));
+		et.add(new Excel_tilte("所在地市", 1, 2, 1, 1));
 		et.add(new Excel_tilte("行政区划", 1, 2, 2, 2));
 		et.add(new Excel_tilte("管养单位", 1, 2, 3, 3));
 		et.add(new Excel_tilte("建设项目名称", 1, 2, 4, 4));

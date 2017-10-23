@@ -119,7 +119,7 @@ function querySflgc(){
 			        {field: 'YLXMC', title: '原路线名称', width: 120, align: 'center'},
 			        {field: 'LLXZH', title: '原路线桩号', width: 120, align: 'center'},
 			        {field: 'YDBMC', title: '原道班名称', width: 120, align: 'center'},
-			        {field: 'XMLX', title: '建设性质', width: 120, align: 'center'},
+			        {field: 'JSXZ', title: '建设性质', width: 120, align: 'center'},
 			        {field: 'XMNF', title: '建设年份', width: 120, align: 'center'},
 			        {field:'ZTZ',title:'总投资(万元)',width:100,align:'center'},
 					{field:'JBZJ',title:'奖补资金合计(万元)',width:60,align:'center'},

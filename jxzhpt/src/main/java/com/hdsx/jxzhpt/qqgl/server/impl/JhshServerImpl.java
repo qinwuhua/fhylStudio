@@ -1706,16 +1706,16 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		
 		//养护中心
 		if("yhzxsb".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1 ");
+			jhsh.setTiaojian(",wn.jsxz,sg.xmnf FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1 ");
 		}
 		if("yhzxsh".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.sbzt='1'");
+			jhsh.setTiaojian(",wn.jsxz,sg.xmnf FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.sbzt='1'");
 		}
 		if("yhzxxd".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1'");
+			jhsh.setTiaojian(",wn.jsxz,sg.xmnf FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1'");
 		}
 		if("yhzxcx".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1' and fun_scxdnf(jh.xmbm) is not null");
+			jhsh.setTiaojian(",wn.jsxz,sg.xmnf FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1' and fun_scxdnf(jh.xmbm) is not null");
 		}
 		
 		
@@ -1811,10 +1811,10 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 			jhsh.setTiaojian(",nvl(fun_char(sum(nvl(jh.ztz,0)),2),0) ztz,nvl(fun_char(sum(nvl(jh.jbzj,0)),2),0) zbz FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.sbzt='1'");
 		}
 		if("yhzxxd".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian(",nvl(fun_char(sum(nvl(jh.ztz,0)),2),0) ztz,nvl(fun_char(sum(nvl(jh.jbzj,0)),2),0) zbz,nvl(fun_char(sum(nvl(xdztz, 0)), 2), 0) xdztz, nvl(fun_char(sum(nvl(xdstz, 0))-sum(nvl(xdjl, 0)), 2), 0) xdstz,nvl(fun_char(sum(nvl(xdjl, 0)), 2), 0) xdjl,nvl(fun_char(sum(nvl(xddfzc, 0)), 2), 0) xddfzc FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid left join (select xmid,sum(ztz) xdztz,sum(stz) xdstz,sum(zddzjl) xdjl,sum(dfzc) xddfzc from plan_zjxd p where jhxdwh is not null group by xmid) xd on jh.xmbm=xd.xmid WHERE 1=1  and jh.shzt='1'");
+			jhsh.setTiaojian(",nvl(fun_char(sum(nvl(jh.ztz,0)),2),0) ztz,nvl(fun_char(sum(nvl(jh.jbzj,0)),2),0) zbz,nvl(fun_char(sum(nvl(xdztz, 0)), 2), 0) xdztz, nvl(fun_char(sum(nvl(xdjl, 0)), 2)-sum(nvl(xdstz, 0)), 0) xdstz,nvl(fun_char(sum(nvl(xdjl, 0)), 2), 0) xdjl,nvl(fun_char(sum(nvl(xddfzc, 0)), 2), 0) xddfzc FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid left join (select xmid,sum(ztz) xdztz,sum(stz) xdstz,sum(zddzjl) xdjl,sum(dfzc) xddfzc from plan_zjxd p where jhxdwh is not null group by xmid) xd on jh.xmbm=xd.xmid WHERE 1=1  and jh.shzt='1'");
 		}
 		if("yhzxcx".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian(",nvl(fun_char(sum(nvl(jh.ztz,0)),2),0) ztz,nvl(fun_char(sum(nvl(jh.jbzj,0)),2),0) zbz,nvl(fun_char(sum(nvl(xdztz, 0)), 2), 0) xdztz, nvl(fun_char(sum(nvl(xdstz, 0))-sum(nvl(xdjl, 0)), 2), 0) xdstz,nvl(fun_char(sum(nvl(xdjl, 0)), 2), 0) xdjl,nvl(fun_char(sum(nvl(xddfzc, 0)), 2), 0) xddfzc FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid left join (select xmid,sum(ztz) xdztz,sum(stz) xdstz,sum(zddzjl) xdjl,sum(dfzc) xddfzc from plan_zjxd p where jhxdwh is not null group by xmid) xd on jh.xmbm=xd.xmid WHERE 1=1  and jh.shzt='1' and fun_scxdnf(jh.xmbm) is not null");
+			jhsh.setTiaojian(",nvl(fun_char(sum(nvl(jh.ztz,0)),2),0) ztz,nvl(fun_char(sum(nvl(jh.jbzj,0)),2),0) zbz,nvl(fun_char(sum(nvl(xdztz, 0)), 2), 0) xdztz, nvl(fun_char(sum(nvl(xdjl, 0)), 2)-sum(nvl(xdstz, 0)), 0) xdstz,nvl(fun_char(sum(nvl(xdjl, 0)), 2), 0) xdjl,nvl(fun_char(sum(nvl(xddfzc, 0)), 2), 0) xddfzc FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid left join (select xmid,sum(ztz) xdztz,sum(stz) xdstz,sum(zddzjl) xdjl,sum(dfzc) xddfzc from plan_zjxd p where jhxdwh is not null group by xmid) xd on jh.xmbm=xd.xmid WHERE 1=1  and jh.shzt='1' and fun_scxdnf(jh.xmbm) is not null");
 		}
 		
 		
