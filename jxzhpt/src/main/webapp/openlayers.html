@@ -304,12 +304,7 @@
          function attrQuery(_roadcode) {
          	YMLib.Var.bm=_roadcode;
          	//clearGraphics();
-             if(_roadcode.length<=10){
-             	queryLoad("LX",_roadcode);
-             }else{
-             	queryLoad("QL",_roadcode);
-             }
-             
+ 			queryLoad("QL",_roadcode);         
          }
          
          /**
