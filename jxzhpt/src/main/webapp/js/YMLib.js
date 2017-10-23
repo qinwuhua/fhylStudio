@@ -1637,7 +1637,7 @@ function locationQl(_roadbm,_roadpos){
 	data.push(jsonStr);
 	YMLib.Var.bm=data;
 	YMLib.Var.type="2";
-	YMLib.UI.createWindow('locationXm','项目定位','/jxzhpt/openlayers.html','app_add',800,500);
+	YMLib.UI.createWindow('locationXm','项目定位','/jxzhpt/openlayers.html','app_add',800,380);
 	
 }
 //项目定位
@@ -1698,7 +1698,7 @@ function locationXm1(_roadcode,_roadstart,_roadends){
 	}
 	YMLib.Var.bm=data;
 	YMLib.Var.type="1";
-	YMLib.UI.createWindow('locationXm','项目定位','/jxzhpt/openlayers.html','app_add',800,400);
+	YMLib.UI.createWindow('locationXm','项目定位','/jxzhpt/openlayers.html','app_add',800,380);
 }
 
 
