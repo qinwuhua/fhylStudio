@@ -104,7 +104,13 @@ var xzqhstr;
 						return '<span style="color:grey;">已上报</span>';
 					}
 				}},
-					{field:'shzt',title:'审核状态',width:80,align:'center'},
+					{field:'shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
+						if(row.shzt==''){
+							return '未审核';
+						}else{
+							return row.shzt;
+						}
+					}},
 				 	{field:'gydw',title:'管养单位',width:160,align:'center'},
 			        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 			        {field:'qlbh',title:'规划桥梁编号',width:120,align:'center'},
