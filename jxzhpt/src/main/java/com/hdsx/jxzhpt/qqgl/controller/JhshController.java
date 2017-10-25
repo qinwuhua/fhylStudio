@@ -2429,16 +2429,18 @@ public class JhshController extends BaseActionSupport implements
 			List<Excel_tilte> et = new ArrayList<Excel_tilte>();
 			et.add(new Excel_tilte("序号", 1, 2, 0, 0));
 			et.add(new Excel_tilte("数据类型", 1, 2, 1, 1));
-			et.add(new Excel_tilte("项目名称", 1, 2, 2, 2));
-			et.add(new Excel_tilte("计划年份", 1, 2, 3, 3));
-			et.add(new Excel_tilte("规划路线编码", 1, 2, 4, 4));
-			et.add(new Excel_tilte("规划技术等级", 1, 2, 5, 5));
-			et.add(new Excel_tilte("规划起点桩号", 1, 2, 6, 6));
-			et.add(new Excel_tilte("规划止点桩号", 1, 2, 7, 7));
-			et.add(new Excel_tilte("原路线编码", 1, 2, 8, 8));
-			et.add(new Excel_tilte("原技术等级", 1, 2, 9, 9));
-			et.add(new Excel_tilte("原起点桩号", 1, 2, 10, 10));
-			et.add(new Excel_tilte("原止点桩号", 1, 2, 11, 11));
+			et.add(new Excel_tilte("项目类型", 1, 2, 2, 2));
+			et.add(new Excel_tilte("项目名称", 1, 2, 3, 3));
+			et.add(new Excel_tilte("项目年份", 1, 2, 4, 4));
+			et.add(new Excel_tilte("下达年份", 1, 2, 5, 5));
+			et.add(new Excel_tilte("规划路线编码", 1, 2, 6, 6));
+			et.add(new Excel_tilte("规划技术等级", 1, 2, 7, 7));
+			et.add(new Excel_tilte("规划起点桩号", 1, 2, 8, 8));
+			et.add(new Excel_tilte("规划止点桩号", 1, 2, 9, 9));
+			et.add(new Excel_tilte("原路线编码", 1, 2, 10, 10));
+			et.add(new Excel_tilte("原技术等级", 1, 2, 11, 11));
+			et.add(new Excel_tilte("原起点桩号", 1, 2, 12, 12));
+			et.add(new Excel_tilte("原止点桩号", 1, 2, 13, 13));
 			eldata.setEt(et);
 			HttpServletResponse response = getresponse();// 获得一个HttpServletResponse
 		    Excel_export.excel_export(eldata, response);
