@@ -677,8 +677,8 @@ list-style-type:none;
         	YMLib.Var.feature=feature;
         	//YMLib.Var.bm=parent.YMLib.Var.bm;
         	console.log(YMLib.Var.bm);
-        	if(YMLib.Var.bm.length>11) YMLib.UI.createWindow('ql_add','桥梁项目查询','/jxyhgc/page/dzdt/dzdt_ql.jsp','app_add',630,330);
-         	else YMLib.UI.createWindow('lx_add','路线项目查询','/jxyhgc/page/dzdt/dzdt_lx.jsp','app_add',630,430);
+        	if(YMLib.Var.bm.length>11) YMLib.UI.createWindow('ql_add','桥梁项目查询','/jxzhpt/page/dzdt/dzdt_ql.jsp','app_add',630,330);
+         	else YMLib.UI.createWindow('lx_add','路线项目查询','/jxzhpt/page/dzdt/dzdt_lx.jsp','app_add',630,430);
         }
         //销毁弹出窗口的函数
         function onFeatureUnselect(feature) {
