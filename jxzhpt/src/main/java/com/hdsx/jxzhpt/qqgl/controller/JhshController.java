@@ -2408,6 +2408,44 @@ public class JhshController extends BaseActionSupport implements
 			e.printStackTrace();
 		}
 	}
+	
+	public void exportLsjlSearchExcel() {
+		try {
+			String xzqh = lx.getXzqh();
+			lx.setXzqhdm(getcxtj("xzqhdm2", xzqh));
+			lx.setXdnf(getcxtj("xdnf", lx.getXdnf()));
+			lx.setTsdq(getcxtj("tsdq", lx.getTsdq()));
+			String xmlx = java.net.URLDecoder.decode(lx.getXmlx(),"UTF-8");
+			System.out.println(xmlx);
+			lx.setJsxz(getcxtj("jsxz", xmlx));
+			lx.setXmknf(getcxtj("xmknf", lx.getXmknf()));
+			lx.setSjlx(getcxtj("sjlx", lx.getSjlx()));
+			List<Excel_list> l = jhshServer.exportLsjlSearchExcel(lx);		
+			ExcelData eldata = new ExcelData();// 创建一个类
+			eldata.setTitleName("综合查询导出Excel");// 设置第一行
+			eldata.setSheetName("综合查询导出Excel");// 设置sheeet名
+			eldata.setFileName("综合查询导出Excel");// 设置文件名
+			eldata.setEl(l);// 将实体list放入类中
+			List<Excel_tilte> et = new ArrayList<Excel_tilte>();
+			et.add(new Excel_tilte("序号", 1, 2, 0, 0));
+			et.add(new Excel_tilte("数据类型", 1, 2, 1, 1));
+			et.add(new Excel_tilte("项目名称", 1, 2, 2, 2));
+			et.add(new Excel_tilte("计划年份", 1, 2, 3, 3));
+			et.add(new Excel_tilte("规划路线编码", 1, 2, 4, 4));
+			et.add(new Excel_tilte("规划技术等级", 1, 2, 5, 5));
+			et.add(new Excel_tilte("规划起点桩号", 1, 2, 6, 6));
+			et.add(new Excel_tilte("规划止点桩号", 1, 2, 7, 7));
+			et.add(new Excel_tilte("原路线编码", 1, 2, 8, 8));
+			et.add(new Excel_tilte("原技术等级", 1, 2, 9, 9));
+			et.add(new Excel_tilte("原起点桩号", 1, 2, 10, 10));
+			et.add(new Excel_tilte("原止点桩号", 1, 2, 11, 11));
+			eldata.setEt(et);
+			HttpServletResponse response = getresponse();// 获得一个HttpServletResponse
+		    Excel_export.excel_export(eldata, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void queryKxxyjByXmbm() throws Exception {
 		try {
@@ -4171,9 +4209,9 @@ public class JhshController extends BaseActionSupport implements
 		jhsh.setScxdnf(MyUtil.getQueryTJ(jhsh.getScxdnf(), "fun_scxdnf(jh.xmbm)"));
 		List<Excel_list> l = jhshServer.exportSflgcExcel(jhsh);
 		ExcelData eldata = new ExcelData();// 创建一个类
-		eldata.setTitleName("示范路建设计划表");// 设置第一行
-		eldata.setSheetName("示范路建设");// 设置sheeet名
-		eldata.setFileName("示范路建设计划表");// 设置文件名
+		eldata.setTitleName("全省普通干线公路示范路建设计划表");// 设置第一行
+		eldata.setSheetName("示范路建设计划表");// 设置sheeet名
+		eldata.setFileName("全省普通干线公路示范路建设计划表");// 设置文件名
 
 		eldata.setEl(l);// 将实体list放入类中
 		List<Excel_tilte> et = new ArrayList<Excel_tilte>();// 创建一个list存放表头
@@ -4227,9 +4265,9 @@ public class JhshController extends BaseActionSupport implements
 		List<Excel_list> l = jhshServer.exportFwqjhExcel(jhsh);
 		
 		ExcelData eldata = new ExcelData();// 创建一个类
-		eldata.setTitleName("普通国省干线公路服务设施建设项目计划表");// 设置第一行
-		eldata.setSheetName("服务区建设项目");// 设置sheeet名
-		eldata.setFileName("普通国省干线公路服务设施建设项目计划表");// 设置文件名
+		eldata.setTitleName("全省普通国省干线公路综合养护中心计划表");// 设置第一行
+		eldata.setSheetName("综合养护中心计划表");// 设置sheeet名
+		eldata.setFileName("全省普通国省干线公路综合养护中心计划表");// 设置文件名
 		eldata.setEl(l);// 将实体list放入类中
 		List<Excel_tilte> et = new ArrayList<Excel_tilte>();// 创建一个list存放表头	
 		et.add(new Excel_tilte("序号", 1, 2, 0, 0));
@@ -4268,9 +4306,9 @@ public class JhshController extends BaseActionSupport implements
 	public void exportYhzxExcel() {
 		List<Excel_list> l = jhshServer.exportYhzxjhExcel(jhsh);
 		ExcelData eldata = new ExcelData();// 创建一个类
-		eldata.setTitleName("普通国省干线公路服务设施建设项目计划表");// 设置第一行
+		eldata.setTitleName("全省普通国省干线公路服务设施建设项目计划表");// 设置第一行
 		eldata.setSheetName("服务区建设项目");// 设置sheeet名
-		eldata.setFileName("普通国省干线公路服务设施建设项目计划表");// 设置文件名
+		eldata.setFileName("全省普通国省干线公路服务设施建设项目计划表");// 设置文件名
 		eldata.setEl(l);// 将实体list放入类中
 		List<Excel_tilte> et = new ArrayList<Excel_tilte>();// 创建一个list存放表头
 		et.add(new Excel_tilte("序号", 1, 2, 0, 0));
@@ -4301,7 +4339,9 @@ public class JhshController extends BaseActionSupport implements
 		et.add(new Excel_tilte("合计", 2, 2, 18, 18));
 		et.add(new Excel_tilte("省补助资金（万元）", 2, 2, 19, 19));
 		et.add(new Excel_tilte("重点打造奖励（万元）", 2, 2, 20, 20));
+		
 		eldata.setEt(et);// 将表头内容设置到类里面
+		
 		HttpServletResponse response = getresponse();// 获得一个HttpServletResponse
 		try {
 			Excel_export.excel_export(eldata, response);

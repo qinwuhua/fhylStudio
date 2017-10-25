@@ -402,8 +402,10 @@ public class Plan_abgcController extends BaseActionSupport{
 		String excelHtml="";
 		String tableName="";
 		if("af".equals(jh.getXmlx()))
+			//安防工程“十三五”
 			list = abgcServer.exportExcel_jh1(jh, lx);
 		else
+			//安防工程“十二五”
 			list = abgcServer.exportExcel_jh(jh, lx);
 		
 //		System.out.println("行政区划："+lx.getXzqhdm()+"    管养单位："+lx.getGydwbm());

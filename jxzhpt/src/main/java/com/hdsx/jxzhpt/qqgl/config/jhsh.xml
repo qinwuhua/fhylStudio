@@ -8682,12 +8682,37 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 		and ${sjlx}
 		</if>
 	</select>
+	
+	<select id="exportLsjlSearchExcel" parameterType="lx" resultType="elist">
+	    select to_char(rownum) v_0, ql.sjlx v_1,ql.xmlx v_2,ql.xmmc v_3,ql.ghlxbm v_4,ql.jsjsdj v_5,
+        ql.ghqdzh v_6,ql.ghzdzh v_7,ql.lxbm v_8,ql.xjsdj v_9,ql.qdzh v_10,ql.zdzh v_11
+        from query_lsjl ql where 1=1
+	    <if test="xzqhdm != null and xzqhdm != ''">and ${xzqhdm}</if>
+		<if test="jsxz != null and jsxz != ''">and ${jsxz}</if>
+		<if test="lxbm != null and lxbm != ''">and lxbm like '%'||#{lxbm}||'%' </if>
+		<if test="ghlxbm != null and ghlxbm != ''">and ghlxbm like '%'||#{ghlxbm}||'%' </if>
+		<if test="tsdq != null and tsdq != ''">and ${tsdq}</if>
+		<if test="xdnf != null and xdnf != ''">and ${xdnf}</if>
+		<if test="qdzh != null and qdzh != ''">
+		and to_number(fun_zdzxz(qdzh,zdzh,'max'))>to_number(#{qdzh})
+		</if>
+		<if test="zdzh != null and zdzh != ''">
+		and to_number(fun_zdzxz(qdzh,zdzh,'min'))&lt;to_number(#{zdzh})
+		</if>
+		<if test="ghqdzh != null and ghqdzh != ''">
+		and to_number(fun_zdzxz(ghqdzh,ghzdzh,'max'))>to_number(#{ghqdzh})
+		</if>
+		<if test="ghzdzh != null and ghzdzh != ''">
+		and to_number(fun_zdzxz(ghqdzh,ghzdzh,'min'))&lt;to_number(#{ghzdzh})
+		</if>
+		<if test="xmknf != null and xmknf != ''">and ${xmknf}</if>
+		<if test="sjlx != null and sjlx != ''">
+		and ${sjlx}
+		</if>
+	</select>
 	<select id="getgxlxbyzh" parameterType="lx" resultType="lx">
 		select * from table(fun_cfld(#{ghlxbm},${ghqdzh},${ghzdzh}))
 	</select>
-	
-	
-	
 	<select id="queryJhshxxLmsjqxByXmbm" parameterType="jhsh" resultType="jhsh">
 		select j.*,l.lxbm as ylxbh,l.gpsqdzh,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from jhsh_sjgz_qx j left join lxsh_lx l on j.xmbm=l.xmid where jdbs='2' and l.sffirst='1' and j.xmbm=#{xmbm}
 	</select>

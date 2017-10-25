@@ -605,17 +605,17 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 
 	@Override
 	public List<Lx> queryLsxx2new(Lx lx) {
-
 		List<Lx> result = new ArrayList<Lx>();
-
 		result = queryList("queryLsxx2new", lx);
-
+		
 		if (!"".equals(lx.getGhlxbm())) {
 			if ("".equals(lx.getGhqdzh()))
 				lx.setGhqdzh("0");
 			if ("".equals(lx.getGhzdzh()))
 				lx.setGhzdzh("9999");
+			
 			List<Lx> l = queryList("getgxlxbyzh", lx);
+			
 			if (l.size() > 0)
 				for (Lx lx2 : l) {
 					lx.setLxbm(null);
@@ -628,7 +628,8 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 					result.addAll(l2);
 				}
 		}
-
+		
+		
 		// queryLsjlListnew(result, lx);
 		return result;
 	}
@@ -1895,5 +1896,46 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	@Override
 	public List<Excel_list> exportYhzxjhExcel(Jhsh jhsh) {
 		return queryList("exportYhzxjhExcel", jhsh);
+	}
+
+	@Override
+	public List<Excel_list> exportLsjlSearchExcel(Lx lx) {
+		
+		List<Excel_list> result = new ArrayList<Excel_list>();
+		
+		result = queryList("exportLsjlSearchExcel", lx);
+		
+		int rowNum = result.size();
+		
+		if (!"".equals(lx.getGhlxbm())) {
+			if ("".equals(lx.getGhqdzh()))
+				lx.setGhqdzh("0");
+			if ("".equals(lx.getGhzdzh()))
+				lx.setGhzdzh("9999");
+			
+			List<Lx> l = queryList("getgxlxbyzh", lx);
+			
+			if (l.size() > 0)
+				for (Lx lx2 : l) {
+					lx.setLxbm(null);
+					lx.setQdzh(null);
+					lx.setZdzh(null);
+					lx.setGhlxbm(lx2.getLxbm());
+					lx.setGhqdzh(lx2.getQdzh());
+					lx.setGhzdzh(lx2.getZdzh());
+					
+					List<Excel_list> l2 = queryList("exportLsjlSearchExcel", lx);
+					
+					for(int i = 0; i < l2.size();i++) {
+						rowNum ++;
+						l2.get(i).setV_0(rowNum+"");
+					}	
+					result.addAll(l2);
+				}
+		}
+		// queryLsjlListnew(result, lx);
+		
+		
+		return result;
 	}
 }

@@ -353,6 +353,7 @@
 		<action name="querylxLsxx" class="jhshController" method="querylxLsxx"></action>
 		<action name="queryLsxx2" class="jhshController" method="queryLsxx2"></action>
 		<action name="queryLsxx2new" class="jhshController" method="queryLsxx2new"></action>
+		<action name="exportLsjlSearchExcel" class="jhshController" method="exportLsjlSearchExcel"></action>
 		<action name="queryKxxyjByXmbm" class="jhshController" method="queryKxxyjByXmbm"></action>
 		<action name="queryKxxyjqxByXmbm" class="jhshController"
 			method="queryKxxyjqxByXmbm"></action>

@@ -1972,12 +1972,14 @@
                       left join xmk_aqsmfh a4 on a3.xmkid = a4.id
                      group by a4.id) t1 on t.id = t1.id
          where 1 = 1 -->
-         select rownum v_0,t.province v_1,t.town v_2,t.county v_3,t.roadcode v_4,t.roadname v_5,t.roadstart v_6,t.roadend v_7,
-			t.jsdj v_8,t.fangx v_9,to_char(t.yhlc,'fm9999999990.000') v_10,t.pcsj v_11,t.ldfl v_12,t.jtsgpcf v_13,t.jtsgfxdj v_14,t.gltjpcf v_15,t.glfxdj v_16,
-			t.sgpb v_17,t.dgjw v_18,t.lxjw v_19,t.lxxp v_20,t.doup v_21,t.sjbl v_22, t.lcxy v_23,t.hjfz v_24,t.jtlpbzb v_25,t.xchbc v_26,t.csxsss v_27,
-			t.hul v_28,t.bzbx v_29,t.jshsxyd v_30,t.aqssqt v_31,t.tjgc v_32,t.hjzz v_33,t.bzbxcz v_34,t.jckcz v_35,t.jzhl v_36,t.jshsxydcz v_37,
-			t.aqssqtcz v_38,t.tzgs v_39,t.jhnf v_40
-			   from XMK_AQSMFH t
+      select rownum v_0,t.province v_1,t.town v_2,t.county v_3,    
+      t.roadcode v_4,t.roadname v_5,t.roadstart v_6,t.roadend v_7, 
+      t.ylxbm v_8, t.ylxmc v_9, t.yqdzh v_10, t.yzdzh v_11,
+      t.jsdj v_12,t.fangx v_13,to_char(t.yhlc,'fm9999999990.000') v_14,t.pcsj v_15,t.ldfl v_16,t.jtsgpcf v_17,t.jtsgfxdj v_18,t.gltjpcf v_19,t.glfxdj v_20,
+      t.sgpb v_21,t.dgjw v_22,t.lxjw v_23,t.lxxp v_24,t.doup v_25,t.sjbl v_26, t.lcxy v_27,t.hjfz v_28,t.jtlpbzb v_29,t.xchbc v_30,t.csxsss v_31,
+      t.hul v_32,t.bzbx v_33,t.jshsxyd v_34,t.aqssqt v_35,t.tjgc v_36,t.hjzz v_37,t.bzbxcz v_38,t.jckcz v_39,t.jzhl v_40,t.jshsxydcz v_41,
+      t.aqssqtcz v_42,t.tzgs v_43,t.jhnf v_44
+         from XMK_AQSMFH t
           left join (select count(*) jhsl, a4.id
                       from plan_af a1
                       left join sck_aqsmfh a2 on a1.sckid = a2.id

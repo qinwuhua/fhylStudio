@@ -671,16 +671,16 @@
   		left join sck_aqsmfh lx on (jh.sckid = lx.id) 
   		left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id
   		where 1=1  -->
-  		select  rownum v_0,lx.town v_1,lx.county v_2,'' v_3,'' v_4,'' v_5,
-	        lx.lxbm v_6,lx.qdzh v_7,lx.zdzh v_8,
-	        decode(lx.jsxz,'1','中修','2','大修',lx.jsxz) v_9,
-	        lx.czzlc v_10,lx.yhlc v_11,
+  		select  rownum v_0,lx.town v_1,lx.county v_2,lx.lxbm v_3,lx.qdzh v_4,lx.zdzh v_5,
+         xa.ylxbm v_6,xa.yqdzh v_7,xa.yzdzh v_8,
+         decode(lx.jsxz,'1','中修','2','大修',lx.jsxz) v_9,
+	       lx.czzlc v_10,lx.yhlc v_11,
 	       nvl(jh.pfztz,0) v_12,nvl(jh.JHSYBBZJE,0) v_13,nvl(jh.JHSYDFZCZJ,0) v_14,lx.jsnr v_15,lx.spwh v_16,
 	       lx.gydw v_17,jh.jhnf v_18,jh.remarks v_19,ts.tsdq v_20
       from plan_af jh
+      left join xmk_aqsmfh xa on (jh.sckid = xa.id)
       left join sck_aqsmfh lx on (jh.sckid = lx.id) 
-      left join (
-      select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq 
+      left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq 
       from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm 
       left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id
       where 1=1 and lx.gydwdm like '2%'

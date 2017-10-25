@@ -64,6 +64,7 @@
 					'lx.ghlxbm': ghlxbm,'lx.ghqdzh':$('#ghqdzh').val(),'lx.ghzdzh':$('#ghzdzh').val(),'lx.xmlx':xmlx,'lx.xzqh':xzqhstr,'lx.xdnf':xdnf,'lx.tsdq':tsdq,
 					'lx.xmknf':xmknf,'lx.sjlx':sjlx
 				},
+				rownumbers:true,
 				fitColumns:true,
 				height:$(window).height()-120,
 			    width:$(window).width()-20,
@@ -235,6 +236,47 @@
 		        return (r1/r2)*pow(10,t2-t1);  
 		    }  
 		}
+		
+		//导出综合查询Excel
+		function exportJhshxx(){
+			var xmlx=$("#xmlx").combobox("getValues").join(",");
+			if(xmlx.substr(0,1)==',')
+				xmlx=xmlx.substr(1,xmlx.length);
+			if(xmlx==''){
+				xmlx='改建,路面改造,新建,养护大中修,灾毁重建,路网结构工程';
+			}
+			var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				xzqhstr=xzqhdm[0] ;
+			}else{
+				xzqhstr= xzqhdm.join(',');
+			}
+			var lxbm=$('#lxbm').val().toUpperCase( );
+			var ghlxbm=$('#ghlxbm').val().toUpperCase( );
+			var xdnf=$("#xdnf").combobox("getValues").join(",");
+			if(xdnf.substr(0,1)==',')
+				xdnf=xdnf.substr(1,xdnf.length);
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			var xmknf=$("#xmknf").combobox("getValues").join(",");
+			if(xmknf.substr(0,1)==',')
+				xmknf=xmknf.substr(1,xmknf.length);
+			var sjlx=$("#sjlx").combobox("getValues").join(",");
+			if(sjlx.substr(0,1)==',')
+				sjlx=sjlx.substr(1,sjlx.length);
+			
+			var param='lx.lxbm='+lxbm+'&lx.qdzh='+$('#qdzh').val()+'&lx.zdzh='+$('#zdzh').val()+'&lx.ghlxbm='+ghlxbm+
+			'&lx.ghqdzh='+$('#ghqdzh').val()+'&lx.ghzdzh='+$('#ghzdzh').val()+'&lx.xmlx='+encodeURI(encodeURI(xmlx))+'&lx.xzqh='+xzqhstr+
+			'&lx.xdnf='+xdnf+'&lx.tsdq='+tsdq+'&lx.xmknf='+xmknf+'&lx.sjlx='+sjlx;
+			
+			window.location.href="/jxzhpt/qqgl/exportLsjlSearchExcel.do?"+param;
+		}
 	</script>
 	<style>
 	TD {
@@ -294,7 +336,7 @@ text-decoration:none;
                             	<td colspan="8">
 								<a style="margin-top: 1px;margin-bottom: 1px;" href="javascript:search()" class="button button-tiny button-raised button-primary">查询</a>
                             	<a style="margin-top: 1px;margin-bottom: 1px;" href="javascript:reset()" class="button button-tiny button-raised button-primary">重置</a>
-                            	
+                            	<a style="margin-top: 1px;margin-bottom: 1px;" href="javascript:exportJhshxx()" class="button button-tiny button-raised button-primary">导出Excel</a>
                             	
 <!--                             		<img onclick="search()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/> -->
 									
