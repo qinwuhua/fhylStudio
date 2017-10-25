@@ -4263,7 +4263,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	
 	<select id="queryJhshLjYhdzx" parameterType="jhsh" resultType="java.util.Map">
 		select 
-		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcrys),0) rys,nvl(sum(bcdk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(ztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz
+		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(rys),0) rys,nvl(sum(bcdk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(ztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz
 		 from (
 				select j.*,lx2.zjhlc jhlc,sl.zlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh
 					,bcztz,bccgs,bcrys,bcdk,bcjl,bcdftz
@@ -8804,51 +8804,78 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	</select>
 	
 	<select id="exportSflgcExcel" parameterType="jhsh" resultType="elist">
-       select to_char(rownum) v_0, ss.szds v_1, ss.xmmc v_2, ss.xmlx v_3, ss.xzqhxj v_4,         
-              ss.gydw v_5, ss.ghlxbm v_6, ss.ghlxmc v_7, wn.ghqdzh v_8, wn.ghzdzh v_9,  
-              ss.ylxbm v_10,ss.ylxmc v_11, wn.qdzh v_12, wn.zdzh v_13, 
-              nvl(ss.jsdjxj,0) v_14, nvl(ss.yj,0) v_15,
-              nvl(ss.ej,0) v_16, nvl(ss.sj,0) v_17, nvl(ss.sij,0) v_18, ss.jsnf v_19, 
-              nvl(ss.ztz,0) v_20, nvl(ss.tbzhj,0) v_21, nvl(ss.jaf,0) v_22,
-              nvl(ss.jlf,0) v_23, nvl(ss.qqgz,0) v_24, nvl(ss.yxd,0) v_25, nvl(ss.bcxd,0) v_26,   
-              ss.sgtwh v_27, sx.scxdnf v_28, ss.bz v_29, ss.jhxdwh v_30, ss.jhxdsj v_31
-       from sfljh_sew ss
-       LEFT JOIN SGT_SFL sg ON ss.xmkid = SG.XMBM
-       LEFT JOIN WNJH_SFL wn ON SG.XMKID = WN.ID
-       LEFT JOIN (select xmid,min(xdnf) scxdnf from plan_zjxd group by xmid) sx on sx.xmid = ss.xmkid
-       WHERE 1 = 1 and ss.shzt = '1'
+      select to_char(rownum) v_0, sg.szds v_1, jh.xmmc v_2,wn.xmlx v_3,
+  wn.qhmc v_4, sg.gydw v_5, sz.xlxbm v_6, sz.xlxmc v_7, sz.GHQDZH v_8,
+  sz.GHZDZH v_9, sz.ylxbm v_10,sz.ylxmc v_11, sz.YQDZH v_12,sz.YZDZH v_13,
+  nvl(sg.yj,0)+nvl(sg.ej,0)+nvl(sg.sj,0)+nvl(sg.sij,0) v_14,nvl(sg.yj,0) v_15,
+  
+  nvl(sg.ej,0) v_16,nvl(sg.sj,0) v_17,nvl(sg.sij,0) v_18, sg.xmnf v_19,
+  nvl(jh.ztz,0) v_20,
+  nvl(jh.tbz_jaf,0)+nvl(jh.tbz_gcjlf,0)+nvl(jh.tbz_qqgzf,0) v_21,
+  nvl(jh.tbz_jaf,0) v_22, nvl(jh.tbz_gcjlf,0) v_23, nvl(jh.tbz_qqgzf,0) v_24,nvl(jh.yxdtbz,0) v_25,   
+  nvl(jh.bcxdtbz,0) v_26,sg.pfwh v_27, xs.scxdnf v_28, wn.bz v_29, jh.jhxdwh_xd v_30, jh.jhxdsj v_31
+  FROM JHSH_SFL JH
+  LEFT JOIN (select xmid,min(xdnf) scxdnf from plan_zjxd group by xmid) xs on jh.xmbm = xs.xmid
+  LEFT JOIN SGT_SFL sg ON JH.XMBM = SG.XMBM
+  LEFT JOIN WNJH_SFL WN ON SG.XMKID = WN.ID
+  left join szxmzd sz on wn.id = sz.xmkid
+ WHERE 1 = 1
+   and jh.shzt = '1'
 	</select>
-	<select id="exportFwqjhExcel" parameterType="jhsh" resultType="elist">
-      select to_char(rownum) v_0, fs.szds v_1, fs.xzqhxj v_2, fs.gydw v_3, fs.xmmc v_4, fs.ghlxbm v_5,
-       fs.ghlxmc v_6, fs.ghlxzh v_7, fs.ylxbm v_8, fs.ylxmc v_9, fs.ylxzh v_10, fs.jsdjxj v_11,
-       fs.xmlx v_12, fs.xysslx v_13,  
-       decode(fs.jssslx,'Ⅰ','服务区',null) v_14,
-       fs.fwlr v_15, fs.zdmj v_16, '' v_17, fs.bz v_18,
-       nvl(fs.ztz,0) v_19, nvl(fs.cgs,0) v_20, nvl(fs.dfzc,0) v_21, fs.jhxdwh v_22, fs.jhxdsj v_23
-      from fwqjh_sew fs WHERE 1 = 1 and fs.shzt = '1'
+	<select id="exportYhzxjhExcel" parameterType="jhsh" resultType="elist">
+      select dqxx.* from (select '' v_0, '' v_1, '' v_2, '' v_3, '全省合计' v_4, '' v_5, '' v_6,'' v_7, '' v_8, 
+     '' v_9, '' v_10, '' v_11, '' v_12, '' v_13, '' v_14, nvl(sum(jh.ztz), 0) v_15,'' v_16, '' v_17, 
+     sum(nvl(jh.bcsbz,0))+sum(nvl(jh.bcjl,0)) v_18, nvl(sum(jh.bcsbz), 0) v_19, nvl(sum(jh.bcjl), 0) v_20, 
+     nvl(sum(jh.dfzc), 0) v_21, '' v_22, '' v_23, '' v_24, '' v_25
+  FROM JHSH_YHZX JH
+  left join (select xmid,min(xdnf) scxdnf from plan_zjxd group by xmid) pz on JH.xmbm=pz.xmid 
+  LEFT JOIN SGT_YHZX sg ON JH.XMBM = SG.XMBM
+  LEFT JOIN WNJH_YHZX WN ON SG.XMKID = WN.ID
+  left join szxmzd sz on wn.id = sz.xmkid
+  WHERE 1 = 1 and jh.shzt = '1' and fun_scxdnf(jh.xmbm) is not null        
+  union all 
+  select '' v_0, rs.v_1 v_1, '' v_2, '' v_3, '' v_4, '' v_5, '' v_6, '' v_7, '' v_8,'' v_9,'' v_10,'' v_11,
+     '' v_12, '' v_13, '' v_14, sum(rs.v_15) v_15, '' v_16, '' v_17, sum(rs.v_18) v_18, sum(rs.v_19) v_19,
+     sum(rs.v_20) v_20, sum(rs.v_21) v_21, '' v_22, '' v_23, '' v_24, '' v_25
+  from (  
+      select to_char(row_number() over(partition by sg.szds order by jh.ztz)) v_0, sg.szds v_1,wn.ssfj v_2,
+         jh.xmmc v_3, wn.dwlx v_4, sg.gydw v_5, wn.lxbm v_6, wn.lxmc v_7, wn.zh v_8, wn.ylxbm v_9,wn.ylxmc v_10,
+         wn.yzh v_11, wn.jsxz v_12,wn.jhshnf v_13,wn.ydbmc v_14,decode(jh.ztz, null, 0, jh.ztz) v_15,nvl(jh.jbzj, 0) v_16,
+         nvl(jh.yxdbzzj, 0) v_17,decode(nvl(jh.bcsbz,0)+nvl(jh.bcjl,0), null, 0, nvl(jh.bcsbz,0)+nvl(jh.bcjl,0)) v_18,
+         decode(jh.bcsbz, null, 0, jh.bcsbz) v_19,decode(jh.bcjl, null, 0, jh.bcjl) v_20,decode(jh.dfzc, null, 0, jh.dfzc) v_21, 
+         pz.scxdnf v_22, wn.bz v_23,jh.jhxdwh v_24,jh.jhxdsj v_25
+  FROM JHSH_YHZX JH
+  left join (select xmid,min(xdnf) scxdnf from plan_zjxd group by xmid) pz on JH.xmbm=pz.xmid 
+  LEFT JOIN SGT_YHZX sg ON JH.XMBM = SG.XMBM
+  LEFT JOIN WNJH_YHZX WN ON SG.XMKID = WN.ID
+  left join szxmzd sz on wn.id = sz.xmkid
+  WHERE 1 = 1 and jh.shzt = '1' and fun_scxdnf(jh.xmbm) is not null order by sg.szds) rs group by rs.v_1 
+  union all
+  select to_char(row_number() over(partition by sg.szds order by jh.ztz)) v_0,sg.szds v_1,wn.ssfj v_2,jh.xmmc v_3,
+         wn.dwlx v_4,sg.gydw v_5,wn.lxbm v_6,wn.lxmc v_7,wn.zh v_8,wn.ylxbm v_9,wn.ylxmc v_10, wn.yzh v_11,
+         wn.jsxz v_12,wn.jhshnf v_13,wn.ydbmc v_14,decode(jh.ztz, null, 0, jh.ztz) v_15, nvl(jh.jbzj, 0) v_16,
+         nvl(jh.yxdbzzj, 0) v_17,decode(nvl(jh.bcsbz,0)+nvl(jh.bcjl,0), null, 0, nvl(jh.bcsbz,0)+nvl(jh.bcjl,0)) v_18,
+         decode(jh.bcsbz, null, 0, jh.bcsbz) v_19,decode(jh.bcjl, null, 0, jh.bcjl) v_20, decode(jh.dfzc, null, 0, jh.dfzc) v_21, 
+         pz.scxdnf v_22,wn.bz v_23,jh.jhxdwh v_24,jh.jhxdsj v_25
+  FROM JHSH_YHZX JH
+  left join (select xmid,min(xdnf) scxdnf from plan_zjxd group by xmid) pz on JH.xmbm=pz.xmid 
+  LEFT JOIN SGT_YHZX sg ON JH.XMBM = SG.XMBM
+  LEFT JOIN WNJH_YHZX WN ON SG.XMKID = WN.ID
+  left join szxmzd sz on wn.id = sz.xmkid
+  WHERE 1 = 1 and jh.shzt = '1'and fun_scxdnf(jh.xmbm) is not null) dqxx order by dqxx.v_1 nulls first, dqxx.v_0 nulls first
 	</select>
 	
-	<select id="exportYhzxjhExcel" parameterType="jhsh" resultType="elist">
-      select dqxx.* from(
- select '' v_0,'' v_1, '' v_2,'' v_3,'全省合计' v_4,'' v_5,'' v_6,'' v_7,'' v_8,
-       '' v_9,'' v_10,'' v_11, '' v_12,'' v_13, '' v_14, nvl(sum(ys.ztz),0) v_15,'' v_16, '' v_17, nvl(sum(ys.bcxdhj), 0) v_18,
-       nvl(sum(ys.bcsbz), 0) v_19, nvl(sum(ys.bcjl), 0) v_20,nvl(sum(ys.dfzc), 0) v_21,'' v_22, '' v_23,
-       '' v_24, '' v_25 from yhzxjh_sew ys    
- union all
- select '' v_0, rs.v_1 v_1, '' v_2, '' v_3, '' v_4, '' v_5, '' v_6, '' v_7, '' v_8, '' v_9,'' v_10,'' v_11,'' v_12,
-       '' v_13, '' v_14, sum(rs.v_15) v_15,'' v_16,'' v_17,sum(rs.v_18) v_18,sum(rs.v_19) v_19,sum(rs.v_20) v_20,
-       sum(rs.v_21) v_21,'' v_22, '' v_23,'' v_24,'' v_25
-       from (
-       select to_char(row_number() over(partition by ys.szds order by ys.ztz)) v_0,ys.szds v_1, ys.xzqhxj v_2, ys.xmmc v_3,ys.jb v_4, ys.gydw v_5,ys.ghlxbm v_6,
-       ys.ghlxmc v_7, ys.ghlxzh v_8, ys.ylxbm v_9,ys.ylxmc v_10,ys.ylxzh v_11,ys.jsxz v_12,ys.jsnf v_13,ys.ydbmc v_14,
-       decode(ys.ztz, null, 0, ys.ztz) v_15, nvl(ys.zbz,0) v_16, nvl(ys.yxd, 0) v_17, decode(ys.bcxdhj, null, 0, ys.bcxdhj) v_18,
-       decode(ys.bcsbz, null, 0, ys.bcsbz) v_19, decode(ys.bcjl, null, 0, ys.bcjl) v_20,decode(ys.dfzc, null, 0, ys.dfzc) v_21, '' v_22,  
-       ys.bz v_23,ys.jhxdwh v_24, ys.jhxdsj v_25 from yhzxjh_sew ys order by ys.szds)rs group by rs.v_1     
-       union all   
-       select to_char(row_number() over(partition by ys.szds order by ys.ztz)) v_0, ys.szds v_1, ys.xzqhxj v_2,ys.xmmc v_3,ys.jb v_4,ys.gydw v_5, ys.ghlxbm v_6, ys.ghlxmc v_7,
-       ys.ghlxzh v_8, ys.ylxbm v_9,ys.ylxmc v_10,ys.ylxzh v_11, ys.jsxz v_12, ys.jsnf v_13, ys.ydbmc v_14, decode(ys.ztz, null, 0, ys.ztz) v_15,
-       nvl(ys.zbz,0) v_16, nvl(ys.yxd, 0) v_17,  decode(ys.bcxdhj, null, 0, ys.bcxdhj) v_18, decode(ys.bcsbz, null, 0, ys.bcsbz) v_19, 
-       decode(ys.bcjl, null, 0, ys.bcjl) v_20,decode(ys.dfzc, null, 0, ys.dfzc) v_21,  '' v_22, ys.bz v_23,ys.jhxdwh v_24, ys.jhxdsj v_25    
-from yhzxjh_sew ys) dqxx order by dqxx.v_1 nulls first, dqxx.v_0 nulls first
+	<select id="exportFwqjhExcel" parameterType="jhsh" resultType="elist">
+  select to_char(rownum) v_0, sg.szds v_1, wn.qhmc v_2, sg.gydw v_3, jh.xmmc v_4,
+    sz.xlxbm v_5, sz.xlxmc v_6, sz.xlxzh v_7, sz.ylxbm v_8, sz.ylxmc v_9,
+    sz.llxzh v_10, sz.JSDJ v_11, sz.xmlx v_12, sz.xysslx v_13, sz.jssslx v_14,
+    sz.fwnr v_15, nvl(sz.zdmj,0) v_16, xs.scxdnf v_17, wn.bz v_18,
+    nvl(jh.ztz,0) v_19, nvl(jh.cgs,0) v_20, nvl(jh.dfzc,0) v_21, jh.jhxdwh v_22, jh.jhxdsj v_23
+  FROM JHSH_FWQ JH
+  LEFT JOIN (select xmid,min(xdnf) scxdnf from plan_zjxd group by xmid) xs on jh.xmbm = xs.xmid
+  LEFT JOIN SGT_FWQ sg ON JH.XMBM = SG.XMBM
+  LEFT JOIN WNJH_FWQ WN ON SG.XMKID = WN.ID
+  left join szxmzd sz on wn.id = sz.xmkid
+  WHERE 1 = 1 and jh.shzt = '1' and fun_scxdnf(jh.xmbm) is not null
 	</select>
 </mapper>

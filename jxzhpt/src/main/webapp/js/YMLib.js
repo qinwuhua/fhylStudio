@@ -3455,6 +3455,7 @@ function autoCompleteYLXBM(){
   		$('#yx_ghqdzh').val(item.xqdzh);//规划起点桩号
   		$('#yx_ghzdzh').val(item.xzdzh);//规划止点桩号		
   		$('#yx_yghqdzh').val(item.xqdzh);//改变前规划起点桩号
+  		$('#yx_yghzdzh').val(item.xzdzh);//改变前规划起点桩号
   		$('#yx_lxmc').val(item.lxmc);//原路线名称
   		$('#yx_ghlxmc').val(item.xlxmc);//规划路线名称
   		$('#yx_yqdzh').val(item.yqdzh);//改变前原起点桩号
@@ -3575,7 +3576,8 @@ function selectTSDQ1(lxbm,qdzh,zdzh){
 }
 
 function queryGhByY(){	
-	var ghqdzh = $('#yx_yghqdzh').val(); //新规划的止点桩号	
+	var ghqdzh = $('#yx_yghqdzh').val(); //规划的起点桩号
+	var ghzdzh = $('#yx_yghzdzh').val(); //规划的止点桩号
 	var yqdzh = $('#yx_yqdzh').val(); //原起点桩号
 	var qdzh = $('#yx_qdzh').val();      //用户输入的原起点桩号	
 	var yzdzh = $('#yx_yzdzh').val();   //原止点桩号
@@ -3596,15 +3598,14 @@ function queryGhByY(){
 			$("#yx_ghzdzh").val(zd);
 		}
 	}*/	
+	var qd = ''; var zd = '';
 	if(parseFloat(yqdzh)<parseFloat(yzdzh)){
-		var qd=accAdd(accSub(parseFloat(qdzh),parseFloat(yqdzh)),parseFloat(ghqdzh));
-		var zd=accSub(accAdd(parseFloat(qd),parseFloat(zdzh)),parseFloat(qdzh));
+		qd=accAdd(accSub(parseFloat(qdzh),parseFloat(yqdzh)),parseFloat(ghqdzh));
+		zd=accSub(accAdd(parseFloat(qd),parseFloat(zdzh)),parseFloat(qdzh));
 	}
-	if(parseFloat(yqdzh)>parseFloat(yzdzh)){
-		//ghqdzh + ( yzdzh - zdzh );
-		var qd=accAdd(accSub(parseFloat(yzdzh),parseFloat(zdzh)),parseFloat(ghqdzh));
-		//ghqdzh +  (yzdzh - qdzh);
-		var zd= accAdd(accSub(parseFloat(yzdzh),parseFloat(qdzh)),parseFloat(ghqdzh));
+	if(parseFloat(yqdzh) > parseFloat(yzdzh)){
+		qd=accAdd(accSub(parseFloat(yqdzh),parseFloat(zdzh)),parseFloat(ghqdzh));
+		zd=accSub(parseFloat(ghzdzh),accSub(parseFloat(qdzh),parseFloat(yzdzh)));
 	}
 	$("#yx_ghqdzh").val(qd);
 	$("#yx_ghzdzh").val(zd);
