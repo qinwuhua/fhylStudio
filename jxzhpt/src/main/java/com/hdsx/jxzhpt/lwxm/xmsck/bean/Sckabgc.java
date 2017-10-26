@@ -89,6 +89,35 @@ private String xmklx;//项目库类型
 		private String tsdq;
 		private String nsqbzzj;
 		
+		private String ylxmc;
+		private String ylxbm;
+		private String yqdzh;
+		private String yzdzh;
+		
+		public String getYlxmc() {
+			return ylxmc;
+		}
+		public void setYlxmc(String ylxmc) {
+			this.ylxmc = ylxmc;
+		}
+		public String getYlxbm() {
+			return ylxbm;
+		}
+		public void setYlxbm(String ylxbm) {
+			this.ylxbm = ylxbm;
+		}
+		public String getYqdzh() {
+			return yqdzh;
+		}
+		public void setYqdzh(String yqdzh) {
+			this.yqdzh = yqdzh;
+		}
+		public String getYzdzh() {
+			return yzdzh;
+		}
+		public void setYzdzh(String yzdzh) {
+			this.yzdzh = yzdzh;
+		}
 		public String getNsqbzzj() {
 			return nsqbzzj;
 		}

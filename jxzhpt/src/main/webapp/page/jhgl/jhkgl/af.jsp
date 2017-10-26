@@ -109,7 +109,7 @@
 			querySumAbgc(jh,lx);
 		}
 		function searchAbgc(){
-			
+	
 			var xmnf=$("#sbnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
@@ -126,13 +126,16 @@
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
-			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:jsdj,lxbm:null,
+			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:jsdj,lxbm:null,ylxbm:null,
 					gldj:gldj,tsdq:tsdq,xmklx:$('#xmklx').combobox('getValue')};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
 			if($('#lxbm').val()!=""){
 				lx.lxbm=$('#lxbm').val();
+			}
+			if($('#ylxbm').val()!=""){
+				lx.lxbm=$('#ylxbm').val();
 			}
 			if($('#ddlSHZT').combo("getValue")!="" && $('#ddlSHZT').combo("getValue")!='全部'){
 				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
@@ -205,8 +208,10 @@ text-decoration:none;
 							
         						<td align="right">路线名称：</td>
         						<td><input name="txtRoad" type="text" id="txtRoad" style="width:80px;" /></td>
-        						<td align="right">路线编码：</td>
-        						<td><input name="txtRoad" type="text" id="lxbm" style="width:50px;" /></td>
+        						<td align="right">规划路线编码：</td>
+        						<td><input name="txtRoad" type="text" id="lxbm" style="width:60px;" /></td>
+        							<td align="right">原路线编码：</td>
+        						<td><input name="ylxbm" type="text" id="ylxbm" style="width:60px;" /></td>
         					</tr>
         					<tr height="29">
         						<td align="right">上报年份：</td>

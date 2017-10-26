@@ -78,7 +78,35 @@ public class Jckabgc implements Serializable{
 	private int rows;
 	private String sbzt2;
 	private String gydwlx;
-	
+	private String ylxbm; // 原路线编码
+	private String ylxmc;//原路线名称
+	private String yqdzh;//原起点桩号
+	private String yzdzh;//原止点桩号
+
+	public String getYlxmc() {
+		return ylxmc;
+	}
+	public void setYlxmc(String ylxmc) {
+		this.ylxmc = ylxmc;
+	}
+	public String getYqdzh() {
+		return yqdzh;
+	}
+	public void setYqdzh(String yqdzh) {
+		this.yqdzh = yqdzh;
+	}
+	public String getYzdzh() {
+		return yzdzh;
+	}
+	public void setYzdzh(String yzdzh) {
+		this.yzdzh = yzdzh;
+	}
+	public String getYlxbm() {
+		return ylxbm;
+	}
+	public void setYlxbm(String ylxbm) {
+		this.ylxbm = ylxbm;
+	}
 	public String getGydwlx() {
 		return gydwlx;
 	}
