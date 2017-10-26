@@ -318,7 +318,6 @@
 
 		}
 		function loadscxx(id){
-			alert(id);
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/aqsmfh/selectAqsmfhsckbyid.do',
