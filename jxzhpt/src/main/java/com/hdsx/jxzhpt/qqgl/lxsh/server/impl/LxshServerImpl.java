@@ -110,10 +110,6 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			lxsh.setLsxmid(lsxmid);
 			update("updatesjgzls", lxsh);
 			
-			WnjhServer w=new WnjhServerImpl();
-			lxsh.setXmjd("项目立项");
-			lxsh.setXmlx("1");
-			w.updateWnxmjd(lxsh);
 			return true;
 		} else
 			return false;
@@ -134,10 +130,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			lxsh.setBz("lxsh_lmgz");
 			lxsh.setBzcs("wnjh_lmgz");
 			update("updateqqglls", lxsh);
-			WnjhServer w=new WnjhServerImpl();
-			lxsh.setXmlx("2");
-			lxsh.setXmjd("项目立项");
-			w.updateWnxmjd(lxsh);
+			
 			
 			return true;
 		} else
@@ -158,10 +151,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			lxsh.setBz("lxsh_xj");
 			lxsh.setBzcs("wnjh_xj");
 			update("updateqqglls", lxsh);
-			WnjhServer w=new WnjhServerImpl();
-			lxsh.setXmlx("3");
-			lxsh.setXmjd("项目立项");
-			w.updateWnxmjd(lxsh);
+			
 			return true;
 		} else
 			return false;
@@ -442,10 +432,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		}
 		if(deleteBatch("delSjgz", lm)>0&&deleteBatch("delSjgzlx", lm)>0){ 
 			update("delwnsjgz", lxsh);
-			WnjhServer w=new WnjhServerImpl();
-			lxsh.setXmlx("1");
-			lxsh.setXmjd("五年项目库");
-			w.updateWnxmjd(lxsh);
+			
 			return true;}
 		else return false;
 	}
@@ -461,10 +448,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		}
 		if(deleteBatch("delLmgz", lm)>0&&deleteBatch("delSjgzlx", lm)>0){ 
 			//updateBatch("delwnlm", lm);
-			WnjhServer w=new WnjhServerImpl();
-			lxsh.setXmlx("1");
-			lxsh.setXmjd("五年项目库");
-			w.updateWnxmjd(lxsh);
+			
 			return true;}
 		else return false;
 	}
@@ -480,10 +464,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		}
 		if(deleteBatch("delXj", lm)>0&&deleteBatch("delSjgzlx", lm)>0){ 
 			//updateBatch("delwnxj", lm);
-			WnjhServer w=new WnjhServerImpl();
-			lxsh.setXmlx("1");
-			lxsh.setXmjd("五年项目库");
-			w.updateWnxmjd(lxsh);
+			
 			return true;}
 		else return false;
 	}
@@ -516,10 +497,6 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 				insert("insertsjgzkxx", lxsh2);
 			}
 			
-			WnjhServer w=new WnjhServerImpl();
-			lxsh.setXmlx("1");
-			lxsh.setXmjd("工程可行性研究报告");
-			w.updateWnxmjd(lxsh);
 			
 			return true;
 		}
@@ -554,10 +531,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 				}
 				insert("insertlmgzkxx", lxsh2);
 			}
-			WnjhServer w=new WnjhServerImpl();
-			lxsh.setXmlx("2");
-			lxsh.setXmjd("工程可行性研究报告");
-			w.updateWnxmjd(lxsh);
+			
 			return true;
 		}
 		else
@@ -591,10 +565,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 				}
 				insert("insertxjkxx", lxsh2);
 			}
-			WnjhServer w=new WnjhServerImpl();
-			lxsh.setXmlx("3");
-			lxsh.setXmjd("工程可行性研究报告");
-			w.updateWnxmjd(lxsh);
+			
 			return true;
 		}
 		else
@@ -1111,9 +1082,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			lxsh.setBzcs(kxx);
 			return update("thwshlxsh45", lxsh)>0&&delete("thwshlxshkxx", lxsh)>0&&delete("thwshlxshkxxlx", lxsh)>0;
 		}else{
-			WnjhServer w=new WnjhServerImpl();
-			lxsh.setXmjd("项目立项");
-			w.updateWnxmjd(lxsh);
+			
 			lxsh.setBz(bz);
 			lxsh.setBzcs(kxx);
 			return update("thwshlxsh", lxsh)>0&&delete("thwshlxshkxx", lxsh)>0&&delete("thwshlxshkxxlx", lxsh)>0;
