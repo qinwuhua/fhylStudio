@@ -318,6 +318,7 @@
 
 		}
 		function loadscxx(id){
+			alert(id);
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/aqsmfh/selectAqsmfhsckbyid.do',
@@ -331,7 +332,7 @@
 						showLd(item.xmbm);
 						fileShow(item.xmbm);
 						$("#lxmc").html(item.lxmc);$("#scjsdj").html(item.jsdj);
-						$("#qdzh").html(item.qdzh);$("#zdzh").html(item.zdzh);$("#scjsdj").html(item.jsdj);
+						$("#qdzh").html(item.qdzh);$("#zdzh").html(item.zdzh);
 						$("#scyhlc").html(item.yhlc);$("#scxjgjnd").html(item.xjgjnd);
 						$("#cztzgs").html(item.tzgs);$("#scjhnf").html(item.jhnf);
 						$("#gydw").html(item.gydw);
@@ -344,6 +345,11 @@
 				 		$("#ablbzsqwh").html(item.ablbzsqwh);$("#jsxz").html(item.jsxz);$("#bz").html(item.bz);
 						$("#scjhnf").html(item.jhnf);
 						$("#nsqbbz").html(item.nsqbbz);
+						$("#ylxmc").html(item.ylxmc);
+						$("#lxbm").html(item.lxbm);
+						$("#ylxbm").html(item.ylxbm);
+						$("#yqdzh").html(item.yqdzh);
+						$("#yzdzh").html(item.yzdzh);
 					}
 				}
 			});
@@ -417,23 +423,53 @@
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">行政区划：</td>
 				<td  style="background-color: #ffffff; height: 20px;width:180px" align="left">
 					<span id="xzqh"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">路线名称：</td>
-				<td  style="background-color: #ffffff; height: 20px;width:180px" align="left">
-					<span id="lxmc"></span></td>
-				
-			</tr>	
-			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">技术等级：</td>
 				<td  style="background-color: #ffffff; height: 20px;width:180px" align="left">
 					<span id="scjsdj"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">起点桩号：</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">规划路线名称：</td>
+				<td  style="background-color: #ffffff; height: 20px;width:180px" align="left">
+					<span id="lxmc"></span></td>
+				
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:110px" align="right">原路线名称：</td>
+				<td  style="background-color: #ffffff; height: 20px;width:180px" align="left">
+				<span id="ylxmc"></span></td>
+				
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:110px" align="right"></td>
+				<td  style="background-color: #ffffff; height: 20px;width:180px" align="left">
+
+			</tr>
+					
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">规划路线编码：</td>
+				<td  style="background-color: #ffffff; height: 20px;width:180px" align="left">
+				<span id="lxbm"></span></td>
+				
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">规划起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:180px" align="left">
 					<span id="qdzh"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">止点桩号：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">规划止点桩号：</td>
 				<td  style="background-color: #ffffff; height: 20px;width:180px" align="left">
 					<span id="zdzh"></span></td>
+			</tr>
+			
+			<tr style="height: 35px;">
+			
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:110px" align="right">原路线编码：</td>
+				<td style="background-color: #ffffff; height: 20px;width:180px" align="left">
+				<span id="ylxbm"></span></td>
 				
-			</tr>	
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:110px" align="right">原起点桩号：</td>
+				<td  style="background-color: #ffffff; height: 20px;width:180px" align="left">
+				<span id="yqdzh"></span></td>
+				
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:110px" align="right">原止点桩号：</td>
+				<td  style="background-color: #ffffff; height: 20px;width:180px" align="left">
+				<span id="yzdzh"></span></td>		
+			</tr>
+			
+				
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">隐患里程：</td>
 				<td  style="background-color: #ffffff; height: 20px;width:180px" align="left">

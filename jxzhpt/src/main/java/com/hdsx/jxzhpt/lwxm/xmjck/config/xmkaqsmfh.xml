@@ -1560,8 +1560,9 @@
  			order by xuh
  		</select>
  		<select id="selectAqsmfhsckbyid" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
- 			select * from SCK_AQSMFH where 1=1 
- 			<if test="id!='' and id!=null "> and id=#{id}</if>
+ 			select * from SCK_AQSMFH sa
+            left join xmk_aqsmfh xa on xa.id = sa.id where 1=1 
+ 			<if test="id!='' and id!=null "> and sa.id=#{id}</if>
  		</select>
  		<select id="selectAqsmfhsckbyid1" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
  			select * from SCK_AQSMFH where 1=1 

@@ -208,20 +208,53 @@ public class Xmkaqsmfh {
 	    
 	private String lsjl;
 	private String lsxmxx;
+
+	 /*shm*/
+	private String throadname;
 	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    /*shm*/
-	    private String throadname;
-	    
-	    private String xmklx;//项目库类型
-	    
-	    
-	    public String getLsjl() {
+	private String xmklx;//项目库类型
+	
+	private String ylxmc; //原路线名称
+	
+	private String ylxbm;//原路线编码
+	
+	private String yqdzh;//原起点桩号
+	
+	private String yzdzh;//原止点桩号
+	
+	public String getYlxmc() {
+		return ylxmc;
+	}
+
+	public void setYlxmc(String ylxmc) {
+		this.ylxmc = ylxmc;
+	}
+
+	public String getYlxbm() {
+		return ylxbm;
+	}
+
+	public void setYlxbm(String ylxbm) {
+		this.ylxbm = ylxbm;
+	}
+
+	public String getYqdzh() {
+		return yqdzh;
+	}
+
+	public void setYqdzh(String yqdzh) {
+		this.yqdzh = yqdzh;
+	}
+
+	public String getYzdzh() {
+		return yzdzh;
+	}
+
+	public void setYzdzh(String yzdzh) {
+		this.yzdzh = yzdzh;
+	}
+
+		public String getLsjl() {
 			return lsjl;
 		}
 

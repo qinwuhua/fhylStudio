@@ -28,14 +28,14 @@
 			loadylx('lxbm');
 			//根据用户等级展示按钮
 			if(userPanduan($.cookie("unit2"))=="省"){
-				title='审核状态';
+				title='综规处审核状态';
 				$.each($("[name='sheng']"),function(index,item){
 					$(item).show();
 				});
 				$.each($("[name='dishi']"),function(index,item){
 					$(item).hide();
 				});
-				$('#ztspan').html("审核状态");
+				$('#ztspan').html("综规处审核状态");
 				$('#spantitle').html("项目立项审核");
 			}else if(userPanduan($.cookie("unit2"))!="省"){
 				title='上报状态';
@@ -146,7 +146,7 @@
 						//return result;
 					}
 				},
-				{field:'sqzt',title:title,width:60,align:'center',
+				{field:'sqzt',title:title,width:100,align:'center',
 					formatter:function(value,row,index){
 						var result="";
 						if(userPanduan($.cookie('unit2'))!="省"){
@@ -166,6 +166,17 @@
 							}else{
 								result="未上报";
 							}
+						}
+						return result;
+					}
+				},
+				{field:'yhcsh',title:'养护处审核状态',width:100,align:'center',
+					formatter:function(value,row,index){
+						var result ='';
+						if(Number(row.yhcsh) == 1){
+							result='已审核';
+						}else{
+							result='未审核';
 						}
 						return result;
 					}
@@ -261,6 +272,17 @@
 											}else{
 												result="未上报";
 											}
+										}
+										return result;
+									}
+								},
+								{field:'yhcsh',title:'养护处审核状态',width:100,align:'center',
+									formatter:function(value,row,index){
+										var result ='';
+										if(Number(row.yhcsh) == 1){
+											result='已审核';
+										}else{
+											result='未审核';
 										}
 										return result;
 									}
@@ -883,6 +905,7 @@ text-decoration:none;
        							</td>
        							<td align="right">特殊地区：</td>
        							<td><select name="tsdq" id="tsdq" style="width:85px;" class="easyui-combobox"></select></td>
+       							
        							<td align="right"><span id="ztspan">上报状态</span>：</td>
        							<td><select id="sqzt" class="easyui-combobox" style="width: 118px;"></select></td>
        							<!-- 筛选历史条件 -->
