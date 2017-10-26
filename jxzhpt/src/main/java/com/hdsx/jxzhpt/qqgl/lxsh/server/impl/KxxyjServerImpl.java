@@ -231,10 +231,7 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 				insert("insertjhshsb", lxsh);
 				//
 			}
-			WnjhServer w=new WnjhServerImpl();
-			lxsh.setXmlx("1");
-			lxsh.setXmjd("工程初步设计");
-			w.updateWnxmjd(lxsh);
+			
 			return true;
 		}
 		else
@@ -275,10 +272,7 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 				lxsh.setBzcs("jhsh_lmgz");
 				insert("insertjhshsb", lxsh);
 			}
-			WnjhServer w=new WnjhServerImpl();
-			lxsh.setXmlx("2");
-			lxsh.setXmjd("工程初步设计");
-			w.updateWnxmjd(lxsh);
+			
 			return true;
 		}
 		else
@@ -319,10 +313,7 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 				lxsh.setBzcs("jhsh_xj");
 				insert("insertjhshsb", lxsh);
 			}
-			WnjhServer w=new WnjhServerImpl();
-			lxsh.setXmlx("3");
-			lxsh.setXmjd("工程初步设计");
-			w.updateWnxmjd(lxsh);
+			
 			return true;
 		}
 		else
@@ -852,11 +843,7 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 		if(l.size()>0)
 			return false;
 		else{
-			if(!"5".equals(lxsh.getXmlx())){
-				WnjhServer w=new WnjhServerImpl();
-				lxsh.setXmjd("工程可行性研究报告");
-				w.updateWnxmjd(lxsh);
-			}
+			
 			lxsh.setBz(bz);
 			lxsh.setBzcs(kxx);
 			lxsh.setBzys(sfkth);
