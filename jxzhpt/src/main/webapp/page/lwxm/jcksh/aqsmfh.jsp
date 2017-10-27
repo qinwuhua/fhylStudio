@@ -323,6 +323,7 @@ var xzqhdm=$("#xzqhmc").combotree("getValues");
  	'&xmkaqsmfh.sbzt='+$("#sbzt").combobox("getValue")+
  	'&xmkaqsmfh.jsdj='+jsdj+
  	'&xmkaqsmfh.roadcode='+$("#lxbm").val()+
+ 	'&xmkaqsmfh.ylxbm='+$("#ylxbm").val()+
  	'&xmkaqsmfh.gldj='+gldj+
  	'&xmkaqsmfh.bzls='+$("#bzls").combobox("getValue")+
  	'&xmkaqsmfh.tsdq='+tsdq.replace(/\+/g,"%2B");

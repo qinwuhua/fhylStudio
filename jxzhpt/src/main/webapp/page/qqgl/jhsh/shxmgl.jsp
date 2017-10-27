@@ -180,9 +180,6 @@
 						return result;
 					}    
 				},
-
-				
-				
 				{field:'lsjl',title:'历史记录',width:60,align:'center',
 					formatter: function(value,row,index){
 						if(value=="是"){
@@ -272,6 +269,19 @@
 										}
 										return result;
 									}
+								},
+								{field:'yhcsh',title:'养护处审核状态',width:100,align:'center',
+									formatter: function(value,row,index){
+										var result = "";
+										if(value == '1'){
+											result = "已审核";
+										}else if(value == '0'){
+											result = "未审核";
+										}else{
+											result="错误";
+										}
+										return result;
+									}    
 								},
 								{field:'lsjl',title:'历史记录',width:60,align:'center',
 									formatter: function(value,row,index){
@@ -633,7 +643,7 @@ function deleteSh(){
 			'&ylxbh='+$('#gldj').combobox("getValues").join(",")+"&lxmc="+$("#lxmc").val()+
 			"&ghlxbh="+$("#lxbm").combotree('getText')+"&ghlxbm="+$("#ghlxbm").combotree('getText')+
 			"&ghlxmc="+$("#ghlxmc").val()+"&lsxmlx="+lsxmlx+"&lsxmnf="+lsxmnf+"&jdbs="+YMLib.Var.jdbs+
-			"&wnxmk="+$('#wnxmk').combobox("getValue")+"&xmbm="+$("#xmbm").val();
+			"&wnxmk="+$('#wnxmk').combobox("getValue")+"&xmbm="+$("#xmbm").val()+"&yhcsh="+$('#yhcsh').combobox("getValue");
 			
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{tsdq:tsdq},function(){
 				window.location.href="/jxzhpt/qqgl/exportExcelXmsqZhcj.do?"+param;

@@ -266,7 +266,10 @@
 	 		</if>
 	 		<if test="xmklx !='' and xmklx != null ">
  			and xmklx like '%'||(#{xmklx})||'%'
- 		</if>
+ 		    </if>
+ 			<if test="lxbm!='' and lxbm!= null ">
+	 			and roadcode like '%'||(#{lxbm})||'%'
+	 		</if>
  		    <if test="ylxbm!='' and ylxbm!= null ">
 	 			and ylxbm like '%'||(#{ylxbm})||'%'
 	 		</if>
@@ -2037,6 +2040,9 @@
  			</if> 
 	 		<if test="roadcode!='' and roadcode!= null ">
 	 			and roadcode like '%'||(#{roadcode})||'%'
+	 		</if>
+	 		<if test="ylxbm!='' and ylxbm!= null ">
+	 			and ylxbm like '%'||(#{ylxbm})||'%'
 	 		</if>
 	 		<if test="tsdq!='' and tsdq!= null ">
 	 			${tsdq}

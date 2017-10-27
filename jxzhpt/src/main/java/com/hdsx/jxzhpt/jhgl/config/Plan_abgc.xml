@@ -733,6 +733,9 @@
 	 	<if test="lx.lxbm!=null and lx.lxbm!=''">
 	 		and lx.lxbm like '%'||#{lx.lxbm}||'%'
 	 	</if>
+	 	<if test="lx.ylxbm!=null and lx.ylxbm!=''">
+	 		and xa.ylxbm like '%'||#{lx.ylxbm}||'%'
+	 	</if>
 	 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 	 		${lx.lxjsdj}
 	 	</if>

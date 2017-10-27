@@ -1446,6 +1446,7 @@
 				<if test="lsxmlx !='' and lsxmlx != null ">
 					${lsxmlx}
 				</if>
+				<if test="yhcsh!=null and yhcsh!=''">and x.yhcsh=#{yhcsh}</if>	
 	</select>
 	<select id="queryAllXzqh" parameterType="string" resultType="treenode">
 		select distinct x.id ,x.name text,parent ,'open' state from XTGL_XZQH x where  id like '%'||${value}||'%' order by to_number(id)
@@ -2383,6 +2384,7 @@
 					${lsxmlx}
 				</if>
 				<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
+				<if test="yhcsh!=null and yhcsh!=''">and x.yhcsh=#{yhcsh}</if>
 		order by x.xmbm
 	) tb
 	
