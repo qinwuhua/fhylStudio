@@ -158,6 +158,7 @@
 						}
 					},
 					{field : 'qqkzzt',title : '前期开展',width : 60,align : 'center'},
+					{field : 'xmjd',title : '项目进度',width : 130,align : 'center'},
 					{field : 'xzqh',title : '行政区划',width : 60,align : 'center'},
 					{field : 'xmnf',title : '项目年份',width : 60,align : 'center'},
 			        {field : 'xmmc',title : '项目名称',width : 210,align : 'center',formatter:function(value,row,index){
