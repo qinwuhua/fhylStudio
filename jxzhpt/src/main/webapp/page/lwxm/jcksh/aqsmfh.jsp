@@ -139,6 +139,7 @@ $("#grid").datagrid({
 		 	'xmkaqsmfh.gldj':gldj,
 		 	'xmkaqsmfh.bzls':$("#bzls").combobox("getValue"),
 		 	'xmkaqsmfh.tsdq':tsdq,
+		 	'xmkaqsmfh.ylxbm':$("#ylxbm").val(),
 		 	'xmkaqsmfh.xmklx':$('#xmklx').combobox('getValue')
 		},
 	    striped:true,
@@ -175,10 +176,14 @@ $("#grid").datagrid({
 			}
 		}},
 		//{field:'bzls',title:'补助历史',width:60,align:'center'},
-        		{field:'roadcode',title:'公路编号',width:80,align:'center'},
-		        {field:'roadname',title:'路线名称',width:160,align:'center'},
-		        {field:'roadstart',title:'桩号起点',width:120,align:'center'},
-		        {field:'roadend',title:'桩号终点',width:120,align:'center'},
+        		{field:'roadcode',title:'规划路线编号',width:80,align:'center'},
+		        {field:'roadname',title:'规划路线名称',width:160,align:'center'},
+		        {field:'roadstart',title:'规划起点桩号',width:120,align:'center'},
+		        {field:'roadend',title:'规划止点桩号',width:120,align:'center'},        
+        		{field:'ylxbm',title:'原路线编号',width:80,align:'center'},
+		        {field:'ylxmc',title:'原路线名称',width:160,align:'center'},
+		        {field:'yqdzh',title:'原起点桩号',width:120,align:'center'},
+		        {field:'yzdzh',title:'原止点桩号',width:120,align:'center'}, 
 		        {field:'jsdj',title:'技术等级',width:120,align:'center'},
 		        {field:'gldj',title:'行政等级',width:140,align:'center'},
 		        {field:'fangx',title:'方向',width:140,align:'center'},
@@ -233,7 +238,7 @@ var xzqhdm=$("#xzqhmc").combotree("getValues");
 	var data="xmkaqsmfh.sbthcd="+sbthcd+"&xmkaqsmfh.unitcode="+gydwstr+"&xmkaqsmfh.distcode="+xzqhstr+"&xmkaqsmfh.lxmc="+$('#lxmc').val()+'&xmkaqsmfh.throadname=' + $('#throadname').val()+'&xmkaqsmfh.throadcode=' + $('#throadcode').val()+
 	"&xmkaqsmfh.jhnf="+"&xmkaqsmfh.sbzt="+$("#sbzt").combobox("getValue")+
 	'&xmkaqsmfh.bzls='+$("#bzls").combobox("getValue")+"&xmkaqsmfh.jsdj="+jsdj+"&xmkaqsmfh.lxbm="+$("#lxbm").val()+"&xmkaqsmfh.tsdq="+tsdq.replace(/\+/g,"%2B")+
-	'&xmkaqsmfh.xmklx='+$('#xmklx').combobox('getValue')+"&xmkaqsmfh.gldj="+gldj;
+	'&xmkaqsmfh.xmklx='+$('#xmklx').combobox('getValue')+"&xmkaqsmfh.gldj="+gldj+"&xmkaqsmfh.ylxbm="+$("#ylxbm").val();
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/aqsmfh/loadXmkaqsmfhshCount.do",
@@ -356,8 +361,11 @@ text-decoration:none;
                               	<td colspan="3" ><select id="xzqhmc" style="width:180px">
                               	</select></td>
                               
-        						<td align="right">路线编码：</td>
+        						<td align="right">规划路线编码：</td>
         						<td><input type="text" id="lxbm" style="width:70px;" /></td>
+        						
+        						<td align="right">原路线编码：</td>
+        						<td><input type="text" id="ylxbm" style="width:70px;" /></td>
 						</tr>
                         <tr height="29">
 							  <!-- <td>项目年份：</td>
@@ -386,7 +394,7 @@ text-decoration:none;
                               	<td align="right">原行政等级：</td>
                               	<td><select id="gldj" style="width:50px"class="easyui-combobox">
                               	</select></td>
-                              	 <td align="right">路线名称：</td>
+                              	 <td align="right">规划路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:70px;" /></td>
                              </tr>
                             <tr height="29">

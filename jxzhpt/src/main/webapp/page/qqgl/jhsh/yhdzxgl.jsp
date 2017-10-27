@@ -26,6 +26,8 @@
 		$(function(){
 			loadGhlx('ghlxbm');
 			loadylx('lxbm');
+			loadBmbm2('sqzt','申请状态地市');
+			
 			//根据用户等级展示按钮
 			if(userPanduan($.cookie("unit2"))=="省"){
 				title='综规处审核状态';
@@ -108,7 +110,8 @@
 					"ylxbh":$('#gldj').combobox("getValues").join(","),
 					'lsxmlx':lsxmlx,
 					'lsxmnf':lsxmnf,
-					'xmbm':$("#xmbm").val()};
+					'xmbm':$("#xmbm").val(),
+					'yhcsh':$('#yhcsh').combobox("getValue")};
 			var sqzt = $('#sqzt').combobox("getValue");
 			
 			if(userPanduan($.cookie("unit2"))!="省"){
@@ -923,6 +926,16 @@ text-decoration:none;
 								</td>
 								<td align="right">项目编码：</td>
 								<td><input type="text" id="xmbm" style="width:115px;" /></td>
+								
+								<td align="right">养护处审核状态：</td>
+       							<td>
+       								<select id="yhcsh" class="easyui-combobox" style="width: 100px;">
+		       							<option value="" selected="selected">全部</option>
+		       							<option value="0">未审核</option>
+		       							<option value="1">已审核</option>
+	       							</select>
+       							</td>
+								
 								</tr>
 								<tr height="29">
        							<td colspan="8">

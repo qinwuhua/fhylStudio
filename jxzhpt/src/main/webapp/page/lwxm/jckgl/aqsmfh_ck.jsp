@@ -61,48 +61,79 @@ text-decoration:none;
 		$("#hjzz").html(item.hjzz);$("#bzbxcz").html(item.bzbxcz);$("#jckcz").html(item.jckcz);$("#jzhl").html(item.jzhl);$("#jshsxydcz").html(item.jshsxydcz);$("#aqssqtcz").html(item.aqssqtcz);
 		$("#jhnf").html(item.jhnf);$("#yhlc").html(item.yhlc);$("#tzgs").html(item.tzgs);$("#tsdq").html(item.tsdq);
 		$("#gltjpcf").html(item.gltjpcf);
+		$("#yqdzh").html(item.yqdzh);
+		$("#yzdzh").html(item.yzdzh);
+		$("#ylxbm").html(item.ylxbm);
+
+		
 	}
 </script>
 
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">规划路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span  id="roadcode" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线名称：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="roadname" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
-				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<span id="unit" ></span>
-					</td>
+					<span  id="ylxbm" ></span></td>	
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">	</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">规划路线名称：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<span  id="roadname" ></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">规划起点桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span  id="roadstart" ></span><br>
+					<span id="qd"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">规划止点桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left"><br>
+					<span id="roadend" ></span>
+					<span id="zd"></span></td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原起点名称</td>
 				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<span id="dist" ></span>
-					</td>
+				    <span id="ylxmc" ></span></td>
+					
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原起点桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span  id="yqdzh" ></span><br></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原止点桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left"><br>
+					<span id="yzdzh" ></span></td>
+			</tr>
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">省：</td>
 				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
 					<span id="province"  ></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">市：</td>
 				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
 					<span id="town" ></span></td>
-				</tr>	
-				<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">县：</td>
 				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
 					<span id="county" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桩号起点：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span  id="roadstart" ></span><br>
-					<span id="qd"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桩号终点：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left"><br>
-					<span id="roadend" ></span>
-					<span id="zd"></span></td>
+			</tr>
+			
+			
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划：</td>
+				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
+					<span id="dist" ></span>
+					</td>
+					
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
+				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
+					<span id="unit" ></span>
+					</td>
+					
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left"></td>
 				</tr>
+								
 				<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">县乡道路网调后<br>公路编号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">

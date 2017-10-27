@@ -187,6 +187,9 @@
 	 		<if test="lxbm!='' and lxbm!= null ">
 	 			and roadcode like '%'||(#{lxbm})||'%'
 	 		</if>
+	 		<if test="ylxbm!='' and ylxbm!= null ">
+	 			and ylxbm like '%'||(#{ylxbm})||'%'
+	 		</if>
 	 		<if test="throadcode!='' and throadcode!= null ">
 	 			and throadcode like '%'||(#{throadcode})||'%'
 	 		</if>
@@ -264,6 +267,9 @@
 	 		<if test="xmklx !='' and xmklx != null ">
  			and xmklx like '%'||(#{xmklx})||'%'
  		</if>
+ 		    <if test="ylxbm!='' and ylxbm!= null ">
+	 			and ylxbm like '%'||(#{ylxbm})||'%'
+	 		</if>
 	 			<if test="bzls!='' and bzls!= null ">
  			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
  		</if>
@@ -314,6 +320,9 @@
  			</if> 
 	 		<if test="lxbm!='' and lxbm!= null ">
 	 			and roadcode like '%'||(#{lxbm})||'%'
+	 		</if>
+	 		<if test="ylxbm!='' and ylxbm!= null ">
+	 			and ylxbm like '%'||(#{ylxbm})||'%'
 	 		</if>
 	 		<if test="throadcode!='' and throadcode!= null ">
 	 			and throadcode like '%'||(#{throadcode})||'%'

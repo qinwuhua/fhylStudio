@@ -683,12 +683,13 @@
   		left join sck_aqsmfh lx on (jh.sckid = lx.id) 
   		left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id
   		where 1=1  -->
-      select  rownum v_0,lx.town v_1,lx.county v_2,lx.lxbm v_3,lx.qdzh v_4,lx.zdzh v_5,
-         xa.ylxbm v_6,xa.yqdzh v_7,xa.yzdzh v_8,
-         decode(lx.jsxz,'1','中修','2','大修',lx.jsxz) v_9,
-         lx.czzlc v_10,lx.yhlc v_11,
-         nvl(jh.pfztz,0) v_12,nvl(jh.JHSYBBZJE,0) v_13,nvl(jh.JHSYDFZCZJ,0) v_14,lx.jsnr v_15,lx.spwh v_16,
-         lx.gydw v_17,jh.jhnf v_18,jh.remarks v_19,ts.tsdq v_20
+      select  rownum v_0,lx.town v_1,lx.county v_2,lx.lxbm v_3,
+         lx.lxmc v_4, lx.qdzh v_5,lx.zdzh v_6,xa.ylxbm v_7,
+         xa.ylxmc v_8,xa.yqdzh v_9,xa.yzdzh v_10,
+         decode(lx.jsxz,'1','中修','2','大修',lx.jsxz) v_11,
+         lx.czzlc v_12,lx.yhlc v_13,
+         nvl(jh.pfztz,0) v_14,nvl(jh.JHSYBBZJE,0) v_15,nvl(jh.JHSYDFZCZJ,0) v_16,lx.jsnr v_17,lx.spwh v_18,
+         lx.gydw v_19,jh.jhnf v_20,jh.remarks v_21,ts.tsdq v_22
       from plan_af jh
       left join xmk_aqsmfh xa on (jh.sckid = xa.id)
       left join sck_aqsmfh lx on (jh.sckid = lx.id) 

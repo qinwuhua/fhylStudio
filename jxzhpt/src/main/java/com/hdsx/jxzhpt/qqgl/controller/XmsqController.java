@@ -612,6 +612,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 					}
 					xmsq.setTsdq(tsdq);
 				}
+				xmsq.setYhcsh(xmsq.getYhcsh());
 				//System.out.println(xmsq.getJsxz());
 				list = xmsqServer.queryYhdzxXmsq(xmsq,page,rows);
 				total =xmsqServer.queryYhdzxCount(xmsq);

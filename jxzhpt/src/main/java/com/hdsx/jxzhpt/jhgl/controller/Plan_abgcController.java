@@ -427,27 +427,28 @@ public class Plan_abgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("序号",1,2,0,0));
 		et.add(new Excel_tilte("设区市",1,2,1,1));
 		et.add(new Excel_tilte("县（市、区）",1,2,2,2));
-		et.add(new Excel_tilte("最新年报桩号",1,1,3,5));
-		et.add(new Excel_tilte("路网规划前",1,1,6,8));
-		et.add(new Excel_tilte("建设性质",1,2,9,9));
-		et.add(new Excel_tilte("总里程（公里）",1,2,10,10));
-		et.add(new Excel_tilte("项目隐患里程（公里）",1,2,11,11));
-		et.add(new Excel_tilte("总投资（万元）",1,2,12,12));
-		et.add(new Excel_tilte("中央车购税资金（万元）",1,2,13,13));
-		et.add(new Excel_tilte("地方自筹（万元）",1,2,14,14));
-		et.add(new Excel_tilte("建设内容",1,2,15,15));
-		et.add(new Excel_tilte("批复文号",1,2,16,16));
-		et.add(new Excel_tilte("管养单位",1,2,17,17));
-		et.add(new Excel_tilte("项目年份",1,2,18,18));
-		et.add(new Excel_tilte("备注",1,2,19,19));
-		et.add(new Excel_tilte("特殊地区",1,2,20,20));
-		et.add(new Excel_tilte("路线编码",2,2,3,3));
-		et.add(new Excel_tilte("起点桩号",2,2,4,4));
-		et.add(new Excel_tilte("讫点桩号",2,2,5,5));
-		et.add(new Excel_tilte("路线编码",2,2,6,6));
-		et.add(new Excel_tilte("起点桩号",2,2,7,7));
-		et.add(new Excel_tilte("讫点桩号",2,2,8,8));
-		
+		et.add(new Excel_tilte("最新年报桩号",1,1,3,6));
+		et.add(new Excel_tilte("路网规划前",1,1,7,10));
+		et.add(new Excel_tilte("建设性质",1,2,11,11));
+		et.add(new Excel_tilte("总里程（公里）",1,2,12,12));
+		et.add(new Excel_tilte("项目隐患里程（公里）",1,2,13,13));
+		et.add(new Excel_tilte("总投资（万元）",1,2,14,14));
+		et.add(new Excel_tilte("中央车购税资金（万元）",1,2,15,15));
+		et.add(new Excel_tilte("地方自筹（万元）",1,2,16,16));
+		et.add(new Excel_tilte("建设内容",1,2,17,17));
+		et.add(new Excel_tilte("批复文号",1,2,18,18));
+		et.add(new Excel_tilte("管养单位",1,2,19,19));
+		et.add(new Excel_tilte("项目年份",1,2,20,20));
+		et.add(new Excel_tilte("备注",1,2,21,21));
+		et.add(new Excel_tilte("特殊地区",1,2,22,22));
+		et.add(new Excel_tilte("规划路线编码",2,2,3,3));
+		et.add(new Excel_tilte("规划路线名称",2,2,4,4));
+		et.add(new Excel_tilte("规划起点桩号",2,2,5,5));
+		et.add(new Excel_tilte("规划止点桩号",2,2,6,6));	
+		et.add(new Excel_tilte("原路线编码",2,2,7,7));
+		et.add(new Excel_tilte("原路线名称",2,2,8,8));
+		et.add(new Excel_tilte("原起点桩号",2,2,9,9));
+		et.add(new Excel_tilte("原止点桩号",2,2,10,10));
 		eldata.setEt(et);//将表头内容设置到类里面
 		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 		try {
