@@ -26,14 +26,14 @@
 	$(function(){
 			//根据用户等级展示按钮
 			if(userPanduan($.cookie("unit2"))=="省"){
-				title='审核状态';
+				title='综规处审核状态';
 				$.each($("img[name='sheng']"),function(index,item){
 					$(item).show();
 				});
 				$.each($("img[name='dishi']"),function(index,item){
 					$(item).hide();
 				});
-				$('#ztspan').html("审核状态");
+				$('#ztspan').html("综规处审核状态");
 				$('#spantitle').html("项目立项审核");
 			}else if(userPanduan($.cookie("unit2"))!="省"){
 				title='上报状态';
@@ -105,8 +105,8 @@
 					"ylxbh":$('#gldj').combobox("getValues").join(","),
 					'lsxmlx':lsxmlx,
 					'lsxmnf':lsxmnf,
-					'xmbm':$("#xmbm").val()
-					
+					'xmbm':$("#xmbm").val(),
+					'yhcsh':$('#yhcsh').combobox("getValue")	
 			};
 			var sqzt = $('#sqzt').combobox("getValue");
 			if(userPanduan($.cookie("unit2"))!="省"){
@@ -144,7 +144,7 @@
 						//return result;
 					}
 				},
-				{field:'sqzt',title:title,width:60,align:'center',
+				{field:'sqzt',title:title,width:100,align:'center',
 					formatter:function(value,row,index){
 						var result="";
 						if(userPanduan($.cookie('unit2'))!="省"){
@@ -167,6 +167,22 @@
 						return result;
 					}
 				},
+				{field:'yhcsh',title:'养护处审核状态',width:100,align:'center',
+					formatter: function(value,row,index){
+						var result = "";
+						if(value == '1'){
+							result = "已审核";
+						}else if(value == '0'){
+							result = "未审核";
+						}else{
+							result="错误";
+						}
+						return result;
+					}    
+				},
+
+				
+				
 				{field:'lsjl',title:'历史记录',width:60,align:'center',
 					formatter: function(value,row,index){
 						if(value=="是"){
@@ -786,7 +802,18 @@ text-decoration:none;
        							</tr>
        							<tr height="30">
        							<td align="right">项目编码：</td>
-								<td><input type="text" id="xmbm" style="width:100px;" /></td>
+								<td><input type="text" id="xmbm" style="width:100px;" />
+								</td>
+							    
+							    <td align="right">养护处审核状态：</td>
+								<td>  
+								    <select id="yhcsh" class="easyui-combobox" style="width: 80px;" data-options="editable:false,panelHeight:'auto'">
+	       							<option value="" selected="selected">全部</option>
+	       							<option value="0">未审核</option>
+	       							<option value="1">已审核</option>
+       								</select>
+      							</td>
+								
        							</tr>
        							<tr height="30">
 	       						<td colspan="10">

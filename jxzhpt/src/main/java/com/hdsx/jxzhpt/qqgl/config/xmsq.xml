@@ -774,7 +774,7 @@
 		select * from (
 			select rownum num,t.* from (
 				select x.xmbm, x.gcfl, l.ghlxbm ghlxbh, l.lxbm ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy, 
-				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc lc,sl.xmsl,sl.zlc,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh
+				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc lc,sl.xmsl,sl.zlc,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh,x.yhcsh
 				from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid 
 				left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='0' group by xmid) sl on x.xmbm=sl.xmid
 				where l.jdbs='0' and l.sffirst='1' 
@@ -807,6 +807,9 @@
 				</if>
 				<if test="xmsq.lsjl!=null and xmsq.lsjl!=''">
 					and x.lsjl=#{xmsq.lsjl}
+				</if>
+				<if test="xmsq.yhcsh!=null and xmsq.yhcsh!=''">
+					and x.yhcsh=#{xmsq.yhcsh}
 				</if>
 				<if test="xmsq.ylxbh!=null and xmsq.ylxbh!=''">
 					and x.xmbm in (select xmid from lxsh_lx lx where ${xmsq.ylxbh} and xmid like '%5___')
@@ -937,6 +940,9 @@
 		<if test="lsjl!=null and lsjl!=''">
 			and x.lsjl=#{lsjl}
 		</if>
+		<if test="yhcsh!=null and yhcsh!=''">
+			and x.yhcsh=#{yhcsh}
+		</if>
 		<if test="ylxbh!=null and ylxbh!=''">
 			and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%4___')
 		</if>
@@ -1009,7 +1015,6 @@
 	
 	<select id="queryShCount" parameterType="xmsq" resultType="int">
 		select count(x.xmbm) from xmsq_sh x 
-		
 		where 1=1
 		<if test="wnxmk!=null and wnxmk!=''">and x.wnxmk=#{wnxmk}</if>
 		<if test="gydwdm!=null and gydwdm!=''">
@@ -1051,15 +1056,16 @@
 		<if test="ghlxbm!=null and ghlxbm!=''">
 			and x.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbm})
 		</if>
-				<if test="ghlxmc!='' and ghlxmc!= null ">
-					and (x.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghlxmc}||'%')
+		<if test="ghlxmc!='' and ghlxmc!= null ">
+			and (x.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghlxmc}||'%')
 					)
-				</if>
+		</if>
 		<if test="lxmc !='' and lxmc != null ">
 			and X.lxmc like '%'||#{lxmc}||'%'
 		</if>
 		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
-<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+        <if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+        <if test="yhcsh!=null and yhcsh!=''">and x.yhcsh=#{yhcsh}</if>
 	</select>
 	<select id="queryShCountbyyhc" parameterType="xmsq" resultType="int">
 		select count(x.xmbm) from xmsq_sh x 
@@ -1462,6 +1468,7 @@
 			<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 			<if test="lsjl!=null and lsjl!=''">and x.lsjl=#{lsjl}</if>
 			<if test="wnxmk!=null and wnxmk!=''">and x.wnxmk=#{wnxmk}</if>
+			<if test="yhcsh!=null and yhcsh!=''">and x.yhcsh=#{yhcsh}</if>
 			<if test="ylxbh!=null and ylxbh!=''">
 				and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%4___')
 			</if>
@@ -1479,7 +1486,7 @@
 				and x.lxmc like '%'||#{lxmc}||'%'
 			</if>
 			<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
-<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+            <if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
 		)
 	</select>
 	<select id="queryLjYhdzxbyyhc" parameterType="xmsq" resultType="java.util.Map">
@@ -1560,7 +1567,8 @@
 				and x.lxmc like '%'||#{lxmc}||'%'
 			</if>
 			<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
-<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+            <if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+            <if test="yhcsh!='' and yhcsh!= null "> and x.yhcsh=#{yhcsh}</if>
 		)
 	</select>
 	<select id="queryLjShbyyhc" parameterType="xmsq" resultType="java.util.Map">

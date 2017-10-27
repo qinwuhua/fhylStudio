@@ -929,7 +929,7 @@ text-decoration:none;
 								
 								<td align="right">养护处审核状态：</td>
        							<td>
-       								<select id="yhcsh" class="easyui-combobox" style="width: 100px;">
+       								<select id="yhcsh" class="easyui-combobox" style="width: 85px;" data-options="editable:false,panelHeight:'auto'">
 		       							<option value="" selected="selected">全部</option>
 		       							<option value="0">未审核</option>
 		       							<option value="1">已审核</option>
