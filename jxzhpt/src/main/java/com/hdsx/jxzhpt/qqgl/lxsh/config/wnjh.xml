@@ -952,20 +952,20 @@
 		where 1=1 -->
 		
 		
-    select rownum v_0,t.xmmc v_1,
-    decode(instr(RemoveSameStr(lx2.ylxbm,','),','),0,RemoveSameStr(lx2.ylxbm,','),lx2.ylxbm) v_2,
-    decode(instr(RemoveSameStr(lx2.ylxmc,','),','),0,RemoveSameStr(lx2.ylxmc,','),lx2.ylxmc) v_3,
-    lx2.qdzh v_4,lx2.zdzh v_5,
-    decode(instr(RemoveSameStr(lx2.ghlxbm,','),','),0,RemoveSameStr(lx2.ghlxbm,','),lx2.ghlxbm)  v_6,
-    decode(instr(RemoveSameStr(lx2.ghlxmc,','),','),0,RemoveSameStr(lx2.ghlxmc,','),lx2.ghlxmc) v_7,
-    lx2.ghqdzh v_8,lx2.ghzdzh v_9,
-     decode(instr(RemoveSameStr(lx2.gxlxbm,','),','),0,RemoveSameStr(lx2.gxlxbm,','),lx2.gxlxbm) v_10,
-     lx2.gxqdzh v_11,lx2.gxzdzh v_12,to_char(lx2.zjhlc,'fm9999999990.000') v_13,
-     decode(instr(RemoveSameStr(lx2.qdmc,','),','),0,RemoveSameStr(lx2.qdmc,','),lx2.qdmc) v_14,
-     decode(instr(RemoveSameStr(lx2.zdmc,','),','),0,RemoveSameStr(lx2.zdmc,','),lx2.zdmc) v_15,
-     lx2.jsxz v_16,t.gydw v_17,t.xzqh v_18,t.tsdq v_19,
-     RemoveSameStr(lx2.jsjsdjtj,',') v_20,RemoveSameStr(lx2.xjsdjtj,',') v_21,t.xmnf v_22,
-     t.jhkgn v_23,t.jhwgn v_24,t.tz v_25,lx2.bzcs v_26,t.xmklx v_27,t.bz v_28
+       select rownum v_0,t.xmmc v_1,t.qqkzzt v_2, t.xmjd v_3,
+    decode(instr(RemoveSameStr(lx2.ylxbm,','),','),0,RemoveSameStr(lx2.ylxbm,','),lx2.ylxbm) v_4,
+    decode(instr(RemoveSameStr(lx2.ylxmc,','),','),0,RemoveSameStr(lx2.ylxmc,','),lx2.ylxmc) v_5,
+    lx2.qdzh v_6,lx2.zdzh v_7,
+    decode(instr(RemoveSameStr(lx2.ghlxbm,','),','),0,RemoveSameStr(lx2.ghlxbm,','),lx2.ghlxbm)  v_8,
+    decode(instr(RemoveSameStr(lx2.ghlxmc,','),','),0,RemoveSameStr(lx2.ghlxmc,','),lx2.ghlxmc) v_9,
+    lx2.ghqdzh v_10,lx2.ghzdzh v_11,
+     decode(instr(RemoveSameStr(lx2.gxlxbm,','),','),0,RemoveSameStr(lx2.gxlxbm,','),lx2.gxlxbm) v_12,
+     lx2.gxqdzh v_13,lx2.gxzdzh v_14,to_char(lx2.zjhlc,'fm9999999990.000') v_15,
+     decode(instr(RemoveSameStr(lx2.qdmc,','),','),0,RemoveSameStr(lx2.qdmc,','),lx2.qdmc) v_16,
+     decode(instr(RemoveSameStr(lx2.zdmc,','),','),0,RemoveSameStr(lx2.zdmc,','),lx2.zdmc) v_17,
+     lx2.jsxz v_18,t.gydw v_19,t.xzqh v_20,t.tsdq v_21,
+     RemoveSameStr(lx2.jsjsdjtj,',') v_22,RemoveSameStr(lx2.xjsdjtj,',') v_23,t.xmnf v_24,
+     t.jhkgn v_25,t.jhwgn v_26,t.tz v_27,lx2.bzcs v_28,t.xmklx v_29,t.bz v_30
     from WNJH_SJGZ t 
     left join (select xmid,sum(jhlc) zjhlc,sum(bzcs) bzcs,
         replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,
@@ -1086,20 +1086,20 @@
         from WNJH_LX ) group by xmid) lx2 on t.id=lx2.xmid
 		where 1=1 -->
 		
-    select rownum v_0,t.xmmc v_1,
-    decode(instr(RemoveSameStr(lx2.ylxbm,','),','),0,RemoveSameStr(lx2.ylxbm,','),lx2.ylxbm) v_2,
-    decode(instr(RemoveSameStr(lx2.ylxmc,','),','),0,RemoveSameStr(lx2.ylxmc,','),lx2.ylxmc) v_3,
-    lx2.qdzh v_4,lx2.zdzh v_5,
-    decode(instr(RemoveSameStr(lx2.ghlxbm,','),','),0,RemoveSameStr(lx2.ghlxbm,','),lx2.ghlxbm)  v_6,
-    decode(instr(RemoveSameStr(lx2.ghlxmc,','),','),0,RemoveSameStr(lx2.ghlxmc,','),lx2.ghlxmc) v_7,
-    lx2.ghqdzh v_8,lx2.ghzdzh v_9,
-     decode(instr(RemoveSameStr(lx2.gxlxbm,','),','),0,RemoveSameStr(lx2.gxlxbm,','),lx2.gxlxbm) v_10,
-     lx2.gxqdzh v_11,lx2.gxzdzh v_12,to_char(lx2.zjhlc,'fm9999999990.000') v_13,
-     decode(instr(RemoveSameStr(lx2.qdmc,','),','),0,RemoveSameStr(lx2.qdmc,','),lx2.qdmc) v_14,
-     decode(instr(RemoveSameStr(lx2.zdmc,','),','),0,RemoveSameStr(lx2.zdmc,','),lx2.zdmc) v_15,
-     lx2.jsxz v_16,t.gydw v_17,t.xzqh v_18,t.tsdq v_19,
-     RemoveSameStr(lx2.jsjsdjtj,',') v_20,RemoveSameStr(lx2.xjsdjtj,',') v_21,t.xmnf v_22,
-     t.jhkgn v_23,t.jhwgn v_24,t.tz v_25,lx2.bzcs v_26,t.xmklx v_27,t.bz v_28
+    select rownum v_0,t.xmmc v_1,t.qqkzzt v_2,t.xmjd v_3,
+    decode(instr(RemoveSameStr(lx2.ylxbm,','),','),0,RemoveSameStr(lx2.ylxbm,','),lx2.ylxbm) v_4,
+    decode(instr(RemoveSameStr(lx2.ylxmc,','),','),0,RemoveSameStr(lx2.ylxmc,','),lx2.ylxmc) v_5,
+    lx2.qdzh v_6,lx2.zdzh v_7,
+    decode(instr(RemoveSameStr(lx2.ghlxbm,','),','),0,RemoveSameStr(lx2.ghlxbm,','),lx2.ghlxbm)  v_8,
+    decode(instr(RemoveSameStr(lx2.ghlxmc,','),','),0,RemoveSameStr(lx2.ghlxmc,','),lx2.ghlxmc) v_9,
+    lx2.ghqdzh v_10,lx2.ghzdzh v_11,
+     decode(instr(RemoveSameStr(lx2.gxlxbm,','),','),0,RemoveSameStr(lx2.gxlxbm,','),lx2.gxlxbm) v_12,
+     lx2.gxqdzh v_13,lx2.gxzdzh v_14,to_char(lx2.zjhlc,'fm9999999990.000') v_15,
+     decode(instr(RemoveSameStr(lx2.qdmc,','),','),0,RemoveSameStr(lx2.qdmc,','),lx2.qdmc) v_16,
+     decode(instr(RemoveSameStr(lx2.zdmc,','),','),0,RemoveSameStr(lx2.zdmc,','),lx2.zdmc) v_17,
+     lx2.jsxz v_18,t.gydw v_19,t.xzqh v_20,t.tsdq v_21,
+     RemoveSameStr(lx2.jsjsdjtj,',') v_22,RemoveSameStr(lx2.xjsdjtj,',') v_23,t.xmnf v_24,
+     t.jhkgn v_25,t.jhwgn v_26,t.tz v_27,lx2.bzcs v_28,t.xmklx v_29,t.bz v_30
     from WNJH_LMGZ t 
     left join (select xmid,sum(jhlc) zjhlc,sum(bzcs) bzcs,
         replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,
@@ -1214,20 +1214,20 @@
     	from WNJH_LX group by xmid) lx3 on t.id=lx3.xmid
 		where 1=1  -->
 		
-    select rownum v_0,t.xmmc v_1,
-    decode(instr(RemoveSameStr(lx2.ylxbm,','),','),0,RemoveSameStr(lx2.ylxbm,','),lx2.ylxbm) v_2,
-    decode(instr(RemoveSameStr(lx2.ylxmc,','),','),0,RemoveSameStr(lx2.ylxmc,','),lx2.ylxmc) v_3,
-    lx2.qdzh v_4,lx2.zdzh v_5,
-    decode(instr(RemoveSameStr(lx2.ghlxbm,','),','),0,RemoveSameStr(lx2.ghlxbm,','),lx2.ghlxbm)  v_6,
-    decode(instr(RemoveSameStr(lx2.ghlxmc,','),','),0,RemoveSameStr(lx2.ghlxmc,','),lx2.ghlxmc) v_7,
-    lx2.ghqdzh v_8,lx2.ghzdzh v_9,
-     decode(instr(RemoveSameStr(lx2.gxlxbm,','),','),0,RemoveSameStr(lx2.gxlxbm,','),lx2.gxlxbm) v_10,
-     lx2.gxqdzh v_11,lx2.gxzdzh v_12,to_char(lx2.zjhlc,'fm9999999990.000') v_13,
-     decode(instr(RemoveSameStr(lx2.qdmc,','),','),0,RemoveSameStr(lx2.qdmc,','),lx2.qdmc) v_14,
-     decode(instr(RemoveSameStr(lx2.zdmc,','),','),0,RemoveSameStr(lx2.zdmc,','),lx2.zdmc) v_15,
-     lx2.jsxz v_16,t.gydw v_17,t.xzqh v_18,t.tsdq v_19,
-     RemoveSameStr(lx2.jsjsdjtj,',') v_20,RemoveSameStr(lx2.xjsdjtj,',') v_21,t.xmnf v_22,
-     t.jhkgn v_23,t.jhwgn v_24,t.tz v_25,lx2.bzcs v_26,t.xmklx v_27,t.bz v_28
+    select rownum v_0,t.xmmc v_1,t.qqkzzt v_2,t.xmjd v_3,
+    decode(instr(RemoveSameStr(lx2.ylxbm,','),','),0,RemoveSameStr(lx2.ylxbm,','),lx2.ylxbm) v_4,
+    decode(instr(RemoveSameStr(lx2.ylxmc,','),','),0,RemoveSameStr(lx2.ylxmc,','),lx2.ylxmc) v_5,
+    lx2.qdzh v_6,lx2.zdzh v_7,
+    decode(instr(RemoveSameStr(lx2.ghlxbm,','),','),0,RemoveSameStr(lx2.ghlxbm,','),lx2.ghlxbm)  v_8,
+    decode(instr(RemoveSameStr(lx2.ghlxmc,','),','),0,RemoveSameStr(lx2.ghlxmc,','),lx2.ghlxmc) v_9,
+    lx2.ghqdzh v_10,lx2.ghzdzh v_11,
+     decode(instr(RemoveSameStr(lx2.gxlxbm,','),','),0,RemoveSameStr(lx2.gxlxbm,','),lx2.gxlxbm) v_12,
+     lx2.gxqdzh v_13,lx2.gxzdzh v_14,to_char(lx2.zjhlc,'fm9999999990.000') v_15,
+     decode(instr(RemoveSameStr(lx2.qdmc,','),','),0,RemoveSameStr(lx2.qdmc,','),lx2.qdmc) v_16,
+     decode(instr(RemoveSameStr(lx2.zdmc,','),','),0,RemoveSameStr(lx2.zdmc,','),lx2.zdmc) v_17,
+     lx2.jsxz v_18,t.gydw v_19,t.xzqh v_20,t.tsdq v_21,
+     RemoveSameStr(lx2.jsjsdjtj,',') v_22,RemoveSameStr(lx2.xjsdjtj,',') v_23,t.xmnf v_24,
+     t.jhkgn v_25,t.jhwgn v_26,t.tz v_27,lx2.bzcs v_28,t.xmklx v_29,t.bz v_30
     from WNJH_XJ t 
     left join (select xmid,sum(jhlc) zjhlc,sum(bzcs) bzcs,
         replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,
@@ -1925,21 +1925,20 @@
         end) ghxlxbm,ghxlxmc,jsjsdj,xjsdj,xjlxbm,ghlxbm
         from WNJH_LX ) group by xmid) lx2 on t.id=lx2.xmid
 		where 1=1 -->
-
-    select rownum v_0,t.xmmc v_1,
-    decode(instr(RemoveSameStr(lx2.ylxbm,','),','),0,RemoveSameStr(lx2.ylxbm,','),lx2.ylxbm) v_2,
-    decode(instr(RemoveSameStr(lx2.ylxmc,','),','),0,RemoveSameStr(lx2.ylxmc,','),lx2.ylxmc) v_3,
-    lx2.qdzh v_4,lx2.zdzh v_5,
-    decode(instr(RemoveSameStr(lx2.ghlxbm,','),','),0,RemoveSameStr(lx2.ghlxbm,','),lx2.ghlxbm)  v_6,
-    decode(instr(RemoveSameStr(lx2.ghlxmc,','),','),0,RemoveSameStr(lx2.ghlxmc,','),lx2.ghlxmc) v_7,
-    lx2.ghqdzh v_8,lx2.ghzdzh v_9,
-     decode(instr(RemoveSameStr(lx2.gxlxbm,','),','),0,RemoveSameStr(lx2.gxlxbm,','),lx2.gxlxbm) v_10,
-     lx2.gxqdzh v_11,lx2.gxzdzh v_12,to_char(lx2.zjhlc,'fm9999999990.000') v_13,
-     decode(instr(RemoveSameStr(lx2.qdmc,','),','),0,RemoveSameStr(lx2.qdmc,','),lx2.qdmc) v_14,
-     decode(instr(RemoveSameStr(lx2.zdmc,','),','),0,RemoveSameStr(lx2.zdmc,','),lx2.zdmc) v_15,
-     lx2.jsxz v_16,t.gydw v_17,t.xzqh v_18,t.tsdq v_19,
-     RemoveSameStr(lx2.jsjsdjtj,',') v_20,RemoveSameStr(lx2.xjsdjtj,',') v_21,t.xmnf v_22,
-     t.jhkgn v_23,t.jhwgn v_24,t.tz v_25,lx2.bzcs v_26,t.xmklx v_27,t.bz v_28
+        select rownum v_0,t.xmmc v_1,t.qqkzzt v_2,t.xmjd v_3,
+    decode(instr(RemoveSameStr(lx2.ylxbm,','),','),0,RemoveSameStr(lx2.ylxbm,','),lx2.ylxbm) v_4,
+    decode(instr(RemoveSameStr(lx2.ylxmc,','),','),0,RemoveSameStr(lx2.ylxmc,','),lx2.ylxmc) v_5,
+    lx2.qdzh v_6,lx2.zdzh v_7,
+    decode(instr(RemoveSameStr(lx2.ghlxbm,','),','),0,RemoveSameStr(lx2.ghlxbm,','),lx2.ghlxbm)  v_8,
+    decode(instr(RemoveSameStr(lx2.ghlxmc,','),','),0,RemoveSameStr(lx2.ghlxmc,','),lx2.ghlxmc) v_9,
+    lx2.ghqdzh v_10,lx2.ghzdzh v_11,
+     decode(instr(RemoveSameStr(lx2.gxlxbm,','),','),0,RemoveSameStr(lx2.gxlxbm,','),lx2.gxlxbm) v_12,
+     lx2.gxqdzh v_13,lx2.gxzdzh v_14,to_char(lx2.zjhlc,'fm9999999990.000') v_15,
+     decode(instr(RemoveSameStr(lx2.qdmc,','),','),0,RemoveSameStr(lx2.qdmc,','),lx2.qdmc) v_16,
+     decode(instr(RemoveSameStr(lx2.zdmc,','),','),0,RemoveSameStr(lx2.zdmc,','),lx2.zdmc) v_17,
+     lx2.jsxz v_18,t.gydw v_19,t.xzqh v_20,t.tsdq v_21,
+     RemoveSameStr(lx2.jsjsdjtj,',') v_22,RemoveSameStr(lx2.xjsdjtj,',') v_23,t.xmnf v_24,
+     t.jhkgn v_25,t.jhwgn v_26,t.tz v_27,lx2.bzcs v_28,t.xmklx v_29,t.bz v_30
     from wngsdgz t 
     left join (select xmid,sum(jhlc) zjhlc,sum(bzcs) bzcs,
         replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,
@@ -1975,7 +1974,7 @@
                WMSYS.WM_CONCAT(qdmc)over( PARTITION BY xmid ORDER BY id,qdmc) qdmc,
                WMSYS.WM_CONCAT(zdmc)over( PARTITION BY xmid ORDER BY id,zdmc) zdmc
         from WNJH_LX ) group by xmid) lx2 on t.id=lx2.xmid
-    where 1=1		
+    where 1=1  
 		<if test="xzqh!='' and xzqh!= null ">
 			${xzqh}
 		</if>
