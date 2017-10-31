@@ -154,8 +154,12 @@
 				{field:'zdzh1',title:'原止点桩号',width:100,align:'center'},
 				{field:'pfztz',title:'批复总投资',width:100,align:'center'},
 				{field:'bbzzj',title:'部补助投资',width:100,align:'center'},
-				{field:'bcxd',title:'本次下达',width:100,align:'center'},
-				{field:'bcstz',title:'省补助资金',width:100,align:'center'},
+				
+				//{field:'bcxd',title:'本次下达',width:100,align:'center'},
+				{field:'bzcgs',title:'车购税',width:100,align:'center'},
+				{field:'jl',title:'省奖励资金',width:100,align:'center'},
+				{field:'sbzzj',title:'省补助资金',width:100,align:'center'},
+
 				{field:'jhxdwh',title:'计划下达文号',width:120,align:'center',
 					formatter: function(value,row,index){
 						if($.cookie('unit2').length==7)
@@ -191,6 +195,8 @@
 						 $("#dftz").html(msg.DFTZ);
 						 $("#bcxd").html(msg.BCXD);//BCXD是哪里的 实体里没找到  上面还有几个也没找到
 						 $("#yhdk").html(msg.YHDK);
+						 $("#btz").html(msg.BTZ);
+
 					}else{
 						$('#spanbbz').html("0");
 						$('#spansbz').html("0");
@@ -437,8 +443,9 @@ text-decoration:none;
             		<div>项目【<span id="xmsl" style="color: red;">0</span>】个,
             		建设里程【<span id="lc" style="color: red;">0</span>】公里,
             		总投资【<span id="tz" style="color: red;">0</span>】万元,
-            		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
+            		其中车购税【<span id="cgs" style="color: red;">0</span>】万元。
             		本次下达【<span id="bcxd" style="color: red;">0</span>】万元,
+            		车购税【<span id="btz" style="color: red;">0</span>】万元,
             		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
             		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
             		<!-- 地方投资【<span id="dftz" style="color: red;">0</span>】万元。、银行贷款 -->

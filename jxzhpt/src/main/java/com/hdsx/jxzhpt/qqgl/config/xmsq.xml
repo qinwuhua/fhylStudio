@@ -1015,7 +1015,8 @@
 	
 	<select id="queryShCount" parameterType="xmsq" resultType="int">
 		select count(x.xmbm) from xmsq_sh x 
-		where 1=1
+		left join lxsh_lx l on x.xmbm = l.xmid
+		where 1=1 and l.jdbs = '0' and l.sffirst = '1'
 		<if test="wnxmk!=null and wnxmk!=''">and x.wnxmk=#{wnxmk}</if>
 		<if test="gydwdm!=null and gydwdm!=''">
 			and ${gydwdm}
@@ -1379,6 +1380,7 @@
     x.jsdj v_27,substr(x.xmbm,0,4) v_28,x.gcfl v_29,x.jhkgsj v_30,x.jhwgsj v_31,x.gq v_32,x.ntz v_33,x.jsfa v_34,x.bz v_35,
     (decode(x.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and x.lsxmbm like '%'||xmbm||'%'),' ')) v_36
    from xmsq_sh x
+   left join lxsh_lx l on x.xmbm = l.xmid
    left join (
     select xmid,sum(jhlc) zjhlc,sum(sbzj) sbzj,sum(bzcs) bzcs,
               replace(WMSYS.WM_CONCAT(distinct(lxlmkd)),',',',') lxlmkd,replace(WMSYS.WM_CONCAT(distinct(jsxz)),',',',') jsxz,
@@ -1414,7 +1416,7 @@
                WMSYS.WM_CONCAT(zdmc)over( PARTITION BY xmid ORDER BY id,zdmc) zdmc
               from LXSH_LX lx where jdbs='0') group by xmid
     ) lx on x.xmbm=lx.xmid
-        where 1=1 
+        where 1=1 and l.jdbs='0' and l.sffirst='1'
 				<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
@@ -1532,7 +1534,9 @@
 			select xmbm,ntz,l.lc from xmsq_sh x left join 
 			(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc 
 			from lxsh_lx where jdbs=#{jdbs} and xmid like '%5___' group by xmid) l 
-			on x.xmbm=l.xmid where 1=1
+			on x.xmbm=l.xmid 
+			left join lxsh_lx l on x.xmbm = l.xmid
+			where 1=1 and l.jdbs = '0' and l.sffirst = '1'
 			<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
 			<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 			<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
@@ -2294,7 +2298,6 @@
 	</select>
 	
 	<select id="queryYhdzxExport1" parameterType="xmsq" resultType="elist">
-	
  select rownum v_0,tb.* from (
     select 
    RemoveSameStr(func_splitstr(lx.ghlxbm, ','),',') v_1,
@@ -2346,11 +2349,12 @@
                WMSYS.WM_CONCAT((case when gxzdzh like '.%' then 0||gxzdzh when gxzdzh like '%,.%' then replace(gxzdzh, ',.', ',0.') else gxzdzh end ))over( PARTITION BY xmid ORDER BY id,gxzdzh) gxzdzh
               from LXSH_LX  where jdbs='1') group by xmid
     ) lx on x.xmbm=lx.xmid
-        where 1=1
+        where 1=1 
 				<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
 				<if test="xmbm!=null and xmbm!=''">and x.xmbm like '%'||#{xmbm}||'%'</if>
+				<!-- <if test="xmbm!=null and xmbm!=''">and substr(x.xmbm, 0, 4) in (#{xmbm})</if> -->
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="sqzt>=0">and sqzt=${sqzt}</if>
 				<if test="xmnf!=null and xmnf!=''">and ${xmnf}</if>

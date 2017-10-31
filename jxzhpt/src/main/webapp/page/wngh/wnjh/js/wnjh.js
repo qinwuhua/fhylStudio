@@ -632,7 +632,7 @@ function showgjtj(xmlx){
 	var data="xzqh="+xzqhstr+"&xmnf="+xmnf+"&tsdq="+tsdq+"&jsdj="+jsdj+"&gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()
 	+'&lxsh.ghlxbh='+lxbm+'&lxsh.lxmc='+$("#lxmc").val()+"&xmlx="+xmlx
 	+'&lxsh.lsjl='+$("#lsjl").combobox('getValue')+'&lxsh.jsjsdj='+$("#jsjsdj").combotree('getText')+'&lxsh.xmklx='+$("#xmklx").combotree('getValue')
-	+'&lxsh.gydw='+$.cookie("dist2")+'&lxsh.ghxlxbm='+ghxlxbm+'&lxsh.ghxlxmc='+$("#ghxlxmc").val()+'&lxsh.xmlx1='+xmlx1+'&lxsh.qqkzzt='+$("#qqkzzt").combobox('getValue');
+	+'&lxsh.gydw='+$.cookie("dist2")+'&lxsh.ghxlxbm='+ghxlxbm+'&lxsh.ghxlxmc='+$("#ghxlxmc").val()+'&lxsh.xmlx1='+xmlx1+'&lxsh.qqkzzt='+$("#qqkzzt").combobox('getValue')+'&lxsh.xmjd='+$("#xmjd").combobox('getValue');
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/qqgl/showgjtj.do",
@@ -823,6 +823,7 @@ function showAlllm(){
 		xmlx=xmlx.substr(1,xmlx.length);
 	var lxbm=$("#lxbm").combotree('getText');
 	var ghxlxbm=$("#ghxlxbm").combotree('getText');
+	
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectLmwnjh.do',
 	    striped:true,
@@ -849,7 +850,8 @@ function showAlllm(){
 			'lxsh.xmlx1':xmlx,
 			'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue'),
 			'lxsh.xmklx':$("#xmklx").combotree('getValue'),
-			'lxsh.gydw':$.cookie("dist2")
+			'lxsh.gydw':$.cookie("dist2"),
+			'lxsh.xmjd':$("#xmjd").combobox('getValue')
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},

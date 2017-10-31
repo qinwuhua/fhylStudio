@@ -439,6 +439,9 @@
 		<if test="gydw!='36' and gydw!=null">
 			and znsjck is null
 		</if>
+		<if test="xmjd !='' and xmjd != null ">
+			and xmjd like '%'||#{xmjd}||'%'
+		</if>
 		order by xmnf
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 	</select>
@@ -501,6 +504,9 @@
 		
 		<if test="gydw!='36' and gydw!=null">
 			and znsjck is null
+		</if>
+		<if test="xmjd !='' and xmjd != null ">
+			and xmjd like '%'||#{xmjd}||'%'
 		</if>
 		order by xmnf
 		) t1
@@ -1545,6 +1551,9 @@
 		
 		<if test="gydw!='36' and gydw!=null">
 			and znsjck is null
+		</if>
+		<if test="xmjd !='' and xmjd != null ">
+			and xmjd like '%'||#{xmjd}||'%'
 		</if>
 		order by xmnf
 		) t1

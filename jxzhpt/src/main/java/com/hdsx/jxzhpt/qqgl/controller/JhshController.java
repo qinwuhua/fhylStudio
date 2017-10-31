@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -4209,7 +4210,18 @@ public class JhshController extends BaseActionSupport implements
 		jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "sg.xmnf"));
 		//设置首次下达时间
 		jhsh.setScxdnf(MyUtil.getQueryTJ(jhsh.getScxdnf(), "fun_scxdnf(jh.xmbm)"));
+		
+		try {
+			jhsh.setXmmc(java.net.URLDecoder.decode(jhsh.getXmmc(),"UTF-8"));
+			jhsh.setYlxmc(java.net.URLDecoder.decode(jhsh.getYlxmc(),"UTF-8"));
+			jhsh.setGhlxmc(java.net.URLDecoder.decode(jhsh.getGhlxmc(),"UTF-8"));
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		List<Excel_list> l = jhshServer.exportSflgcExcel(jhsh);
+		
 		ExcelData eldata = new ExcelData();// 创建一个类
 		eldata.setTitleName("全省普通干线公路示范路建设计划表");// 设置第一行
 		eldata.setSheetName("示范路建设计划表");// 设置sheeet名
@@ -4264,6 +4276,25 @@ public class JhshController extends BaseActionSupport implements
 		}	
 	}
 	public void exportFwqjhExcel() {
+		
+		//设置行政区划
+		jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "sz.xzqhdm"));
+		//设置计划下达文号
+		jhsh.setJhxdwh(MyUtil.getQueryTJ(jhsh.getJhxdwh(), "xd.jhxdwh"));
+		//设置项目年份
+		jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "sg.xmnf"));
+		//设置首次下达时间
+		jhsh.setScxdnf(MyUtil.getQueryTJ(jhsh.getScxdnf(), "fun_scxdnf(jh.xmbm)"));
+		
+		try {
+			jhsh.setXmmc(java.net.URLDecoder.decode(jhsh.getXmmc(),"UTF-8"));
+			jhsh.setYlxmc(java.net.URLDecoder.decode(jhsh.getYlxmc(),"UTF-8"));
+			jhsh.setGhlxmc(java.net.URLDecoder.decode(jhsh.getGhlxmc(),"UTF-8"));
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		List<Excel_list> l = jhshServer.exportFwqjhExcel(jhsh);
 		
 		ExcelData eldata = new ExcelData();// 创建一个类
@@ -4306,6 +4337,25 @@ public class JhshController extends BaseActionSupport implements
 	}
 	
 	public void exportYhzxExcel() {
+		
+		//设置行政区划
+		jhsh.setXzqh(MyUtil.getQueryTJ(jhsh.getXzqhdm(), "sz.xzqhdm"));
+		//设置计划下达文号
+		jhsh.setJhxdwh(MyUtil.getQueryTJ(jhsh.getJhxdwh(), "xd.jhxdwh"));
+		//设置项目年份
+		jhsh.setXmnf(MyUtil.getQueryTJ(jhsh.getXmnf(), "sg.xmnf"));
+		//设置首次下达时间
+		jhsh.setScxdnf(MyUtil.getQueryTJ(jhsh.getScxdnf(), "fun_scxdnf(jh.xmbm)"));
+		
+		try {
+			jhsh.setXmmc(java.net.URLDecoder.decode(jhsh.getXmmc(),"UTF-8"));
+			jhsh.setYlxmc(java.net.URLDecoder.decode(jhsh.getYlxmc(),"UTF-8"));
+			jhsh.setGhlxmc(java.net.URLDecoder.decode(jhsh.getGhlxmc(),"UTF-8"));
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		List<Excel_list> l = jhshServer.exportYhzxjhExcel(jhsh);
 		ExcelData eldata = new ExcelData();// 创建一个类
 		eldata.setTitleName("全省普通国省干线公路服务设施建设项目计划表");// 设置第一行

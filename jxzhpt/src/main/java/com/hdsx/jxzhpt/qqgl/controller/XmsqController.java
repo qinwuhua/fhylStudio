@@ -1918,7 +1918,6 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	
 	
 	public void exportExcelXmsq1(){
-		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 		String tsdqS=(String) session.getAttribute("tsdq");
@@ -2004,6 +2003,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				}
 				xmsq.setTsdq(tsdq);
 			}
+			System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 			l= xmsqServer.queryYhdzxExport1(xmsq);
 //			int k=1;
 //			for (Excel_list e : l) {

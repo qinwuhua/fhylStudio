@@ -141,7 +141,39 @@ function loadLj(){
 }
 
 function exportJhshxx(){
-	window.location.href="/jxzhpt/qqgl/exportFwqjhExcel.do";
+	//项目年份
+	var xmnf='';
+	if(getUrlParame('id').substr(0,10)=='0101130301')
+		xmnf='2011,2012,2013,2014,2015';
+	if(getUrlParame('id').substr(0,10)=='0101130302')
+		xmnf='2011,2012,2013,2014,2015,2016,2017,2018,2019,2020';
+	
+	//行政区划代码
+	var xzqhdm=$("#xzqh").combotree("getValues");var xzqhstr="";
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
+	
+	//首次下达年份
+	var scxdnf=$("#scxdnf").combobox("getValues").join(",");
+	if(scxdnf.substr(0,1)==',')
+		scxdnf=scxdnf.substr(1,scxdnf.length);
+	var jhxdwh=$("#jhxdwh").combobox("getText");
+	if(jhxdwh.substr(0,1)==',')
+		jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+	
+	var params='jhsh.xzqhdm='+xzqhstr+'&jhsh.xmmc='+ encodeURI(encodeURI($('#xmmc').val())) +'&jhsh.xmnf='+xmnf+
+    '&jhsh.sbzt=null'+'&jhsh.shzt=null'+'&jhsh.xdzttj=null'+'&jhsh.xmlx1=sflcx'+
+    '&jhsh.ghlxbm='+$('#ghlxbm').val()+'&jhsh.ghlxmc='+encodeURI(encodeURI($('#ghlxmc').val()))+'&jhsh.ylxbm='+$('#ylxbm').val()+
+    '&jhsh.ylxmc='+encodeURI(encodeURI($('#ylxmc').val()))+'&jhsh.jhxdwh='+jhxdwh+'&jhsh.scxdnf='+scxdnf;
+	
+	window.location.href="/jxzhpt/qqgl/exportFwqjhExcel.do?"+params;
 }
 
 $(window).resize(function () { 

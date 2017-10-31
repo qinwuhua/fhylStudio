@@ -309,7 +309,6 @@ function exportExcel(flag,mode){
 		window.location.href="/jxzhpt/jhgl/exportExcel_jh_abgc.do?flag="+flag+"&"+params;
 	}
 	if(flag=='afgc'){
-		alert("&lx.ylxbm="+$('#ylxbm').val());
 		var jh={jh_sbthcd:""};
 		var xmnf=$("#sbnf").combobox("getValues").join(",");
 		if(xmnf.substr(0,1)==',')

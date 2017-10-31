@@ -5327,11 +5327,13 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	
 	<select id="queryJhshLjgsdgz" parameterType="jhsh" resultType="java.util.Map">
 		select 
-		count(*) sl,nvl(sum(bbzzj),0) cgs,nvl(sum(bcztz),0) bcxd,nvl(sum(bcstz),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(pfztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz,nvl(sum(bcyhdk),0) yhdk
+		count(*) sl,nvl(sum(bbzzj),0) cgs,nvl(sum(bcztz),0) bcxd,nvl(sum(bcstz),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(pfztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz,nvl(sum(bcyhdk),0) yhdk,nvl(sum(btz), 0) btz
 		 from (
 				select j.*,lx2.zjhlc jhlc,sl.zlc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj
-					,bcztz,bccgs,bcstz,bcjl,bcdftz,bcyhdk
-				from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
+					,bcztz,bccgs,bcstz,bcjl,bcdftz,bcyhdk,jhxd.btz btz
+				from gsdgz j  
+				left join (select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk,sum(dk) dk,sum(jl) jl from plan_zjxd p group by p.xmid) jhxd on j.xmbm = jhxd.xmid	
+				left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 		        left join (select  xmid,jsxz,
 		        (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
 	            
@@ -8835,7 +8837,6 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
   wn.qhmc v_4, sg.gydw v_5, sz.xlxbm v_6, sz.xlxmc v_7, sz.GHQDZH v_8,
   sz.GHZDZH v_9, sz.ylxbm v_10,sz.ylxmc v_11, sz.YQDZH v_12,sz.YZDZH v_13,
   nvl(sg.yj,0)+nvl(sg.ej,0)+nvl(sg.sj,0)+nvl(sg.sij,0) v_14,nvl(sg.yj,0) v_15,
-  
   nvl(sg.ej,0) v_16,nvl(sg.sj,0) v_17,nvl(sg.sij,0) v_18, sg.xmnf v_19,
   nvl(jh.ztz,0) v_20,
   nvl(jh.tbz_jaf,0)+nvl(jh.tbz_gcjlf,0)+nvl(jh.tbz_qqgzf,0) v_21,
@@ -8848,6 +8849,19 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
   left join szxmzd sz on wn.id = sz.xmkid
  WHERE 1 = 1
    and jh.shzt = '1'
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="gydw !='' and gydw != null">${gydw}</if>
+      <!-- <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if> -->
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="scxdnf !='' and scxdnf != null">${scxdnf}</if>
+      <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
+      <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
+      <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
+      <if test="ylxbm !='' and ylxbm != null">and sz.ylxbm like '%${ylxbm}%'</if>
+      <if test="ylxmc !='' and ylxmc != null">and sz.ylxmc like '%${ylxmc}%'</if>
+      <!--<if test="sbzt !='' and sbzt != null">and jh.sbzt = #{sbzt}</if>--> 
+      <!--<if test="shzt !='' and shzt != null">and jh.shzt = #{shzt}</if>--> 
+      <!-- <if test="xdzttj !='' and xdzttj != null">and jh.xdzt like '%${xdzttj}%'</if> -->  
 	</select>
 	<select id="exportYhzxjhExcel" parameterType="jhsh" resultType="elist">
       select dqxx.* from (select '' v_0, '' v_1, '' v_2, '' v_3, '全省合计' v_4, '' v_5, '' v_6,'' v_7, '' v_8, 
@@ -8889,7 +8903,22 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
   LEFT JOIN SGT_YHZX sg ON JH.XMBM = SG.XMBM
   LEFT JOIN WNJH_YHZX WN ON SG.XMKID = WN.ID
   left join szxmzd sz on wn.id = sz.xmkid
-  WHERE 1 = 1 and jh.shzt = '1'and fun_scxdnf(jh.xmbm) is not null) dqxx order by dqxx.v_1 nulls first, dqxx.v_0 nulls first
+  WHERE 1 = 1 and jh.shzt = '1'and fun_scxdnf(jh.xmbm) is not null
+	      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="gydw !='' and gydw != null">${gydw}</if>
+      <!-- <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if> -->
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="scxdnf !='' and scxdnf != null">${scxdnf}</if>
+      <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
+      <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
+      <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
+      <if test="ylxbm !='' and ylxbm != null">and sz.ylxbm like '%${ylxbm}%'</if>
+      <if test="ylxmc !='' and ylxmc != null">and sz.ylxmc like '%${ylxmc}%'</if>
+      <!--<if test="sbzt !='' and sbzt != null">and jh.sbzt = #{sbzt}</if>--> 
+      <!--<if test="shzt !='' and shzt != null">and jh.shzt = #{shzt}</if>--> 
+      <!-- <if test="xdzttj !='' and xdzttj != null">and jh.xdzt like '%${xdzttj}%'</if> --> 
+	) dqxx order by dqxx.v_1 nulls first, dqxx.v_0 nulls first
+	
 	</select>
 	
 	<select id="exportFwqjhExcel" parameterType="jhsh" resultType="elist">
@@ -8904,5 +8933,20 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
   LEFT JOIN WNJH_FWQ WN ON SG.XMKID = WN.ID
   left join szxmzd sz on wn.id = sz.xmkid
   WHERE 1 = 1 and jh.shzt = '1' and fun_scxdnf(jh.xmbm) is not null
+  
+      <if test="xzqh !='' and xzqh != null">${xzqh}</if>
+      <if test="gydw !='' and gydw != null">${gydw}</if>
+      <!-- <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if> -->
+      <if test="xmnf !='' and xmnf != null">${xmnf}</if>
+      <if test="scxdnf !='' and scxdnf != null">${scxdnf}</if>
+      <if test="xmmc !='' and xmmc != null">and jh.xmmc like '%${xmmc}%'</if>
+      <if test="ghlxbm !='' and ghlxbm != null">and sz.xlxbm like '%${ghlxbm}%'</if>
+      <if test="ghlxmc !='' and ghlxmc != null">and sz.xlxmc like '%${ghlxmc}%'</if>
+      <if test="ylxbm !='' and ylxbm != null">and sz.ylxbm like '%${ylxbm}%'</if>
+      <if test="ylxmc !='' and ylxmc != null">and sz.ylxmc like '%${ylxmc}%'</if>
+      <!--<if test="sbzt !='' and sbzt != null">and jh.sbzt = #{sbzt}</if>--> 
+      <!--<if test="shzt !='' and shzt != null">and jh.shzt = #{shzt}</if>--> 
+      <!-- <if test="xdzttj !='' and xdzttj != null">and jh.xdzt like '%${xdzttj}%'</if> -->  
+  
 	</select>
 </mapper>
