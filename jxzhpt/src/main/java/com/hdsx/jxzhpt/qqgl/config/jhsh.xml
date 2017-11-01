@@ -8741,10 +8741,10 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 		select * from XTGL_DEPARTMENT t where t.parent=#{gydw} and (t.id not like '%000_' or t.id  like '%0000')  order by t.id
 	</select>
 	<select id="queryZjByGydwdm" parameterType="jhsh" resultType="jhsh">
-		select * from plan_zjxd z where xdnf=#{xdnf} and z.parent=#{gydwdm} order by gydwdm
+		select * from plan_zjxd z where xdnf=#{xdnf} and z.parent=#{gydwdm} and z.jhxdwh=#{jhxdwh} order by gydwdm
 	</select> 
 	<select id="queryShqxByOne" parameterType="jhsh" resultType="jhsh">
-		select * from plan_zjxd where 1=1 and gydwdm=#{gydwdm} and xdnf=#{xdnf}
+		select * from plan_zjxd where 1=1 and gydwdm=#{gydwdm} and xdnf=#{xdnf} and jhxdwh=#{jhxdwh}
 	</select>
 	<insert id="insertShqx" parameterType="jhsh">
 		insert into plan_zjxd
