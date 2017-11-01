@@ -10,7 +10,7 @@
 <script type="text/javascript" src="./js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
 <script type="text/javascript" src="./js/YMLib.js"></script>
-<script type="text/javascript" src="./js/index.js"></script>
+<script type="text/javascript" src="./js/index.js"></script> 
 </head>
 <body style="margin:0 0 0 0; min-width: 1000px;overflow-x:hidden; ">
 <div id="bg">
