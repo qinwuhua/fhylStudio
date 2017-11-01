@@ -1191,6 +1191,7 @@ public class WnjhController extends BaseActionSupport{
 					}
 					lxsh.setXmlx1(tsdq);
 				}
+			lxsh.setXmjd(java.net.URLDecoder.decode(lxsh.getXmjd(),"UTF-8"));
 			
 			List<Excel_list> elist=new ArrayList<Excel_list>();
 			if("gsdgz".equals(lxsh.getXmlx())){

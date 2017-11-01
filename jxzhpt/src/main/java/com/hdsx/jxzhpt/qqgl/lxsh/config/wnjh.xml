@@ -1192,6 +1192,9 @@
 		<if test="qqkzzt !='' and qqkzzt != null ">
 			and qqkzzt like '%'||#{qqkzzt}||'%'
 		</if>
+		<if test="xmjd !='' and xmjd != null ">
+			and xmjd like '%'||#{xmjd}||'%'
+		</if>
 		<if test="xmlx1 !='' and xmlx1 != null ">
 			${xmlx1}
 		</if>
