@@ -8808,6 +8808,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	    	<if test="jhxdwh != null and jhxdwh != ''" >jhxdwh,</if>
 	    	<if test="parent != null and parent != ''" >parent,</if>
 	    	<if test="gydwdm != null and gydwdm != ''" >gydwdm,</if>
+	    	<if test="xdnf != null and xdnf != '' and gydwdm != null and gydwdm != '' and jhxdwh != null and jhxdwh != ''" >xmid,</if>
 	  	</trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides="," >
 	    	<if test="ztz != null and ztz != ''" >#{ztz},</if>
@@ -8819,6 +8820,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	    	<if test="jhxdwh != null and jhxdwh != ''" >#{jhxdwh},</if>
 	    	<if test="parent != null and parent != ''" >#{parent},</if>
 	    	<if test="gydwdm != null and gydwdm != ''" >#{gydwdm},</if>
+	    	<if test="xdnf != null and xdnf != '' and gydwdm != null and gydwdm != '' and jhxdwh != null and jhxdwh != ''" >#{xdnf}||#{gydwdm}||#{jhxdwh},</if>
 		</trim>
 	</insert>
 	<update id="updateShqx" parameterType="jhsh">
@@ -8834,7 +8836,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
       <if test="parent != null" >parent = #{parent},</if>
       <if test="gydwdm != null" >gydwdm = #{gydwdm},</if>
 	 </set>
-      where 1=1 and gydwdm=#{gydwdm} and xdnf=#{xdnf}
+      where 1=1 and gydwdm=#{gydwdm} and xdnf=#{xdnf} and jhxdwh = #{jhxdwh}
 	</update>
 	
 	<select id="queryXmlistshqx" parameterType="jhsh" resultType="jhsh">
