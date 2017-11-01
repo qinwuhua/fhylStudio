@@ -156,9 +156,10 @@
 				{field:'bbzzj',title:'部补助投资',width:100,align:'center'},
 				
 				//{field:'bcxd',title:'本次下达',width:100,align:'center'},
-				{field:'bzcgs',title:'车购税',width:100,align:'center'},
-				{field:'jl',title:'省奖励资金',width:100,align:'center'},
-				{field:'sbzzj',title:'省补助资金',width:100,align:'center'},
+				{field:'bccgs',title:'下达车购税',width:100,align:'center'},
+				
+				{field:'bcstz',title:'下达省补助资金',width:100,align:'center'},
+				{field:'bcjl',title:'下达省奖励资金',width:100,align:'center'},
 
 				{field:'jhxdwh',title:'计划下达文号',width:120,align:'center',
 					formatter: function(value,row,index){
@@ -445,7 +446,7 @@ text-decoration:none;
             		总投资【<span id="tz" style="color: red;">0</span>】万元,
             		其中车购税【<span id="cgs" style="color: red;">0</span>】万元。
             		本次下达【<span id="bcxd" style="color: red;">0</span>】万元,
-            		车购税【<span id="btz" style="color: red;">0</span>】万元,
+            		其中车购税【<span id="btz" style="color: red;">0</span>】万元,
             		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
             		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
             		<!-- 地方投资【<span id="dftz" style="color: red;">0</span>】万元。、银行贷款 -->

@@ -50,7 +50,7 @@ public class Jhsh implements Serializable {
 	private String bcztz;// 本次下达
 	private String bccgs;// 本次下达
 	private String bcstz;// 本次下达
-
+	private String bcjl;
 	private String yhdk;
 	private String gz;
 	private String sz;
@@ -1834,6 +1834,14 @@ public class Jhsh implements Serializable {
 
 	public void setBz(String bz) {
 		this.bz = bz;
+	}
+
+	public String getBcjl() {
+		return bcjl;
+	}
+
+	public void setBcjl(String bcjl) {
+		this.bcjl = bcjl;
 	}
 
 	@Override
