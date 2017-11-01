@@ -709,7 +709,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.ztz) bcztz,
+	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 	            	sum(j.btzzj) bccgs
 	          		from jhxdyh g
@@ -804,7 +806,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.ztz) bcztz,
+	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 	            	sum(j.btzzj) bccgs
 	          		from jhxdyh g
@@ -944,7 +948,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.ztz) bcztz,
+	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 	            	sum(j.btzzj) bccgs,sum(j.dk) stz
 	          		from jhxdsh g
@@ -1027,7 +1033,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.ztz) bcztz,
+	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 	            	sum(j.btzzj) bccgs
 	          		from jhxdsh g
@@ -1386,7 +1394,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.ztz) bcztz,
+	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 	            	sum(j.btzzj) bccgs
 	          		from jhxdyh g
@@ -1479,7 +1489,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.ztz) bcztz,
+	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 	            	sum(j.btzzj) bccgs
 	          		from jhxdyh g
@@ -1588,7 +1600,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.ztz) bcztz,
+	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 	            	sum(j.btzzj) bccgs
 	          		from jhxdsh g
@@ -1669,7 +1683,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.ztz) bcztz,
+	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 	            	sum(j.btzzj) bccgs
 	          		from jhxdsh g
@@ -4295,7 +4311,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.ztz) bcztz,
+	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 	             	sum(j.gz) + sum(j.sz) + sum(j.zq) + sum(j.yhdk) bcdftz,
 	            	sum(j.btzzj) bccgs
@@ -4405,7 +4423,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.ztz) bcztz,
+	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 	             	sum(j.gz) + sum(j.sz) + sum(j.zq) + sum(j.yhdk) bcdftz,
 	            	sum(j.btzzj) bccgs
@@ -4472,7 +4492,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	</select>
 	
 	<select id="queryJhshLjYhdzx1" parameterType="jhsh" resultType="java.util.Map">
-		select sum(j.sysbbzj) sysbb,sum(j.yqdbcgs) yqdbcgs,sum(j.ztz) ztz,sum(l1.lc) lc from jhsh_yhdzx_qx j left join xmsq_yhdzx l on j.xmbm=l.xmbm left join 
+		select sum(j.sysbbzj) sysbb,sum(j.yqdbcgs) yqdbcgs,sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  ztz,sum(l1.lc) lc from jhsh_yhdzx_qx j left join xmsq_yhdzx l on j.xmbm=l.xmbm left join 
 		(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc from lxsh_lx where xmid like '%4___' and jdbs='2' group by xmid) l1 on j.xmbm = l1.xmid
 		where 1=1
 		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -4522,7 +4544,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.ztz) bcztz,
+	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 	             	sum(j.gz) + sum(j.sz) + sum(j.zq) + sum(j.yhdk) bcdftz,
 	            	sum(j.btzzj) bccgs
@@ -4615,7 +4639,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.ztz) bcztz,
+	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 	             	sum(j.gz) + sum(j.sz) + sum(j.zq) + sum(j.yhdk) bcdftz,
 	            	sum(j.btzzj) bccgs
@@ -4753,7 +4779,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	</select>
 	
 	<select id="queryJhshLjYhzx" parameterType="jhsh" resultType="java.util.Map">
-		select sum(j.sbzzj) sysbb,sum(j.ztz) ztz 
+		select sum(j.sbzzj) sysbb,sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  ztz 
 		from jhsh_yhzx j left join xmsq_yhzx l on j.xmbm=l.xmbm 
 		where 1=1
 		<if test="xzqhdm!=null and xzqhdm!=''">
@@ -4833,10 +4861,14 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	            	sum(j.jl) bcjl,
 	            	sum(j.rys) bcrys,
 	            	sum(j.dk) bcdk,
-	                sum(j.ztz) bcxd,
+	                sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.ztz) bcztz,
+	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0)  bcstz,
 	             	sum(j.gz) + sum(j.sz) + sum(j.zq) + sum(j.yhdk) bcdftz,
 	            	sum(j.btzzj) bccgs
@@ -4935,7 +4967,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.ztz) bcztz,
+	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 	             	sum(j.gz) + sum(j.sz) + sum(j.zq) + sum(j.yhdk) bcdftz,
 	            	sum(j.btzzj) bccgs
@@ -5168,7 +5202,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.ztz) bcztz,
+	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 	             	sum(j.gz) + sum(j.sz) + sum(j.zq) + sum(j.yhdk) bcdftz,
 	            	sum(j.btzzj) bccgs
@@ -5263,7 +5299,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.ztz) bcztz,
+	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 	             	sum(j.gz) + sum(j.sz) + sum(j.zq) + sum(j.yhdk) bcdftz,
 	            	sum(j.btzzj) bccgs
@@ -5360,7 +5398,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.ztz) bcztz,
+	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 <!-- 	             	sum(j.gz) + sum(j.sz) + sum(j.zq) +  -->
 <!-- 	             	sum(j.yhdk) bcdftz, -->
@@ -5470,7 +5510,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.ztz) bcztz,
+	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 <!-- 	             	sum(j.gz) + sum(j.sz) + sum(j.zq) +  -->
 <!-- 	             	sum(j.yhdk) bcdftz, -->
@@ -6881,7 +6923,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
           group by p.xmid 
           ) jhlj on j.xmbm=jhlj.xmid
           left join(
-          select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,sum(j.dfzc) dfzc,sum(j.yhdk) yhdk,sum(j.dk) dk,sum(j.jl) jl,
+          select j.xmid,sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  ztz,sum(j.btzzj) btz,sum(j.dfzc) dfzc,sum(j.yhdk) yhdk,sum(j.dk) dk,sum(j.jl) jl,
           replace(WMSYS.WM_CONCAT(j.zyjsnr),',',',') zyjsnr, replace(WMSYS.WM_CONCAT(j.xzscnl),',',',') xzscnl
           from plan_zjxd j 
           where 1=1
@@ -6993,7 +7037,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
           group by p.xmid 
           ) jhlj on j.xmbm=jhlj.xmid
           left join(
-          select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,sum(j.dfzc) dfzc,sum(j.yhdk) yhdk,sum(j.dk) dk,sum(j.jl) jl,
+          select j.xmid,sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc)  ztz,sum(j.btzzj) btz,sum(j.dfzc) dfzc,sum(j.yhdk) yhdk,sum(j.dk) dk,sum(j.jl) jl,
           replace(WMSYS.WM_CONCAT(j.zyjsnr),',',',') zyjsnr, replace(WMSYS.WM_CONCAT(j.xzscnl),',',',') xzscnl
           from plan_zjxd j 
           where 1=1
@@ -7260,7 +7306,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
   left join xmsq_sh x
   on j.xmbm=x.xmbm
    left join
-  (select j.xmid,nvl(sum(j.ztz),0) ztz,nvl(sum(j.btzzj),0) btz,nvl(sum(j.dk),0) stz,nvl(sum(j.dfzc),0) dfzc
+  (select j.xmid,nvl(sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc) ,0) ztz,nvl(sum(j.btzzj),0) btz,nvl(sum(j.dk),0) stz,nvl(sum(j.dfzc),0) dfzc
    ,nvl(sum(j.yhdk),0) yhdk,nvl(sum(gz)+sum(sz)+sum(zq),0) dftz,
    replace(WMSYS.WM_CONCAT(j.zyjsnr),',',',') zyjsnr
   from plan_zjxd j where 1=1 
@@ -7342,7 +7390,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
   left join xmsq_sh x
   on j.xmbm=x.xmbm
    left join
-  (select j.xmid,nvl(sum(j.ztz),0) ztz,nvl(sum(j.btzzj),0) btz,nvl(sum(j.dk),0) stz,nvl(sum(j.dfzc),0) dfzc
+  (select j.xmid,nvl(sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
+                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
+                           nvl(sum(j.zq), 0)+sum(j.dfzc) ,0) ztz,nvl(sum(j.btzzj),0) btz,nvl(sum(j.dk),0) stz,nvl(sum(j.dfzc),0) dfzc
    ,nvl(sum(j.yhdk),0) yhdk,nvl(sum(gz)+sum(sz)+sum(zq),0) dftz,
    replace(WMSYS.WM_CONCAT(j.zyjsnr),',',',') zyjsnr
   from plan_zjxd j where 1=1
