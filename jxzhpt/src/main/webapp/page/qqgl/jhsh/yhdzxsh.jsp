@@ -113,6 +113,7 @@
 		        		}
 					}
 				},
+				{field:'zydpx',title:'重要度排序',width:100,align:'center'},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
 				{field:'zlc',title:'里程',width:60,align:'center'},
 				{field:'jsdj',title:'技术等级',width:70,align:'center'},

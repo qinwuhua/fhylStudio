@@ -71,7 +71,7 @@
 			var data="xzqh="+xzqhstr+"&xmnf="+xmnf+"&tsdq="+tsdq+"&jsdj="+jsdj+"&gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()
 			+'&lxsh.ghlxbh='+lxbm+'&lxsh.lxmc='+$("#lxmc").val()+"&xmlx="+xmlx
 			+'&lxsh.lsjl='+$("#lsjl").combobox('getValue')+'&lxsh.jsjsdj='+$("#jsjsdj").combotree('getText')+'&lxsh.xmklx='+$("#xmklx").combotree('getValue')
-			+'&lxsh.gydw='+$.cookie("dist2")+'&lxsh.ghxlxbm='+ghxlxbm+'&lxsh.ghxlxmc='+$("#ghxlxmc").val()+'&lxsh.xmlx1='+xmlx1+'&lxsh.qqkzzt='+$("#qqkzzt").combobox('getValue');
+			+'&lxsh.gydw='+$.cookie("dist2")+'&lxsh.ghxlxbm='+ghxlxbm+'&lxsh.ghxlxmc='+$("#ghxlxmc").val()+'&lxsh.xmlx1='+xmlx1+'&lxsh.qqkzzt='+$("#qqkzzt").combobox('getValue')+'&lxsh.xmjd='+$("#xmjd").combobox('getValue');
 			$.ajax({
 				 type : "POST",
 				 url : "/jxzhpt/qqgl/showgjtj.do",
@@ -141,7 +141,8 @@
 					'lxsh.xmlx1':xmlx,
 					'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue'),
 					'lxsh.xmklx':$("#xmklx").combotree('getValue'),
-					'lxsh.gydw':$.cookie("dist2")
+					'lxsh.gydw':$.cookie("dist2"),
+					'lxsh.xmjd':$("#xmjd").combobox('getValue')
 				},
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -318,7 +319,19 @@
 								<td><select name="jsjsdj" id="jsjsdj" style="width:104px" ></select></td>
 								<td align="right">现技术等级：</td>
 								<td ><select name="jsdj" id="jsdj" style="width:80px" ></select></td>
-								
+								<td align="right">项目进度：</td>
+								<td ><select name="xmjd" id="xmjd" style="width:100px" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'" >
+									<option selected="selected" value="">全部</option>
+									<option value="五年项目库">五年项目库</option>
+									<option value="立项已上报">立项已上报</option>
+									<option value="立项已审核">立项已审核</option>
+									<option value="工可已上报">工可已上报</option>
+									<option value="工可已审核">工可已审核</option>
+									<option value="初设已上报">初设已上报</option>
+									<option value="初设已审核">初设已审核</option>
+									<option value="计划已上报">计划已上报</option>
+									<option value="计划已下达">计划已下达</option>
+								</select></td>
         					</tr>
         					<tr height="32">
         						

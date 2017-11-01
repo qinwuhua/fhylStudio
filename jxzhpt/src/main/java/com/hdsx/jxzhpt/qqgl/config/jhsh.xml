@@ -770,7 +770,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 					${xdzttj}
 				</if>
 				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
-				order by <if test="zydpx=='升序'">j.zydpx,</if><if test="zydpx=='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc
+				order by <if test="zydpx=='升序'">to_number(j.zydpx),</if><if test="zydpx=='降序'">to_number(j.zydpx) desc,</if>j.xdzt,j.xmbm desc
 				
 			) t 
 		) 
@@ -998,7 +998,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 					${xdzttj}
 				</if>
 				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
-				order by <if test="zydpx=='升序'">j.zydpx,</if><if test="zydpx=='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc
+				order by <if test="zydpx=='升序'">to_number(j.zydpx),</if><if test="zydpx=='降序'">to_number(j.zydpx) desc,</if>j.xdzt,j.xmbm desc
 			) t 
 		) 
 		<if test="page!=null and page!='' and page!=0">
@@ -4930,7 +4930,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 				<if test="jhsh.xmbm !=null and jhsh.xmbm !=''">
 					and j.xmbm like '%'||#{jhsh.xmbm}||'%'
 				</if>
-				order by <if test="jhsh.zydpx =='升序'">j.zydpx,</if><if test="jhsh.zydpx =='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc
+				order by <if test="jhsh.zydpx =='升序'">to_number(j.zydpx),</if><if test="jhsh.zydpx =='降序'">to_number(j.zydpx) desc,</if>j.xdzt,j.xmbm desc
 			) t 
 		) 
 		<if test="page!=null and page!='' and page!=0">

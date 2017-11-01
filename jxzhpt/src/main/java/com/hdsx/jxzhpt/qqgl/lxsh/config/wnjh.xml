@@ -301,6 +301,9 @@
 		<if test="qqkzzt !='' and qqkzzt != null ">
 			and qqkzzt like '%'||#{qqkzzt}||'%'
 		</if>
+		<if test="xmjd !='' and xmjd != null ">
+			and xmjd like '%'||#{xmjd}||'%'
+		</if>
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
 		</if>
@@ -365,6 +368,9 @@
 		</if>
 		<if test="qqkzzt !='' and qqkzzt != null ">
 			and qqkzzt like '%'||#{qqkzzt}||'%'
+		</if>
+		<if test="xmjd !='' and xmjd != null ">
+			and xmjd like '%'||#{xmjd}||'%'
 		</if>
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
@@ -574,6 +580,9 @@
 		<if test="gydw!='36' and gydw!=null">
 			and znsjck is null
 		</if>
+		<if test="xmjd !='' and xmjd != null ">
+			and xmjd like '%'||#{xmjd}||'%'
+		</if>
 		order by xmnf
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 	</select>
@@ -630,6 +639,9 @@
 		</if>
 		<if test="qqkzzt !='' and qqkzzt != null ">
 			and qqkzzt like '%'||#{qqkzzt}||'%'
+		</if>
+		<if test="xmjd !='' and xmjd != null ">
+			and xmjd like '%'||#{xmjd}||'%'
 		</if>
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
@@ -1058,6 +1070,9 @@
 		<if test="qqkzzt !='' and qqkzzt != null ">
 			and qqkzzt like '%'||#{qqkzzt}||'%'
 		</if>
+		<if test="xmjd !='' and xmjd != null ">
+			and xmjd like '%'||#{xmjd}||'%'
+		</if>
 		<if test="xmlx1 !='' and xmlx1 != null ">
 			${xmlx1}
 		</if>
@@ -1322,6 +1337,9 @@
 		<if test="gydw!='36' and gydw!=null">
 			and znsjck is null
 		</if>
+		<if test="xmjd !='' and xmjd != null ">
+			and xmjd like '%'||#{xmjd}||'%'
+		</if>
 <!-- 		order by t.id desc,lx.sffirst desc	 -->
 	</select>
 
@@ -1492,6 +1510,9 @@
 		<if test="gydw!='36' and gydw!=null">
 			and znsjck is null
 		</if>
+		<if test="xmjd !='' and xmjd != null ">
+			and xmjd like '%'||#{xmjd}||'%'
+		</if>
 		order by xmnf
 		) t1
 	</select>
@@ -1631,6 +1652,9 @@
 		<if test="gydw!='36' and gydw!=null">
 			and znsjck is null
 		</if>
+		<if test="xmjd !='' and xmjd != null ">
+			and xmjd like '%'||#{xmjd}||'%'
+		</if>
 		order by xmnf
 		) t1
 	</select>
@@ -1763,6 +1787,9 @@
 		<if test="gydw!='36' and gydw!=null">
 			and znsjck is null
 		</if>
+		<if test="xmjd !='' and xmjd != null ">
+			and t.xmjd like '%'||#{xmjd}||'%'
+		</if>
 		order by xmnf
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 	</select>
@@ -1835,6 +1862,9 @@
 		<if test="gydw!='36' and gydw!=null">
 			and znsjck is null
 		</if>
+		<if test="xmjd !='' and xmjd != null ">
+			and t.xmjd like '%'||#{xmjd}||'%'
+		</if>
 		order by xmnf
 		) t1
 	</select>
@@ -1906,6 +1936,9 @@
 		</if>
 		<if test="gydw!='36' and gydw!=null">
 			and znsjck is null
+		</if>
+		<if test="xmjd !='' and xmjd != null ">
+			and xmjd like '%'||#{xmjd}||'%'
 		</if>
 		order by xmnf
 		) t1
@@ -2036,6 +2069,9 @@
 		</if>
 		<if test="gydw!='36' and gydw!=null">
 			and znsjck is null
+		</if>
+		<if test="xmjd !='' and xmjd != null ">
+			and xmjd like '%'||#{xmjd}||'%'
 		</if>
 <!-- 		order by t.id,lx.sffirst desc -->
 <!-- 		) t1 -->
