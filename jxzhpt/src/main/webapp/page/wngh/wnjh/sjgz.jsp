@@ -107,6 +107,7 @@ text-decoration:none;
 								<td><select name="jsjsdj" id="jsjsdj" style="width:104px" ></select></td>
 								<td align="right">现技术等级：</td>
 								<td ><select name="jsdj" id="jsdj" style="width:85px" ></select></td>
+								<td align="right">项目进度：</td>	
                                 <td ><select name="xmjd" id="xmjd" style="width:100px" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'" >
 									<option selected="selected" value="">全部</option>
 									<option value="五年项目库">五年项目库</option>
