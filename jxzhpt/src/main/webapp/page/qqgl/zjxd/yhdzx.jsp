@@ -507,7 +507,7 @@
 				{field:'bzdk',title:'厅贷款',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
 				{field:'bzqt',title:'其他',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
 				//{field:'bztbsj',title:'填报时间',width:70,align:'center',editor:{type:'datebox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
-				{field:'tbdw',title:'填报单位',width:100,align:'center',
+				{field:'tbdw',title:'操作人',width:100,align:'center',
 					formatter: function(value,row,index){
 		        		return $.cookie('truename');
 		        	}}

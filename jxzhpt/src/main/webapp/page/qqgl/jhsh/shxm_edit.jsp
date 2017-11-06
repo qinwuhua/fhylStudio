@@ -53,7 +53,7 @@
 			//xmbm1 为项目原编码，在编辑中选择项目年份生成新编码为xmbm
 			//$("#xmbm1").val(parent.YMLib.Var.xmbm);
 			//alert($("#xmbm1").val());
-			
+			autoCompleteGHLXBM();
 		});
 		function update(){
 			$('#gydw').val($('#gydw1').combo("getText"));
@@ -71,9 +71,11 @@
 			if(zhuanghao()){
 				$("#lmkd").removeAttr("disabled");
 				$("#xmbm").removeAttr("disabled");
+				loadjzt();
 				$('#submit').ajaxSubmit({
 					dataType:'json',
 					success:function(msg){
+						disLoadjzt();
 						if(msg.result){
 							alert("修改成功！");
 							parent.$("#grid").datagrid('reload');
@@ -81,6 +83,7 @@
 						}
 					},
 					error:function(msg){
+						disLoadjzt();
 						alert("修改失败！");
 					}
 				});
