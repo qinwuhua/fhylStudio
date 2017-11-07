@@ -1938,4 +1938,32 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		
 		return result;
 	}
+
+	@Override
+	public List<Excel_list> exportJhshShSbExcel(Jhsh jhsh) {
+		List<Excel_list> result = new ArrayList<Excel_list>();                                                                                                                                                              
+		result = queryList("exportJhshShSbTotalExcel", jhsh);
+		int rowNum = 0;
+		List<Excel_list> l2 = queryList("exportJhshShSbExcel", jhsh);
+		for(int i = 0; i < l2.size();i++) {
+			rowNum ++;
+			l2.get(i).setV_0(rowNum+"");
+		}
+		result.addAll(l2);		
+		return result;
+	}
+
+	@Override
+	public List<Excel_list> queryJhshYhdzx_dcExcel(Jhsh jhsh) {
+		List<Excel_list> result = new ArrayList<Excel_list>();                                                                                                                                                              
+        result = queryList("exportJhshYhdzxTotalExcel", jhsh);
+        int rowNum = 0;
+		List<Excel_list> l2 = queryList("exportJhshYhdzxDetailExcel", jhsh);
+		for(int i = 0; i < l2.size();i++) {
+			rowNum ++;
+			l2.get(i).setV_0(rowNum+"");
+		}	
+		result.addAll(l2);
+		return result;
+	}
 }
