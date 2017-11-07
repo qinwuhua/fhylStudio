@@ -188,7 +188,7 @@
 			});
 		}
 		function exportJhshxx(){
-			var tsdq=$("#tsdq").combobox("getValues").join(",");
+ 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
 			var xmnf=$("#xmnf").combobox("getValues").join(",");

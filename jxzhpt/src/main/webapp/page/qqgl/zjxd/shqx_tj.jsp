@@ -29,7 +29,7 @@
 	<script type="text/javascript">
 		$(function(){
 			$("#nf").combobox({onSelect:function(record){
-				loadZj($.cookie("unit"));
+				//loadZj($.cookie("unit"));
 			}})
 			
 			loadBmbm('nf','全部项目年份',new Date().getFullYear());
@@ -57,16 +57,18 @@
 				}
 			});
 			
+			//loadZj($.cookie("unit"));
+		}
+		function getsf(){
 			loadZj($.cookie("unit"));
 		}
 		
-		
 		function loadZj(gydwdm){
-			
+			if($('#jhxdwh').val()==""){alert("请填写计划下达文号");return;}
 			var zj;
 			if($.cookie("unit")=="36")
-			zj={'gydwdm':"21101360000",'xdnf':$("#nf").combo('getValue')};
-			else zj={'gydwdm':gydwdm,'xdnf':$("#nf").combo('getValue')};
+			zj={'gydwdm':"21101360000",'xdnf':$("#nf").combo('getValue'),jhxdwh:$('#jhxdwh').val()};
+			else zj={'gydwdm':gydwdm,'xdnf':$("#nf").combo('getValue'),jhxdwh:$('#jhxdwh').val()};
 			$.ajax({
 				type:'post',
 				async:false,
@@ -189,6 +191,7 @@
 								<input type="text" class='easyui-combobox' id='nf' style="width: 65px;">
 								<td width="100">计划下达文号</td>
 								<td width="100"><input type='text' id='jhxdwh'style="width: 145px;"></td>
+								<td width="100"><input type="button" onclick='getsf()' value="查询"></td>
 							</tr>
 						</table>
 						<table id="zjdw_table" width="800" class="table" cellpadding="0" cellspacing="0">

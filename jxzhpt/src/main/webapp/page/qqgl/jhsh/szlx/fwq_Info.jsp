@@ -25,9 +25,9 @@
 			$('#qqFrom').form("load",obj);
 			$('#xmbm').val(obj.XMBM);
 			$('#xmlxs').val(parent.YMLib.Var.flag);
-			$('#ztz').val(obj.ZTZ);
-			$('#cgs').val(obj.CGS);
-			$('#dfzc').val(obj.DFZC);
+			$('#ztz').val(obj.ZTZ.replace(/(^\s*)|(\s*$)/g, ""));
+			$('#cgs').val(obj.CGS.replace(/(^\s*)|(\s*$)/g, ""));
+			$('#dfzc').val(obj.DFZC.replace(/(^\s*)|(\s*$)/g, ""));
 			$('#zydpx').val(obj.ZYDPX);
 			var inputArray= $('input');
 			$.each(inputArray,function(index,item){
