@@ -210,6 +210,33 @@
 			$('#grid').datagrid('resize'); 
 		});
 		
+		
+		function queryGsdgz_dcexcelsb(){
+			var xmlx=$("#xmlx").combobox("getValues").join(",");
+			if(xmlx.substr(0,1)==',')
+				xmlx=xmlx.substr(1,xmlx.length);
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			var xmnf=$("#xmnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var zjly=$("#zjly").combobox("getValues").join(",");
+			if(zjly.substr(0,1)==',')
+				zjly=zjly.substr(1,zjly.length);
+			var param='jhsh.xmlx1='+xmlx+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.xmmc='+$("#xmmc").val()+
+					'&jhsh.xmnf='+xmnf+'&jhsh.jsjsdj='+$("#jsjsdj").combobox("getValues").join(",")+'&jhsh.jsdj='+$("#jsdj").combobox("getValues").join(",")+
+					'&jhsh.xzdj='+$("#gldj").combobox("getValues").join(",")+'&jhsh.tsdq='+tsdq+
+					'&jhsh.ghlxbh='+$("#lxbm").combotree('getText')+'&jhsh.lxmc='+$("#lxmc").val()+
+					'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+
+					'&jhsh.lsjl='+$("#lsjl").combobox("getValue")+'&jhsh.zydpx='+$("#zydpx").val()+'&jhsh.sbzt=1'+
+					'&jhsh.shzt='+$("#shzt").combobox("getValue")+'&jhsh.gyfl='+$("#gyfl").val()+'&jhsh.zjly='+zjly
+					+'&xmklx='+$("#xmklx").combobox("getValue");
+			window.location.href="/jxzhpt/qqgl/queryGsdgz_dcexcelsb.do?"+param;
+		}
+		$(window).resize(function () { 
+			$('#grid').datagrid('resize'); 
+		});
 		function loadFileUpload(){
 			$("#uploadJhxd").uploadify({
 				/*注意前面需要书写path的代码*/
@@ -395,7 +422,7 @@ text-decoration:none;
 									<img name="sheng" id="thxj" src="../../../images/thxj1.jpg" onmouseover="this.src='../../../images/thxj2.jpg'" onmouseout="this.src='../../../images/thxj1.jpg'   " src=""  onclick="tuihxjjh('grid');" style="border-width:0px;vertical-align:middle;" />
 									<img id="thwsh" alt="退回未审核" onclick="thwshjh()" style="vertical-align:middle;" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'"/>
 					                <!-- <img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;"> -->
-									<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+									<img onclick="queryGsdgz_dcexcelsb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 									<!-- <img onclick="importJhsh()" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> -->
                             	</td>
                             </tr>
