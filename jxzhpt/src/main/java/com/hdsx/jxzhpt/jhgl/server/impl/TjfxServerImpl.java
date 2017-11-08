@@ -319,18 +319,24 @@ public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 	@Override
 	public List<Map<String, Object>> queryLx_kxjc(Lkmxb lkmxb) {
 		Map<String, Object> params=new HashMap<String, Object>();
-		params.put("lxbm", lkmxb.getLxbh());
+		params.put("lxbm", lkmxb.getLxbm());
 		params.put("mqi", lkmxb.getMqi());
+		params.put("pqi", lkmxb.getPqi());
 		params.put("xzdj", lkmxb.getXzdj());
-		return queryList("queryLx_kxjc",params);
+		if("mqi".equals(lkmxb.getTjzb()))
+			return queryList("queryLx_kxjc",params);
+		else
+			return queryList("queryLx_kxjcPQI",params);
 	}
 	
 	@Override
-	public List<Map<String, Object>> queryKxjc_lx(String tjfl,String lxbm,String mqiStr,String mqi,String xzdj) {
+	public List<Map<String, Object>> queryKxjc_lx(String tjfl,String lxbm,String mqiStr,String mqi,String pqiStr,String pqi,String xzdj) {
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("lxbm", lxbm);
 		params.put("mqiStr", mqiStr);
 		params.put("mqi", mqi);
+		params.put("pqiStr", pqiStr);
+		params.put("pqi", pqi);
 		params.put("xzdj", xzdj);
 		if(tjfl.equals("1")){
 			  return queryList("queryLxkxjc_ds",params);

@@ -14,6 +14,9 @@ import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
 public interface JhshServer {
+	public List<Excel_list> queryGsdgz_dcexcelsb(Jhsh jhsh);
+	public List<Excel_list> queryGsdgz_dcexcelljsb(Jhsh jhsh);
+	//导出计划申报
 	
 	public boolean updateSflgcXdzt(Jhsh jhsh);
 	

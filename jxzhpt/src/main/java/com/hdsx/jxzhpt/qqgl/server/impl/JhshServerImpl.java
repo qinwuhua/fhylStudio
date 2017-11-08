@@ -1000,7 +1000,16 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		params.put("rows", rows);
 		return queryList("queryGsdgz_qx", params);
 	}
-
+	@Override
+	public List<Excel_list> queryGsdgz_dcexcelsb(Jhsh jhsh) {
+		params.put("jhsh", jhsh);
+		return queryList("queryGsdgz_dcexcelsb", params);
+	}
+	@Override
+	public List<Excel_list> queryGsdgz_dcexcelljsb(Jhsh jhsh) {
+		params.put("jhsh", jhsh);
+		return queryList("queryGsdgz_dcexcelljsb", params);
+	}
 	@Override
 	public int queryGsdgz_qxCount(Jhsh jhsh) {
 		params.put("jhsh", jhsh);

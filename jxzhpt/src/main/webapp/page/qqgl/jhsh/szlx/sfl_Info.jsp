@@ -25,12 +25,12 @@
 			$('#qqFrom').form("load",obj);
 			$('#xmbm').val(obj.XMBM);
 			$('#xmlxs').val(parent.YMLib.Var.flag);
-			$('#ztz').val(obj.ZTZ);
-			$('#tbz').val(obj.TBZ);
-			$('#tbz_jaf').val(obj.TBZ_JAF);
-			$('#tbz_gcjlf').val(obj.TBZ_GCJLF);
-			$('#tbz_qqgzf').val(obj.TBZ_QQGZF);
-			$('#dfzc').val(obj.DFZC);
+			$('#ztz').val(obj.ZTZ.replace(/(^\s*)|(\s*$)/g, ""));
+			$('#tbz').val(obj.TBZ.replace(/(^\s*)|(\s*$)/g, ""));
+			$('#tbz_jaf').val(obj.TBZ_JAF.replace(/(^\s*)|(\s*$)/g, ""));
+			$('#tbz_gcjlf').val(obj.TBZ_GCJLF.replace(/(^\s*)|(\s*$)/g, ""));
+			$('#tbz_qqgzf').val(obj.TBZ_QQGZF.replace(/(^\s*)|(\s*$)/g, ""));
+			$('#dfzc').val(obj.DFZC.replace(/(^\s*)|(\s*$)/g, ""));
 			$('#zydpx').val(obj.ZYDPX);
 			var inputArray= $('input');
 			$.each(inputArray,function(index,item){

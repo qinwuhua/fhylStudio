@@ -27,6 +27,7 @@
 	<script type="text/javascript">
 		$(function(){
 			loadBmbm3("mqi","MQI等级");
+			loadBmbm3("pqi","MQI等级");
 		});
 		
 		function showAllgsd(){
@@ -36,7 +37,9 @@
 			var mqi=$('#mqi').combobox("getValues").join(",");
 			if(mqi.substr(0,1)==',')
 				mqi=mqi.substr(1,mqi.length);
-			
+			var pqi=$('#pqi').combobox("getValues").join(",");
+			if(pqi.substr(0,1)==',')
+				pqi=pqi.substr(1,pqi.length);
 			$('#datagrid').datagrid({    
 			    url:'/jxzhpt/tjfx/selectKxjcLx.do',
 			    striped:true,
@@ -53,7 +56,9 @@
 			    queryParams: {
 			    	'lkmxb.lxbm':$("#lxbm").val(),
 					'lkmxb.mqi':mqi,
-					'lkmxb.xzdj':$("#xzdj").val()
+					'lkmxb.pqi':pqi,
+					'lkmxb.xzdj':$("#xzdj").val(),
+					'lkmxb.tjzb':$("#tjzb").val()
 				},
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -330,7 +335,9 @@
 			var mqi=$('#mqi').combobox("getValues").join(",");
 			if(mqi.substr(0,1)==',')
 				mqi=mqi.substr(1,mqi.length);
-			
+			var pqi=$('#pqi').combobox("getValues").join(",");
+			if(pqi.substr(0,1)==',')
+				pqi=pqi.substr(1,pqi.length);
 			var title='';
 			if(parent.$("#tjfl").val()=='1'){
 				title={field:'XZQH',title:'行政区划',width:200,align:'center',fixed:true};
@@ -357,6 +364,7 @@
 					'lkmxb.cdl':$("#cdllist").val(),
 					'lkmxb.cadl':$("#cadllist").val(), */
 					'lkmxb.mqi':mqi,
+					'lkmxb.pqi':pqi,
 					'xmsq.xzqh':$("#xzdj").val()
 				},
 			    columns:[[
@@ -393,23 +401,30 @@
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 							<tr height="42" >
-							<td style="width: 100px;">行政等级：</td>
-							<td style="width: 176px;">
+							<td style="width: 100px;text-align:right;">行政等级：</td>
+							<td style="width: 100px;">
 								<select id="xzdj" style="width:70px;">
 								<option value="">全部</option>
 								<option value="G">国道</option>
 								<option value="S">省道</option>
 								</select>
 							</td>
-							<td style="width: 100px;">路线编码：</td>
-							<td style="width: 176px;">
+							<td style="width: 100px;text-align:right;">路线编码：</td>
+							<td style="width: 100px;">
 								<input id='lxbm' type="text" />
 							</td>
-        					<td>MQI等级：</td>
+        					<td style="width: 100px;text-align:right;">MQI等级：</td>
 							<td><select id="mqi" style="width:80px"class="easyui-combobox"></select></td>
+							<td style="width: 100px;text-align:right;">PQI等级：</td>
+							<td><select id="pqi" style="width:80px"class="easyui-combobox"></select></td>
+							<td style="width: 100px;text-align:right;">统计指标：</td>
+							<td><select id="tjzb" style="width:80px">
+							<option value="mqi">MQI</option>
+							<option value="pqi">PQI</option>
+							</select></td>
         					</tr>
         					<tr height="42" align="center">
-                              <td colspan="6">
+                              <td colspan="8">
                                <a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:showAllgsd()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">查询</a>
 				              </td>
                             </tr></table>
