@@ -31,9 +31,40 @@
 				$('#xmlx').val(parent.YMLib.Var.xmbm.substr(10,1));
 				$('#gldj1').combobox('setValue',data.gldj);
 				$('#xdzt').val("1");
+				$('#yjgd').val(data.yjgd);
+				$('#ejgd').val(data.ejgd);
+				$('#yjsd').val(data.yjsd);
+				$('#ejsd').val(data.ejsd);
+				$('#sjsd').val(data.sjsd);
 			}
 		});
 	});
+	
+	function updataJhsh(){
+		var result =true;
+		result = validateText('pfztz','number',result);
+		//result = validateText('bbzzj','number',result);
+		//result = validateText('sbzzj','number',result);
+		if(!true){
+			return;
+		}
+		alert("确定要保存当前数据吗");
+		$('#jhxdFrom').ajaxSubmit({
+			dataType:'json',
+			success:function(msg){
+				if(msg.result){
+					alert("保存成功！");
+					parent.$("#grid").datagrid('reload');
+					closeWindow("jhxd");
+				}
+			},
+			error:function(msg){
+				alert("保存失败！");
+			}
+		});
+	}
+
+	
     </script>
 </head>
 <body>
@@ -134,19 +165,20 @@
 							</td>
 						</tr>
   
-                       <tr style="height: 30px;font-size: 10px;">
+                        <tr style="height: 30px;font-size: 10px;">
 						<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-							<b><font color="#009ACD" style="cursor: hand; font-size: 12px">技术等级及里程：</font></b>
+							<b><font color="#009ACD" style="cursor: hand; font-size: 12px">项目里程：</font></b>
 							</td>
-				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;" align="left">
-					一级：<input id="yilc" onchange="cesuan2()" name="yilc" style="width: 50px;" type="text"/>
-					二级：<input id="erlc" onchange="cesuan2()" name="erlc" style="width: 50px;" type="text"/>
-					三级：<input id="sanlc" onchange="cesuan2()" name="sanlc" style="width: 50px;" type="text"/>
-					四级：<input id="silc" onchange="cesuan2()" name="silc" style="width: 50px;" type="text"/>
-					等外：<input id="dwlc" onchange="cesuan2()" name="dwlc" style="width: 50px;" type="text"/>
-					无路：<input id="wllc" onchange="cesuan2()" name="wllc" style="width: 50px;" type="text"/>
-				</td> 
-						</tr>				
+				        <td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;" align="left">
+				           	  一级国道：<input id="yjgd" onchange="" name="yjgd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>
+					                二级国道：<input id="ejgd" onchange="" name="ejgd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>   
+				        <br/><div style="margin-bottom:2px;"></div>
+					                一级省道：<input id="yjsd" onchange="" name="yjsd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>
+					                二级省道：<input id="ejsd" onchange="" name="ejsd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>   
+					                三级省道：<input id="sjsd" onchange="" name="sjsd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>				                   
+				        </td>
+						</tr>
+										
 						<tr style="height: 30px;font-size: 10px;">
 						<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 							<b><font color="#009ACD" style="cursor: hand; font-size: 12px">主要建设内容：</font></b>

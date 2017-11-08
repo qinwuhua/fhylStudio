@@ -637,4 +637,6 @@ public interface JhshServer {
 	public List<Excel_list> exportJhshShSbExcel(Jhsh jhsh);
 	
 	public List<Excel_list> queryJhshYhdzx_dcExcel(Jhsh jhsh);
+
+	public boolean insertOrUpdateJhshDj(List<Jhsh> list);
 }

@@ -201,17 +201,10 @@
 			var zjly=$("#zjly").combobox("getValues").join(",");
 			if(zjly.substr(0,1)==',')
 				zjly=zjly.substr(1,zjly.length);
-// 			var params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
-// 					'jhsh.xmnf':xmnf,'jhsh.sfsycgs':$('#sfsycgs').combobox("getValue"),'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),
-// 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
-// 					'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.lxmc':$('#lxmc').val(),
-// 					'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.zydpx':$('#zydpx').val(),
-// 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.sbzt':1,'jhsh.shzt':$('#shzt').combobox("getValue"),
-// 					'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly};
-
+			
 			var param='jhsh.xmlx=4&jhsh.xmlx1='+xmlx+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.xmmc='+$("#xmmc").val()+
 					'&jhsh.xmnf='+xmnf+'&jhsh.sfsycgs='+$("#sfsycgs").combobox("getValue")+'&jhsh.jsdj='+$("#jsdj").combobox("getValues").join(",")+
-					'&jhsh.xzdj='+$("#gldj").combobox("getValues").join(",")+'&jhsh.tsdq='+tsdq+
+					'&jhsh.xzdj='+$("#gldj").combobox("getValues").join(",")+'&jhsh.tsdq='+encodeURI(encodeURI(tsdq))+
 					'&jhsh.ghlxbh='+$("#lxbm").combotree('getText')+'&jhsh.lxmc='+$("#lxmc").val()+
 					'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+'&jhsh.zydpx='+$("#zydpx").val()+
 					'&jhsh.lsjl='+$("#lsjl").combobox("getValue")+'&jhsh.sbzt=1'+'&jhsh.shzt='+$("#shzt").combobox("getValue")+

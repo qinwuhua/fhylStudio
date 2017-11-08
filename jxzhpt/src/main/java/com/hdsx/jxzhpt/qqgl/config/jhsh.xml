@@ -2072,13 +2072,37 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 		from lxsh_xj_qx l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
 	</select>
 	<select id="queryJhshxxLmsjByXmbm" parameterType="java.util.Map" resultType="jhsh">
-		select k.*,xmklx from jhsh_sjgz k left join lxsh_sjgz t on k.xmbm=t.xmbm where k.xmbm=#{xmbm}
+       select k.*,xmklx,j.*,nvl(lg.yilc,0) yilc,nvl(lg.erlc,0) erlc,nvl(ls.yj,0) yj,nvl(ls.ej,0) ej,nvl(ls.sj,0) sj 
+       from jhsh_sjgz k 
+       left join lxsh_sjgz t on k.xmbm=t.xmbm
+       left join jhsh_dj j on j.xmbm = k.xmbm
+       left join(select l.xmid xmid,nvl(sum(l.jhyilc),0) yilc, nvl(sum(l.jherlc)+sum(l.jhsanlc)+sum(l.jhsilc)+sum(l.jhdwlc)+sum(l.jhwllc),0) erlc 
+                  from lxsh_lx l where l.lxbm like 'G%' group by l.xmid) lg on lg.xmid = k.xmbm
+       left join (select l.xmid xmid,nvl(sum(l.jhyilc),0) yj, nvl(sum(l.jherlc),0) ej, nvl(sum(l.jhsanlc)+sum(l.jhsilc)+sum(l.jhdwlc)+sum(l.jhwllc),0) sj 
+                  from lxsh_lx l where l.lxbm like 'S%' group by l.xmid) ls on ls.xmid = k.xmbm
+		where k.xmbm=#{xmbm}
 	</select>
 	<select id="queryJhshxxLmgzByXmbm" parameterType="java.util.Map" resultType="jhsh">
-		select k.*,xmklx from jhsh_lmgz k left join lxsh_lmgz t on k.xmbm=t.xmbm where k.xmbm=#{xmbm}
+       select k.*,xmklx,j.*,nvl(lg.yilc,0) yilc,nvl(lg.erlc,0) erlc,nvl(ls.yj,0) yj,nvl(ls.ej,0) ej,nvl(ls.sj,0) sj 
+       from jhsh_lmgz k 
+       left join lxsh_lmgz t on k.xmbm=t.xmbm
+       left join jhsh_dj j on j.xmbm = k.xmbm    
+       left join(select l.xmid xmid,nvl(sum(l.yilc),0) yilc, nvl(sum(l.erlc)+sum(l.sanlc)+sum(l.silc)+sum(l.dwlc)+sum(l.wllc),0) erlc 
+                  from lxsh_lx l where l.lxbm like 'G%' group by l.xmid) lg on lg.xmid = k.xmbm
+       left join (select l.xmid xmid,nvl(sum(l.yilc),0) yj, nvl(sum(l.erlc),0) ej, nvl(sum(l.sanlc)+sum(l.silc)+sum(l.dwlc)+sum(l.wllc),0) sj 
+                  from lxsh_lx l where l.lxbm like 'S%' group by l.xmid) ls on ls.xmid = k.xmbm		
+		where k.xmbm=#{xmbm}
 	</select>
 	<select id="queryJhshxxXjByXmbm" parameterType="java.util.Map" resultType="jhsh">
-		select k.*,xmklx from jhsh_xj k left join lxsh_xj t on k.xmbm=t.xmbm where k.xmbm=#{xmbm}
+		select k.*,xmklx,j.*,nvl(lg.yilc,0) yilc,nvl(lg.erlc,0) erlc,nvl(ls.yj,0) yj,nvl(ls.ej,0) ej,nvl(ls.sj,0) sj 
+		from jhsh_xj k 
+		left join lxsh_xj t on k.xmbm=t.xmbm 
+		left join jhsh_dj j on j.xmbm=k.xmbm 
+		left join(select l.xmid xmid,nvl(sum(l.yilc),0) yilc, nvl(sum(l.erlc)+sum(l.sanlc)+sum(l.silc)+sum(l.dwlc)+sum(l.wllc),0) erlc 
+                  from lxsh_lx l where l.lxbm like 'G%' group by l.xmid) lg on lg.xmid = k.xmbm
+        left join (select l.xmid xmid,nvl(sum(l.yilc),0) yj, nvl(sum(l.erlc),0) ej, nvl(sum(l.sanlc)+sum(l.silc)+sum(l.dwlc)+sum(l.wllc),0) sj 
+                  from lxsh_lx l where l.lxbm like 'S%' group by l.xmid) ls on ls.xmid = k.xmbm
+		where k.xmbm=#{xmbm}
 	</select>
 	<select id="queryJhshxxYhdzxByXmbm" parameterType="jhsh" resultType="jhsh">
 	  select j.*, l.lxbm as ylxbh, l.gpsqdzh, l.gpszdzh, l.yilc, l.erlc, l.sanlc,
@@ -9003,11 +9027,11 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	</select>
 	
 	<select id="exportJhshShSbTotalExcel" parameterType="jhsh" resultType="elist">
-     select '合计' v_0,'' v_1,'' v_2,'' v_3,'' v_4,'' v_5,'' v_6,'' v_7,'' v_8,'' v_9,'' v_10,'' v_11,'' v_12,'' v_13,
+     select '合计' v_0,'' v_1,'' v_2,'' v_3,'' v_4,'' v_5,'' v_6,'' v_7,'' v_8,'' v_9,'' v_10,'' v_11,'' v_12,sum(t.v_13) v_13,
        sum(t.v_14) v_14,sum(t.v_16)+sum(t.v_17)+sum(t.v_18)+sum(t.v_19) v_15,sum(t.v_16) v_16,sum(t.v_17) v_17,sum(t.v_18) v_18,sum(t.v_19) v_19,'' v_20,'' v_21,'' v_22,'' v_23       
        from (
        select j.ZYDPX v_0, to_char(j.ds) v_1, j.xzqh v_2,j.xmmc v_3,lx.ghlxbm v_4,lx.ghlxmc v_5,lx.ghqdzh v_6,lx.ghzdzh v_7,      
-       lx.lxbm v_8,lx.lxmc v_9,lx.qdzh1 v_10,lx.zdzh1 v_11,j.jsxz v_12, j.lc v_13,
+       lx.lxbm v_8,lx.lxmc v_9,lx.qdzh1 v_10,lx.zdzh1 v_11,j.jsxz v_12, lx2.zjhlc v_13,
        decode(j.PFZTZ, null, 0, j.PFZTZ) v_14,
        nvl(wh.bccgs,0)+nvl(wh.bcstz,0)+nvl(j.DFZC,0)+nvl(j.QT,0) v_15,nvl(wh.bccgs,0) v_16,nvl(wh.bcstz,0) v_17,
        decode(j.DFZC, null, 0, j.DFZC) v_18,decode(j.QT, null, 0, j.QT) v_19,cb.sjpfwh v_20,j.XMBM v_21,j.scxdnf v_22,j.tsdqzcg v_23
@@ -9082,7 +9106,7 @@ left join (select xmid xmbm, min(lx.xzqhdm) xzqhdm, min(lx.gydw) gydw from lxsh_
 	
 	<select id="exportJhshShSbExcel" parameterType="jhsh" resultType="elist">                                                        
 select j.ZYDPX v_0, to_char(j.ds) v_1, j.xzqh v_2,j.xmmc v_3,lx.ghlxbm v_4,lx.ghlxmc v_5,lx.ghqdzh v_6,lx.ghzdzh v_7,      
-       lx.lxbm v_8,lx.lxmc v_9,lx.qdzh1 v_10,lx.zdzh1 v_11,j.jsxz v_12, j.lc v_13,
+       lx.lxbm v_8,lx.lxmc v_9,lx.qdzh1 v_10,lx.zdzh1 v_11,j.jsxz v_12, lx2.zjhlc v_13,
        decode(j.PFZTZ, null, 0, j.PFZTZ) v_14,
        nvl(wh.bccgs,0)+nvl(wh.bcstz,0)+nvl(j.DFZC,0)+nvl(j.QT,0) v_15,nvl(wh.bccgs,0) v_16,nvl(wh.bcstz,0) v_17,
        decode(j.DFZC, null, 0, j.DFZC) v_18,decode(j.QT, null, 0, j.QT) v_19,cb.sjpfwh v_20,j.XMBM v_21,j.scxdnf v_22,j.tsdqzcg v_23
@@ -9163,7 +9187,7 @@ left join (select xmid xmbm, min(lx.xzqhdm) xzqhdm, min(lx.gydw) gydw from lxsh_
 '' v_15,sum(t.v_16) v_16,sum(t.v_17) v_17,sum(t.v_18) v_18,sum(t.v_19) v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24 
 from(
 select to_char(rownum) v_0, j.ZYDPX v_1, j.ds v_2, j.XMBM v_3, j.xmmc v_4, lx.ghlxbm v_5, lx.ghlxmc v_6,
-       lx.ghqdzh v_7, lx.ghzdzh v_8,lx.lxbm v_9, lx.lxmc v_10, lx.qdzh1 v_11, lx.zdzh1 v_12,to_char(j.lc,'fm999990.09999') v_13,lxg.jsdj v_14,
+       lx.ghqdzh v_7, lx.ghzdzh v_8,lx.lxbm v_9, lx.lxmc v_10, lx.qdzh1 v_11, lx.zdzh1 v_12,to_char(lx2.zjhlc,'fm999990.09999') v_13,lxg.jsdj v_14,
        j.jsxz v_15, nvl(j.ZTZ,0) v_16, nvl(j.RYS,0) v_17, nvl(wh.bcstz,0) v_18,nvl(j.QT,0) v_19,nvl(wh.bccgs,0) v_20,
        cb.sjpfwh v_21,j.gydw v_22, j.scxdnf v_23,lxg.bz v_24,j.tsdqzcg v_25
                   from jhxdyh j
@@ -9257,10 +9281,11 @@ select to_char(rownum) v_0, j.ZYDPX v_1, j.ds v_2, j.XMBM v_3, j.xmmc v_4, lx.gh
 
 	<select id="exportJhshYhdzxDetailExcel" parameterType="jhsh" resultType="elist">
 	select to_char(rownum) v_0, j.ZYDPX v_1, j.ds v_2, j.XMBM v_3, j.xmmc v_4, lx.ghlxbm v_5, lx.ghlxmc v_6,
-       lx.ghqdzh v_7, lx.ghzdzh v_8,lx.lxbm v_9, lx.lxmc v_10, lx.qdzh1 v_11, lx.zdzh1 v_12,to_char(j.lc,'fm999990.09999') v_13,lxg.jsdj v_14,
+       lx.ghqdzh v_7, lx.ghzdzh v_8,lx.lxbm v_9, lx.lxmc v_10, lx.qdzh1 v_11, lx.zdzh1 v_12,to_char(lx2.zjhlc,'fm999990.09999') v_13,lxg.jsdj v_14,
        j.jsxz v_15, nvl(j.ZTZ,0) v_16, nvl(j.RYS,0) v_17, nvl(wh.bcstz,0) v_18,nvl(j.QT,0) v_19,nvl(wh.bccgs,0) v_20,
        cb.sjpfwh v_21,j.gydw v_22, j.scxdnf v_23,lxg.bz v_24,j.tsdqzcg v_25
                   from jhxdyh j
+                  
                   left join (select xmbm, sjpfwh from cbsj_yhdzx) cb on j.xmbm = cb.xmbm
                   left join xmsq_yhdzx lxg on j.xmbm = lxg.xmbm
                   left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw
@@ -9351,4 +9376,33 @@ select to_char(rownum) v_0, j.ZYDPX v_1, j.ds v_2, j.XMBM v_3, j.xmmc v_4, lx.gh
 			        <if test="zydpx=='降序'">to_number(j.zydpx),</if>   
                     j.xmbm,j.xdzt asc                                                         
 	</select>
+	<update id="insertOrUpdateJhshDj" parameterType="java.util.List">
+      begin
+      UPDATE jhsh_dj j 
+      <set>
+       <if test="yjgdql!=null and yjgdql!=''">j.yjgdql=#{yjgdql,jdbcType=VARCHAR},</if>
+       <if test="ejgdql!=null and ejgdql!=''">j.ejgdql=#{ejgdql,jdbcType=VARCHAR},</if>
+       <if test="yjsdql!=null and yjsdql!=''">j.yjsdql=#{yjsdql,jdbcType=VARCHAR},</if>
+       <if test="ejsdql!=null and ejsdql!=''">j.ejsdql=#{ejsdql,jdbcType=VARCHAR},</if>
+       <if test="sjsdql!=null and sjsdql!=''">j.sjsdql=#{sjsdql,jdbcType=VARCHAR},</if>
+       <if test="yjgdsd!=null and yjgdsd!=''">j.yjgdsd=#{yjgdsd,jdbcType=VARCHAR},</if>      
+       <if test="ejgdsd!=null and ejgdsd!=''">j.ejgdsd=#{ejgdsd,jdbcType=VARCHAR},</if>
+       <if test="yjsdsd!=null and yjsdsd!=''">j.yjsdsd=#{yjsdsd,jdbcType=VARCHAR},</if>
+       <if test="ejsdsd!=null and ejsdsd!=''">j.ejsdsd=#{ejsdsd,jdbcType=VARCHAR},</if>
+       <if test="sjsdsd!=null and sjsdsd!=''">j.sjsdsd=#{sjsdsd,jdbcType=VARCHAR},</if>
+       <if test="yjgd!=null and yjgd!=''">j.yjgd=#{yjgd,jdbcType=VARCHAR},</if>
+       <if test="ejgd!=null and ejgd!=''">j.ejgd=#{ejgd,jdbcType=VARCHAR},</if>
+       <if test="yjsd!=null and yjsd!=''">j.yjsd=#{yjsd,jdbcType=VARCHAR},</if>
+       <if test="ejsd!=null and ejsd!=''">j.ejsd=#{ejsd,jdbcType=VARCHAR},</if>  
+       <if test="sjsd!=null and sjsd!=''">j.sjsd=#{sjsd,jdbcType=VARCHAR}</if>
+      </set>
+      WHERE j.xmbm = #{xmbm}; 
+      if sql%notfound then
+      INSERT INTO jhsh_dj(xmbm,yjgdql,ejgdql,yjsdql,ejsdql,sjsdql,yjgdsd,ejgdsd,yjsdsd,ejsdsd,sjsdsd,yjgd,ejgd,yjsd,ejsd,sjsd) 
+              VALUES (#{xmbm,jdbcType=VARCHAR},#{yjgdql,jdbcType=VARCHAR},#{ejgdql,jdbcType=VARCHAR},#{yjsdql,jdbcType=VARCHAR},#{ejsdql,jdbcType=VARCHAR},
+              #{sjsdql,jdbcType=VARCHAR},#{yjgdsd,jdbcType=VARCHAR},#{ejgdsd,jdbcType=VARCHAR},#{yjsdsd,jdbcType=VARCHAR},#{ejsdsd,jdbcType=VARCHAR},
+              #{sjsdsd,jdbcType=VARCHAR},#{yjgd,jdbcType=VARCHAR},#{ejgd,jdbcType=VARCHAR},#{yjsd,jdbcType=VARCHAR},#{ejsd,jdbcType=VARCHAR},#{sjsd,jdbcType=VARCHAR});
+      end if;
+      end;   
+	</update>
 </mapper>
