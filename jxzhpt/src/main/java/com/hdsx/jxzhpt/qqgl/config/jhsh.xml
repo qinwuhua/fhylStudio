@@ -4281,7 +4281,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	
 	<select id="queryJhshLjYhdzx" parameterType="jhsh" resultType="java.util.Map">
 		select 
-		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(rys),0) rys,nvl(sum(bcdk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(ztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz
+		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcrys),0) rys,nvl(sum(bcdk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(ztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz
 		 from (
 				select j.*,lx2.zjhlc jhlc,sl.zlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh
 					,bcztz,bccgs,bcrys,bcdk,bcjl,bcdftz
@@ -4387,7 +4387,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	<select id="queryJhshLjYhdzx_qx" parameterType="jhsh" resultType="java.util.Map">
 		select 
 		<if test="jhxdwh ==null or jhxdwh ==''">
-		count(*) sl,nvl(sum(yqdbcgs),0) cgs,nvl(sum(rys),0) rys,nvl(sum(dk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(ztz),0) tz,'0' sjl,'0' dftz,nvl(sum(hszj),0) hszj
+		count(*) sl,nvl(sum(yqdbcgs),0) cgs,nvl(sum(bcrys),0) rys,nvl(sum(dk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(ztz),0) tz,'0' sjl,'0' dftz,nvl(sum(hszj),0) hszj
 		</if>
 		<if test="jhxdwh !=null and jhxdwh !=''">
 		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcrys),0) rys,nvl(sum(bcdk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(bcztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz,nvl(sum(hszj),0) hszj
