@@ -139,6 +139,7 @@
 		        		}
 					}
 				},
+				{field:'zydpx',title:'重要度排序',width:100,align:'center'},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
 				{field:'zlc',title:'里程',width:60,align:'center'},
 				{field:'jsdj',title:'技术等级',width:80,align:'center'},
@@ -187,7 +188,7 @@
 			});
 		}
 		function exportJhshxx(){
-			var tsdq=$("#tsdq").combobox("getValues").join(",");
+ 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
 			var xmnf=$("#xmnf").combobox("getValues").join(",");

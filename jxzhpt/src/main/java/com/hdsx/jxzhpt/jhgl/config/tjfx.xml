@@ -645,7 +645,7 @@
 				select rownum as num,t.* from 
 				(
 		select t.*,qdzh||'-'||zdzh zh,(zdzh-qdzh)*1000 cd,decode(yqdzh||'-'||yzdzh,'-','',yqdzh||'-'||yzdzh) yzh,
-		fn_ReturnFllx(mqi) mqidj
+		fn_ReturnFllx(mqi) mqidj,fn_ReturnFllx(pqi) pqidj 
 		from LKPD_MXB_DATA_2014  t left join lkpd_mxb2014 m on t.mxb_id=m.id
 		where 1=1 and jsdj!='高速'
 		<if test="lkmxb.jsdj != null and  lkmxb.jsdj != ''">
@@ -671,6 +671,9 @@
 		</if>
 		<if test="lkmxb.mqi != null and  lkmxb.mqi != ''">
 			and fn_ReturnFllx(mqi) in ${lkmxb.mqi}
+		</if>
+		<if test="lkmxb.pqi != null and  lkmxb.pqi != ''">
+			and fn_ReturnFllx(pqi) in ${lkmxb.pqi}
 		</if>
 		order by lxbh,qdzh
 		  ) t
@@ -706,6 +709,9 @@
 		<if test="lkmxb.mqi != null and  lkmxb.mqi != ''">
 			and fn_ReturnFllx(mqi) in ${lkmxb.mqi}
 		</if>
+		<if test="lkmxb.pqi != null and  lkmxb.pqi != ''">
+			and fn_ReturnFllx(pqi) in ${lkmxb.pqi}
+		</if>
 		order by lxbh
 	</select>
 	
@@ -713,8 +719,8 @@
 	select rownum as v_0,t.* from 
         (select lxbh v_1,qdzh||'-'||zdzh v_2,(zdzh-qdzh)*1000 v_3,t.ylxbm v_4,
         decode(yqdzh||'-'||yzdzh,'-','',yqdzh||'-'||yzdzh) v_5,t.jcfx v_6,t.jsdj v_7,t.lmlx v_8,
-        t.mqi v_9,fn_ReturnFllx(t.mqi) v_10,t.pqi v_11,t.pci v_12,t.rqi v_13,t.rdi v_14,t.sri v_15,t.pssi v_16,
-        t.sci v_17,t.bci v_18,t.tci v_19
+        t.mqi v_9,fn_ReturnFllx(t.mqi) v_10,t.pqi v_11,fn_ReturnFllx(t.mqi) v_12,t.pci v_13,t.rqi v_14,t.rdi v_15,t.sri v_16,t.pssi v_17,
+        t.sci v_18,t.bci v_19,t.tci v_20
     from LKPD_MXB_DATA_2014  t left join lkpd_mxb2014 m on t.mxb_id=m.id
     where 1=1 and jsdj!='高速' 
 		<if test="lkmxb.jsdj != null and  lkmxb.jsdj != ''">
@@ -740,6 +746,9 @@
 		</if>
 		<if test="lkmxb.mqi != null and  lkmxb.mqi != ''">
 			and fn_ReturnFllx(mqi) in ${lkmxb.mqi}
+		</if>
+		<if test="lkmxb.pqi != null and  lkmxb.pqi != ''">
+			and fn_ReturnFllx(pqi) in ${lkmxb.pqi}
 		</if>
 		order by lxbh,qdzh
 		  ) t
@@ -1369,12 +1378,32 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 		   <if test="mqi != null and  mqi != ''">
 			and pd in ${mqi}
 		   </if>
+		   <if test="pqi != null and  pqi != ''">
+			and ppd in ${pqi}
+		   </if>
 		   <if test="xzdj !='' and xzdj != null ">
 			and gldj=#{xzdj}
 		    </if>
            group by lxbh order by lxbh
 	</select>
-	
+	<select id="queryLx_kxjcPQI" resultType="java.util.Map" parameterType="java.util.Map">
+	select lxbh,sum(decode(ppd,'优',cd,0)) ydl,sum(decode(ppd,'良',cd,0)) ldl,sum(decode(ppd,'中',cd,0)) zdl,
+           sum(decode(ppd,'次',cd,0)) cdl,sum(decode(ppd,'差',cd,0)) cadl
+           from wh_lkpd_data_ds t where 1=1
+           <if test="lxbm !='' and lxbm != null ">
+			and lxbh like '%'||#{lxbm}||'%'
+		   </if>
+		   <if test="mqi != null and  mqi != ''">
+			and pd in ${mqi}
+		   </if>
+		   <if test="pqi != null and  pqi != ''">
+			and ppd in ${pqi}
+		   </if>
+		   <if test="xzdj !='' and xzdj != null ">
+			and gldj=#{xzdj}
+		    </if>
+           group by lxbh order by lxbh
+	</select>
 	<select id="queryLxkxjc_ds" resultType="java.util.Map" parameterType="java.util.Map">
 	select t.xzqhdm,t.lc,round(t.zxbz+t.gdbz+t.sdbz,2) bzzj,l.name xzqh from
 	    (
@@ -1389,6 +1418,12 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 		    </if>
 		    <if test="mqi != null and  mqi != ''">
 			and pd in ${mqi}
+		    </if>
+		    <if test="pqiStr !='' and pqiStr != null ">
+			and (${pqiStr})
+		    </if>
+		    <if test="pqi != null and  pqi != ''">
+			and ppd in ${pqi}
 		    </if>
 		    <if test="xzdj !='' and xzdj != null ">
 			and gldj=#{xzdj}
@@ -1414,6 +1449,12 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 		  <if test="mqi != null and  mqi != ''">
 			and pd in ${mqi}
 		  </if>
+		  <if test="pqiStr !='' and pqiStr != null ">
+			and (${pqiStr})
+		    </if>
+		    <if test="pqi != null and  pqi != ''">
+			and ppd in ${pqi}
+		    </if>
 		   <if test="xzdj !='' and xzdj != null ">
 			and gldj=#{xzdj}
 		    </if>

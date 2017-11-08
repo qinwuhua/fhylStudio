@@ -636,4 +636,8 @@ public interface JhshServer {
 	public List<Excel_list> exportYhzxjhExcel(Jhsh jhsh);
 
 	public List<Excel_list> exportLsjlSearchExcel(Lx lx);
+
+	public List<Excel_list> exportJhshShSbExcel(Jhsh jhsh);
+	
+	public List<Excel_list> queryJhshYhdzx_dcExcel(Jhsh jhsh);
 }

@@ -29,7 +29,7 @@
 	<script type="text/javascript">
 		$(function(){
 			$("#nf").combobox({onSelect:function(record){
-				loadZj($.cookie("unit"));
+				//loadZj($.cookie("unit"));
 			}})
 			
 			loadBmbm('nf','全部项目年份',new Date().getFullYear());

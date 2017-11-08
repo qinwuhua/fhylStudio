@@ -111,9 +111,12 @@
 			}
 			if(zhuanghao()){
 				$("#lmkd").removeAttr("disabled");
+				
+				loadjzt();
 				$('#submit').ajaxSubmit({
 					dataType:'json',
 					success:function(msg){
+						disLoadjzt();
 						if(msg.result=="true"){
 							alert("添加成功！");
 							closeWindow("shxmadd");
@@ -122,6 +125,7 @@
 						}
 					},
 					error:function(msg){
+						disLoadjzt();
 						alert("添加失败！");
 					}
 				});

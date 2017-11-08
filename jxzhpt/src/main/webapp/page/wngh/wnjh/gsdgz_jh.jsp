@@ -22,6 +22,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/wngh/wnjh/js/wnjh.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/wngh/wnjh/js/wnjh_jh.js"></script>	
 	<script type="text/javascript">
 		$(function(){
 			gsdxmlx('xmlx');
@@ -146,8 +147,9 @@
 				},
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
-			        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-		 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="sjxiangxi('+index+')">详细</a>    ';
+			        {field:'c',title:'操作',width:40,align:'center',formatter:function(value,row,index){
+		 	        	//return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="sjxiangxi('+index+')">详细</a>    ';
+			        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>';
 			        }},
 			        {field:'lsjl',title:'历史记录',width:60,align:'center',
 						formatter: function(value,row,index){
@@ -167,36 +169,36 @@
 			        	return '<font color="red">'+row.xmmc+'</font>';
 			        	else return  row.xmmc;
 			        }},
-			        {field : 'zjhlc',title : '里程',width : 60,align : 'center'},
+			        //{field : 'zjhlc',title : '里程',width : 60,align : 'center'},
 			        {field:'xjsdj',title:'现技术等级',width:70,align:'center'},
 				    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
 				    {field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
-				    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
-				    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
+				    //{field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
+				    //{field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
 				    {field : 'ghlxbhs',title : '原路线编码',width : 60,align : 'center',formatter:function(value,row,index){
 				    	if(row.ghlxbh=='')
 				    	return row.xjlxbm;
 				    	else
 				    		return row.ghlxbh;
 					}},
-				    {field : 'minqdzhs',title : '原起点桩号',width : 60,align : 'center',formatter:function(value,row,index){
+/* 				    {field : 'minqdzhs',title : '原起点桩号',width : 60,align : 'center',formatter:function(value,row,index){
 				    	if(row.minqdzh=='')
 					    	return row.xjqdzh;
 					    	else
 					    		return row.minqdzh;
-						}},
-				    {field : 'maxzdzhs',title : '原止点桩号',width : 60,align : 'center',formatter:function(value,row,index){
+						}}, */
+/* 				    {field : 'maxzdzhs',title : '原止点桩号',width : 60,align : 'center',formatter:function(value,row,index){
 				    	if(row.maxzdzh=='')
 					    	return row.xjzdzh;
 					    	else
 					    		return row.maxzdzh;
-						}},
+						}}, */
 				    {field:'qdmc',title:'起点名称',width:80,align:'center'},
 				    {field:'zdmc',title:'止点名称',width:80,align:'center'},
 // 				    {field : 'gydw',title : '管养单位',width : 120,align : 'center'},				    
 // 				    {field : 'lxmc',title : '路线名称',width : 100,align : 'center'},
-				    {field : 'tz',title : '投资',width : 80,align : 'center'},
-				    {field : 'bzys',title : '补助测算',width : 80,align : 'center'},
+				    //{field : 'tz',title : '投资',width : 80,align : 'center'},
+				    //{field : 'bzys',title : '补助测算',width : 80,align : 'center'},
 // 				    {field : 'dfzc',title : '地方自筹',width : 100,align : 'center'},
 				    {field : 'tsdq',title : '特殊地区',width : 150,align : 'center'}
 			    ]],
@@ -221,16 +223,16 @@
 			    			    {field:'xzqh',title:'行政区划',width:120,align:'center'},
 			    			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
 			    			    {field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
-							    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
-							    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
+							    //{field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
+							    //{field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
 			    			    {field:'ghlxbh',title:'原路线编码',width:100,align:'center'},
-			    			    {field:'qdzh',title:'原起点桩号',width:80,align:'center'},
-			    			    {field:'zdzh',title:'原止点桩号',width:80,align:'center'},
+			    			    //{field:'qdzh',title:'原起点桩号',width:80,align:'center'},
+			    			    //{field:'zdzh',title:'原止点桩号',width:80,align:'center'},
 			    			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
 			    			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
 			    			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
 			    			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
-			    			    {field:'jhlc',title:'里程',width:60,align:'center'}
+			    			    //{field:'jhlc',title:'里程',width:60,align:'center'}
 			    			]]
 				    	});
 			    	}
@@ -248,14 +250,6 @@
         		}	
 			}); 
 		}
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		function delsjgz(){
 			var rows=$('#datagrid').datagrid('getSelections');
@@ -389,18 +383,18 @@
         			</fieldset>
         		</td>
         	</tr>
-        	<tr>
+<!--         	<tr>
             	<td style="padding-left: 10px;padding-top:4px; font-size:12px;">
             		<div>项目【<span id="xmsl" style="color: red;">0</span>】个,
             		建设里程【<span id="lc" style="color: red;">0</span>】公里,
             		总投资【<span id="tz" style="color: red;">0</span>】万元,
             		补助资金【<span id="cgs" style="color: red;">0</span>】万元,
-<!--             		省补资金【<span id="sbz" style="color: red;">0</span>】万元, -->
-<!--             		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元, -->
+            		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
+            		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
             		地方投资【<span id="dftz" style="color: red;">0</span>】万元。
             		</div>
             	</td>
-        	</tr>
+        	</tr> -->
         	<tr>
             	<td style="padding-left: 10px;padding-top:4px; font-size:12px;">
             		<div>

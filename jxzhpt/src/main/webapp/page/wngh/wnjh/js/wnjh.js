@@ -703,7 +703,8 @@ function showAllgj(){
 			'lxsh.xmlx1':xmlx1,
 			'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue'),
 			'lxsh.xmklx':$("#xmklx").combotree('getValue'),
-			'lxsh.gydw':$.cookie("dist2")
+			'lxsh.gydw':$.cookie("dist2"),
+			'lxsh.xmjd':$("#xmjd").combobox('getValue')
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -1001,7 +1002,8 @@ function showAllxj(){
 			'lxsh.xmlx1':xmlx,
 			'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue'),
 			'lxsh.xmklx':$("#xmklx").combotree('getValue'),
-			'lxsh.gydw':$.cookie("dist2")
+			'lxsh.gydw':$.cookie("dist2"),
+			'lxsh.xmjd':$("#xmjd").combobox('getValue')
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},

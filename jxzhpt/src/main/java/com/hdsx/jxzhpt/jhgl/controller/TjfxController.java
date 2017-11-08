@@ -1125,6 +1125,18 @@ public class TjfxController extends BaseActionSupport{
 				mqiStr+=")";
 				lkmxb.setMqi(mqiStr);
 			}
+			if(lkmxb.getPqi()!=null && !lkmxb.getPqi().equals("")){
+				String[]  pqiArr=lkmxb.getPqi().split(",");
+				String pqiStr="(";
+				for (int i = 0; i < pqiArr.length; i++) {
+					if(i==pqiArr.length-1) pqiStr+="'"+pqiArr[i]+"'";
+					else {
+						pqiStr+="'"+pqiArr[i]+"',";
+					}
+				}
+				pqiStr+=")";
+				lkmxb.setPqi(pqiStr);
+			}
 			if(lkmxb.getTbnf()!=null && !lkmxb.getTbnf().equals("")){
 				String[]  tbnfArr=lkmxb.getTbnf().split(",");
 				String tbnfStr="(";
@@ -1214,6 +1226,18 @@ public class TjfxController extends BaseActionSupport{
 					mqiStr+=")";
 					lkmxb.setMqi(mqiStr);
 				}
+				if(lkmxb.getPqi()!=null && !lkmxb.getPqi().equals("")){
+					String[]  pqiArr=lkmxb.getPqi().split(",");
+					String pqiStr="(";
+					for (int i = 0; i < pqiArr.length; i++) {
+						if(i==pqiArr.length-1) pqiStr+="'"+pqiArr[i]+"'";
+						else {
+							pqiStr+="'"+pqiArr[i]+"',";
+						}
+					}
+					pqiStr+=")";
+					lkmxb.setPqi(pqiStr);
+				}
 				if(lkmxb.getTbnf()!=null && !lkmxb.getTbnf().equals("")){
 					String[]  tbnfArr=lkmxb.getTbnf().split(",");
 					String tbnfStr="(";
@@ -1247,15 +1271,16 @@ public class TjfxController extends BaseActionSupport{
 				et.add(new Excel_tilte("MQI",1,2,9,9));
 				et.add(new Excel_tilte("MQI等级",1,2,10,10));
 				et.add(new Excel_tilte("路面PQI",1,2,11,11));
-				et.add(new Excel_tilte("路面分项指标",1,1,12,16));
-				et.add(new Excel_tilte("路基SCI",1,2,17,17));
-				et.add(new Excel_tilte("桥隧构造物BCI",1,2,18,18));
-				et.add(new Excel_tilte("沿线设施TCI",1,2,19,19));
-				et.add(new Excel_tilte("PCI",2,2,12,12));
-				et.add(new Excel_tilte("RQI",2,2,13,13));
-				et.add(new Excel_tilte("RDI",2,2,14,14));		
-				et.add(new Excel_tilte("SRI",2,2,15,15));
-				et.add(new Excel_tilte("PSSI",2,2,16,16));
+				et.add(new Excel_tilte("PQI等级",1,2,12,12));
+				et.add(new Excel_tilte("路面分项指标",1,1,13,17));
+				et.add(new Excel_tilte("路基SCI",1,2,18,18));
+				et.add(new Excel_tilte("桥隧构造物BCI",1,2,19,19));
+				et.add(new Excel_tilte("沿线设施TCI",1,2,20,20));
+				et.add(new Excel_tilte("PCI",2,2,13,13));
+				et.add(new Excel_tilte("RQI",2,2,14,14));
+				et.add(new Excel_tilte("RDI",2,2,15,15));		
+				et.add(new Excel_tilte("SRI",2,2,16,16));
+				et.add(new Excel_tilte("PSSI",2,2,17,17));
 				eldata.setEt(et);//将表头内容设置到类里面
 				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 				Excel_export.excel_export(eldata,response);
@@ -1914,6 +1939,18 @@ public class TjfxController extends BaseActionSupport{
 				mqiStr+=")";
 				lkmxb.setMqi(mqiStr);
 			}
+			if(lkmxb.getPqi()!=null && !lkmxb.getPqi().equals("")){
+				String[]  pqiArr=lkmxb.getPqi().split(",");
+				String pqiStr="(";
+				for (int i = 0; i < pqiArr.length; i++) {
+					if(i==pqiArr.length-1) pqiStr+="'"+pqiArr[i]+"'";
+					else {
+						pqiStr+="'"+pqiArr[i]+"',";
+					}
+				}
+				pqiStr+=")";
+				lkmxb.setPqi(pqiStr);
+			}
 		List<Map<String, Object>> list=tjfxServer.queryLx_kxjc(lkmxb);
 		EasyUIPage<Map<String, Object>> e=new EasyUIPage<Map<String, Object>>();
 		e.setRows(list);
@@ -1930,6 +1967,8 @@ public class TjfxController extends BaseActionSupport{
 			String mqiStr="";
 			String mqi="";
 			String xzdj="";
+			String pqiStr="";
+			String pqi="";
 			if(xmsq.getXzqh()!=null && !xmsq.getXzqh().equals("")){
 				xzdj=xmsq.getXzqh();
 			}
@@ -1954,6 +1993,17 @@ public class TjfxController extends BaseActionSupport{
 					}
 				}
 				mqi+=")";
+			}
+			if(lkmxb.getPqi()!=null && !lkmxb.getPqi().equals("")){
+				String[]  pqiArr=lkmxb.getPqi().split(",");
+				pqi="(";
+				for (int i = 0; i < pqiArr.length; i++) {
+					if(i==pqiArr.length-1) pqi+="'"+pqiArr[i]+"'";
+					else {
+						pqi+="'"+pqiArr[i]+"',";
+					}
+				}
+				pqi+=")";
 			}
 			if(lkmxb.getYdl()!=null&& !lkmxb.getYdl().equals("")){
 				String[] ydlArr=lkmxb.getYdl().split(","); 
@@ -1998,7 +2048,7 @@ public class TjfxController extends BaseActionSupport{
 			if(!mqiStr.equals("")){
 				mqiStr=mqiStr.substring(0,mqiStr.length()-3);
 			}
-		List<Map<String, Object>> list=tjfxServer.queryKxjc_lx(tjfl,lxbmStr,mqiStr,mqi,xzdj);
+		List<Map<String, Object>> list=tjfxServer.queryKxjc_lx(tjfl,lxbmStr,mqiStr,mqi,pqiStr,pqi,xzdj);
 		EasyUIPage<Map<String, Object>> e=new EasyUIPage<Map<String, Object>>();
 		e.setRows(list);
 		

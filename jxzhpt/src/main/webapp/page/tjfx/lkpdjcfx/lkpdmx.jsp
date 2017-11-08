@@ -52,6 +52,7 @@ $(function(){
 	loadBmbm3("lmlx","路面类型");
 	loadBmbm3("jcfx","方向");
 	loadBmbm3("mqi","MQI等级");
+	loadBmbm3("pqi","MQI等级");
 	loadGrid();
 });
 
@@ -78,7 +79,9 @@ function loadGrid(){
 	var mqi=$('#mqi').combobox("getValues").join(",");
 	if(mqi.substr(0,1)==',')
 		mqi=mqi.substr(1,mqi.length);
-	
+	var pqi=$('#pqi').combobox("getValues").join(",");
+	if(pqi.substr(0,1)==',')
+		pqi=pqi.substr(1,pqi.length);
 	$("#grid").datagrid({  
 		    border:true,
 			pagination:true,
@@ -95,6 +98,7 @@ function loadGrid(){
 				 	'lkmxb.jcfx':jcfx,
 				 	'lkmxb.lxbh':$('#roadcode').combotree("getValues").join(","),
 				 	'lkmxb.mqi':mqi,
+				 	'lkmxb.pqi':pqi,
 				 	'lkmxb.tbnf':$('#lkpdbb').combobox("getValue")
 				},
 	    columns:[
@@ -110,6 +114,7 @@ function loadGrid(){
 	        {field:'mqi',title:'MQI',width:120,align:'center',rowspan:2},
 	        {field:'mqidj',title:'MQI等级',width:140,align:'center',rowspan:2},
 	        {field:'pqi',title:'路面PQI',width:140,align:'center',rowspan:2},
+	        {field:'pqidj',title:'PQI等级',width:140,align:'center',rowspan:2},
 	        {title:'路面分项指标',colspan:5},
 	        {field:'sci',title:'路基SCI',width:140,align:'center',rowspan:2},
 	        {field:'bci',title:'桥隧构造物BCI',width:160,align:'center',rowspan:2},
@@ -140,9 +145,11 @@ function dcLkmxExcel(){
 	var mqi=$('#mqi').combobox("getValues").join(",");
 	if(mqi.substr(0,1)==',')
 		mqi=mqi.substr(1,mqi.length);
-	
+	var pqi=$('#pqi').combobox("getValues").join(",");
+	if(pqi.substr(0,1)==',')
+		pqi=pqi.substr(1,pqi.length);
 	var param='lkmxb.jsdj='+jsdj+'&lkmxb.lmlx='+lmlx+'&lkmxb.jcfx='+jcfx+
-	'&lkmxb.lxbh='+$('#roadcode').combotree("getValues").join(",")+'&lkmxb.mqi='+mqi+
+	'&lkmxb.lxbh='+$('#roadcode').combotree("getValues").join(",")+'&lkmxb.mqi='+mqi+'&lkmxb.pqi='+pqi+
  	'&lkmxb.tbnf='+$('#lkpdbb').combobox("getValue");
 	
 // 	alert(param);
@@ -186,14 +193,17 @@ text-decoration:none;
 							 
 							  <td align="right">技术等级：</td>
 							  <td><select id="jsdj" style="width:80px"class="easyui-combobox"></select></td>
-							  </tr>
-							  <tr height="28">
 							  <td align="right">路面类型：</td>
 							  <td><select id="lmlx" style="width:180px" class="easyui-combobox"></select></td>
+							  </tr>
+							  <tr height="28">
 							   <td align="right">方向：</td>
 							  <td><select id="jcfx" style="width:80px"class="easyui-combobox"></select></td>
 							  <td align="right">MQI等级：</td>
 							  <td><select id="mqi" style="width:80px"class="easyui-combobox"></select></td>
+							  <td align="right">PQI等级：</td>
+							  <td><select id="pqi" style="width:80px"class="easyui-combobox"></select></td>
+							  <td></td><td></td>
 							  </tr>
 							  <tr >
 							   <td colspan="10">

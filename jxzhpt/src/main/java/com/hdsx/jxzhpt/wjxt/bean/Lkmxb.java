@@ -54,7 +54,7 @@ public class Lkmxb implements Serializable {
 	private String sri;
 	private String pssi;
 	private String bz;
-	
+	private String lxbm;
 	//zyyadd
 	private String zh;//桩号
 	private String cd;//长度
@@ -63,9 +63,15 @@ public class Lkmxb implements Serializable {
 	private String ylxbm;//原路线编码
 	private String yzh;//原桩号
 	private String mqidj;//mqi等级---优良中次差
+	private String pqidj;//mqi等级---优良中次差
+	private String tjzb;
 	
-
-	
+	public String getTjzb() {
+		return tjzb;
+	}
+	public void setTjzb(String tjzb) {
+		this.tjzb = tjzb;
+	}
 	public String getMqidj() {
 		return mqidj;
 	}
@@ -379,6 +385,19 @@ public class Lkmxb implements Serializable {
 		this.tiaojian = tiaojian;
 	}
 
+	public String getPqidj() {
+		return pqidj;
+	}
+	public void setPqidj(String pqidj) {
+		this.pqidj = pqidj;
+	}
+	
+	public String getLxbm() {
+		return lxbm;
+	}
+	public void setLxbm(String lxbm) {
+		this.lxbm = lxbm;
+	}
 	@Override
 	public String toString() {
 		return "Lkmxb [id=" + id + ", tbdw=" + tbdw + ", tbnf=" + tbnf
