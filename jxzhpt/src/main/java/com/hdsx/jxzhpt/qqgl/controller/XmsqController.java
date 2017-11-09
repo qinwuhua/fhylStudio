@@ -1184,6 +1184,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			lx.setGxzdzh(xmsq.getGxzdzh());
 			lx.setGhlxmc(xmsq.getGhlxmc());
 			lx.setXmbm1(xmsq.getXmbm1());
+			lx.setXzqhdm2(xmsq.getXzqhdm2());
 			if(xmsq.getXmlx()==5){
 				xmsq.setJdbs("0");
 			}else{
