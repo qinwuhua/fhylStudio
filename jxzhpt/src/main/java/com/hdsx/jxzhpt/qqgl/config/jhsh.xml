@@ -2072,7 +2072,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 		from lxsh_xj_qx l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
 	</select>
 	<select id="queryJhshxxLmsjByXmbm" parameterType="java.util.Map" resultType="jhsh">
-       select k.*,xmklx,j.*,nvl(lg.yilc,0) yilc,nvl(lg.erlc,0) erlc,nvl(ls.yj,0) yj,nvl(ls.ej,0) ej,nvl(ls.sj,0) sj 
+       select k.*,xmklx,t.tsdq,j.*,nvl(lg.yilc,0) yilc,nvl(lg.erlc,0) erlc,nvl(ls.yj,0) yj,nvl(ls.ej,0) ej,nvl(ls.sj,0) sj 
        from jhsh_sjgz k 
        left join lxsh_sjgz t on k.xmbm=t.xmbm
        left join jhsh_dj j on j.xmbm = k.xmbm
@@ -2083,7 +2083,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 		where k.xmbm=#{xmbm}
 	</select>
 	<select id="queryJhshxxLmgzByXmbm" parameterType="java.util.Map" resultType="jhsh">
-       select k.*,xmklx,j.*,nvl(lg.yilc,0) yilc,nvl(lg.erlc,0) erlc,nvl(ls.yj,0) yj,nvl(ls.ej,0) ej,nvl(ls.sj,0) sj 
+       select k.*,xmklx,t.tsdq,j.*,nvl(lg.yilc,0) yilc,nvl(lg.erlc,0) erlc,nvl(ls.yj,0) yj,nvl(ls.ej,0) ej,nvl(ls.sj,0) sj 
        from jhsh_lmgz k 
        left join lxsh_lmgz t on k.xmbm=t.xmbm
        left join jhsh_dj j on j.xmbm = k.xmbm    
@@ -2094,7 +2094,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 		where k.xmbm=#{xmbm}
 	</select>
 	<select id="queryJhshxxXjByXmbm" parameterType="java.util.Map" resultType="jhsh">
-		select k.*,xmklx,j.*,nvl(lg.yilc,0) yilc,nvl(lg.erlc,0) erlc,nvl(ls.yj,0) yj,nvl(ls.ej,0) ej,nvl(ls.sj,0) sj 
+		select k.*,xmklx,t.tsdq,j.*,nvl(lg.yilc,0) yilc,nvl(lg.erlc,0) erlc,nvl(ls.yj,0) yj,nvl(ls.ej,0) ej,nvl(ls.sj,0) sj 
 		from jhsh_xj k 
 		left join lxsh_xj t on k.xmbm=t.xmbm 
 		left join jhsh_dj j on j.xmbm=k.xmbm 
