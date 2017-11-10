@@ -235,7 +235,6 @@
 							<b><font color="#009ACD" style="cursor: hand; font-size: 12px">独立桥梁（延米）：</font></b>
 							</td>
 				        <td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;" align="left">
-				           	
 				                       一级国道：<input id="yjgdql" name="yjgdql" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>
 					                二级国道：<input id="ejgdql" name="ejgdql" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>   
 				        <br/><div style="margin-bottom:2px;"></div>

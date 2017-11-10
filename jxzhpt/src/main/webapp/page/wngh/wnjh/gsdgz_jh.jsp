@@ -27,7 +27,6 @@
 			gsdxmlx('xmlx');
 			
 			var urlid=getUrlParame('id');
-			alert(urlid);
 			setxmnf("xmnf",urlid);
 			
 			loadGhlx('ghxlxbm');

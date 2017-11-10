@@ -2077,9 +2077,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
        left join lxsh_sjgz t on k.xmbm=t.xmbm
        left join jhsh_dj j on j.xmbm = k.xmbm
        left join(select l.xmid xmid,nvl(sum(l.jhyilc),0) yilc, nvl(sum(l.jherlc)+sum(l.jhsanlc)+sum(l.jhsilc)+sum(l.jhdwlc)+sum(l.jhwllc),0) erlc 
-                  from lxsh_lx l where l.lxbm like 'G%' group by l.xmid) lg on lg.xmid = k.xmbm
+                  from lxsh_lx l where l.lxbm like 'G%' and jdbs='2' group by l.xmid) lg on lg.xmid = k.xmbm
        left join (select l.xmid xmid,nvl(sum(l.jhyilc),0) yj, nvl(sum(l.jherlc),0) ej, nvl(sum(l.jhsanlc)+sum(l.jhsilc)+sum(l.jhdwlc)+sum(l.jhwllc),0) sj 
-                  from lxsh_lx l where l.lxbm like 'S%' group by l.xmid) ls on ls.xmid = k.xmbm
+                  from lxsh_lx l where l.lxbm like 'S%' and jdbs='2' group by l.xmid) ls on ls.xmid = k.xmbm
 		where k.xmbm=#{xmbm}
 	</select>
 	<select id="queryJhshxxLmgzByXmbm" parameterType="java.util.Map" resultType="jhsh">
@@ -2088,9 +2088,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
        left join lxsh_lmgz t on k.xmbm=t.xmbm
        left join jhsh_dj j on j.xmbm = k.xmbm    
        left join(select l.xmid xmid,nvl(sum(l.yilc),0) yilc, nvl(sum(l.erlc)+sum(l.sanlc)+sum(l.silc)+sum(l.dwlc)+sum(l.wllc),0) erlc 
-                  from lxsh_lx l where l.lxbm like 'G%' group by l.xmid) lg on lg.xmid = k.xmbm
+                  from lxsh_lx l where l.lxbm like 'G%' and jdbs='2' group by l.xmid) lg on lg.xmid = k.xmbm
        left join (select l.xmid xmid,nvl(sum(l.yilc),0) yj, nvl(sum(l.erlc),0) ej, nvl(sum(l.sanlc)+sum(l.silc)+sum(l.dwlc)+sum(l.wllc),0) sj 
-                  from lxsh_lx l where l.lxbm like 'S%' group by l.xmid) ls on ls.xmid = k.xmbm		
+                  from lxsh_lx l where l.lxbm like 'S%' and jdbs='2' group by l.xmid) ls on ls.xmid = k.xmbm		
 		where k.xmbm=#{xmbm}
 	</select>
 	<select id="queryJhshxxXjByXmbm" parameterType="java.util.Map" resultType="jhsh">
@@ -2099,9 +2099,9 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 		left join lxsh_xj t on k.xmbm=t.xmbm 
 		left join jhsh_dj j on j.xmbm=k.xmbm 
 		left join(select l.xmid xmid,nvl(sum(l.yilc),0) yilc, nvl(sum(l.erlc)+sum(l.sanlc)+sum(l.silc)+sum(l.dwlc)+sum(l.wllc),0) erlc 
-                  from lxsh_lx l where l.lxbm like 'G%' group by l.xmid) lg on lg.xmid = k.xmbm
+                  from lxsh_lx l where l.lxbm like 'G%' and jdbs='2' group by l.xmid) lg on lg.xmid = k.xmbm
         left join (select l.xmid xmid,nvl(sum(l.yilc),0) yj, nvl(sum(l.erlc),0) ej, nvl(sum(l.sanlc)+sum(l.silc)+sum(l.dwlc)+sum(l.wllc),0) sj 
-                  from lxsh_lx l where l.lxbm like 'S%' group by l.xmid) ls on ls.xmid = k.xmbm
+                  from lxsh_lx l where l.lxbm like 'S%' and jdbs='2' group by l.xmid) ls on ls.xmid = k.xmbm
 		where k.xmbm=#{xmbm}
 	</select>
 	<select id="queryJhshxxYhdzxByXmbm" parameterType="jhsh" resultType="jhsh">
