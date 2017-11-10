@@ -22,12 +22,14 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/wngh/wnjh/js/wnjh.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/wngh/wnjh/js/wnjh_jh.js"></script>	
 	<script type="text/javascript">
 		$(function(){
 			gsdxmlx('xmlx');
+			
 			var urlid=getUrlParame('id');
+			alert(urlid);
 			setxmnf("xmnf",urlid);
+			
 			loadGhlx('ghxlxbm');
 			loadylx('lxbm');
 			tsdqdx('tsdq');
@@ -90,7 +92,7 @@
 				 });
 		}
 		function showAllgsd(){
-			showgsdtj('gsdgz');
+			//showgsdtj('gsdgz');
 			
 			var xzqhdm=$("#xzqh").combotree("getValues");
 			if(xzqhdm.length==0){
@@ -376,7 +378,7 @@
 							</td>
                               <td colspan="10">
         						<img onclick="showAllgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-				                <img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dcwnjhExcel('gsdgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
+				                <!-- <img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dcwnjhExcel('gsdgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" /> -->
 				              </td>
                             </tr></table>
         				</div>
