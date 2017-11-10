@@ -77,7 +77,6 @@
 		});
 	}
 	function queryBbzzj(){
-		
 		var tsdq =  $('#tsdq').val();
 		var xzqh = $('#xzqh').val();
 		
@@ -96,16 +95,13 @@
 		var lxsd = accAdd(accAdd(accMul(yjsd,350),accMul(ejsd,350)),accMul(sjsd,150));
 		
 		if(true == tsdqbz && false == xzqhbz){
-			lxsd = accSub(lxsd,1.2);
+			lxsd = accMul(lxsd,1.1);
 		} 
-		if(false == tsdqbz && true == xzqhbz){
-			lxsd = accSub(lxsd,1.1);
+		if(true == xzqhbz){
+			lxsd = accMul(lxsd,1.2);
 		}
-		if(true == tsdqbz && true == xzqhbz){
-			lxsd = accSub(accSub(lxsd,1.2),1.1);
-		}
+		
 		var lx = accAdd(lxgd,lxsd);
-		//alert("lx = " + lx);
 		
         //独立桥梁总金额
         var qlgd = accAdd(accDiv(accMul(accMul(yjgdql,21),3000),10000),accDiv(accMul(accMul(ejgdql,21),3000),10000));
@@ -153,7 +149,7 @@
 		        return false;
 		}
 }
-    </script>
+    </script>    
 </head>
 <body>
      <center>
@@ -179,7 +175,7 @@
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 								<input id="bbzzj" name="bbzzj" class="easyui-numberbox" type="text" value="0" style="width: 100px;height: 20px;" />万元<br/>
-								（<input id="csbbzzj" name="csbbzzj" class="easyui-numberbox" type="text" style="width: 80px;height: 20px;border:0px;" readonly="readonly"/>）万元
+								（测算：<input id="csbbzzj" name="csbbzzj" class="easyui-numberbox" type="text" value="0" style="width: 70px;height: 20px;border:0px;" disabled='disabled'/>）万元
 							</td>
 			 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">国债：</font></b>
