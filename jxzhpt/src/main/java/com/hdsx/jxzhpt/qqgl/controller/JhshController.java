@@ -161,53 +161,54 @@ public class JhshController extends BaseActionSupport implements
 		// 将实体list放入类中
 		eldata.setEl(li);
 		List<Excel_tilte> et = new ArrayList<Excel_tilte>();// 创建一个list存放表头
-		et.add(new Excel_tilte("重要度排序", 1, 2, 0, 0));
-		et.add(new Excel_tilte("所在省市", 1, 2, 1, 1));
-		et.add(new Excel_tilte("市", 1, 2, 2, 2));
-		et.add(new Excel_tilte("县", 1, 2, 3, 3));
-		et.add(new Excel_tilte("项目名称", 1, 2, 4, 4));
-		et.add(new Excel_tilte("最新年报桩号", 1, 1, 5, 7));
+		et.add(new Excel_tilte("序号", 1, 2, 0, 0));
+		et.add(new Excel_tilte("重要度排序", 1, 2, 1, 1));
+		et.add(new Excel_tilte("所在省市", 1, 2, 2, 2));
+		et.add(new Excel_tilte("市", 1, 2, 3, 3));
+		et.add(new Excel_tilte("县", 1, 2, 4, 4));
+		et.add(new Excel_tilte("项目名称", 1, 2, 5, 5));
+		et.add(new Excel_tilte("最新年报桩号", 1, 1, 6, 8));
 		
-		et.add(new Excel_tilte("规划前桩号", 1, 1, 8, 10));
+		et.add(new Excel_tilte("规划前桩号", 1, 1, 9, 11));
 		
-		et.add(new Excel_tilte("建设性质", 1, 2, 11, 11));
-		et.add(new Excel_tilte("建设规模（公里）/（延米）", 1, 1, 12, 14));
+		et.add(new Excel_tilte("建设性质", 1, 2, 12, 12));
+		et.add(new Excel_tilte("建设规模（公里）/（延米）", 1, 1, 13, 15));
 		
-		et.add(new Excel_tilte("建设技术等级", 1, 2, 15, 15));
-		et.add(new Excel_tilte("技术等级", 1, 2, 16, 16));
-		et.add(new Excel_tilte("批复总投资（万元）", 1, 2, 17, 17));
-		et.add(new Excel_tilte("建议计划（万元）", 1, 1, 18, 29));
+		et.add(new Excel_tilte("建设技术等级", 1, 2, 16, 16));
+		et.add(new Excel_tilte("技术等级", 1, 2, 17, 17));
+		et.add(new Excel_tilte("批复总投资（万元）", 1, 2, 18, 18));
+		et.add(new Excel_tilte("建议计划（万元）", 1, 1, 19, 30));
 		
-		et.add(new Excel_tilte("前期工作情况", 1, 1, 30, 31));
+		et.add(new Excel_tilte("前期工作情况", 1, 1, 31, 32));
 		
-		et.add(new Excel_tilte("项目库类型", 1, 2, 32, 32));
-		et.add(new Excel_tilte("项目编码", 1, 2, 33, 33));
-		et.add(new Excel_tilte("项目年份", 1, 2, 34, 34));
-		et.add(new Excel_tilte("备注", 1, 2, 35, 35));
-		et.add(new Excel_tilte("特殊地区", 1, 2, 36, 36));
-		et.add(new Excel_tilte("路线编码", 2, 2, 5, 5));
-		et.add(new Excel_tilte("起点桩号", 2, 2, 6, 6));
-		et.add(new Excel_tilte("止点桩号", 2, 2, 7, 7));
-		et.add(new Excel_tilte("路线编码", 2, 2, 8, 8));
-		et.add(new Excel_tilte("起点桩号", 2, 2, 9, 9));
-		et.add(new Excel_tilte("止点桩号", 2, 2, 10, 10));
-		et.add(new Excel_tilte("里程", 2, 2, 12, 12));
-		et.add(new Excel_tilte("大桥", 2, 2, 13, 13));
-		et.add(new Excel_tilte("隧道", 2, 2, 14, 14));
-		et.add(new Excel_tilte("合计", 2, 2, 18, 18));
-		et.add(new Excel_tilte("车购税", 2, 2, 19, 19));
-		et.add(new Excel_tilte("国债", 2, 2, 20, 20));
-		et.add(new Excel_tilte("省债", 2, 2, 21, 21));
-		et.add(new Excel_tilte("债券", 2, 2, 22, 22));
-		et.add(new Excel_tilte("厅贷款）", 2, 2, 23, 23));
-		et.add(new Excel_tilte("奖励", 2, 2, 24, 24));
-		et.add(new Excel_tilte("其它", 2, 2, 25, 25));
-		et.add(new Excel_tilte("地方自筹", 2, 2, 26, 26));
-		et.add(new Excel_tilte("银行贷款", 2, 2, 27, 27));
-		et.add(new Excel_tilte("主要建设内容", 2, 2, 28, 28));
-		et.add(new Excel_tilte("新增生成能力", 2, 2, 29, 29));
-		et.add(new Excel_tilte("工可批复文号", 2, 2, 30, 30));
-		et.add(new Excel_tilte("设计批复文号", 2, 2, 31, 31));
+		et.add(new Excel_tilte("项目库类型", 1, 2, 33, 33));
+		et.add(new Excel_tilte("项目编码", 1, 2, 34, 34));
+		et.add(new Excel_tilte("项目年份", 1, 2, 35, 35));
+		et.add(new Excel_tilte("备注", 1, 2, 36, 36));
+		et.add(new Excel_tilte("特殊地区", 1, 2, 37, 37));
+		et.add(new Excel_tilte("路线编码", 2, 2, 6, 6));
+		et.add(new Excel_tilte("起点桩号", 2, 2, 7, 7));
+		et.add(new Excel_tilte("止点桩号", 2, 2, 8, 8));
+		et.add(new Excel_tilte("路线编码", 2, 2, 9, 9));
+		et.add(new Excel_tilte("起点桩号", 2, 2, 10, 10));
+		et.add(new Excel_tilte("止点桩号", 2, 2, 11, 11));
+		et.add(new Excel_tilte("里程", 2, 2, 13, 13));
+		et.add(new Excel_tilte("大桥", 2, 2, 14, 14));
+		et.add(new Excel_tilte("隧道", 2, 2, 15, 15));
+		et.add(new Excel_tilte("合计", 2, 2, 19, 19));
+		et.add(new Excel_tilte("车购税", 2, 2, 20, 20));
+		et.add(new Excel_tilte("国债", 2, 2, 21, 21));
+		et.add(new Excel_tilte("省债", 2, 2, 22, 22));
+		et.add(new Excel_tilte("债券", 2, 2, 23, 23));
+		et.add(new Excel_tilte("厅贷款）", 2, 2, 24, 24));
+		et.add(new Excel_tilte("奖励", 2, 2, 25, 25));
+		et.add(new Excel_tilte("其它", 2, 2, 26, 26));
+		et.add(new Excel_tilte("地方自筹", 2, 2, 27, 27));
+		et.add(new Excel_tilte("银行贷款", 2, 2, 28, 28));
+		et.add(new Excel_tilte("主要建设内容", 2, 2, 29, 29));
+		et.add(new Excel_tilte("新增生成能力", 2, 2, 30, 30));
+		et.add(new Excel_tilte("工可批复文号", 2, 2, 31, 31));
+		et.add(new Excel_tilte("设计批复文号", 2, 2, 32, 32));
 		eldata.setEt(et);// 将表头内容设置到类里面
 		HttpServletResponse response = getresponse();// 获得一个HttpServletResponse
 			Excel_export.excel_export(eldata, response);
