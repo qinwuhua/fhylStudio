@@ -1975,4 +1975,9 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		result.addAll(l2);
 		return result;
 	}
+
+	@Override
+	public boolean insertOrUpdateJhshDj(List<Jhsh> list) {
+		return updateBatch("insertOrUpdateJhshDj", list) == list.size();
+	}
 }

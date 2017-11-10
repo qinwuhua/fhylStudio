@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -1104,7 +1105,9 @@ public class JhshController extends BaseActionSupport implements
 			lx.setXmid(jhsh.getXmbm());
 			lx.setSffirst("1");
 			lx.setJdbs(jdbs);
-
+			
+			boolean c = jhshServer.insertOrUpdateJhshDj(list);
+			
 			if (jhsh.getXmlx() == 1) {
 				b = jhshServer.updateJhshxxLmsj(list);
 			} else if (jhsh.getXmlx() == 2) {
@@ -1113,7 +1116,7 @@ public class JhshController extends BaseActionSupport implements
 				b = jhshServer.updateJhshxxXj(list);
 			}
 			/*
-			 * 错误if(b){ jhshServer.updateLx(lx); }
+			 * 错误if(b){ jhshServer.updateLx(lx);}
 			 */
 			result.put("result", new Boolean(b));
 			JsonUtils.write(result, getresponse().getWriter());
@@ -1556,6 +1559,15 @@ public class JhshController extends BaseActionSupport implements
 			} else if (jhsh.getXmlx() == 3) {
 				obj = jhshServer.queryJhshxxXjByXmbm(jhsh.getXmbm());
 			}
+			
+			if (StringUtils.isBlank(obj.getYjgd()) && StringUtils.isBlank(obj.getEjgd()) && StringUtils.isBlank(obj.getYjsd())
+					&& StringUtils.isBlank(obj.getEjsd()) && StringUtils.isBlank(obj.getSjsd())) {
+				obj.setYjgd(obj.getYilc());
+				obj.setEjgd(obj.getErlc());
+				obj.setYjsd(obj.getYj());
+				obj.setEjsd(obj.getEj());
+				obj.setSjsd(obj.getSj());
+			}
 			JsonUtils.write(obj, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1824,11 +1836,10 @@ public class JhshController extends BaseActionSupport implements
 		ExcelExportUtil.excelWrite(excel, fileName, getresponse());
 	}
 
-	public void exportJhshYhdzx() {
+	public void exportJhshYhdzx() throws UnsupportedEncodingException {
 		xdwhHandle();
 		jsdjHandle1();
 		xzdjHandle();
-		tsdqHandle1();
 		jsxzHandle2();
 		zjlyHandle();
 		xdztHandle();
@@ -1840,6 +1851,14 @@ public class JhshController extends BaseActionSupport implements
 			jhsh.setScxdnf("substr(j.xmbm,0,4)");
 		}
 		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(), "xzqhdm2"));
+		try {
+			
+			jhsh.setTsdq(java.net.URLDecoder.decode(jhsh.getTsdq(), "UTF-8").replace(" ", "+"));
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		tsdqHandle1();
 		List<Excel_list> l = jhshServer.queryJhshYhdzx_dcExcel(jhsh);
 		ExcelData eldata = new ExcelData();// 创建一个类
 		eldata.setTitleName("养护大中修计划表");// 设置第一行
@@ -1958,7 +1977,6 @@ public class JhshController extends BaseActionSupport implements
 	public void exportJhshSh() {
 		jsdjHandle1();
 		xzdjHandle();
-		tsdqHandle1();
 		xdwhHandle();
 		xdztHandle();
 		jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
@@ -1969,6 +1987,13 @@ public class JhshController extends BaseActionSupport implements
 			jhsh.setScxdnf("substr(j.xmbm,0,4)");
 		}
 		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(), "xzqhdm2"));
+		try {
+			jhsh.setTsdq(java.net.URLDecoder.decode(jhsh.getTsdq(), "UTF-8").replace(" ", "+"));
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		tsdqHandle1();
 		List<Excel_list> l = jhshServer.exportJhshShSbExcel(jhsh);
 		ExcelData eldata = new ExcelData();// 创建一个类
 		eldata.setTitleName("公路建设投资计划（普通国省道灾毁恢复重建项目）");// 设置第一行
@@ -1991,17 +2016,14 @@ public class JhshController extends BaseActionSupport implements
 		et.add(new Excel_tilte("项目编码", 1, 2, 21, 21));
 		et.add(new Excel_tilte("项目年份", 1, 2, 22, 22));
 		et.add(new Excel_tilte("特殊地区", 1, 2, 23, 23));
-		
 		et.add(new Excel_tilte("规划路线编码", 2, 2, 4, 4));
 		et.add(new Excel_tilte("规划路线名称", 2, 2, 5, 5));
 		et.add(new Excel_tilte("规划起点桩号", 2, 2, 6, 6));
 		et.add(new Excel_tilte("规划止点桩号", 2, 2, 7, 7));
-		
 		et.add(new Excel_tilte("原路线编码", 2, 2, 8, 8));
 		et.add(new Excel_tilte("原路线名称", 2, 2, 9, 9));
 		et.add(new Excel_tilte("原起点桩号", 2, 2, 10, 10));
 		et.add(new Excel_tilte("原止点桩号", 2, 2, 11, 11));
-		
 		et.add(new Excel_tilte("合计", 2, 2, 15, 15));
 		et.add(new Excel_tilte("车购税", 2, 2, 16, 16));
 		et.add(new Excel_tilte("厅统筹", 2, 2, 17, 17));

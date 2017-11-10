@@ -199,7 +199,7 @@
 		        		return row.xmbm.substr(0,4);
 		        	}
 				},
-				{field:'zyd',title:'重要度排序',width:65,align:'center'},
+				{field:'zydpx',title:'重要度排序',width:65,align:'center'},
 				{field:'xmmc',title:'项目名称',width:160,align:'center',
 					formatter: function(value,row,index){
 						if(Number(row.xmsl)>1){
