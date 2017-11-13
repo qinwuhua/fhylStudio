@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -131,6 +132,91 @@ public class JhshController extends BaseActionSupport implements
 	 * 
 	 * @throws Exception
 	 */
+	public void queryGsdgz_dcexcelsb() {
+		try {
+		xdwhHandle();
+		jsjsdjHandle();
+		jsdjHandle1();
+		xzdjHandle();
+		jsxzHandle();
+		zjlyHandle();
+		xdztHandle();
+		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(), "xzqhdm2"));
+		jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+		jhsh.setGhxlxbm(MyUtil.getQueryTJiN(jhsh.getGhxlxbm(), "ghlxbm"));
+		if ("1".equals(jhsh.getScxdnf())) {
+			jhsh.setScxdnf("fun_scxdnf(xmbm)");
+		} else {
+			jhsh.setScxdnf("substr(xmbm,0,4)");
+		}
+		jhsh.setTsdq(jhsh.getTsdq().replace(" ", "+"));
+		tsdqHandle();
+		List<Excel_list> l = jhshServer.queryGsdgz_dcexcelsb(jhsh);
+		List<Excel_list> li = jhshServer.queryGsdgz_dcexcelljsb(jhsh);
+		li.addAll(l);
+		ExcelData eldata = new ExcelData();// 创建一个类
+		eldata.setTitleName("国省道改造计划申报（国省道改造项目）");// 设置第一行
+		eldata.setSheetName("国省道改造计划申报");// 设置sheeet名
+		eldata.setFileName("国省道改造计划申报（国省道改造项目）");// 设置文件名
+		// 将实体list放入类中
+		eldata.setEl(li);
+		List<Excel_tilte> et = new ArrayList<Excel_tilte>();// 创建一个list存放表头
+		et.add(new Excel_tilte("序号", 1, 2, 0, 0));
+		et.add(new Excel_tilte("重要度排序", 1, 2, 1, 1));
+		et.add(new Excel_tilte("所在省市", 1, 2, 2, 2));
+		et.add(new Excel_tilte("市", 1, 2, 3, 3));
+		et.add(new Excel_tilte("县", 1, 2, 4, 4));
+		et.add(new Excel_tilte("项目名称", 1, 2, 5, 5));
+		et.add(new Excel_tilte("最新年报桩号", 1, 1, 6, 8));
+		
+		et.add(new Excel_tilte("规划前桩号", 1, 1, 9, 11));
+		
+		et.add(new Excel_tilte("建设性质", 1, 2, 12, 12));
+		et.add(new Excel_tilte("建设规模（公里）/（延米）", 1, 1, 13, 15));
+		
+		et.add(new Excel_tilte("建设技术等级", 1, 2, 16, 16));
+		et.add(new Excel_tilte("技术等级", 1, 2, 17, 17));
+		et.add(new Excel_tilte("批复总投资（万元）", 1, 2, 18, 18));
+		et.add(new Excel_tilte("建议计划（万元）", 1, 1, 19, 30));
+		
+		et.add(new Excel_tilte("前期工作情况", 1, 1, 31, 32));
+		
+		et.add(new Excel_tilte("项目库类型", 1, 2, 33, 33));
+		et.add(new Excel_tilte("项目编码", 1, 2, 34, 34));
+		et.add(new Excel_tilte("项目年份", 1, 2, 35, 35));
+		et.add(new Excel_tilte("备注", 1, 2, 36, 36));
+		et.add(new Excel_tilte("特殊地区", 1, 2, 37, 37));
+		et.add(new Excel_tilte("路线编码", 2, 2, 6, 6));
+		et.add(new Excel_tilte("起点桩号", 2, 2, 7, 7));
+		et.add(new Excel_tilte("止点桩号", 2, 2, 8, 8));
+		et.add(new Excel_tilte("路线编码", 2, 2, 9, 9));
+		et.add(new Excel_tilte("起点桩号", 2, 2, 10, 10));
+		et.add(new Excel_tilte("止点桩号", 2, 2, 11, 11));
+		et.add(new Excel_tilte("里程", 2, 2, 13, 13));
+		et.add(new Excel_tilte("大桥", 2, 2, 14, 14));
+		et.add(new Excel_tilte("隧道", 2, 2, 15, 15));
+		et.add(new Excel_tilte("合计", 2, 2, 19, 19));
+		et.add(new Excel_tilte("车购税", 2, 2, 20, 20));
+		et.add(new Excel_tilte("国债", 2, 2, 21, 21));
+		et.add(new Excel_tilte("省债", 2, 2, 22, 22));
+		et.add(new Excel_tilte("债券", 2, 2, 23, 23));
+		et.add(new Excel_tilte("厅贷款）", 2, 2, 24, 24));
+		et.add(new Excel_tilte("奖励", 2, 2, 25, 25));
+		et.add(new Excel_tilte("其它", 2, 2, 26, 26));
+		et.add(new Excel_tilte("地方自筹", 2, 2, 27, 27));
+		et.add(new Excel_tilte("银行贷款", 2, 2, 28, 28));
+		et.add(new Excel_tilte("主要建设内容", 2, 2, 29, 29));
+		et.add(new Excel_tilte("新增生成能力", 2, 2, 30, 30));
+		et.add(new Excel_tilte("工可批复文号", 2, 2, 31, 31));
+		et.add(new Excel_tilte("设计批复文号", 2, 2, 32, 32));
+		eldata.setEt(et);// 将表头内容设置到类里面
+		HttpServletResponse response = getresponse();// 获得一个HttpServletResponse
+			Excel_export.excel_export(eldata, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 	public void queryJhsh() throws Exception {
 		List<Jhsh> listData = null;
 		int total = 0;
@@ -1019,7 +1105,9 @@ public class JhshController extends BaseActionSupport implements
 			lx.setXmid(jhsh.getXmbm());
 			lx.setSffirst("1");
 			lx.setJdbs(jdbs);
-
+			
+			boolean c = jhshServer.insertOrUpdateJhshDj(list);
+			
 			if (jhsh.getXmlx() == 1) {
 				b = jhshServer.updateJhshxxLmsj(list);
 			} else if (jhsh.getXmlx() == 2) {
@@ -1028,7 +1116,7 @@ public class JhshController extends BaseActionSupport implements
 				b = jhshServer.updateJhshxxXj(list);
 			}
 			/*
-			 * 错误if(b){ jhshServer.updateLx(lx); }
+			 * 错误if(b){ jhshServer.updateLx(lx);}
 			 */
 			result.put("result", new Boolean(b));
 			JsonUtils.write(result, getresponse().getWriter());
@@ -1471,6 +1559,15 @@ public class JhshController extends BaseActionSupport implements
 			} else if (jhsh.getXmlx() == 3) {
 				obj = jhshServer.queryJhshxxXjByXmbm(jhsh.getXmbm());
 			}
+			
+			if (StringUtils.isBlank(obj.getYjgd()) && StringUtils.isBlank(obj.getEjgd()) && StringUtils.isBlank(obj.getYjsd())
+					&& StringUtils.isBlank(obj.getEjsd()) && StringUtils.isBlank(obj.getSjsd())) {
+				obj.setYjgd(obj.getYilc());
+				obj.setEjgd(obj.getErlc());
+				obj.setYjsd(obj.getYj());
+				obj.setEjsd(obj.getEj());
+				obj.setSjsd(obj.getSj());
+			}
 			JsonUtils.write(obj, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1739,11 +1836,10 @@ public class JhshController extends BaseActionSupport implements
 		ExcelExportUtil.excelWrite(excel, fileName, getresponse());
 	}
 
-	public void exportJhshYhdzx() {
+	public void exportJhshYhdzx() throws UnsupportedEncodingException {
 		xdwhHandle();
 		jsdjHandle1();
 		xzdjHandle();
-		tsdqHandle1();
 		jsxzHandle2();
 		zjlyHandle();
 		xdztHandle();
@@ -1755,6 +1851,14 @@ public class JhshController extends BaseActionSupport implements
 			jhsh.setScxdnf("substr(j.xmbm,0,4)");
 		}
 		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(), "xzqhdm2"));
+		try {
+			
+			jhsh.setTsdq(java.net.URLDecoder.decode(jhsh.getTsdq(), "UTF-8").replace(" ", "+"));
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		tsdqHandle1();
 		List<Excel_list> l = jhshServer.queryJhshYhdzx_dcExcel(jhsh);
 		ExcelData eldata = new ExcelData();// 创建一个类
 		eldata.setTitleName("养护大中修计划表");// 设置第一行
@@ -1873,7 +1977,6 @@ public class JhshController extends BaseActionSupport implements
 	public void exportJhshSh() {
 		jsdjHandle1();
 		xzdjHandle();
-		tsdqHandle1();
 		xdwhHandle();
 		xdztHandle();
 		jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
@@ -1884,6 +1987,13 @@ public class JhshController extends BaseActionSupport implements
 			jhsh.setScxdnf("substr(j.xmbm,0,4)");
 		}
 		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(), "xzqhdm2"));
+		try {
+			jhsh.setTsdq(java.net.URLDecoder.decode(jhsh.getTsdq(), "UTF-8").replace(" ", "+"));
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		tsdqHandle1();
 		List<Excel_list> l = jhshServer.exportJhshShSbExcel(jhsh);
 		ExcelData eldata = new ExcelData();// 创建一个类
 		eldata.setTitleName("公路建设投资计划（普通国省道灾毁恢复重建项目）");// 设置第一行
@@ -1906,17 +2016,14 @@ public class JhshController extends BaseActionSupport implements
 		et.add(new Excel_tilte("项目编码", 1, 2, 21, 21));
 		et.add(new Excel_tilte("项目年份", 1, 2, 22, 22));
 		et.add(new Excel_tilte("特殊地区", 1, 2, 23, 23));
-		
 		et.add(new Excel_tilte("规划路线编码", 2, 2, 4, 4));
 		et.add(new Excel_tilte("规划路线名称", 2, 2, 5, 5));
 		et.add(new Excel_tilte("规划起点桩号", 2, 2, 6, 6));
 		et.add(new Excel_tilte("规划止点桩号", 2, 2, 7, 7));
-		
 		et.add(new Excel_tilte("原路线编码", 2, 2, 8, 8));
 		et.add(new Excel_tilte("原路线名称", 2, 2, 9, 9));
 		et.add(new Excel_tilte("原起点桩号", 2, 2, 10, 10));
 		et.add(new Excel_tilte("原止点桩号", 2, 2, 11, 11));
-		
 		et.add(new Excel_tilte("合计", 2, 2, 15, 15));
 		et.add(new Excel_tilte("车购税", 2, 2, 16, 16));
 		et.add(new Excel_tilte("厅统筹", 2, 2, 17, 17));

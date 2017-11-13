@@ -46,11 +46,13 @@ function setJsdj(id) {
 	});
 }
 function setxmnf(id,flag){
+	//alert(id);
+	//alert(flag);
 	var myDate = new Date();
 	var years=[];
 	var first;
 	years.push({text:'全部',value:''});
-	if(flag=='010111010101'||flag=='01011101010101'||flag=='01011101010102'||flag=='01011101010103'){
+	if(flag=='010111010101'||flag=='01011101010101'||flag=='01011101010102'||flag=='01011101010103'||flag=='010111010104'||flag=='01011101010401'||flag=='01011101010402'||flag=='01011101010403'){
 		$("#bstext").html('十三五');
 		for(var i=0;i<5;i++){
 			if(i==0){

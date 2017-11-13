@@ -196,7 +196,7 @@
 				xmnf=xmnf.substr(1,xmnf.length);
 			var param='jhsh.xmlx='+'5'+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.xmmc='+$("#xmmc").val()+
 					'&jhsh.xmnf='+xmnf+'&jhsh.jsdj='+$("#jsdj").combobox("getValues").join(",")+
-					'&jhsh.gldj='+$("#gldj").combobox("getValues").join(",")+'&jhsh.tsdq='+tsdq+
+					'&jhsh.gldj='+$("#gldj").combobox("getValues").join(",")+'&jhsh.tsdq='+encodeURI(encodeURI(tsdq))+
 					'&jhsh.ghlxbh='+$("#lxbm").combotree('getText')+'&jhsh.lxmc='+$("#lxmc").val()+
 					'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+'&jhsh.zydpx='+$("#zydpx").val()+
 					'&jhsh.lsjl='+$("#lsjl").combobox("getValue")+'&jhsh.sbzt='+$("#sbzt").combobox("getValue");

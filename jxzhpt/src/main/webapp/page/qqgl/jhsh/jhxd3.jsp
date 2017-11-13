@@ -44,12 +44,25 @@
 					$('#xmlx').val(parent.YMLib.Var.xmbm.substr(10,1));
 					$('#gldj1').combobox('setValue',data.gldj);
 					$('#xdzt').val("1");
+					$('#yjgdql').val(isNull(data.yjgdql));
+					$('#ejgdql').val(isNull(data.ejgdql));
+					$('#yjsdql').val(isNull(data.yjsdql));
+					$('#ejsdql').val(isNull(data.ejsdql));
+					$('#sjsdql').val(isNull(data.sjsdql));
+					$('#yjgdsd').val(isNull(data.yjgdsd));
+					$('#ejgdsd').val(isNull(data.ejgdsd));
+					$('#yjsdsd').val(isNull(data.yjsdsd));
+					$('#ejsdsd').val(isNull(data.ejsdsd));
+					$('#sjsdsd').val(isNull(data.sjsdsd));
 				}
 			});
 			fileShow(parent.YMLib.Var.xmbm,"计划下达文件");
 			$('#xmbm').val(parent.YMLib.Var.xmbm);
 			loadFileUpload();
 		});
+		function isNull(data){ 
+			return (data == "" || data == undefined || data == null) ? "0" : data;
+			}
 		function loadFileUpload(){
 			$("#uploadJhxd").uploadify({
 				/*注意前面需要书写path的代码*/
@@ -87,7 +100,6 @@
 			});
 		}
 		function updataJhsh(){
-			
 			var result =true;
 			result = validateText('pfztz','number',result);
 			//result = validateText('bbzzj','number',result);
@@ -223,12 +235,12 @@
 							<b><font color="#009ACD" style="cursor: hand; font-size: 12px">独立桥梁（延米）：</font></b>
 							</td>
 				        <td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;" align="left">
-				           	 一级国道：<input id="" onchange="" name="" style="width: 50px;" type="text"/>
-					                二级国道：<input id="" onchange="" name="" style="width: 50px;" type="text"/>   
+				                       一级国道：<input id="yjgdql" name="yjgdql" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>
+					                二级国道：<input id="ejgdql" name="ejgdql" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>   
 				        <br/><div style="margin-bottom:2px;"></div>
-					                一级省道：<input id="" onchange="" name="" style="width: 50px;" type="text"/>
-					                二级省道：<input id="" onchange="" name="" style="width: 50px;" type="text"/>   
-					                三级省道：<input id="" onchange="" name="" style="width: 50px;" type="text"/>					                   
+					                一级省道：<input id="yjsdql" name="yjsdql" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>
+					                二级省道：<input id="ejsdql" name="ejsdql" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>   
+					                三级省道：<input id="sjsdql" name="sjsdql" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>					                   
 				        </td>
 						</tr>
 						<tr style="height: 30px;font-size: 10px;">
@@ -236,16 +248,15 @@
 							<b><font color="#009ACD" style="cursor: hand; font-size: 12px">独立隧道（延米）：</font></b>
 							</td>
 				        <td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;" align="left">
-				           	  一级国道：<input id="" onchange="" name="" style="width: 50px;" type="text"/>
-					                二级国道：<input id="" onchange="" name="" style="width: 50px;" type="text"/>   
+				           	  一级国道：<input id="yjgdsd" name="yjgdsd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>
+					                二级国道：<input id="ejgdsd" name="ejgdsd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>   
 				        <br/><div style="margin-bottom:2px;"></div>
-					                一级省道：<input id="" onchange="" name="" style="width: 50px;" type="text"/>
-					                二级省道：<input id="" onchange="" name="" style="width: 50px;" type="text"/>   
-					                三级省道：<input id="" onchange="" name="" style="width: 50px;" type="text"/>					                   
+					                一级省道：<input id="yjsdsd" name="yjsdsd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>
+					                二级省道：<input id="ejsdsd" name="ejsdsd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>   
+					                三级省道：<input id="sjsdsd" name="sjsdsd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>					                   
 				        </td>
 						</tr>
-						
-						
+
 						<tr style="height: 30px;font-size: 10px;">
 						<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 							<b><font color="#009ACD" style="cursor: hand; font-size: 12px">主要建设内容：</font></b>

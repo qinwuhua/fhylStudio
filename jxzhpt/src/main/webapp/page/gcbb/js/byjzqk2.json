@@ -1,0 +1,22 @@
+[{    
+    "id": "3",    
+    "text": "三、本月进展情况",    
+    "state": "open",
+    "iconCls":"icon-none",     
+    "children": [{    
+        "id": "3v_54",  
+        "value":"v_54",  
+        "text": "新增资金到位（万元）",
+        "iconCls":"icon-none"
+    },{    
+        "id": "3v_55", 
+        "value":"v_55",   
+        "text": "新增完成工程量（公里）",
+        "iconCls":"icon-none"   
+    },{    
+        "id": "3v_56", 
+        "value":"v_56",   
+        "text": "新增项目完成投资（万元）",
+        "iconCls":"icon-none" 
+    }]    
+}]  

@@ -31,10 +31,125 @@
 				$('#xmlx').val(parent.YMLib.Var.xmbm.substr(10,1));
 				$('#gldj1').combobox('setValue',data.gldj);
 				$('#xdzt').val("1");
+				$('#yjgd').val(isNull(data.yjgd));
+				$('#ejgd').val(isNull(data.ejgd));
+				$('#yjsd').val(isNull(data.yjsd));
+				$('#ejsd').val(isNull(data.ejsd));
+				$('#sjsd').val(isNull(data.sjsd));
+				$('#yjgdql').val(isNull(data.yjgdql));
+				$('#ejgdql').val(isNull(data.ejgdql));
+				$('#yjsdql').val(isNull(data.yjsdql));
+				$('#ejsdql').val(isNull(data.ejsdql));
+				$('#sjsdql').val(isNull(data.sjsdql));
+				$('#yjgdsd').val(isNull(data.yjgdsd));
+				$('#ejgdsd').val(isNull(data.ejgdsd));
+				$('#yjsdsd').val(isNull(data.yjsdsd));
+				$('#ejsdsd').val(isNull(data.ejsdsd));
+				$('#sjsdsd').val(isNull(data.sjsdsd));
+				$('#tsdq').val(data.tsdq);
+				$('#xzqh').val(data.xzqh);
+				queryBbzzj();
 			}
 		});
 	});
-    </script>
+	
+	function updataJhsh(){
+		var result =true;
+		result = validateText('pfztz','number',result);
+		//result = validateText('bbzzj','number',result);
+		//result = validateText('sbzzj','number',result);
+		if(!true){
+			return;
+		}
+		alert("确定要保存当前数据吗？");
+		$('#jhxdFrom').ajaxSubmit({
+			dataType:'json',
+			success:function(msg){
+				if(msg.result){
+					alert("保存成功！");
+					parent.$("#grid").datagrid('reload');
+					closeWindow("bfkgsdgz");
+				}
+			},
+			error:function(msg){
+				alert("保存失败！");
+			}
+		});
+	}
+	function queryBbzzj(){
+		var tsdq =  $('#tsdq').val();
+		var xzqh = $('#xzqh').val();
+		
+		var tsdqbz = contains($('#tsdq').val(),"原中央苏区");
+		var xzqhbz = contains($('#xzqh').val(),"赣州市");		
+		
+		var yjgd = $('#yjgd').val();var ejgd = $('#ejgd').val();
+		var yjsd = $('#yjsd').val();var ejsd = $('#ejsd').val();var sjsd = $('#sjsd').val();
+		var yjgdql = $('#yjgdql').val();var ejgdql = $('#ejgdql').val();
+		var yjsdql = $('#yjsdql').val();var ejsdql = $('#ejsdql').val();var sjsdql = $('#sjsdql').val();
+		var yjgdsd = $('#yjgdsd').val();var ejgdsd = $('#ejgdsd').val();
+		var yjsdsd = $('#yjsdsd').val();var ejsdsd = $('#ejsdsd').val();var sjsdsd = $('#sjsdsd').val();
+		
+		//路总金额
+		var lxgd = accAdd(accMul(yjgd,1000),accMul(ejgd,500));
+		var lxsd = accAdd(accAdd(accMul(yjsd,350),accMul(ejsd,350)),accMul(sjsd,150));
+		
+		if(true == tsdqbz && false == xzqhbz){
+			lxsd = accMul(lxsd,1.1);
+		} 
+		if(true == xzqhbz){
+			lxsd = accMul(lxsd,1.2);
+		}
+		
+		var lx = accAdd(lxgd,lxsd);
+		
+        //独立桥梁总金额
+        var qlgd = accAdd(accDiv(accMul(accMul(yjgdql,21),3000),10000),accDiv(accMul(accMul(ejgdql,21),3000),10000));
+        var qlsd = accAdd(accAdd(accDiv(accMul(accMul(yjsdql,8),3000),10000),accDiv(accMul(accMul(ejsdql,8),3000),10000)),accDiv(accMul(accMul(sjsdql,8),3000),10000));
+        var ql = accAdd(qlgd,qlsd);
+        //alert("ql = " + ql);
+        
+        //独立隧道总金额        
+        var sdgd = accAdd(accDiv( accMul(accMul(yjgdsd,21) ,3000 ),10000 ),accDiv(accMul(accMul(ejgdsd,21),3000),10000));
+        var sdsd = accAdd(accAdd(accDiv(accMul(accMul(yjsdsd,8),3000),10000),accDiv(accMul(accMul(ejsdsd,8),3000),10000)),accDiv(accMul(accMul(sjsdsd,8),3000),10000));
+        var sd = accAdd(sdgd,sdsd);
+        //alert("sd = " + sd);
+        
+        //按路程标准补助桥梁
+        var qlgdbz = accAdd(accMul(accDiv(yjgdql,1000),1000),accMul(accDiv(ejgdql,1000),500));
+        var qlsdbz = accAdd(accAdd(accMul(accDiv(yjsdql,1000),350),accMul(accDiv(ejsdql,1000),350)),accMul(accDiv(sjsdql,1000),150));
+        var qlbz = accAdd(qlgdbz,qlsdbz);
+        //alert("qlbz = " + qlbz);
+        
+        //按路程标准补助隧道
+        var sdgdbz = accAdd(accMul(accDiv(yjgdsd,1000),1000),accMul(accDiv(ejgdsd,1000),500));
+        var sdsdbz = accAdd(accAdd(accMul(accDiv(yjsdsd,1000),350),accMul(accDiv(ejsdsd,1000),350)),accMul(accDiv(sjsdsd,1000),150));
+        var sdbz = accAdd(sdgdbz,sdsdbz);   
+        //alert("sdbz = " + sdbz);
+        
+        //总的金额
+        var bbzzj = accSub( accAdd(lx,accAdd(ql,sd)) , accAdd(qlbz,sdbz) ); 
+        $('#csbbzzj').val(bbzzj);
+	}
+
+	function isNull(data){ 
+		return (data == "" || data == undefined || data == null) ? "0" : data;
+		}
+	
+	function contains(str1,str2){
+		if(str1 == "" || str1 == undefined || str1 == null){
+			return false;
+		}else{
+			var data = str1.split(",");
+		        for(var i = 0;i < data.length;i++){	
+		            if(data[i].match(str2+".*") != null){
+		            	return true;
+	 	            }
+		        }
+		        return false;
+		}
+}
+    </script>    
 </head>
 <body>
      <center>
@@ -49,6 +164,8 @@
 								<input id="xmbm" name="xmbm" type="hidden"/>
 								<input id="xmlx" name="xmlx" type="hidden"/>
 								<input id="xdzt" name="xdzt" value="1" type="hidden"/>
+								<input id="tsdq" name="tsdq" type="hidden"/>
+								<input id="xzqh" name="xzqh" type="hidden"/>		
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<input id="pfztz" name="pfztz" class="easyui-numberbox" type="text" value="0" style="width: 100px;height: 20px;" />万元
@@ -57,8 +174,8 @@
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">车购税：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<input id="bbzzj" name="bbzzj" class="easyui-numberbox" type="text" value="0" style="width: 50px;height: 20px;" />万元
-								<input id="" name="" class="easyui-numberbox" type="text" value="0" style="width: 49px;height: 20px;" disabled="disabled"/>万元
+								<input id="bbzzj" name="bbzzj" class="easyui-numberbox" type="text" value="0" style="width: 100px;height: 20px;" />万元<br/>
+								（测算：<input id="csbbzzj" name="csbbzzj" class="easyui-numberbox" type="text" value="0" style="width: 70px;height: 20px;border:0px;" disabled='disabled'/>）万元
 							</td>
 			 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">国债：</font></b>
@@ -66,7 +183,6 @@
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 								<input id="gz" name="gz" class="easyui-numberbox" type="text" value="0" style="width: 100px;height: 20px;" />万元
 							</td>
-							
 						</tr>
 						<tr style="height: 30px;font-size: 10px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
@@ -134,19 +250,45 @@
 							</td>
 						</tr>
   
-                       <tr style="height: 30px;font-size: 10px;">
+                        <tr style="height: 30px;font-size: 10px;">
 						<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-							<b><font color="#009ACD" style="cursor: hand; font-size: 12px">技术等级及里程：</font></b>
+							<b><font color="#009ACD" style="cursor: hand; font-size: 12px">项目里程（公里）：</font></b>
 							</td>
-				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;" align="left">
-					一级：<input id="yilc" onchange="cesuan2()" name="yilc" style="width: 50px;" type="text"/>
-					二级：<input id="erlc" onchange="cesuan2()" name="erlc" style="width: 50px;" type="text"/>
-					三级：<input id="sanlc" onchange="cesuan2()" name="sanlc" style="width: 50px;" type="text"/>
-					四级：<input id="silc" onchange="cesuan2()" name="silc" style="width: 50px;" type="text"/>
-					等外：<input id="dwlc" onchange="cesuan2()" name="dwlc" style="width: 50px;" type="text"/>
-					无路：<input id="wllc" onchange="cesuan2()" name="wllc" style="width: 50px;" type="text"/>
-				</td> 
-						</tr>				
+				        <td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;" align="left">
+				           	  一级国道：<input id="yjgd" onchange="queryBbzzj()" name="yjgd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>
+					                二级国道：<input id="ejgd" onchange="queryBbzzj()" name="ejgd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>   
+				        <br/><div style="margin-bottom:2px;"></div>
+					                一级省道：<input id="yjsd" onchange="queryBbzzj()" name="yjsd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>
+					                二级省道：<input id="ejsd" onchange="queryBbzzj()" name="ejsd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>   
+					                三级省道：<input id="sjsd" onchange="queryBbzzj()" name="sjsd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>
+				        </td>
+						</tr>
+							<tr style="height: 30px;font-size: 10px;">
+						<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+							<b><font color="#009ACD" style="cursor: hand; font-size: 12px">独立桥梁（延米）：</font></b>
+							</td>
+				        <td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;" align="left">
+				           	 一级国道：<input id="yjgdql" onchange="queryBbzzj()" name="yjgdql" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>
+					                二级国道：<input id="ejgdql" onchange="queryBbzzj()" name="ejgdql" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>   
+				        <br/><div style="margin-bottom:2px;"></div>
+					                一级省道：<input id="yjsdql" onchange="queryBbzzj()" name="yjsdql" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>
+					                二级省道：<input id="ejsdql" onchange="queryBbzzj()" name="ejsdql" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>   
+					                三级省道：<input id="sjsdql" onchange="queryBbzzj()" name="sjsdql" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>					                   
+				        </td>
+						</tr>
+						<tr style="height: 30px;font-size: 10px;">
+						<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+							<b><font color="#009ACD" style="cursor: hand; font-size: 12px">独立隧道（延米）：</font></b>
+							</td>
+				        <td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;" align="left">
+				           	  一级国道：<input id="yjgdsd" onchange="queryBbzzj()" name="yjgdsd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>
+					                二级国道：<input id="ejgdsd" onchange="queryBbzzj()" name="ejgdsd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>   
+				        <br/><div style="margin-bottom:2px;"></div>
+					                一级省道：<input id="yjsdsd" onchange="queryBbzzj()" name="yjsdsd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>
+					                二级省道：<input id="ejsdsd" onchange="queryBbzzj()" name="ejsdsd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>   
+					                三级省道：<input id="sjsdsd" onchange="queryBbzzj()" name="sjsdsd" style="width: 50px;" type="text" class="easyui-numberbox" value="0" data-options="min:0,precision:3"/>					                   
+				        </td>
+						</tr>			
 						<tr style="height: 30px;font-size: 10px;">
 						<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 							<b><font color="#009ACD" style="cursor: hand; font-size: 12px">主要建设内容：</font></b>
