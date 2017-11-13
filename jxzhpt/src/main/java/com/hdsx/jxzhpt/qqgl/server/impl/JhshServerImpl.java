@@ -1238,10 +1238,10 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 			table = "jhsh_xj";
 		}
 		if (jhsh.getXmlx() == 4) {
-			table = "jhsh_sh";
+			table = "jhsh_yhdzx";
 		}
 		if (jhsh.getXmlx() == 5) {
-			table = "jhsh_yhdzx";
+			table = "jhsh_sh";
 		}
 		jhsh.setZq(table);
 		return update("thwshjh", jhsh) > 0;
