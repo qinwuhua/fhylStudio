@@ -4305,10 +4305,16 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	
 	<select id="queryJhshLjYhdzx" parameterType="jhsh" resultType="java.util.Map">
 		select 
-		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcrys),0) rys,nvl(sum(bcdk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(ztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz
+		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcrys),0) rys,nvl(sum(bcdk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(bcqt),0) qt,nvl(sum(bcztz),0) tz,
+		nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz,
+		nvl(sum(t.ztz), 0) ztz,
+		nvl(sum(t.rys), 0) zrys,
+		nvl(sum(t.yqdbcgs), 0) zcgs,
+		nvl(sum(t.dk), 0) zdk,
+		nvl(sum(t.qt), 0) zqt		
 		 from (
 				select j.*,lx2.zjhlc jhlc,sl.zlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh
-					,bcztz,bccgs,bcrys,bcdk,bcjl,bcdftz
+					,bcztz,bccgs,bcrys,bcdk,bcjl,bcdftz,bcqt
 				 from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 	            left join (select  xmid,jsxz,
 	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
@@ -4334,12 +4340,11 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	            	sum(j.jl) bcjl,
 	            	sum(j.rys) bcrys,
 	            	sum(j.dk) bcdk,
+	            	sum(j.qt) bcqt,
 	                sum(j.btzzj) bcxd,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
-                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
-                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
+	             	nvl(sum(j.ztz), 0)   bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 	             	sum(j.gz) + sum(j.sz) + sum(j.zq) + sum(j.yhdk) bcdftz,
 	            	sum(j.btzzj) bccgs
@@ -5764,9 +5769,18 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 			) t 
 	</select>
 	<select id="queryJhshLjgsdxd" parameterType="jhsh" resultType="java.util.Map">
-		select count(*) sl,nvl(sum(zcgs),0) cgs,nvl(nvl(sum(zrys),0)+nvl(sum(zdk),0)+nvl(sum(zjl),0),0) sbz,nvl(sum(zjhlc),0) lc,nvl(sum(zztz),0) tz,nvl(sum(zjl),0) sjl,
-<!-- 		nvl((nvl(sum(zgz),0)+nvl(sum(zsz),0)+nvl(sum(zzq),0)+nvl(sum(zyhdk),0)),0) dftz  -->
-		nvl(sum(zyhdk),0) yhdk,nvl(sum(zdfzc),0) dftz
+		select count(*) sl,nvl(sum(zcgs), 0) cgs,
+       nvl(nvl(sum(zrys), 0) + nvl(sum(zdk), 0) + nvl(sum(zgz), 0) +
+           nvl(sum(zsz), 0) + nvl(sum(zzq), 0) + nvl(sum(zqt), 0),
+           0) sbz,
+       nvl(sum(zjhlc), 0) lc,
+       nvl(nvl(sum(zrys), 0) + nvl(sum(zdk), 0) + nvl(sum(zgz), 0) +
+           nvl(sum(zsz), 0) + nvl(sum(zzq), 0) + nvl(sum(zqt), 0)+ 
+           nvl(sum(zcgs), 0)+ nvl(sum(zjl), 0)+ nvl(sum(zyhdk), 0)+ nvl(sum(zdfzc), 0),
+           0) tz,
+       nvl(sum(zjl), 0) sjl,
+       nvl(sum(zyhdk), 0) yhdk,
+       nvl(sum(zdfzc), 0) dftz
 		from (
 				select j.*,zxd.ztz zztz,zxd.cgs zcgs,zxd.gz zgz,zxd.sz zsz,zxd.zq zzq,zxd.dk zdk,zxd.jl zjl,zxd.rys zrys,zxd.yhdk zyhdk,zxd.dfzc zdfzc,zxd.qt zqt,lx.lc,sl.zlc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj,lx2.zjhlc from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 		        left join (select  xmid,jsxz,
@@ -6543,7 +6557,8 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 			) t 
 	</select>
 	<select id="queryJhbzyhLj" parameterType="jhsh" resultType="java.util.Map">
-		select count(*) sl,nvl(sum(zcgs),0) cgs,nvl(sum(zrys),0) rys,nvl(sum(zdk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(zztz),0) tz,nvl(sum(zjl),0) sjl,nvl((nvl(sum(zgz),0)+nvl(sum(zsz),0)+nvl(sum(zzq),0)),0) dftz from (
+		select count(*) sl,nvl(sum(zcgs),0) cgs,nvl(sum(zrys),0) rys,nvl(sum(zdk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(zztz),0) tz,nvl(sum(zqt),0) qt,nvl(sum(zjl),0) sjl,nvl((nvl(sum(zgz),0)+nvl(sum(zsz),0)+nvl(sum(zzq),0)),0) dftz 
+		from (
 				select j.*,zxd.ztz zztz,zxd.cgs zcgs,zxd.gz zgz,zxd.sz zsz,zxd.zq zzq,zxd.dk zdk,zxd.jl zjl,zxd.rys zrys,zxd.qt zqt,lx2.zjhlc jhlc,sl.zlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh 
 				
 				from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm

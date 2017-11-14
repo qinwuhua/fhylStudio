@@ -188,15 +188,18 @@
 				success:function(msg){
 					if(msg!=null){
 						$("#xmsl").html(msg.SL);
+						$("#lc").html(msg.LC);
 						 $("#tz").html(msg.TZ);
 						 $("#cgs").html(msg.CGS);
+						 $("#bcxd").html(msg.BCXD);
+						 $("#btz").html(msg.BTZ);
 						 $("#sbz").html(msg.SBZ);
 						 $("#sjl").html(msg.SJL);
-						 $("#lc").html(msg.LC);
+						 
 						 $("#dftz").html(msg.DFTZ);
-						 $("#bcxd").html(msg.BCXD);//BCXD是哪里的 实体里没找到  上面还有几个也没找到
+						 //BCXD是哪里的 实体里没找到  上面还有几个也没找到
 						 $("#yhdk").html(msg.YHDK);
-						 $("#btz").html(msg.BTZ);
+						 
 
 					}else{
 						$('#spanbbz').html("0");
