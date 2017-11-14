@@ -5391,7 +5391,10 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	
 	<select id="queryJhshLjgsdgz" parameterType="jhsh" resultType="java.util.Map">
 		select 
-		count(*) sl,nvl(sum(bbzzj),0) cgs,nvl(sum(bcztz),0) bcxd,nvl(sum(bcstz),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(pfztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz,nvl(sum(bcyhdk),0) yhdk,nvl(sum(bccgs), 0) btz
+		count(*) sl,nvl(sum(bbzzj),0) cgs,nvl(sum(gz+sz+zq+dk+qt), 0) zsbz,
+       nvl(sum(jl), 0) zjl,
+       nvl(sum(dfzc), 0) zdfzc,
+       nvl(sum(yhdk), 0) zyhdk,nvl(sum(bcztz),0) bcxd,nvl(sum(bcstz),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(pfztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz,nvl(sum(bcyhdk),0) yhdk,nvl(sum(bccgs), 0) btz
 		 from (
 				select j.*,lx2.zjhlc jhlc,sl.zlc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj
 					,bcztz,bccgs,bcstz,bcjl,bcdftz,bcyhdk,jhxd.btz btz
