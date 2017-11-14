@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +32,7 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.gcxmybb.bean.Xmbb;
 import com.hdsx.jxzhpt.gcxmybb.server.GcybbServer;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
@@ -4015,5 +4017,252 @@ public class GcybbController extends BaseActionSupport{
 		}
 		
 	}
+	
+	
+	//新改建完成汇总表
+	public void getXgjwchzb(){
+		List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
+		String tableName="";
+		try{	
+			String xmlx="";
+				if("".equals(gcglwqgz.getTiaojian())||gcglwqgz.getTiaojian()==null)
+					xmlx="'改建','新建'";
+				else
+					xmlx="'"+gcglwqgz.getTiaojian().replaceAll(",", "','")+"'";
+				String viewsql="";
+			    	tableName="xgjwchzb";
+			    	viewsql="CREATE OR REPLACE VIEW xgjwchzb AS "
+			    			+" select "
+			    			+" to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.* from"
+			    			+" (select "
+			    			+" substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,count(*) xmsl,sum(nvl(lx.zlc,0)) xmlc,sum(nvl(bnwc.bnwclc,0)) bnlc,sum(nvl(ljwc.ljwclc,0)) ljlc,sum(nvl(bnwc.bnwctz,0)) bntz,sum(nvl(ljwc.ljwctz,0)) ljtz,sum(nvl(bncgs.ztz,0)) bndw,sum(nvl(ljcgs.ztz,0)) ljdw,"
+			    			+" sum(nvl(bncgs.cgs,0)) bncgs,sum(nvl(ljcgs.cgs,0)) ljcgs,nvl(to_char(decode(sum(nvl(lx.zlc,0)),'0','0',null,'0',round(sum(nvl(ljwc.ljwclc,0)) / sum(nvl(lx.zlc,0)) * 100, 0))),'0')||'%' wcbl,sum(nvl(bnss.bnsslc,0)) mblc,0 mbtz,sum(nvl(bnwc.bnwclc,0)) wcmblc,'0%' wcmblcbl,'0%'wcmbtzbl "
+			    			+" from (select xmbm from jhsh_sjgz union all select xmbm from jhsh_xj)j,(select xmbm,xzqhdm from cbsj_sjgz union all select xmbm,xzqhdm from cbsj_xj) cb,"
+			    			+" (select xmid,decode(substr(xmid, 11, 1),1,(nvl(sum(jhyilc), 0) + nvl(sum(jherlc), 0) +nvl(sum(jhsanlc), 0) + nvl(sum(jhsilc), 0) +nvl(sum(jhdwlc), 0) + nvl(sum(jhwllc), 0)),(nvl(sum(yilc), 0) + nvl(sum(erlc), 0) + nvl(sum(sanlc), 0) + nvl(sum(silc), 0) +nvl(sum(dwlc), 0) + nvl(sum(wllc), 0))) zlc from lxsh_lx where jdbs = 2 group by xmid) lx,"
+			    			+" (select xmid,min(xdnf) xdnf,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) bbzorsbz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) +sum(nvl(dfzc, 0)) pfztz from plan_zjxd where jhxdwh is not null group by xmid) t,"
+			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(yilc, 0)) +sum(nvl(yilc, 0)) + sum(nvl(yilc, 0)) ljwclc,sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) ljwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by xmbm) ljwc,"
+			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(yilc, 0)) +sum(nvl(yilc, 0)) + sum(nvl(yilc, 0)) bnwclc,sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) bnwctz from gcgl_xmjd where substr(ybyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' group by xmbm) bnwc,"
+			    			+" (select xmbm,sum(nvl(bnsslc,0)) bnsslc from gcgl_bnss where nf='"+gcglwqgz.getYbnf()+"' group by xmbm ) bnss,"
+			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) ljcgs,"
+			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' group by jhid) bncgs"
+			    			+" where j.xmbm = cb.xmbm(+) and j.xmbm = lx.xmid(+) and j.xmbm = t.xmid(+) and j.xmbm = ljwc.xmbm(+) and j.xmbm = bnwc.xmbm(+) and j.xmbm = ljcgs.jhid(+) and j.xmbm = bncgs.jhid(+)"
+			    			+" and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) "
+			    			+" and decode(substr(lx.xmid,11,1),'1','改建','3','新建') in ("+xmlx+")"
+			    			+" group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1 "
+			    			+" union all"
+			    			+" select "
+			    			+" '全省汇总' xzqhmc,t1.* from"
+			    			+" (select "
+			    			+" '36' xzqh,t.xdnf jhnf,count(*) xmsl,sum(nvl(lx.zlc,0)) xmlc,sum(nvl(bnwc.bnwclc,0)) bnlc,sum(nvl(ljwc.ljwclc,0)) ljlc,sum(nvl(bnwc.bnwctz,0)) bntz,sum(nvl(ljwc.ljwctz,0)) ljtz,sum(nvl(bncgs.ztz,0)) bndw,sum(nvl(ljcgs.ztz,0)) ljdw,"
+			    			+" sum(nvl(bncgs.cgs,0)) bncgs,sum(nvl(ljcgs.cgs,0)) ljcgs,nvl(to_char(decode(sum(nvl(lx.zlc,0)),'0','0',null,'0',round(sum(nvl(ljwc.ljwclc,0)) / sum(nvl(lx.zlc,0)) * 100, 0))),'0')||'%' wcbl,sum(nvl(bnss.bnsslc,0)) mblc,0 mbtz,sum(nvl(bnwc.bnwclc,0)) wcmblc,'0%' wcmblcbl,'0%'wcmbtzbl "
+			    			+" from (select xmbm from jhsh_sjgz union all select xmbm from jhsh_xj)j,(select xmbm,xzqhdm from cbsj_sjgz union all select xmbm,xzqhdm from cbsj_xj) cb,"
+			    			+" (select xmid,decode(substr(xmid, 11, 1),1,(nvl(sum(jhyilc), 0) + nvl(sum(jherlc), 0) +nvl(sum(jhsanlc), 0) + nvl(sum(jhsilc), 0) +nvl(sum(jhdwlc), 0) + nvl(sum(jhwllc), 0)),(nvl(sum(yilc), 0) + nvl(sum(erlc), 0) + nvl(sum(sanlc), 0) + nvl(sum(silc), 0) +nvl(sum(dwlc), 0) + nvl(sum(wllc), 0))) zlc from lxsh_lx where jdbs = 2 group by xmid) lx,"
+			    			+" (select xmid,min(xdnf) xdnf,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) bbzorsbz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) +sum(nvl(dfzc, 0)) pfztz from plan_zjxd where jhxdwh is not null group by xmid) t,"
+			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(yilc, 0)) +sum(nvl(yilc, 0)) + sum(nvl(yilc, 0)) ljwclc,sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) ljwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by xmbm) ljwc,"
+			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(yilc, 0)) +sum(nvl(yilc, 0)) + sum(nvl(yilc, 0)) bnwclc,sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) bnwctz from gcgl_xmjd where substr(ybyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' group by xmbm) bnwc,"
+			    			+" (select xmbm,sum(nvl(bnsslc,0)) bnsslc from gcgl_bnss where nf='"+gcglwqgz.getYbnf()+"' group by xmbm ) bnss,"
+			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) ljcgs,"
+			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' group by jhid) bncgs"
+			    			+" where j.xmbm = cb.xmbm(+) and j.xmbm = lx.xmid(+) and j.xmbm = t.xmid(+) and j.xmbm = ljwc.xmbm(+) and j.xmbm = bnwc.xmbm(+) and j.xmbm = ljcgs.jhid(+) and j.xmbm = bncgs.jhid(+)"
+			    			+" and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) " 
+			    			+" and decode(substr(lx.xmid,11,1),'1','改建','3','新建') in ("+xmlx+") "
+			    			+" group by t.xdnf) t1 ";
+			    			
+				gcybbServer.createybView(viewsql);
+				String[] arr=gcglwqgz.getXmnf().split(",");
+				String sql="select xzqhmc";
+				String in="";
+				for(int j=0;j<arr.length;j++){
+					if(j==0)
+					    in=in+"'"+arr[j]+"'";
+					else
+						in=in+",'"+arr[j]+"'";
+					sql=sql+",decode(sum(decode(jhnf,'"+arr[j]+"',xmsl)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',xmsl)) )xmsl"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',xmlc)),null,0,sum(decode(jhnf,'"+arr[j]+"',xmlc))) xmlc"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',bnlc)),null,0,sum(decode(jhnf,'"+arr[j]+"',bnlc))) bnlc"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',ljlc)),null,0,sum(decode(jhnf,'"+arr[j]+"',ljlc))) ljlc"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',bntz)),null,0,sum(decode(jhnf,'"+arr[j]+"',bntz))) bntz"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',ljtz)),null,0,sum(decode(jhnf,'"+arr[j]+"',ljtz))) ljtz"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',bndw)),null,0,sum(decode(jhnf,'"+arr[j]+"',bndw))) bndw"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',ljdw)),null,0,sum(decode(jhnf,'"+arr[j]+"',ljdw))) ljdw"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',bncgs)),null,0,sum(decode(jhnf,'"+arr[j]+"',bncgs))) bncgs"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',ljcgs)),null,0,sum(decode(jhnf,'"+arr[j]+"',ljcgs))) ljcgs"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',mblc)),null,0,sum(decode(jhnf,'"+arr[j]+"',mblc))) mblc"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',mbtz)),null,0,sum(decode(jhnf,'"+arr[j]+"',mbtz))) mbtz"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',wcmblc)),null,0,sum(decode(jhnf,'"+arr[j]+"',wcmblc))) wcmblc"+arr[j]+""
+							;
+				}
+				sql=sql+" from "+tableName+"  where jhnf in("+in+") group by xzqhmc,xzqh order by xzqh";		
+				System.out.println(sql);
+				list=gcybbServer.getGjxjmxbsj(sql);
+				NumberFormat nfs = NumberFormat.getInstance(); 
+		        nfs.setRoundingMode(RoundingMode.HALF_UP);//设置四舍五入 
+		        nfs.setMinimumFractionDigits(3);//设置最小保留几位小数 
+		        nfs.setMaximumFractionDigits(3);//设置最大保留几位小数
+				List<Excel_list> eL =new ArrayList<Excel_list>();
+				for(int i=0;i<list.size();i++){
+					Excel_list l = new Excel_list();
+					Class cl = l.getClass();
+					HashMap<String,Object> hm=(HashMap<String, Object>) list.get(i);
+					double xmsl=0;
+					double xmlc=0;
+					double bnlc=0;
+					double ljlc=0;
+					double bntz=0;
+					double ljtz=0;
+					double bndw=0;
+					double ljdw=0;
+					double bncgs=0;
+					double ljcgs=0;
+					double mblc=0;
+					double mbtz=0;
+					double wcmblc=0;
+					//从18开始的
+					int f=18;
+					for(int j=arr.length-1;j>=0;j--){
+						
+						System.out.println(arr[j]);
+						xmsl=MyUtil.add(xmsl, Double.valueOf(hm.get("XMSL"+arr[j]).toString()));
+						xmlc=MyUtil.add(xmlc, Double.valueOf(hm.get("XMLC"+arr[j]).toString()));
+						bnlc=MyUtil.add(bnlc, Double.valueOf(hm.get("BNLC"+arr[j]).toString()));
+						ljlc=MyUtil.add(ljlc, Double.valueOf(hm.get("LJLC"+arr[j]).toString()));
+						bntz=MyUtil.add(bntz, Double.valueOf(hm.get("BNTZ"+arr[j]).toString()));
+						ljtz=MyUtil.add(ljtz, Double.valueOf(hm.get("LJTZ"+arr[j]).toString()));
+						bndw=MyUtil.add(bndw, Double.valueOf(hm.get("BNDW"+arr[j]).toString()));
+						ljdw=MyUtil.add(ljdw, Double.valueOf(hm.get("LJDW"+arr[j]).toString()));
+						bncgs=MyUtil.add(bncgs, Double.valueOf(hm.get("BNCGS"+arr[j]).toString()));
+						ljcgs=MyUtil.add(ljcgs, Double.valueOf(hm.get("LJCGS"+arr[j]).toString()));
+						mblc=MyUtil.add(mblc, Double.valueOf(hm.get("MBLC"+arr[j]).toString()));
+						mbtz=MyUtil.add(mbtz, Double.valueOf(hm.get("MBTZ"+arr[j]).toString()));
+						wcmblc=MyUtil.add(wcmblc, Double.valueOf(hm.get("WCMBLC"+arr[j]).toString()));
+						
+						Method method18 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method18.invoke(l, new Object[]{hm.get("XMSL"+arr[j]).toString()});
+						f++;
+						Method method19 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method19.invoke(l, new Object[]{hm.get("XMLC"+arr[j]).toString()});
+						f++;
+						Method method20 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method20.invoke(l, new Object[]{hm.get("BNLC"+arr[j]).toString()});
+						f++;
+						Method method21 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method21.invoke(l, new Object[]{hm.get("LJLC"+arr[j]).toString()});
+						f++;
+						Method method22 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method22.invoke(l, new Object[]{hm.get("BNTZ"+arr[j]).toString()});
+						f++;
+						Method method23 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method23.invoke(l, new Object[]{hm.get("LJTZ"+arr[j]).toString()});
+						f++;
+						Method method24 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method24.invoke(l, new Object[]{hm.get("BNCGS"+arr[j]).toString()});
+						f++;
+						Method method25 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method25.invoke(l, new Object[]{hm.get("LJCGS"+arr[j]).toString()});
+						f++;
+					}
+					if(i==0) {
+						l.setV_0("全省汇总");
+					}else {
+						l.setV_0(i+"");
+					}
+					l.setV_1(list.get(i).get("XZQHMC").toString());
+					DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");//格式化设置 
+					DecimalFormat decimalFormat2 = new DecimalFormat("#,##0");//格式化设置 
+					
+					l.setV_2(decimalFormat2.format(xmsl));
+					l.setV_3(decimalFormat.format(xmlc));
+					l.setV_4(decimalFormat.format(bnlc)+"");
+					l.setV_5(decimalFormat.format(ljlc)+"");
+					l.setV_6(decimalFormat.format(bntz)+"");
+					l.setV_7(decimalFormat.format(ljtz)+"");
+					l.setV_8(decimalFormat.format(bndw)+"");
+					l.setV_9(decimalFormat.format(ljdw)+"");
+					l.setV_10(decimalFormat.format(bncgs)+"");
+					l.setV_11(decimalFormat.format(ljcgs)+"");
+					double wcbl=MyUtil.div(ljlc, xmlc, 3)*100; 
+					l.setV_12(decimalFormat2.format(wcbl)+"%");
+					l.setV_13(decimalFormat.format(mblc)+"");
+					l.setV_14(decimalFormat.format(mbtz)+"");
+					
+					l.setV_15(decimalFormat.format(wcmblc)+"");
+					double wcmbbl=MyUtil.div(wcmblc, mblc, 3)*100;
+					l.setV_16(decimalFormat2.format(wcmbbl)+"%");
+					double wctzbl=MyUtil.div(bntz, mbtz, 3)*100;
+					l.setV_17(decimalFormat2.format(wctzbl)+"%");
+					
+					Method method26 = cl.getMethod("setV_"+f, new Class[]{String.class});
+					method26.invoke(l, new Object[]{" "});
+					
+				  eL.add(l);
+				}
+				if("flag".equals(flag)){
+					
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("普通干线公路新改建工程项目完成情况汇总表");//设置第一行 
+					eldata.setSheetName("完成情况表");//设置sheeet名
+					eldata.setFileName("普通干线公路新改建工程项目完成情况汇总表");//设置文件名
+					eldata.setEl(eL);//将实体list放入类中
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					et.add(new Excel_tilte("序号",1,3,0,0));
+					et.add(new Excel_tilte("设区市",1,3,1,1));
+					et.add(new Excel_tilte("计划下达及完成情况",1,1,2,17));
+					int sj1=18;
+					for (int i = 0; i < arr.length; i++) {
+						et.add(new Excel_tilte("计划下达及完成情况",1,1,sj1,sj1+7));
+						sj1=sj1+8;
+					}
+					et.add(new Excel_tilte("备注",1,3,sj1,sj1));
+					et.add(new Excel_tilte(arr[0]+"-"+arr[arr.length-1]+"年度",2,2,2,3));
+					et.add(new Excel_tilte("本年完成里程(公里)",2,3,4,4));
+					et.add(new Excel_tilte("累计完成里程(公里)",2,3,5,5));
+					et.add(new Excel_tilte("本年完成投资(万元)",2,3,6,6));
+					et.add(new Excel_tilte("累计完成投资(万元)",2,3,7,7));
+					et.add(new Excel_tilte("本年到位投资(万元)",2,3,8,8));
+					et.add(new Excel_tilte("累计到位投资(万元)",2,3,9,9));
+					et.add(new Excel_tilte("本年车购税到位(万元)",2,3,10,10));
+					et.add(new Excel_tilte("累计车购税到位(万元)",2,3,11,11));
+					et.add(new Excel_tilte("工程完成比例（规模）",2,3,12,12));
+					
+					et.add(new Excel_tilte(arr[arr.length-1]+"年目标任务里程（公里）",2,3,13,13));
+					et.add(new Excel_tilte(arr[arr.length-1]+"年目标任务投资（万元）",2,3,14,14));
+					et.add(new Excel_tilte(arr[arr.length-1]+"年目标任务已完成里程（公里）",2,3,15,15));
+					et.add(new Excel_tilte("目标任务完成比例（规模）",2,3,16,16));
+					et.add(new Excel_tilte("目标任务总投资完成比例",2,3,17,17));
+					
+					
+					int sj2=18;
+					for (int i = 0; i < arr.length; i++) {
+						et.add(new Excel_tilte(arr[i]+"年度",2,2,sj2,sj2+1));
+						et.add(new Excel_tilte("本年完成里程(公里)",2,3,sj2+2,sj2+2));
+						et.add(new Excel_tilte("累计完成里程(公里)",2,3,sj2+3,sj2+3));
+						et.add(new Excel_tilte("本年完成投资(万元)",2,3,sj2+4,sj2+4));
+						et.add(new Excel_tilte("累计完成投资(万元)",2,3,sj2+5,sj2+5));
+						et.add(new Excel_tilte("本年车购税到位(万元)",2,3,sj2+6,sj2+6));
+						et.add(new Excel_tilte("累计车购税到位(万元)",2,3,sj2+7,sj2+7));
+						
+						sj2=sj2+8;
+					}
+					et.add(new Excel_tilte("项目数量",3,3,2,2));
+					et.add(new Excel_tilte("计划里程(公里)",3,3,3,3));
+					int sj3=18;
+					for (int i = 0; i < arr.length; i++) {
+						et.add(new Excel_tilte("项目数量",3,3,sj3,sj3));
+						et.add(new Excel_tilte("计划里程(公里)",3,3,sj3+1,sj3+1));
+						sj3=sj3+8;
+					}
+					eldata.setEt(et);//将表头内容设置到类里面
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					Excel_export.excel_exportmxb(eldata,response);
+					
+				}else
+				JsonUtils.write(eL, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	} 
+	
+	
+	
 	
 }
