@@ -3634,6 +3634,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 		 where xmid=#{xmid} 
 		<if test="jdbs!=null"> and jdbs=#{jdbs}</if>
 		<if test="sffirst==1">and sffirst!='1'</if>
+		order by to_number(ghqdzh) asc
 	</select>
 	<select id="selectlxbgList" parameterType="lx" resultType="lx">
 		select * from lxsh_lx_tz where xmid=#{xmid} 
@@ -6731,10 +6732,20 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	</select>
 	
 	<insert id="planxdhzadd" parameterType="java.util.List">
-		insert into jhxd_bzhz(id<if test="ztz != null">,xdzj</if><if test="gcfl != null">,jsxz</if><if test="ylxbh != null">,xzdj</if><if test="xzqh != null">,xzqh</if><if test="zlc != null">,lc</if>)
-		values(sys_guid()<if test="ztz != null">,#{ztz}</if>
-		<if test="gcfl != null">,#{gcfl}</if><if test="ylxbh != null">,substr(#{ylxbh},0,1)</if><if test="xzqh != null">,#{xzqh}</if><if test="zlc != null">,#{zlc}</if>)
-		
+		insert into jhxd_bzhz(id
+		<if test="ztz != null">,xdzj</if>
+		<if test="jsxz != null">,jsxz</if>
+		<if test="ylxbh != null">,xzdj</if>
+		<if test="xzqh != null">,xzqh</if>
+		<if test="zlc != null">,lc</if>
+		)
+		values(
+		sys_guid()
+		<if test="ztz != null">,#{ztz}</if>
+		<if test="jsxz != null">,#{jsxz}</if>
+		<if test="ylxbh != null">,substr(#{ylxbh},0,1)</if>
+		<if test="xzqh != null">,#{xzqh}</if>
+		<if test="zlc != null">,#{zlc}</if>)
 	</insert>
 	
 	<delete id="planxdhzdelete">
@@ -8329,7 +8340,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	</select>
 	<!-- 下面是导出养护大中修明细的sql -->
 	<select id="queryYhdzxDetail_dcexcel" parameterType="jhsh" resultType="elist">
-	select j.YLXBH v_1,j.GHLXBH v_2,l.lxmc v_3,j.QDZH v_4,j.ZDZH v_5,l.zlc v_6,l.jsjsdj v_7,x.lmkd v_8,l.jsxz v_9,x.jsfa v_10,
+	select j.YLXBH v_1,j.GHLXBH v_2,l.lxmc v_3,j.QDZH v_4,j.ZDZH v_5,l.zlc v_6,l.jsjsdj v_7,x.lmkd v_8,l.jsxz v_9,c.jsfa v_10,
 j.ZTZ v_11,j.RYS+j.DK v_12,null v_13,xd.ztz v_14,null v_15,xd.rys v_16,xd.dk v_17,c.sjpfwh v_18,x.gydw v_19,x.bz v_20
 
 from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on j.xmbm=c.xmbm
