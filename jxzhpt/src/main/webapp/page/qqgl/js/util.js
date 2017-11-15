@@ -2268,8 +2268,8 @@ var Rh={
 					{field:'zdzh',title:'原止点桩号',width:80,align:'center'},
 					{field:'qdmc',title:'起点名称',width:100,align:'center'},
 					{field:'zdmc',title:'止点名称',width:100,align:'center'},
-					{field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
-					{field:'xjsdj',title:'现技术等级',width:80,align:'center'},
+					//{field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+					{field:'xjsdj',title:'技术等级',width:80,align:'center'},
 					{field:'lc',title:'里程',width:60,align:'center'}
     			]],
     			onLoadSuccess:function(){
