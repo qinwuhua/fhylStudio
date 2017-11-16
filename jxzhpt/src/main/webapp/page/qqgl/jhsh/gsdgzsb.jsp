@@ -208,10 +208,11 @@
 						$("#xmsl").html(msg.SL);
 						 $("#tz").html(msg.TZ);
 						 $("#cgs").html(msg.CGS);
-						 $("#sbz").html(msg.SBZ);
-						 $("#sjl").html(msg.SJL);
+						 $("#sbz").html(msg.ZSBZ);
+						 $("#sjl").html(msg.ZJL);
 						 $("#lc").html(msg.LC);
-						 $("#dftz").html(msg.DFTZ);
+						 $("#dftz").html(msg.ZDFZC);
+						 $("#yhdk").html(msg.ZYHDK);
 					}else{
 						$('#spanbbz').html("0");
 						$('#spansbz').html("0");

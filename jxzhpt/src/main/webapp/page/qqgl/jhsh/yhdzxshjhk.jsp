@@ -188,11 +188,10 @@
 					if(msg!=null){
 						$("#xmsl").html(msg.SL);
 						 $("#tz").html(msg.TZ);
-						 $("#cgs").html(msg.CGS);
 						 $("#rys").html(msg.RYS);
 						 $("#dk").html(msg.DK);
-						 $("#sjl").html(msg.SJL);
 						 $("#lc").html(msg.LC);
+						 $("#qt").html(msg.QT);
 // 						 $("#dftz").html(msg.DFTZ);
 					}else{
 						$('#spanztz').html("0");
@@ -494,10 +493,10 @@ text-decoration:none;
            		<div>项目【<span id="xmsl" style="color: red;">0</span>】个,
             		建设里程【<span id="lc" style="color: red;">0</span>】公里,
             		总投资【<span id="tz" style="color: red;">0</span>】万元,
-            		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
             		燃油税【<span id="rys" style="color: red;">0</span>】万元,
             		厅贷款【<span id="dk" style="color: red;">0</span>】万元,
-            		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元。
+            		其他【<span id="qt" style="color: red;">0</span>】万元。
+            		</div>
 <!--             		地方自筹【<span id="dftz" style="color: red;">0</span>】万元。 -->
             		</div>
            		<div><table id="grid"></table></div>

@@ -53,6 +53,7 @@
  	<action name="getinsertorupdate" class="gcybbController" method="getinsertorupdate"/>
  	
  	<action name="getXgjwcmxb" class="gcybbController" method="getXgjwcmxb"/>
+ 	<action name="getXgjwchzb" class="gcybbController" method="getXgjwchzb"/>
  
  	
  

@@ -1180,7 +1180,10 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 						jhsh.getBzjl()) : new BigDecimal("0");
 				qt = jhsh.getBzqt() != null && !"".equals(jhsh.getBzqt()) ? new BigDecimal(
 						jhsh.getBzqt()) : new BigDecimal("0");
-				jhsh.setZtz(ztz.add(rys).add(gz).add(sz).add(cgs).add(zq)
+				/*jhsh.setZtz(ztz.add(rys).add(gz).add(sz).add(cgs).add(zq)
+						.add(dk).add(jl).add(qt).toString());*/
+				//总投资改为省补资金
+				jhsh.setZtz(rys.add(gz).add(sz).add(cgs).add(zq)
 						.add(dk).add(jl).add(qt).toString());
 			}
 
@@ -1238,10 +1241,10 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 			table = "jhsh_xj";
 		}
 		if (jhsh.getXmlx() == 4) {
-			table = "jhsh_sh";
+			table = "jhsh_yhdzx";
 		}
 		if (jhsh.getXmlx() == 5) {
-			table = "jhsh_yhdzx";
+			table = "jhsh_sh";
 		}
 		jhsh.setZq(table);
 		return update("thwshjh", jhsh) > 0;
