@@ -3877,5 +3877,28 @@
 		    </if>
 		    ) tb
 	</select>
-	
+	<select id="getLwgzAbgcybb" parameterType="gcglabgc" resultType="elist">
+select to_char(rownum) v_0, lx.lxbm v_1,  decode(lx.lxmc,'','',concat(lx.lxmc, lx.lxbm)) v_2, lx.qdzh v_3,
+lx.zdzh v_4,xa.ylxbm v_5,xa.yqdzh v_6,xa.yzdzh v_7,
+lx.yhlc v_8, jh.pfwh v_9,lx.gydw v_10, x.ztz v_11, x.sbz v_12,
+jh.jhkgsj v_13, jh.jhwgsj v_14,
+nvl(jh.bywc_gl,0) v_15, nvl(jh.wc_ztz,0) v_16,nvl(jh.wc_btz,0)+nvl(jh.wc_stz,0) v_17,round(decode(jh.jhsybbzje,0,0,((jh.wc_btz+jh.wc_stz)/jh.jhsybbzje)*100), 2) v_18,
+n.wclc v_19, n.wcztz v_20,n.wcsbz v_21,n.sbzzb v_22,
+l.wclc v_23,l.wcztz v_24,l.wcsbz v_25,l.sbzzb v_26,
+substr(jh.xdsj,0,4) v_27, jh.jhxdwh v_28, decode(jh.kgzt,'1','已完工','在建') v_29,jh.issj v_30, jh.iszh v_31
+                  from sck_aqsmfh lx
+                  left join xmk_aqsmfh xa on lx.id = xa.id
+                  left join (select t.id, replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq,
+                                   replace(WMSYS.WM_CONCAT(distinct xm.throadcode),',',';') thlxbm,
+                                   replace(WMSYS.WM_CONCAT(xm.xmklx),',',';') xmklx
+                              from SCK_AQSMFH t
+                              left join sck_aqsmfh_ld ld on t.xmbm = ld.xmbm
+                              left join xmk_aqsmfh xm on ld.xmkid = xm.id
+                             group by t.id) ts on lx.id = ts.id
+                  left join (select p.*,g.iszh,g.bywc_gl,g.wc_btz,g.wc_stz,g.sbyf,g.wc_ztz,s.issj from plan_af p left join gcgl_abgc g on p.id=g.jhid left join gcgl_jgys s on p.sckid = s.jhid ) jh on jh.sckid=lx.id
+                  left join (select p.sckid,nvl(sum(g.wc_ztz),0) ztz, nvl(sum(g.wc_btz)+sum(g.wc_stz),0) sbz from plan_af p left join gcgl_abgc g on p.id=g.jhid group by p.sckid) x on x.sckid=lx.id      
+                  left join (select p.sckid,sum(g.bywc_gl) wclc, sum(g.wc_ztz) wcztz, sum(g.wc_btz)+sum(g.wc_stz) wcsbz,round( decode(sum(p.jhsybbzje),0,0,((sum(g.wc_btz)+sum(g.wc_stz))/sum(p.jhsybbzje))*100), 2) sbzzb from plan_af p left join gcgl_abgc g on p.id=g.jhid where substr(g.sbyf,0,4) in (#{nf}) group by p.sckid)n on n.sckid = lx.id
+                  left join (select p.sckid,sum(g.bywc_gl) wclc, sum(g.wc_ztz) wcztz, sum(g.wc_btz)+sum(g.wc_stz) wcsbz,round( decode(sum(p.jhsybbzje),0,0,((sum(g.wc_btz)+sum(g.wc_stz))/sum(p.jhsybbzje))*100), 2) sbzzb from plan_af p left join gcgl_abgc g on p.id=g.jhid where to_date(g.sbyf,'yyyy-MM') &lt;= to_date(#{sbyf},'yyyy-MM') group by p.sckid)l on l.sckid = lx.id       
+         where substr(jh.sbyf,0,4) in (#{nf}) and substr(jh.sbyf,6,2) in (#{yf})
+	</select>
 </mapper>
