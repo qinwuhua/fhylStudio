@@ -21,7 +21,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/page/qqgl/js/util.js"></script>
-<%-- 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script> --%>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script> 
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/json2.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/datagrid-cellediting.js"></script>
 	<script type="text/javascript">
@@ -242,12 +242,12 @@
 			    ]],
 				view: detailview,
 				detailFormatter:function(index,row){  
-						return '<div style="padding:2px"><table id="table_lx' + row.id + '"></table></div>';   
+						return '<div style="padding:2px"><table id="table_lx' + row.xmbm + '"></table></div>';   
 			    },
-			    onExpandRow: function(index,row){
+			    	 onExpandRow: function(index,row){
 			    	parentindex=index;
 			    	if(row.sl!=0){
-			    		$('#table_lx'+row.id).datagrid({
+			    		$('#table_lx'+row.xmbm).datagrid({
 			    			url:'/jxzhpt/qqgl/selectlxList.do',
 				    		 queryParams: {
 				    			 'lx.jdbs':2,
@@ -255,9 +255,15 @@
 				    			 'lx.sffirst':'1'
 				    			},
 			    			columns:[[
-					           {field:'c3',title:'操作',width:70,align:'center',formatter:function(value,row,index){
+			    				  {field:'cz',title:'操作',width:150,align:'center',
+			    				    	formatter:function(value,row,index){
+			    				    		var result='<a href="javascript:loadLxWin('+"'"+index+"',"+"'"+row.xmid+"'"+')" style="color:#3399CC;">详细</a>';
+			    				    		return result;
+			    				    	}
+			    				    },
+					         <%--  {field:'c3',title:'操作',width:70,align:'center',formatter:function(value,row,index){
 					        	   return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editsjlx('+parentindex+','+index+')">编辑</a>   '+'&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+parentindex+','+index+')">删除</a>   ';
-					           }},
+					           }},--%>
 			    			    {field:'gydw',title:'管养单位',width:120,align:'center'},    
 			    			    {field:'xzqh',title:'行政区划',width:120,align:'center'},
 			    			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
@@ -276,8 +282,9 @@
 				    	});
 			    	}
 			    	
-			    }   
+			    } 
 			}); 
+			
 		}
 		
 		
