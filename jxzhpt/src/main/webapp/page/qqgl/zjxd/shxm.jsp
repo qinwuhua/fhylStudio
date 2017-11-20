@@ -134,7 +134,7 @@
 			var params={'jhsh.xmlx':5,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.xdzttj':xdzt,'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jhxdwh':jhxdwh,
 					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':xmnf,'jhsh.scxdnf':scxdnf,
-					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.xdsj':$('#xdsj').datebox('getValue')};
+					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.xdsj':$('#xdsj').datebox('getValue'),'jhsh.zydpx':$('#zydpx').combobox("getValue"),'jhsh.xmbm':$('#xmbm').val()};
 			loadLj(params);
 			$('#grid').datagrid({    
 			    url:'/jxzhpt/qqgl/queryjhxdsh.do',
@@ -233,12 +233,12 @@
 			    ]],
 				view: detailview,
 				detailFormatter:function(index,row){  
-						return '<div style="padding:2px"><table id="table_lx' + row.id + '"></table></div>';   
+						return '<div style="padding:2px"><table id="table_lx' + row.xmbm + '"></table></div>';   
 			    },
 			    onExpandRow: function(index,row){
 			    	parentindex=index;
 			    	if(row.sl!=0){
-			    		$('#table_lx'+row.id).datagrid({
+			    		$('#table_lx'+row.xmbm).datagrid({
 			    			url:'/jxzhpt/qqgl/selectlxList.do',
 				    		 queryParams: {
 				    			 'lx.jdbs':2,
@@ -246,9 +246,15 @@
 				    			 'lx.sffirst':'1'
 				    			},
 			    			columns:[[
-					           {field:'c3',title:'操作',width:70,align:'center',formatter:function(value,row,index){
-					        	   return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editsjlx('+parentindex+','+index+')">编辑</a>   '+'&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+parentindex+','+index+')">删除</a>   ';
-					           }},
+			    				{field:'cz',title:'操作',width:150,align:'center',
+				    				formatter:function(value,row,index){
+		    				    		var result='<a href="javascript:loadLxWin('+"'"+index+"',"+"'"+row.xmid+"'"+')" style="color:#3399CC;">详细</a>';
+		    				    		return result;
+		    				    	}
+		    				    },
+				         <%--  {field:'c3',title:'操作',width:70,align:'center',formatter:function(value,row,index){
+				        	   return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editsjlx('+parentindex+','+index+')">编辑</a>   '+'&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+parentindex+','+index+')">删除</a>   ';
+				           }},--%>
 			    			    {field:'gydw',title:'管养单位',width:120,align:'center'},    
 			    			    {field:'xzqh',title:'行政区划',width:120,align:'center'},
 			    			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
@@ -442,7 +448,7 @@
 			var params={'jhsh.xmlx':5,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.xdzttj':xdzt,'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jhxdwh':jhxdwh,
 					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':xmnf,'jhsh.scxdnf':$('#scxdnf').combobox("getValues").join(','),
-					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.xdsj':$('#xdsj').datebox('getValue')};
+					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.xdsj':$('#xdsj').datebox('getValue'),'jhsh.zydpx':$('#zydpx').combobox("getValue"),'jhsh.xmbm':$('#xmbm').val()};
 			
 			$('#jhbz').datagrid({    
 			    url:'/jxzhpt/qqgl/queryjhxdshbz.do',
@@ -493,12 +499,6 @@
 			}); 
 			
 		}
-		
-		
-		
-		
-		
-		
 		function loadLj(params){
 			$.ajax({
 				type:'post',
@@ -511,10 +511,9 @@
 						$("#xmsl").html(msg.SL);
 						 $("#tz").html(msg.TZ);
 						 $("#cgs").html(msg.CGS);
-						 $('#sbz').html(msg.SBZ);
-						 $("#sjl").html(msg.SJL);
+						 $("#sbz").html(msg.SBZ);
+						 $("#qt").html(msg.SJL);
 						 $("#lc").html(msg.LC);
-						 $("#dftz").html(msg.DFTZ);
 					}else{
 						$('#spanbbz').html("0");
 						$('#spansbz').html("0");
@@ -548,7 +547,8 @@
 			"&jhsh.ghlxbh="+$("#lxbm").combotree('getText')+"&jhsh.lxmc="+$("#lxmc").val()+
 			"&jhsh.ghxlxbm="+$("#ghlxbm").combotree('getText')+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+
 			"&jhsh.lsjl="+$("#lsjl").combobox("getValue")+"&jhsh.jhxdwh="+jhxdwh
-			+"&jhsh.xmbm="+$('#scxdnf').combobox("getValues").join(',')+'&jhsh.xdzttj='+xdzt+'&jhsh.xdsj='+$('#xdsj').datebox('getValue');
+			+"&jhsh.xmbm="+$('#scxdnf').combobox("getValues").join(',')+'&jhsh.xdzttj='+xdzt+'&jhsh.xdsj='+$('#xdsj').datebox('getValue')
+			+"&jhsh.zydpx="+$('#zydpx').combobox("getValue")+"&jhsh.xmbm="+$('#xmbm').val();
 			window.location.href="/jxzhpt/qqgl/exportJhshShExcel.do?"+param;
 		}
 	</script>
@@ -652,6 +652,21 @@
         						<td><input name="xdsj" type="text" id="xdsj" style="width:110px;" class='easyui-datebox'/></td>
         					
         					</tr>
+        					<tr height="29">
+        					   <td align="right">重要度排序：</td>
+        						<td><select name="zydpx" id="zydpx" class="easyui-combobox" style="width:75px;">
+		                              	<option value="" selected>请选择</option>
+										<option value="升序">升序</option>
+										<option value="降序">降序</option>
+									</select>
+        						</td>
+        						<td align="right">项目编码：</td>
+								<td>
+									<input name="xmbm" type="text" id="xmbm" style="width:118px;" />
+								</td>
+        						<td colspan="6"></td>
+        					</tr>
+        					
         					
        					<tr height="29">
        						<td colspan="10">
@@ -672,8 +687,7 @@
             		总投资【<span id="tz" style="color: red;">0</span>】万元,
             		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
             		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
-            		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
-            		地方投资【<span id="dftz" style="color: red;">0</span>】万元。
+            		其他【<span id="qt" style="color: red;">0</span>】万元。
             		</div>
            			<div id="tt" border="false" class="easyui-tabs" >
             		<script type="text/javascript">

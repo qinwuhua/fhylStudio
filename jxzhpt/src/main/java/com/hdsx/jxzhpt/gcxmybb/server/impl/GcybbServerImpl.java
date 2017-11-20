@@ -1495,4 +1495,7 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 	public List<Excel_list> getLwgzWqgzybb(Gcglabgc gcglabgc) {
 		return queryList("getLwgzWqgzybb", gcglabgc);
 	}
+	public List<Excel_list> getJhzxqkb(Gcglabgc gcglabgc) {
+		return queryList("getJhzxqkb",gcglabgc);
+	}
 }
