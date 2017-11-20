@@ -52,7 +52,7 @@
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.zydpx':$('#zydpx').combobox('getValue'),
-					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.sbzt':$('#sbzt').combobox("getValue")
+					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmbm':$('#xmbm').val(),'jhsh.sbzt':$('#sbzt').combobox("getValue")
 					};
 			else
 			params={'jhsh.xmlx':5,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
@@ -60,7 +60,7 @@
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.zydpx':$('#zydpx').combobox('getValue'),
-					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.sbzt':$('#sbzt').combobox("getValue")
+					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmbm':$('#xmbm').val(),'jhsh.sbzt':$('#sbzt').combobox("getValue")
 					};
 			grid.queryParams=params;
 			loadLj(params);
@@ -199,7 +199,7 @@
 					'&jhsh.gldj='+$("#gldj").combobox("getValues").join(",")+'&jhsh.tsdq='+encodeURI(encodeURI(tsdq))+
 					'&jhsh.ghlxbh='+$("#lxbm").combotree('getText')+'&jhsh.lxmc='+$("#lxmc").val()+
 					'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+'&jhsh.zydpx='+$("#zydpx").val()+
-					'&jhsh.lsjl='+$("#lsjl").combobox("getValue")+'&jhsh.sbzt='+$("#sbzt").combobox("getValue");
+					'&jhsh.lsjl='+$("#lsjl").combobox("getValue")+'&jhsh.sbzt='+'&jhsh.xmbm='+$('#xmbm').val()+$("#sbzt").combobox("getValue");
 			window.location.href="/jxzhpt/qqgl/exportJhshSh.do?"+param;
 		}
 		function importJhsh(){
@@ -359,6 +359,10 @@ text-decoration:none;
 									<option value="1">已上报</option>
 									<option value="0">未上报</option>
 								</select></td>
+								<td align="right">项目编码：</td>
+								<td>
+									<input name="xmbm" type="text" id="xmbm" style="width:118px;" />
+								</td>
                             </tr>
        					<tr height="32">
        						<td colspan="8">

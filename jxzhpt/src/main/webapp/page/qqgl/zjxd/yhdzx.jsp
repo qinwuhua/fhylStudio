@@ -142,7 +142,7 @@
 			var params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jhxdwh':jhxdwh,
 					'jhsh.xdzt':1,'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':xmnf,'jhsh.scxdnf':scxdnf,
-					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.gyfl':$('#gyfl').val(),'jhsh.sfsycgs':$('#sfsycgs').combobox('getValue'),'jhsh.xdsj':$('#xdsj').datebox('getValue')};
+					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.gyfl':$('#gyfl').val(),'jhsh.sfsycgs':$('#sfsycgs').combobox('getValue'),'jhsh.xdsj':$('#xdsj').datebox('getValue'),'jhsh.xmbm':$('#xmbm').val(),'jhsh.zydpx':$('#zydpx').combobox("getValue")};
 			loadLj(params);
 			$('#grid').datagrid({    
 			    url:'/jxzhpt/qqgl/queryjhxdyh.do',
@@ -470,7 +470,7 @@
 			var params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jhxdwh':jhxdwh,
 					'jhsh.xdzt':1,'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':xmnf,'jhsh.scxdnf':scxdnf,
-					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.gyfl':$('#gyfl').val(),'jhsh.sfsycgs':$('#sfsycgs').combobox('getValue'),'jhsh.xdsj':$('#xdsj').datebox('getValue')};
+					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.gyfl':$('#gyfl').val(),'jhsh.sfsycgs':$('#sfsycgs').combobox('getValue'),'jhsh.xdsj':$('#xdsj').datebox('getValue'),'jhsh.xmbm':$('#xmbm').val(),'jhsh.zydpx':$('#zydpx').combobox("getValue")};
 			
 			//loadLj(params);
 			$('#jhbz').datagrid({    
@@ -577,14 +577,14 @@
 			var params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jhxdwh':$('#jhxdwh').val(),
 					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':$('#xmnf').combobox("getValues").join(','),'jhsh.scxdnf':$('#scxdnf').combobox("getValues").join(','),
-					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.gyfl':$('#gyfl').val(),'jhsh.sfsycgs':$('#sfsycgs').combobox('getValue'),'jhsh.xdsj':$('#xdsj').datebox('getValue')};
+					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.gyfl':$('#gyfl').val(),'jhsh.sfsycgs':$('#sfsycgs').combobox('getValue'),'jhsh.xdsj':$('#xdsj').datebox('getValue'),'jhsh.xmbm':$('#xmbm').val(),'jhsh.zydpx':$('#zydpx').combobox("getValue")};
 
 			
 			
 			var param='jhsh.xmlx=4&jhsh.xmlx1='+xmlx+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#lxbm').combotree('getText')+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.ghxlxbm='+$('#ghlxbm').combotree('getText')+'&jhsh.ghxlxmc='+$('#ghlxmc').val()+'&jhsh.lxmc='+$('#lxmc').val()+
 			'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+tsdq+'&jhsh.jsdj='+$('#jsdj').combobox("getValues").join(",")+'&jhsh.jhxdwh='+$('#jhxdwh').val()+
 			'&jhsh.xdzt=1'+'&jhsh.lsjl='+$('#lsjl').combobox("getValue")+'&jhsh.xmnf='+$('#xmnf').combobox("getValues").join(',')+'&jhsh.scxdnf='+$('#scxdnf').combobox("getValues").join(',')+
-			'&jhsh.xzdj='+$('#gldj').combobox("getValues").join(',')+'&jhsh.gyfl='+$('#gyfl').val()+'&jhsh.sfsycgs='+$('#sfsycgs').combobox('getValue')+'&jhsh.xmbm='+xmnf+'&jhsh.xdsj='+$('#xdsj').datebox('getValue');
+			'&jhsh.xzdj='+$('#gldj').combobox("getValues").join(',')+'&jhsh.gyfl='+$('#gyfl').val()+'&jhsh.sfsycgs='+$('#sfsycgs').combobox('getValue')+'&jhsh.xmbm='+xmnf+'&jhsh.xdsj='+$('#xdsj').datebox('getValue')+'&jhsh.xmbm='+$('#xmbm').val()+'&jhsh.zydpx='+$('#zydpx').combobox("getValue");
 
 			//alert(param);
 			window.location.href="/jxzhpt/qqgl/exportZjxd.do?"+param;
@@ -638,7 +638,7 @@
 			'&jhsh.jsdj='+$('#jsdj').combobox("getValues").join(",")+'&jhsh.jhxdwh='+jhxdwh+
 			'&jhsh.lsjl='+$('#lsjl').combobox("getValue")+'&jhsh.xmnf='+xmnf+'&jhsh.scxdnf='+scxdnf+
 			'&jhsh.xdzt='+1+'&jhsh.xzdj='+$('#gldj').combobox("getValues").join(',')+
-			'&jhsh.gyfl='+$('#gyfl').val()+'&jhsh.sfsycgs='+$('#sfsycgs').combobox('getValue')+'&jhsh.xdsj='+$('#xdsj').datebox('getValue');
+			'&jhsh.gyfl='+$('#gyfl').val()+'&jhsh.sfsycgs='+$('#sfsycgs').combobox('getValue')+'&jhsh.xdsj='+$('#xdsj').datebox('getValue')+'&jhsh.xmbm='+$('#xmbm').val()+'&jhsh.zydpx='+$('#zydpx').combobox("getValue");;
 			window.location.href="/jxzhpt/qqgl/exportJhshYhdzxExcel.do?"+param;
 		}
 		function exportJhshxx1(){
@@ -689,7 +689,7 @@
 			'&jsdj='+$('#jsdj').combobox("getValues").join(",")+'&jhsh.jhxdwh='+jhxdwh+
 			'&lsjl='+$('#lsjl').combobox("getValue")+'&jhsh.xmnf='+xmnf+'&jhsh.scxdnf='+scxdnf+
 			'&jhsh.xdzt='+1+'&jhsh.xzdj='+$('#gldj').combobox("getValues").join(',')+
-			'&jhsh.gyfl='+$('#gyfl').val()+'&jhsh.sfsycgs='+$('#sfsycgs').combobox('getValue')+'&jhsh.xdsj='+$('#xdsj').datebox('getValue');
+			'&jhsh.gyfl='+$('#gyfl').val()+'&jhsh.sfsycgs='+$('#sfsycgs').combobox('getValue')+'&jhsh.xdsj='+$('#xdsj').datebox('getValue')+'&jhsh.xmbm='+$('#xmbm').val()+'&jhsh.zydpx='+$('#zydpx').combobox("getValue");;
 			window.location.href="/jxzhpt/qqgl/exportJhshYhdzxDetailExcel.do?"+param;
 		}
 	</script>
@@ -823,6 +823,18 @@
         					<td><input name="xdzt" type="text" id="xdzt" style="width:114px;" /></td>
         					<td align="right">前期完成：</td>
         						<td><input name="xdsj" type="text" id="xdsj" style="width:110px;" class='easyui-datebox'/></td>
+        					<td align="right">重要度排序：</td>
+        						<td><select name="zydpx" id="zydpx" class="easyui-combobox" style="width:75px;">
+		                              	<option value="" selected>请选择</option>
+										<option value="升序">升序</option>
+										<option value="降序">降序</option>
+									</select>
+        						</td>
+
+							<td align="right">项目编码：</td>
+								<td>
+									<input name="xmbm" type="text" id="xmbm" style="width:118px;" />
+								</td>
         					</tr><tr>
        						<td colspan="4">
        							<img onclick="searchlist()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>

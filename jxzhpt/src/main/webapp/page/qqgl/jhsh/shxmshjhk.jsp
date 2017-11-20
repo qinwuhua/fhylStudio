@@ -60,7 +60,7 @@
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText').toUpperCase( ),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText').toUpperCase( ),'jhsh.ghxlxmc':$('#ghlxmc').val(),
 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':jhxdwh,'jhsh.xdzttj':xdzt,'jhsh.scxdnf':1,
-					'jhsh.xmbm':$('#xmbm').val()
+					'jhsh.xmbm':$('#xmbm').val(),'jhsh.zydpx':$('#zydpx').combobox("getValue")
 					};
 			
 			grid.queryParams=params;
@@ -138,7 +138,8 @@
 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
 				//{field:'gkpfwh',title:'工可批复文号',width:100,align:'center'},
 				{field:'jhkgsj',title:'开工时间',width:70,align:'center'},
-				{field:'jhwgsj',title:'完工时间',width:70,align:'center'}
+				{field:'jhwgsj',title:'完工时间',width:70,align:'center'},
+				{field:'zydpx',title:'重要度排序',width:70,align:'center'}
 			]];
 			bindLxGrid();
 			gridBind(grid);
@@ -188,7 +189,7 @@
 				"&jhsh.ghlxbh="+$("#lxbm").combotree('getText')+"&jhsh.lxmc="+$("#lxmc").val()+
 				"&jhsh.ghxlxbm="+$("#ghlxbm").combotree('getText')+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+
 				"&jhsh.lsjl="+$("#lsjl").combobox("getValue")+"&jhsh.jhxdwh="+jhxdwh+'&jhsh.xdzttj='+xdzt+'&jhsh.scxdnf='+1+
-				'&jhsh.xmbm='+$('#xmbm').val();
+				'&jhsh.xmbm='+$('#xmbm').val()+'&jhsh.zydpx='+$('#zydpx').combobox("getValue");
 				
 		         window.location.href="/jxzhpt/qqgl/exportJhshShExcel.do?"+param;
 		}
@@ -342,6 +343,13 @@ text-decoration:none;
 								<td>
 									<input name="xmbm" type="text" id="xmbm" style="width:118px;" />
 								</td>
+								<td align="right">重要度排序：</td>
+        						<td><select name="zydpx" id="zydpx" class="easyui-combobox" style="width:75px;">
+		                              	<option value="" selected>请选择</option>
+										<option value="升序">升序</option>
+										<option value="降序">降序</option>
+									</select>
+        						</td>
         						</tr>
         						<tr height="29">
        						<td colspan="8">

@@ -58,7 +58,7 @@
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),
 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.zydpx':$('#zydpx').combobox('getValue'),'jhsh.sbzt':1,
-					'jhsh.shzt':$('#shzt').combobox("getValue"),'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly,'jhsh.xmklx':$('#xmklx').combobox('getValue')
+					'jhsh.shzt':$('#shzt').combobox("getValue"),'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly,'jhsh.xmbm':$('#xmbm').val(),'jhsh.xmklx':$('#xmklx').combobox('getValue')
 					};
 			grid.queryParams=params;
 			loadLj(params);
@@ -208,7 +208,7 @@
 					'&jhsh.ghlxbh='+$("#lxbm").combotree('getText')+'&jhsh.lxmc='+$("#lxmc").val()+
 					'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+
 					'&jhsh.lsjl='+$("#lsjl").combobox("getValue")+'&jhsh.zydpx='+$("#zydpx").val()+'&jhsh.sbzt=1'+
-					'&jhsh.shzt='+$("#shzt").combobox("getValue")+'&jhsh.gyfl='+$("#gyfl").val()+'&jhsh.zjly='+zjly+'&jhsh.xmbm=';
+					'&jhsh.shzt='+$("#shzt").combobox("getValue")+'&jhsh.gyfl='+$("#gyfl").val()+'&jhsh.zjly='+zjly+'&jhsh.xmbm='+$('#xmbm').val();
 			window.location.href="/jxzhpt/qqgl/exportJhshxxgsd.do?"+param;
 		}
 		$(window).resize(function () { 
@@ -236,7 +236,7 @@
 					'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+
 					'&jhsh.lsjl='+$("#lsjl").combobox("getValue")+'&jhsh.zydpx='+$("#zydpx").val()+'&jhsh.sbzt=1'+
 					'&jhsh.shzt='+$("#shzt").combobox("getValue")+'&jhsh.gyfl='+$("#gyfl").val()+'&jhsh.zjly='+zjly
-					+'&xmklx='+$("#xmklx").combobox("getValue");
+					+'&jhsh.xmbm='+$('#xmbm').val()+'&xmklx='+$("#xmklx").combobox("getValue");
 			window.location.href="/jxzhpt/qqgl/queryGsdgz_dcexcelsb.do?"+param;
 		}
 		$(window).resize(function () { 
@@ -414,6 +414,10 @@ text-decoration:none;
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
 									</select>
+								</td>
+								<td align="right">项目编码：</td>
+								<td>
+									<input name="xmbm" type="text" id="xmbm" style="width:118px;" />
 								</td>
                            		<!-- <td>建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:104px;" ></select></td>

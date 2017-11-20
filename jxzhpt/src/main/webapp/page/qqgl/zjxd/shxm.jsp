@@ -134,7 +134,7 @@
 			var params={'jhsh.xmlx':5,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.xdzttj':xdzt,'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jhxdwh':jhxdwh,
 					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':xmnf,'jhsh.scxdnf':scxdnf,
-					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.xdsj':$('#xdsj').datebox('getValue')};
+					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.xdsj':$('#xdsj').datebox('getValue'),'jhsh.zydpx':$('#zydpx').combobox("getValue"),'jhsh.xmbm':$('#xmbm').val()};
 			loadLj(params);
 			$('#grid').datagrid({    
 			    url:'/jxzhpt/qqgl/queryjhxdsh.do',
@@ -442,7 +442,7 @@
 			var params={'jhsh.xmlx':5,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.xdzttj':xdzt,'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jhxdwh':jhxdwh,
 					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':xmnf,'jhsh.scxdnf':$('#scxdnf').combobox("getValues").join(','),
-					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.xdsj':$('#xdsj').datebox('getValue')};
+					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.xdsj':$('#xdsj').datebox('getValue'),'jhsh.zydpx':$('#zydpx').combobox("getValue"),'jhsh.xmbm':$('#xmbm').val()};
 			
 			$('#jhbz').datagrid({    
 			    url:'/jxzhpt/qqgl/queryjhxdshbz.do',
@@ -493,12 +493,6 @@
 			}); 
 			
 		}
-		
-		
-		
-		
-		
-		
 		function loadLj(params){
 			$.ajax({
 				type:'post',
@@ -547,7 +541,8 @@
 			"&jhsh.ghlxbh="+$("#lxbm").combotree('getText')+"&jhsh.lxmc="+$("#lxmc").val()+
 			"&jhsh.ghxlxbm="+$("#ghlxbm").combotree('getText')+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+
 			"&jhsh.lsjl="+$("#lsjl").combobox("getValue")+"&jhsh.jhxdwh="+jhxdwh
-			+"&jhsh.xmbm="+$('#scxdnf').combobox("getValues").join(',')+'&jhsh.xdzttj='+xdzt+'&jhsh.xdsj='+$('#xdsj').datebox('getValue');
+			+"&jhsh.xmbm="+$('#scxdnf').combobox("getValues").join(',')+'&jhsh.xdzttj='+xdzt+'&jhsh.xdsj='+$('#xdsj').datebox('getValue')
+			+"&jhsh.zydpx="+$('#zydpx').combobox("getValue")+"&jhsh.xmbm="+$('#xmbm').val();
 			window.location.href="/jxzhpt/qqgl/exportJhshShExcel.do?"+param;
 		}
 	</script>
@@ -651,6 +646,21 @@
         						<td><input name="xdsj" type="text" id="xdsj" style="width:110px;" class='easyui-datebox'/></td>
         					
         					</tr>
+        					<tr height="29">
+        					   <td align="right">重要度排序：</td>
+        						<td><select name="zydpx" id="zydpx" class="easyui-combobox" style="width:75px;">
+		                              	<option value="" selected>请选择</option>
+										<option value="升序">升序</option>
+										<option value="降序">降序</option>
+									</select>
+        						</td>
+        						<td align="right">项目编码：</td>
+								<td>
+									<input name="xmbm" type="text" id="xmbm" style="width:118px;" />
+								</td>
+        						<td colspan="6"></td>
+        					</tr>
+        					
         					
        					<tr height="29">
        						<td colspan="10">
