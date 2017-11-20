@@ -176,7 +176,7 @@
 // 				{field:'llcl',title:'老路处理',width:100,align:'center'}
 			]];
 			bindLxGrid();
-			gridBindyh(grid);
+			gridBind(grid);
 		}
 		function loadLj(params){
 			$.ajax({
