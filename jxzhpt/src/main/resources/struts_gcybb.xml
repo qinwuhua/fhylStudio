@@ -14,6 +14,7 @@
 	<action name="getWqgzybb" class="gcybbController" method="getWqgzybb"/>
 	<action name="exportWqgzyb" class="gcybbController" method="exportWqgzyb"/>
 	
+	<action name="getLwgzAbgcybb" class="gcybbController" method="getLwgzAbgcybb"/>
 	<action name="getAbgcybb" class="gcybbController" method="getAbgcybb"/>
 	<action name="exportAbgcyb" class="gcybbController" method="exportAbgcyb"/>
 	

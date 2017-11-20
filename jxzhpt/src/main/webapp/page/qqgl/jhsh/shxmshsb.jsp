@@ -152,7 +152,7 @@
 				{field:'zdzh1',title:'原止点桩号',width:100,align:'center'},
 				{field:'pfztz',title:'批复总投资',width:100,align:'center'},
 				{field:'bbzzj',title:'部补助资金',width:100,align:'center'},
-				{field:'sbzzj',title:'省补助资金',width:100,align:'center'},
+				{field:'dk',title:'省补助资金',width:100,align:'center'},
 				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
 				//{field:'gkpfwh',title:'工可批复文号',width:100,align:'center'},
@@ -173,12 +173,12 @@
 				success:function(msg){
 					if(msg!=null){
 						$("#xmsl").html(msg.SL);
-						 $("#tz").html(msg.TZ);
-						 $("#cgs").html(msg.CGS);
-						 $("#sbz").html(msg.SBZ);
-						 $("#sjl").html(msg.SJL);
+						 $("#tz").html(msg.ZTZ);
+						 $("#cgs").html(msg.ZCGS);
+						 $("#sbz").html(msg.ZSBZ);
+						 $("#qt").html(msg.ZQT);
 						 $("#lc").html(msg.LC);
-						 $("#dftz").html(msg.DFTZ);
+						
 					}else{
 						$('#spanbbz').html("0");
 						$('#spansbz').html("0");
@@ -381,8 +381,7 @@ text-decoration:none;
             		总投资【<span id="tz" style="color: red;">0</span>】万元,
             		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
             		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
-            		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
-            		地方投资【<span id="dftz" style="color: red;">0</span>】万元。
+            		其他【<span id="qt" style="color: red;">0</span>】万元。
             		</div>
            		<div><table id="grid"></table></div>
            	</td>

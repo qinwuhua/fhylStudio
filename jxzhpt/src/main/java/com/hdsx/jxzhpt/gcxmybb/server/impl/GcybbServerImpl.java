@@ -656,6 +656,8 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 	}
 	
 	
+	
+	
 	@Override
 	public List<Excel_list> xmkaqsmfhbb1(String tiaojian1) {
 		return queryList("xmkaqsmfhbb1",tiaojian1);
@@ -1482,6 +1484,11 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 	@Override
 	public List<Excel_list> getinsertorupdate(Excel_list excel_list) {
 		return queryList("getinsertorupdate", excel_list);
+	}
+
+	@Override
+	public List<Excel_list> getLwgzAbgcybb(Gcglabgc gcglabgc) {
+		return queryList("getLwgzAbgcybb", gcglabgc);
 	}
 	
 	

@@ -209,7 +209,6 @@
 						$('#spanbcgs').html("0");
 						$('#spanlc').html("0");
 					}
-					
 				}
 			});
 		}

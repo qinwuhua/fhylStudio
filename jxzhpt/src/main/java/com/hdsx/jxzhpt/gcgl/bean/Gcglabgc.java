@@ -45,6 +45,22 @@ public class Gcglabgc implements Serializable {
 	private String sbzt;
 	private String xmzt;
 	
+	private String nf;
+	
+	private String yf;
+	
+	public String getNf() {
+		return nf;
+	}
+	public void setNf(String nf) {
+		this.nf = nf;
+	}
+	public String getYf() {
+		return yf;
+	}
+	public void setYf(String yf) {
+		this.yf = yf;
+	}
 	public String getXmzt() {
 		return xmzt;
 	}

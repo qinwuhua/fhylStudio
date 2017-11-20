@@ -2213,6 +2213,12 @@ function loadLxWin(index,xmbm,id){
 	YMLib.Var.Obj=data;
 	YMLib.UI.createWindow(id,'编辑路线信息','lx_xx.jsp',id,900,350);
 }
+
+function loadYapLxWin(index,xmbm,id){
+	var data=$("#table_lx"+xmbm).datagrid('getRows')[index];
+	YMLib.Var.Obj=data;
+	YMLib.UI.createWindow(id,'路线详细信息','lx_yapxx.jsp',id,900,350);
+}
 //--------------------------------------------------------easyui部分
 var gridObj;//datagrid 对象
 var Rh={
@@ -2268,8 +2274,8 @@ var Rh={
 					{field:'zdzh',title:'原止点桩号',width:80,align:'center'},
 					{field:'qdmc',title:'起点名称',width:100,align:'center'},
 					{field:'zdmc',title:'止点名称',width:100,align:'center'},
-					{field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
-					{field:'xjsdj',title:'现技术等级',width:80,align:'center'},
+					//{field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+					{field:'xjsdj',title:'技术等级',width:80,align:'center'},
 					{field:'lc',title:'里程',width:60,align:'center'}
     			]],
     			onLoadSuccess:function(){
@@ -2407,6 +2413,45 @@ var Rh11={
 	    	});
 		}
 	};
+
+function bindYapLxGrid(){
+	Rh.onExpandRow=function(index,row){
+		$('#table_lx'+row.xmbm).datagrid({
+			url:'/jxzhpt/qqgl/selectlxList.do',
+			queryParams:{
+				'lx.xmid':row.xmbm,
+				'lx.jdbs':YMLib.Var.jdbs,
+				'lx.sffirst':'1'
+			},
+			columns:[[
+			    {field:'cz',title:'操作',width:150,align:'center',
+			    	formatter:function(value,row,index){
+			    		var result='<a href="javascript:loadYapLxWin('+"'"+index+"',"+"'"+row.xmid+"'"+')" style="color:#3399CC;">详细</a>';
+			    		return result;
+			    	}
+			    },
+				{field:'gydw',title:'管养单位',width:150,align:'center'},    
+				{field:'xzqh',title:'行政区划',width:150,align:'center'},
+				{field:'lxmc',title:'路线名称',width:120,align:'center'},
+				{field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
+			    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
+			    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
+				{field:'lxbm',title:'原路线编码',width:100,align:'center'},
+				{field:'qdzh',title:'原起点桩号',width:80,align:'center'},
+				{field:'zdzh',title:'原止点桩号',width:80,align:'center'},
+				{field:'qdmc',title:'起点名称',width:100,align:'center'},
+				{field:'zdmc',title:'止点名称',width:100,align:'center'},
+				{field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+				{field:'xjsdj',title:'现技术等级',width:80,align:'center'},
+				{field:'lc',title:'里程',width:60,align:'center'}
+			]],
+			onLoadSuccess:function(){
+				$('#'+grid.id).datagrid('fixDetailRowHeight',index);
+	        }
+    	});
+	}
+}
+
 function bindLxGrid(){
 	Rh.onExpandRow=function(index,row){
 		$('#table_lx'+row.xmbm).datagrid({
@@ -2434,8 +2479,8 @@ function bindLxGrid(){
 				{field:'zdzh',title:'原止点桩号',width:80,align:'center'},
 				{field:'qdmc',title:'起点名称',width:100,align:'center'},
 				{field:'zdmc',title:'止点名称',width:100,align:'center'},
-				{field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
-				{field:'xjsdj',title:'现技术等级',width:80,align:'center'},
+				//{field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+				{field:'xjsdj',title:'技术等级',width:80,align:'center'},
 				{field:'lc',title:'里程',width:60,align:'center'}
 			]],
 			onLoadSuccess:function(){

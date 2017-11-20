@@ -4544,10 +4544,11 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	</select>
 	<select id="queryJhshLjSh" parameterType="jhsh" resultType="java.util.Map">
 		select 
-		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcdk),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(pfztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz
+		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcdk),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(bcztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz,nvl(sum(bcqt),0) qt,
+		nvl(sum(pfztz),0) ztz,nvl(sum(dk),0) zsbz,nvl(sum(jhlc),0) lc,nvl(sum(bbzzj),0) zcgs,nvl(sum(qt),0) zqt
 		 from (
 				select j.*,lx2.zjhlc jhlc,sl.zlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh
-				,bcztz,bccgs,bcstz,bcjl,bcdftz,bcdk
+				,bcztz,bccgs,bcstz,bcjl,bcdftz,bcdk,bcqt
 				from jhxdsh j left join (select xmbm,sjpfwh from cbsj_sh) cb on j.xmbm=cb.xmbm  
 				left join xmsq_sh lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
 	            left join (select  xmid,jsxz,
@@ -4574,11 +4575,10 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	            	sum(j.rys) bcrys,
 	            	sum(j.dk) bcdk,
 	                sum(j.btzzj) bcxd,
+	                sum(j.qt) bcqt,
 	              	replace(WMSYS.WM_CONCAT(j.jhxdwh),',',',') bcxdwh,
 	              	replace(WMSYS.WM_CONCAT(j.xdnf),',',',') bcxdsj,
-	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
-                           nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
-                           nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
+	             	nvl(sum(j.ztz), 0)   bcztz,
 	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.gz),0)+ nvl(sum(j.sz),0)+ nvl(sum(j.zq),0) bcstz,
 	             	sum(j.gz) + sum(j.sz) + sum(j.zq) + sum(j.yhdk) bcdftz,
 	            	sum(j.btzzj) bccgs
