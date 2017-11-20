@@ -4423,4 +4423,124 @@ public class GcybbController extends BaseActionSupport{
 	
 	
 	
+	
+	//计划执行情况表
+	public void getJhzxqkb(){
+		try {
+			if("1".equals(flag)){
+				String shijian="";
+				if(Integer.parseInt(yf)<=9){
+					shijian=nf+"-0"+yf;
+				}else{
+					shijian=nf+"-"+yf;
+				}
+				gcglabgc.setSbyf(shijian);
+				String tiaojian2="";
+				String xzqhdm = "";
+				String gydwdm = "";
+				if("1".equals(flag)){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+					xzqhdm=(String) session.getAttribute("xzqhbb");	
+				}else{
+				xzqhdm	= xzqh;
+				}
+				
+				if(xzqhdm.indexOf(",")==-1){
+					tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
+				}else{
+					tiaojian2=getcxtj("xzqhdm",xzqhdm);
+					//tiaojian2="and xzqh in ("+xzqhdm+")";
+				}
+				gcglabgc.setXzqhdm(tiaojian2);
+				gcglabgc.setXmnf(nf);
+				//查总合list
+				//getcxtj
+				gcglabgc.setJhnd(getcxtj("xd.jhnf",gcglabgc.getJhnd()));
+				List<Excel_list> eL=gcybbServer.getJhzxqkb(gcglabgc);
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("普通国省道建设养护计划执行情况表");//设置第一行 
+				eldata.setSheetName("计划执行情况表");//设置sheeet名
+				eldata.setFileName("普通国省道建设养护计划执行情况表");//设置文件名
+				eldata.setEl(eL);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("序号",1,2,0,0));
+				et.add(new Excel_tilte("计划类别",1,1,1,1));
+				et.add(new Excel_tilte(" ",1,1,2,2));
+				et.add(new Excel_tilte(nf+"年度计划下达情况 ",1,1,3,5));
+				et.add(new Excel_tilte("截止"+nf+"."+yf+"月底完成情况",1,1,6,7));
+				et.add(new Excel_tilte("截止"+nf+".12月底预计完成情况",1,1,8,9));
+				et.add(new Excel_tilte("“十三五”目标任务完成情况",1,1,10,17));
+				et.add(new Excel_tilte(nf+"年度目标任务完成情况",1,1,18,25));
+				et.add(new Excel_tilte(" ",2,2,1,1));
+				et.add(new Excel_tilte(" ",2,2,2,2));
+				et.add(new Excel_tilte("建设规模",2,2,3,3));
+				et.add(new Excel_tilte("车购税（万元）",2,2,4,4));
+				et.add(new Excel_tilte("省级补助（万元）",2,2,5,5));
+				et.add(new Excel_tilte("建设规模",2,2,6,6));
+				et.add(new Excel_tilte("总投资（亿元）",2,2,7,7));
+				et.add(new Excel_tilte("建设规模",2,2,8,8));
+				et.add(new Excel_tilte("总投资（亿元）",2,2,9,9));
+				et.add(new Excel_tilte("目标任务建设规模",2,2,10,10));
+				et.add(new Excel_tilte("截止"+nf+"."+yf+"累计完成规模",2,2,11,11));
+				et.add(new Excel_tilte("截止"+nf+"."+yf+"月底完成比例",2,2,12,12));
+				et.add(new Excel_tilte("截止"+nf+".12月底预计完成比例",2,2,13,13));
+				et.add(new Excel_tilte("目标任务总投资（亿元）",2,2,14,14));
+				et.add(new Excel_tilte("截止"+nf+"."+yf+"累计完成投资（亿元）",2,2,15,15));
+				et.add(new Excel_tilte("截止"+nf+"."+yf+"月底完成比例",2,2,16,16));
+				et.add(new Excel_tilte("截止"+nf+".12月底预计完成比例",2,2,17,17));
+				et.add(new Excel_tilte("目标任务建设规模",2,2,18,18));
+				et.add(new Excel_tilte("截止"+nf+"."+yf+"累计完成规模",2,2,19,19));
+				et.add(new Excel_tilte("截止"+nf+"."+yf+"月底完成比例",2,2,20,20));
+				et.add(new Excel_tilte("截止"+nf+".12月底预计完成比例",2,2,21,21));
+				et.add(new Excel_tilte("目标任务总投资（亿元）",2,2,22,22));
+				et.add(new Excel_tilte("截止"+nf+"."+yf+"累计完成投资（亿元）",2,2,23,23));
+				et.add(new Excel_tilte("截止"+nf+"."+yf+"月底完成比例",2,2,24,24));
+				et.add(new Excel_tilte("截止"+nf+".12月底预计完成比例",2,2,25,25));
+				
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_exportjxzhqkb(eldata,response);
+			
+		}else{
+			String shijian="";
+			if(Integer.parseInt(yf)<=9){
+				shijian=nf+"-0"+yf;
+			}else{
+				shijian=nf+"-"+yf;
+			}
+			gcglabgc.setSbyf(shijian);
+			String tiaojian2="";
+			String xzqhdm = "";
+			String gydwdm = "";
+			if("1".equals(flag)){
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				xzqhdm=(String) session.getAttribute("xzqhbb");	
+			}else{
+			xzqhdm	= xzqh;
+			}
+			
+			if(xzqhdm.indexOf(",")==-1){
+				tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
+			}else{
+				tiaojian2=getcxtj("xzqhdm",xzqhdm);
+				//tiaojian2="and xzqh in ("+xzqhdm+")";
+			}
+			gcglabgc.setXzqhdm(tiaojian2);
+			gcglabgc.setXmnf(nf);
+			//查总合list
+			//getcxtj
+			gcglabgc.setJhnd(getcxtj("xd.jhnf",gcglabgc.getJhnd()));
+			List<Excel_list> list1=gcybbServer.getJhzxqkb(gcglabgc);
+			
+			JsonUtils.write(list1, getresponse().getWriter());
+           }                                                     
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 }
