@@ -136,11 +136,11 @@
 				success:function(msg){
 					if(msg!=null){
 						$("#xmsl").html(msg.SL);
-						 $("#tz").html(msg.TZ);
-						 $("#rys").html(msg.RYS);
-						 $("#dk").html(msg.DK);
+						 $("#tz").html(msg.ZTZ);
+						 $("#cgs").html(msg.ZCGS);
+						 $("#sbz").html(msg.ZSBZ);
+						 $("#qt").html(msg.ZQT);
 						 $("#lc").html(msg.LC);
-						 $("#qt").html(msg.QT);
 					}else{
 						$('#spanbbz').html("0");
 						$('#spansbz').html("0");

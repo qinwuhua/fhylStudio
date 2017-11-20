@@ -511,10 +511,9 @@
 						$("#xmsl").html(msg.SL);
 						 $("#tz").html(msg.TZ);
 						 $("#cgs").html(msg.CGS);
-						 $('#sbz').html(msg.SBZ);
-						 $("#sjl").html(msg.SJL);
+						 $("#sbz").html(msg.SBZ);
+						 $("#qt").html(msg.SJL);
 						 $("#lc").html(msg.LC);
-						 $("#dftz").html(msg.DFTZ);
 					}else{
 						$('#spanbbz').html("0");
 						$('#spansbz').html("0");
@@ -672,8 +671,7 @@
             		总投资【<span id="tz" style="color: red;">0</span>】万元,
             		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
             		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
-            		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
-            		地方投资【<span id="dftz" style="color: red;">0</span>】万元。
+            		其他【<span id="qt" style="color: red;">0</span>】万元。
             		</div>
            			<div id="tt" border="false" class="easyui-tabs" >
             		<script type="text/javascript">
