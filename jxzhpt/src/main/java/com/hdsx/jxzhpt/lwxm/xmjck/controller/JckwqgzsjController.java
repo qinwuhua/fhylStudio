@@ -203,8 +203,8 @@ public class JckwqgzsjController extends BaseActionSupport{
 		Zdycx z = new Zdycx();//定义一个类，接收查询补助历史的参数
 		z.setXmnf(Calendar.getInstance().get(Calendar.YEAR)+"");//本项目的年份
 		z.setLxbm(jckwqgzsj.getQlbh().substring(0, 4));//本项目的路线编码
-		z.setQdzh(MyUtil.sub(Double.parseDouble(jckwqgzsj.getQlzxzh()), MyUtil.div(Double.parseDouble(jckwqgzsj.getQlqc()), 2000, 3))+"");//本项目起点
-		z.setZdzh(MyUtil.add(Double.parseDouble(jckwqgzsj.getQlzxzh()), MyUtil.div(Double.parseDouble(jckwqgzsj.getQlqc()), 2000, 3))+"");//本项目止点
+		z.setQdzh(MyUtil.sub(Double.parseDouble(jckwqgzsj.getQlzxzh()), MyUtil.div(Double.parseDouble(jckwqgzsj.getQlqc()), 2000.0, 3))+"");//本项目起点
+		z.setZdzh(MyUtil.add(Double.parseDouble(jckwqgzsj.getQlzxzh()), MyUtil.div(Double.parseDouble(jckwqgzsj.getQlqc()), 2000.0, 3))+"");//本项目止点
 		z.setSfafsc("否");//是否安防审查，如果不是就是否
 		z.setXzqh(jckwqgzsj.getXzqhdm());//设置行政区划
 		//调用方法，返回历史信息
@@ -616,8 +616,8 @@ jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl
 			Zdycx z = new Zdycx();//定义一个类，接收查询补助历史的参数
 			z.setXmnf(Calendar.getInstance().get(Calendar.YEAR)+"");//本项目的年份
 			z.setLxbm(jckwqgzsj.getQlbh().substring(0, 4));//本项目的路线编码
-			z.setQdzh(MyUtil.sub(Double.parseDouble(jckwqgzsj.getQlzxzh()), MyUtil.div(Double.parseDouble(jckwqgzsj.getQlqc()), 2000, 3))+"");//本项目起点
-			z.setZdzh(MyUtil.add(Double.parseDouble(jckwqgzsj.getQlzxzh()), MyUtil.div(Double.parseDouble(jckwqgzsj.getQlqc()), 2000, 3))+"");//本项目止点
+			z.setQdzh(MyUtil.sub(Double.parseDouble(jckwqgzsj.getQlzxzh()), MyUtil.div(Double.parseDouble(jckwqgzsj.getQlqc()), 2000.0, 3))+"");//本项目起点
+			z.setZdzh(MyUtil.add(Double.parseDouble(jckwqgzsj.getQlzxzh()), MyUtil.div(Double.parseDouble(jckwqgzsj.getQlqc()), 2000.0, 3))+"");//本项目止点
 			z.setSfafsc("否");//是否安防审查，如果不是就是否
 			z.setXzqh(jckwqgzsj.getXzqhdm());//设置行政区划
 			//调用方法，返回历史信息
