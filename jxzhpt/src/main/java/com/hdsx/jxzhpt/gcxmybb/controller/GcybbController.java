@@ -2264,9 +2264,9 @@ public class GcybbController extends BaseActionSupport{
 			try {
 				if("1".equals(flag)){
 				ExcelData eldata=new ExcelData();//创建一个类
-				eldata.setTitleName("公路路网结构改造工程统计月报表(危桥改造工程)");//设置第一行
+				eldata.setTitleName("公路路网结构改造工程统计月报表（危桥改造工程）");//设置第一行
 				eldata.setSheetName("明细表");//设置sheeet名
-				eldata.setFileName("公路路网结构改造工程统计月报表(危桥改造工程)");//设置文件名
+				eldata.setFileName("公路路网结构改造工程统计月报表（危桥改造工程）");//设置文件名
 				
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				List<Excel_list> list=new ArrayList<Excel_list>();
@@ -2275,9 +2275,7 @@ public class GcybbController extends BaseActionSupport{
 					Excel_list exs=new Excel_list();
 					exs.setSsbb("wqgzybb");
 					exs.setName((String) session.getAttribute("nameValue"));
-					
 				    list=gcybbServer.getZdyBbzd(exs);
-				    
 				    String col=(String) session.getAttribute("colValue");
 				    String datalist=(String) session.getAttribute("sql");
 				    JSONArray ja = JSONArray.fromObject(datalist);  
@@ -2348,11 +2346,6 @@ public class GcybbController extends BaseActionSupport{
 				
 			}else{
 				
-				System.out.println("_____________________________________");
-				System.out.println(gcglabgc.getNf());
-				System.out.println(gcglabgc.getYf());
-				System.out.println("_____________________________________");
-				
 				String shijian="";
 				if(Integer.parseInt(gcglabgc.getYf())<=9){
 					shijian=gcglabgc.getNf()+"-0"+gcglabgc.getYf();
@@ -2360,10 +2353,6 @@ public class GcybbController extends BaseActionSupport{
 					shijian=gcglabgc.getNf()+"-"+gcglabgc.getYf();
 				}
 				gcglabgc.setSbyf(shijian);
-				
-				System.out.println("_____________________________________");
-				System.out.println(gcglabgc.getSbyf());
-				System.out.println("_____________________________________");
 			
 				String tiaojian1="";
 				String tiaojian2="";
@@ -2379,15 +2368,15 @@ public class GcybbController extends BaseActionSupport{
 				xzqhdm	= xzqh;
 				}
 				if(gydwdm.indexOf(",")==-1){
-					tiaojian1="and gydw like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
+					tiaojian1="and lx.gydwbm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 				}else{
-					tiaojian1=getcxtj("gydw",gydwdm);
+					tiaojian1=getcxtj("lx.gydwbm",gydwdm);
 					//tiaojian1="and gydw in ("+gydwdm+")";
 				}
 				if(xzqhdm.indexOf(",")==-1){
-					tiaojian2="and xzqh like '%"+xzqhdm+"%'";
+					tiaojian2="and lx.xzqhdm like '%"+xzqhdm+"%'";
 				}else{
-					tiaojian2=getcxtj("xzqh",xzqhdm);
+					tiaojian2=getcxtj("lx.xzqhdm",xzqhdm);
 					//tiaojian2="and xzqh in ("+xzqhdm+")";
 				}
 				gcglabgc.setGydw(tiaojian1);
@@ -2419,9 +2408,9 @@ public class GcybbController extends BaseActionSupport{
 			try {
 				if("1".equals(flag)){
 				ExcelData eldata=new ExcelData();//创建一个类
-				eldata.setTitleName("公路路网结构改造工程统计月报表(生命安全防护工程)");//设置第一行
+				eldata.setTitleName("公路路网结构改造工程统计月报表（生命安全防护工程）");//设置第一行
 				eldata.setSheetName("明细表");//设置sheeet名
-				eldata.setFileName("公路路网结构改造工程统计月报表(生命安全防护工程)");//设置文件名
+				eldata.setFileName("公路路网结构改造工程统计月报表（生命安全防护工程）");//设置文件名
 				
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				List<Excel_list> list=new ArrayList<Excel_list>();
@@ -2503,11 +2492,6 @@ public class GcybbController extends BaseActionSupport{
 				
 			}else{
 				
-				System.out.println("_____________________________________");
-				System.out.println(gcglabgc.getNf());
-				System.out.println(gcglabgc.getYf());
-				System.out.println("_____________________________________");
-				
 				String shijian="";
 				if(Integer.parseInt(gcglabgc.getYf())<=9){
 					shijian=gcglabgc.getNf()+"-0"+gcglabgc.getYf();
@@ -2515,12 +2499,7 @@ public class GcybbController extends BaseActionSupport{
 					shijian=gcglabgc.getNf()+"-"+gcglabgc.getYf();
 				}
 				gcglabgc.setSbyf(shijian);
-				
-				System.out.println("_____________________________________");
-				System.out.println(gcglabgc.getSbyf());
-				System.out.println("_____________________________________");
-				
-				
+	
 				String tiaojian1="";
 				String tiaojian2="";
 				String xzqhdm = "";
@@ -2574,9 +2553,9 @@ public class GcybbController extends BaseActionSupport{
 			try {
 				if("1".equals(flag)){
 				ExcelData eldata=new ExcelData();//创建一个类
-				eldata.setTitleName("公路路网结构改造工程统计月报表(灾害防治工程)");//设置第一行
+				eldata.setTitleName("公路路网结构改造工程统计月报表（灾害防治工程）");//设置第一行
 				eldata.setSheetName("明细表");//设置sheeet名
-				eldata.setFileName("公路路网结构改造工程统计月报表(灾害防治工程)");//设置文件名
+				eldata.setFileName("公路路网结构改造工程统计月报表（灾害防治工程）");//设置文件名
 				
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				List<Excel_list> list=new ArrayList<Excel_list>();
@@ -2658,11 +2637,6 @@ public class GcybbController extends BaseActionSupport{
 				
 			}else{
 				
-				System.out.println("_____________________________________");
-				System.out.println(gcglabgc.getNf());
-				System.out.println(gcglabgc.getYf());
-				System.out.println("_____________________________________");
-				
 				String shijian="";
 				if(Integer.parseInt(gcglabgc.getYf())<=9){
 					shijian=gcglabgc.getNf()+"-0"+gcglabgc.getYf();
@@ -2670,10 +2644,6 @@ public class GcybbController extends BaseActionSupport{
 					shijian=gcglabgc.getNf()+"-"+gcglabgc.getYf();
 				}
 				gcglabgc.setSbyf(shijian);
-				
-				System.out.println("_____________________________________");
-				System.out.println(gcglabgc.getSbyf());
-				System.out.println("_____________________________________");
 
 				String tiaojian1="";
 				String tiaojian2="";
@@ -2689,15 +2659,15 @@ public class GcybbController extends BaseActionSupport{
 				xzqhdm	= xzqh;
 				}
 				if(gydwdm.indexOf(",")==-1){
-					tiaojian1="and gydw like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
+					tiaojian1="and lx.gydwdm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 				}else{
-					tiaojian1=getcxtj("gydw",gydwdm);
+					tiaojian1=getcxtj("lx.gydwdm",gydwdm);
 					//tiaojian1="and gydw in ("+gydwdm+")";
 				}
 				if(xzqhdm.indexOf(",")==-1){
-					tiaojian2="and xzqh like '%"+xzqhdm+"%'";
+					tiaojian2="and lx.xzqhdm like '%"+xzqhdm+"%'";
 				}else{
-					tiaojian2=getcxtj("xzqh",xzqhdm);
+					tiaojian2=getcxtj("lx.xzqhdm",xzqhdm);
 					//tiaojian2="and xzqh in ("+xzqhdm+")";
 				}
 				gcglabgc.setGydw(tiaojian1);

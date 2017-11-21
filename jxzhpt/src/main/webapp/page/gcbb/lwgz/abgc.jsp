@@ -421,14 +421,17 @@ text-decoration:none;
 									<option id="yf10" value="10">10</option>
 									<option id="yf11" value="11">11</option>
 									<option id="yf12" value="12">12</option>
-								</select></td>
+								</select>
+								</td>
+								
 		        				<td align="right">项目名称：</td>
 		        				<td><input id="xmmc" type="text"  style="width: 75px"></td>
 		        				
 		        				<td align="right">原技术等级：</td>
 		        				<td><input id="yjsdj" type="text"  style="width: 54px"></td>
 		        				</tr>
-        							<tr height="32">
+		        				
+        						<tr height="32">
         						<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:150px;"></select></td>
         						<td align="right">项目年份：</td>
@@ -436,7 +439,7 @@ text-decoration:none;
         						<td align="right">原行政等级：</td>
         						<td><select id="xzdj" class="easyui-combobox" style="width:60px;">
         						</select></td>
-        						<td align="right">路线编码：</td>
+        						<td align="right">规划路线编码：</td>
         						<td><input id="lxmc" type="text"  style="width: 75px"></td>
 								<td align="right">建设技术标准：</td>
         						<td><input id="jsjsdj" type="text"  style="width: 54px"></td>

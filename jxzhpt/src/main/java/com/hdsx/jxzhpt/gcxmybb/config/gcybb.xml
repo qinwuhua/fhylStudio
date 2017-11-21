@@ -3901,6 +3901,15 @@
                   left join (select p.sckid,sum(g.bywc_gl) wclc, sum(g.wc_ztz) wcztz, sum(g.wc_btz)+sum(g.wc_stz) wcsbz,round( decode(sum(p.jhsybbzje),0,0,((sum(g.wc_btz)+sum(g.wc_stz))/sum(p.jhsybbzje))*100), 2) sbzzb from plan_af p left join gcgl_abgc g on p.id=g.jhid where substr(g.sbyf,0,4) in (#{nf}) group by p.sckid)n on n.sckid = lx.id
                   left join (select p.sckid,sum(g.bywc_gl) wclc, sum(g.wc_ztz) wcztz, sum(g.wc_btz)+sum(g.wc_stz) wcsbz,round( decode(sum(p.jhsybbzje),0,0,((sum(g.wc_btz)+sum(g.wc_stz))/sum(p.jhsybbzje))*100), 2) sbzzb from plan_af p left join gcgl_abgc g on p.id=g.jhid where to_date(g.sbyf,'yyyy-MM') &lt;= to_date(#{sbyf},'yyyy-MM') group by p.sckid)l on l.sckid = lx.id       
          where substr(jh.sbyf,0,4) in (#{nf}) and substr(jh.sbyf,6,2) in (#{yf})
+         	<if test="gydw != null and  gydw != ''">
+		        ${gydw}
+		    </if>
+		    <if test="xzqhdm != null and  xzqhdm != ''">
+		        ${xzqhdm}
+		    </if>
+		    <if test="lxmc != null and  lxmc != ''">
+		        and lxbm like '%'||trim(#{lxmc})||'%'
+		    </if>
 	</select>
 
 	<select id="getLwgzWqgzybb" parameterType="gcglabgc" resultType="elist">
@@ -3919,6 +3928,15 @@
                   left join (select p.sckid,nvl(sum(g.bywcmc),0) wcmc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz) + sum(g.wc_stz),0) wcsbz,round(decode(sum(p.jhsybzje),0,0,((sum(g.wc_btz) + sum(g.wc_stz)) /sum(p.jhsybzje)) * 100),2) sbzzb from plan_wqgz p left join gcgl_wqgz g on p.id = g.jhid where substr(g.sbyf, 0, 4) in (#{nf}) group by p.sckid) nl on nl.sckid = jh.sckid
                   left join (select p.sckid,nvl(sum(g.bywcmc),0) wcmc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz) + sum(g.wc_stz),0) wcsbz,round(decode(sum(p.jhsybzje),0,0,((sum(g.wc_btz) + sum(g.wc_stz)) /sum(p.jhsybzje)) * 100),2) sbzzb from plan_wqgz p left join gcgl_wqgz g on p.id = g.jhid where to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM') group by p.sckid) l on l.sckid = jh.sckid    
             where substr(gw.sbyf, 0, 4) in (#{nf}) and substr(gw.sbyf, 6, 2) in (#{yf})
+            <if test="gydw != null and  gydw != ''">
+		        ${gydw}
+		    </if>
+		    <if test="xzqhdm != null and  xzqhdm != ''">
+		        ${xzqhdm}
+		    </if>
+		    <if test="lxmc != null and  lxmc != ''">
+		        and lx.lxbm like '%'||trim(#{lxmc})||'%'
+		    </if>
 	</select>
 	
 	<select id="getLwgzZhfzybb" parameterType="gcglabgc" resultType="elist">
@@ -3937,6 +3955,15 @@
                   left join (select p.sckid,nvl(sum(g.bywcgl),0) wclc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz) + sum(g.wc_stz),0) wcsbz,nvl(round(decode(sum(p.jhsybzje),0,0,((sum(g.wc_btz) + sum(g.wc_stz)) /sum(p.jhsybzje)) * 100),2),0) sbzzb from plan_zhfz p left join gcgl_zhfz g on p.id = g.jhid where substr(g.sbyf, 0, 4) in (#{nf}) group by p.sckid) n on n.sckid = jh.sckid
                   left join (select p.sckid,nvl(sum(g.bywcgl),0) wclc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz) + sum(g.wc_stz),0) wcsbz,nvl(round(decode(sum(p.jhsybzje),0,0,((sum(g.wc_btz) + sum(g.wc_stz)) /sum(p.jhsybzje)) * 100),2),0) sbzzb from plan_zhfz p left join gcgl_zhfz g on p.id = g.jhid where to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM') group by p.sckid) l on l.sckid = jh.sckid    
   where substr(gw.sbyf, 0, 4) in (#{nf}) and substr(gw.sbyf, 6, 2) in (#{yf})
+            <if test="gydw != null and  gydw != ''">
+		        ${gydw}
+		    </if>
+		    <if test="xzqhdm != null and  xzqhdm != ''">
+		        ${xzqhdm}
+		    </if>
+		    <if test="lxmc != null and  lxmc != ''">
+		        and lx.lxbm like '%'||trim(#{lxmc})||'%'
+		    </if>
 	</select>
 	
 	<select id="getJhzxqkb" parameterType="gcglabgc" resultType="elist">

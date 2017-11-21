@@ -18,7 +18,7 @@
         "text": "本月完成",
         "iconCls":"icon-none",     
 	    "children": [{    
-	        "id": "24v_15",
+	        "id": "21v_15",
 	        "value":"v_15",    
 	        "text": "里程（公里）",
 	        "iconCls":"icon-none"   
