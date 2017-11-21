@@ -3877,6 +3877,7 @@
 		    </if>
 		    ) tb
 	</select>
+	
 	<select id="getLwgzAbgcybb" parameterType="gcglabgc" resultType="elist">
 	select to_char(rownum) v_0, lx.lxbm v_1,  decode(lx.lxmc,'','',concat(lx.lxmc, lx.lxbm)) v_2, lx.qdzh v_3,
 	lx.zdzh v_4,xa.ylxbm v_5,xa.yqdzh v_6,xa.yzdzh v_7,
@@ -3901,10 +3902,48 @@
                   left join (select p.sckid,sum(g.bywc_gl) wclc, sum(g.wc_ztz) wcztz, sum(g.wc_btz)+sum(g.wc_stz) wcsbz,round( decode(sum(p.jhsybbzje),0,0,((sum(g.wc_btz)+sum(g.wc_stz))/sum(p.jhsybbzje))*100), 2) sbzzb from plan_af p left join gcgl_abgc g on p.id=g.jhid where to_date(g.sbyf,'yyyy-MM') &lt;= to_date(#{sbyf},'yyyy-MM') group by p.sckid)l on l.sckid = lx.id       
          where substr(jh.sbyf,0,4) in (#{nf}) and substr(jh.sbyf,6,2) in (#{yf})
 	</select>
+
+	<select id="getLwgzWqgzybb" parameterType="gcglabgc" resultType="elist">
+	select to_char(rownum) v_0, lx.qlmc v_1, lx.qlbh v_2,lx.xqlbm v_3,decode(substr(lx.qlzxzh, 1, 1), '.','0' || lx.qlzxzh,lx.qlzxzh) v_4,
+       decode(substr(lx.xzxzh, 1, 1),'.','0' || lx.xzxzh,lx.xzxzh) v_5, lx.lxbm v_6,lx.xlxbm v_7,lx.qlqc v_8,sc.jsxz v_9,jh.pfwh v_10,
+       lx.gydw v_11,t.ztz v_12,t.btz v_13,t.stz v_14,jh.jhkgsj v_15, jh.jhwgsj v_16,gw.bywcmc v_17, nvl(gw.wc_ztz,0) v_18, 
+       nvl(gw.wc_btz+gw.wc_stz,0) v_19,round(decode(jh.jhsybzje, 0, 0,((gw.wc_btz + gw.wc_stz) / jh.jhsybzje) * 100)) v_20,
+       nl.wcmc v_21, nl.wcztz v_22,nl.wcsbz v_23,nl.sbzzb v_24,
+       l.wcmc v_25,l.wcztz v_26, l.wcsbz v_27, l.sbzzb v_28,jh.xfsj v_29, jh.jhxdwh v_30, 
+       decode(jh.kgzt, '1', '已完工', '在建') v_31, gw.issj v_32, gw.iszh v_33, jh.bz v_34  
+                  from plan_wqgz jh
+                  left join sck_wqgz sc on (jh.sckid = sc.sckid)
+                  left join xmk_wqgz lx on (sc.xmkid = lx.id)
+                  left join (select t.*,g.issj from gcgl_wqgz t left join gcgl_jgys g on t.jhid = g.jhid) gw on gw.jhid = jh.id
+                  left join (select g.jhid, nvl(sum(g.wc_ztz),0) ztz ,nvl(sum(g.wc_btz),0) btz,nvl(sum(g.wc_stz),0) stz from gcgl_wqgz g group by g.jhid) t on t.jhid = jh.id
+                  left join (select p.sckid,nvl(sum(g.bywcmc),0) wcmc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz) + sum(g.wc_stz),0) wcsbz,round(decode(sum(p.jhsybzje),0,0,((sum(g.wc_btz) + sum(g.wc_stz)) /sum(p.jhsybzje)) * 100),2) sbzzb from plan_wqgz p left join gcgl_wqgz g on p.id = g.jhid where substr(g.sbyf, 0, 4) in (#{nf}) group by p.sckid) nl on nl.sckid = jh.sckid
+                  left join (select p.sckid,nvl(sum(g.bywcmc),0) wcmc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz) + sum(g.wc_stz),0) wcsbz,round(decode(sum(p.jhsybzje),0,0,((sum(g.wc_btz) + sum(g.wc_stz)) /sum(p.jhsybzje)) * 100),2) sbzzb from plan_wqgz p left join gcgl_wqgz g on p.id = g.jhid where to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM') group by p.sckid) l on l.sckid = jh.sckid    
+            where substr(gw.sbyf, 0, 4) in (#{nf}) and substr(gw.sbyf, 6, 2) in (#{yf})
+            <if test="gydw != null and  gydw != ''">
+		        ${gydw}
+		    </if>
+		    <if test="xzqhdm != null and  xzqhdm != ''">
+		        ${xzqhdm}
+		    </if>
+	</select>
 	
-	
-	
-	
+	<select id="getLwgzZhfzybb" parameterType="gcglabgc" resultType="elist">
+      select to_char(rownum) v_0, lx.lxbm v_1, decode(lx.lxmc,'','',concat(lx.lxmc, lx.lxbm)) v_2,
+             decode(substr(lx.qdzh, 1, 1),'.','0' || lx.qdzh,lx.qdzh) v_3,decode(substr(lx.zdzh, 1, 1),'.','0' || lx.zdzh,lx.zdzh) v_4,
+             lx.ylxbm v_5, decode(substr(lx.yqdzh, 1, 1),'.','0' || lx.yqdzh,lx.yqdzh) v_6, decode(substr(lx.yzdzh, 1, 1),'.','0' || lx.yzdzh,lx.yzdzh) v_7,
+             lx.yhlc v_8, jh.pfwh v_9, lx.gydw v_10, gz.ztz v_11, gz.btz v_12,jh.jhkgsj v_13,jh.jhwgsj v_14, 
+             nvl(gw.bywcgl,0) v_15, nvl(gw.wc_ztz,0) v_16, nvl(gw.wc_btz+gw.wc_stz,0) v_17, nvl(round(decode(jh.jhsybzje,0,0,((gw.wc_btz+gw.wc_stz)/jh.jhsybzje)*100)),0) v_18,
+             n.wclc v_19, n.wcztz v_20,n.wcsbz v_21,n.sbzzb v_22,l.wclc v_23,l.wcztz v_24, l.wcsbz v_25,l.sbzzb v_26, 
+             jh.xdsj v_27, jh.jhxdwh v_28,decode(jh.kgzt, '1', '已完工', '在建') v_31, gw.issj v_32, gw.iszh v_33    
+                  from plan_zhfz jh
+                  left join sck_zhfz sc on (jh.sckid = sc.sckid)
+                  left join xmk_zhfz lx on (sc.xmkid = lx.id)
+                  left join (select t.*,g.issj from gcgl_zhfz t left join gcgl_jgys g on t.id = g.jhid) gw on gw.jhid = jh.id    
+                  left join (select g.jhid, nvl(sum(g.wc_ztz),0) ztz, nvl(sum(g.wc_btz)+sum(g.wc_stz),0) btz  from gcgl_zhfz g group by g.jhid) gz on gz.jhid = jh.id
+                  left join (select p.sckid,nvl(sum(g.bywcgl),0) wclc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz) + sum(g.wc_stz),0) wcsbz,nvl(round(decode(sum(p.jhsybzje),0,0,((sum(g.wc_btz) + sum(g.wc_stz)) /sum(p.jhsybzje)) * 100),2),0) sbzzb from plan_zhfz p left join gcgl_zhfz g on p.id = g.jhid where substr(g.sbyf, 0, 4) in (#{nf}) group by p.sckid) n on n.sckid = jh.sckid
+                  left join (select p.sckid,nvl(sum(g.bywcgl),0) wclc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz) + sum(g.wc_stz),0) wcsbz,nvl(round(decode(sum(p.jhsybzje),0,0,((sum(g.wc_btz) + sum(g.wc_stz)) /sum(p.jhsybzje)) * 100),2),0) sbzzb from plan_zhfz p left join gcgl_zhfz g on p.id = g.jhid where to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM') group by p.sckid) l on l.sckid = jh.sckid    
+  where substr(gw.sbyf, 0, 4) in (#{nf}) and substr(gw.sbyf, 6, 2) in (#{yf})
+	</select>
 	
 	<select id="getJhzxqkb" parameterType="gcglabgc" resultType="elist">
 		select  
@@ -4255,6 +4294,4 @@
 		order by xh
 
 	</select>
-	
-	
 </mapper>

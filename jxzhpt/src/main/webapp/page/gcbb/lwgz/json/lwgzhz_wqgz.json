@@ -1,0 +1,93 @@
+[{   
+    "id": "2",  
+    "text": "二、 危桥改造",    
+    "state": "open",
+    "iconCls":"icon-none",     
+    "children": [{    
+        "id": "21",
+        "text": "计划下达情况",
+        "iconCls":"icon-none",     
+	    "children": [{    
+	        "id": "21v_1",
+	        "value":"v_1",    
+	        "text": "计划（座）",
+	        "iconCls":"icon-none"   
+	    },{
+	    	"id": "21v_2",
+	        "value":"v_2",    
+	        "text": "计划延米（米）",
+	        "iconCls":"icon-none"  
+	    },{
+	    	"id": "21v_3",
+	        "value":"v_3",    
+	        "text": "总投资（万元）",
+	        "iconCls":"icon-none"
+	    },{
+	       	"id": "21v_4",
+	        "value":"v_4",    
+	        "text": "中央车购税（万元）",
+	        "iconCls":"icon-none"
+	    },{
+	    	"id": "21v_5",
+	        "value":"v_5",    
+	        "text": "省级补助资金（万元）",
+	        "iconCls":"icon-none"
+	    },{
+	    	"id": "21v_6",
+	        "value":"v_6",    
+	        "text": "本年目标（座）",
+	        "iconCls":"icon-none"
+	    },{
+	        "id": "22",
+            "text": "实施情况",
+            "state": "open",
+            "iconCls":"icon-none",     
+	        "children": [{    
+	            "id": "22v_7",
+	            "value":"v_7",    
+	            "text": "累计完成（座）",
+	            "iconCls":"icon-none" 
+	        },{
+	            "id": "22v_8",
+	            "value":"v_8",    
+	            "text": "累计完成延米（米）",
+	            "iconCls":"icon-none" 
+	        },{
+	        	"id": "22v_9",
+	            "value":"v_9",    
+	            "text": "累计完成总投资（万元）",
+	            "iconCls":"icon-none" 
+	        },{
+	        	"id": "22v_10",
+	            "value":"v_10",    
+	            "text": "已开工（座）",
+	            "iconCls":"icon-none" 
+	        },{
+	        	"id": "22v_11",
+	            "value":"v_11",    
+	            "text": "未开工（座）",
+	            "iconCls":"icon-none" 
+	        },{
+	        	"id": "22v_12",
+	            "value":"v_12",    
+	            "text": "本年完成（座）",
+	            "iconCls":"icon-none" 
+	        },{
+	        	"id": "22v_13",
+	            "value":"v_13",    
+	            "text": "本年完成延米（米）",
+	            "iconCls":"icon-none" 
+	        },{
+	        	"id": "22v_14",
+	            "value":"v_14",    
+	            "text": "本年完成总投资（万元）",
+	            "iconCls":"icon-none" 
+	        },{
+	        	"id": "22v_15",
+	            "value":"v_15",    
+	            "text": "完成比例",
+	            "iconCls":"icon-none" 
+	        }]
+	    }]   
+    }]    
+}]  
