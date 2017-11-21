@@ -2262,21 +2262,22 @@ public class GcybbController extends BaseActionSupport{
         //		
 		public void getLwgzWqgzybb(){
 			try {
-				//点击导出EXCEL按钮
 				if("1".equals(flag)){
 				ExcelData eldata=new ExcelData();//创建一个类
 				eldata.setTitleName("公路路网结构改造工程统计月报表(危桥改造工程)");//设置第一行
 				eldata.setSheetName("明细表");//设置sheeet名
-			    eldata.setFileName("公路路网结构改造工程统计月报表(危桥改造工程)");//设置文件名
-
+				eldata.setFileName("公路路网结构改造工程统计月报表(危桥改造工程)");//设置文件名
+				
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				List<Excel_list> list=new ArrayList<Excel_list>();
 		    	  	HttpServletRequest request = ServletActionContext.getRequest();
 					HttpSession session = request.getSession();
 					Excel_list exs=new Excel_list();
-					exs.setSsbb("wqgzybb");								
+					exs.setSsbb("wqgzybb");
 					exs.setName((String) session.getAttribute("nameValue"));
+					
 				    list=gcybbServer.getZdyBbzd(exs);
+				    
 				    String col=(String) session.getAttribute("colValue");
 				    String datalist=(String) session.getAttribute("sql");
 				    JSONArray ja = JSONArray.fromObject(datalist);  
@@ -2284,6 +2285,7 @@ public class GcybbController extends BaseActionSupport{
 					List<Excel_list> list1 = (List<Excel_list>) JSONArray.toList(ja,
 							new Excel_list(), new JsonConfig());
 		    	//以上代码就是为了获取SQL语句的查询结果，并且封装到了一个实体里面。以下的这一段代码是在拼接表头。
+					
 			      int rowxh=0,col1=0,col2=0;
 			      int colint=0;
 			      int a[][]=new int[4][81];
@@ -2296,6 +2298,8 @@ public class GcybbController extends BaseActionSupport{
 			    	  }
 			    	  list.get(i).setRow1(Integer.parseInt(list.get(i).getRowxh())-1);
 			    	  list.get(i).setRow2(Integer.parseInt(list.get(i).getRowxh())-1+Integer.parseInt(list.get(i).getHight())-1);
+			    	 
+			    	 
 			    	  while(a[rowxh][col1]!=0){
 			    		 col1=col1+a[rowxh][col1];
 			    	  }
@@ -2310,15 +2314,19 @@ public class GcybbController extends BaseActionSupport{
 			    			  flag=1;
 			    		  }
 			    	  }
+			    	  
 			    	  list.get(i).setCol1(col1);
 			    	  col2=col1+Integer.parseInt(list.get(i).getCo())-1;
 			    	  list.get(i).setCol2(col2);
 			    	  col1=col1+Integer.parseInt(list.get(i).getCo());
-			      }		      
+			      }
+			      
 			      for (Excel_list ex : list) {
 			    	  System.out.println(ex.getRow1()+"  "+ex.getRow2()+"   "+ex.getCol1()+"   "+ex.getCol2());
 			    	  et.add(new Excel_tilte(ex.getName(),ex.getRow1()+1,ex.getRow2()+1,ex.getCol1(),ex.getCol2()));
 			      }
+			      
+			     
 			      String[] ls=col.split(",");
 			      List<Excel_list> elst=new ArrayList<Excel_list>();
 			      for (Excel_list els : list1) {
@@ -2333,13 +2341,13 @@ public class GcybbController extends BaseActionSupport{
 			    	elst.add(els1);  
 				}
 			      eldata.setEl(elst);//将实体list放入类中
+				    
 				eldata.setEt(et);//将表头内容设置到类里面
 				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 				Excel_export.excel_exportGlgzxj(eldata,response);
 				
 			}else{
 				
-				//点击查询按钮
 				System.out.println("_____________________________________");
 				System.out.println(gcglabgc.getNf());
 				System.out.println(gcglabgc.getYf());
@@ -2398,7 +2406,8 @@ public class GcybbController extends BaseActionSupport{
 				gcglabgc.setBnjhtz(getcxtj1("v_28",gcglabgc.getBnjhtz()));
 				gcglabgc.setBndsslc(getcxtj1("v_30",gcglabgc.getBndsslc()));*/
 				//查总合list
-				List<Excel_list> list1=gcybbServer.getLwgzWqgzybb(gcglabgc);			
+				List<Excel_list> list1=gcybbServer.getLwgzWqgzybb(gcglabgc);
+				
 				JsonUtils.write(list1, getresponse().getWriter());
                }                                                     
 			} catch (Exception e) {

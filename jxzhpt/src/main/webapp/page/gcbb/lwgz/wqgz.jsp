@@ -274,7 +274,7 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 	+"&gcglabgc.bndsslc="+$("#bndsslc").val();
 	loadjzt();
 	 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr,nameValue:str1,colValue:str2,sql:json_data},function(){
-		window.location.href='/jxzhpt/gcybb/getLwgzybb.do?'+data;
+		window.location.href='/jxzhpt/gcybb/getLwgzWqgzybb.do?'+data;
 	 }); 
 	 setTimeout('disLoadjzt()',4000);
 }
@@ -331,7 +331,7 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 
 	loadjzt();
 	$.ajax({
-		url:"/jxzhpt/gcybb/getLwgzybb.do",
+		url:"/jxzhpt/gcybb/getLwgzWqgzybb.do",
 		data:data,
 		type:"post",
 		dataType:"JSON",
