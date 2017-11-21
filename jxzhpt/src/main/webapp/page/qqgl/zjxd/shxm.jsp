@@ -547,7 +547,7 @@
 			"&jhsh.ghlxbh="+$("#lxbm").combotree('getText')+"&jhsh.lxmc="+$("#lxmc").val()+
 			"&jhsh.ghxlxbm="+$("#ghlxbm").combotree('getText')+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+
 			"&jhsh.lsjl="+$("#lsjl").combobox("getValue")+"&jhsh.jhxdwh="+jhxdwh
-			+"&jhsh.xmbm="+$('#scxdnf').combobox("getValues").join(',')+'&jhsh.xdzttj='+xdzt+'&jhsh.xdsj='+$('#xdsj').datebox('getValue')
+			+'&jhsh.xdzttj='+xdzt+'&jhsh.xdsj='+$('#xdsj').datebox('getValue')
 			+"&jhsh.zydpx="+$('#zydpx').combobox("getValue")+"&jhsh.xmbm="+$('#xmbm').val();
 			window.location.href="/jxzhpt/qqgl/exportJhshShExcel.do?"+param;
 		}
