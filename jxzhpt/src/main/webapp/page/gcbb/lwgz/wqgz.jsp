@@ -390,7 +390,7 @@ text-decoration:none;
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 					<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;生成报表>&nbsp;月报表>&nbsp;公路路网结构改造工程(危桥改造)统计月报表</div>
+						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;生成报表>&nbsp;月报表>&nbsp;公路路网结构改造工程（危桥改造）统计月报表</div>
 					</div>
         	</tr>
         	<tr>
@@ -487,11 +487,11 @@ text-decoration:none;
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table id='bbtable' width="8000px">
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">公路路网结构改造工程(安保工程)统计月报表</caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">公路路网结构改造工程（危桥改造）统计月报表</caption>
 								<tbody id='biaotou'>
 									<tr>
-										<td colspan="15">省局批复情况</td>
-										<td colspan="20">实施情况</td>
+										<td colspan="13">省局批复情况</td>
+										<td colspan="19">实施情况</td>
 									</tr>
 									<tr>
 										<td rowspan="3" style="width: 125px;">序号</td>
