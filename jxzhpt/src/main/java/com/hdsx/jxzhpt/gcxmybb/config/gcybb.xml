@@ -3919,12 +3919,6 @@
                   left join (select p.sckid,nvl(sum(g.bywcmc),0) wcmc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz) + sum(g.wc_stz),0) wcsbz,round(decode(sum(p.jhsybzje),0,0,((sum(g.wc_btz) + sum(g.wc_stz)) /sum(p.jhsybzje)) * 100),2) sbzzb from plan_wqgz p left join gcgl_wqgz g on p.id = g.jhid where substr(g.sbyf, 0, 4) in (#{nf}) group by p.sckid) nl on nl.sckid = jh.sckid
                   left join (select p.sckid,nvl(sum(g.bywcmc),0) wcmc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz) + sum(g.wc_stz),0) wcsbz,round(decode(sum(p.jhsybzje),0,0,((sum(g.wc_btz) + sum(g.wc_stz)) /sum(p.jhsybzje)) * 100),2) sbzzb from plan_wqgz p left join gcgl_wqgz g on p.id = g.jhid where to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM') group by p.sckid) l on l.sckid = jh.sckid    
             where substr(gw.sbyf, 0, 4) in (#{nf}) and substr(gw.sbyf, 6, 2) in (#{yf})
-            <if test="gydw != null and  gydw != ''">
-		        ${gydw}
-		    </if>
-		    <if test="xzqhdm != null and  xzqhdm != ''">
-		        ${xzqhdm}
-		    </if>
 	</select>
 	
 	<select id="getLwgzZhfzybb" parameterType="gcglabgc" resultType="elist">
