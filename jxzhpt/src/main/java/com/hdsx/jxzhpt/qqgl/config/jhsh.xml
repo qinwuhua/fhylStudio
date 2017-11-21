@@ -8247,6 +8247,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 					and ${xzdj}
 				</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="xdzt>=0">and j.xdzt=${xdzt}</if>
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
@@ -8369,6 +8370,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 					and ${xzdj}
 				</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="xdzt>=0">and j.xdzt=${xdzt}</if>
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
@@ -8475,6 +8477,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 					and ${xzdj}
 				</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="xdzt>=0">and j.xdzt=${xdzt}</if>
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
