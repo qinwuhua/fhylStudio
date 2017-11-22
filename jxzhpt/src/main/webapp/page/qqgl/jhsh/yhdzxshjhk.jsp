@@ -67,7 +67,7 @@
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,'jhsh.gyfl':$('#gyfl').val(),
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText').toUpperCase( ),'jhsh.lxmc':$('#lxmc').val(),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText').toUpperCase( ),'jhsh.ghxlxmc':$('#ghlxmc').val(),
-					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':jhxdwh,'jhsh.scxdnf':1,'jhsh.xmbm':$('#xmbm').val()};
+					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':jhxdwh,'jhsh.scxdnf':1,'jhsh.xmbm':$('#xmbm').val(),'jhsh.zydpx':$('#zydpx').combobox("getValue")};
 			grid.queryParams=params;
 			loadLj(params);
 			grid.height=$(window).height()-220;
@@ -152,7 +152,8 @@
 				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
 				{field:'sjpfwh',title:'施工图批复文号',width:100,align:'center'},
 				{field:'jhkgsj',title:'计划开工时间',width:70,align:'center'},
-				{field:'jhwgsj',title:'计划完工时间',width:70,align:'center'}/* , */
+				{field:'jhwgsj',title:'计划完工时间',width:70,align:'center'},
+				{field:'zydpx',title:'重要度排序',width:70,align:'center'}/* , */
 				/* {field:'mc',title:'面层结构',width:300,align:'center',
 					formatter:function(value,row,index){
 						return "路面类型："+row.mclmlx+";面层材料："+row.mclx+";面层数量："+row.mcsl+";面层金额："+row.mcje;
@@ -248,7 +249,7 @@
 			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+'&jhsh.jhxdwh='+jhxdwh+
 			'&jhsh.xmnf='+xmnf+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.scxdnf='+1+
 			'&jhsh.sfsycgs='+$('#sfsycgs').combobox("getValue")+'&jhsh.xmlx1='+xmlx+'&jhsh.xzdj='+$('#gldj').combobox("getValues").join(',')+
-			'&jhsh.gyfl='+$('#gyfl').val()+'&jhsh.xmbm='+$('#xmbm').val();
+			'&jhsh.gyfl='+$('#gyfl').val()+'&jhsh.xmbm='+$('#xmbm').val()+'&jhsh.zydpx='+$('#zydpx').combobox("getValue");
 			
 			
 			window.location.href="/jxzhpt/qqgl/exportJhshYhdzxExcel1.do?"+param;
@@ -297,7 +298,7 @@
 			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+'&jhsh.jhxdwh='+jhxdwh+
 			'&jhsh.xmnf='+xmnf+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.scxdnf='+1+
 			'&jhsh.sfsycgs='+$('#sfsycgs').combobox("getValue")+'&jhsh.xmlx1='+xmlx+'&jhsh.xzdj='+$('#gldj').combobox("getValues").join(',')+
-			'&jhsh.gyfl='+$('#gyfl').val()+'&jhsh.xmbm='+$('#xmbm').val();
+			'&jhsh.gyfl='+$('#gyfl').val()+'&jhsh.xmbm='+$('#xmbm').val()+'&jhsh.zydpx='+$('#zydpx').combobox("getValue");
 			
 			window.location.href="/jxzhpt/qqgl/exportJhshYhdzxDetailExcel1.do?"+param;
 		}
@@ -472,6 +473,13 @@ text-decoration:none;
 								<td>
 									<input name="xmbm" type="text" id="xmbm" style="width:118px;" />
 								</td>
+							<td align="right">重要度排序：</td>
+        						<td><select name="zydpx" id="zydpx" class="easyui-combobox" style="width:75px;">
+		                              	<option value="" selected>请选择</option>
+										<option value="升序">升序</option>
+										<option value="降序">降序</option>
+									</select>
+        						</td>
         					</tr><tr height="29">
        						<td colspan="8">
        							

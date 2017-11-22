@@ -57,7 +57,7 @@
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),
 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.zydpx':$('#zydpx').combobox('getValue'),
-					'jhsh.sbzt':$('#sbzt').combobox("getValue"),'jhsh.xmklx':$('#xmklx').combobox('getValue')
+					'jhsh.sbzt':$('#sbzt').combobox("getValue"),'jhsh.xmbm':$('#xmbm').val(),'jhsh.xmklx':$('#xmklx').combobox('getValue')
 					};
 			else
 				params={'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
@@ -66,7 +66,7 @@
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),
 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.zydpx':$('#zydpx').combobox('getValue'),
-					'jhsh.sbzt':$('#sbzt').combobox("getValue"),'jhsh.xmklx':$('#xmklx').combobox('getValue')
+					'jhsh.sbzt':$('#sbzt').combobox("getValue"),'jhsh.xmbm':$('#xmbm').val(),'jhsh.xmklx':$('#xmklx').combobox('getValue')
 					};
 			grid.queryParams=params;
  			loadLj(params);
@@ -232,14 +232,14 @@
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
 			
-			  var param='jhsh.xmbm='+xmnf+'&jhsh.xmlx1='+xmlx
+			  var param='jhsh.xmnf='+xmnf+'&jhsh.xmlx1='+xmlx
 				+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#lxbm').combotree('getText')
 				+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+tsdq
 				+'&jhsh.jsdj='+$('#jsdj').combobox("getValues").join(",")+'&lsjl='+$('#lsjl').combobox("getValue")
 				+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+'&jhsh.jsjsdj='+$("#jsjsdj").combobox("getValues").join(",")
-				+'&jhsh.xmnf='+xmnf+'&jhsh.xmklx='+$('#xmklx').combobox('getValue')+'&jhsh.zydpx='+$('#zydpx').combobox('getValue')
+				+'&jhsh.xmnf='+xmnf+'&jhsh.xmklx='+$('#xmklx').combobox('getValue')+'&jhsh.xmbm='+$('#xmbm').val()+'&jhsh.zydpx='+$('#zydpx').combobox('getValue')
 				+'&jhsh.sbzt='+$('#sbzt').combobox('getValue'); 
-			
+			alert(param);
 			window.location.href="/jxzhpt/qqgl/queryGsdgz_dcexcelsb.do?"+param;
 		}
 		$(window).resize(function () { 
@@ -407,6 +407,10 @@ text-decoration:none;
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
 									</select>
+								</td>
+								<td align="right">项目编码：</td>
+								<td>
+									<input name="xmbm" type="text" id="xmbm" style="width:118px;" />
 								</td>
                             	<!-- <td align="right">技术等级：</td>
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:104px;"></select></td>

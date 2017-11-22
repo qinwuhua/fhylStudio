@@ -274,14 +274,14 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 	+"&gcglabgc.bndsslc="+$("#bndsslc").val();
 	loadjzt();
 	 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr,nameValue:str1,colValue:str2,sql:json_data},function(){
-		window.location.href='/jxzhpt/gcybb/getLwgzAbgcybb.do?'+data;
+		window.location.href='/jxzhpt/gcybb/getLwgzWqgzybb.do?'+data;
 	 }); 
 	 setTimeout('disLoadjzt()',4000);
 }
 
 function wcmxb(){
 	YMLib.Var.flag='';
-	YMLib.UI.createWindow('zdybb','公路路网结构改造工程(安保工程)统计月报表字段选择','abgc_zd.jsp','zdybb','680','380');
+	YMLib.UI.createWindow('zdybb','公路路网结构改造工程(危桥改造)统计月报表字段选择','wqgz_zd.jsp','zdybb','680','380');
 }
 
 function showBb(ss){
@@ -331,7 +331,7 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 
 	loadjzt();
 	$.ajax({
-		url:"/jxzhpt/gcybb/getLwgzAbgcybb.do",
+		url:"/jxzhpt/gcybb/getLwgzWqgzybb.do",
 		data:data,
 		type:"post",
 		dataType:"JSON",
@@ -390,7 +390,7 @@ text-decoration:none;
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 					<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;生成报表>&nbsp;月报表>&nbsp;公路路网结构改造工程（安保工程）统计月报表</div>
+						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;生成报表>&nbsp;月报表>&nbsp;公路路网结构改造工程（危桥改造）统计月报表</div>
 					</div>
         	</tr>
         	<tr>
@@ -421,16 +421,13 @@ text-decoration:none;
 									<option id="yf10" value="10">10</option>
 									<option id="yf11" value="11">11</option>
 									<option id="yf12" value="12">12</option>
-								</select>
-								</td>
-								
+								</select></td>
 		        				<td align="right">项目名称：</td>
 		        				<td><input id="xmmc" type="text"  style="width: 75px"></td>
 		        				
 		        				<td align="right">原技术等级：</td>
 		        				<td><input id="yjsdj" type="text"  style="width: 54px"></td>
 		        				</tr>
-		        				
         						<tr height="32">
         						<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:150px;"></select></td>
@@ -439,7 +436,7 @@ text-decoration:none;
         						<td align="right">原行政等级：</td>
         						<td><select id="xzdj" class="easyui-combobox" style="width:60px;">
         						</select></td>
-        						<td align="right">规划路线编码：</td>
+        						<td align="right">路线编码：</td>
         						<td><input id="lxmc" type="text"  style="width: 75px"></td>
 								<td align="right">建设技术标准：</td>
         						<td><input id="jsjsdj" type="text"  style="width: 54px"></td>
@@ -490,52 +487,45 @@ text-decoration:none;
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table id='bbtable' width="8000px">
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">公路路网结构改造工程（安保工程）统计月报表</caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">公路路网结构改造工程（危桥改造）统计月报表</caption>
 								<tbody id='biaotou'>
 									<tr>
-										<td colspan="13">省路局养护工程批复情况</td>
-										<td colspan="31">实施情况</td>
+										<td colspan="13">省局批复情况</td>
+										<td colspan="19">实施情况</td>
 									</tr>
 									<tr>
-									
-										<td rowspan="2" style="width: 125px;">序号</td>
-										<td rowspan="2" style="width: 125px;">规划路线编码</td>
-										<td rowspan="2" style="width: 125px;">工程项目名称</td>
-										<td rowspan="2" style="width: 125px;">规划起点桩号</td>
-										<td rowspan="2" style="width: 125px;">规划止点桩号</td>
-										<td rowspan="2" style="width: 125px;">原路线编码</td>
-										<td rowspan="2" style="width: 125px;">原起点桩号</td>
-										<td rowspan="2" style="width: 125px;">原止点桩号</td>
-										<td rowspan="2" style="width: 125px;">隐患里程（公里）</td>
-										<td rowspan="2" style="width: 125px;">批复文号</td>
-										<td rowspan="2" style="width: 125px;">所在地（分局）</td>
-										<td colspan="2" style="width: 125px;">投资</td>
-										<td rowspan="2" style="width: 125px;">计划开工时间</td>
-										<td rowspan="2" style="width: 125px;">计划完工时间</td>
+										<td rowspan="3" style="width: 125px;">序号</td>
+										<td rowspan="3" style="width: 125px;">桥梁名称</td>
+										<td rowspan="3" style="width: 125px;">桥梁代码</td>
+										<td rowspan="3" style="width: 125px;">原桥梁编码</td>
+										<td rowspan="3" style="width: 125px;">桥梁中心桩号</td>
+										<td rowspan="3" style="width: 125px;">原桥梁中心桩号</td>
+										<td rowspan="3" style="width: 125px;">所属路线编号</td>
+										<td rowspan="3" style="width: 125px;">原路线编码</td>
+										<td rowspan="3" style="width: 125px;">桥梁全长（延米）</td>
+										<td rowspan="3" style="width: 125px;">建设性质</td>
+										<td rowspan="3" style="width: 125px;">批复文号</td>
+										<td rowspan="3" style="width: 125px;">所属分局</td>
+										<td colspan="3" style="width: 125px;">投资</td>	
+										<td rowspan="3" style="width: 125px;">计划开工时间</td>
+										<td rowspan="3" style="width: 125px;">计划完工时间</td>				
 										<td colspan="4" style="width: 125px;">本月完成</td>
 										<td colspan="4" style="width: 125px;">本年完成</td>
-										<td colspan="4" style="width: 125px;">至本月累计完成</td>
-										<td rowspan="2" style="width: 125px;">计划下达年份</td>
-										<td rowspan="2" style="width: 125px;">计划下达文号</td>										
-										<td rowspan="2" style="width: 125px;">开工状态</td>
-										<td rowspan="2" style="width: 125px;">交工证书是否上报省局</td>
-										<td rowspan="2" style="width: 125px;">进度是否滞后</td>
+										<td colspan="4" style="width: 125px;">累计完成</td>
+										<td rowspan="3" style="width: 125px;">计划下达年份</td>
+										<td rowspan="3" style="width: 125px;">计划下达文号</td>										
+										<td rowspan="3" style="width: 125px;">开工状态</td>
+										<td rowspan="3" style="width: 125px;">交工证书是否上报省局</td>
+										<td rowspan="3" style="width: 125px;">进度是否滞后</td>
+										<td rowspan="3" style="width: 125px;">备注</td>
 									</tr>	
 									<tr>
-										<td style="width: 100px;">总投资（万元）</td>
-										<td style="width: 100px;">其中省级以上补助资金（万元）</td>
-										<td style="width: 100px;">里程（公里）</td>
-										<td style="width: 100px;">完成总投资（万元）</td>
-										<td style="width: 100px;">完成省级以上补助资金（万元）</td>
-										<td style="width: 100px;">省级以上补助完成比例（%）</td>		
-									    <td style="width: 100px;">里程（公里）</td>
-										<td style="width: 100px;">完成总投资（万元）</td>
-										<td style="width: 100px;">完成省级以上补助资金（万元）</td>
-										<td style="width: 100px;">省级以上补助完成比例（%）</td>									
-										<td style="width: 100px;">里程（公里）</td>
-										<td style="width: 100px;">完成总投资（万元）</td>
-										<td style="width: 100px;">完成省级以上补助资金（万元）</td>
-										<td style="width: 100px;">省级以上补助完成比例（%）</td>
+										<td rowspan="2" style="width: 100px;">总投资（万元）</td>
+										<td colspan="2" style="width: 100px;">其中省级以上补助资金（万元）</td>
+									</tr>
+									<tr>
+										<td style="width: 80px;">中央车购税资金（万元）</td>
+										<td style="width: 80px;">省级补助资金（万元）</td>
 									</tr>
 								</tbody>
 								<tbody id="abgclist"></tbody>

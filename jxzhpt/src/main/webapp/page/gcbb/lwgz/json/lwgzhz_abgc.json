@@ -1,0 +1,107 @@
+[{   
+    "id": "3",  
+    "text": "三、 安防工程",    
+    "state": "open",
+    "iconCls":"icon-none",     
+    "children": [{    
+        "id": "31",
+        "text": "计划下达情况",
+        "iconCls":"icon-none",     
+	    "children": [{    
+	        "id": "31v_16",
+	        "value":"v_16",    
+	        "text": "计划（公里）",
+	        "iconCls":"icon-none"   
+	    },{
+	    	"id": "31v_17",
+	        "value":"v_17",    
+	        "text": "总投资（万元）",
+	        "iconCls":"icon-none"  
+	    },{
+	    	"id": "31v_18",
+	        "value":"v_18",    
+	        "text": "中央车购税（万元）",
+	        "iconCls":"icon-none"
+	    },{
+	    	"id": "31v_19",
+	        "value":"v_19",    
+	        "text": "省级补助资金（万元）",
+	        "iconCls":"icon-none"
+	    },{
+	    	"id": "31v_20",
+	        "value":"v_20",    
+	        "text": "本年目标（公里）",
+	        "iconCls":"icon-none"
+	    },{
+	        "id": "32",
+            "text": "实施情况",
+            "iconCls":"icon-none",     
+	        "children": [{    
+	            "id": "32v_21",
+	            "value":"v_21",    
+	            "text": "完成（公里）",
+	            "iconCls":"icon-none" 
+	        },{
+	            "id": "32v_22",
+	            "value":"v_22",    
+	            "text": "其中国省道完成（公里）",
+	            "iconCls":"icon-none" 
+	        },{
+	        	"id": "32v_23",
+	            "value":"v_23",    
+	            "text": "其中县乡道完成（万元）",
+	            "iconCls":"icon-none" 
+	        },{
+	        	"id": "32v_24",
+	            "value":"v_24",    
+	            "text": "完成总投资（万元）",
+	            "iconCls":"icon-none" 
+	        },{
+	        	"id": "32v_25",
+	            "value":"v_25",    
+	            "text": "其中国省道完成投资（万元）",
+	            "iconCls":"icon-none" 
+	        },{
+	        	"id": "32v_26",
+	            "value":"v_26",    
+	            "text": "其中县乡道完成投资（万元）",
+	            "iconCls":"icon-none" 
+	        },{
+	        	"id": "32v_27",
+	            "value":"v_27",    
+	            "text": "完成省级以上补助资金（万元）",
+	            "iconCls":"icon-none" 
+	        },{
+	        	"id": "32v_28",
+	            "value":"v_28",    
+	            "text": "其中国省道完成补助资金投资（万元）",
+	            "iconCls":"icon-none" 
+	        },{
+	        	"id": "32v_29",
+	            "value":"v_29",    
+	            "text": "其中县乡道完成补助资金投资（万元）",
+	            "iconCls":"icon-none" 
+	        },{
+	        	"id": "32v_30",
+	            "value":"v_30",    
+	            "text": "本年完成（公里）",
+	            "iconCls":"icon-none" 
+	        },{
+	        	"id": "32v_31",
+	            "value":"v_31",    
+	            "text": "本年完成总投资（万元）",
+	            "iconCls":"icon-none" 
+	        },{
+	        	"id": "32v_32",
+	            "value":"v_32",    
+	            "text": "本年完成省级以上补助资金（万元）",
+	            "iconCls":"icon-none" 
+	        },{
+	        	"id": "32v_33",
+	            "value":"v_33",    
+	            "text": "完成比例",
+	            "iconCls":"icon-none" 
+	        }]
+	    }]   
+    }]    
+}]  

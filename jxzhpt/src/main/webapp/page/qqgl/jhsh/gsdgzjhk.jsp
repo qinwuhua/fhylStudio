@@ -69,7 +69,7 @@
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText').toUpperCase( ),'jhsh.lxmc':$('#lxmc').val(),'jhsh.xdzttj':xdzt,
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText').toUpperCase( ),'jhsh.ghxlxmc':$('#ghlxmc').val(),
 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':jhxdwh,'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly,'jhsh.xmklx':$('#xmklx').combobox('getValue'),'jhsh.scxdnf':1,
-					'jhsh.xmbm':$('#xmbm').val()
+					'jhsh.xmbm':$('#xmbm').val(),'jhsh.zydpx':$('#zydpx').combobox("getValue")
 					};
 			grid.queryParams=params;
  			loadLj(params);
@@ -175,7 +175,8 @@
 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
 				{field:'gkpfwh',title:'工可批复文号',width:100,align:'center'},
 				{field:'kgsj',title:'开工时间',width:100,align:'center'},
-				{field:'wgsj',title:'完工时间',width:100,align:'center'}]];
+				{field:'wgsj',title:'完工时间',width:100,align:'center'},
+				{field:'zydpx',title:'重要度排序',width:100,align:'center'}]];
 			bindLxGrid();
 			gridBind(grid);
 		}
@@ -241,7 +242,7 @@
 				+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+$('#tsdq').combobox("getValues").join(",").replace(/\+/g,"%2B")
 				+'&jhsh.xdzt=1'+'&jhsh.jsdj='+$('#jsdj').combobox("getValues").join(",")+'&lsjl='+$('#lsjl').combobox("getValue")
 				+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+'&jhsh.jsjsdj='+$("#jsjsdj").combobox("getValues").join(",")+'&jhsh.jhxdwh='+jhxdwh
-				+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.scxdnf='+1+'&jhsh.xmbm='+$('#xmbm').val(); 
+				+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.scxdnf='+1+'&jhsh.xmbm='+$('#xmbm').val()+'&jhsh.zydpx='+$('#zydpx').combobox("getValue"); 
 			  
 			window.location.href="/jxzhpt/qqgl/exportJhshxxgsdexcel.do?"+param;
 		}
@@ -418,6 +419,13 @@ text-decoration:none;
 								<td>
 									<input name="xmbm" type="text" id="xmbm" style="width:118px;" />
 								</td>
+								<td align="right">重要度排序：</td>
+        						<td><select name="zydpx" id="zydpx" class="easyui-combobox" style="width:75px;">
+		                              	<option value="" selected>请选择</option>
+										<option value="升序">升序</option>
+										<option value="降序">降序</option>
+									</select>
+        						</td>
 								</tr>
 								<tr height="28">
                             	<td colspan="8">

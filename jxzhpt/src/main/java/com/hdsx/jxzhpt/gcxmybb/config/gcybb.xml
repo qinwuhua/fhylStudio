@@ -3877,16 +3877,17 @@
 		    </if>
 		    ) tb
 	</select>
+	
 	<select id="getLwgzAbgcybb" parameterType="gcglabgc" resultType="elist">
-select to_char(rownum) v_0, lx.lxbm v_1,  decode(lx.lxmc,'','',concat(lx.lxmc, lx.lxbm)) v_2, lx.qdzh v_3,
-lx.zdzh v_4,xa.ylxbm v_5,xa.yqdzh v_6,xa.yzdzh v_7,
-lx.yhlc v_8, jh.pfwh v_9,lx.gydw v_10, x.ztz v_11, x.sbz v_12,
-jh.jhkgsj v_13, jh.jhwgsj v_14,
-nvl(jh.bywc_gl,0) v_15, nvl(jh.wc_ztz,0) v_16,nvl(jh.wc_btz,0)+nvl(jh.wc_stz,0) v_17,round(decode(jh.jhsybbzje,0,0,((jh.wc_btz+jh.wc_stz)/jh.jhsybbzje)*100), 2) v_18,
-n.wclc v_19, n.wcztz v_20,n.wcsbz v_21,n.sbzzb v_22,
-l.wclc v_23,l.wcztz v_24,l.wcsbz v_25,l.sbzzb v_26,
-substr(jh.xdsj,0,4) v_27, jh.jhxdwh v_28, decode(jh.kgzt,'1','已完工','在建') v_29,jh.issj v_30, jh.iszh v_31
-                  from sck_aqsmfh lx
+	select to_char(rownum) v_0, lx.lxbm v_1,  decode(lx.lxmc,'','',concat(lx.lxmc, lx.lxbm)) v_2, lx.qdzh v_3,
+	lx.zdzh v_4,xa.ylxbm v_5,xa.yqdzh v_6,xa.yzdzh v_7,
+	lx.yhlc v_8, jh.pfwh v_9,lx.gydw v_10, x.ztz v_11, x.sbz v_12,
+	jh.jhkgsj v_13, jh.jhwgsj v_14,
+	nvl(jh.bywc_gl,0) v_15, nvl(jh.wc_ztz,0) v_16,nvl(jh.wc_btz,0)+nvl(jh.wc_stz,0) v_17,round(decode(jh.jhsybbzje,0,0,((jh.wc_btz+jh.wc_stz)/jh.jhsybbzje)*100), 2) v_18,
+	n.wclc v_19, n.wcztz v_20,n.wcsbz v_21,n.sbzzb v_22,
+	l.wclc v_23,l.wcztz v_24,l.wcsbz v_25,l.sbzzb v_26,
+	substr(jh.xdsj,0,4) v_27, jh.jhxdwh v_28, decode(jh.kgzt,'1','已完工','在建') v_29,jh.issj v_30, jh.iszh v_31
+	                  from sck_aqsmfh lx
                   left join xmk_aqsmfh xa on lx.id = xa.id
                   left join (select t.id, replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq,
                                    replace(WMSYS.WM_CONCAT(distinct xm.throadcode),',',';') thlxbm,
@@ -3900,5 +3901,418 @@ substr(jh.xdsj,0,4) v_27, jh.jhxdwh v_28, decode(jh.kgzt,'1','已完工','在建
                   left join (select p.sckid,sum(g.bywc_gl) wclc, sum(g.wc_ztz) wcztz, sum(g.wc_btz)+sum(g.wc_stz) wcsbz,round( decode(sum(p.jhsybbzje),0,0,((sum(g.wc_btz)+sum(g.wc_stz))/sum(p.jhsybbzje))*100), 2) sbzzb from plan_af p left join gcgl_abgc g on p.id=g.jhid where substr(g.sbyf,0,4) in (#{nf}) group by p.sckid)n on n.sckid = lx.id
                   left join (select p.sckid,sum(g.bywc_gl) wclc, sum(g.wc_ztz) wcztz, sum(g.wc_btz)+sum(g.wc_stz) wcsbz,round( decode(sum(p.jhsybbzje),0,0,((sum(g.wc_btz)+sum(g.wc_stz))/sum(p.jhsybbzje))*100), 2) sbzzb from plan_af p left join gcgl_abgc g on p.id=g.jhid where to_date(g.sbyf,'yyyy-MM') &lt;= to_date(#{sbyf},'yyyy-MM') group by p.sckid)l on l.sckid = lx.id       
          where substr(jh.sbyf,0,4) in (#{nf}) and substr(jh.sbyf,6,2) in (#{yf})
+         	<if test="gydw != null and  gydw != ''">
+		        ${gydw}
+		    </if>
+		    <if test="xzqhdm != null and  xzqhdm != ''">
+		        ${xzqhdm}
+		    </if>
+		    <if test="lxmc != null and  lxmc != ''">
+		        and lxbm like '%'||trim(#{lxmc})||'%'
+		    </if>
+	</select>
+
+	<select id="getLwgzWqgzybb" parameterType="gcglabgc" resultType="elist">
+	select to_char(rownum) v_0, lx.qlmc v_1, lx.qlbh v_2,lx.xqlbm v_3,decode(substr(lx.qlzxzh, 1, 1), '.','0' || lx.qlzxzh,lx.qlzxzh) v_4,
+       decode(substr(lx.xzxzh, 1, 1),'.','0' || lx.xzxzh,lx.xzxzh) v_5, lx.lxbm v_6,lx.xlxbm v_7,lx.qlqc v_8,sc.jsxz v_9,jh.pfwh v_10,
+       lx.gydw v_11,t.ztz v_12,t.btz v_13,t.stz v_14,jh.jhkgsj v_15, jh.jhwgsj v_16,gw.bywcmc v_17, nvl(gw.wc_ztz,0) v_18, 
+       nvl(gw.wc_btz+gw.wc_stz,0) v_19,round(decode(jh.jhsybzje, 0, 0,((gw.wc_btz + gw.wc_stz) / jh.jhsybzje) * 100)) v_20,
+       nl.wcmc v_21, nl.wcztz v_22,nl.wcsbz v_23,nl.sbzzb v_24,
+       l.wcmc v_25,l.wcztz v_26, l.wcsbz v_27, l.sbzzb v_28,jh.xfsj v_29, jh.jhxdwh v_30, 
+       decode(jh.kgzt, '1', '已完工', '在建') v_31, gw.issj v_32, gw.iszh v_33, jh.bz v_34  
+                  from plan_wqgz jh
+                  left join sck_wqgz sc on (jh.sckid = sc.sckid)
+                  left join xmk_wqgz lx on (sc.xmkid = lx.id)
+                  left join (select t.*,g.issj from gcgl_wqgz t left join gcgl_jgys g on t.jhid = g.jhid) gw on gw.jhid = jh.id
+                  left join (select g.jhid, nvl(sum(g.wc_ztz),0) ztz ,nvl(sum(g.wc_btz),0) btz,nvl(sum(g.wc_stz),0) stz from gcgl_wqgz g group by g.jhid) t on t.jhid = jh.id
+                  left join (select p.sckid,nvl(sum(g.bywcmc),0) wcmc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz) + sum(g.wc_stz),0) wcsbz,round(decode(sum(p.jhsybzje),0,0,((sum(g.wc_btz) + sum(g.wc_stz)) /sum(p.jhsybzje)) * 100),2) sbzzb from plan_wqgz p left join gcgl_wqgz g on p.id = g.jhid where substr(g.sbyf, 0, 4) in (#{nf}) group by p.sckid) nl on nl.sckid = jh.sckid
+                  left join (select p.sckid,nvl(sum(g.bywcmc),0) wcmc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz) + sum(g.wc_stz),0) wcsbz,round(decode(sum(p.jhsybzje),0,0,((sum(g.wc_btz) + sum(g.wc_stz)) /sum(p.jhsybzje)) * 100),2) sbzzb from plan_wqgz p left join gcgl_wqgz g on p.id = g.jhid where to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM') group by p.sckid) l on l.sckid = jh.sckid    
+            where substr(gw.sbyf, 0, 4) in (#{nf}) and substr(gw.sbyf, 6, 2) in (#{yf})
+            <if test="gydw != null and  gydw != ''">
+		        ${gydw}
+		    </if>
+		    <if test="xzqhdm != null and  xzqhdm != ''">
+		        ${xzqhdm}
+		    </if>
+		    <if test="lxmc != null and  lxmc != ''">
+		        and lx.lxbm like '%'||trim(#{lxmc})||'%'
+		    </if>
+	</select>
+	
+	<select id="getLwgzZhfzybb" parameterType="gcglabgc" resultType="elist">
+      select to_char(rownum) v_0, lx.lxbm v_1, decode(lx.lxmc,'','',concat(lx.lxmc, lx.lxbm)) v_2,
+             decode(substr(lx.qdzh, 1, 1),'.','0' || lx.qdzh,lx.qdzh) v_3,decode(substr(lx.zdzh, 1, 1),'.','0' || lx.zdzh,lx.zdzh) v_4,
+             lx.ylxbm v_5, decode(substr(lx.yqdzh, 1, 1),'.','0' || lx.yqdzh,lx.yqdzh) v_6, decode(substr(lx.yzdzh, 1, 1),'.','0' || lx.yzdzh,lx.yzdzh) v_7,
+             lx.yhlc v_8, jh.pfwh v_9, lx.gydw v_10, gz.ztz v_11, gz.btz v_12,jh.jhkgsj v_13,jh.jhwgsj v_14, 
+             nvl(gw.bywcgl,0) v_15, nvl(gw.wc_ztz,0) v_16, nvl(gw.wc_btz+gw.wc_stz,0) v_17, nvl(round(decode(jh.jhsybzje,0,0,((gw.wc_btz+gw.wc_stz)/jh.jhsybzje)*100)),0) v_18,
+             n.wclc v_19, n.wcztz v_20,n.wcsbz v_21,n.sbzzb v_22,l.wclc v_23,l.wcztz v_24, l.wcsbz v_25,l.sbzzb v_26, 
+             jh.xdsj v_27, jh.jhxdwh v_28,decode(jh.kgzt, '1', '已完工', '在建') v_31, gw.issj v_32, gw.iszh v_33    
+                  from plan_zhfz jh
+                  left join sck_zhfz sc on (jh.sckid = sc.sckid)
+                  left join xmk_zhfz lx on (sc.xmkid = lx.id)
+                  left join (select t.*,g.issj from gcgl_zhfz t left join gcgl_jgys g on t.id = g.jhid) gw on gw.jhid = jh.id    
+                  left join (select g.jhid, nvl(sum(g.wc_ztz),0) ztz, nvl(sum(g.wc_btz)+sum(g.wc_stz),0) btz  from gcgl_zhfz g group by g.jhid) gz on gz.jhid = jh.id
+                  left join (select p.sckid,nvl(sum(g.bywcgl),0) wclc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz) + sum(g.wc_stz),0) wcsbz,nvl(round(decode(sum(p.jhsybzje),0,0,((sum(g.wc_btz) + sum(g.wc_stz)) /sum(p.jhsybzje)) * 100),2),0) sbzzb from plan_zhfz p left join gcgl_zhfz g on p.id = g.jhid where substr(g.sbyf, 0, 4) in (#{nf}) group by p.sckid) n on n.sckid = jh.sckid
+                  left join (select p.sckid,nvl(sum(g.bywcgl),0) wclc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz) + sum(g.wc_stz),0) wcsbz,nvl(round(decode(sum(p.jhsybzje),0,0,((sum(g.wc_btz) + sum(g.wc_stz)) /sum(p.jhsybzje)) * 100),2),0) sbzzb from plan_zhfz p left join gcgl_zhfz g on p.id = g.jhid where to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM') group by p.sckid) l on l.sckid = jh.sckid    
+  where substr(gw.sbyf, 0, 4) in (#{nf}) and substr(gw.sbyf, 6, 2) in (#{yf})
+            <if test="gydw != null and  gydw != ''">
+		        ${gydw}
+		    </if>
+		    <if test="xzqhdm != null and  xzqhdm != ''">
+		        ${xzqhdm}
+		    </if>
+		    <if test="lxmc != null and  lxmc != ''">
+		        and lx.lxbm like '%'||trim(#{lxmc})||'%'
+		    </if>
+	</select>
+	
+	<select id="getJhzxqkb" parameterType="gcglabgc" resultType="elist">
+		select  
+		'' v_0,'全省汇总' v_1,'全省汇总' v_2,sum(decode(xd.jhnf,#{xmnf},nvl(lx.zlc,0),0)) v_3,sum(xd.cgs) v_4,sum(xd.sbz) v_5,sum(lwc.jsgm) v_6,fun_char(round(sum(lwc.ztz)/10000,7),7) v_7,'' v_8,'' v_9,'' v_10,
+		sum(decode(xd.jhnf,'2016',lwc.jsgm,'2017',lwc.jsgm,'2018',lwc.jsgm,'2019',lwc.jsgm,'2020',lwc.jsgm,0)) v_11,'' v_12,'' v_13,'' v_14,
+		fun_char(round(sum(decode(xd.jhnf,'2016',lwc.ztz,'2017',lwc.ztz,'2018',lwc.ztz,'2019',lwc.ztz,'2020',lwc.ztz,0))/10000,7),7) v_15,'' v_16,'' v_17,'' v_18,
+		sum(decode(xd.jhnf,#{xmnf},lwc.jsgm,0)) v_19,'' v_20,'' v_21,'' v_22,fun_char(round(sum(decode(xd.jhnf,#{xmnf},lwc.ztz,0))/10000,7),7) v_23,'' v_24,'' v_25,0 xh
+		from 
+		(select p.id xmbm,x.xzqhdm from plan_wqgz p,sck_wqgz s,xmk_wqgz x where p.sckid=s.sckid and s.xmkid=x.id
+		union all
+		select p.id xmbm,s.xzqhdm from plan_af p,sck_aqsmfh s where p.sckid=s.id
+		union all
+		select p.id xmbm,x.xzqhdm from plan_abgc p,sck_abgc s,xmk_abgc x where p.sckid=s.sckid and s.xmkid=x.id
+		union all
+		select p.id xmbm,x.xzqhdm from plan_zhfz p,sck_zhfz s,xmk_zhfz x where p.sckid=s.sckid and s.xmkid=x.id
+		union all
+		select p.xmbm,w.qhdm xzqhdm from jhsh_sfl p,sgt_sfl s,wnjh_sfl w where p.xmbm=s.xmbm and s.xmkid=w.id 
+		union all
+		select p.xmbm,w.qhdm xzqhdm from jhsh_yhzx p,sgt_yhzx s,wnjh_yhzx w where p.xmbm=s.xmbm and s.xmkid=w.id 
+		union all
+		select p.xmbm,w.qhdm xzqhdm from jhsh_fwq p,sgt_fwq s,wnjh_fwq w where p.xmbm=s.xmbm and s.xmkid=w.id 
+		union all
+		select p.xmbm,c.xzqhdm from jhsh_sjgz p,cbsj_sjgz c where p.xmbm=c.xmbm 
+		union all select p.xmbm,c.xzqhdm from jhsh_xj p,cbsj_xj c where p.xmbm=c.xmbm  
+		union all select p.xmbm,c.xzqhdm from jhsh_yhdzx p,cbsj_yhdzx c where p.xmbm=c.xmbm  
+		union all select p.xmbm,c.xzqhdm from jhsh_lmgz p,cbsj_lmgz c where p.xmbm=c.xmbm  
+		union all select p.xmbm,c.xzqhdm from jhsh_sh p,cbsj_sh c where p.xmbm=c.xmbm ) jh,
+		(select xmid xmbm,decode(substr(xmid,11,1),1,0,3,0,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) zlc from lxsh_lx where jdbs=2 group by xmid
+		union all
+		select p.id xmbm,s.scqlqc/1000 zlc from plan_wqgz p left join sck_wqgz s on p.sckid=s.sckid left join xmk_wqgz x on s.xmkid=x.id where x.gydwbm like '2%'
+		union all
+		select p.id xmbm,to_number(s.scyhlc) zlc from plan_abgc p left join sck_abgc s on p.sckid=s.sckid left join xmk_abgc x on s.xmkid=x.id where x.gydwbm like '2%'
+		union all
+		select p.id xmbm,to_number(s.scyhlc) zlc from plan_zhfz p left join sck_zhfz s on p.sckid=s.sckid left join xmk_zhfz x on s.xmkid=x.id where x.gydwbm like '2%'
+		union all
+		select p.id xmbm,to_number(s.yhlc) zlc from plan_af p left join sck_aqsmfh s on p.sckid=s.id where s.gydwdm like '2%'
+		union all
+		select xmbm,nvl(yj,0)+nvl(ej,0)+nvl(sj,0)+nvl(sij,0) zlc from sgt_sfl
+		union all
+		select xmbm,0 zlc from sgt_yhzx 
+		union all
+		select xmbm,0 zlc from sgt_fwq
+		) lx,
+		(select xmid xmbm,min(xdnf) jhnf,sum(decode(xdnf,#{xmnf},nvl(btzzj,0),0)) cgs,sum(decode(xdnf,#{xmnf},nvl(rys,0)+nvl(dk,0)+nvl(jl,0)+nvl(stz,0)+nvl(zddzjl,0),0)) sbz from plan_zjxd group by xmid) xd,
+		(select xmbm,sum(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)) jsgm,sum(nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0)) ztz from gcgl_xmjd where to_date(ybyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by xmbm
+		union all
+		select jhid xmbm,sum(nvl(bywcmc,0))/1000 jsgm,sum(nvl(wc_btz,0)+nvl(wc_stz,0)+nvl(wc_qttz,0)) ztz from gcgl_wqgz where to_date(sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jhid
+		union all
+		select jhid xmbm,sum(nvl(bywc_gl,0)) jsgm,sum(nvl(wc_btz,0)+nvl(wc_stz,0)+nvl(wc_qttz,0)) ztz from gcgl_abgc where to_date(sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jhid
+		union all
+		select jhid xmbm,sum(nvl(bywcgl,0)) jsgm,sum(nvl(wc_btz,0)+nvl(wc_stz,0)+nvl(wc_qttz,0)) ztz from gcgl_zhfz where to_date(sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jhid
+		) lwc
+		where jh.xmbm=xd.xmbm and jh.xmbm=lx.xmbm and jh.xmbm=lwc.xmbm(+) and xd.xmbm is not null
+		<if test="xzqhdm != null and  xzqhdm != ''">
+		    ${xzqhdm}
+		</if>
+		 <if test="jhnd != null and  jhnd != ''">
+		    ${jhnd}
+		</if>
+		
+		union all
+		
+		select  
+		'1' v_0,'升级改造' v_1,'升级改造' v_2,null v_3,sum(xd.cgs) v_4,sum(xd.sbz) v_5,sum(lwc.jsgm) v_6,fun_char(round(sum(lwc.ztz)/10000,7),7) v_7,'' v_8,'' v_9,'' v_10,
+		sum(decode(substr(jh.xmbm,0,4),'2016',lwc.jsgm,'2017',lwc.jsgm,'2018',lwc.jsgm,'2019',lwc.jsgm,'2020',lwc.jsgm,0)) v_11,'' v_12,'' v_13,'' v_14,
+		fun_char(sum(decode(substr(jh.xmbm,0,4),'2016',lwc.ztz,'2017',lwc.ztz,'2018',lwc.ztz,'2019',lwc.ztz,'2020',lwc.ztz,0))/10000,7) v_15,'' v_16,'' v_17,'' v_18,
+		sum(decode(xd.jhnf,#{xmnf},lwc.jsgm,0)) v_19,'' v_20,'' v_21,'' v_22,fun_char(round(sum(decode(xd.jhnf,#{xmnf},lwc.ztz,0))/10000,7),7) v_23,'' v_24,'' v_25,1 xh
+		from 
+		(select p.xmbm,c.xzqhdm from jhsh_sjgz p,cbsj_sjgz c where p.xmbm=c.xmbm 
+		union all select p.xmbm,c.xzqhdm from jhsh_xj p,cbsj_xj c where p.xmbm=c.xmbm) jh,
+		(select xmid xmbm,decode(substr(xmid,11,1),1,sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0)),sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx,
+		(select xmid xmbm,min(xdnf) jhnf,sum(decode(xdnf,#{xmnf},nvl(btzzj,0),0)) cgs,sum(decode(xdnf,#{xmnf},nvl(rys,0)+nvl(dk,0)+nvl(jl,0)+nvl(stz,0)+nvl(zddzjl,0),0)) sbz from plan_zjxd group by xmid) xd,
+		(select xmbm,sum(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)) jsgm,sum(nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0)) ztz from gcgl_xmjd where to_date(ybyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by xmbm) lwc
+		where jh.xmbm=xd.xmbm and jh.xmbm=lx.xmbm and jh.xmbm=lwc.xmbm(+) and xd.xmbm is not null
+		<if test="xzqhdm != null and  xzqhdm != ''">
+		    ${xzqhdm}
+		</if>
+		 <if test="jhnd != null and  jhnd != ''">
+		    ${jhnd}
+		</if>
+		
+		union all 
+		
+		select  
+		'2' v_0,'养护大中修' v_1,'小计' v_2,sum(decode(xd.jhnf,#{xmnf},nvl(lx.zlc,0),0)) v_3,sum(xd.cgs) v_4,sum(xd.sbz) v_5,sum(lwc.jsgm) v_6,fun_char(round(sum(lwc.ztz)/10000,7),7) v_7,'' v_8,'' v_9,'' v_10,
+		sum(decode(substr(jh.xmbm,0,4),'2016',lwc.jsgm,'2017',lwc.jsgm,'2018',lwc.jsgm,'2019',lwc.jsgm,'2020',lwc.jsgm,0)) v_11,'' v_12,'' v_13,'' v_14,
+		fun_char(sum(decode(substr(jh.xmbm,0,4),'2016',lwc.ztz,'2017',lwc.ztz,'2018',lwc.ztz,'2019',lwc.ztz,'2020',lwc.ztz,0))/10000,7) v_15,'' v_16,'' v_17,'' v_18,
+		sum(decode(xd.jhnf,#{xmnf},lwc.jsgm,0)) v_19,'' v_20,'' v_21,'' v_22,fun_char(round(sum(decode(xd.jhnf,#{xmnf},lwc.ztz,0))/10000,7),7) v_23,'' v_24,'' v_25,2 xh
+		from 
+		(select p.xmbm,c.xzqhdm from jhsh_yhdzx p,cbsj_yhdzx c where p.xmbm=c.xmbm  
+		union all select p.xmbm,c.xzqhdm from jhsh_lmgz p,cbsj_lmgz c where p.xmbm=c.xmbm  
+		union all select p.xmbm,c.xzqhdm from jhsh_sh p,cbsj_sh c where p.xmbm=c.xmbm ) jh,
+		(select xmid xmbm,decode(substr(xmid,11,1),1,sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0)),sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx,
+		(select xmid xmbm,min(xdnf) jhnf,sum(decode(xdnf,#{xmnf},nvl(btzzj,0),0)) cgs,sum(decode(xdnf,#{xmnf},nvl(rys,0)+nvl(dk,0)+nvl(jl,0)+nvl(stz,0)+nvl(zddzjl,0),0)) sbz from plan_zjxd group by xmid) xd,
+		(select xmbm,sum(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)) jsgm,sum(nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0)) ztz from gcgl_xmjd where to_date(ybyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by xmbm) lwc
+		where jh.xmbm=xd.xmbm and jh.xmbm=lx.xmbm and jh.xmbm=lwc.xmbm(+) and xd.xmbm is not null
+		<if test="xzqhdm != null and  xzqhdm != ''">
+		    ${xzqhdm}
+		</if>
+		 <if test="jhnd != null and  jhnd != ''">
+		    ${jhnd}
+		</if>
+		
+		union all 
+		
+		select  
+		'2' v_0,'养护大中修' v_1,'养护大中修' v_2,sum(decode(xd.jhnf,#{xmnf},nvl(lx.zlc,0),0)) v_3,sum(xd.cgs) v_4,sum(xd.sbz) v_5,sum(lwc.jsgm) v_6,fun_char(round(sum(lwc.ztz)/10000,7),7) v_7,'' v_8,'' v_9,'' v_10,
+		sum(decode(substr(jh.xmbm,0,4),'2016',lwc.jsgm,'2017',lwc.jsgm,'2018',lwc.jsgm,'2019',lwc.jsgm,'2020',lwc.jsgm,0)) v_11,'' v_12,'' v_13,'' v_14,
+		fun_char(sum(decode(substr(jh.xmbm,0,4),'2016',lwc.ztz,'2017',lwc.ztz,'2018',lwc.ztz,'2019',lwc.ztz,'2020',lwc.ztz,0))/10000,7) v_15,'' v_16,'' v_17,'' v_18,
+		sum(decode(xd.jhnf,#{xmnf},lwc.jsgm,0)) v_19,'' v_20,'' v_21,'' v_22,fun_char(round(sum(decode(xd.jhnf,#{xmnf},lwc.ztz,0))/10000,7),7) v_23,'' v_24,'' v_25,3 xh
+		from 
+		(select p.xmbm,c.xzqhdm from jhsh_yhdzx p,cbsj_yhdzx c where p.xmbm=c.xmbm) jh,
+		(select xmid xmbm,decode(substr(xmid,11,1),1,sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0)),sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx,
+		(select xmid xmbm,min(xdnf) jhnf,sum(decode(xdnf,#{xmnf},nvl(btzzj,0),0)) cgs,sum(decode(xdnf,#{xmnf},nvl(rys,0)+nvl(dk,0)+nvl(jl,0)+nvl(stz,0)+nvl(zddzjl,0),0)) sbz from plan_zjxd group by xmid) xd,
+		(select xmbm,sum(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)) jsgm,sum(nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0)) ztz from gcgl_xmjd where to_date(ybyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by xmbm) lwc
+		where jh.xmbm=xd.xmbm and jh.xmbm=lx.xmbm and jh.xmbm=lwc.xmbm(+) and xd.xmbm is not null
+		<if test="xzqhdm != null and  xzqhdm != ''">
+		    ${xzqhdm}
+		</if>
+		 <if test="jhnd != null and  jhnd != ''">
+		    ${jhnd}
+		</if>
+		
+		union all 
+		
+		select  
+		'2' v_0,'养护大中修' v_1,'路面改造' v_2,sum(decode(xd.jhnf,#{xmnf},nvl(lx.zlc,0),0)) v_3,sum(xd.cgs) v_4,sum(xd.sbz) v_5,sum(lwc.jsgm) v_6,fun_char(round(sum(lwc.ztz)/10000,7),7) v_7,'' v_8,'' v_9,'' v_10,
+		sum(decode(substr(jh.xmbm,0,4),'2016',lwc.jsgm,'2017',lwc.jsgm,'2018',lwc.jsgm,'2019',lwc.jsgm,'2020',lwc.jsgm,0)) v_11,'' v_12,'' v_13,'' v_14,
+		fun_char(sum(decode(substr(jh.xmbm,0,4),'2016',lwc.ztz,'2017',lwc.ztz,'2018',lwc.ztz,'2019',lwc.ztz,'2020',lwc.ztz,0))/10000,7) v_15,'' v_16,'' v_17,'' v_18,
+		sum(decode(xd.jhnf,#{xmnf},lwc.jsgm,0)) v_19,'' v_20,'' v_21,'' v_22,fun_char(round(sum(decode(xd.jhnf,#{xmnf},lwc.ztz,0))/10000,7),7) v_23,'' v_24,'' v_25,4 xh
+		from 
+		(select p.xmbm,c.xzqhdm from jhsh_lmgz p,cbsj_lmgz c where p.xmbm=c.xmbm)  jh,
+		(select xmid xmbm,decode(substr(xmid,11,1),1,sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0)),sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx,
+		(select xmid xmbm,min(xdnf) jhnf,sum(decode(xdnf,#{xmnf},nvl(btzzj,0),0)) cgs,sum(decode(xdnf,#{xmnf},nvl(rys,0)+nvl(dk,0)+nvl(jl,0)+nvl(stz,0)+nvl(zddzjl,0),0)) sbz from plan_zjxd group by xmid) xd,
+		(select xmbm,sum(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)) jsgm,sum(nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0)) ztz from gcgl_xmjd where to_date(ybyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by xmbm) lwc
+		where jh.xmbm=xd.xmbm and jh.xmbm=lx.xmbm and jh.xmbm=lwc.xmbm(+) and xd.xmbm is not null
+		<if test="xzqhdm != null and  xzqhdm != ''">
+		    ${xzqhdm}
+		</if>
+		 <if test="jhnd != null and  jhnd != ''">
+		    ${jhnd}
+		</if>
+		
+		union all 
+		
+		select  
+		'2' v_0,'养护大中修' v_1,'灾毁恢复重建' v_2,sum(decode(xd.jhnf,#{xmnf},nvl(lx.zlc,0),0)) v_3,sum(xd.cgs) v_4,sum(xd.sbz) v_5,sum(lwc.jsgm) v_6,fun_char(round(sum(lwc.ztz)/10000,7),7) v_7,'' v_8,'' v_9,'' v_10,
+		sum(decode(substr(jh.xmbm,0,4),'2016',lwc.jsgm,'2017',lwc.jsgm,'2018',lwc.jsgm,'2019',lwc.jsgm,'2020',lwc.jsgm,0)) v_11,'' v_12,'' v_13,'' v_14,
+		fun_char(sum(decode(substr(jh.xmbm,0,4),'2016',lwc.ztz,'2017',lwc.ztz,'2018',lwc.ztz,'2019',lwc.ztz,'2020',lwc.ztz,0))/10000,7) v_15,'' v_16,'' v_17,'' v_18,
+		sum(decode(xd.jhnf,#{xmnf},lwc.jsgm,0)) v_19,'' v_20,'' v_21,'' v_22,fun_char(round(sum(decode(xd.jhnf,#{xmnf},lwc.ztz,0))/10000,7),7) v_23,'' v_24,'' v_25,5 xh
+		from 
+		(select p.xmbm,c.xzqhdm from jhsh_sh p,cbsj_sh c where p.xmbm=c.xmbm)  jh,
+		(select xmid xmbm,decode(substr(xmid,11,1),1,sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0)),sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx,
+		(select xmid xmbm,min(xdnf) jhnf,sum(decode(xdnf,#{xmnf},nvl(btzzj,0),0)) cgs,sum(decode(xdnf,#{xmnf},nvl(rys,0)+nvl(dk,0)+nvl(jl,0)+nvl(stz,0)+nvl(zddzjl,0),0)) sbz from plan_zjxd group by xmid) xd,
+		(select xmbm,sum(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)) jsgm,sum(nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0)) ztz from gcgl_xmjd where to_date(ybyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by xmbm) lwc
+		where jh.xmbm=xd.xmbm and jh.xmbm=lx.xmbm and jh.xmbm=lwc.xmbm(+) and xd.xmbm is not null
+		<if test="xzqhdm != null and  xzqhdm != ''">
+		    ${xzqhdm}
+		</if>
+		 <if test="jhnd != null and  jhnd != ''">
+		    ${jhnd}
+		</if>
+		
+		union all 
+		
+		select  
+		'3' v_0,'路网结构改造' v_1,'小计' v_2,sum(decode(xd.jhnf,#{xmnf},nvl(lx.zlc,0),0)) v_3,sum(xd.cgs) v_4,sum(xd.sbz) v_5,sum(lwc.jsgm) v_6,fun_char(round(sum(lwc.ztz)/10000,7),7) v_7,'' v_8,'' v_9,'' v_10,
+		sum(decode(xd.jhnf,'2016',lwc.jsgm,'2017',lwc.jsgm,'2018',lwc.jsgm,'2019',lwc.jsgm,'2020',lwc.jsgm,0)) v_11,'' v_12,'' v_13,'' v_14,
+		fun_char(round(sum(decode(xd.jhnf,'2016',lwc.ztz,'2017',lwc.ztz,'2018',lwc.ztz,'2019',lwc.ztz,'2020',lwc.ztz,0))/10000,7),7) v_15,'' v_16,'' v_17,'' v_18,
+		sum(decode(xd.jhnf,#{xmnf},lwc.jsgm,0)) v_19,'' v_20,'' v_21,'' v_22,fun_char(round(sum(decode(xd.jhnf,#{xmnf},lwc.ztz,0))/10000,7),7) v_23,'' v_24,'' v_25,6 xh
+		from 
+		(select p.id xmbm,x.xzqhdm from plan_wqgz p,sck_wqgz s,xmk_wqgz x where p.sckid=s.sckid and s.xmkid=x.id
+		union all
+		select p.id xmbm,s.xzqhdm from plan_af p,sck_aqsmfh s where p.sckid=s.id
+		union all
+		select p.id xmbm,x.xzqhdm from plan_abgc p,sck_abgc s,xmk_abgc x where p.sckid=s.sckid and s.xmkid=x.id
+		union all
+		select p.id xmbm,x.xzqhdm from plan_zhfz p,sck_zhfz s,xmk_zhfz x where p.sckid=s.sckid and s.xmkid=x.id
+		) jh,
+		(select s.sckid xmbm,s.scqlqc/1000 zlc from sck_wqgz s left join xmk_wqgz x on s.xmkid=x.id where x.gydwbm like '2%'
+		union all
+		select s.sckid xmbm,to_number(s.scyhlc) zlc from sck_abgc s left join xmk_abgc x on s.xmkid=x.id where x.gydwbm like '2%'
+		union all
+		select s.sckid xmbm,to_number(s.scyhlc) zlc from sck_zhfz s left join xmk_zhfz x on s.xmkid=x.id where x.gydwbm like '2%'
+		union all
+		select s.id xmbm,to_number(s.yhlc) zlc from sck_aqsmfh s where s.gydwdm like '2%'
+		) lx,
+		(select xmid xmbm,min(xdnf) jhnf,sum(decode(xdnf,#{xmnf},nvl(btzzj,0),0)) cgs,sum(decode(xdnf,#{xmnf},nvl(rys,0)+nvl(dk,0)+nvl(jl,0)+nvl(stz,0)+nvl(zddzjl,0),0)) sbz from plan_zjxd group by xmid) xd,
+		(select jhid xmbm,sum(nvl(bywcmc,0))/1000 jsgm,sum(nvl(wc_btz,0)+nvl(wc_stz,0)+nvl(wc_qttz,0)) ztz from gcgl_wqgz where to_date(sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jhid
+		union all
+		select jhid xmbm,sum(nvl(bywc_gl,0)) jsgm,sum(nvl(wc_btz,0)+nvl(wc_stz,0)+nvl(wc_qttz,0)) ztz from gcgl_abgc where to_date(sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jhid
+		union all
+		select jhid xmbm,sum(nvl(bywcgl,0)) jsgm,sum(nvl(wc_btz,0)+nvl(wc_stz,0)+nvl(wc_qttz,0)) ztz from gcgl_zhfz where to_date(sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jhid
+		) lwc
+		where jh.xmbm=xd.xmbm and jh.xmbm=lx.xmbm and jh.xmbm=lwc.xmbm(+) and xd.xmbm is not null
+		<if test="xzqhdm != null and  xzqhdm != ''">
+		    ${xzqhdm}
+		</if>
+		 <if test="jhnd != null and  jhnd != ''">
+		    ${jhnd}
+		</if>
+		
+		union all 
+		
+		select  
+		'3' v_0,'路网结构改造' v_1,'危桥改造' v_2,sum(decode(xd.jhnf,#{xmnf},nvl(lx.zlc,0),0)) v_3,sum(xd.cgs) v_4,sum(xd.sbz) v_5,sum(lwc.jsgm) v_6,fun_char(round(sum(lwc.ztz)/10000,7),7) v_7,'' v_8,'' v_9,'' v_10,
+		sum(decode(xd.jhnf,'2016',lwc.jsgm,'2017',lwc.jsgm,'2018',lwc.jsgm,'2019',lwc.jsgm,'2020',lwc.jsgm,0)) v_11,'' v_12,'' v_13,'' v_14,
+		fun_char(round(sum(decode(xd.jhnf,'2016',lwc.ztz,'2017',lwc.ztz,'2018',lwc.ztz,'2019',lwc.ztz,'2020',lwc.ztz,0))/10000,7),7) v_15,'' v_16,'' v_17,'' v_18,
+		sum(decode(xd.jhnf,#{xmnf},lwc.jsgm,0)) v_19,'' v_20,'' v_21,'' v_22,fun_char(round(sum(decode(xd.jhnf,#{xmnf},lwc.ztz,0))/10000,7),7) v_23,'' v_24,'' v_25,7 xh
+		from 
+		(select p.id xmbm,x.xzqhdm from plan_wqgz p,sck_wqgz s,xmk_wqgz x where p.sckid=s.sckid and s.xmkid=x.id
+		) jh,
+		(select s.sckid xmbm,s.scqlqc/1000 zlc from sck_wqgz s left join xmk_wqgz x on s.xmkid=x.id where x.gydwbm like '2%'
+		) lx,
+		(select xmid xmbm,min(xdnf) jhnf,sum(decode(xdnf,#{xmnf},nvl(btzzj,0),0)) cgs,sum(decode(xdnf,#{xmnf},nvl(rys,0)+nvl(dk,0)+nvl(jl,0)+nvl(stz,0)+nvl(zddzjl,0),0)) sbz from plan_zjxd group by xmid) xd,
+		(select jhid xmbm,sum(nvl(bywcmc,0))/1000 jsgm,sum(nvl(wc_btz,0)+nvl(wc_stz,0)+nvl(wc_qttz,0)) ztz from gcgl_wqgz where to_date(sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jhid
+		) lwc
+		where jh.xmbm=xd.xmbm and jh.xmbm=lx.xmbm and jh.xmbm=lwc.xmbm(+) and xd.xmbm is not null
+		<if test="xzqhdm != null and  xzqhdm != ''">
+		    ${xzqhdm}
+		</if>
+		 <if test="jhnd != null and  jhnd != ''">
+		    ${jhnd}
+		</if>
+		
+		union all 
+		
+		select  
+		'3' v_0,'路网结构改造' v_1,'安全生命防护工程' v_2,sum(decode(xd.jhnf,#{xmnf},nvl(lx.zlc,0),0)) v_3,sum(xd.cgs) v_4,sum(xd.sbz) v_5,sum(lwc.jsgm) v_6,fun_char(round(sum(lwc.ztz)/10000,7),7) v_7,'' v_8,'' v_9,'' v_10,
+		sum(decode(xd.jhnf,'2016',lwc.jsgm,'2017',lwc.jsgm,'2018',lwc.jsgm,'2019',lwc.jsgm,'2020',lwc.jsgm,0)) v_11,'' v_12,'' v_13,'' v_14,
+		fun_char(round(sum(decode(xd.jhnf,'2016',lwc.ztz,'2017',lwc.ztz,'2018',lwc.ztz,'2019',lwc.ztz,'2020',lwc.ztz,0))/10000,7),7) v_15,'' v_16,'' v_17,'' v_18,
+		sum(decode(xd.jhnf,#{xmnf},lwc.jsgm,0)) v_19,'' v_20,'' v_21,'' v_22,fun_char(round(sum(decode(xd.jhnf,#{xmnf},lwc.ztz,0))/10000,7),7) v_23,'' v_24,'' v_25,8 xh
+		from 
+		(
+		select p.id xmbm,s.xzqhdm from plan_af p,sck_aqsmfh s where p.sckid=s.id
+		union all
+		select p.id xmbm,x.xzqhdm from plan_abgc p,sck_abgc s,xmk_abgc x where p.sckid=s.sckid and s.xmkid=x.id
+		) jh,
+		(
+		select s.sckid xmbm,to_number(s.scyhlc) zlc from sck_abgc s left join xmk_abgc x on s.xmkid=x.id where x.gydwbm like '2%'
+		union all
+		select s.id xmbm,to_number(s.yhlc) zlc from sck_aqsmfh s where s.gydwdm like '2%'
+		) lx,
+		(select xmid xmbm,min(xdnf) jhnf,sum(decode(xdnf,#{xmnf},nvl(btzzj,0),0)) cgs,sum(decode(xdnf,#{xmnf},nvl(rys,0)+nvl(dk,0)+nvl(jl,0)+nvl(stz,0)+nvl(zddzjl,0),0)) sbz from plan_zjxd group by xmid) xd,
+		(select jhid xmbm,sum(nvl(bywc_gl,0)) jsgm,sum(nvl(wc_btz,0)+nvl(wc_stz,0)+nvl(wc_qttz,0)) ztz from gcgl_abgc where to_date(sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jhid
+		) lwc
+		where jh.xmbm=xd.xmbm and jh.xmbm=lx.xmbm and jh.xmbm=lwc.xmbm(+) and xd.xmbm is not null
+		<if test="xzqhdm != null and  xzqhdm != ''">
+		    ${xzqhdm}
+		</if>
+		 <if test="jhnd != null and  jhnd != ''">
+		    ${jhnd}
+		</if>
+		
+		union all 
+		
+		select  
+		'3' v_0,'路网结构改造' v_1,'灾害防治' v_2,sum(decode(xd.jhnf,#{xmnf},nvl(lx.zlc,0),0)) v_3,sum(xd.cgs) v_4,sum(xd.sbz) v_5,sum(lwc.jsgm) v_6,fun_char(round(sum(lwc.ztz)/10000,7),7) v_7,'' v_8,'' v_9,'' v_10,
+		sum(decode(xd.jhnf,'2016',lwc.jsgm,'2017',lwc.jsgm,'2018',lwc.jsgm,'2019',lwc.jsgm,'2020',lwc.jsgm,0)) v_11,'' v_12,'' v_13,'' v_14,
+		fun_char(round(sum(decode(xd.jhnf,'2016',lwc.ztz,'2017',lwc.ztz,'2018',lwc.ztz,'2019',lwc.ztz,'2020',lwc.ztz,0))/10000,7),7) v_15,'' v_16,'' v_17,'' v_18,
+		sum(decode(xd.jhnf,#{xmnf},lwc.jsgm,0)) v_19,'' v_20,'' v_21,'' v_22,fun_char(round(sum(decode(xd.jhnf,#{xmnf},lwc.ztz,0))/10000,7),7) v_23,'' v_24,'' v_25,9 xh
+		from 
+		(
+		select p.id xmbm,x.xzqhdm from plan_zhfz p,sck_zhfz s,xmk_zhfz x where p.sckid=s.sckid and s.xmkid=x.id
+		) jh,
+		(
+		select s.sckid xmbm,to_number(s.scyhlc) zlc from sck_zhfz s left join xmk_zhfz x on s.xmkid=x.id where x.gydwbm like '2%'
+		) lx,
+		(select xmid xmbm,min(xdnf) jhnf,sum(decode(xdnf,#{xmnf},nvl(btzzj,0),0)) cgs,sum(decode(xdnf,#{xmnf},nvl(rys,0)+nvl(dk,0)+nvl(jl,0)+nvl(stz,0)+nvl(zddzjl,0),0)) sbz from plan_zjxd group by xmid) xd,
+		(
+		select jhid xmbm,sum(nvl(bywcgl,0)) jsgm,sum(nvl(wc_btz,0)+nvl(wc_stz,0)+nvl(wc_qttz,0)) ztz from gcgl_zhfz where to_date(sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jhid
+		) lwc
+		where jh.xmbm=xd.xmbm and jh.xmbm=lx.xmbm and jh.xmbm=lwc.xmbm(+) and xd.xmbm is not null
+		<if test="xzqhdm != null and  xzqhdm != ''">
+		    ${xzqhdm}
+		</if>
+		 <if test="jhnd != null and  jhnd != ''">
+		    ${jhnd}
+		</if>
+		
+		union all
+		
+		select  
+		'4' v_0,'示范路' v_1,'示范路' v_2,sum(decode(xd.jhnf,#{xmnf},nvl(lx.zlc,0),0)) v_3,sum(xd.cgs) v_4,sum(xd.sbz) v_5,sum(lwc.jsgm) v_6,fun_char(round(sum(lwc.ztz)/10000,7),7) v_7,'' v_8,'' v_9,'' v_10,
+		sum(decode(xd.jhnf,'2016',lwc.jsgm,'2017',lwc.jsgm,'2018',lwc.jsgm,'2019',lwc.jsgm,'2020',lwc.jsgm,0)) v_11,'' v_12,'' v_13,'' v_14,
+		fun_char(round(sum(decode(xd.jhnf,'2016',lwc.ztz,'2017',lwc.ztz,'2018',lwc.ztz,'2019',lwc.ztz,'2020',lwc.ztz,0))/10000,7),7) v_15,'' v_16,'' v_17,'' v_18,
+		sum(decode(xd.jhnf,#{xmnf},lwc.jsgm,0)) v_19,'' v_20,'' v_21,'' v_22,fun_char(round(sum(decode(xd.jhnf,#{xmnf},lwc.ztz,0))/10000,7),7) v_23,'' v_24,'' v_25,10 xh
+		from 
+		(
+		select p.xmbm,w.qhdm xzqhdm from jhsh_sfl p,sgt_sfl s,wnjh_sfl w where p.xmbm=s.xmbm and s.xmkid=w.id 
+		) jh,
+		(select xmbm,nvl(yj,0)+nvl(ej,0)+nvl(sj,0)+nvl(sij,0) zlc from sgt_sfl
+		) lx,
+		(select xmid xmbm,min(xdnf) jhnf,sum(decode(xdnf,#{xmnf},nvl(btzzj,0),0)) cgs,sum(decode(xdnf,#{xmnf},nvl(rys,0)+nvl(dk,0)+nvl(jl,0)+nvl(stz,0)+nvl(zddzjl,0),0)) sbz from plan_zjxd group by xmid) xd,
+		(select xmbm,sum(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)) jsgm,sum(nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0)) ztz from gcgl_xmjd where to_date(ybyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by xmbm) lwc
+		where jh.xmbm=xd.xmbm and jh.xmbm=lx.xmbm and jh.xmbm=lwc.xmbm(+) and xd.xmbm is not null
+		<if test="xzqhdm != null and  xzqhdm != ''">
+		    ${xzqhdm}
+		</if>
+		 <if test="jhnd != null and  jhnd != ''">
+		    ${jhnd}
+		</if>
+		
+		union all
+		
+		select  
+		'5' v_0,'养护中心' v_1,'养护中心' v_2,sum(decode(xd.jhnf,#{xmnf},nvl(lx.zlc,0),0)) v_3,sum(xd.cgs) v_4,sum(xd.sbz) v_5,sum(lwc.jsgm) v_6,fun_char(round(sum(lwc.ztz)/10000,7),7) v_7,'' v_8,'' v_9,'' v_10,
+		sum(decode(xd.jhnf,'2016',lwc.jsgm,'2017',lwc.jsgm,'2018',lwc.jsgm,'2019',lwc.jsgm,'2020',lwc.jsgm,0)) v_11,'' v_12,'' v_13,'' v_14,
+		fun_char(round(sum(decode(xd.jhnf,'2016',lwc.ztz,'2017',lwc.ztz,'2018',lwc.ztz,'2019',lwc.ztz,'2020',lwc.ztz,0))/10000,7),7) v_15,'' v_16,'' v_17,'' v_18,
+		sum(decode(xd.jhnf,#{xmnf},lwc.jsgm,0)) v_19,'' v_20,'' v_21,'' v_22,fun_char(round(sum(decode(xd.jhnf,#{xmnf},lwc.ztz,0))/10000,7),7) v_23,'' v_24,'' v_25,11 xh
+		from 
+		(
+		select p.xmbm,w.qhdm xzqhdm from jhsh_yhzx p,sgt_yhzx s,wnjh_yhzx w where p.xmbm=s.xmbm and s.xmkid=w.id 
+		) jh,
+		(select xmbm,0 zlc from sgt_yhzx
+		) lx,
+		(select xmid xmbm,min(xdnf) jhnf,sum(decode(xdnf,#{xmnf},nvl(btzzj,0),0)) cgs,sum(decode(xdnf,#{xmnf},nvl(rys,0)+nvl(dk,0)+nvl(jl,0)+nvl(stz,0)+nvl(zddzjl,0),0)) sbz from plan_zjxd group by xmid) xd,
+		(select xmbm,sum(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)) jsgm,sum(nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0)) ztz from gcgl_xmjd where to_date(ybyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by xmbm) lwc
+		where jh.xmbm=xd.xmbm and jh.xmbm=lx.xmbm and jh.xmbm=lwc.xmbm(+) and xd.xmbm is not null
+		<if test="xzqhdm != null and  xzqhdm != ''">
+		    ${xzqhdm}
+		</if>
+		 <if test="jhnd != null and  jhnd != ''">
+		    ${jhnd}
+		</if>
+		
+		union all
+		
+		select  
+		'6' v_0,'服务设施' v_1,'服务设施' v_2,sum(decode(xd.jhnf,#{xmnf},nvl(lx.zlc,0),0)) v_3,sum(xd.cgs) v_4,sum(xd.sbz) v_5,sum(lwc.jsgm) v_6,fun_char(round(sum(lwc.ztz)/10000,7),7) v_7,'' v_8,'' v_9,'' v_10,
+		sum(decode(xd.jhnf,'2016',lwc.jsgm,'2017',lwc.jsgm,'2018',lwc.jsgm,'2019',lwc.jsgm,'2020',lwc.jsgm,0)) v_11,'' v_12,'' v_13,'' v_14,
+		fun_char(round(sum(decode(xd.jhnf,'2016',lwc.ztz,'2017',lwc.ztz,'2018',lwc.ztz,'2019',lwc.ztz,'2020',lwc.ztz,0))/10000,7),7) v_15,'' v_16,'' v_17,'' v_18,
+		sum(decode(xd.jhnf,#{xmnf},lwc.jsgm,0)) v_19,'' v_20,'' v_21,'' v_22,fun_char(round(sum(decode(xd.jhnf,#{xmnf},lwc.ztz,0))/10000,7),7) v_23,'' v_24,'' v_25,12 xh
+		from 
+		(
+		select p.xmbm,w.qhdm xzqhdm  from jhsh_fwq p,sgt_fwq s,wnjh_fwq w where p.xmbm=s.xmbm and s.xmkid=w.id ) jh,
+		(select xmbm,0 zlc from sgt_fwq
+		) lx,
+		(select xmid xmbm,min(xdnf) jhnf,sum(decode(xdnf,#{xmnf},nvl(btzzj,0),0)) cgs,sum(decode(xdnf,#{xmnf},nvl(rys,0)+nvl(dk,0)+nvl(jl,0)+nvl(stz,0)+nvl(zddzjl,0),0)) sbz from plan_zjxd group by xmid) xd,
+		(select xmbm,sum(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)) jsgm,sum(nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0)) ztz from gcgl_xmjd where to_date(ybyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by xmbm) lwc
+		where jh.xmbm=xd.xmbm and jh.xmbm=lx.xmbm and jh.xmbm=lwc.xmbm(+) and xd.xmbm is not null
+		<if test="xzqhdm != null and  xzqhdm != ''">
+		    ${xzqhdm}
+		</if>
+		 <if test="jhnd != null and  jhnd != ''">
+		    ${jhnd}
+		</if>
+		order by xh
+
 	</select>
 </mapper>

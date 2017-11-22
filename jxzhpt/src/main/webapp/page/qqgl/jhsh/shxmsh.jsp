@@ -50,7 +50,7 @@
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.zydpx':$('#zydpx').combobox('getValue'),'jhsh.sbzt':1,
-					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.shzt':$('#shzt').combobox("getValue")
+					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.shzt':$('#shzt').combobox("getValue"),'jhsh.xmbm':$('#xmbm').val()
 					};
 			grid.queryParams=params;
 			loadLj(params);
@@ -161,7 +161,7 @@
 					'&jhsh.gldj='+$("#gldj").combobox("getValues").join(",")+'&jhsh.tsdq='+encodeURI(encodeURI(tsdq))+
 					'&jhsh.ghlxbh='+$("#lxbm").combotree('getText')+'&jhsh.lxmc='+$("#lxmc").val()+
 					'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+'&jhsh.zydpx='+$("#zydpx").val()+'&jhsh.sbzt=1'+
-					'&jhsh.lsjl='+$("#lsjl").combobox("getValue")+'&jhsh.shzt='+$("#shzt").combobox("getValue");
+					'&jhsh.lsjl='+$("#lsjl").combobox("getValue")+'&jhsh.shzt='+$("#shzt").combobox("getValue")+'&jhsh.xmbm='+$("#xmbm").val();
 			window.location.href="/jxzhpt/qqgl/exportJhshSh.do?"+param;
 		}
 		function importJhsh(){
@@ -272,6 +272,7 @@ text-decoration:none;
 									</select>
         						</td>
         						
+        						
         					</tr>
         					<tr height="29">
         						<!-- <td align="right">特殊地区：</td>
@@ -324,6 +325,10 @@ text-decoration:none;
 									<option value="1">已审核</option>
 									<option value="0">未审核</option>
 								</select></td>
+								<td align="right">项目编码：</td>
+								<td>
+									<input name="xmbm" type="text" id="xmbm" style="width:118px;" />
+								</td>
 								</tr>
 								<tr height="29">
        						<td colspan="8">
