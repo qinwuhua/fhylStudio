@@ -2208,10 +2208,25 @@ function updateLxWin(index,xmbm,id){
 	else if(xmbm.substring(10,11)=="5")
 		YMLib.UI.createWindow('lxxx','编辑路线信息','lx_update1.jsp','lxxx',900,350);
 }
+function selectLxWin(index,xmbm,id){
+	var data=$("#table_lx"+xmbm).datagrid('getRows')[index];
+	YMLib.Var.Obj=data;
+	YMLib.Var.id='lxxx';
+	if(xmbm.substring(10,11)=="1"){
+		YMLib.UI.createWindow('lxxx','编辑路线信息','sjgzlx_edit.jsp','lxxx',900,350);
+	}else if(xmbm.substring(10,11)=="2"){
+		YMLib.UI.createWindow('lxxx','编辑路线信息','lmgzlx_edit.jsp','lxxx',900,350);
+	}
+	else if(xmbm.substring(10,11)=="4"){
+		YMLib.UI.createWindow('lxxx','路线详细信息','lx_xiangxi.jsp','lxxx',900,350);
+	}
+	else if(xmbm.substring(10,11)=="5")
+		YMLib.UI.createWindow('lxxx','路线详细信息','xx_shuih.jsp','lxxx',900,350);
+}
 function loadLxWin(index,xmbm,id){
 	var data=$("#table_lx"+xmbm).datagrid('getRows')[index];
 	YMLib.Var.Obj=data;
-	YMLib.UI.createWindow(id,'编辑路线信息','lx_xx.jsp',id,900,350);
+	YMLib.UI.createWindow(id,'路线详细信息','lx_xx.jsp',id,900,350);
 }
 
 function loadYapLxWin(index,xmbm,id){
@@ -2274,7 +2289,7 @@ var Rh={
 					{field:'zdzh',title:'原止点桩号',width:80,align:'center'},
 					{field:'qdmc',title:'起点名称',width:100,align:'center'},
 					{field:'zdmc',title:'止点名称',width:100,align:'center'},
-					//{field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+					{field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
 					{field:'xjsdj',title:'技术等级',width:80,align:'center'},
 					{field:'lc',title:'里程',width:60,align:'center'}
     			]],
@@ -2350,6 +2365,70 @@ var Qwh={
 		}
 	};
 
+var zhang={
+		onLoadSuccess:function(data){
+		},
+		onClickRow:function(rowIndex, rowData){
+		},
+		onSelect:function(rowIndex, rowData){
+			xmbm=rowData.xmbm;
+			selArray.push(rowData.xmbm);
+		},
+		onSelectAll:function(rows){
+			if(selArray.length<rows.length){
+				selArray.splice(0,selArray.length);
+				$.each(rows,function(index,item){
+					selArray.push(item.xmbm);
+				});
+			}else if(selArray.length==rows.length){
+				selArray.splice(0,selArray.length);
+			}
+		},
+		onUnselect:function(rowIndex, rowData){
+			xmbm=rowData.xmbm;
+			selArray.pop(rowData.xmbm);
+		},
+		detailFormatter:function(index,row){
+			return '<div style="padding:2px"><table id="table_lx' + row.xmbm + '"></table></div>';
+		},
+		onExpandRow:function(index,row){
+			$('#table_lx'+row.xmbm).datagrid({
+				url:'/jxzhpt/qqgl/selectlxList.do',
+				queryParams:{
+					'lx.xmid':row.xmbm,
+					'lx.jdbs':YMLib.Var.jdbs,
+					'lx.sffirst':'1'
+				},
+    			columns:[[
+    			    {field:'cz',title:'操作',width:150,align:'center',
+    			    	formatter:function(value,row,index){
+    			    		var result='<a href="javascript:selectLxWin('+"'"+index+"',"+"'"+row.xmid+"'"+')" style="color:#3399CC;">详细</a>';
+    			    		//result +='&nbsp;<a href="javascript:deleteLx('+"'"+row.id+"',"+"'"+row.xmid.substring(10,11)+"'"+')" style="color:#3399CC;">删除</a>';
+    			    		return result;
+    			    	}
+    			    },
+					{field:'gydw',title:'管养单位',width:150,align:'center'},    
+					{field:'xzqh',title:'行政区划',width:150,align:'center'},
+					{field:'lxmc',title:'路线名称',width:120,align:'center'},
+					{field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
+				    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
+				    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
+					{field:'lxbm',title:'原路线编码',width:100,align:'center'},
+					{field:'qdzh',title:'原起点桩号',width:80,align:'center'},
+					{field:'zdzh',title:'原止点桩号',width:80,align:'center'},
+					{field:'qdmc',title:'起点名称',width:100,align:'center'},
+					{field:'zdmc',title:'止点名称',width:100,align:'center'},
+//					{field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+					{field:'xjsdj',title:'技术等级',width:80,align:'center'},
+					{field:'lc',title:'里程',width:60,align:'center'},
+					{field:'jsfa',title:'建设方案',width:80,align:'center'}
+    			]],
+    			onLoadSuccess:function(){
+    				$('#'+grid.id).datagrid('fixDetailRowHeight',index);
+    	        }
+	    	});
+		}
+	};
 var Rh11={
 		onLoadSuccess:function(data){
 		},
@@ -2479,7 +2558,7 @@ function bindLxGrid(){
 				{field:'zdzh',title:'原止点桩号',width:80,align:'center'},
 				{field:'qdmc',title:'起点名称',width:100,align:'center'},
 				{field:'zdmc',title:'止点名称',width:100,align:'center'},
-				//{field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+				{field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
 				{field:'xjsdj',title:'技术等级',width:80,align:'center'},
 				{field:'lc',title:'里程',width:60,align:'center'}
 			]],
@@ -2591,6 +2670,29 @@ function gridBindyh(grid){
 	    view:grid.view,
 	    detailFormatter:Qwh.detailFormatter,
 	    onExpandRow:Qwh.onExpandRow
+	});
+	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.98});
+}
+function gridBindsle(grid){
+	gridObj = $('#'+grid.id).datagrid({
+	    url:grid.url,
+	    queryParams:grid.queryParams,
+	    striped:grid.striped,
+	    pagination:grid.pagination,
+	    rownumbers:grid.rownumbers,
+	    pageNumber:grid.pageNumber,
+	    pageSize:grid.pageSize,
+	    height:grid.height,
+	    width:grid.width,
+	    columns:grid.columns,
+	    onSelect:zhang.onSelect,
+	    onSelectAll:zhang.onSelectAll,
+	    onUnselect:zhang.onUnselect,
+	    onClickRow:zhang.onClickRow,
+	    onLoadSuccess:zhang.onLoadSuccess,
+	    view:grid.view,
+	    detailFormatter:zhang.detailFormatter,
+	    onExpandRow:zhang.onExpandRow
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.98});
 }

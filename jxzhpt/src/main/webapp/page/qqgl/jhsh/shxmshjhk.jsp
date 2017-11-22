@@ -141,7 +141,7 @@
 				{field:'jhwgsj',title:'完工时间',width:70,align:'center'}
 			]];
 			bindLxGrid();
-			gridBind(grid);
+			gridBindsle(grid);
 		}
 		function loadLj(params){
 			$.ajax({

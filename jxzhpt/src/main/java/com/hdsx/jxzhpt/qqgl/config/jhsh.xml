@@ -9486,15 +9486,15 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	
 	<select id="exportJhshShSbTotalExcel" parameterType="jhsh" resultType="elist">
      select '合计' v_0,'' v_1,'' v_2,'' v_3,'' v_4,'' v_5,'' v_6,'' v_7,'' v_8,'' v_9,'' v_10,'' v_11,'' v_12,sum(t.v_13) v_13,
-       sum(t.v_14) v_14,sum(t.v_16)+sum(t.v_17)+sum(t.v_18)+sum(t.v_19) v_15,sum(t.v_16) v_16,sum(t.v_17) v_17,sum(t.v_18) v_18,sum(t.v_19) v_19,'' v_20,'' v_21,'' v_22,'' v_23       
+       sum(t.v_14) v_14,sum(t.v_16)+sum(t.v_17)+sum(t.v_18)+sum(t.v_19) v_15,sum(t.v_16) v_16,sum(t.v_17) v_17,sum(t.v_18) v_18,sum(t.v_19) v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24      
        from (
        select j.ZYDPX v_0, to_char(j.ds) v_1, j.xzqh v_2,j.xmmc v_3,lx.ghlxbm v_4,lx.ghlxmc v_5,lx.ghqdzh v_6,lx.ghzdzh v_7,      
        lx.lxbm v_8,lx.lxmc v_9,lx.qdzh1 v_10,lx.zdzh1 v_11,j.jsxz v_12, lx2.zjhlc v_13,
        decode(j.PFZTZ, null, 0, j.PFZTZ) v_14,
        nvl(wh.bccgs,0)+nvl(wh.bcstz,0)+nvl(j.DFZC,0)+nvl(j.QT,0) v_15,nvl(wh.bccgs,0) v_16,nvl(wh.bcstz,0) v_17,
-       decode(j.DFZC, null, 0, j.DFZC) v_18,decode(j.QT, null, 0, j.QT) v_19,cb.sjpfwh v_20,j.XMBM v_21,j.scxdnf v_22,j.tsdqzcg v_23
+       decode(j.DFZC, null, 0, j.DFZC) v_18,decode(j.QT, null, 0, j.QT) v_19,cb.sjpfwh v_20,j.XMBM v_21,j.scxdnf v_22,cb.jsfa v_23,j.tsdqzcg v_24
 from jhxdsh j
-left join (select xmbm, sjpfwh from cbsj_sh) cb on j.xmbm = cb.xmbm
+left join (select xmbm, sjpfwh ,jsfa from cbsj_sh) cb on j.xmbm = cb.xmbm
 left join xmsq_sh lxg on j.xmbm = lxg.xmbm
 left join (select xmid xmbm, min(lx.xzqhdm) xzqhdm, min(lx.gydw) gydw from lxsh_lx lx where jdbs = '2' group by lx.xmid) l on j.xmbm = l.xmbm
            left join (select xmid,jsxz,(case when substr(xmid, 11, 1) = 1 then to_char(nvl(jhyilc, 0) + nvl(jherlc, 0) + nvl(jhsanlc, 0) + nvl(jhsilc, 0) + nvl(jhdwlc, 0) + nvl(jhwllc, 0))
@@ -9598,9 +9598,10 @@ select j.ZYDPX v_0,
        cb.sjpfwh v_20,
        j.XMBM v_21,
        j.scxdnf v_22,
-       j.tsdqzcg v_23
+       cb.jsfa v_23,
+       j.tsdqzcg v_24
   from jhxdsh j
-  left join (select xmbm, sjpfwh from cbsj_sh) cb on j.xmbm = cb.xmbm
+  left join (select xmbm, sjpfwh, jsfa from cbsj_sh) cb on j.xmbm = cb.xmbm
   left join xmsq_sh lxg on j.xmbm = lxg.xmbm
   left join (select xmid xmbm, min(lx.xzqhdm) xzqhdm, min(lx.gydw) gydw
                from lxsh_lx lx
@@ -9732,14 +9733,14 @@ select j.ZYDPX v_0,
 	
 	<select id="exportJhshYhdzxTotalExcel" parameterType="jhsh" resultType="elist">
 	select '合计' v_0, '' v_1,'' v_2,'' v_3,'' v_4,'' v_5,'' v_6,'' v_7,'' v_8,'' v_9,'' v_10,'' v_11,'' v_12,sum(t.v_13) v_13,'' v_14,
-'' v_15,sum(t.v_16) v_16,sum(t.v_17) v_17,sum(t.v_18) v_18,sum(t.v_19) v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24 
+'' v_15,sum(t.v_16) v_16,sum(t.v_17) v_17,sum(t.v_18) v_18,sum(t.v_19) v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_24 ,''v_25,''v_26
 from(
 select to_char(rownum) v_0, j.ZYDPX v_1, j.ds v_2, j.XMBM v_3, j.xmmc v_4, lx.ghlxbm v_5, lx.ghlxmc v_6,
        lx.ghqdzh v_7, lx.ghzdzh v_8,lx.lxbm v_9, lx.lxmc v_10, lx.qdzh1 v_11, lx.zdzh1 v_12,to_char(lx2.zjhlc,'fm999990.09999') v_13,lxg.jsdj v_14,
        j.jsxz v_15, nvl(j.ZTZ,0) v_16, nvl(j.RYS,0) v_17, nvl(wh.bcstz,0) v_18,nvl(j.QT,0) v_19,nvl(wh.bccgs,0) v_20,
-       cb.sjpfwh v_21,j.gydw v_22, j.scxdnf v_23,lxg.bz v_24,j.tsdqzcg v_25
+       cb.sjpfwh v_21,j.gydw v_22, j.scxdnf v_23,lxg.bz v_24,cb.jsfa v_25,j.tsdqzcg v_26
                   from jhxdyh j
-                  left join (select xmbm, sjpfwh from cbsj_yhdzx) cb on j.xmbm = cb.xmbm
+                  left join (select xmbm, sjpfwh ,jsfa from cbsj_yhdzx) cb on j.xmbm = cb.xmbm
                   left join xmsq_yhdzx lxg on j.xmbm = lxg.xmbm
                   left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw
                               from lxsh_lx lx group by lx.xmid) l on j.xmbm = l.xmbm
@@ -9865,9 +9866,10 @@ select to_char(rownum) v_0, j.ZYDPX v_1, j.ds v_2, j.XMBM v_3, j.xmmc v_4, lx.gh
        j.gydw v_22,
        j.scxdnf v_23,
        lxg.bz v_24,
-       j.tsdqzcg v_25
+       cb.jsfa v_25,
+       j.tsdqzcg v_26
   from jhxdyh j
-  left join (select xmbm, sjpfwh from cbsj_yhdzx) cb on j.xmbm = cb.xmbm
+  left join (select xmbm, sjpfwh,jsfa from cbsj_yhdzx) cb on j.xmbm = cb.xmbm
   left join xmsq_yhdzx lxg on j.xmbm = lxg.xmbm
   left join (select xmid xmbm, min(lx.xzqhdm) xzqhdm, min(lx.gydw) gydw
                from lxsh_lx lx

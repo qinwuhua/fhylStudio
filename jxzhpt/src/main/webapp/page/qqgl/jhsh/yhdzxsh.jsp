@@ -159,8 +159,8 @@
 				}, */
 				/* {field:'llcl',title:'老路处理',width:100,align:'center'} */
 			]];
-			bindYapLxGrid();
-			gridBind(grid);
+			bindLxGrid();
+			gridBindsle(grid);
 		}
 		function loadLj(params){
 			$.ajax({

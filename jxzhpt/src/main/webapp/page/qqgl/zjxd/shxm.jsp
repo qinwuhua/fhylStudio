@@ -248,7 +248,7 @@
 			    			columns:[[
 			    				{field:'cz',title:'操作',width:150,align:'center',
 				    				formatter:function(value,row,index){
-		    				    		var result='<a href="javascript:loadLxWin('+"'"+index+"',"+"'"+row.xmid+"'"+')" style="color:#3399CC;">详细</a>';
+		    				    		var result='<a href="javascript:selectLxWin('+"'"+index+"',"+"'"+row.xmid+"'"+')" style="color:#3399CC;">详细</a>';
 		    				    		return result;
 		    				    	}
 		    				    },

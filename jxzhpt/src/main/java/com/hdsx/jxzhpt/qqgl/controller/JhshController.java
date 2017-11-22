@@ -1883,7 +1883,8 @@ public class JhshController extends BaseActionSupport implements
 		et.add(new Excel_tilte("管养单位", 1, 2, 22, 22));
 		et.add(new Excel_tilte("项目年份", 1, 2, 23, 23));
 		et.add(new Excel_tilte("备注", 1, 2, 24, 24));
-		et.add(new Excel_tilte("特殊地区", 1, 2, 25, 25));
+		et.add(new Excel_tilte("建设方案", 1, 2, 25, 25));
+		et.add(new Excel_tilte("特殊地区", 1, 2, 26, 26));
 		
 		et.add(new Excel_tilte("规划路线编码", 2, 2, 5, 5));
 		et.add(new Excel_tilte("规划路线名称", 2, 2, 6, 6));
@@ -2015,7 +2016,8 @@ public class JhshController extends BaseActionSupport implements
 		et.add(new Excel_tilte("前期工作批复文号", 1, 2, 20, 20));
 		et.add(new Excel_tilte("项目编码", 1, 2, 21, 21));
 		et.add(new Excel_tilte("项目年份", 1, 2, 22, 22));
-		et.add(new Excel_tilte("特殊地区", 1, 2, 23, 23));
+		et.add(new Excel_tilte("建设内容", 1, 2, 23, 23));
+		et.add(new Excel_tilte("特殊地区", 1, 2, 24, 24));
 		et.add(new Excel_tilte("规划路线编码", 2, 2, 4, 4));
 		et.add(new Excel_tilte("规划路线名称", 2, 2, 5, 5));
 		et.add(new Excel_tilte("规划起点桩号", 2, 2, 6, 6));

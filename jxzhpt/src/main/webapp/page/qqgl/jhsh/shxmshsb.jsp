@@ -162,7 +162,7 @@
 				{field:'xdsj',title:'计划下达时间',width:100,align:'center'} */
 			]];
 			bindLxGrid();
-			gridBind(grid);
+			gridBindsle(grid);
 		}
 		function loadLj(params){
 			$.ajax({
