@@ -7,6 +7,7 @@
 	<action name="getGsgxsjgzjdzd" class="gcybbController" method="getGsgxsjgzjdzd"/>
 	<action name="getGsgxsjgzjd" class="gcybbController" method="getGsgxsjgzjd"/>
 	<action name="getJhzxqkb" class="gcybbController" method="getJhzxqkb"/>
+	<action name="getYhdzxwcb" class="gcybbController" method="getYhdzxwcb"/>
 	
 	
 	

@@ -125,6 +125,9 @@
 			var xmnf=$("#jhxdnf").combobox("getValues");
 			if(xmnf.join(",").substr(0,1)==',')
 			xmnf=xmnf.join(",").substr(1,xmnf.join(",").length).split(',');
+			xmnf.sort(function (x,y) {
+	            return y-x;
+	        });
 			var xmlx=$("#xmlx").combobox('getValues').join(',');
 			if(xmnf==''){
 				alert("请选择年份");
@@ -197,6 +200,9 @@
 		var xmnf=$("#jhxdnf").combobox("getValues");
 		if(xmnf.join(",").substr(0,1)==',')
 		xmnf=xmnf.join(",").substr(1,xmnf.join(",").length).split(',');
+		xmnf.sort(function (x,y) {
+            return y-x;
+        });
 		var xmlx=$("#xmlx").combobox("getValue");
 		if(xmnf==''){
 			alert("请选择年份");

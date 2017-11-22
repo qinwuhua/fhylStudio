@@ -4478,7 +4478,7 @@ public class GcybbController extends BaseActionSupport{
 			    			+" select "
 			    			+" to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.* from"
 			    			+" (select "
-			    			+" substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,count(*) xmsl,sum(nvl(lx.zlc,0)) xmlc,sum(nvl(bnwc.bnwclc,0)) bnlc,sum(nvl(ljwc.ljwclc,0)) ljlc,sum(nvl(bnwc.bnwctz,0)) bntz,sum(nvl(ljwc.ljwctz,0)) ljtz,sum(nvl(bncgs.ztz,0)) bndw,sum(nvl(ljcgs.ztz,0)) ljdw,"
+			    			+" substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,count(distinct j.xmbm) xmsl,sum(nvl(lx.zlc,0)) xmlc,sum(nvl(bnwc.bnwclc,0)) bnlc,sum(nvl(ljwc.ljwclc,0)) ljlc,sum(nvl(bnwc.bnwctz,0)) bntz,sum(nvl(ljwc.ljwctz,0)) ljtz,sum(nvl(bncgs.ztz,0)) bndw,sum(nvl(ljcgs.ztz,0)) ljdw,"
 			    			+" sum(nvl(bncgs.cgs,0)) bncgs,sum(nvl(ljcgs.cgs,0)) ljcgs,nvl(to_char(decode(sum(nvl(lx.zlc,0)),'0','0',null,'0',round(sum(nvl(ljwc.ljwclc,0)) / sum(nvl(lx.zlc,0)) * 100, 0))),'0')||'%' wcbl,sum(nvl(bnss.bnsslc,0)) mblc,0 mbtz,sum(nvl(bnwc.bnwclc,0)) wcmblc,'0%' wcmblcbl,'0%'wcmbtzbl "
 			    			+" from (select xmbm from jhsh_sjgz union all select xmbm from jhsh_xj)j,(select xmbm,xzqhdm from cbsj_sjgz union all select xmbm,xzqhdm from cbsj_xj) cb,"
 			    			+" (select xmid,decode(substr(xmid, 11, 1),1,(nvl(sum(jhyilc), 0) + nvl(sum(jherlc), 0) +nvl(sum(jhsanlc), 0) + nvl(sum(jhsilc), 0) +nvl(sum(jhdwlc), 0) + nvl(sum(jhwllc), 0)),(nvl(sum(yilc), 0) + nvl(sum(erlc), 0) + nvl(sum(sanlc), 0) + nvl(sum(silc), 0) +nvl(sum(dwlc), 0) + nvl(sum(wllc), 0))) zlc from lxsh_lx where jdbs = 2 group by xmid) lx,"
@@ -4496,7 +4496,7 @@ public class GcybbController extends BaseActionSupport{
 			    			+" select "
 			    			+" '全省汇总' xzqhmc,t1.* from"
 			    			+" (select "
-			    			+" '36' xzqh,t.xdnf jhnf,count(*) xmsl,sum(nvl(lx.zlc,0)) xmlc,sum(nvl(bnwc.bnwclc,0)) bnlc,sum(nvl(ljwc.ljwclc,0)) ljlc,sum(nvl(bnwc.bnwctz,0)) bntz,sum(nvl(ljwc.ljwctz,0)) ljtz,sum(nvl(bncgs.ztz,0)) bndw,sum(nvl(ljcgs.ztz,0)) ljdw,"
+			    			+" '36' xzqh,t.xdnf jhnf,count(distinct j.xmbm) xmsl,sum(nvl(lx.zlc,0)) xmlc,sum(nvl(bnwc.bnwclc,0)) bnlc,sum(nvl(ljwc.ljwclc,0)) ljlc,sum(nvl(bnwc.bnwctz,0)) bntz,sum(nvl(ljwc.ljwctz,0)) ljtz,sum(nvl(bncgs.ztz,0)) bndw,sum(nvl(ljcgs.ztz,0)) ljdw,"
 			    			+" sum(nvl(bncgs.cgs,0)) bncgs,sum(nvl(ljcgs.cgs,0)) ljcgs,nvl(to_char(decode(sum(nvl(lx.zlc,0)),'0','0',null,'0',round(sum(nvl(ljwc.ljwclc,0)) / sum(nvl(lx.zlc,0)) * 100, 0))),'0')||'%' wcbl,sum(nvl(bnss.bnsslc,0)) mblc,0 mbtz,sum(nvl(bnwc.bnwclc,0)) wcmblc,'0%' wcmblcbl,'0%'wcmbtzbl "
 			    			+" from (select xmbm from jhsh_sjgz union all select xmbm from jhsh_xj)j,(select xmbm,xzqhdm from cbsj_sjgz union all select xmbm,xzqhdm from cbsj_xj) cb,"
 			    			+" (select xmid,decode(substr(xmid, 11, 1),1,(nvl(sum(jhyilc), 0) + nvl(sum(jherlc), 0) +nvl(sum(jhsanlc), 0) + nvl(sum(jhsilc), 0) +nvl(sum(jhdwlc), 0) + nvl(sum(jhwllc), 0)),(nvl(sum(yilc), 0) + nvl(sum(erlc), 0) + nvl(sum(sanlc), 0) + nvl(sum(silc), 0) +nvl(sum(dwlc), 0) + nvl(sum(wllc), 0))) zlc from lxsh_lx where jdbs = 2 group by xmid) lx,"
@@ -4826,6 +4826,249 @@ public class GcybbController extends BaseActionSupport{
 		}
 	}
 	
-	
+	//养护大中修完成表
+	public void getYhdzxwcb(){
+		try {
+			if("1".equals(flag)){
+				String shijian="";
+				if(Integer.parseInt(yf)<=9){
+					shijian=nf+"-0"+yf;
+				}else{
+					shijian=nf+"-"+yf;
+				}
+				gcglabgc.setSbyf(shijian);
+				String tiaojian2="";
+				String xzqhdm = "";
+				String gydwdm = "";
+				if("1".equals(flag)){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+					xzqhdm=(String) session.getAttribute("xzqhbb");	
+				}else{
+				xzqhdm	= xzqh;
+				}
+				
+				if(xzqhdm.indexOf(",")==-1){
+					tiaojian2="and x.xzqhdm2 like '%"+xzqhdm+"%'";
+				}else{
+					tiaojian2=getcxtj("x.xzqhdm2",xzqhdm);
+					//tiaojian2="and xzqh in ("+xzqhdm+")";
+				}
+				gcglabgc.setXzqhdm(tiaojian2);
+				gcglabgc.setXmnf(nf);
+				//查总合list
+				//getcxtj
+				gcglabgc.setJhnd(getcxtj("xd.jhnf",gcglabgc.getJhnd()));
+				List<Excel_list> eL=gcybbServer.getYhdzxwcb(gcglabgc);
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("全省普通国省干线养护大中修工程完成情况表");//设置第一行 
+				eldata.setSheetName("养护大中修");//设置sheeet名
+				eldata.setFileName("全省普通国省干线养护大中修工程完成情况表");//设置文件名
+				eldata.setEl(eL);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("设区市公路局",1,4,0,0));
+				et.add(new Excel_tilte("养护大中修",1,1,1,109));
+				et.add(new Excel_tilte(nf+"年下达计划里程(公里)",2,2,1,12));
+				et.add(new Excel_tilte(nf+"年下达计划完成里程（公里）",2,2,13,24));
+				et.add(new Excel_tilte("累计完成里程（公里）",2,2,25,36));
+				et.add(new Excel_tilte("计划总投资（万元）",2,2,37,48));
+				et.add(new Excel_tilte("省级补助资金",2,2,49,60));
+				et.add(new Excel_tilte(nf+"完成总投资（万元）",2,2,61,72));
+				et.add(new Excel_tilte("累计完成总投资（万元）",2,2,73,84));
+				et.add(new Excel_tilte(nf+"年完成省级补助资金",2,2,85,96));
+				et.add(new Excel_tilte("完成省级补助资金",2,2,97,108));
+				et.add(new Excel_tilte("备注",2,4,109,109));
+				et.add(new Excel_tilte("国道",3,3,1,4));
+				et.add(new Excel_tilte("省道",3,3,5,8));
+				et.add(new Excel_tilte("农村公路",3,3,9,12));
+				et.add(new Excel_tilte("国道",3,3,13,16));
+				et.add(new Excel_tilte("省道",3,3,17,20));
+				et.add(new Excel_tilte("农村公路",3,3,21,24));
+				et.add(new Excel_tilte("国道",3,3,25,28));
+				et.add(new Excel_tilte("省道",3,3,29,32));
+				et.add(new Excel_tilte("农村公路",3,3,33,36));
+				et.add(new Excel_tilte("国道",3,3,37,40));
+				et.add(new Excel_tilte("省道",3,3,41,44));
+				et.add(new Excel_tilte("农村公路",3,3,45,48));
+				et.add(new Excel_tilte("国道",3,3,49,52));
+				et.add(new Excel_tilte("省道",3,3,53,56));
+				et.add(new Excel_tilte("农村公路",3,3,57,60));
+				et.add(new Excel_tilte("国道",3,3,61,64));
+				et.add(new Excel_tilte("省道",3,3,65,68));
+				et.add(new Excel_tilte("农村公路",3,3,69,72));
+				et.add(new Excel_tilte("国道",3,3,73,76));
+				et.add(new Excel_tilte("省道",3,3,77,80));
+				et.add(new Excel_tilte("农村公路",3,3,81,84));
+				et.add(new Excel_tilte("国道",3,3,85,88));
+				et.add(new Excel_tilte("省道",3,3,89,92));
+				et.add(new Excel_tilte("农村公路",3,3,93,96));
+				et.add(new Excel_tilte("国道",3,3,97,100));
+				et.add(new Excel_tilte("省道",3,3,101,104));
+				et.add(new Excel_tilte("农村公路",3,3,105,108));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				
+				int k=1;
+				for (int i = 1; i < 109; i++) {
+					if(k==1)
+						et.add(new Excel_tilte("小计",4,4,i,i));
+					if(k==2)
+						et.add(new Excel_tilte("大修",4,4,i,i));
+					if(k==3)
+						et.add(new Excel_tilte("中修",4,4,i,i));
+					if(k==4)
+						et.add(new Excel_tilte("预防性养护",4,4,i,i));
+					k++;
+					if(k==5)
+						k=1;
+				}
+				
+				
+				
+				
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_export(eldata,response);
+			
+		}else{
+			String shijian="";
+			if(Integer.parseInt(yf)<=9){
+				shijian=nf+"-0"+yf;
+			}else{
+				shijian=nf+"-"+yf;
+			}
+			gcglabgc.setSbyf(shijian);
+			String tiaojian2="";
+			String xzqhdm = "";
+			String gydwdm = "";
+			if("1".equals(flag)){
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				xzqhdm=(String) session.getAttribute("xzqhbb");	
+			}else{
+			xzqhdm	= xzqh;
+			}
+			
+			if(xzqhdm.indexOf(",")==-1){
+				tiaojian2="and x.xzqhdm2 like '%"+xzqhdm+"%'";
+			}else{
+				tiaojian2=getcxtj("x.xzqhdm2",xzqhdm);
+				//tiaojian2="and xzqh in ("+xzqhdm+")";
+			}
+			gcglabgc.setXzqhdm(tiaojian2);
+			gcglabgc.setXmnf(nf);
+			//查总合list
+			//getcxtj
+			gcglabgc.setJhnd(getcxtj("xd.jhnf",gcglabgc.getJhnd()));
+			List<Excel_list> list1=gcybbServer.getYhdzxwcb(gcglabgc);
+			
+			JsonUtils.write(list1, getresponse().getWriter());
+           }                                                     
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 }
