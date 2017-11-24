@@ -38,6 +38,19 @@ public class MyUtil implements Serializable{
         BigDecimal b2 = new BigDecimal(v2.toString());
         return b1.divide(b2,scale,BigDecimal.ROUND_HALF_UP).doubleValue();
     }
+    
+    public static Double divbfb(Double v1,Double v2,int scale){
+        if(v2==0.0) {
+        	return 0.0;
+        }
+    	if(scale<0){
+    		return 0.0;
+    	}
+        BigDecimal b1 = new BigDecimal(v1.toString());
+        BigDecimal b2 = new BigDecimal(v2.toString());
+        BigDecimal b3 = new BigDecimal(100+"");
+        return b1.divide(b2,scale,BigDecimal.ROUND_HALF_UP).multiply(b3).doubleValue();
+    }
 	/**
 	 * 
 	 * @param bh 要处理的参数
