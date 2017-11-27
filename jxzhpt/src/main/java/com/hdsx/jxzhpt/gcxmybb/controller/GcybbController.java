@@ -5071,8 +5071,145 @@ public class GcybbController extends BaseActionSupport{
 		}
 	}
 	
+	public void getLwgzHzb() {
+		try {
+			if("1".equals(flag)){
+				String shijian="";
+				if(Integer.parseInt(yf)<=9){
+					shijian=nf+"-0"+yf;
+				}else{
+					shijian=nf+"-"+yf;
+				}
+				gcglabgc.setSbyf(shijian);
+				String tiaojian2="";
+				String xzqhdm = "";
+				String gydwdm = "";
+				if("1".equals(flag)){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+					xzqhdm=(String) session.getAttribute("xzqhbb");	
+				}else{
+				xzqhdm	= xzqh;
+				}
+				
+				if(xzqhdm.indexOf(",")==-1){
+					tiaojian2="and decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh) like '%"+xzqhdm+"%'";
+				}else{
+					tiaojian2=getcxtj("decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh)",xzqhdm);
+					//tiaojian2="and xzqh in ("+xzqhdm+")";
+				}
+				gcglabgc.setXzqhdm(tiaojian2);
+				gcglabgc.setXmnf(nf);
+				//查总合list
+				//getcxtj
+				gcglabgc.setJhnd(getcxtj("xd.jhnf",gcglabgc.getJhnd()));
+				List<Excel_list> eL=gcybbServer.getLwgzHzb(gcglabgc);
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("公路路网结构改造工程统计汇总表");//设置第一行 
+				eldata.setSheetName("汇总表");//设置sheeet名
+				eldata.setFileName("公路路网结构改造工程统计汇总表");//设置文件名
+				eldata.setEl(eL);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("序号",1,3,0,0));
+				et.add(new Excel_tilte("设市区公路局",1,3,1,1));
+				et.add(new Excel_tilte("危桥改造",1,1,2,16));
+				et.add(new Excel_tilte("安防工程",1,1,17,34));
+				et.add(new Excel_tilte("灾害防治",1,1,35,46));
+				et.add(new Excel_tilte("计划下达情况",2,2,2,7));
+				et.add(new Excel_tilte("实施情况",2,2,8,16));
+				et.add(new Excel_tilte("计划下达情况",2,2,17,21));
+				et.add(new Excel_tilte("实施情况",2,2,22,34));
+				et.add(new Excel_tilte("计划下达情况",2,2,35,39));
+				et.add(new Excel_tilte("实施情况",2,2,40,46));
+				et.add(new Excel_tilte("计划（座）",3,3,2,2));
+				et.add(new Excel_tilte("计划延米（米）",3,3,3,3));
+				et.add(new Excel_tilte("总投资",3,3,4,4));
+				et.add(new Excel_tilte("中央车购税（万元）",3,3,5,5));
+				et.add(new Excel_tilte("省级补助资金（万元）",3,3,6,6));
+				et.add(new Excel_tilte(nf+"年目标（座）",3,3,7,7));
+				et.add(new Excel_tilte("累计完成（座）",3,3,8,8));
+				et.add(new Excel_tilte("累计完成延米（米）",3,3,9,9));
+				et.add(new Excel_tilte("累计完成总投资（万元）",3,3,10,10));
+				et.add(new Excel_tilte("已开工（座）",3,3,11,11));
+				et.add(new Excel_tilte("未开工（座）",3,3,12,12));
+				et.add(new Excel_tilte(nf+"年完成（座）",3,3,13,13));
+				et.add(new Excel_tilte(nf+"年完成延米（米）",3,3,14,14));
+				et.add(new Excel_tilte(nf+"年完成总投资（万元）",3,3,15,15));
+				et.add(new Excel_tilte("完成比例",3,3,16,16));
+				et.add(new Excel_tilte("计划（公里）",3,3,17,17));
+				et.add(new Excel_tilte("总投资（万元）",3,3,18,18));
+				et.add(new Excel_tilte("中央车购税（万元）",3,3,19,19));
+				et.add(new Excel_tilte("省级补助资金（万元）",3,3,20,20));
+				et.add(new Excel_tilte(nf+"年目标（座）",3,3,21,21));
+				et.add(new Excel_tilte("完成（公里）",3,3,22,22));
+				et.add(new Excel_tilte("其中国省道完成（公里）",3,3,23,23));
+				et.add(new Excel_tilte("其中县乡道完成（公里）",3,3,24,24));
+				et.add(new Excel_tilte("完成总投资（万元）",3,3,25,25));
+				et.add(new Excel_tilte("其中国省道完成总投资（座）",3,3,26,26));
+				et.add(new Excel_tilte("其中县乡道（万元）",3,3,27,27));
+				et.add(new Excel_tilte("完成省级以上补助资金（万元）",3,3,28,28));
+				et.add(new Excel_tilte("其中国省道完成补助资金投资（万元）",3,3,29,29));
+				et.add(new Excel_tilte("其中县乡道完成补助资金投资（万元）",3,3,30,30));
+				et.add(new Excel_tilte(nf+"年完成（公里）",3,3,31,31));
+				et.add(new Excel_tilte(nf+"年完成总投资（万元）",3,3,32,32));
+				et.add(new Excel_tilte(nf+"年完成省级以上补助资金（万元）",3,3,33,33));
+				et.add(new Excel_tilte("完成比例",3,3,34,34));
+				et.add(new Excel_tilte("计划（公里）",3,3,35,35));
+				et.add(new Excel_tilte("总投资（万元）",3,3,36,36));
+				et.add(new Excel_tilte("中央车购税（万元）",3,3,37,37));
+				et.add(new Excel_tilte("省级补助资金（万元）",3,3,38,38));
+				et.add(new Excel_tilte(nf+"年目标（公里）",3,3,39,39));
+				et.add(new Excel_tilte("完成（公里）",3,3,40,40));
+				et.add(new Excel_tilte("完成总投资",3,3,41,41));
+				et.add(new Excel_tilte("完成省级以上补助资金（万元）",3,3,42,42));
+				et.add(new Excel_tilte(nf+"年完成（公里）",3,3,43,43));
+				et.add(new Excel_tilte(nf+"年完成总投资（万元）",3,3,44,44));
+				et.add(new Excel_tilte(nf+"年完成省级以上补助资金（万元）",3,3,45,45));
+				et.add(new Excel_tilte("完成比例",3,3,46,46));
+				
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_export(eldata,response);
+			
+		}else{
+			String shijian="";
+			if(Integer.parseInt(yf)<=9){
+				shijian=nf+"-0"+yf;
+			}else{
+				shijian=nf+"-"+yf;
+			}
+			gcglabgc.setSbyf(shijian);
+			String tiaojian2="";
+			String xzqhdm = "";
+			String gydwdm = "";
+			if("1".equals(flag)){
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				xzqhdm=(String) session.getAttribute("xzqhbb");	
+			}else{
+			xzqhdm	= xzqh;
+			}
+			
+			if(xzqhdm.indexOf(",")==-1){
+				tiaojian2="and decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh) like '%"+xzqhdm+"%'";
+			}else{
+				tiaojian2=getcxtj("decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh)",xzqhdm);
+				//tiaojian2="and xzqh in ("+xzqhdm+")";
+			}
+			gcglabgc.setXzqhdm(tiaojian2);
+			gcglabgc.setXmnf(nf);
+			//查总合list
+			//getcxtj
+			gcglabgc.setJhnd(getcxtj("xd.jhnf",gcglabgc.getJhnd()));
+			List<Excel_list> list1=gcybbServer.getLwgzHzb(gcglabgc);
+			
+			JsonUtils.write(list1, getresponse().getWriter());
+           }                                                     
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	//路面改造完成表
-	
 	public void getLmgzwcb(){
 		List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
 		String tableName="";
@@ -5491,7 +5628,4 @@ public class GcybbController extends BaseActionSupport{
 				e.printStackTrace();
 			}
 		} 
-	
-	
-	
 }
