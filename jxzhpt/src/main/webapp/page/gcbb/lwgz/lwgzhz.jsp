@@ -290,8 +290,8 @@ text-decoration:none;
 								<caption align="top" style="font-size:x-large;font-weight: bolder;"> 公路路网结构改造工程统计汇总表</caption>
 								<tbody id='biaotou'>
 									<tr>
-										<td rowspan="3"  style="width: 100px;">序号</td>
-										<td rowspan="3"  style="width: 120px;">设市区公路局</td>
+										<td rowspan="3"  style="width: 200px;">序号</td>
+										<td rowspan="3"  style="width: 500px;">设市区公路局</td>
 										<td colspan="15">危桥改造</td>
 										<td colspan="18">安防工程</td>
 										<td colspan="12">安防工程</td>										
