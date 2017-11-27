@@ -1508,4 +1508,17 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 	public List<Excel_list> getYhdzxwcb(Gcglabgc gcglabgc) {
 		return queryList("getYhdzxwcb",gcglabgc);
 	}
+
+	@Override
+	public List<Excel_list> getLwgzHzb(Gcglabgc gcglabgc) {
+		List<Excel_list> total = queryList("getLwgzHzbTotal",gcglabgc);
+        int rowNum = 0;
+		List<Excel_list> result= queryList("getLwgzHzb",gcglabgc);
+		for(int i = 0; i < result.size();i++) {
+			rowNum ++;
+			result.get(i).setV_0(rowNum+"");
+		}
+		total.addAll(result);
+		return total;
+	}
 }
