@@ -10,6 +10,7 @@
 	<action name="getYhdzxwcb" class="gcybbController" method="getYhdzxwcb"/>
 	<action name="getLmgzwcb" class="gcybbController" method="getLmgzwcb"/>
 	<action name="getZhhfwcb" class="gcybbController" method="getZhhfwcb"/>
+	<action name="getYhgc" class="gcybbController" method="getYhgc"/>
 	
 	
 	

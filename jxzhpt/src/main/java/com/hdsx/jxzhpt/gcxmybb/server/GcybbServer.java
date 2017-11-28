@@ -153,5 +153,7 @@ public interface GcybbServer {
 
 	List<Excel_list> getYhdzxwcb(Gcglabgc gcglabgc);
 
-	List<Excel_list> getLwgzHzb(Gcglabgc gcglabgc);	
+	List<Excel_list> getLwgzHzb(Gcglabgc gcglabgc);
+
+	List<Excel_list> getYhgc(Gcglabgc gcglabgc);	
 }
