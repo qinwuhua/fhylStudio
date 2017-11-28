@@ -54,7 +54,7 @@
 		//var first;
 		years.push({text:'全部',value:''});
 		var myvalues=new Array();
-		
+		myvalues.push("");
 		for(var i=2011;i<=2020;i++){
 			years.push({text:(i),value:(i)});
 			myvalues.push(i);

@@ -4610,7 +4610,7 @@ public class GcybbController extends BaseActionSupport{
 						l.setV_0(i+"");
 					}
 					l.setV_1(list.get(i).get("XZQHMC").toString());
-					DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");//格式化设置 
+					DecimalFormat decimalFormat = new DecimalFormat("#,##0.000");//格式化设置 
 					DecimalFormat decimalFormat2 = new DecimalFormat("#,##0");//格式化设置 
 					
 					l.setV_2(decimalFormat2.format(xmsl));
@@ -5342,7 +5342,7 @@ public class GcybbController extends BaseActionSupport{
 						l.setV_0(i+"");
 					}
 					l.setV_1(list.get(i).get("XZQHMC").toString());
-					DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");//格式化设置 
+					DecimalFormat decimalFormat = new DecimalFormat("#,##0.000");//格式化设置 
 					DecimalFormat decimalFormat2 = new DecimalFormat("#,##0");//格式化设置 
 					
 					l.setV_2(decimalFormat2.format(xmsl));
@@ -5557,7 +5557,7 @@ public class GcybbController extends BaseActionSupport{
 							l.setV_0(i+"");
 						}
 						l.setV_1(list.get(i).get("XZQHMC").toString());
-						DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");//格式化设置 
+						DecimalFormat decimalFormat = new DecimalFormat("#,##0.000");//格式化设置 
 						DecimalFormat decimalFormat2 = new DecimalFormat("#,##0");//格式化设置 
 						
 						l.setV_2(decimalFormat2.format(xmsl));
