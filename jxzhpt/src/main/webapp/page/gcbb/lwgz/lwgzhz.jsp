@@ -294,7 +294,7 @@ text-decoration:none;
 										<td rowspan="3"  style="width: 500px;">设市区公路局</td>
 										<td colspan="15">危桥改造</td>
 										<td colspan="18">安防工程</td>
-										<td colspan="12">安防工程</td>										
+										<td colspan="12">灾害防治</td>										
 									</tr>
 									<tr>
 										<td colspan="6">计划下达情况</td>
@@ -356,7 +356,7 @@ text-decoration:none;
 		                                <td style="width: 100px;"><span class='nian'></span>年完成（公里）</td>
 		                                <td style="width: 100px;"><span class='nian'></span>年完成总投资（万元）</td>		                                
 		                                <td style="width: 100px;"><span class='nian'></span>年完成省级以上补助资金（万元）</td>
-		                                <td style="width: 100px;"><span class='nian'></span>完成比例</td>
+		                                <td style="width: 100px;">完成比例</td>
 									</tr>									
 								</tbody>
 								<tbody id="abgclist"></tbody>

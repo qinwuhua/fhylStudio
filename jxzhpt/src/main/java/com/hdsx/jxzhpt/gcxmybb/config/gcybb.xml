@@ -3897,7 +3897,7 @@
                               left join xmk_aqsmfh xm on ld.xmkid = xm.id
                              group by t.id) ts on lx.id = ts.id
                   left join (select p.*,g.iszh,g.bywc_gl,g.wc_btz,g.wc_stz,g.sbyf,g.wc_ztz,s.issj,g.shzt from plan_af p left join gcgl_abgc g on p.id=g.jhid left join gcgl_jgys s on p.sckid = s.jhid ) jh on jh.sckid=lx.id
-                  left join (select p.sckid,nvl(sum(p.pfztz),0) ztz, nvl(sum(p.shengbz)+sum(p.jhsybbzje),0) sbz from plan_af p group by p.sckid) x on x.sckid=lx.id      
+                  left join (select p.sckid,nvl(sum(p.pfztz),0) ztz, nvl(sum(p.jhsybbzje),0)+nvl(sum(p.shengbz),0) sbz from plan_af p group by p.sckid) x on x.sckid=lx.id      
                   left join (select p.sckid,sum(g.bywc_gl) wclc, sum(g.wc_ztz) wcztz, sum(g.wc_btz)+sum(g.wc_stz) wcsbz,round( decode(sum(p.jhsybbzje),0,0,((sum(g.wc_btz)+sum(g.wc_stz))/sum(p.jhsybbzje))*100), 2) sbzzb from plan_af p left join gcgl_abgc g on p.id=g.jhid where substr(g.sbyf,0,4) in (#{nf}) group by p.sckid)n on n.sckid = lx.id
                   left join (select p.sckid,sum(g.bywc_gl) wclc, sum(g.wc_ztz) wcztz, sum(g.wc_btz)+sum(g.wc_stz) wcsbz,round( decode(sum(p.jhsybbzje),0,0,((sum(g.wc_btz)+sum(g.wc_stz))/sum(p.jhsybbzje))*100), 2) sbzzb from plan_af p left join gcgl_abgc g on p.id=g.jhid where to_date(g.sbyf,'yyyy-MM') &lt;= to_date(#{sbyf},'yyyy-MM') group by p.sckid)l on l.sckid = lx.id       
          where jh.sbyf in (#{sbyf}) and jh.shzt='已审核'
@@ -4620,6 +4620,7 @@ left join (select sc.id, sum(ga.bywc_gl)lc, sum(ga.wc_ztz) ztz, sum(ga.wc_btz)+s
 where ga.shzt = '已审核'
 group by substr(sc.xzqhdm,0,4) order by substr(sc.xzqhdm,0,4) asc )af on wq.wqxzqh = af.afxzqh)afwq
 full outer join (
+
 select substr(lx.xzqhdm,0,4) xzqhdm,nvl(sum(pl.lc),0) v_35,nvl(sum(pl.ztz), 0) v_36,nvl(sum(pl.btz), 0) v_37,'0' v_38,
        nvl(sum(mb.lc),0) v_39,nvl(sum(wc.lc),0) v_40,nvl(sum(wc.ztz), 0) v_41,nvl(sum(wc.stz),0) v_42,
        nvl(sum(bn.lc),0) v_43,nvl(sum(bn.ztz),0) v_44, nvl(sum(bn.stz),0) v_45,
@@ -4630,7 +4631,9 @@ select substr(lx.xzqhdm,0,4) xzqhdm,nvl(sum(pl.lc),0) v_35,nvl(sum(pl.ztz), 0) v
   left join (select lx.id,sum(gz.bywcgl) lc,sum(gz.wc_ztz) ztz,sum(gz.wc_btz) + sum(gz.wc_stz) stz from xmk_zhfz lx left join sck_zhfz sc on sc.xmkid = lx.id left join plan_zhfz jh on jh.sckid = sc.sckid left join gcgl_zhfz gz on jh.id = gz.jhid group by lx.id) wc on wc.id = lx.id
   left join (select lx.id,sum(gz.bywcgl) lc,sum(gz.wc_ztz) ztz,sum(gz.wc_btz) + sum(gz.wc_stz) stz from xmk_zhfz lx left join sck_zhfz sc on sc.xmkid = lx.id left join plan_zhfz jh on jh.sckid = sc.sckid left join gcgl_zhfz gz on jh.id = gz.jhid where substr(gz.sbyf,0,4) in (#{xmnf}) group by lx.id) bn on bn.id = lx.id
   where gz.shzt = '已审核'
- group by substr(lx.xzqhdm,0,4) order by substr(lx.xzqhdm,0,4) asc) zh on afwq.xzqh = zh.xzqhdm
+ group by substr(lx.xzqhdm,0,4) order by substr(lx.xzqhdm,0,4) asc
+ 
+ ) zh on afwq.xzqh = zh.xzqhdm
       where 1=1
      <if test="xzqhdm != null and  xzqhdm != ''">
 		    ${xzqhdm}

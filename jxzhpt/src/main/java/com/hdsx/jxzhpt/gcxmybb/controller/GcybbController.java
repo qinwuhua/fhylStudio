@@ -2347,11 +2347,12 @@ public class GcybbController extends BaseActionSupport{
 			}else{
 				
 				String shijian="";
-				if(Integer.parseInt(gcglabgc.getYf())<=9){
+/*				if(Integer.parseInt(gcglabgc.getYf())<=9){
 					shijian=gcglabgc.getNf()+"-0"+gcglabgc.getYf();
 				}else{
 					shijian=gcglabgc.getNf()+"-"+gcglabgc.getYf();
-				}
+				}*/
+				shijian=gcglabgc.getNf()+"-"+gcglabgc.getYf();
 				gcglabgc.setSbyf(shijian);
 			
 				String tiaojian1="";
@@ -2493,11 +2494,12 @@ public class GcybbController extends BaseActionSupport{
 			}else{
 				
 				String shijian="";
-				if(Integer.parseInt(gcglabgc.getYf())<=9){
+/*				if(Integer.parseInt(gcglabgc.getYf())<=9){
 					shijian=gcglabgc.getNf()+"-0"+gcglabgc.getYf();
 				}else{
 					shijian=gcglabgc.getNf()+"-"+gcglabgc.getYf();
-				}
+				}*/
+				shijian=gcglabgc.getNf()+"-"+gcglabgc.getYf();
 				gcglabgc.setSbyf(shijian);
 	
 				String tiaojian1="";
@@ -2638,11 +2640,12 @@ public class GcybbController extends BaseActionSupport{
 			}else{
 				
 				String shijian="";
-				if(Integer.parseInt(gcglabgc.getYf())<=9){
+/*				if(Integer.parseInt(gcglabgc.getYf())<=9){
 					shijian=gcglabgc.getNf()+"-0"+gcglabgc.getYf();
 				}else{
 					shijian=gcglabgc.getNf()+"-"+gcglabgc.getYf();
-				}
+				}*/
+				shijian=gcglabgc.getNf()+"-"+gcglabgc.getYf();
 				gcglabgc.setSbyf(shijian);
 
 				String tiaojian1="";
@@ -5091,12 +5094,12 @@ public class GcybbController extends BaseActionSupport{
 				}else{
 				xzqhdm	= xzqh;
 				}
-				
+
 				if(xzqhdm.indexOf(",")==-1){
 					tiaojian2="and decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh) like '%"+xzqhdm+"%'";
 				}else{
 					tiaojian2=getcxtj("decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh)",xzqhdm);
-					//tiaojian2="and xzqh in ("+xzqhdm+")";
+					//tiaojian2="and xzqh in ("+xzqhdm+")";  
 				}
 				gcglabgc.setXzqhdm(tiaojian2);
 				gcglabgc.setXmnf(nf);
