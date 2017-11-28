@@ -30,7 +30,22 @@ public class Excel_list implements Serializable {
 	private String ssbb;
 	private String treeno;
 	private String yf;
+	private int xmsl;
 	
+	private String sfhb;
+	
+	public String getSfhb() {
+		return sfhb;
+	}
+	public void setSfhb(String sfhb) {
+		this.sfhb = sfhb;
+	}
+	public int getXmsl() {
+		return xmsl;
+	}
+	public void setXmsl(int xmsl) {
+		this.xmsl = xmsl;
+	}
 	public String getYf() {
 		return yf;
 	}

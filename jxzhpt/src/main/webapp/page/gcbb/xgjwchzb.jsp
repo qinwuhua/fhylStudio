@@ -172,7 +172,7 @@
 						for ( var x = 0; x < msg.length; x++) {
 							var tr="";
 							if(x==0){
-								var tr="<tr>";
+								tr="<tr>";
 								for ( var j = 0; j < ss.length; j++) {
 									if(ss[j]=='v_0'){
 										tr+="<td colspan='2'>"+msg[x][ss[j]]+"</td>";

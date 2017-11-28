@@ -5631,4 +5631,153 @@ public class GcybbController extends BaseActionSupport{
 				e.printStackTrace();
 			}
 		} 
+		
+		
+		//计划执行情况表
+		public void getYhgc(){
+			try {
+				if("1".equals(flag)){
+					String shijian="";
+					if(Integer.parseInt(yf)<=9){
+						shijian=nf+"-0"+yf;
+					}else{
+						shijian=nf+"-"+yf;
+					}
+					gcglabgc.setSbyf(shijian);
+					String tiaojian2="";
+					String xzqhdm = "";
+					String gydwdm = "";
+					if("1".equals(flag)){
+						HttpServletRequest request = ServletActionContext.getRequest();
+						HttpSession session = request.getSession();
+						xzqhdm=(String) session.getAttribute("xzqhbb");	
+					}else{
+					xzqhdm	= xzqh;
+					}
+					
+					if(xzqhdm.indexOf(",")==-1){
+						tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
+					}else{
+						tiaojian2=getcxtj("xzqhdm",xzqhdm);
+						//tiaojian2="and xzqh in ("+xzqhdm+")";
+					}
+					gcglabgc.setXzqhdm(tiaojian2);
+					gcglabgc.setXmnf(nf);
+					//查总合list
+					//getcxtj
+					gcglabgc.setJhnd(getcxtj("xd.xdnf",gcglabgc.getJhnd()));
+					gcglabgc.setXmlx(getcxtj("jh.xmlx",gcglabgc.getXmlx()));
+					
+					List<Excel_list> eL=gcybbServer.getYhgc(gcglabgc);
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("养护工程任务与实施情况对照表");//设置第一行 
+					eldata.setSheetName("计划执行情况表");//设置sheeet名
+					eldata.setFileName("养护工程任务与实施情况对照表");//设置文件名
+					eldata.setEl(eL);//将实体list放入类中
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					et.add(new Excel_tilte("养护工程批复情况",1,1,0,18));
+					et.add(new Excel_tilte("实施情况",1,1,19,41));
+					et.add(new Excel_tilte("计划下达年份及批次",1,3,42,42));
+					et.add(new Excel_tilte("已完工/已开工/未开工 ",1,3,43,43));
+					et.add(new Excel_tilte("交工证书是否上报省局",1,3,44,44));
+					et.add(new Excel_tilte("进度是否滞后/滞后原因",1,3,45,45));
+					et.add(new Excel_tilte("备注（在备注栏中应说明大中修项目、路面改建、灾毁恢复重建项目，若有二类合并安排的也需说明）",1,3,46,46));
+					
+					et.add(new Excel_tilte("序号",2,3,0,0));
+					et.add(new Excel_tilte("路线编号",2,3,1,1));
+					et.add(new Excel_tilte("原路线编号",2,3,2,2));
+					et.add(new Excel_tilte("工程项目名称",2,3,3,3));
+					et.add(new Excel_tilte("起点桩号",2,3,4,4));
+					et.add(new Excel_tilte("讫点桩号",2,3,5,5));
+					et.add(new Excel_tilte("2016年年报桩号",2,2,6,7));
+					et.add(new Excel_tilte("里程（km）",2,3,8,8));
+					et.add(new Excel_tilte("路面等级",2,3,9,9));
+					et.add(new Excel_tilte("路面宽度(M)",2,3,10,10));
+					et.add(new Excel_tilte("工程分类",2,3,11,11));
+					et.add(new Excel_tilte("技术处治方案",2,3,12,12));
+					et.add(new Excel_tilte("计划下达文号",2,3,13,13));
+					et.add(new Excel_tilte("下达计划",2,3,14,16));
+					et.add(new Excel_tilte("2017年目标任务（公里）",2,3,17,17));
+					et.add(new Excel_tilte("所在地（分局）",2,3,18,18));
+					et.add(new Excel_tilte("开工时间/计划开工时间",2,3,19,19));
+					et.add(new Excel_tilte("完工时间/计划完工时间",2,3,20,20));
+					et.add(new Excel_tilte("本月完成",2,2,21,27));
+					et.add(new Excel_tilte("本年完成",2,2,28,34));
+					et.add(new Excel_tilte("至本月累计完成",2,2,35,41));
+					
+					et.add(new Excel_tilte("起点桩号",3,3,6,7));
+					et.add(new Excel_tilte("讫点桩号",3,3,1,1));
+					et.add(new Excel_tilte("总投资（万元）",3,3,14,14));
+					et.add(new Excel_tilte("其中：1、中央车购税资金（万元）",3,3,15,15));
+					et.add(new Excel_tilte("其中：2、省级补助资金（万元）",3,3,16,16));
+					
+					et.add(new Excel_tilte("里程（km）",3,3,21,21));
+					et.add(new Excel_tilte("完成总投资（万元）",3,3,22,22));
+					et.add(new Excel_tilte("完成省级以上补助资金（万元）",3,3,23,23));
+					et.add(new Excel_tilte("省级以上补助完成比例（%）",3,3,24,24));
+					et.add(new Excel_tilte("中央车购税到位（万元）",3,3,25,25));
+					et.add(new Excel_tilte("省级补助资金到位（万元）",3,3,26,26));
+					et.add(new Excel_tilte("地方自筹资金到位（万元）",3,3,27,27));
+					et.add(new Excel_tilte("里程（km）",3,3,28,28));
+					et.add(new Excel_tilte("完成总投资（万元）",3,3,29,29));
+					et.add(new Excel_tilte("完成省级以上补助资金（万元）",3,3,30,30));
+					et.add(new Excel_tilte("省级以上补助完成比例（%）",3,3,31,31));
+					et.add(new Excel_tilte("中央车购税到位（万元）",3,3,32,32));
+					et.add(new Excel_tilte("省级补助资金到位（万元）",3,3,33,33));
+					et.add(new Excel_tilte("地方自筹资金到位（万元）",3,3,34,34));
+					et.add(new Excel_tilte("里程（km）",3,3,35,35));
+					et.add(new Excel_tilte("完成总投资（万元）",3,3,36,36));
+					et.add(new Excel_tilte("完成省级以上补助资金（万元）",3,3,37,37));
+					et.add(new Excel_tilte("省级以上补助完成比例（%）",3,3,38,38));
+					et.add(new Excel_tilte("中央车购税到位（万元）",3,3,39,39));
+					et.add(new Excel_tilte("省级补助资金到位（万元）",3,3,40,40));
+					et.add(new Excel_tilte("地方自筹资金到位（万元）",3,3,41,41));
+					
+					eldata.setEt(et);//将表头内容设置到类里面
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					Excel_export.excel_exportyhgc(eldata,response);
+				
+			}else{
+				String shijian="";
+				if(Integer.parseInt(yf)<=9){
+					shijian=nf+"-0"+yf;
+				}else{
+					shijian=nf+"-"+yf;
+				}
+				gcglabgc.setSbyf(shijian);
+				String tiaojian2="";
+				String xzqhdm = "";
+				String gydwdm = "";
+				if("1".equals(flag)){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+					xzqhdm=(String) session.getAttribute("xzqhbb");	
+				}else{
+				xzqhdm	= xzqh;
+				}
+				
+				if(xzqhdm.indexOf(",")==-1){
+					tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
+				}else{
+					tiaojian2=getcxtj("xzqhdm",xzqhdm);
+					//tiaojian2="and xzqh in ("+xzqhdm+")";
+				}
+				gcglabgc.setXzqhdm(tiaojian2);
+				gcglabgc.setXmnf(nf);
+				//查总合list
+				//getcxtj
+				gcglabgc.setJhnd(getcxtj("xd.xdnf",gcglabgc.getJhnd()));
+				gcglabgc.setXmlx(getcxtj("jh.xmlx",gcglabgc.getXmlx()));
+				
+				List<Excel_list> list1=gcybbServer.getYhgc(gcglabgc);
+				
+				JsonUtils.write(list1, getresponse().getWriter());
+	           }                                                     
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
 }
