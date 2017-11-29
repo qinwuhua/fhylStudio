@@ -71,6 +71,7 @@ function sbnf(id){
 }
 function openWindow(id){
 	obj=id;
+	YMLib.Var.jhbm=id;
 	YMLib.UI.createWindow('wq_xx','危桥改造',"/jxzhpt/page/jhgl/jhkxx/wqgz.jsp",'wq_xx',1000,500);
 }
 var obj;

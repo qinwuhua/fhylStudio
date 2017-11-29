@@ -8,7 +8,132 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>	
+	<link rel="stylesheet" type="text/css" href="/jxzhpt/easyui/themes/default/easyui.css" />
+	<link rel="stylesheet" type="text/css" href="/jxzhpt/easyui/themes/icon.css" />
+	<link rel="stylesheet" type="text/css" href="/jxzhpt/js/autocomplete/jquery.autocomplete.css" />
+	<script type="text/javascript" src="/jxzhpt/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="/jxzhpt/easyui/datagrid-detailview.js"></script>
+	<script type="text/javascript" src="/jxzhpt/easyui/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="/jxzhpt/js/autocomplete/jquery.autocomplete.js" ></script>
+	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
+	<script type="text/javascript">
+	$(function(){
+	if(parent.YMLib.Var.bz!=null){
+		bz=parent.YMLib.Var.bz;
+	}
+	if(parent.YMLib.Var.jhbm!=null){
+		xxId=parent.YMLib.Var.jhbm;
+	}
+	var lxls={'lx.lxbm':null,'lx.zdzh':null,'lx.xzqhdm':null,'lx.qdzh':null,'lx.jhid':null};
+	$.ajax({
+		type:'post',
+		async:false,
+		url:'../../../jhgl/queryZhfzById.do',
+		dataType:'json',
+		data:'jh.id='+xxId,
+		success:function(data){
+			sckid=data.sckid;
+			lxls['lx.jhid']=data.sbnf;
+			$.ajax({
+				type : 'post',
+				async:false,
+				url : '../../../xmsck/selectSckzhfzById.do',
+				data :"sckid="+data.sckid,
+				dataType:'json',
+				success:function(jcAndSc){
+					if(jcAndSc!=null){
+						//基础库
+						lxls['lx.lxbm']=jcAndSc.lxbm;
+						lxls['lx.zdzh']=jcAndSc.zdzh;
+						lxls['lx.qdzh']=jcAndSc.qdzh;
+						lxls['lx.xzqhdm']=jcAndSc.xzqhdm;
+						$('#lxmc').html(jcAndSc.lxmc);
+						$('#lxbm').html(jcAndSc.lxbm);
+						$('#gydwxx').html(jcAndSc.gydw);
+						$('#qdzh').html(jcAndSc.qdzh);
+						$('#zdzh').html(jcAndSc.zdzh);
+						$('#zlc').html(jcAndSc.qzlc);
+						$('#xzqhdm').html(jcAndSc.xzqhdm);
+						$('#xzqhmc').html(jcAndSc.xzqhmc);
+						$('#xjnd').html(jcAndSc.gjxjnd);
+						$('#lxjsdjxx').html(jcAndSc.lxjsdj);
+						$('#yhlc').html(jcAndSc.yhlc);
+						$('#tsdq').html(jcAndSc.tsdq);
+						$('#xmnf').html(jcAndSc.xmnf);
+						$('#xmzt').html(jcAndSc.xmzt);
+						$('#zhnr').html(jcAndSc.zhnr);
+						$('#bz').html(jcAndSc.bz);
+						//审查库
+						$('#SCQDZH').html(jcAndSc.scqdzh);
+						$('#SCZDZH').html(jcAndSc.sczdzh);
+						$('#SCZLC').html(jcAndSc.sczlc);
+						$('#SCYHLC').html(jcAndSc.scyhlc);
+						$('#FAPGDW').html(jcAndSc.fapgdw);
+						$('#FASCDW').html(jcAndSc.fascdw);
+						$('#FASPSJ').html(jcAndSc.faspsj);
+						$('#SPWH').html(jcAndSc.spwh);
+						$('#TZGS').html(jcAndSc.tzgs);
+						$('#JSXZ').html(jcAndSc.jsxz);
+						$('#JSNR').html(jcAndSc.jsnr);
+						$('#scbz').html(jcAndSc.scbz);
+						$('#ylxbm').html(jcAndSc.ylxbm);
+						$('#yqdzh').html(jcAndSc.yqdzh);
+						$('#yzdzh').html(jcAndSc.yzdzh);						
+					}
+				}
+			});
+			//计划信息
+			$("#jhid").val(data.id);
+			$('#jhnf').html(data.sbnf);
+			$('#jhkgsj').html(data.jhkgsj);
+			$('#jhwgsj').html(data.jhwgsj);
+			$('#jhxdsj').html(data.xdsj);
+			$('#jhxdwh').html(data.jhxdwh);
+			$('#sjdw').html(data.sjdw);
+			$('#sjpfdw').html(data.sjpfdw);
+			$('#pfwh').html(data.pfwh);
+			$('#pfsj').html(data.pfsj);
+			$('#jhztz').html(data.pfztz);
+			$('#bbz').html(data.jhsybzje);
+			$('#dfzc').html(data.jhsydfzcje);
+			$('#sfsqablbz').html(data.sfsqablbz);
+			$('#ablbzwh').html(data.ablbzsqwh);
+			$('#jhbz').html(data.bz);
+			fileShow();
+		}
+	});
+	/*$.ajax({
+		type:'post',
+		url:'../../../jhgl/queryXjls.do',
+		async:false,
+		data:lxls,
+		dataType:'json',
+		success:function(data){
+			if(data.length>0){
+				$.each(data,function(index,jh){
+					var a='<a href="javascript:onclickXx('+"'"+jh.remarks+"','"+jh.id+"'"+')" style="color:#0066CB;font-size:12px;">';
+					a+=jh.jhnf+'年,'+jh.xmmc+'【';
+					$.each(jh.plan_lx_gcsjs,function(index,lx){
+						a+=lx.lxbm+'('+lx.qdzh+'-'+lx.zdzh+')';
+					});
+					a+='】</a>';
+					if(index<data.length-1){
+						a+="；";
+					}
+					$('#divPlan').append(a);
+				});
+			}else{
+				$('#divPlan').append("暂无历史记录！");
+			}
+		}
+	});*/
+	queryZjxdgsdzh(parent.YMLib.Var.jhbm);
+	});
+	function closeWindow(id){
+		parent.$('#'+id).window('destroy');
+	}
+	</script>
 </head>
 <body>
 	<div id="zhfz_xx" style="text-align: left;font-size: 12px;width:100%;">
@@ -413,120 +538,21 @@
 				</td>
 			</tr>
 		</table>
+		<form id="zjxd">		
+			<table width="97%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; margin-left:13px;" cellspacing="0" cellpadding="0">
+				<tr style="height: 25px;">
+					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+						计划下达
+					</td>
+				</tr>
+				<tr>
+					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+						<table id="zjxdList" width="100%" height="90%" cellpadding="0" cellspacing="0" border="1" style="padding-top: 10px;">
+						</table>
+					</td>
+				</tr>
+			</table>
+		</form>
 	</div>
-	<script type="text/javascript">
-	if(parent.YMLib.Var.bz!=null){
-		bz=parent.YMLib.Var.bz;
-	}
-	if(parent.YMLib.Var.jhbm!=null){
-		xxId=parent.YMLib.Var.jhbm;
-	}
-	var lxls={'lx.lxbm':null,'lx.zdzh':null,'lx.xzqhdm':null,'lx.qdzh':null,'lx.jhid':null};
-	$.ajax({
-		type:'post',
-		async:false,
-		url:'../../../jhgl/queryZhfzById.do',
-		dataType:'json',
-		data:'jh.id='+xxId,
-		success:function(data){
-			sckid=data.sckid;
-			lxls['lx.jhid']=data.sbnf;
-			$.ajax({
-				type : 'post',
-				async:false,
-				url : '../../../xmsck/selectSckzhfzById.do',
-				data :"sckid="+data.sckid,
-				dataType:'json',
-				success:function(jcAndSc){
-					if(jcAndSc!=null){
-						//基础库
-						lxls['lx.lxbm']=jcAndSc.lxbm;
-						lxls['lx.zdzh']=jcAndSc.zdzh;
-						lxls['lx.qdzh']=jcAndSc.qdzh;
-						lxls['lx.xzqhdm']=jcAndSc.xzqhdm;
-						$('#lxmc').html(jcAndSc.lxmc);
-						$('#lxbm').html(jcAndSc.lxbm);
-						$('#gydwxx').html(jcAndSc.gydw);
-						$('#qdzh').html(jcAndSc.qdzh);
-						$('#zdzh').html(jcAndSc.zdzh);
-						$('#zlc').html(jcAndSc.qzlc);
-						$('#xzqhdm').html(jcAndSc.xzqhdm);
-						$('#xzqhmc').html(jcAndSc.xzqhmc);
-						$('#xjnd').html(jcAndSc.gjxjnd);
-						$('#lxjsdjxx').html(jcAndSc.lxjsdj);
-						$('#yhlc').html(jcAndSc.yhlc);
-						$('#tsdq').html(jcAndSc.tsdq);
-						$('#xmnf').html(jcAndSc.xmnf);
-						$('#xmzt').html(jcAndSc.xmzt);
-						$('#zhnr').html(jcAndSc.zhnr);
-						$('#bz').html(jcAndSc.bz);
-						//审查库
-						$('#SCQDZH').html(jcAndSc.scqdzh);
-						$('#SCZDZH').html(jcAndSc.sczdzh);
-						$('#SCZLC').html(jcAndSc.sczlc);
-						$('#SCYHLC').html(jcAndSc.scyhlc);
-						$('#FAPGDW').html(jcAndSc.fapgdw);
-						$('#FASCDW').html(jcAndSc.fascdw);
-						$('#FASPSJ').html(jcAndSc.faspsj);
-						$('#SPWH').html(jcAndSc.spwh);
-						$('#TZGS').html(jcAndSc.tzgs);
-						$('#JSXZ').html(jcAndSc.jsxz);
-						$('#JSNR').html(jcAndSc.jsnr);
-						$('#scbz').html(jcAndSc.scbz);
-						$('#ylxbm').html(jcAndSc.ylxbm);
-						$('#yqdzh').html(jcAndSc.yqdzh);
-						$('#yzdzh').html(jcAndSc.yzdzh);						
-					}
-				}
-			});
-			//计划信息
-			$("#jhid").val(data.id);
-			$('#jhnf').html(data.sbnf);
-			$('#jhkgsj').html(data.jhkgsj);
-			$('#jhwgsj').html(data.jhwgsj);
-			$('#jhxdsj').html(data.xdsj);
-			$('#jhxdwh').html(data.jhxdwh);
-			$('#sjdw').html(data.sjdw);
-			$('#sjpfdw').html(data.sjpfdw);
-			$('#pfwh').html(data.pfwh);
-			$('#pfsj').html(data.pfsj);
-			$('#jhztz').html(data.pfztz);
-			$('#bbz').html(data.jhsybzje);
-			$('#dfzc').html(data.jhsydfzcje);
-			$('#sfsqablbz').html(data.sfsqablbz);
-			$('#ablbzwh').html(data.ablbzsqwh);
-			$('#jhbz').html(data.bz);
-			fileShow();
-		}
-	});
-	/*$.ajax({
-		type:'post',
-		url:'../../../jhgl/queryXjls.do',
-		async:false,
-		data:lxls,
-		dataType:'json',
-		success:function(data){
-			if(data.length>0){
-				$.each(data,function(index,jh){
-					var a='<a href="javascript:onclickXx('+"'"+jh.remarks+"','"+jh.id+"'"+')" style="color:#0066CB;font-size:12px;">';
-					a+=jh.jhnf+'年,'+jh.xmmc+'【';
-					$.each(jh.plan_lx_gcsjs,function(index,lx){
-						a+=lx.lxbm+'('+lx.qdzh+'-'+lx.zdzh+')';
-					});
-					a+='】</a>';
-					if(index<data.length-1){
-						a+="；";
-					}
-					$('#divPlan').append(a);
-				});
-			}else{
-				$('#divPlan').append("暂无历史记录！");
-			}
-		}
-	});*/
-	function closeWindow(id){
-		parent.$('#'+id).window('destroy');
-	}
-	</script>
 </body>
 </html>

@@ -14,15 +14,19 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/page/lwxm/js/lwxm.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/page/lwxm/js/wqsj.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/wqsj.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>	
+<script type="text/javascript" src="/jxzhpt/easyui/datagrid-detailview.js"></script>
+<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
+
 <script type="text/javascript">
 $(function(){
 	loadJhkxx();
+	queryZjxdgsdzh(parent.YMLib.Var.jhbm);
 });
 function loadJhkxx(){
 	$.ajax({
@@ -612,5 +616,20 @@ text-decoration:none;
 					<span id="jhbz"></span></td>
 			</tr>
 		</table>
+		<form id="zjxd">
+			<table width="97%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; margin-left:13px;" cellspacing="0" cellpadding="0">
+				<tr style="height: 25px;">
+					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+						计划下达
+					</td>
+				</tr>
+				<tr>
+					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+						<table id="zjxdList" width="100%" height="90%" cellpadding="0" cellspacing="0" border="1" style="padding-top: 10px;">
+						</table>
+					</td>
+				</tr>
+			</table>
+		</form>
 </body>
 </html>
