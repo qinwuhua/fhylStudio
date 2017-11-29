@@ -435,9 +435,15 @@ function exportExcel(flag,mode){
 	}
 	if(flag=='zhfz'){
 		var jh={jhnf:"",sbzt:"",spzt:"",sfylsjl:$('#sfylsjl').combo("getValue"),jh_sbthcd:""};
-		var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:"",lxjsdj:"",lxbm:"",xmklx:$("#xmklx").combobox('getValue'),tsdq:""};
+		var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:"",lxjsdj:"",lxbm:"",lxbh:'',ylxbm:'',xmklx:$("#xmklx").combobox('getValue'),tsdq:""};
 		if($('#txtRoad').val()!=""){
 			lx.lxmc=$('#txtRoad').val();
+		}
+		if($('#lxbh').val()!=""){
+			lx.lxbh=$('#lxbh').val();
+		}
+		if($('#ylxbm').val()!=""){
+			lx.ylxbm=$('#ylxbm').val();
 		}
 		if($('#sbnf').combobox('getText')!=""){
 			jh.jhnf=$('#sbnf').combobox('getValues').join(',');
@@ -482,7 +488,7 @@ function exportExcel(flag,mode){
 		params="&lx.gydwbm="+getgydw("gydw")+"&lx.xzqhdm="+getxzqhdm('xzqh')+"&lx.lxmc="+lx.lxmc+
 				"&jh.sbnf="+jh.jhnf+"&lx.lxjsdj="+lx.lxjsdj+
 				"&lx.lxbm="+lx.lxbm+"&lx.tsdq="+lx.tsdq+"&lx.xmklx="+$("#xmklx").combobox('getValue')+
-				"&jh.jh_sbthcd="+jh.jh_sbthcd;
+				"&jh.jh_sbthcd="+jh.jh_sbthcd+"&lx.lxbh="+lx.lxbh+"&lx.ylxbm="+lx.ylxbm;
 //		alert(params);
 		window.location.href="/jxzhpt/jhgl/exportExcel_jh_zhfz.do?flag="+flag+"&"+params;
 	}

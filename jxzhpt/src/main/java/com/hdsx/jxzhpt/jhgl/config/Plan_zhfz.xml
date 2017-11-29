@@ -19,6 +19,7 @@
         <result property="yqdzh" column="yqdzh"/>
         <result property="yzdzh" column="yzdzh"/>
         <result property="ylxmc" column="ylxmc"/>
+        <result property="lxbh" column="lxbh"/>
 		<association property="jckzhfz"  column="SCK_ZHFZ_ID"  resultMap="zhfz_lx"></association>
 	</resultMap>
 	<resultMap type="sckzhfz"  id="zhfz_lx">
@@ -86,6 +87,9 @@
 	 				<if test="lx.lxbm !=null and lx.lxbm !=''">
 	 					${lx.lxbm}
 	 				</if>
+	 				<if test="lx.lxbh !=null and lx.lxbh !=''">
+	 					and lx.lxbm like '%'||#{lx.lxbh}||'%'
+	 				</if>
 	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 	 					and lx.lxjsdj like '%'|| #{lx.lxjsdj}||'%'
 	 				</if>
@@ -94,6 +98,9 @@
 				 	</if>
 				 	<if test="lx.xmklx != null and lx.xmklx != ''">
 	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
+	 				<if test="lx.ylxbm!=null and lx.ylxbm!=''">
+	 					and lx.ylxbm like '%'||#{lx.ylxbm}||'%'
 	 				</if>
 				 	order by jh.sbnf desc,jh.jh_sbthcd
 			 	) t order by t.sbnf desc,t.jh_sbthcd
@@ -204,6 +211,12 @@
 	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
 	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
 	 				</if>
+	 				<if test="lx.ylxbm!=null and lx.ylxbm!=''">
+	 					and lx.ylxbm like '%'||#{lx.ylxbm}||'%'
+	 				</if>
+	 				<if test="lx.lxbh !=null and lx.lxbh !=''">
+	 					and lx.lxbm like '%'||#{lx.lxbh}||'%'
+	 				</if>
 	 				<if test="lx.gldj!=null and lx.gldj!=''">
 	 					${lx.gldj}
 	 				</if>
@@ -305,6 +318,12 @@
 			</if>
 			<if test="lx.lxbm !=null and lx.lxbm !=''">
 	 					${lx.lxbm}
+	 		</if>
+	 		<if test="lx.lxbh !=null and lx.lxbh !=''">
+	 			and lx.lxbm like '%'||#{lx.lxbh}||'%'
+	 		</if>
+	 		<if test="lx.ylxbm!=null and lx.ylxbm!=''">
+	 			and lx.ylxbm like '%'||#{lx.ylxbm}||'%'
 	 		</if>
 	 		<if test="lx.tsdq!=null and lx.tsdq!=''">
 				 and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
@@ -418,6 +437,8 @@
 	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
 	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
 	 				</if>
+	 				
+	 				
 	 				<if test="lx.gldj!=null and lx.gldj!=''">
 	 					${lx.gldj}
 	 				</if>
@@ -429,6 +450,12 @@
 	 				</if>
 	 				<if test="lx.lxbm !=null and lx.lxbm !=''">
 	 					${lx.lxbm}
+	 				</if>
+	 				<if test="lx.lxbh !=null and lx.lxbh !=''">
+	 					and lx.lxbm like '%'||#{lx.lxbh}||'%'
+	 				</if>
+	 				<if test="lx.ylxbm!=null and lx.ylxbm!=''">
+	 					and lx.ylxbm like '%'||#{lx.ylxbm}||'%'
 	 				</if>
 	 				<if test="lx.tsdq!=null and lx.tsdq!=''">
 				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
