@@ -3885,9 +3885,11 @@ select to_char(rownum) v_0, lx.lxbm v_1,  decode(lx.lxmc,'','',concat(lx.lxmc, l
   round(decode(nvl(jh.jhsybbzje,0),0,0,((nvl(jh.wc_btz,0)+nvl(jh.wc_stz,0))/jh.jhsybbzje)*100), 2)||'%' v_18,  
   n.wclc v_19, n.wcztz v_20,n.wcsbz v_21,round(decode(x.sbz,0,0,(n.wcsbz/x.sbz)*100),2)||'%' v_22,
   l.wclc v_23,l.wcztz v_24,l.wcsbz v_25,round(decode(x.sbz,0,0,(l.wcsbz/x.sbz)*100),2)||'%' v_26,
-  substr(jh.xdsj,0,4) v_27, jh.jhxdwh v_28, decode(jh.kgzt,'1','已完工','在建') v_29,jh.issj v_30, jh.iszh v_31
+  xd.xdnf v_27,jh.jhxdwh v_28, decode(jh.kgzt,'1','已完工','在建') v_29,jh.issj v_30, jh.iszh v_31
                   from sck_aqsmfh lx
                   left join xmk_aqsmfh xa on lx.id = xa.id
+                  left join plan_af pa on pa.sckid = lx.id
+                  left join plan_zjxd xd on pa.id = xd.xmid
                   left join (select t.id, replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq,
                                    replace(WMSYS.WM_CONCAT(distinct xm.throadcode),',',';') thlxbm,
                                    replace(WMSYS.WM_CONCAT(xm.xmklx),',',';') xmklx
@@ -3919,11 +3921,11 @@ select to_char(rownum) v_0, lx.lxbm v_1,  decode(lx.lxmc,'','',concat(lx.lxmc, l
        round(decode(nvl(jh.jhsybzje,0)+nvl(jh.shengbz,0),0,0,(( nvl(gw.wc_btz,0) + nvl(gw.wc_stz,0))/(nvl(jh.jhsybzje,0)+nvl(jh.shengbz,0)))*100),2)||'%' v_20,
        nl.wcmc v_21, nl.wcztz v_22,nl.wcsbz v_23,round(decode((t.btz+t.stz),0,0,(nl.wcsbz/(t.btz+t.stz))*100),2)||'%' v_24,
        l.wcmc v_25,l.wcztz v_26, l.wcsbz v_27,round(decode((t.btz+t.stz),0,0,(l.wcsbz/(t.btz+t.stz))*100),2)||'%' v_28, 
-       jh.xfsj v_29, jh.jhxdwh v_30, 
-       decode(jh.kgzt, '1', '已完工', '在建') v_31, gw.issj v_32, gw.iszh v_33, jh.bz v_34  
+       xd.xdnf v_29, jh.jhxdwh v_30,decode(jh.kgzt, '1', '已完工', '在建') v_31, gw.issj v_32, gw.iszh v_33, jh.bz v_34  
                   from plan_wqgz jh
                   left join sck_wqgz sc on (jh.sckid = sc.sckid)
                   left join xmk_wqgz lx on (sc.xmkid = lx.id)
+                  left join plan_zjxd xd on (jh.id = xd.xmid)
                   left join (select t.*,g.issj from gcgl_wqgz t left join gcgl_jgys g on t.jhid = g.jhid) gw on gw.jhid = jh.id
                   left join (select g.id, nvl(sum(g.pfztz),0) ztz ,nvl(sum(g.jhsybzje),0) btz,nvl(sum(g.shengbz),0) stz from plan_wqgz g group by g.id) t on t.id = jh.id
                   left join (select p.sckid,nvl(sum(g.bywcmc),0) wcmc,nvl(sum(g.wc_ztz),0) wcztz, nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0) wcsbz from plan_wqgz p left join gcgl_wqgz g on p.id = g.jhid where substr(g.sbyf, 0, 4) in (#{nf}) group by p.sckid) nl on nl.sckid = jh.sckid
@@ -3949,10 +3951,11 @@ select to_char(rownum) v_0, lx.lxbm v_1,  decode(lx.lxmc,'','',concat(lx.lxmc, l
              round(decode(nvl(jh.jhsybzje,0),0,0,((nvl(gw.wc_btz,0)+nvl(gw.wc_stz,0))/jh.jhsybzje)*100),2) v_18,
              n.wclc v_19, n.wcztz v_20,n.wcsbz v_21,round(decode(pz.btz,0,0,(n.wcsbz/pz.btz)*100),2)||'%' v_22,
              l.wclc v_23,l.wcztz v_24, l.wcsbz v_25,round(decode(pz.btz,0,0,(l.wcsbz/pz.btz)*100),2)||'%' v_26,
-             jh.xdsj v_27, jh.jhxdwh v_28,decode(jh.kgzt, '1', '已完工', '在建') v_31, gw.issj v_32, gw.iszh v_33    
+             xd.xdnf v_27, jh.jhxdwh v_28,decode(jh.kgzt, '1', '已完工', '在建') v_31, gw.issj v_32, gw.iszh v_33    
                   from plan_zhfz jh
                   left join sck_zhfz sc on (jh.sckid = sc.sckid)
                   left join xmk_zhfz lx on (sc.xmkid = lx.id)
+                  left join plan_zjxd xd on (jh.id = xd.xmid)
                   left join (select t.*,g.issj from gcgl_zhfz t left join gcgl_jgys g on t.id = g.jhid) gw on gw.jhid = jh.id    
                   left join (select p.id, nvl(sum(p.pfztz),0) ztz, nvl(sum(p.jhsybzje),0) btz from plan_zhfz p group by p.id) pz on pz.id = jh.id
                   left join (select p.sckid,nvl(sum(g.bywcgl),0) wclc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0) wcsbz from plan_zhfz p left join gcgl_zhfz g on p.id = g.jhid where substr(g.sbyf, 0, 4) in (#{nf}) group by p.sckid) n on n.sckid = jh.sckid

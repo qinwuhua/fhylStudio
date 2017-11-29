@@ -2516,9 +2516,9 @@ public class GcybbController extends BaseActionSupport{
 				xzqhdm	= xzqh;
 				}
 				if(gydwdm.indexOf(",")==-1){
-					tiaojian1="and gydwdm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
+					tiaojian1="and lx.gydwdm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 				}else{
-					tiaojian1=getcxtj("gydwdm",gydwdm);
+					tiaojian1=getcxtj("lx.gydwdm",gydwdm);
 					//tiaojian1="and gydw in ("+gydwdm+")";
 				}
 				if(xzqhdm.indexOf(",")==-1){
