@@ -150,24 +150,44 @@ function abgcxm(jh,lx){
 					return row.jckabgc.xzqhmc;
 				}
 	        },
-	        {field:'lxbm',title:'路线编码',width:80,align:'center',
+	        {field:'lxbm',title:'规划路线编码',width:80,align:'center',
 	        	formatter : function(value, row, index) {
 					return row.jckabgc.lxbm;
 				}
 	        },
-	        {field:'lxmc',title:'路线名称',width:80,align:'center',
+	        {field:'lxmc',title:'规划路线名称',width:80,align:'center',
 	        	formatter : function(value, row, index) {
 					return row.jckabgc.lxmc;
 				}
 	        },
-	        {field:'qdzh',title:'起点桩号',width:60,align:'center',
+	        {field:'qdzh',title:'规划起点桩号',width:60,align:'center',
 	        	formatter : function(value, row, index) {
 					return row.jckabgc.qdzh;
 				}
 	        },
-	        {field:'zdzh',title:'止点桩号',width:60,align:'center',
+	        {field:'zdzh',title:'规划止点桩号',width:60,align:'center',
 	        	formatter : function(value, row, index) {
 					return row.jckabgc.zdzh;
+				}
+	        },
+	        {field:'ylxbm',title:'原路线编码',width:80,align:'center',
+	        	formatter : function(value, row, index) {
+					return row.jckabgc.ylxbm;
+				}
+	        },
+	        {field:'ylxmc',title:'原路线名称',width:80,align:'center',
+	        	formatter : function(value, row, index) {
+					return row.jckabgc.ylxmc;
+				}
+	        },
+	        {field:'yqdzh',title:'原起点桩号',width:60,align:'center',
+	        	formatter : function(value, row, index) {
+					return row.jckabgc.yqdzh;
+				}
+	        },
+	        {field:'yzdzh',title:'原止点桩号',width:60,align:'center',
+	        	formatter : function(value, row, index) {
+					return row.jckabgc.yzdzh;
 				}
 	        },
 	        {field:'yhlc',title:'隐患里程',width:60,align:'center',
