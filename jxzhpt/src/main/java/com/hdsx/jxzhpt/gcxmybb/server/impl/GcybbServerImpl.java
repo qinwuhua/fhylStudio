@@ -1503,4 +1503,63 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 	public List<Excel_list> getLwgzZhfzybb(Gcglabgc gcglabgc) {
 		return queryList("getLwgzZhfzybb", gcglabgc);
 	}
+
+	@Override
+	public List<Excel_list> getYhdzxwcb(Gcglabgc gcglabgc) {
+		return queryList("getYhdzxwcb",gcglabgc);
+	}
+
+	@Override
+	public List<Excel_list> getLwgzHzb(Gcglabgc gcglabgc) {
+		List<Excel_list> total = queryList("getLwgzHzbTotal",gcglabgc);
+        int rowNum = 0;
+		List<Excel_list> result= queryList("getLwgzHzb",gcglabgc);
+		for(int i = 0; i < result.size();i++) {
+			rowNum ++;
+			result.get(i).setV_0(rowNum+"");
+		}
+		total.addAll(result);
+		return total;
+	}
+
+	@Override
+	public List<Excel_list> getYhgc(Gcglabgc gcglabgc) {
+		List<Excel_list> l1 = queryList("getYhgcHj",gcglabgc);
+		List<Excel_list> l2 = queryList("getYhgcHj1",gcglabgc);
+		List<Excel_list> l3 = queryList("getYhgcHj2",gcglabgc);
+		List<Excel_list> l4 = queryList("getYhgcHj3",gcglabgc);
+		List<Excel_list> l5 = queryList("getYhgc",gcglabgc);
+		
+		l1.addAll(l2);
+		int l4no=0;int l5no=0;
+		for (int i = 0; i < l3.size(); i++) {
+			l1.add(l3.get(i));
+			int flag1=l3.get(i).getXmsl();
+			int flag11=0;int k=1;
+			while (flag1>flag11) {
+				if(l4.size()==l4no)
+					break;
+				
+				l1.add(l4.get(l4no));
+				for (int j = l5no; j < l5no+l4.get(l4no).getXmsl(); j++) {
+					if(j>=l5.size()) break;
+					l5.get(j).setV_0(k+"");k++;
+				}
+				if(l5no>=l5.size()) break;
+				if(l5no+l4.get(l4no).getXmsl()>l5.size()) {
+					l1.addAll(l5.subList(l5no, l5.size()-1));
+				}else {
+					l1.addAll(l5.subList(l5no, l5no+l4.get(l4no).getXmsl()));
+				}
+				
+				flag11+=l4.get(l4no).getXmsl();l5no+=l4.get(l4no).getXmsl();l4no++;
+				
+			}
+		}
+		
+		
+		
+		
+		return l1;
+	}
 }

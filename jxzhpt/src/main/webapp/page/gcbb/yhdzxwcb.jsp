@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>计划执行情况表</title>
+	<title>全省普通国省干线养护大中修工程完成情况表</title>
 	<link href="${pageContext.request.contextPath}/css/searchAndNavigation.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
@@ -43,9 +43,8 @@
 		$("#yf"+m).attr("selected","selected");
 		//$("#biaotou").empty();
 		
-		var nf=$("#ddlYear").val();var yf=$("#ddlMonth").val();
-		$(".nian").html(nf);$(".nianyue1").html(nf+"."+yf);$(".nianyue2").html(nf+".12");
-		
+		var nf=$("#ddlYear").val();
+		$(".nian").html(nf);
 		showBb();
 	});
 	function setjhxdnf1(id){
@@ -54,7 +53,7 @@
 		//var first;
 		years.push({text:'全部',value:''});
 		var myvalues=new Array();
-		myvalues.push("");
+		
 		for(var i=2011;i<=2020;i++){
 			years.push({text:(i),value:(i)});
 			myvalues.push(i);
@@ -135,7 +134,7 @@
 		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',');
 		loadjzt();
 		 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{xzqh:xzqhstr},function(){
-			window.location.href='/jxzhpt/gcybb/getJhzxqkb.do?'+data;
+			window.location.href='/jxzhpt/gcybb/getYhdzxwcb.do?'+data;
 		 }); 
 		 setTimeout('disLoadjzt()',4000);
 	}
@@ -150,17 +149,20 @@
 		}else if(xzqhdm.length==1){
 			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
  		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
- 		xzqhstr=xzqhdm[0] ;
+ 		xzqhstr=xzqhdm[0];
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
 		
-		$(".nian").html(nf);$(".nianyue1").html(nf+"."+yf);$(".nianyue2").html(nf+".12");
-		
-		
-		
+		$(".nian").html(nf);
 		var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr
 		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',');
+		var ssstr="v_0";
+		for(var i=1;i<110;i++){
+			ssstr+=",v_"+i;
+		}
+		var ss=ssstr.split(",");
+		
 		//alert(data);
 		var tbody = $("#abgclist");
 				tbody.empty();
@@ -168,7 +170,7 @@
 		loadjzt();
 		
 		$.ajax({
-			url:"/jxzhpt/gcybb/getJhzxqkb.do",
+			url:"/jxzhpt/gcybb/getYhdzxwcb.do",
 			data:data,
 			type:"post",
 			dataType:"JSON",
@@ -178,53 +180,9 @@
 				if (msg != null) {
 					for ( var i = 0; i < msg.length; i++) {
 						var tr="<tr>";
-						if(i==0||i==1||i==10||i==11||i==12){
-							tr=tr+ "<td>"+msg[i].v_0+"</td><td colspan='2'>"
-							+msg[i].v_1+"</td><td>"+msg[i].v_3+"</td><td>"
-							+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
-							+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-							+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"+msg[i].v_10+"</td><td>"
-							+msg[i].v_11+"</td><td>"
-							+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
-							+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
-							+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-							+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"+msg[i].v_20+"</td><td>"
-							+msg[i].v_21+"</td><td>"
-							+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-							+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td>"
+						for ( var j = 0; j < ss.length; j++) {
+							tr+="<td>"+msg[i][ss[j]]+"</td>";
 						}
-						if(i==2||i==6){
-							tr=tr+ "<td rowspan='4'>"+msg[i].v_0+"</td><td rowspan='4'>"
-							+msg[i].v_1+"</td><td>"
-							+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
-							+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
-							+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-							+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"+msg[i].v_10+"</td><td>"
-							+msg[i].v_11+"</td><td>"
-							+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
-							+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
-							+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-							+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"+msg[i].v_20+"</td><td>"
-							+msg[i].v_21+"</td><td>"
-							+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-							+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td>"
-						}
-						if(i==3||i==4||i==5||i==7||i==8||i==9){
-							tr=tr+"<td>"+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
-							+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
-							+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-							+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"+msg[i].v_10+"</td><td>"
-							+msg[i].v_11+"</td><td>"
-							+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
-							+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
-							+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-							+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"+msg[i].v_20+"</td><td>"
-							+msg[i].v_21+"</td><td>"
-							+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-							+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td>"	
-						}
-						
-						
 						
 						tr+="</tr>";
 						tbody.append(tr);
@@ -269,7 +227,7 @@ text-decoration:none;
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 					<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;生成报表>&nbsp;月报表>&nbsp;普通国省道建设养护计划执行情况表</div>
+						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;生成报表>&nbsp;月报表>&nbsp;普通国省道建设养护全省普通国省干线养护大中修工程完成情况表</div>
 					</div>
         	</tr>
         	<tr>
@@ -326,52 +284,168 @@ text-decoration:none;
                 		</script>
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">
-							<table id='bbtable' width="3000px">
-								<caption align="top" style="font-size:x-large;font-weight: bolder;"> 普通国省道建设养护计划执行情况表</caption>
+							<table id='bbtable' width="10000px">
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">全省普通国省干线养护大中修工程完成情况表</caption>
 								<tbody id='biaotou'>
 									<tr>
-										<td rowspan="2"  style="width: 75px;">序号</td>
-										<td>计划类别</td>
-										<td></td>
-										<td colspan="3"><span class='nian'></span>年度计划下达情况</td>
-										<td colspan="2">截止<span class='nianyue1'></span>月底完成情况</td>
-										<td colspan="2">截止<span class='nianyue2'></span>月底完成情况</td>
-										<td colspan="8">“十三五”目标任务完成情况</td>
-										<td colspan="8"><span class='nian'></span>年度目标任务完成情况</td>
-										
+										<td rowspan="4"  style="width: 75px;">设区市公路局</td>
+										<td colspan="109">养护大中修</td>
 									</tr>
 									
 									<tr>
-										<td style="width: 100px;"></td>
-										<td style="width: 100px;"></td>
+										<td colspan="12"><span class='nian'></span>年下达计划里程(公里)</td>
+										<td colspan="12"><span class='nian'></span>年下达计划完成里程（公里）</td>
+										<td colspan="12">累计完成里程（公里）</td>
+										<td colspan="12">计划总投资（万元）</td>
+										<td colspan="12">省级补助资金</td>
+										<td colspan="12"><span class='nian'></span>年完成总投资（万元）</td>
+										<td colspan="12">累计完成总投资（万元）</td>
+										<td colspan="12"><span class='nian'></span>年完成省级补助资金</td>
+										<td colspan="12"><span class='nian'></span>完成省级补助资金</td>
+										<td rowspan="3"  style="width: 75px;">备注</td>
+									</tr>
 									
-										<td style="width: 100px;">建设规模</td>
+									<tr>
+										<td colspan="4" style="width: 100px;">国道</td>
+										<td colspan="4" style="width: 100px;">省道</td>
+										<td colspan="4" style="width: 100px;">农村公路</td>
+										<td colspan="4" style="width: 100px;">国道</td>
+										<td colspan="4" style="width: 100px;">省道</td>
+										<td colspan="4" style="width: 100px;">农村公路</td>
+										<td colspan="4" style="width: 100px;">国道</td>
+										<td colspan="4" style="width: 100px;">省道</td>
+										<td colspan="4" style="width: 100px;">农村公路</td>
+										<td colspan="4" style="width: 100px;">国道</td>
+										<td colspan="4" style="width: 100px;">省道</td>
+										<td colspan="4" style="width: 100px;">农村公路</td>
+										<td colspan="4" style="width: 100px;">国道</td>
+										<td colspan="4" style="width: 100px;">省道</td>
+										<td colspan="4" style="width: 100px;">农村公路</td>
+										<td colspan="4" style="width: 100px;">国道</td>
+										<td colspan="4" style="width: 100px;">省道</td>
+										<td colspan="4" style="width: 100px;">农村公路</td>
+										<td colspan="4" style="width: 100px;">国道</td>
+										<td colspan="4" style="width: 100px;">省道</td>
+										<td colspan="4" style="width: 100px;">农村公路</td>
+										<td colspan="4" style="width: 100px;">国道</td>
+										<td colspan="4" style="width: 100px;">省道</td>
+										<td colspan="4" style="width: 100px;">农村公路</td>
+										<td colspan="4" style="width: 100px;">国道</td>
+										<td colspan="4" style="width: 100px;">省道</td>
+										<td colspan="4" style="width: 100px;">农村公路</td>
+									</tr>
+									
+									<tr>	
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">大修</td>
+										<td style="width: 100px;">中修</td>
+										<td style="width: 100px;">预防性养护</td>
 										
-										<td style="width: 100px;">车购税（万元）</td>
-										<td style="width: 100px;">省级补助（万元）</td>
-										<td style="width: 100px;">建设规模</td>
-										<td style="width: 100px;">总投资（亿元）</td>
-										<td style="width: 100px;">建设规模</td>
-										<td style="width: 100px;">总投资（亿元）</td>
-										
-										<td style="width: 100px;">目标任务建设规模</td>
-										<td style="width: 100px;">截止<span class='nianyue1'></span>累计完成规模</td>
-										<td style="width: 100px;">截止<span class='nianyue1'></span>月底完成比例</td>
-										<td style="width: 100px;">截止<span class='nianyue2'></span>月底预计完成比例</td>
-										<td style="width: 100px;">目标任务总投资（亿元）</td>
-										<td style="width: 100px;">截止<span class='nianyue1'></span>累计完成投资（亿元）</td>
-										<td style="width: 100px;">截止<span class='nianyue1'></span>月底完成比例</td>
-										<td style="width: 100px;">截止<span class='nianyue2'></span>月底预计完成比例</td>
-										
-										<td style="width: 100px;">目标任务建设规模</td>
-										<td style="width: 100px;">截止<span class='nianyue1'></span>累计完成规模</td>
-										<td style="width: 100px;">截止<span class='nianyue1'></span>月底完成比例</td>
-										<td style="width: 100px;">截止<span class='nianyue2'></span>月底预计完成比例</td>
-										<td style="width: 100px;">目标任务总投资（亿元）</td>
-										<td style="width: 100px;">截止<span class='nianyue1'></span>累计完成投资（亿元）</td>
-										<td style="width: 100px;">截止<span class='nianyue1'></span>月底完成比例</td>
-										<td style="width: 100px;">截止<span class='nianyue2'></span>月底预计完成比例</td>
-										
+									
 									</tr>
 								</tbody>
 								<tbody id="abgclist"></tbody>

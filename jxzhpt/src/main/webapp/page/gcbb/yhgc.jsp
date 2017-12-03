@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>计划执行情况表</title>
+	<title>养护工程任务与实施情况对照表</title>
 	<link href="${pageContext.request.contextPath}/css/searchAndNavigation.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
@@ -32,7 +32,7 @@
 	</style>
 	<script type="text/javascript">
 	$(function(){
-		setjhxdnf1("jhnd");
+		setjhxdnf1("jhnd");setxmlx("xmlx");
 		loadDist1("xzqh",$.cookie("dist"));
 		var myDate = new Date();
 		var y = myDate.getFullYear();
@@ -43,13 +43,9 @@
 		$("#yf"+m).attr("selected","selected");
 		//$("#biaotou").empty();
 		
-		var nf=$("#ddlYear").val();var yf=$("#ddlMonth").val();
-		$(".nian").html(nf);$(".nianyue1").html(nf+"."+yf);$(".nianyue2").html(nf+".12");
-		
 		showBb();
 	});
 	function setjhxdnf1(id){
-		
 		var years=[];
 		//var first;
 		years.push({text:'全部',value:''});
@@ -112,7 +108,67 @@
 	}
 	
 	
-	
+	function setxmlx(id){
+		var years=[];var myvalues=new Array();
+		years.push({text:'全部',value:''});
+		myvalues.push("");
+		years.push({text:("养护大中修"),value:("养护大中修")});
+		myvalues.push("养护大中修");
+		years.push({text:("灾毁恢复"),value:("灾毁恢复")});
+		myvalues.push("灾毁恢复");
+		years.push({text:("路面改造"),value:("路面改造")});
+		myvalues.push("路面改造");
+		$('#'+id).combobox({
+		    data:years,
+		    valueField:'value',
+		    textField:'text',
+		    multiple:true,
+		    formatter:function(row){
+				var opts = $(this).combobox('options');
+				return '<input id="name'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			},
+			onSelect:function(record){
+				var opts = $(this).combobox('options');
+				if(record[opts.valueField]==""){
+					var values =new Array();
+					var datas = $('#' +id).combobox("getData");
+					$.each(datas,function(index,item){
+						values.push(item.value);
+						$('#name'+id+item.value).attr('checked', true);
+					});
+					$('#' +id).combobox("setValues",values);
+				}else{
+					$('#name'+id+record.value).attr('checked', true);
+				}
+			},
+			onUnselect:function(record){
+				var opts = $(this).combobox('options');
+				var datas = $('#' +id).combobox("getData");
+				var values = $('#' +id).combobox("getValues");
+				$('#' +id).combobox("clear");
+				if(record[opts.valueField]!=""){
+					if(jQuery.inArray("",values)>=0){
+						values.splice(jQuery.inArray("",values),1);
+					}
+					$.each(datas,function(index,item){
+						if(jQuery.inArray(""+item.value,values)<0){
+							$('#name'+id+item.value).attr('checked', false);
+						}
+					});
+					$('#' +id).combobox("setValues",values);
+				}else{
+					$.each(datas,function(index,item){
+						$('#name'+id+item.value).attr('checked', false);
+					});
+				}
+			}
+		}); 
+		for(var i=0;i<myvalues.length;i++){
+			$('#name'+id+myvalues[i]).attr('checked', true);
+		}
+		$('#'+id).combobox("setValues",myvalues);
+		
+	}
 	
 	
 	
@@ -132,12 +188,12 @@
 		}
 		
 		var data="flag=1&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr
-		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',');
+		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',')+"&gcglabgc.xmlx="+$("#xmlx").combobox('getValues').join(',');
 		loadjzt();
 		 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{xzqh:xzqhstr},function(){
-			window.location.href='/jxzhpt/gcybb/getJhzxqkb.do?'+data;
+			window.location.href='/jxzhpt/gcybb/getYhgc.do?'+data;
 		 }); 
-		 setTimeout('disLoadjzt()',4000);
+		 setTimeout('disLoadjzt()',14000);
 	}
 
 	function showBb(){
@@ -155,12 +211,8 @@
 			xzqhstr= xzqhdm.join(',');
 		}
 		
-		$(".nian").html(nf);$(".nianyue1").html(nf+"."+yf);$(".nianyue2").html(nf+".12");
-		
-		
-		
 		var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr
-		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',');
+		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',')+"&gcglabgc.xmlx="+$("#xmlx").combobox('getValues').join(',');
 		//alert(data);
 		var tbody = $("#abgclist");
 				tbody.empty();
@@ -168,7 +220,7 @@
 		loadjzt();
 		
 		$.ajax({
-			url:"/jxzhpt/gcybb/getJhzxqkb.do",
+			url:"/jxzhpt/gcybb/getYhgc.do",
 			data:data,
 			type:"post",
 			dataType:"JSON",
@@ -178,54 +230,60 @@
 				if (msg != null) {
 					for ( var i = 0; i < msg.length; i++) {
 						var tr="<tr>";
-						if(i==0||i==1||i==10||i==11||i==12){
-							tr=tr+ "<td>"+msg[i].v_0+"</td><td colspan='2'>"
-							+msg[i].v_1+"</td><td>"+msg[i].v_3+"</td><td>"
+						if(msg[i].sfhb=='是'){
+							tr=tr+"<td colspan='4'>"+msg[i].v_0+"</td><td>"
 							+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
 							+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-							+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"+msg[i].v_10+"</td><td>"
-							+msg[i].v_11+"</td><td>"
+							+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
+							+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
 							+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
 							+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
 							+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-							+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"+msg[i].v_20+"</td><td>"
-							+msg[i].v_21+"</td><td>"
+							+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
+							+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
 							+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-							+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td>"
-						}
-						if(i==2||i==6){
-							tr=tr+ "<td rowspan='4'>"+msg[i].v_0+"</td><td rowspan='4'>"
-							+msg[i].v_1+"</td><td>"
+							+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
+							+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
+							+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"
+							+msg[i].v_30+"</td><td>"+msg[i].v_31+"</td><td>"
+							+msg[i].v_32+"</td><td>"+msg[i].v_33+"</td><td>"
+							+msg[i].v_34+"</td><td>"+msg[i].v_35+"</td><td>"
+							+msg[i].v_36+"</td><td>"+msg[i].v_37+"</td><td>"
+							+msg[i].v_38+"</td><td>"+msg[i].v_39+"</td><td>"
+							+msg[i].v_40+"</td><td>"+msg[i].v_41+"</td><td>"
+							+msg[i].v_42+"</td><td>"+msg[i].v_43+"</td><td>"
+							+msg[i].v_44+"</td><td>"+msg[i].v_45+"</td><td>"
+							+msg[i].v_46+"</td>";
+						
+							
+						}else{
+							tr=tr+"<td>"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"
 							+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
 							+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
 							+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-							+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"+msg[i].v_10+"</td><td>"
-							+msg[i].v_11+"</td><td>"
+							+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
+							+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
 							+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
 							+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
 							+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-							+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"+msg[i].v_20+"</td><td>"
-							+msg[i].v_21+"</td><td>"
+							+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
+							+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
 							+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-							+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td>"
-						}
-						if(i==3||i==4||i==5||i==7||i==8||i==9){
-							tr=tr+"<td>"+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
-							+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
-							+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-							+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"+msg[i].v_10+"</td><td>"
-							+msg[i].v_11+"</td><td>"
-							+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
-							+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
-							+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-							+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"+msg[i].v_20+"</td><td>"
-							+msg[i].v_21+"</td><td>"
-							+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-							+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td>"	
+							+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
+							+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
+							+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"
+							+msg[i].v_30+"</td><td>"+msg[i].v_31+"</td><td>"
+							+msg[i].v_32+"</td><td>"+msg[i].v_33+"</td><td>"
+							+msg[i].v_34+"</td><td>"+msg[i].v_35+"</td><td>"
+							+msg[i].v_36+"</td><td>"+msg[i].v_37+"</td><td>"
+							+msg[i].v_38+"</td><td>"+msg[i].v_39+"</td><td>"
+							+msg[i].v_40+"</td><td>"+msg[i].v_41+"</td><td>"
+							+msg[i].v_42+"</td><td>"+msg[i].v_43+"</td><td>"
+							+msg[i].v_44+"</td><td>"+msg[i].v_45+"</td><td>"
+							+msg[i].v_46+"</td>";
 						}
 						
-						
-						
+					
 						tr+="</tr>";
 						tbody.append(tr);
 					}
@@ -260,6 +318,8 @@ a{
 text-decoration:none;
 }
 .abgc_td td{padding-right:5px;}
+table { table-layout:fixed; word-break: break-all; word-wrap: break-word;}  
+
 </style>
 
 	
@@ -269,7 +329,7 @@ text-decoration:none;
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 					<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;生成报表>&nbsp;月报表>&nbsp;普通国省道建设养护计划执行情况表</div>
+						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;生成报表>&nbsp;月报表>&nbsp;普通国省道建设养护养护工程任务与实施情况对照表</div>
 					</div>
         	</tr>
         	<tr>
@@ -287,6 +347,8 @@ text-decoration:none;
         						<td><select id="xzqh" style="width:150px;"></select></td>
         						<td align="right">计划年度：</td>
 		        				<td><input id="jhnd" type="text"  style="width: 80px"></td>
+		        				<td align="right">项目类型：</td>
+		        				<td><input id="xmlx" type="text"  style="width: 80px"></td>
         						<td align="right">截止年份：</td>
 		 						<td><select name="ddlYear" id="ddlYear" style="width: 80px;">
 								</select></td>
@@ -326,52 +388,73 @@ text-decoration:none;
                 		</script>
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">
-							<table id='bbtable' width="3000px">
-								<caption align="top" style="font-size:x-large;font-weight: bolder;"> 普通国省道建设养护计划执行情况表</caption>
+							<table id='bbtable' width="10000px">
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">养护工程任务与实施情况对照表</caption>
 								<tbody id='biaotou'>
 									<tr>
-										<td rowspan="2"  style="width: 75px;">序号</td>
-										<td>计划类别</td>
-										<td></td>
-										<td colspan="3"><span class='nian'></span>年度计划下达情况</td>
-										<td colspan="2">截止<span class='nianyue1'></span>月底完成情况</td>
-										<td colspan="2">截止<span class='nianyue2'></span>月底完成情况</td>
-										<td colspan="8">“十三五”目标任务完成情况</td>
-										<td colspan="8"><span class='nian'></span>年度目标任务完成情况</td>
-										
+										<td colspan="19">养护工程批复情况</td>
+										<td colspan="23">实施情况</td>
+										<td rowspan="3" style="width: 100px;">计划下达年份及批次</td>
+										<td rowspan="3" style="width: 100px;">已完工/已开工/未开工</td>
+										<td rowspan="3" style="width: 100px;">交工证书是否上报省局</td>
+										<td rowspan="3" style="width: 100px;">进度是否滞后/滞后原因</td>
+										<td rowspan="3" style="width: 100px;">备注（在备注栏中应说明大中修项目、路面改建、灾毁恢复重建项目，若有二类合并安排的也需说明）</td>
 									</tr>
 									
 									<tr>
-										<td style="width: 100px;"></td>
-										<td style="width: 100px;"></td>
+										<td rowspan="2"  style="width: 50px;">序号</td>
+										<td rowspan="2"  style="width: 100px;">路线编号</td>
+										<td rowspan="2"  style="width: 100px;">原路线编号</td>
+										<td rowspan="2"  style="width: 100px;">工程项目名称</td>
+										<td rowspan="2"  style="width: 100px;">起点桩号</td>
+										<td rowspan="2"  style="width: 100px;">讫点桩号</td>
+										<td colspan="2"  >2016年年报桩号</td>
+										<td rowspan="2"  style="width: 100px;">里程（km）</td>
+										<td rowspan="2"  style="width: 100px;">路面等级</td>
+										<td rowspan="2"  style="width: 100px;">路面宽度(M)</td>
+										<td rowspan="2"  style="width: 100px;">工程分类</td>
+										<td rowspan="2"  style="width: 100px;">技术处治方案</td>
+										<td rowspan="2"  style="width: 100px;">计划下达文号</td>
+										<td colspan="3"  >下达计划</td>
+										<td rowspan="2"  style="width: 100px;">2017年目标任务（公里）</td>
+										<td rowspan="2"  style="width: 100px;">所在地（分局）</td>
+										<td rowspan="2"  style="width: 100px;">开工时间/计划开工时间</td>
+										<td rowspan="2"  style="width: 100px;">完工时间/计划完工时间</td>
+										<td colspan="7">本月完成</td>
+										<td colspan="7">本年完成</td>
+										<td colspan="7">至本月累计完成</td>
+										</tr>
 									
-										<td style="width: 100px;">建设规模</td>
+										<tr>
+										<td style="width: 100px;">起点桩号</td>
+										<td style="width: 100px;">讫点桩号</td>
+										<td style="width: 100px;">总投资（万元）</td>
+										<td style="width: 100px;">其中：1、中央车购税资金（万元）</td>
+										<td style="width: 100px;">其中：2、省级补助资金（万元）</td>
 										
-										<td style="width: 100px;">车购税（万元）</td>
-										<td style="width: 100px;">省级补助（万元）</td>
-										<td style="width: 100px;">建设规模</td>
-										<td style="width: 100px;">总投资（亿元）</td>
-										<td style="width: 100px;">建设规模</td>
-										<td style="width: 100px;">总投资（亿元）</td>
+										<td style="width: 100px;">里程（km）</td>
+										<td style="width: 100px;">完成总投资（万元）</td>
+										<td style="width: 100px;">完成省级以上补助资金（万元）</td>
+										<td style="width: 100px;">省级以上补助完成比例（%）</td>
+										<td style="width: 100px;">中央车购税到位（万元）</td>
+										<td style="width: 100px;">省级补助资金到位（万元）</td>
+										<td style="width: 100px;">地方自筹资金到位（万元）</td>
 										
-										<td style="width: 100px;">目标任务建设规模</td>
-										<td style="width: 100px;">截止<span class='nianyue1'></span>累计完成规模</td>
-										<td style="width: 100px;">截止<span class='nianyue1'></span>月底完成比例</td>
-										<td style="width: 100px;">截止<span class='nianyue2'></span>月底预计完成比例</td>
-										<td style="width: 100px;">目标任务总投资（亿元）</td>
-										<td style="width: 100px;">截止<span class='nianyue1'></span>累计完成投资（亿元）</td>
-										<td style="width: 100px;">截止<span class='nianyue1'></span>月底完成比例</td>
-										<td style="width: 100px;">截止<span class='nianyue2'></span>月底预计完成比例</td>
+										<td style="width: 100px;">里程（km）</td>
+										<td style="width: 100px;">完成总投资（万元）</td>
+										<td style="width: 100px;">完成省级以上补助资金（万元）</td>
+										<td style="width: 100px;">省级以上补助完成比例（%）</td>
+										<td style="width: 100px;">中央车购税到位（万元）</td>
+										<td style="width: 100px;">省级补助资金到位（万元）</td>
+										<td style="width: 100px;">地方自筹资金到位（万元）</td>
 										
-										<td style="width: 100px;">目标任务建设规模</td>
-										<td style="width: 100px;">截止<span class='nianyue1'></span>累计完成规模</td>
-										<td style="width: 100px;">截止<span class='nianyue1'></span>月底完成比例</td>
-										<td style="width: 100px;">截止<span class='nianyue2'></span>月底预计完成比例</td>
-										<td style="width: 100px;">目标任务总投资（亿元）</td>
-										<td style="width: 100px;">截止<span class='nianyue1'></span>累计完成投资（亿元）</td>
-										<td style="width: 100px;">截止<span class='nianyue1'></span>月底完成比例</td>
-										<td style="width: 100px;">截止<span class='nianyue2'></span>月底预计完成比例</td>
-										
+										<td style="width: 100px;">里程（km）</td>
+										<td style="width: 100px;">完成总投资（万元）</td>
+										<td style="width: 100px;">完成省级以上补助资金（万元）</td>
+										<td style="width: 100px;">省级以上补助完成比例（%）</td>
+										<td style="width: 100px;">中央车购税到位（万元）</td>
+										<td style="width: 100px;">省级补助资金到位（万元）</td>
+										<td style="width: 100px;">地方自筹资金到位（万元）</td>
 									</tr>
 								</tbody>
 								<tbody id="abgclist"></tbody>

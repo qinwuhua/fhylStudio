@@ -4,7 +4,7 @@ var selRow=new Array();//已选择的行号
 function querySumZhfz(jh,lx){
 	var param={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,'jh.sfylsjl':jh.sfylsjl,
 			"lx.gydwlx":lx.gydwlx,"lx.lxbm":lx.lxbm,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'jh.jh_sbthcd':jh.jh_sbthcd,"lx.xmklx":lx.xmklx,
-			"lx.tsdq":lx.tsdq,"lx.lxjsdj":lx.lxjsdj};
+			"lx.tsdq":lx.tsdq,"lx.lxjsdj":lx.lxjsdj,"lx.lxbh":lx.lxbh,"lx.ylxbm":lx.ylxbm};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/querySumZhfz.do',
@@ -70,7 +70,7 @@ function openEditWindow(id){
 }
 function zhfzxm(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,'jh.sfylsjl':jh.sfylsjl,
-			"lx.gydwlx":lx.gydwlx,"lx.lxbm":lx.lxbm,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'jh.jh_sbthcd':jh.jh_sbthcd,"lx.xmklx":lx.xmklx,
+			"lx.gydwlx":lx.gydwlx,"lx.lxbm":lx.lxbm,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,"lx.lxbh":lx.lxbh,"lx.ylxbm":lx.ylxbm,'jh.jh_sbthcd':jh.jh_sbthcd,"lx.xmklx":lx.xmklx,
 			"lx.tsdq":lx.tsdq,"lx.lxjsdj":lx.lxjsdj};
 	
 	var grid={id:'grid',url:'../../../jhgl/queryZhfzList.do',pagination:true,rownumbers:false,
@@ -135,22 +135,22 @@ function zhfzxm(jh,lx){
 					return row.jckzhfz.xzqhmc;
 				}
 	        },
-	        {field:'lxbm',title:'路线编码',width:80,align:'center',
+	        {field:'lxbm',title:'规划路线编码',width:80,align:'center',
 	        	formatter : function(value, row, index) {
 					return row.jckzhfz.lxbm;
 				}
 	        },
-	        {field:'lxmc',title:'路线名称',width:80,align:'center',
+	        {field:'lxmc',title:'规划路线名称',width:80,align:'center',
 	        	formatter : function(value, row, index) {
 					return row.jckzhfz.lxmc;
 				}
 	        },
-	        {field:'qdzh',title:'起点桩号',width:60,align:'center',
+	        {field:'qdzh',title:'规划起点桩号',width:60,align:'center',
 	        	formatter : function(value, row, index) {
 					return row.jckzhfz.qdzh;
 				}
 	       },
-	        {field:'zdzh',title:'止点桩号',width:60,align:'center',
+	        {field:'zdzh',title:'规划止点桩号',width:60,align:'center',
 	    	   formatter : function(value, row, index) {
 					return row.jckzhfz.zdzh;
 				}

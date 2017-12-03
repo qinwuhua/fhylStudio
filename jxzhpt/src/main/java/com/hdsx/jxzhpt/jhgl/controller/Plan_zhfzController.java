@@ -331,6 +331,7 @@ public class Plan_zhfzController  extends BaseActionSupport{
 			lx.setLxbm(MyUtil.getQueryTJ(lx.getLxbm(), "lxbm"));
 			
 			
+			
 			List<Plan_zhfz> list = zhfzServer.queryZhfzList(page, rows, jh, lx);
 			System.out.println("个数："+list.size());
 			Map<String, Object> jsonMap=new HashMap<String, Object>();

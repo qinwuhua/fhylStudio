@@ -58,7 +58,7 @@
 				select rownum as num,t.* from 
 				(
 					select jh.id,jh.sckid,jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.jhsybbzje,jh.jhsydfzczj,jh.sfsqablbz,
-					jh.sbzt,jh.spzt,jh.jh_sbthcd,jh.kgzt,jh.jgzt,sc.bzls as sfylsjl,
+					jh.sbzt,jh.spzt,jh.jh_sbthcd,jh.kgzt,jh.jgzt,sc.bzls as sfylsjl,lx.ylxbm,lx.ylxmc,lx.yqdzh,lx.yzdzh,
                		lx.gydw,lx.xzqhmc,lx.xzqhdm,lx.lxbm,lx.lxmc,sc.scqdzh as qdzh,sc.sczdzh as zdzh,sc.scyhlc,yhlc,jhyhlc
                 	from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
 					left join xmk_abgc lx on (sc.xmkid=lx.id) 
@@ -619,11 +619,12 @@
 	</select>
 	<select id="exportExcel_jh" parameterType="hashMap" resultType="elist">
 		select rownum v_0,
-       (select name from xtgl_xzqh where id=substr(lx.xzqhdm,0,4)||'00') v_1,lx.xzqhmc v_2,
-        '' v_3,'' v_4,'' v_5,lx.lxbm v_6,sc.scqdzh v_7,sc.sczdzh v_8,sc.jsxz v_9,
-        to_char(sc.sczlc,'fm9999999990.000') v_10,to_char(sc.scyhlc,'fm9999999990.000') v_11,
-       nvl(jh.pfztz,0) v_12,nvl(jh.JHSYBBZJE,0) v_13,nvl(jh.JHSYDFZCZJ,0) v_14,
-       sc.jsnr v_15,sc.spwh v_16,lx.gydw v_17,jh.jhnf v_18,jh.remarks v_19,lx.tsdq v_20
+       (select name from xtgl_xzqh where id = substr(lx.xzqhdm, 0, 4) || '00') v_1,
+       lx.xzqhmc v_2,lx.lxbm v_3,lx.lxmc v_4,sc.scqdzh v_5,sc.sczdzh v_6,lx.ylxbm v_7,
+       lx.ylxmc v_8,lx.yqdzh v_9,lx.yzdzh v_10,sc.jsxz v_11,
+       to_char(sc.sczlc, 'fm9999999990.000') v_12,to_char(sc.scyhlc, 'fm9999999990.000') v_13,
+       nvl(jh.pfztz, 0) v_14,nvl(jh.JHSYBBZJE, 0) v_15,nvl(jh.JHSYDFZCZJ, 0) v_16,
+       sc.jsnr v_17,sc.spwh v_18,lx.gydw v_19,jh.jhnf v_20,jh.remarks v_21,lx.tsdq v_22
 	    from plan_abgc jh
 	    left join sck_abgc sc on (jh.sckid = sc.sckid)
 	    left join xmk_abgc lx on (sc.xmkid = lx.id) 

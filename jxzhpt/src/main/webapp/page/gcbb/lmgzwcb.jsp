@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>新改建完成汇总表</title>
+	<title>普通国省干线公路路面改造建设任务完成情况表</title>
 	<link href="${pageContext.request.contextPath}/css/searchAndNavigation.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
@@ -61,7 +61,6 @@
 			loadUnit("gydw",$.cookie("unit"));
 			loadDist("xzqh",$.cookie("dist"));
 		//	loadBmbm2("xmlx","项目类型2");
-			xgjxmlx('xmlx');
 			//$("#jhxdnf").combotree("setValues",arr);
 			showAll();
 		});
@@ -128,7 +127,6 @@
 			xmnf.sort(function (x,y) {
 	            return y-x;
 	        });
-			var xmlx=$("#xmlx").combobox('getValues').join(',');
 			if(xmnf==''){
 				alert("请选择年份");
 				return;
@@ -141,19 +139,19 @@
 			var max=xmnf[0];
 			var len=(xmnf.length+1)*1000+"px";
 			$("#kdtb").attr('width',len);
-			var sv="v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8,v_9,v_10,v_11,v_12,v_13,v_14,v_15,v_16,v_17";
-			var l=18;
+			var sv="v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8,v_9";
+			var l=10;
 			for(var i=xmnf.length-1;i>=0;i--){
-				sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;
-				str1=str1+'<td colspan="8">计划下达及完成情况</td>';
-				str2=str2+'<td rowspan="1" colspan="2">'+xmnf[i]+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">累计完成投资（万元）</td><td rowspan="2">本年到位车购税（万元）</td><td rowspan="2">累计到位车购税（万元）</td>';
+				sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;
+				str1=str1+'<td colspan="6">计划下达及完成情况</td>';
+				str2=str2+'<td rowspan="1" colspan="2">'+xmnf[i]+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">工程完成比例</td>';
 				str3=str3+'<td>项目数量</td><td>计划里程（公里）</td>';
 			}
 			sv+=",v_"+l;l++;
 			var ss=sv.split(",");
-			biaotstr='<tr><td rowspan="3">序号</td><td rowspan="3">设区市</td><td colspan="16">计划下达及完成情况</td>'
+			biaotstr='<tr><td rowspan="3">序号</td><td rowspan="3">设区市</td><td colspan="8">计划下达及完成情况</td>'
 			+str1+'<td rowspan="3">备注</td></tr>'
-			+'<td rowspan="1" colspan="2">'+min+'-'+max+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">累计完成投资（万元）</td><td rowspan="2">本年到位资金（万元）</td><td rowspan="2">累计到位资金（万元）</td><td rowspan="2">本年到位车购税（万元）</td><td rowspan="2">累计到位车购税（万元）</td><td rowspan="2">工程完成比例（规模）</td><td rowspan="2">'+max+'年目标任务里程（公里）</td><td rowspan="2">'+max+'年目标任务投资（万元）</td><td rowspan="2">'+max+'年目标任务已完成里程（公里）</td><td rowspan="2">目标任务完成比例（规模）</td><td rowspan="2">目标任务总投资完成比例</td>'
+			+'<td rowspan="1" colspan="2">'+min+'-'+max+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">工程完成比例</td><td rowspan="2">'+max+'年目标任务里程（公里）</td><td rowspan="2">'+max+'年目标任务已完成里程（公里）</td>'
 			+str2+'</tr>'
 			+'<td>项目数量</td><td>计划里程（公里）</td>'
 			+str3+'</tr>';
@@ -161,10 +159,10 @@
 			biaotou.append(biaotstr);
 			var tbody = $("#wqgzlist");
 			tbody.empty();
-			var data="gcglwqgz.tiaojian="+xmlx+"&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue');
+			var data="gcglwqgz.tiaojian="+"&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue');
 			//alert(data);
 			$.ajax({
-				url:"/jxzhpt/gcybb/getXgjwchzb.do",
+				url:"/jxzhpt/gcybb/getLmgzwcb.do",
 				data:data,
 				type:"post",
 				dataType:"JSON",
@@ -172,7 +170,7 @@
 						for ( var x = 0; x < msg.length; x++) {
 							var tr="";
 							if(x==0){
-								tr="<tr>";
+								var tr="<tr>";
 								for ( var j = 0; j < ss.length; j++) {
 									if(ss[j]=='v_0'){
 										tr+="<td colspan='2'>"+msg[x][ss[j]]+"</td>";
@@ -203,13 +201,12 @@
 		xmnf.sort(function (x,y) {
             return y-x;
         });
-		var xmlx=$("#xmlx").combobox("getValue");
 		if(xmnf==''){
 			alert("请选择年份");
 			return;
 		}
-		var data="flag=flag&gcglwqgz.tiaojian="+xmlx+"&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue');
-		window.location.href="/jxzhpt/gcybb/getXgjwchzb.do?"+data;
+		var data="flag=flag&gcglwqgz.tiaojian="+"&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue');
+		window.location.href="/jxzhpt/gcybb/getLmgzwcb.do?"+data;
 	}	
 	</script>
 	<style type="text/css">
@@ -260,7 +257,7 @@ text-decoration:none;
 		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;height:100%;" cellspacing="0" cellpadding="0" >
 			<tr>
 			<div id="righttop"  >
-						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;<span id="astext">生成报表</span>>&nbsp;<span id="bstext"></span>&nbsp;普通干线公路新改建工程项目完成情况汇总表</div>
+						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;<span id="astext">生成报表</span>>&nbsp;<span id="bstext"></span>&nbsp;普通国省干线公路路面改造建设任务完成情况表</div>
 					</div>
         	</tr>
         	<tr>
@@ -274,11 +271,6 @@ text-decoration:none;
 					<tr height="32">
         						<td align="right">下达年份：</td>
         						<td><input type="text" id="jhxdnf"  style="width:80px;"></td>
-        						<td align="right">项目类型：</td>
-        						<td><select id="xmlx" style="width:80px;" class='easyui-combobox'>
-        							<option value="改建">改建</option>
-        							<option value="新建">新建</option>
-        						</select></td>
         						<td align="right">截至进展年份：</td>
         						<td><input type="text" id="ybnf"  style="width:80px;"></td>
         						<td align="right">截至进展月份：</td>

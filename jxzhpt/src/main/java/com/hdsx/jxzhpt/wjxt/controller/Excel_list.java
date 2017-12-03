@@ -30,7 +30,22 @@ public class Excel_list implements Serializable {
 	private String ssbb;
 	private String treeno;
 	private String yf;
+	private int xmsl;
 	
+	private String sfhb;
+	
+	public String getSfhb() {
+		return sfhb;
+	}
+	public void setSfhb(String sfhb) {
+		this.sfhb = sfhb;
+	}
+	public int getXmsl() {
+		return xmsl;
+	}
+	public void setXmsl(int xmsl) {
+		this.xmsl = xmsl;
+	}
 	public String getYf() {
 		return yf;
 	}
@@ -280,9 +295,381 @@ public class Excel_list implements Serializable {
 	public String v_98="";
 	public String v_99="";
 	
+	public String v_100 ="";
+	public String v_101 ="";
+	public String v_102 ="";
+	public String v_103 ="";
+	public String v_104 ="";
+	public String v_105 ="";
+	public String v_106 ="";
+	public String v_107 ="";
+	public String v_108 ="";
+	public String v_109 ="";
+	public String v_110="";
+	public String v_111="";
+	public String v_112="";
+	public String v_113="";
+	public String v_114="";
+	public String v_115="";
+	public String v_116="";
+	public String v_117="";
+	public String v_118="";
+	public String v_119="";
+	public String v_120="";
+	public String v_121="";
+	public String v_122="";
+	public String v_123="";
+	public String v_124="";
+	public String v_125="";
+	public String v_126="";
+	public String v_127="";
+	public String v_128="";
+	public String v_129="";
+	public String v_130="";
+	public String v_131="";
+	public String v_132="";
+	public String v_133="";
+	public String v_134="";
+	public String v_135="";
+	public String v_136="";
+	public String v_137="";
+	public String v_138="";
+	public String v_139="";
+	public String v_140="";
+	public String v_141="";
+	public String v_142="";
+	public String v_143="";
+	public String v_144="";
+	public String v_145="";
+	public String v_146="";
+	public String v_147="";
+	public String v_148="";
+	public String v_149="";
+	public String v_150="";
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public String xzqh;
 	public String xzqhdm;
 	
+	public String getV_100() {
+		return v_100;
+	}
+	public void setV_100(String v_100) {
+		this.v_100 = v_100;
+	}
+	public String getV_101() {
+		return v_101;
+	}
+	public void setV_101(String v_101) {
+		this.v_101 = v_101;
+	}
+	public String getV_102() {
+		return v_102;
+	}
+	public void setV_102(String v_102) {
+		this.v_102 = v_102;
+	}
+	public String getV_103() {
+		return v_103;
+	}
+	public void setV_103(String v_103) {
+		this.v_103 = v_103;
+	}
+	public String getV_104() {
+		return v_104;
+	}
+	public void setV_104(String v_104) {
+		this.v_104 = v_104;
+	}
+	public String getV_105() {
+		return v_105;
+	}
+	public void setV_105(String v_105) {
+		this.v_105 = v_105;
+	}
+	public String getV_106() {
+		return v_106;
+	}
+	public void setV_106(String v_106) {
+		this.v_106 = v_106;
+	}
+	public String getV_107() {
+		return v_107;
+	}
+	public void setV_107(String v_107) {
+		this.v_107 = v_107;
+	}
+	public String getV_108() {
+		return v_108;
+	}
+	public void setV_108(String v_108) {
+		this.v_108 = v_108;
+	}
+	public String getV_109() {
+		return v_109;
+	}
+	public void setV_109(String v_109) {
+		this.v_109 = v_109;
+	}
+	public String getV_110() {
+		return v_110;
+	}
+	public void setV_110(String v_110) {
+		this.v_110 = v_110;
+	}
+	public String getV_111() {
+		return v_111;
+	}
+	public void setV_111(String v_111) {
+		this.v_111 = v_111;
+	}
+	public String getV_112() {
+		return v_112;
+	}
+	public void setV_112(String v_112) {
+		this.v_112 = v_112;
+	}
+	public String getV_113() {
+		return v_113;
+	}
+	public void setV_113(String v_113) {
+		this.v_113 = v_113;
+	}
+	public String getV_114() {
+		return v_114;
+	}
+	public void setV_114(String v_114) {
+		this.v_114 = v_114;
+	}
+	public String getV_115() {
+		return v_115;
+	}
+	public void setV_115(String v_115) {
+		this.v_115 = v_115;
+	}
+	public String getV_116() {
+		return v_116;
+	}
+	public void setV_116(String v_116) {
+		this.v_116 = v_116;
+	}
+	public String getV_117() {
+		return v_117;
+	}
+	public void setV_117(String v_117) {
+		this.v_117 = v_117;
+	}
+	public String getV_118() {
+		return v_118;
+	}
+	public void setV_118(String v_118) {
+		this.v_118 = v_118;
+	}
+	public String getV_119() {
+		return v_119;
+	}
+	public void setV_119(String v_119) {
+		this.v_119 = v_119;
+	}
+	public String getV_120() {
+		return v_120;
+	}
+	public void setV_120(String v_120) {
+		this.v_120 = v_120;
+	}
+	public String getV_121() {
+		return v_121;
+	}
+	public void setV_121(String v_121) {
+		this.v_121 = v_121;
+	}
+	public String getV_122() {
+		return v_122;
+	}
+	public void setV_122(String v_122) {
+		this.v_122 = v_122;
+	}
+	public String getV_123() {
+		return v_123;
+	}
+	public void setV_123(String v_123) {
+		this.v_123 = v_123;
+	}
+	public String getV_124() {
+		return v_124;
+	}
+	public void setV_124(String v_124) {
+		this.v_124 = v_124;
+	}
+	public String getV_125() {
+		return v_125;
+	}
+	public void setV_125(String v_125) {
+		this.v_125 = v_125;
+	}
+	public String getV_126() {
+		return v_126;
+	}
+	public void setV_126(String v_126) {
+		this.v_126 = v_126;
+	}
+	public String getV_127() {
+		return v_127;
+	}
+	public void setV_127(String v_127) {
+		this.v_127 = v_127;
+	}
+	public String getV_128() {
+		return v_128;
+	}
+	public void setV_128(String v_128) {
+		this.v_128 = v_128;
+	}
+	public String getV_129() {
+		return v_129;
+	}
+	public void setV_129(String v_129) {
+		this.v_129 = v_129;
+	}
+	public String getV_130() {
+		return v_130;
+	}
+	public void setV_130(String v_130) {
+		this.v_130 = v_130;
+	}
+	public String getV_131() {
+		return v_131;
+	}
+	public void setV_131(String v_131) {
+		this.v_131 = v_131;
+	}
+	public String getV_132() {
+		return v_132;
+	}
+	public void setV_132(String v_132) {
+		this.v_132 = v_132;
+	}
+	public String getV_133() {
+		return v_133;
+	}
+	public void setV_133(String v_133) {
+		this.v_133 = v_133;
+	}
+	public String getV_134() {
+		return v_134;
+	}
+	public void setV_134(String v_134) {
+		this.v_134 = v_134;
+	}
+	public String getV_135() {
+		return v_135;
+	}
+	public void setV_135(String v_135) {
+		this.v_135 = v_135;
+	}
+	public String getV_136() {
+		return v_136;
+	}
+	public void setV_136(String v_136) {
+		this.v_136 = v_136;
+	}
+	public String getV_137() {
+		return v_137;
+	}
+	public void setV_137(String v_137) {
+		this.v_137 = v_137;
+	}
+	public String getV_138() {
+		return v_138;
+	}
+	public void setV_138(String v_138) {
+		this.v_138 = v_138;
+	}
+	public String getV_139() {
+		return v_139;
+	}
+	public void setV_139(String v_139) {
+		this.v_139 = v_139;
+	}
+	public String getV_140() {
+		return v_140;
+	}
+	public void setV_140(String v_140) {
+		this.v_140 = v_140;
+	}
+	public String getV_141() {
+		return v_141;
+	}
+	public void setV_141(String v_141) {
+		this.v_141 = v_141;
+	}
+	public String getV_142() {
+		return v_142;
+	}
+	public void setV_142(String v_142) {
+		this.v_142 = v_142;
+	}
+	public String getV_143() {
+		return v_143;
+	}
+	public void setV_143(String v_143) {
+		this.v_143 = v_143;
+	}
+	public String getV_144() {
+		return v_144;
+	}
+	public void setV_144(String v_144) {
+		this.v_144 = v_144;
+	}
+	public String getV_145() {
+		return v_145;
+	}
+	public void setV_145(String v_145) {
+		this.v_145 = v_145;
+	}
+	public String getV_146() {
+		return v_146;
+	}
+	public void setV_146(String v_146) {
+		this.v_146 = v_146;
+	}
+	public String getV_147() {
+		return v_147;
+	}
+	public void setV_147(String v_147) {
+		this.v_147 = v_147;
+	}
+	public String getV_148() {
+		return v_148;
+	}
+	public void setV_148(String v_148) {
+		this.v_148 = v_148;
+	}
+	public String getV_149() {
+		return v_149;
+	}
+	public void setV_149(String v_149) {
+		this.v_149 = v_149;
+	}
+	public String getV_150() {
+		return v_150;
+	}
+	public void setV_150(String v_150) {
+		this.v_150 = v_150;
+	}
 	public String getXzqh() {
 		return xzqh;
 	}

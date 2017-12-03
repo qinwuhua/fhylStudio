@@ -1362,33 +1362,33 @@ public class GcybbController extends BaseActionSupport{
 			    if("升级改造".equals(gcglwqgz.getTiaojian())){
 			    	tableName="yb_sj";
 			    	viewsql="CREATE OR REPLACE VIEW YB_SJ AS "
-			    	+" select t1.xzqh,to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t1.bbzorsbz xmzj,t1.bnwclc wclc,t1.bnwctz wcxmzj,t1.bbzorsbz,t1.bncgs bbz,t1.pfztz from (select substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tb.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tb.xdnf,lx1.zlc,0)) xmlc,sum( t.bbzorsbz) bbzorsbz,sum( t.pfztz) pfztz,sum( decode(t.xdnf, lx.ybnf, lx.bnwclc, 0)) bnwclc,sum( decode(t.xdnf, lx.ybnf, lx.bnwctz, 0)) bnwctz,sum( decode(t.xdnf, cgs.ybnf, cgs.cgs, 0)) bncgs  from jhsh_sjgz j,(select xmid,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx1,(select xmid,xdnf,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0)) bbzorsbz,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(yhdk,0))+sum(nvl(dfzc,0)) pfztz from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid,xdnf) t,(select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid) tb,(select xmbm,substr(ybyf,0,4) ybnf,max(bndsslc) bndsslc,sum(nvl(yilc,0))+sum(nvl(yilc,0))+sum(nvl(yilc,0))+sum(nvl(yilc,0)) bnwclc,sum(nvl(wccgs,0))+sum(nvl(wcgz,0))+sum(nvl(wcsz,0))+sum(nvl(wczq,0))+sum(nvl(wcdk,0))+sum(nvl(wcjl,0))+sum(nvl(wcqt,0))+sum(nvl(wcyhdk,0))+sum(nvl(wcdfzc,0)) bnwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by xmbm,substr(ybyf,0,4)) lx, (select jhid,substr(tbyf,0,4) ybnf,sum(cgsdwzj) cgs from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by jhid,substr(tbyf,0,4) ) cgs,cbsj_sjgz cb  where j.xmbm=t.xmid(+) and j.xmbm=tb.xmid(+) and t.xmid=cgs.jhid(+) and j.xmbm=cb.xmbm(+) and t.xmid=lx.xmbm(+) and j.xmbm=lx1.xmid(+) and t.xdnf=lx.ybnf(+) and t.xdnf=cgs.ybnf(+) and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1 "
+			    	+" select t1.xzqh,to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t1.bbzorsbz xmzj,t1.bnwclc wclc,t1.bnwctz wcxmzj,t1.bbzorsbz,t1.bncgs bbz,t1.pfztz from (select substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tb.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tb.xdnf,lx1.zlc,0)) xmlc,sum( t.bbzorsbz) bbzorsbz,sum( t.pfztz) pfztz,sum( decode(t.xdnf, lx.ybnf, lx.bnwclc, 0)) bnwclc,sum( decode(t.xdnf, lx.ybnf, lx.bnwctz, 0)) bnwctz,sum( decode(t.xdnf, cgs.ybnf, cgs.cgs, 0)) bncgs  from jhsh_sjgz j,(select xmid,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx1,(select xmid,xdnf,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0)) bbzorsbz,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(yhdk,0))+sum(nvl(dfzc,0)) pfztz from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid,xdnf) t,(select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid) tb,(select xmbm,substr(ybyf,0,4) ybnf,max(bndsslc) bndsslc,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0)) bnwclc,sum(nvl(wccgs,0))+sum(nvl(wcgz,0))+sum(nvl(wcsz,0))+sum(nvl(wczq,0))+sum(nvl(wcdk,0))+sum(nvl(wcjl,0))+sum(nvl(wcqt,0))+sum(nvl(wcyhdk,0))+sum(nvl(wcdfzc,0)) bnwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by xmbm,substr(ybyf,0,4)) lx, (select jhid,substr(tbyf,0,4) ybnf,sum(cgsdwzj) cgs from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by jhid,substr(tbyf,0,4) ) cgs,cbsj_sjgz cb  where j.xmbm=t.xmid(+) and j.xmbm=tb.xmid(+) and t.xmid=cgs.jhid(+) and j.xmbm=cb.xmbm(+) and t.xmid=lx.xmbm(+) and j.xmbm=lx1.xmid(+) and t.xdnf=lx.ybnf(+) and t.xdnf=cgs.ybnf(+) and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1 "
 		    		+" union all"
-			    	+" select '36' xzqh,'全省汇总' xzqhmc,jhnf,sum(xmsl),sum(xmlc), sum(xmzj),sum(wclc),sum(wcxmzj),sum(bbzorsbz),sum(bbz), sum(pfztz) from (select t1.xzqh,to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t1.bbzorsbz xmzj,t1.bnwclc wclc,t1.bnwctz wcxmzj,t1.bbzorsbz,t1.bncgs bbz,t1.pfztz from (select substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tb.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tb.xdnf,lx1.zlc,0)) xmlc,sum( t.bbzorsbz) bbzorsbz,sum( t.pfztz) pfztz,sum( decode(t.xdnf, lx.ybnf, lx.bnwclc, 0)) bnwclc,sum( decode(t.xdnf, lx.ybnf, lx.bnwctz, 0)) bnwctz,sum( decode(t.xdnf, cgs.ybnf, cgs.cgs, 0)) bncgs  from jhsh_sjgz j,(select xmid,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx1,(select xmid,xdnf,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0)) bbzorsbz,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(yhdk,0))+sum(nvl(dfzc,0)) pfztz from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid,xdnf) t,(select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid) tb,(select xmbm,substr(ybyf,0,4) ybnf,max(bndsslc) bndsslc,sum(nvl(yilc,0))+sum(nvl(yilc,0))+sum(nvl(yilc,0))+sum(nvl(yilc,0)) bnwclc,sum(nvl(wccgs,0))+sum(nvl(wcgz,0))+sum(nvl(wcsz,0))+sum(nvl(wczq,0))+sum(nvl(wcdk,0))+sum(nvl(wcjl,0))+sum(nvl(wcqt,0))+sum(nvl(wcyhdk,0))+sum(nvl(wcdfzc,0)) bnwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by xmbm,substr(ybyf,0,4)) lx, (select jhid,substr(tbyf,0,4) ybnf,sum(cgsdwzj) cgs from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by jhid,substr(tbyf,0,4) ) cgs,cbsj_sjgz cb  where j.xmbm=t.xmid(+) and j.xmbm=tb.xmid(+) and t.xmid=cgs.jhid(+) and j.xmbm=cb.xmbm(+) and t.xmid=lx.xmbm(+) and j.xmbm=lx1.xmid(+) and t.xdnf=lx.ybnf(+) and t.xdnf=cgs.ybnf(+) and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1)  group by substr(xzqh, 1, 2), jhnf order by xzqh, jhnf";
+			    	+" select '36' xzqh,'全省汇总' xzqhmc,jhnf,sum(xmsl),sum(xmlc), sum(xmzj),sum(wclc),sum(wcxmzj),sum(bbzorsbz),sum(bbz), sum(pfztz) from (select t1.xzqh,to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t1.bbzorsbz xmzj,t1.bnwclc wclc,t1.bnwctz wcxmzj,t1.bbzorsbz,t1.bncgs bbz,t1.pfztz from (select substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tb.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tb.xdnf,lx1.zlc,0)) xmlc,sum( t.bbzorsbz) bbzorsbz,sum( t.pfztz) pfztz,sum( decode(t.xdnf, lx.ybnf, lx.bnwclc, 0)) bnwclc,sum( decode(t.xdnf, lx.ybnf, lx.bnwctz, 0)) bnwctz,sum( decode(t.xdnf, cgs.ybnf, cgs.cgs, 0)) bncgs  from jhsh_sjgz j,(select xmid,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx1,(select xmid,xdnf,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0)) bbzorsbz,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(yhdk,0))+sum(nvl(dfzc,0)) pfztz from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid,xdnf) t,(select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid) tb,(select xmbm,substr(ybyf,0,4) ybnf,max(bndsslc) bndsslc,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0)) bnwclc,sum(nvl(wccgs,0))+sum(nvl(wcgz,0))+sum(nvl(wcsz,0))+sum(nvl(wczq,0))+sum(nvl(wcdk,0))+sum(nvl(wcjl,0))+sum(nvl(wcqt,0))+sum(nvl(wcyhdk,0))+sum(nvl(wcdfzc,0)) bnwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by xmbm,substr(ybyf,0,4)) lx, (select jhid,substr(tbyf,0,4) ybnf,sum(cgsdwzj) cgs from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by jhid,substr(tbyf,0,4) ) cgs,cbsj_sjgz cb  where j.xmbm=t.xmid(+) and j.xmbm=tb.xmid(+) and t.xmid=cgs.jhid(+) and j.xmbm=cb.xmbm(+) and t.xmid=lx.xmbm(+) and j.xmbm=lx1.xmid(+) and t.xdnf=lx.ybnf(+) and t.xdnf=cgs.ybnf(+) and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1)  group by substr(xzqh, 1, 2), jhnf order by xzqh, jhnf";
 			    	//		+"select t1.xzqh,t1.xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t2.xmzj,t3.wclc,t4.wcxmzj,t1.bbzorsbz,t2.bbz,t1.pfztz from (select to_char(t.xzqh)xzqh,to_char((select name from xtgl_xzqh where id=t.xzqh||'00')) xzqhmc,t.jhnf,count(distinct j.xmbm) xmsl,sum(xmlc) xmlc,sum(bbzorsbz) bbzorsbz,sum(pfztz) pfztz from (select xm.xmbm,xm.jhnf,lx.xmlc,lx.xzqh,xm.bbzorsbz,xm.pfztz from (SELECT xmbm,'升级改造' lx,substr(xmbm,0,4) jhnf,bbzzj+sbzzj bbzorsbz,pfztz from jhsh_sjgz) xm, (SELECT xmid,'升级改造' lx,sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0)) xmlc,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx where xm.xmbm=lx.xmid(+)) t group by t.xzqh,t.jhnf)t1, (select t.xzqh,t.xdnf,sum(xmzj) xmzj,sum(bbz) bbz from (select xm.xmbm,lx.xzqh,xdzj.xdnf,xmzj,bbz from (SELECT xmbm,'升级改造' lx from jhsh_sjgz) xm, (SELECT xmid,'升级改造' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT xmid,xdnf,sum(btzzj+stz) xmzj,sum(btzzj) bbz from plan_zjxd group by xmid,xdnf)xdzj where xm.xmbm=lx.xmid(+) and xm.xmbm=xdzj.xmid(+)) t group by t.xzqh,t.xdnf)t2, (select t.xzqh,t.wclcnf,sum(wclc) wclc from (select xm.xmbm,lx.xzqh,wclc.wclcnf,wclc from (SELECT xmbm,'升级改造' lx from jhsh_sjgz) xm, (SELECT xmid,'升级改造' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,'升级改造' lx,sum(bywcmc) wclc,substr(sbyf,1,4) wclcnf from gcgl_gcgzsj tb where to_date(tb.sbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(sbyf,1,4))wclc where xm.xmbm=lx.xmid(+) and xm.xmbm=wclc.jhid(+)) t group by t.xzqh,t.wclcnf)t3, (select t.xzqh,t.wczjnf,sum(wcxmzj) wcxmzj from (select xm.xmbm,lx.xzqh,wczj.wczjnf,wcxmzj from (SELECT xmbm,'升级改造' lx from jhsh_sjgz) xm, (SELECT xmid,'升级改造' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4)) lx, (SELECT jhid,substr(tbyf,1,4) wczjnf,sum(cgsdwzj+stz) wcxmzj from gcgl_cgs tg where to_date(tg.tbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(tbyf,1,4)) wczj where xm.xmbm=lx.xmid(+) and xm.xmbm=wczj.jhid(+)) t group by t.xzqh,t.wczjnf)t4 where t1.xzqh=t2.xzqh(+) and t1.xzqh=t3.xzqh(+) and t1.xzqh=t4.xzqh(+) and t1.jhnf=t2.xdnf(+) and t1.jhnf=t3.wclcnf(+) and t1.jhnf=t4.wczjnf(+) union all select t1.xzqh,t1.xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t2.xmzj,t3.wclc,t4.wcxmzj,t1.bbzorsbz,t2.bbz,t1.pfztz from (select to_char(t.xzqh)xzqh,to_char((select name from xtgl_xzqh where id=t.xzqh||'00')) xzqhmc,t.jhnf,count(distinct j.xmbm) xmsl,sum(xmlc) xmlc,sum(bbzorsbz) bbzorsbz,sum(pfztz) pfztz from (select xm.xmbm,xm.jhnf,lx.xmlc,lx.xzqh,xm.bbzorsbz,xm.pfztz from (SELECT xmbm,'升级改造' lx,substr(xmbm,0,4) jhnf,bbzzj+sbzzj bbzorsbz,pfztz from jhsh_xj) xm, (SELECT xmid,'升级改造' lx,sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0)) xmlc,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx where xm.xmbm=lx.xmid(+)) t group by t.xzqh,t.jhnf)t1, (select t.xzqh,t.xdnf,sum(xmzj) xmzj,sum(bbz) bbz from (select xm.xmbm,lx.xzqh,xdzj.xdnf,xmzj,bbz from (SELECT xmbm,'升级改造' lx from jhsh_xj) xm, (SELECT xmid,'升级改造' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT xmid,xdnf,sum(btzzj+stz) xmzj,sum(btzzj) bbz from plan_zjxd group by xmid,xdnf)xdzj where xm.xmbm=lx.xmid(+) and xm.xmbm=xdzj.xmid(+)) t group by t.xzqh,t.xdnf)t2, (select t.xzqh,t.wclcnf,sum(wclc) wclc from (select xm.xmbm,lx.xzqh,wclc.wclcnf,wclc from (SELECT xmbm,'升级改造' lx from jhsh_xj) xm, (SELECT xmid,'升级改造' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,'升级改造' lx,sum(bywcmc) wclc,substr(sbyf,1,4) wclcnf from gcgl_xj tb where to_date(tb.sbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(sbyf,1,4))wclc where xm.xmbm=lx.xmid(+) and xm.xmbm=wclc.jhid(+)) t group by t.xzqh,t.wclcnf)t3, (select t.xzqh,t.wczjnf,sum(wcxmzj) wcxmzj from (select xm.xmbm,lx.xzqh,wczj.wczjnf,wcxmzj from (SELECT xmbm,'升级改造' lx from jhsh_xj) xm, (SELECT xmid,'升级改造' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,substr(tbyf,1,4) wczjnf,sum(cgsdwzj+stz) wcxmzj from gcgl_cgs tg where to_date(tg.tbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(tbyf,1,4)) wczj where xm.xmbm=lx.xmid(+) and xm.xmbm=wczj.jhid(+)) t group by t.xzqh,t.wczjnf)t4 where t1.xzqh=t2.xzqh(+) and t1.xzqh=t3.xzqh(+) and t1.xzqh=t4.xzqh(+) and t1.jhnf=t2.xdnf(+) and t1.jhnf=t3.wclcnf(+) and t1.jhnf=t4.wczjnf(+) union all select '36' xzqh,'全省汇总' xzqhmc,jhnf,sum(xmsl),sum(xmlc),sum(xmzj),sum(wclc),sum(wcxmzj),sum(bbzorsbz),sum(bbz),sum(pfztz) from (select t1.xzqh,t1.xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t2.xmzj,t3.wclc,t4.wcxmzj,t1.bbzorsbz,t2.bbz,t1.pfztz from (select to_char(t.xzqh)xzqh,to_char((select name from xtgl_xzqh where id=t.xzqh||'00')) xzqhmc,t.jhnf,count(distinct j.xmbm) xmsl,sum(xmlc) xmlc,sum(bbzorsbz) bbzorsbz,sum(pfztz) pfztz from (select xm.xmbm,xm.jhnf,lx.xmlc,lx.xzqh,xm.bbzorsbz,xm.pfztz from (SELECT xmbm,'升级改造' lx,substr(xmbm,0,4) jhnf,bbzzj+sbzzj bbzorsbz,pfztz from jhsh_sjgz) xm, (SELECT xmid,'升级改造' lx,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)) xmlc,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx where xm.xmbm=lx.xmid(+)) t group by t.xzqh,t.jhnf)t1, (select t.xzqh,t.xdnf,sum(xmzj) xmzj,sum(bbz) bbz from (select xm.xmbm,lx.xzqh,xdzj.xdnf,xmzj,bbz from (SELECT xmbm,'升级改造' lx from jhsh_sjgz) xm, (SELECT xmid,'升级改造' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT xmid,xdnf,sum(btzzj+stz) xmzj,sum(btzzj) bbz from plan_zjxd group by xmid,xdnf)xdzj where xm.xmbm=lx.xmid(+) and xm.xmbm=xdzj.xmid(+)) t group by t.xzqh,t.xdnf)t2, (select t.xzqh,t.wclcnf,sum(wclc) wclc from (select xm.xmbm,lx.xzqh,wclc.wclcnf,wclc from (SELECT xmbm,'升级改造' lx from jhsh_sjgz) xm, (SELECT xmid,'升级改造' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,'升级改造' lx,sum(bywcmc) wclc,substr(sbyf,1,4) wclcnf from gcgl_gcgzsj tb where to_date(tb.sbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(sbyf,1,4))wclc where xm.xmbm=lx.xmid(+) and xm.xmbm=wclc.jhid(+)) t group by t.xzqh,t.wclcnf)t3, (select t.xzqh,t.wczjnf,sum(wcxmzj) wcxmzj from (select xm.xmbm,lx.xzqh,wczj.wczjnf,wcxmzj from (SELECT xmbm,'升级改造' lx from jhsh_sjgz) xm, (SELECT xmid,'升级改造' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,substr(tbyf,1,4) wczjnf,sum(cgsdwzj+stz) wcxmzj from gcgl_cgs tg where to_date(tg.tbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(tbyf,1,4)) wczj where xm.xmbm=lx.xmid(+) and xm.xmbm=wczj.jhid(+)) t group by t.xzqh,t.wczjnf)t4 where t1.xzqh=t2.xzqh(+) and t1.xzqh=t3.xzqh(+) and t1.xzqh=t4.xzqh(+) and t1.jhnf=t2.xdnf(+) and t1.jhnf=t3.wclcnf(+) and t1.jhnf=t4.wczjnf(+) union all select t1.xzqh,t1.xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t2.xmzj,t3.wclc,t4.wcxmzj,t1.bbzorsbz,t2.bbz,t1.pfztz from (select to_char(t.xzqh)xzqh,to_char((select name from xtgl_xzqh where id=t.xzqh||'00')) xzqhmc,t.jhnf,count(distinct j.xmbm) xmsl,sum(xmlc) xmlc,sum(bbzorsbz) bbzorsbz,sum(pfztz) pfztz from (select xm.xmbm,xm.jhnf,lx.xmlc,lx.xzqh,xm.bbzorsbz,xm.pfztz from (SELECT xmbm,'升级改造' lx,substr(xmbm,0,4) jhnf,bbzzj+sbzzj bbzorsbz,pfztz from jhsh_xj) xm, (SELECT xmid,'升级改造' lx,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)) xmlc,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx where xm.xmbm=lx.xmid(+)) t group by t.xzqh,t.jhnf)t1, (select t.xzqh,t.xdnf,sum(xmzj) xmzj,sum(bbz) bbz from (select xm.xmbm,lx.xzqh,xdzj.xdnf,xmzj,bbz from (SELECT xmbm,'升级改造' lx from jhsh_xj) xm, (SELECT xmid,'升级改造' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT xmid,xdnf,sum(btzzj+stz) xmzj,sum(btzzj) bbz from plan_zjxd group by xmid,xdnf)xdzj where xm.xmbm=lx.xmid(+) and xm.xmbm=xdzj.xmid(+)) t group by t.xzqh,t.xdnf)t2, (select t.xzqh,t.wclcnf,sum(wclc) wclc from (select xm.xmbm,lx.xzqh,wclc.wclcnf,wclc from (SELECT xmbm,'升级改造' lx from jhsh_xj) xm, (SELECT xmid,'升级改造' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,'升级改造' lx,sum(bywcmc) wclc,substr(sbyf,1,4) wclcnf from gcgl_xj tb where to_date(tb.sbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(sbyf,1,4))wclc where xm.xmbm=lx.xmid(+) and xm.xmbm=wclc.jhid(+)) t group by t.xzqh,t.wclcnf)t3, (select t.xzqh,t.wczjnf,sum(wcxmzj) wcxmzj from (select xm.xmbm,lx.xzqh,wczj.wczjnf,wcxmzj from (SELECT xmbm,'升级改造' lx from jhsh_xj) xm, (SELECT xmid,'升级改造' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,substr(tbyf,1,4) wczjnf,sum(cgsdwzj+stz) wcxmzj from gcgl_cgs tg where to_date(tg.tbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(tbyf,1,4)) wczj where xm.xmbm=lx.xmid(+) and xm.xmbm=wczj.jhid(+)) t group by t.xzqh,t.wczjnf)t4 where t1.xzqh=t2.xzqh(+) and t1.xzqh=t3.xzqh(+) and t1.xzqh=t4.xzqh(+) and t1.jhnf=t2.xdnf(+) and t1.jhnf=t3.wclcnf(+) and t1.jhnf=t4.wczjnf(+) ) group by substr(xzqh,1,2),jhnf order by xzqh,jhnf";
 			    }
 				if("路面改造".equals(gcglwqgz.getTiaojian())){
 					tableName="yb_gj";
 					viewsql="CREATE OR REPLACE VIEW YB_GJ AS"
-					+" select t1.xzqh,to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t1.bbzorsbz xmzj,t1.bnwclc wclc,t1.bnwctz wcxmzj,t1.bbzorsbz,t1.bncgs bbz,t1.pfztz from (select substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tb.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tb.xdnf,lx1.zlc,0)) xmlc,sum( t.bbzorsbz) bbzorsbz,sum( t.pfztz) pfztz,sum( decode(t.xdnf, lx.ybnf, lx.bnwclc, 0)) bnwclc,sum( decode(t.xdnf, lx.ybnf, lx.bnwctz, 0)) bnwctz,sum( decode(t.xdnf, cgs.ybnf, cgs.cgs, 0)) bncgs  from jhsh_lmgz j,(select xmid,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx1,(select xmid,xdnf,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0)) bbzorsbz,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(yhdk,0))+sum(nvl(dfzc,0)) pfztz from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid,xdnf) t,(select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid) tb,(select xmbm,substr(ybyf,0,4) ybnf,max(bndsslc) bndsslc,sum(nvl(yilc,0))+sum(nvl(yilc,0))+sum(nvl(yilc,0))+sum(nvl(yilc,0)) bnwclc,sum(nvl(wccgs,0))+sum(nvl(wcgz,0))+sum(nvl(wcsz,0))+sum(nvl(wczq,0))+sum(nvl(wcdk,0))+sum(nvl(wcjl,0))+sum(nvl(wcqt,0))+sum(nvl(wcyhdk,0))+sum(nvl(wcdfzc,0)) bnwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by xmbm,substr(ybyf,0,4)) lx, (select jhid,substr(tbyf,0,4) ybnf,sum(cgsdwzj) cgs from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by jhid,substr(tbyf,0,4) ) cgs,cbsj_lmgz cb  where j.xmbm=t.xmid(+) and j.xmbm=tb.xmid(+) and t.xmid=cgs.jhid(+) and j.xmbm=cb.xmbm(+) and t.xmid=lx.xmbm(+) and j.xmbm=lx1.xmid(+) and t.xdnf=lx.ybnf(+) and t.xdnf=cgs.ybnf(+) and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null)group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1 "
+					+" select t1.xzqh,to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t1.bbzorsbz xmzj,t1.bnwclc wclc,t1.bnwctz wcxmzj,t1.bbzorsbz,t1.bncgs bbz,t1.pfztz from (select substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tb.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tb.xdnf,lx1.zlc,0)) xmlc,sum( t.bbzorsbz) bbzorsbz,sum( t.pfztz) pfztz,sum( decode(t.xdnf, lx.ybnf, lx.bnwclc, 0)) bnwclc,sum( decode(t.xdnf, lx.ybnf, lx.bnwctz, 0)) bnwctz,sum( decode(t.xdnf, cgs.ybnf, cgs.cgs, 0)) bncgs  from jhsh_lmgz j,(select xmid,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx1,(select xmid,xdnf,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0)) bbzorsbz,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(yhdk,0))+sum(nvl(dfzc,0)) pfztz from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid,xdnf) t,(select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid) tb,(select xmbm,substr(ybyf,0,4) ybnf,max(bndsslc) bndsslc,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0)) bnwclc,sum(nvl(wccgs,0))+sum(nvl(wcgz,0))+sum(nvl(wcsz,0))+sum(nvl(wczq,0))+sum(nvl(wcdk,0))+sum(nvl(wcjl,0))+sum(nvl(wcqt,0))+sum(nvl(wcyhdk,0))+sum(nvl(wcdfzc,0)) bnwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by xmbm,substr(ybyf,0,4)) lx, (select jhid,substr(tbyf,0,4) ybnf,sum(cgsdwzj) cgs from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by jhid,substr(tbyf,0,4) ) cgs,cbsj_lmgz cb  where j.xmbm=t.xmid(+) and j.xmbm=tb.xmid(+) and t.xmid=cgs.jhid(+) and j.xmbm=cb.xmbm(+) and t.xmid=lx.xmbm(+) and j.xmbm=lx1.xmid(+) and t.xdnf=lx.ybnf(+) and t.xdnf=cgs.ybnf(+) and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null)group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1 "
 		            +" union all"
-		            +" select '36' xzqh,'全省汇总' xzqhmc,jhnf,sum(xmsl),sum(xmlc), sum(xmzj),sum(wclc),sum(wcxmzj),sum(bbzorsbz),sum(bbz), sum(pfztz) from (select t1.xzqh,to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t1.bbzorsbz xmzj,t1.bnwclc wclc,t1.bnwctz wcxmzj,t1.bbzorsbz,t1.bncgs bbz,t1.pfztz from (select substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tb.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tb.xdnf,lx1.zlc,0)) xmlc,sum( t.bbzorsbz) bbzorsbz,sum( t.pfztz) pfztz,sum( decode(t.xdnf, lx.ybnf, lx.bnwclc, 0)) bnwclc,sum( decode(t.xdnf, lx.ybnf, lx.bnwctz, 0)) bnwctz,sum( decode(t.xdnf, cgs.ybnf, cgs.cgs, 0)) bncgs  from jhsh_lmgz j,(select xmid,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx1,(select xmid,xdnf,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0)) bbzorsbz,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(yhdk,0))+sum(nvl(dfzc,0)) pfztz from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid,xdnf) t,(select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid) tb,(select xmbm,substr(ybyf,0,4) ybnf,max(bndsslc) bndsslc,sum(nvl(yilc,0))+sum(nvl(yilc,0))+sum(nvl(yilc,0))+sum(nvl(yilc,0)) bnwclc,sum(nvl(wccgs,0))+sum(nvl(wcgz,0))+sum(nvl(wcsz,0))+sum(nvl(wczq,0))+sum(nvl(wcdk,0))+sum(nvl(wcjl,0))+sum(nvl(wcqt,0))+sum(nvl(wcyhdk,0))+sum(nvl(wcdfzc,0)) bnwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by xmbm,substr(ybyf,0,4)) lx, (select jhid,substr(tbyf,0,4) ybnf,sum(cgsdwzj) cgs from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by jhid,substr(tbyf,0,4) ) cgs,cbsj_lmgz cb  where j.xmbm=t.xmid(+) and j.xmbm=tb.xmid(+) and t.xmid=cgs.jhid(+) and j.xmbm=cb.xmbm(+) and t.xmid=lx.xmbm(+) and j.xmbm=lx1.xmid(+) and t.xdnf=lx.ybnf(+) and t.xdnf=cgs.ybnf(+) and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null)group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1)  group by substr(xzqh, 1, 2), jhnf order by xzqh, jhnf";
+		            +" select '36' xzqh,'全省汇总' xzqhmc,jhnf,sum(xmsl),sum(xmlc), sum(xmzj),sum(wclc),sum(wcxmzj),sum(bbzorsbz),sum(bbz), sum(pfztz) from (select t1.xzqh,to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t1.bbzorsbz xmzj,t1.bnwclc wclc,t1.bnwctz wcxmzj,t1.bbzorsbz,t1.bncgs bbz,t1.pfztz from (select substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tb.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tb.xdnf,lx1.zlc,0)) xmlc,sum( t.bbzorsbz) bbzorsbz,sum( t.pfztz) pfztz,sum( decode(t.xdnf, lx.ybnf, lx.bnwclc, 0)) bnwclc,sum( decode(t.xdnf, lx.ybnf, lx.bnwctz, 0)) bnwctz,sum( decode(t.xdnf, cgs.ybnf, cgs.cgs, 0)) bncgs  from jhsh_lmgz j,(select xmid,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx1,(select xmid,xdnf,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0)) bbzorsbz,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(yhdk,0))+sum(nvl(dfzc,0)) pfztz from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid,xdnf) t,(select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid) tb,(select xmbm,substr(ybyf,0,4) ybnf,max(bndsslc) bndsslc,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0)) bnwclc,sum(nvl(wccgs,0))+sum(nvl(wcgz,0))+sum(nvl(wcsz,0))+sum(nvl(wczq,0))+sum(nvl(wcdk,0))+sum(nvl(wcjl,0))+sum(nvl(wcqt,0))+sum(nvl(wcyhdk,0))+sum(nvl(wcdfzc,0)) bnwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by xmbm,substr(ybyf,0,4)) lx, (select jhid,substr(tbyf,0,4) ybnf,sum(cgsdwzj) cgs from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by jhid,substr(tbyf,0,4) ) cgs,cbsj_lmgz cb  where j.xmbm=t.xmid(+) and j.xmbm=tb.xmid(+) and t.xmid=cgs.jhid(+) and j.xmbm=cb.xmbm(+) and t.xmid=lx.xmbm(+) and j.xmbm=lx1.xmid(+) and t.xdnf=lx.ybnf(+) and t.xdnf=cgs.ybnf(+) and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null)group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1)  group by substr(xzqh, 1, 2), jhnf order by xzqh, jhnf";
 					//+" select t1.xzqh,t1.xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t2.xmzj,t3.wclc,t4.wcxmzj,t1.bbzorsbz,t2.bbz,t1.pfztz from (select to_char(t.xzqh)xzqh,to_char((select name from xtgl_xzqh where id=t.xzqh||'00'))  xzqhmc,t.jhnf,count(distinct j.xmbm) xmsl,sum(xmlc) xmlc,sum(bbzorsbz) bbzorsbz,sum(pfztz) pfztz from (select xm.xmbm,xm.jhnf,lx.xmlc,lx.xzqh,xm.bbzorsbz,xm.pfztz from (SELECT xmbm,'路面改造' lx,substr(xmbm,0,4) jhnf,bbzzj+sbzzj bbzorsbz,pfztz from jhsh_lmgz) xm, (SELECT xmid,'路面改造' lx,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)) xmlc,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx where xm.xmbm=lx.xmid(+)) t group by t.xzqh,t.jhnf)t1, (select t.xzqh,t.xdnf,sum(xmzj) xmzj,sum(bbz) bbz from (select xm.xmbm,lx.xzqh,xdzj.xdnf,xmzj,bbz from (SELECT xmbm,'路面改造' lx from jhsh_lmgz) xm, (SELECT xmid,'路面改造' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT xmid,xdnf,sum(btzzj+stz) xmzj,sum(btzzj) bbz from plan_zjxd group by xmid,xdnf)xdzj where xm.xmbm=lx.xmid(+) and xm.xmbm=xdzj.xmid(+)) t group by t.xzqh,t.xdnf)t2, (select t.xzqh,t.wclcnf,sum(wclc) wclc from (select xm.xmbm,lx.xzqh,wclc.wclcnf,wclc from (SELECT xmbm,'路面改造' lx from jhsh_lmgz) xm, (SELECT xmid,'路面改造' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,'路面改造' lx,sum(bywcmc) wclc,substr(sbyf,1,4) wclcnf from gcgl_gcgzgj tb where to_date(tb.sbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(sbyf,1,4))wclc where xm.xmbm=lx.xmid(+) and xm.xmbm=wclc.jhid(+)) t group by t.xzqh,t.wclcnf)t3, (select t.xzqh,t.wczjnf,sum(wcxmzj) wcxmzj from (select xm.xmbm,lx.xzqh,wczj.wczjnf,wcxmzj from (SELECT xmbm,'路面改造' lx from jhsh_lmgz) xm, (SELECT xmid,'路面改造' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,substr(tbyf,1,4) wczjnf,sum(cgsdwzj+stz) wcxmzj from gcgl_cgs tg where to_date(tg.tbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(tbyf,1,4)) wczj where xm.xmbm=lx.xmid(+) and xm.xmbm=wczj.jhid(+)) t group by t.xzqh,t.wczjnf)t4 where t1.xzqh=t2.xzqh(+) and t1.xzqh=t3.xzqh(+) and t1.xzqh=t4.xzqh(+) and t1.jhnf=t2.xdnf(+) and t1.jhnf=t3.wclcnf(+) and t1.jhnf=t4.wczjnf(+) union all select '36' xzqh,'全省汇总' xzqhmc,jhnf,sum(xmsl),sum(xmlc),sum(xmzj),sum(wclc),sum(wcxmzj),sum(bbzorsbz) bbzorsbz,sum(bbz),sum(pfztz) from (select t1.xzqh,t1.xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t2.xmzj,t3.wclc,t4.wcxmzj,t1.bbzorsbz,t2.bbz,t1.pfztz from (select to_char(t.xzqh)xzqh,to_char((select name from xtgl_xzqh where id=t.xzqh||'00')) xzqhmc,t.jhnf,count(distinct j.xmbm) xmsl,sum(xmlc) xmlc,sum(bbzorsbz) bbzorsbz,sum(pfztz) pfztz from (select xm.xmbm,xm.jhnf,lx.xmlc,lx.xzqh,xm.bbzorsbz,xm.pfztz from (SELECT xmbm,'路面改造' lx,substr(xmbm,0,4) jhnf,bbzzj+sbzzj bbzorsbz,pfztz from jhsh_lmgz) xm, (SELECT xmid,'路面改造' lx,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)) xmlc,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx where xm.xmbm=lx.xmid(+)) t group by t.xzqh,t.jhnf)t1, (select t.xzqh,t.xdnf,sum(xmzj) xmzj,sum(bbz) bbz from (select xm.xmbm,lx.xzqh,xdzj.xdnf,xmzj,bbz from (SELECT xmbm,'路面改造' lx from jhsh_lmgz) xm, (SELECT xmid,'路面改造' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT xmid,xdnf,sum(btzzj+stz) xmzj,sum(btzzj) bbz from plan_zjxd group by xmid,xdnf)xdzj where xm.xmbm=lx.xmid(+) and xm.xmbm=xdzj.xmid(+)) t group by t.xzqh,t.xdnf)t2, (select t.xzqh,t.wclcnf,sum(wclc) wclc from (select xm.xmbm,lx.xzqh,wclc.wclcnf,wclc from (SELECT xmbm,'路面改造' lx from jhsh_lmgz) xm, (SELECT xmid,'路面改造' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,'路面改造' lx,sum(bywcmc) wclc,substr(sbyf,1,4) wclcnf from gcgl_gcgzgj tb where to_date(tb.sbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(sbyf,1,4))wclc where xm.xmbm=lx.xmid(+) and xm.xmbm=wclc.jhid(+)) t group by t.xzqh,t.wclcnf)t3, (select t.xzqh,t.wczjnf,sum(wcxmzj) wcxmzj from (select xm.xmbm,lx.xzqh,wczj.wczjnf,wcxmzj from (SELECT xmbm,'路面改造' lx from jhsh_lmgz) xm, (SELECT xmid,'路面改造' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,substr(tbyf,1,4) wczjnf,sum(cgsdwzj+stz) wcxmzj from gcgl_cgs tg where to_date(tg.tbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(tbyf,1,4)) wczj where xm.xmbm=lx.xmid(+) and xm.xmbm=wczj.jhid(+)) t group by t.xzqh,t.wczjnf)t4 where t1.xzqh=t2.xzqh(+) and t1.xzqh=t3.xzqh(+) and t1.xzqh=t4.xzqh(+) and t1.jhnf=t2.xdnf(+) and t1.jhnf=t3.wclcnf(+) and t1.jhnf=t4.wczjnf(+) ) group by substr(xzqh,1,2),jhnf order by xzqh,jhnf";
 				}
 				if("灾毁重建".equals(gcglwqgz.getTiaojian())){
 					tableName="yb_sh";
 					viewsql="CREATE OR REPLACE VIEW YB_SH AS"
-					+" select t1.xzqh,to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t1.bbzorsbz xmzj,t1.bnwclc wclc,t1.bnwctz wcxmzj,t1.bbzorsbz,t1.bncgs bbz,t1.pfztz from (select substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tb.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tb.xdnf,lx1.zlc,0)) xmlc,sum( t.bbzorsbz) bbzorsbz,sum( t.pfztz) pfztz,sum( decode(t.xdnf, lx.ybnf, lx.bnwclc, 0)) bnwclc,sum( decode(t.xdnf, lx.ybnf, lx.bnwctz, 0)) bnwctz,sum( decode(t.xdnf, cgs.ybnf, cgs.cgs, 0)) bncgs  from jhsh_sh j,(select xmid,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx1,(select xmid,xdnf,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0)) bbzorsbz,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(yhdk,0))+sum(nvl(dfzc,0)) pfztz from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid,xdnf) t,(select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid) tb,(select xmbm,substr(ybyf,0,4) ybnf,max(bndsslc) bndsslc,sum(nvl(yilc,0))+sum(nvl(yilc,0))+sum(nvl(yilc,0))+sum(nvl(yilc,0)) bnwclc,sum(nvl(wccgs,0))+sum(nvl(wcgz,0))+sum(nvl(wcsz,0))+sum(nvl(wczq,0))+sum(nvl(wcdk,0))+sum(nvl(wcjl,0))+sum(nvl(wcqt,0))+sum(nvl(wcyhdk,0))+sum(nvl(wcdfzc,0)) bnwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by xmbm,substr(ybyf,0,4)) lx, (select jhid,substr(tbyf,0,4) ybnf,sum(cgsdwzj) cgs from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by jhid,substr(tbyf,0,4) ) cgs,cbsj_sh cb  where j.xmbm=t.xmid(+) and j.xmbm=tb.xmid(+) and t.xmid=cgs.jhid(+) and j.xmbm=cb.xmbm(+) and t.xmid=lx.xmbm(+) and j.xmbm=lx1.xmid(+) and t.xdnf=lx.ybnf(+) and t.xdnf=cgs.ybnf(+) and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null)group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1 "
+					+" select t1.xzqh,to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t1.bbzorsbz xmzj,t1.bnwclc wclc,t1.bnwctz wcxmzj,t1.bbzorsbz,t1.bncgs bbz,t1.pfztz from (select substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tb.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tb.xdnf,lx1.zlc,0)) xmlc,sum( t.bbzorsbz) bbzorsbz,sum( t.pfztz) pfztz,sum( decode(t.xdnf, lx.ybnf, lx.bnwclc, 0)) bnwclc,sum( decode(t.xdnf, lx.ybnf, lx.bnwctz, 0)) bnwctz,sum( decode(t.xdnf, cgs.ybnf, cgs.cgs, 0)) bncgs  from jhsh_sh j,(select xmid,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx1,(select xmid,xdnf,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0)) bbzorsbz,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(yhdk,0))+sum(nvl(dfzc,0)) pfztz from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid,xdnf) t,(select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid) tb,(select xmbm,substr(ybyf,0,4) ybnf,max(bndsslc) bndsslc,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0)) bnwclc,sum(nvl(wccgs,0))+sum(nvl(wcgz,0))+sum(nvl(wcsz,0))+sum(nvl(wczq,0))+sum(nvl(wcdk,0))+sum(nvl(wcjl,0))+sum(nvl(wcqt,0))+sum(nvl(wcyhdk,0))+sum(nvl(wcdfzc,0)) bnwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by xmbm,substr(ybyf,0,4)) lx, (select jhid,substr(tbyf,0,4) ybnf,sum(cgsdwzj) cgs from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by jhid,substr(tbyf,0,4) ) cgs,cbsj_sh cb  where j.xmbm=t.xmid(+) and j.xmbm=tb.xmid(+) and t.xmid=cgs.jhid(+) and j.xmbm=cb.xmbm(+) and t.xmid=lx.xmbm(+) and j.xmbm=lx1.xmid(+) and t.xdnf=lx.ybnf(+) and t.xdnf=cgs.ybnf(+) and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null)group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1 "
 		            +" union all"
-		            +" select '36' xzqh,'全省汇总' xzqhmc,jhnf,sum(xmsl),sum(xmlc), sum(xmzj),sum(wclc),sum(wcxmzj),sum(bbzorsbz),sum(bbz), sum(pfztz) from (select t1.xzqh,to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t1.bbzorsbz xmzj,t1.bnwclc wclc,t1.bnwctz wcxmzj,t1.bbzorsbz,t1.bncgs bbz,t1.pfztz from (select substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tb.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tb.xdnf,lx1.zlc,0)) xmlc,sum( t.bbzorsbz) bbzorsbz,sum( t.pfztz) pfztz,sum( decode(t.xdnf, lx.ybnf, lx.bnwclc, 0)) bnwclc,sum( decode(t.xdnf, lx.ybnf, lx.bnwctz, 0)) bnwctz,sum( decode(t.xdnf, cgs.ybnf, cgs.cgs, 0)) bncgs  from jhsh_sh j,(select xmid,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx1,(select xmid,xdnf,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0)) bbzorsbz,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(yhdk,0))+sum(nvl(dfzc,0)) pfztz from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid,xdnf) t,(select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid) tb,(select xmbm,substr(ybyf,0,4) ybnf,max(bndsslc) bndsslc,sum(nvl(yilc,0))+sum(nvl(yilc,0))+sum(nvl(yilc,0))+sum(nvl(yilc,0)) bnwclc,sum(nvl(wccgs,0))+sum(nvl(wcgz,0))+sum(nvl(wcsz,0))+sum(nvl(wczq,0))+sum(nvl(wcdk,0))+sum(nvl(wcjl,0))+sum(nvl(wcqt,0))+sum(nvl(wcyhdk,0))+sum(nvl(wcdfzc,0)) bnwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by xmbm,substr(ybyf,0,4)) lx, (select jhid,substr(tbyf,0,4) ybnf,sum(cgsdwzj) cgs from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by jhid,substr(tbyf,0,4) ) cgs,cbsj_sh cb  where j.xmbm=t.xmid(+) and j.xmbm=tb.xmid(+) and t.xmid=cgs.jhid(+) and j.xmbm=cb.xmbm(+) and t.xmid=lx.xmbm(+) and j.xmbm=lx1.xmid(+) and t.xdnf=lx.ybnf(+) and t.xdnf=cgs.ybnf(+) and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null)group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1)  group by substr(xzqh, 1, 2), jhnf order by xzqh, jhnf";
+		            +" select '36' xzqh,'全省汇总' xzqhmc,jhnf,sum(xmsl),sum(xmlc), sum(xmzj),sum(wclc),sum(wcxmzj),sum(bbzorsbz),sum(bbz), sum(pfztz) from (select t1.xzqh,to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t1.bbzorsbz xmzj,t1.bnwclc wclc,t1.bnwctz wcxmzj,t1.bbzorsbz,t1.bncgs bbz,t1.pfztz from (select substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tb.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tb.xdnf,lx1.zlc,0)) xmlc,sum( t.bbzorsbz) bbzorsbz,sum( t.pfztz) pfztz,sum( decode(t.xdnf, lx.ybnf, lx.bnwclc, 0)) bnwclc,sum( decode(t.xdnf, lx.ybnf, lx.bnwctz, 0)) bnwctz,sum( decode(t.xdnf, cgs.ybnf, cgs.cgs, 0)) bncgs  from jhsh_sh j,(select xmid,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx1,(select xmid,xdnf,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0)) bbzorsbz,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(yhdk,0))+sum(nvl(dfzc,0)) pfztz from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid,xdnf) t,(select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid) tb,(select xmbm,substr(ybyf,0,4) ybnf,max(bndsslc) bndsslc,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0)) bnwclc,sum(nvl(wccgs,0))+sum(nvl(wcgz,0))+sum(nvl(wcsz,0))+sum(nvl(wczq,0))+sum(nvl(wcdk,0))+sum(nvl(wcjl,0))+sum(nvl(wcqt,0))+sum(nvl(wcyhdk,0))+sum(nvl(wcdfzc,0)) bnwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by xmbm,substr(ybyf,0,4)) lx, (select jhid,substr(tbyf,0,4) ybnf,sum(cgsdwzj) cgs from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by jhid,substr(tbyf,0,4) ) cgs,cbsj_sh cb  where j.xmbm=t.xmid(+) and j.xmbm=tb.xmid(+) and t.xmid=cgs.jhid(+) and j.xmbm=cb.xmbm(+) and t.xmid=lx.xmbm(+) and j.xmbm=lx1.xmid(+) and t.xdnf=lx.ybnf(+) and t.xdnf=cgs.ybnf(+) and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null)group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1)  group by substr(xzqh, 1, 2), jhnf order by xzqh, jhnf";
 					//+" select t1.xzqh,t1.xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t2.xmzj,t3.wclc,t4.wcxmzj,t1.bbzorsbz,t2.bbz,t1.pfztz from (select to_char(t.xzqh) xzqh,to_char((select name from xtgl_xzqh where id=t.xzqh||'00')) xzqhmc,t.jhnf,count(distinct j.xmbm) xmsl,sum(xmlc) xmlc,sum(bbzorsbz) bbzorsbz,sum(pfztz) pfztz from (select xm.xmbm,xm.jhnf,lx.xmlc,lx.xzqh,xm.bbzorsbz,xm.pfztz from (SELECT xmbm,'水毁' lx,substr(xmbm,0,4) jhnf,bbzzj+sbzzj bbzorsbz,pfztz from jhsh_sh) xm, (SELECT xmid,'水毁' lx,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)) xmlc,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx where xm.xmbm=lx.xmid(+)) t group by t.xzqh,t.jhnf)t1, (select t.xzqh,t.xdnf,sum(xmzj) xmzj,sum(bbz) bbz from (select xm.xmbm,lx.xzqh,xdzj.xdnf,xmzj,bbz from (SELECT xmbm,'水毁' lx from jhsh_sh) xm, (SELECT xmid,'水毁' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT xmID,xdnf,sum(btzzj+stz) xmzj,sum(btzzj) bbz from plan_zjxd group by xmid,xdnf)xdzj where xm.xmbm=lx.xmid(+) and xm.xmbm=xdzj.xmID(+)) t group by t.xzqh,t.xdnf)t2, (select t.xzqh,t.wclcnf,sum(wclc) wclc from (select xm.xmbm,lx.xzqh,wclc.wclcnf,wclc from (SELECT xmbm,'水毁' lx from jhsh_sh) xm, (SELECT xmid,'水毁' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,'水毁' lx,sum(bywcmc) wclc,substr(sbyf,1,4) wclcnf from gcgl_sh tb where to_date(tb.sbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(sbyf,1,4))wclc where xm.xmbm=lx.xmid(+) and xm.xmbm=wclc.jhid(+)) t group by t.xzqh,t.wclcnf)t3, (select t.xzqh,t.wczjnf,sum(wcxmzj) wcxmzj from (select xm.xmbm,lx.xzqh,wczj.wczjnf,wcxmzj from (SELECT xmbm,'水毁' lx from jhsh_sh) xm, (SELECT xmid,'水毁' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,substr(tbyf,1,4) wczjnf,sum(cgsdwzj+stz) wcxmzj from gcgl_cgs tg where to_date(tg.tbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(tbyf,1,4)) wczj where xm.xmbm=lx.xmid(+) and xm.xmbm=wczj.jhid(+)) t group by t.xzqh,t.wczjnf)t4 where t1.xzqh=t2.xzqh(+) and t1.xzqh=t3.xzqh(+) and t1.xzqh=t4.xzqh(+) and t1.jhnf=t2.xdnf(+) and t1.jhnf=t3.wclcnf(+) and t1.jhnf=t4.wczjnf(+) union all select '36' xzqh,'全省汇总' xzqhmc,jhnf,sum(xmsl) xmsl,sum(xmlc) xmlc,sum(xmzj) xmzj,sum(wclc) wclc,sum(wcxmzj) wcxmzj,sum(bbzorsbz) bbzorsbz,sum(bbz),sum(pfztz) from (select t1.xzqh,t1.xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t2.xmzj,t3.wclc,t4.wcxmzj,t1.bbzorsbz,t2.bbz,t1.pfztz from (select to_char(t.xzqh) xzqh,to_char((select name from xtgl_xzqh where id=t.xzqh||'00')) xzqhmc,t.jhnf,count(distinct j.xmbm) xmsl,sum(xmlc) xmlc,sum(bbzorsbz) bbzorsbz,sum(pfztz) pfztz from (select xm.xmbm,xm.jhnf,lx.xmlc,lx.xzqh,xm.bbzorsbz,xm.pfztz from (SELECT xmbm,'水毁' lx,substr(xmbm,0,4) jhnf,bbzzj+sbzzj bbzorsbz,pfztz from jhsh_sh) xm, (SELECT xmid,'水毁' lx,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)) xmlc,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx where xm.xmbm=lx.xmid(+)) t group by t.xzqh,t.jhnf)t1, (select t.xzqh,t.xdnf,sum(xmzj) xmzj,sum(bbz) bbz from (select xm.xmbm,lx.xzqh,xdzj.xdnf,xmzj,bbz from (SELECT xmbm,'水毁' lx from jhsh_sh) xm, (SELECT xmid,'水毁' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT xmID,xdnf,sum(btzzj+stz) xmzj,sum(btzzj) bbz from plan_zjxd group by xmid,xdnf)xdzj where xm.xmbm=lx.xmid(+) and xm.xmbm=xdzj.xmID(+)) t group by t.xzqh,t.xdnf)t2, (select t.xzqh,t.wclcnf,sum(wclc) wclc from (select xm.xmbm,lx.xzqh,wclc.wclcnf,wclc from (SELECT xmbm,'水毁' lx from jhsh_sh) xm, (SELECT xmid,'水毁' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,'水毁' lx,sum(bywcmc) wclc,substr(sbyf,1,4) wclcnf from gcgl_sh tb where to_date(tb.sbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(sbyf,1,4))wclc where xm.xmbm=lx.xmid(+) and xm.xmbm=wclc.jhid(+)) t group by t.xzqh,t.wclcnf)t3, (select t.xzqh,t.wczjnf,sum(wcxmzj) wcxmzj from (select xm.xmbm,lx.xzqh,wczj.wczjnf,wcxmzj from (SELECT xmbm,'水毁' lx from jhsh_sh) xm, (SELECT xmid,'水毁' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,substr(tbyf,1,4) wczjnf,sum(cgsdwzj+stz) wcxmzj from gcgl_cgs tg where to_date(tg.tbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(tbyf,1,4)) wczj where xm.xmbm=lx.xmid(+) and xm.xmbm=wczj.jhid(+)) t group by t.xzqh,t.wczjnf)t4 where t1.xzqh=t2.xzqh(+) and t1.xzqh=t3.xzqh(+) and t1.xzqh=t4.xzqh(+) and t1.jhnf=t2.xdnf(+) and t1.jhnf=t3.wclcnf(+) and t1.jhnf=t4.wczjnf(+) )  group by substr(xzqh,1,2),jhnf order by xzqh,jhnf";
 				}
 				if("新建".equals(gcglwqgz.getTiaojian())){
 					tableName="yb_xj";
 					viewsql="CREATE OR REPLACE VIEW YB_XJ AS "
-					+" select t1.xzqh,to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t1.bbzorsbz xmzj,t1.bnwclc wclc,t1.bnwctz wcxmzj,t1.bbzorsbz,t1.bncgs bbz,t1.pfztz from (select substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tb.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tb.xdnf,lx1.zlc,0)) xmlc,sum( t.bbzorsbz) bbzorsbz,sum( t.pfztz) pfztz,sum( decode(t.xdnf, lx.ybnf, lx.bnwclc, 0)) bnwclc,sum( decode(t.xdnf, lx.ybnf, lx.bnwctz, 0)) bnwctz,sum( decode(t.xdnf, cgs.ybnf, cgs.cgs, 0)) bncgs  from jhsh_xj j,(select xmid,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx1,(select xmid,xdnf,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0)) bbzorsbz,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(yhdk,0))+sum(nvl(dfzc,0)) pfztz from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid,xdnf) t,(select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid) tb,(select xmbm,substr(ybyf,0,4) ybnf,max(bndsslc) bndsslc,sum(nvl(yilc,0))+sum(nvl(yilc,0))+sum(nvl(yilc,0))+sum(nvl(yilc,0)) bnwclc,sum(nvl(wccgs,0))+sum(nvl(wcgz,0))+sum(nvl(wcsz,0))+sum(nvl(wczq,0))+sum(nvl(wcdk,0))+sum(nvl(wcjl,0))+sum(nvl(wcqt,0))+sum(nvl(wcyhdk,0))+sum(nvl(wcdfzc,0)) bnwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by xmbm,substr(ybyf,0,4)) lx, (select jhid,substr(tbyf,0,4) ybnf,sum(cgsdwzj) cgs from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by jhid,substr(tbyf,0,4) ) cgs,cbsj_xj cb  where j.xmbm=t.xmid(+) and j.xmbm=tb.xmid(+) and t.xmid=cgs.jhid(+) and j.xmbm=cb.xmbm(+) and t.xmid=lx.xmbm(+) and j.xmbm=lx1.xmid(+) and t.xdnf=lx.ybnf(+) and t.xdnf=cgs.ybnf(+) and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1 "
+					+" select t1.xzqh,to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t1.bbzorsbz xmzj,t1.bnwclc wclc,t1.bnwctz wcxmzj,t1.bbzorsbz,t1.bncgs bbz,t1.pfztz from (select substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tb.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tb.xdnf,lx1.zlc,0)) xmlc,sum( t.bbzorsbz) bbzorsbz,sum( t.pfztz) pfztz,sum( decode(t.xdnf, lx.ybnf, lx.bnwclc, 0)) bnwclc,sum( decode(t.xdnf, lx.ybnf, lx.bnwctz, 0)) bnwctz,sum( decode(t.xdnf, cgs.ybnf, cgs.cgs, 0)) bncgs  from jhsh_xj j,(select xmid,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx1,(select xmid,xdnf,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0)) bbzorsbz,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(yhdk,0))+sum(nvl(dfzc,0)) pfztz from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid,xdnf) t,(select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid) tb,(select xmbm,substr(ybyf,0,4) ybnf,max(bndsslc) bndsslc,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0)) bnwclc,sum(nvl(wccgs,0))+sum(nvl(wcgz,0))+sum(nvl(wcsz,0))+sum(nvl(wczq,0))+sum(nvl(wcdk,0))+sum(nvl(wcjl,0))+sum(nvl(wcqt,0))+sum(nvl(wcyhdk,0))+sum(nvl(wcdfzc,0)) bnwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by xmbm,substr(ybyf,0,4)) lx, (select jhid,substr(tbyf,0,4) ybnf,sum(cgsdwzj) cgs from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by jhid,substr(tbyf,0,4) ) cgs,cbsj_xj cb  where j.xmbm=t.xmid(+) and j.xmbm=tb.xmid(+) and t.xmid=cgs.jhid(+) and j.xmbm=cb.xmbm(+) and t.xmid=lx.xmbm(+) and j.xmbm=lx1.xmid(+) and t.xdnf=lx.ybnf(+) and t.xdnf=cgs.ybnf(+) and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1 "
 		            +" union all"
-		            +" select '36' xzqh,'全省汇总' xzqhmc,jhnf,sum(xmsl),sum(xmlc), sum(xmzj),sum(wclc),sum(wcxmzj),sum(bbzorsbz),sum(bbz), sum(pfztz) from (select t1.xzqh,to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t1.bbzorsbz xmzj,t1.bnwclc wclc,t1.bnwctz wcxmzj,t1.bbzorsbz,t1.bncgs bbz,t1.pfztz from (select substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tb.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tb.xdnf,lx1.zlc,0)) xmlc,sum( t.bbzorsbz) bbzorsbz,sum( t.pfztz) pfztz,sum( decode(t.xdnf, lx.ybnf, lx.bnwclc, 0)) bnwclc,sum( decode(t.xdnf, lx.ybnf, lx.bnwctz, 0)) bnwctz,sum( decode(t.xdnf, cgs.ybnf, cgs.cgs, 0)) bncgs  from jhsh_xj j,(select xmid,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx1,(select xmid,xdnf,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0)) bbzorsbz,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(yhdk,0))+sum(nvl(dfzc,0)) pfztz from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid,xdnf) t,(select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid) tb,(select xmbm,substr(ybyf,0,4) ybnf,max(bndsslc) bndsslc,sum(nvl(yilc,0))+sum(nvl(yilc,0))+sum(nvl(yilc,0))+sum(nvl(yilc,0)) bnwclc,sum(nvl(wccgs,0))+sum(nvl(wcgz,0))+sum(nvl(wcsz,0))+sum(nvl(wczq,0))+sum(nvl(wcdk,0))+sum(nvl(wcjl,0))+sum(nvl(wcqt,0))+sum(nvl(wcyhdk,0))+sum(nvl(wcdfzc,0)) bnwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by xmbm,substr(ybyf,0,4)) lx, (select jhid,substr(tbyf,0,4) ybnf,sum(cgsdwzj) cgs from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by jhid,substr(tbyf,0,4) ) cgs,cbsj_xj cb  where j.xmbm=t.xmid(+) and j.xmbm=tb.xmid(+) and t.xmid=cgs.jhid(+) and j.xmbm=cb.xmbm(+) and t.xmid=lx.xmbm(+) and j.xmbm=lx1.xmid(+) and t.xdnf=lx.ybnf(+) and t.xdnf=cgs.ybnf(+) and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1 )  group by substr(xzqh, 1, 2), jhnf order by xzqh, jhnf";
+		            +" select '36' xzqh,'全省汇总' xzqhmc,jhnf,sum(xmsl),sum(xmlc), sum(xmzj),sum(wclc),sum(wcxmzj),sum(bbzorsbz),sum(bbz), sum(pfztz) from (select t1.xzqh,to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t1.bbzorsbz xmzj,t1.bnwclc wclc,t1.bnwctz wcxmzj,t1.bbzorsbz,t1.bncgs bbz,t1.pfztz from (select substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tb.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tb.xdnf,lx1.zlc,0)) xmlc,sum( t.bbzorsbz) bbzorsbz,sum( t.pfztz) pfztz,sum( decode(t.xdnf, lx.ybnf, lx.bnwclc, 0)) bnwclc,sum( decode(t.xdnf, lx.ybnf, lx.bnwctz, 0)) bnwctz,sum( decode(t.xdnf, cgs.ybnf, cgs.cgs, 0)) bncgs  from jhsh_xj j,(select xmid,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs=2 group by xmid) lx1,(select xmid,xdnf,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0)) bbzorsbz,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(yhdk,0))+sum(nvl(dfzc,0)) pfztz from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid,xdnf) t,(select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null and xdnf <='"+gcglwqgz.getYbnf()+"' group by xmid) tb,(select xmbm,substr(ybyf,0,4) ybnf,max(bndsslc) bndsslc,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0)) bnwclc,sum(nvl(wccgs,0))+sum(nvl(wcgz,0))+sum(nvl(wcsz,0))+sum(nvl(wczq,0))+sum(nvl(wcdk,0))+sum(nvl(wcjl,0))+sum(nvl(wcqt,0))+sum(nvl(wcyhdk,0))+sum(nvl(wcdfzc,0)) bnwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by xmbm,substr(ybyf,0,4)) lx, (select jhid,substr(tbyf,0,4) ybnf,sum(cgsdwzj) cgs from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"', 'yyyy-mm') group by jhid,substr(tbyf,0,4) ) cgs,cbsj_xj cb  where j.xmbm=t.xmid(+) and j.xmbm=tb.xmid(+) and t.xmid=cgs.jhid(+) and j.xmbm=cb.xmbm(+) and t.xmid=lx.xmbm(+) and j.xmbm=lx1.xmid(+) and t.xdnf=lx.ybnf(+) and t.xdnf=cgs.ybnf(+) and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1 )  group by substr(xzqh, 1, 2), jhnf order by xzqh, jhnf";
 					//+" select t1.xzqh,t1.xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t2.xmzj,t3.wclc,t4.wcxmzj,t1.bbzorsbz,t2.bbz,t1.pfztz from (select to_char(t.xzqh) xzqh,to_char((select name from xtgl_xzqh where id=t.xzqh||'00')) xzqhmc,t.jhnf,count(*) xmsl,sum(xmlc) xmlc,sum(bbzorsbz) bbzorsbz,sum(pfztz) pfztz from (select xm.xmbm,xm.jhnf,lx.xmlc,lx.xzqh,xm.bbzorsbz,xm.pfztz from (SELECT xmbm,'水毁' lx,substr(xmbm,0,4) jhnf,bbzzj+sbzzj bbzorsbz,pfztz from jhsh_sh) xm, (SELECT xmid,'水毁' lx,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)) xmlc,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx where xm.xmbm=lx.xmid(+)) t group by t.xzqh,t.jhnf)t1, (select t.xzqh,t.xdnf,sum(xmzj) xmzj,sum(bbz) bbz from (select xm.xmbm,lx.xzqh,xdzj.xdnf,xmzj,bbz from (SELECT xmbm,'水毁' lx from jhsh_sh) xm, (SELECT xmid,'水毁' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT xmID,xdnf,sum(btzzj+stz) xmzj,sum(btzzj) bbz from plan_zjxd group by xmid,xdnf)xdzj where xm.xmbm=lx.xmid(+) and xm.xmbm=xdzj.xmID(+)) t group by t.xzqh,t.xdnf)t2, (select t.xzqh,t.wclcnf,sum(wclc) wclc from (select xm.xmbm,lx.xzqh,wclc.wclcnf,wclc from (SELECT xmbm,'水毁' lx from jhsh_sh) xm, (SELECT xmid,'水毁' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,'水毁' lx,sum(bywcmc) wclc,substr(sbyf,1,4) wclcnf from gcgl_sh tb where to_date(tb.sbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(sbyf,1,4))wclc where xm.xmbm=lx.xmid(+) and xm.xmbm=wclc.jhid(+)) t group by t.xzqh,t.wclcnf)t3, (select t.xzqh,t.wczjnf,sum(wcxmzj) wcxmzj from (select xm.xmbm,lx.xzqh,wczj.wczjnf,wcxmzj from (SELECT xmbm,'水毁' lx from jhsh_sh) xm, (SELECT xmid,'水毁' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,substr(tbyf,1,4) wczjnf,sum(cgsdwzj+stz) wcxmzj from gcgl_cgs tg where to_date(tg.tbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(tbyf,1,4)) wczj where xm.xmbm=lx.xmid(+) and xm.xmbm=wczj.jhid(+)) t group by t.xzqh,t.wczjnf)t4 where t1.xzqh=t2.xzqh(+) and t1.xzqh=t3.xzqh(+) and t1.xzqh=t4.xzqh(+) and t1.jhnf=t2.xdnf(+) and t1.jhnf=t3.wclcnf(+) and t1.jhnf=t4.wczjnf(+) union all select '36' xzqh,'全省汇总' xzqhmc,jhnf,sum(xmsl) xmsl,sum(xmlc) xmlc,sum(xmzj) xmzj,sum(wclc) wclc,sum(wcxmzj) wcxmzj,sum(bbzorsbz) bbzorsbz,sum(bbz),sum(pfztz) from (select t1.xzqh,t1.xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t2.xmzj,t3.wclc,t4.wcxmzj,t1.bbzorsbz,t2.bbz,t1.pfztz from (select to_char(t.xzqh) xzqh,to_char((select name from xtgl_xzqh where id=t.xzqh||'00')) xzqhmc,t.jhnf,count(*) xmsl,sum(xmlc) xmlc,sum(bbzorsbz) bbzorsbz,sum(pfztz) pfztz from (select xm.xmbm,xm.jhnf,lx.xmlc,lx.xzqh,xm.bbzorsbz,xm.pfztz from (SELECT xmbm,'水毁' lx,substr(xmbm,0,4) jhnf,bbzzj+sbzzj bbzorsbz,pfztz from jhsh_sh) xm, (SELECT xmid,'水毁' lx,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)) xmlc,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx where xm.xmbm=lx.xmid(+)) t group by t.xzqh,t.jhnf)t1, (select t.xzqh,t.xdnf,sum(xmzj) xmzj,sum(bbz) bbz from (select xm.xmbm,lx.xzqh,xdzj.xdnf,xmzj,bbz from (SELECT xmbm,'水毁' lx from jhsh_sh) xm, (SELECT xmid,'水毁' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT xmID,xdnf,sum(btzzj+stz) xmzj,sum(btzzj) bbz from plan_zjxd group by xmid,xdnf)xdzj where xm.xmbm=lx.xmid(+) and xm.xmbm=xdzj.xmID(+)) t group by t.xzqh,t.xdnf)t2, (select t.xzqh,t.wclcnf,sum(wclc) wclc from (select xm.xmbm,lx.xzqh,wclc.wclcnf,wclc from (SELECT xmbm,'水毁' lx from jhsh_sh) xm, (SELECT xmid,'水毁' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,'水毁' lx,sum(bywcmc) wclc,substr(sbyf,1,4) wclcnf from gcgl_sh tb where to_date(tb.sbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(sbyf,1,4))wclc where xm.xmbm=lx.xmid(+) and xm.xmbm=wclc.jhid(+)) t group by t.xzqh,t.wclcnf)t3, (select t.xzqh,t.wczjnf,sum(wcxmzj) wcxmzj from (select xm.xmbm,lx.xzqh,wczj.wczjnf,wcxmzj from (SELECT xmbm,'水毁' lx from jhsh_sh) xm, (SELECT xmid,'水毁' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,substr(tbyf,1,4) wczjnf,sum(cgsdwzj+stz) wcxmzj from gcgl_cgs tg where to_date(tg.tbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(tbyf,1,4)) wczj where xm.xmbm=lx.xmid(+) and xm.xmbm=wczj.jhid(+)) t group by t.xzqh,t.wczjnf)t4 where t1.xzqh=t2.xzqh(+) and t1.xzqh=t3.xzqh(+) and t1.xzqh=t4.xzqh(+) and t1.jhnf=t2.xdnf(+) and t1.jhnf=t3.wclcnf(+) and t1.jhnf=t4.wczjnf(+) )  group by substr(xzqh,1,2),jhnf order by xzqh,jhnf";
 				}
 				gcybbServer.createybView(viewsql);
@@ -2347,11 +2347,12 @@ public class GcybbController extends BaseActionSupport{
 			}else{
 				
 				String shijian="";
-				if(Integer.parseInt(gcglabgc.getYf())<=9){
+/*				if(Integer.parseInt(gcglabgc.getYf())<=9){
 					shijian=gcglabgc.getNf()+"-0"+gcglabgc.getYf();
 				}else{
 					shijian=gcglabgc.getNf()+"-"+gcglabgc.getYf();
-				}
+				}*/
+				shijian=gcglabgc.getNf()+"-"+gcglabgc.getYf();
 				gcglabgc.setSbyf(shijian);
 			
 				String tiaojian1="";
@@ -2493,11 +2494,12 @@ public class GcybbController extends BaseActionSupport{
 			}else{
 				
 				String shijian="";
-				if(Integer.parseInt(gcglabgc.getYf())<=9){
+/*				if(Integer.parseInt(gcglabgc.getYf())<=9){
 					shijian=gcglabgc.getNf()+"-0"+gcglabgc.getYf();
 				}else{
 					shijian=gcglabgc.getNf()+"-"+gcglabgc.getYf();
-				}
+				}*/
+				shijian=gcglabgc.getNf()+"-"+gcglabgc.getYf();
 				gcglabgc.setSbyf(shijian);
 	
 				String tiaojian1="";
@@ -2514,9 +2516,9 @@ public class GcybbController extends BaseActionSupport{
 				xzqhdm	= xzqh;
 				}
 				if(gydwdm.indexOf(",")==-1){
-					tiaojian1="and gydwdm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
+					tiaojian1="and lx.gydwdm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 				}else{
-					tiaojian1=getcxtj("gydwdm",gydwdm);
+					tiaojian1=getcxtj("lx.gydwdm",gydwdm);
 					//tiaojian1="and gydw in ("+gydwdm+")";
 				}
 				if(xzqhdm.indexOf(",")==-1){
@@ -2638,11 +2640,12 @@ public class GcybbController extends BaseActionSupport{
 			}else{
 				
 				String shijian="";
-				if(Integer.parseInt(gcglabgc.getYf())<=9){
+/*				if(Integer.parseInt(gcglabgc.getYf())<=9){
 					shijian=gcglabgc.getNf()+"-0"+gcglabgc.getYf();
 				}else{
 					shijian=gcglabgc.getNf()+"-"+gcglabgc.getYf();
-				}
+				}*/
+				shijian=gcglabgc.getNf()+"-"+gcglabgc.getYf();
 				gcglabgc.setSbyf(shijian);
 
 				String tiaojian1="";
@@ -4478,17 +4481,17 @@ public class GcybbController extends BaseActionSupport{
 			    			+" select "
 			    			+" to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.* from"
 			    			+" (select "
-			    			+" substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,count(*) xmsl,sum(nvl(lx.zlc,0)) xmlc,sum(nvl(bnwc.bnwclc,0)) bnlc,sum(nvl(ljwc.ljwclc,0)) ljlc,sum(nvl(bnwc.bnwctz,0)) bntz,sum(nvl(ljwc.ljwctz,0)) ljtz,sum(nvl(bncgs.ztz,0)) bndw,sum(nvl(ljcgs.ztz,0)) ljdw,"
+			    			+" substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,count(distinct j.xmbm) xmsl,sum(nvl(lx.zlc,0)) xmlc,sum(nvl(bnwc.bnwclc,0)) bnlc,sum(nvl(ljwc.ljwclc,0)) ljlc,sum(nvl(bnwc.bnwctz,0)) bntz,sum(nvl(ljwc.ljwctz,0)) ljtz,sum(nvl(bncgs.ztz,0)) bndw,sum(nvl(ljcgs.ztz,0)) ljdw,"
 			    			+" sum(nvl(bncgs.cgs,0)) bncgs,sum(nvl(ljcgs.cgs,0)) ljcgs,nvl(to_char(decode(sum(nvl(lx.zlc,0)),'0','0',null,'0',round(sum(nvl(ljwc.ljwclc,0)) / sum(nvl(lx.zlc,0)) * 100, 0))),'0')||'%' wcbl,sum(nvl(bnss.bnsslc,0)) mblc,0 mbtz,sum(nvl(bnwc.bnwclc,0)) wcmblc,'0%' wcmblcbl,'0%'wcmbtzbl "
 			    			+" from (select xmbm from jhsh_sjgz union all select xmbm from jhsh_xj)j,(select xmbm,xzqhdm from cbsj_sjgz union all select xmbm,xzqhdm from cbsj_xj) cb,"
 			    			+" (select xmid,decode(substr(xmid, 11, 1),1,(nvl(sum(jhyilc), 0) + nvl(sum(jherlc), 0) +nvl(sum(jhsanlc), 0) + nvl(sum(jhsilc), 0) +nvl(sum(jhdwlc), 0) + nvl(sum(jhwllc), 0)),(nvl(sum(yilc), 0) + nvl(sum(erlc), 0) + nvl(sum(sanlc), 0) + nvl(sum(silc), 0) +nvl(sum(dwlc), 0) + nvl(sum(wllc), 0))) zlc from lxsh_lx where jdbs = 2 group by xmid) lx,"
 			    			+" (select xmid,min(xdnf) xdnf,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) bbzorsbz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) +sum(nvl(dfzc, 0)) pfztz from plan_zjxd where jhxdwh is not null group by xmid) t,"
-			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(yilc, 0)) +sum(nvl(yilc, 0)) + sum(nvl(yilc, 0)) ljwclc,sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) ljwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by xmbm) ljwc,"
-			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(yilc, 0)) +sum(nvl(yilc, 0)) + sum(nvl(yilc, 0)) bnwclc,sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) bnwctz from gcgl_xmjd where substr(ybyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' group by xmbm) bnwc,"
+			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) ljwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) ljwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by xmbm) ljwc,"
+			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) bnwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) bnwctz from gcgl_xmjd where substr(ybyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' group by xmbm) bnwc,"
 			    			+" (select xmbm,sum(nvl(bnsslc,0)) bnsslc from gcgl_bnss where nf='"+gcglwqgz.getYbnf()+"' group by xmbm ) bnss,"
 			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) ljcgs,"
 			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' group by jhid) bncgs"
-			    			+" where j.xmbm = cb.xmbm(+) and j.xmbm = lx.xmid(+) and j.xmbm = t.xmid(+) and j.xmbm = ljwc.xmbm(+) and j.xmbm = bnwc.xmbm(+) and j.xmbm = ljcgs.jhid(+) and j.xmbm = bncgs.jhid(+)"
+			    			+" where j.xmbm = cb.xmbm(+) and j.xmbm = lx.xmid(+) and j.xmbm = t.xmid(+) and j.xmbm = ljwc.xmbm(+) and j.xmbm = bnwc.xmbm(+) and j.xmbm = ljcgs.jhid(+) and j.xmbm = bncgs.jhid(+) AND J.XMBM = bnss.XMBM(+) "
 			    			+" and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) "
 			    			+" and decode(substr(lx.xmid,11,1),'1','改建','3','新建') in ("+xmlx+")"
 			    			+" group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1 "
@@ -4496,17 +4499,17 @@ public class GcybbController extends BaseActionSupport{
 			    			+" select "
 			    			+" '全省汇总' xzqhmc,t1.* from"
 			    			+" (select "
-			    			+" '36' xzqh,t.xdnf jhnf,count(*) xmsl,sum(nvl(lx.zlc,0)) xmlc,sum(nvl(bnwc.bnwclc,0)) bnlc,sum(nvl(ljwc.ljwclc,0)) ljlc,sum(nvl(bnwc.bnwctz,0)) bntz,sum(nvl(ljwc.ljwctz,0)) ljtz,sum(nvl(bncgs.ztz,0)) bndw,sum(nvl(ljcgs.ztz,0)) ljdw,"
+			    			+" '36' xzqh,t.xdnf jhnf,count(distinct j.xmbm) xmsl,sum(nvl(lx.zlc,0)) xmlc,sum(nvl(bnwc.bnwclc,0)) bnlc,sum(nvl(ljwc.ljwclc,0)) ljlc,sum(nvl(bnwc.bnwctz,0)) bntz,sum(nvl(ljwc.ljwctz,0)) ljtz,sum(nvl(bncgs.ztz,0)) bndw,sum(nvl(ljcgs.ztz,0)) ljdw,"
 			    			+" sum(nvl(bncgs.cgs,0)) bncgs,sum(nvl(ljcgs.cgs,0)) ljcgs,nvl(to_char(decode(sum(nvl(lx.zlc,0)),'0','0',null,'0',round(sum(nvl(ljwc.ljwclc,0)) / sum(nvl(lx.zlc,0)) * 100, 0))),'0')||'%' wcbl,sum(nvl(bnss.bnsslc,0)) mblc,0 mbtz,sum(nvl(bnwc.bnwclc,0)) wcmblc,'0%' wcmblcbl,'0%'wcmbtzbl "
 			    			+" from (select xmbm from jhsh_sjgz union all select xmbm from jhsh_xj)j,(select xmbm,xzqhdm from cbsj_sjgz union all select xmbm,xzqhdm from cbsj_xj) cb,"
 			    			+" (select xmid,decode(substr(xmid, 11, 1),1,(nvl(sum(jhyilc), 0) + nvl(sum(jherlc), 0) +nvl(sum(jhsanlc), 0) + nvl(sum(jhsilc), 0) +nvl(sum(jhdwlc), 0) + nvl(sum(jhwllc), 0)),(nvl(sum(yilc), 0) + nvl(sum(erlc), 0) + nvl(sum(sanlc), 0) + nvl(sum(silc), 0) +nvl(sum(dwlc), 0) + nvl(sum(wllc), 0))) zlc from lxsh_lx where jdbs = 2 group by xmid) lx,"
 			    			+" (select xmid,min(xdnf) xdnf,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) bbzorsbz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) +sum(nvl(dfzc, 0)) pfztz from plan_zjxd where jhxdwh is not null group by xmid) t,"
-			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(yilc, 0)) +sum(nvl(yilc, 0)) + sum(nvl(yilc, 0)) ljwclc,sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) ljwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by xmbm) ljwc,"
-			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(yilc, 0)) +sum(nvl(yilc, 0)) + sum(nvl(yilc, 0)) bnwclc,sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) bnwctz from gcgl_xmjd where substr(ybyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' group by xmbm) bnwc,"
+			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) ljwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) ljwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by xmbm) ljwc,"
+			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) bnwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) bnwctz from gcgl_xmjd where substr(ybyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' group by xmbm) bnwc,"
 			    			+" (select xmbm,sum(nvl(bnsslc,0)) bnsslc from gcgl_bnss where nf='"+gcglwqgz.getYbnf()+"' group by xmbm ) bnss,"
 			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) ljcgs,"
 			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' group by jhid) bncgs"
-			    			+" where j.xmbm = cb.xmbm(+) and j.xmbm = lx.xmid(+) and j.xmbm = t.xmid(+) and j.xmbm = ljwc.xmbm(+) and j.xmbm = bnwc.xmbm(+) and j.xmbm = ljcgs.jhid(+) and j.xmbm = bncgs.jhid(+)"
+			    			+" where j.xmbm = cb.xmbm(+) and j.xmbm = lx.xmid(+) and j.xmbm = t.xmid(+) and j.xmbm = ljwc.xmbm(+) and j.xmbm = bnwc.xmbm(+) and j.xmbm = ljcgs.jhid(+) and j.xmbm = bncgs.jhid(+) AND J.XMBM = bnss.XMBM(+)"
 			    			+" and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) " 
 			    			+" and decode(substr(lx.xmid,11,1),'1','改建','3','新建') in ("+xmlx+") "
 			    			+" group by t.xdnf) t1 ";
@@ -4610,7 +4613,7 @@ public class GcybbController extends BaseActionSupport{
 						l.setV_0(i+"");
 					}
 					l.setV_1(list.get(i).get("XZQHMC").toString());
-					DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");//格式化设置 
+					DecimalFormat decimalFormat = new DecimalFormat("#,##0.000");//格式化设置 
 					DecimalFormat decimalFormat2 = new DecimalFormat("#,##0");//格式化设置 
 					
 					l.setV_2(decimalFormat2.format(xmsl));
@@ -4623,7 +4626,7 @@ public class GcybbController extends BaseActionSupport{
 					l.setV_9(decimalFormat.format(ljdw)+"");
 					l.setV_10(decimalFormat.format(bncgs)+"");
 					l.setV_11(decimalFormat.format(ljcgs)+"");
-					double wcbl=MyUtil.div(ljlc, xmlc, 3)*100; 
+					double wcbl=MyUtil.divbfb(ljlc, xmlc, 3)*100; 
 					l.setV_12(decimalFormat2.format(wcbl)+"%");
 					l.setV_13(decimalFormat.format(mblc)+"");
 					l.setV_14(decimalFormat.format(mbtz)+"");
@@ -4826,6 +4829,955 @@ public class GcybbController extends BaseActionSupport{
 		}
 	}
 	
+	//养护大中修完成表
+	public void getYhdzxwcb(){
+		try {
+			if("1".equals(flag)){
+				String shijian="";
+				if(Integer.parseInt(yf)<=9){
+					shijian=nf+"-0"+yf;
+				}else{
+					shijian=nf+"-"+yf;
+				}
+				gcglabgc.setSbyf(shijian);
+				String tiaojian2="";
+				String xzqhdm = "";
+				String gydwdm = "";
+				if("1".equals(flag)){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+					xzqhdm=(String) session.getAttribute("xzqhbb");	
+				}else{
+				xzqhdm	= xzqh;
+				}
+				
+				if(xzqhdm.indexOf(",")==-1){
+					tiaojian2="and x.xzqhdm2 like '%"+xzqhdm+"%'";
+				}else{
+					tiaojian2=getcxtj("x.xzqhdm2",xzqhdm);
+					//tiaojian2="and xzqh in ("+xzqhdm+")";
+				}
+				gcglabgc.setXzqhdm(tiaojian2);
+				gcglabgc.setXmnf(nf);
+				//查总合list
+				//getcxtj
+				gcglabgc.setJhnd(getcxtj("xd.jhnf",gcglabgc.getJhnd()));
+				List<Excel_list> eL=gcybbServer.getYhdzxwcb(gcglabgc);
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("全省普通国省干线养护大中修工程完成情况表");//设置第一行 
+				eldata.setSheetName("养护大中修");//设置sheeet名
+				eldata.setFileName("全省普通国省干线养护大中修工程完成情况表");//设置文件名
+				eldata.setEl(eL);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("设区市公路局",1,4,0,0));
+				et.add(new Excel_tilte("养护大中修",1,1,1,109));
+				et.add(new Excel_tilte(nf+"年下达计划里程(公里)",2,2,1,12));
+				et.add(new Excel_tilte(nf+"年下达计划完成里程（公里）",2,2,13,24));
+				et.add(new Excel_tilte("累计完成里程（公里）",2,2,25,36));
+				et.add(new Excel_tilte("计划总投资（万元）",2,2,37,48));
+				et.add(new Excel_tilte("省级补助资金",2,2,49,60));
+				et.add(new Excel_tilte(nf+"完成总投资（万元）",2,2,61,72));
+				et.add(new Excel_tilte("累计完成总投资（万元）",2,2,73,84));
+				et.add(new Excel_tilte(nf+"年完成省级补助资金",2,2,85,96));
+				et.add(new Excel_tilte("完成省级补助资金",2,2,97,108));
+				et.add(new Excel_tilte("备注",2,4,109,109));
+				et.add(new Excel_tilte("国道",3,3,1,4));
+				et.add(new Excel_tilte("省道",3,3,5,8));
+				et.add(new Excel_tilte("农村公路",3,3,9,12));
+				et.add(new Excel_tilte("国道",3,3,13,16));
+				et.add(new Excel_tilte("省道",3,3,17,20));
+				et.add(new Excel_tilte("农村公路",3,3,21,24));
+				et.add(new Excel_tilte("国道",3,3,25,28));
+				et.add(new Excel_tilte("省道",3,3,29,32));
+				et.add(new Excel_tilte("农村公路",3,3,33,36));
+				et.add(new Excel_tilte("国道",3,3,37,40));
+				et.add(new Excel_tilte("省道",3,3,41,44));
+				et.add(new Excel_tilte("农村公路",3,3,45,48));
+				et.add(new Excel_tilte("国道",3,3,49,52));
+				et.add(new Excel_tilte("省道",3,3,53,56));
+				et.add(new Excel_tilte("农村公路",3,3,57,60));
+				et.add(new Excel_tilte("国道",3,3,61,64));
+				et.add(new Excel_tilte("省道",3,3,65,68));
+				et.add(new Excel_tilte("农村公路",3,3,69,72));
+				et.add(new Excel_tilte("国道",3,3,73,76));
+				et.add(new Excel_tilte("省道",3,3,77,80));
+				et.add(new Excel_tilte("农村公路",3,3,81,84));
+				et.add(new Excel_tilte("国道",3,3,85,88));
+				et.add(new Excel_tilte("省道",3,3,89,92));
+				et.add(new Excel_tilte("农村公路",3,3,93,96));
+				et.add(new Excel_tilte("国道",3,3,97,100));
+				et.add(new Excel_tilte("省道",3,3,101,104));
+				et.add(new Excel_tilte("农村公路",3,3,105,108));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("小计",4,4,1,1));
+				et.add(new Excel_tilte("大修",4,4,2,2));
+				et.add(new Excel_tilte("中修",4,4,3,3));
+				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				
+				int k=1;
+				for (int i = 1; i < 109; i++) {
+					if(k==1)
+						et.add(new Excel_tilte("小计",4,4,i,i));
+					if(k==2)
+						et.add(new Excel_tilte("大修",4,4,i,i));
+					if(k==3)
+						et.add(new Excel_tilte("中修",4,4,i,i));
+					if(k==4)
+						et.add(new Excel_tilte("预防性养护",4,4,i,i));
+					k++;
+					if(k==5)
+						k=1;
+				}
+				
+				
+				
+				
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_export(eldata,response);
+			
+		}else{
+			String shijian="";
+			if(Integer.parseInt(yf)<=9){
+				shijian=nf+"-0"+yf;
+			}else{
+				shijian=nf+"-"+yf;
+			}
+			gcglabgc.setSbyf(shijian);
+			String tiaojian2="";
+			String xzqhdm = "";
+			String gydwdm = "";
+			if("1".equals(flag)){
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				xzqhdm=(String) session.getAttribute("xzqhbb");	
+			}else{
+			xzqhdm	= xzqh;
+			}
+			
+			if(xzqhdm.indexOf(",")==-1){
+				tiaojian2="and x.xzqhdm2 like '%"+xzqhdm+"%'";
+			}else{
+				tiaojian2=getcxtj("x.xzqhdm2",xzqhdm);
+				//tiaojian2="and xzqh in ("+xzqhdm+")";
+			}
+			gcglabgc.setXzqhdm(tiaojian2);
+			gcglabgc.setXmnf(nf);
+			//查总合list
+			//getcxtj
+			gcglabgc.setJhnd(getcxtj("xd.jhnf",gcglabgc.getJhnd()));
+			List<Excel_list> list1=gcybbServer.getYhdzxwcb(gcglabgc);
+			
+			JsonUtils.write(list1, getresponse().getWriter());
+           }                                                     
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void getLwgzHzb() {
+		try {
+			if("1".equals(flag)){
+				String shijian="";
+				if(Integer.parseInt(yf)<=9){
+					shijian=nf+"-0"+yf;
+				}else{
+					shijian=nf+"-"+yf;
+				}
+				gcglabgc.setSbyf(shijian);
+				String tiaojian2="";
+				String xzqhdm = "";
+				String gydwdm = "";
+				if("1".equals(flag)){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+					xzqhdm=(String) session.getAttribute("xzqhbb");	
+				}else{
+				xzqhdm	= xzqh;
+				}
+
+				if(xzqhdm.indexOf(",")==-1){
+					tiaojian2="and decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh) like '%"+xzqhdm+"%'";
+				}else{
+					tiaojian2=getcxtj("decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh)",xzqhdm);
+					//tiaojian2="and xzqh in ("+xzqhdm+")";  
+				}
+				gcglabgc.setXzqhdm(tiaojian2);
+				gcglabgc.setXmnf(nf);
+				//查总合list
+				//getcxtj
+				gcglabgc.setJhnd(getcxtj("xd.jhnf",gcglabgc.getJhnd()));
+				List<Excel_list> eL=gcybbServer.getLwgzHzb(gcglabgc);
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("公路路网结构改造工程统计汇总表");//设置第一行 
+				eldata.setSheetName("汇总表");//设置sheeet名
+				eldata.setFileName("公路路网结构改造工程统计汇总表");//设置文件名
+				eldata.setEl(eL);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("序号",1,3,0,0));
+				et.add(new Excel_tilte("设市区公路局",1,3,1,1));
+				et.add(new Excel_tilte("危桥改造",1,1,2,16));
+				et.add(new Excel_tilte("安防工程",1,1,17,34));
+				et.add(new Excel_tilte("灾害防治",1,1,35,46));
+				et.add(new Excel_tilte("计划下达情况",2,2,2,7));
+				et.add(new Excel_tilte("实施情况",2,2,8,16));
+				et.add(new Excel_tilte("计划下达情况",2,2,17,21));
+				et.add(new Excel_tilte("实施情况",2,2,22,34));
+				et.add(new Excel_tilte("计划下达情况",2,2,35,39));
+				et.add(new Excel_tilte("实施情况",2,2,40,46));
+				et.add(new Excel_tilte("计划（座）",3,3,2,2));
+				et.add(new Excel_tilte("计划延米（米）",3,3,3,3));
+				et.add(new Excel_tilte("总投资",3,3,4,4));
+				et.add(new Excel_tilte("中央车购税（万元）",3,3,5,5));
+				et.add(new Excel_tilte("省级补助资金（万元）",3,3,6,6));
+				et.add(new Excel_tilte(nf+"年目标（座）",3,3,7,7));
+				et.add(new Excel_tilte("累计完成（座）",3,3,8,8));
+				et.add(new Excel_tilte("累计完成延米（米）",3,3,9,9));
+				et.add(new Excel_tilte("累计完成总投资（万元）",3,3,10,10));
+				et.add(new Excel_tilte("已开工（座）",3,3,11,11));
+				et.add(new Excel_tilte("未开工（座）",3,3,12,12));
+				et.add(new Excel_tilte(nf+"年完成（座）",3,3,13,13));
+				et.add(new Excel_tilte(nf+"年完成延米（米）",3,3,14,14));
+				et.add(new Excel_tilte(nf+"年完成总投资（万元）",3,3,15,15));
+				et.add(new Excel_tilte("完成比例",3,3,16,16));
+				et.add(new Excel_tilte("计划（公里）",3,3,17,17));
+				et.add(new Excel_tilte("总投资（万元）",3,3,18,18));
+				et.add(new Excel_tilte("中央车购税（万元）",3,3,19,19));
+				et.add(new Excel_tilte("省级补助资金（万元）",3,3,20,20));
+				et.add(new Excel_tilte(nf+"年目标（座）",3,3,21,21));
+				et.add(new Excel_tilte("完成（公里）",3,3,22,22));
+				et.add(new Excel_tilte("其中国省道完成（公里）",3,3,23,23));
+				et.add(new Excel_tilte("其中县乡道完成（公里）",3,3,24,24));
+				et.add(new Excel_tilte("完成总投资（万元）",3,3,25,25));
+				et.add(new Excel_tilte("其中国省道完成总投资（座）",3,3,26,26));
+				et.add(new Excel_tilte("其中县乡道（万元）",3,3,27,27));
+				et.add(new Excel_tilte("完成省级以上补助资金（万元）",3,3,28,28));
+				et.add(new Excel_tilte("其中国省道完成补助资金投资（万元）",3,3,29,29));
+				et.add(new Excel_tilte("其中县乡道完成补助资金投资（万元）",3,3,30,30));
+				et.add(new Excel_tilte(nf+"年完成（公里）",3,3,31,31));
+				et.add(new Excel_tilte(nf+"年完成总投资（万元）",3,3,32,32));
+				et.add(new Excel_tilte(nf+"年完成省级以上补助资金（万元）",3,3,33,33));
+				et.add(new Excel_tilte("完成比例",3,3,34,34));
+				et.add(new Excel_tilte("计划（公里）",3,3,35,35));
+				et.add(new Excel_tilte("总投资（万元）",3,3,36,36));
+				et.add(new Excel_tilte("中央车购税（万元）",3,3,37,37));
+				et.add(new Excel_tilte("省级补助资金（万元）",3,3,38,38));
+				et.add(new Excel_tilte(nf+"年目标（公里）",3,3,39,39));
+				et.add(new Excel_tilte("完成（公里）",3,3,40,40));
+				et.add(new Excel_tilte("完成总投资",3,3,41,41));
+				et.add(new Excel_tilte("完成省级以上补助资金（万元）",3,3,42,42));
+				et.add(new Excel_tilte(nf+"年完成（公里）",3,3,43,43));
+				et.add(new Excel_tilte(nf+"年完成总投资（万元）",3,3,44,44));
+				et.add(new Excel_tilte(nf+"年完成省级以上补助资金（万元）",3,3,45,45));
+				et.add(new Excel_tilte("完成比例",3,3,46,46));
+				
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_export(eldata,response);
+			
+		}else{
+			String shijian="";
+			if(Integer.parseInt(yf)<=9){
+				shijian=nf+"-0"+yf;
+			}else{
+				shijian=nf+"-"+yf;
+			}
+			gcglabgc.setSbyf(shijian);
+			String tiaojian2="";
+			String xzqhdm = "";
+			String gydwdm = "";
+			if("1".equals(flag)){
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				xzqhdm=(String) session.getAttribute("xzqhbb");	
+			}else{
+			xzqhdm	= xzqh;
+			}
+			
+			if(xzqhdm.indexOf(",")==-1){
+				tiaojian2="and decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh) like '%"+xzqhdm+"%'";
+			}else{
+				tiaojian2=getcxtj("decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh)",xzqhdm);
+				//tiaojian2="and xzqh in ("+xzqhdm+")";
+			}
+			gcglabgc.setXzqhdm(tiaojian2);
+			gcglabgc.setXmnf(nf);
+			//查总合list
+			//getcxtj
+			gcglabgc.setJhnd(getcxtj("xd.jhnf",gcglabgc.getJhnd()));
+			List<Excel_list> list1=gcybbServer.getLwgzHzb(gcglabgc);
+			
+			JsonUtils.write(list1, getresponse().getWriter());
+           }                                                     
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	//路面改造完成表
+	public void getLmgzwcb(){
+		List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
+		String tableName="";
+		try{	
+			String xmlx="路面改造";
+				String viewsql="";
+			    	tableName="lmgzwcb";
+			    	viewsql="CREATE OR REPLACE VIEW lmgzwcb AS "
+			    			+" select "
+			    			+" to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.* from"
+			    			+" (select "
+			    			+" substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,count(distinct j.xmbm) xmsl,sum(nvl(lx.zlc,0)) xmlc,sum(nvl(bnwc.bnwclc,0)) bnlc,sum(nvl(ljwc.ljwclc,0)) ljlc,sum(nvl(bnwc.bnwctz,0)) bntz,sum(nvl(ljwc.ljwctz,0)) ljtz,sum(nvl(bncgs.ztz,0)) bndw,sum(nvl(ljcgs.ztz,0)) ljdw,"
+			    			+" sum(nvl(bncgs.cgs,0)) bncgs,sum(nvl(ljcgs.cgs,0)) ljcgs,nvl(to_char(decode(sum(nvl(lx.zlc,0)),'0','0',null,'0',round(sum(nvl(ljwc.ljwclc,0)) / sum(nvl(lx.zlc,0)) * 100, 0))),'0')||'%' wcbl,null mblc,0 mbtz,sum(nvl(bnwc.bnwclc,0)) wcmblc "
+			    			+" from jhsh_lmgz j,cbsj_lmgz cb,"
+			    			+" (select xmid,decode(substr(xmid, 11, 1),1,(nvl(sum(jhyilc), 0) + nvl(sum(jherlc), 0) +nvl(sum(jhsanlc), 0) + nvl(sum(jhsilc), 0) +nvl(sum(jhdwlc), 0) + nvl(sum(jhwllc), 0)),(nvl(sum(yilc), 0) + nvl(sum(erlc), 0) + nvl(sum(sanlc), 0) + nvl(sum(silc), 0) +nvl(sum(dwlc), 0) + nvl(sum(wllc), 0))) zlc from lxsh_lx where jdbs = 2 group by xmid) lx,"
+			    			+" (select xmid,min(xdnf) xdnf,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) bbzorsbz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) +sum(nvl(dfzc, 0)) pfztz from plan_zjxd where jhxdwh is not null group by xmid) t,"
+			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) ljwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) ljwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') and shzt=1 group by xmbm) ljwc,"
+			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) bnwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) bnwctz from gcgl_xmjd where substr(ybyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and shzt=1 group by xmbm) bnwc,"
+			    			+" (select xmbm,sum(nvl(bnsslc,0)) bnsslc from gcgl_bnss where nf='"+gcglwqgz.getYbnf()+"' group by xmbm ) bnss,"
+			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) ljcgs,"
+			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' group by jhid) bncgs"
+			    			+" where j.xmbm = cb.xmbm(+) and j.xmbm = lx.xmid(+) and j.xmbm = t.xmid(+) and j.xmbm = ljwc.xmbm(+) and j.xmbm = bnwc.xmbm(+) and j.xmbm = ljcgs.jhid(+) and j.xmbm = bncgs.jhid(+) AND J.XMBM = bnss.XMBM(+) "
+			    			+" and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) "
+			    			+" group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1 "
+			    			+" union all"
+			    			+" select "
+			    			+" '全省汇总' xzqhmc,t1.* from"
+			    			+" (select "
+			    			+" '36' xzqh,t.xdnf jhnf,count(distinct j.xmbm) xmsl,sum(nvl(lx.zlc,0)) xmlc,sum(nvl(bnwc.bnwclc,0)) bnlc,sum(nvl(ljwc.ljwclc,0)) ljlc,sum(nvl(bnwc.bnwctz,0)) bntz,sum(nvl(ljwc.ljwctz,0)) ljtz,sum(nvl(bncgs.ztz,0)) bndw,sum(nvl(ljcgs.ztz,0)) ljdw,"
+			    			+" sum(nvl(bncgs.cgs,0)) bncgs,sum(nvl(ljcgs.cgs,0)) ljcgs,nvl(to_char(decode(sum(nvl(lx.zlc,0)),'0','0',null,'0',round(sum(nvl(ljwc.ljwclc,0)) / sum(nvl(lx.zlc,0)) * 100, 0))),'0')||'%' wcbl,null mblc,0 mbtz,sum(nvl(bnwc.bnwclc,0)) wcmblc "
+			    			+" from jhsh_lmgz j,cbsj_lmgz cb,"
+			    			+" (select xmid,decode(substr(xmid, 11, 1),1,(nvl(sum(jhyilc), 0) + nvl(sum(jherlc), 0) +nvl(sum(jhsanlc), 0) + nvl(sum(jhsilc), 0) +nvl(sum(jhdwlc), 0) + nvl(sum(jhwllc), 0)),(nvl(sum(yilc), 0) + nvl(sum(erlc), 0) + nvl(sum(sanlc), 0) + nvl(sum(silc), 0) +nvl(sum(dwlc), 0) + nvl(sum(wllc), 0))) zlc from lxsh_lx where jdbs = 2 group by xmid) lx,"
+			    			+" (select xmid,min(xdnf) xdnf,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) bbzorsbz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) +sum(nvl(dfzc, 0)) pfztz from plan_zjxd where jhxdwh is not null group by xmid) t,"
+			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) ljwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) ljwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') and shzt=1 group by xmbm) ljwc,"
+			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) bnwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) bnwctz from gcgl_xmjd where substr(ybyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and shzt=1 group by xmbm) bnwc,"
+			    			+" (select xmbm,sum(nvl(bnsslc,0)) bnsslc from gcgl_bnss where nf='"+gcglwqgz.getYbnf()+"' group by xmbm ) bnss,"
+			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) ljcgs,"
+			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' group by jhid) bncgs"
+			    			+" where j.xmbm = cb.xmbm(+) and j.xmbm = lx.xmid(+) and j.xmbm = t.xmid(+) and j.xmbm = ljwc.xmbm(+) and j.xmbm = bnwc.xmbm(+) and j.xmbm = ljcgs.jhid(+) and j.xmbm = bncgs.jhid(+) AND J.XMBM = bnss.XMBM(+)"
+			    			+" and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) " 
+			    			+" group by t.xdnf) t1 ";               
+			    			
+				gcybbServer.createybView(viewsql);
+				String[] arr=gcglwqgz.getXmnf().split(",");
+				String sql="select xzqhmc";
+				String in="";
+				for(int j=0;j<arr.length;j++){
+					if(j==0)
+					    in=in+"'"+arr[j]+"'";
+					else
+						in=in+",'"+arr[j]+"'";
+					sql=sql+",decode(sum(decode(jhnf,'"+arr[j]+"',xmsl)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',xmsl)) )xmsl"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',xmlc)),null,0,sum(decode(jhnf,'"+arr[j]+"',xmlc))) xmlc"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',bnlc)),null,0,sum(decode(jhnf,'"+arr[j]+"',bnlc))) bnlc"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',ljlc)),null,0,sum(decode(jhnf,'"+arr[j]+"',ljlc))) ljlc"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',bntz)),null,0,sum(decode(jhnf,'"+arr[j]+"',bntz))) bntz"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',ljtz)),null,0,sum(decode(jhnf,'"+arr[j]+"',ljtz))) ljtz"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',bndw)),null,0,sum(decode(jhnf,'"+arr[j]+"',bndw))) bndw"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',ljdw)),null,0,sum(decode(jhnf,'"+arr[j]+"',ljdw))) ljdw"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',bncgs)),null,0,sum(decode(jhnf,'"+arr[j]+"',bncgs))) bncgs"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',ljcgs)),null,0,sum(decode(jhnf,'"+arr[j]+"',ljcgs))) ljcgs"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',wcmblc)),null,0,sum(decode(jhnf,'"+arr[j]+"',wcmblc))) wcmblc"+arr[j]+""
+							;
+				}
+				sql=sql+" from "+tableName+"  where jhnf in("+in+") group by xzqhmc,xzqh order by xzqh";		
+				System.out.println(sql);
+				list=gcybbServer.getGjxjmxbsj(sql);
+				NumberFormat nfs = NumberFormat.getInstance(); 
+		        nfs.setRoundingMode(RoundingMode.HALF_UP);//设置四舍五入 
+		        nfs.setMinimumFractionDigits(3);//设置最小保留几位小数 
+		        nfs.setMaximumFractionDigits(3);//设置最大保留几位小数
+				List<Excel_list> eL =new ArrayList<Excel_list>();
+				for(int i=0;i<list.size();i++){
+					Excel_list l = new Excel_list();
+					Class cl = l.getClass();
+					HashMap<String,Object> hm=(HashMap<String, Object>) list.get(i);
+					double xmsl=0;
+					double xmlc=0;
+					double bnlc=0;
+					double ljlc=0;
+					double bntz=0;
+					double ljtz=0;
+					double bndw=0;
+					double ljdw=0;
+					double bncgs=0;
+					double ljcgs=0;
+					double wcmblc=0;
+					//从18开始的
+					int f=10;
+					for(int j=arr.length-1;j>=0;j--){
+						
+						System.out.println(arr[j]);
+						xmsl=MyUtil.add(xmsl, Double.valueOf(hm.get("XMSL"+arr[j]).toString()));
+						xmlc=MyUtil.add(xmlc, Double.valueOf(hm.get("XMLC"+arr[j]).toString()));
+						bnlc=MyUtil.add(bnlc, Double.valueOf(hm.get("BNLC"+arr[j]).toString()));
+						ljlc=MyUtil.add(ljlc, Double.valueOf(hm.get("LJLC"+arr[j]).toString()));
+						bntz=MyUtil.add(bntz, Double.valueOf(hm.get("BNTZ"+arr[j]).toString()));
+						ljtz=MyUtil.add(ljtz, Double.valueOf(hm.get("LJTZ"+arr[j]).toString()));
+						bndw=MyUtil.add(bndw, Double.valueOf(hm.get("BNDW"+arr[j]).toString()));
+						ljdw=MyUtil.add(ljdw, Double.valueOf(hm.get("LJDW"+arr[j]).toString()));
+						bncgs=MyUtil.add(bncgs, Double.valueOf(hm.get("BNCGS"+arr[j]).toString()));
+						ljcgs=MyUtil.add(ljcgs, Double.valueOf(hm.get("LJCGS"+arr[j]).toString()));
+						wcmblc=MyUtil.add(wcmblc, Double.valueOf(hm.get("WCMBLC"+arr[j]).toString()));
+						
+						Method method18 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method18.invoke(l, new Object[]{hm.get("XMSL"+arr[j]).toString()});
+						f++;
+						Method method19 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method19.invoke(l, new Object[]{hm.get("XMLC"+arr[j]).toString()});
+						f++;
+						Method method20 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method20.invoke(l, new Object[]{hm.get("BNLC"+arr[j]).toString()});
+						f++;
+						Method method21 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method21.invoke(l, new Object[]{hm.get("LJLC"+arr[j]).toString()});
+						f++;
+						Method method22 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method22.invoke(l, new Object[]{hm.get("BNTZ"+arr[j]).toString()});
+						f++;
+						String wcblS=MyUtil.divbfb(Double.valueOf(hm.get("LJLC"+arr[j]).toString()), Double.valueOf(hm.get("XMLC"+arr[j]).toString()), 3)+"%";
+						Method method23 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method23.invoke(l, new Object[]{wcblS});
+						f++;
+						
+					}
+					if(i==0) {
+						l.setV_0("全省汇总");
+						l.setV_0("全省汇总");
+					}else {
+						l.setV_0(i+"");
+					}
+					l.setV_1(list.get(i).get("XZQHMC").toString());
+					DecimalFormat decimalFormat = new DecimalFormat("#,##0.000");//格式化设置 
+					DecimalFormat decimalFormat2 = new DecimalFormat("#,##0");//格式化设置 
+					
+					l.setV_2(decimalFormat2.format(xmsl));
+					l.setV_3(decimalFormat.format(xmlc));
+					l.setV_4(decimalFormat.format(bnlc)+"");
+					l.setV_5(decimalFormat.format(ljlc)+"");
+					l.setV_6(decimalFormat.format(bntz)+"");
+					
+					double wcbl=MyUtil.divbfb(ljlc, xmlc, 3)*100; 
+					l.setV_7(decimalFormat2.format(wcbl)+"%");
+					l.setV_8("");
+					l.setV_9(decimalFormat.format(wcmblc)+"");
+					
+					Method method26 = cl.getMethod("setV_"+f, new Class[]{String.class});
+					method26.invoke(l, new Object[]{" "});
+					
+				  eL.add(l);
+				}
+				if("flag".equals(flag)){
+					
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("普通干线公路路面改造完成情况汇总表");//设置第一行 
+					eldata.setSheetName("路面改造");//设置sheeet名
+					eldata.setFileName("普通干线公路路面改造完成情况汇总表");//设置文件名
+					eldata.setEl(eL);//将实体list放入类中
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					et.add(new Excel_tilte("序号",1,3,0,0));
+					et.add(new Excel_tilte("设区市",1,3,1,1));
+					et.add(new Excel_tilte("计划下达及完成情况",1,1,2,9));
+					int sj1=10;
+					for (int i = 0; i < arr.length; i++) {
+						et.add(new Excel_tilte("计划下达及完成情况",1,1,sj1,sj1+5));
+						sj1=sj1+6;
+					}
+					et.add(new Excel_tilte("备注",1,3,sj1,sj1));
+					et.add(new Excel_tilte(arr[0]+"-"+arr[arr.length-1]+"年度",2,2,2,3));
+					et.add(new Excel_tilte("本年完成里程(公里)",2,3,4,4));
+					et.add(new Excel_tilte("累计完成里程(公里)",2,3,5,5));
+					et.add(new Excel_tilte("本年完成投资(万元)",2,3,6,6));
+					et.add(new Excel_tilte("工程完成比例",2,3,7,7));
+					et.add(new Excel_tilte(arr[arr.length-1]+"年目标任务里程（公里）",2,3,8,8));
+					et.add(new Excel_tilte(arr[arr.length-1]+"年目标任务已完成里程（公里）",2,3,9,9));
+					
+					
+					int sj2=10;
+					for (int i = 0; i < arr.length; i++) {
+						et.add(new Excel_tilte(arr[i]+"年度",2,2,sj2,sj2+1));
+						et.add(new Excel_tilte("本年完成里程(公里)",2,3,sj2+2,sj2+2));
+						et.add(new Excel_tilte("累计完成里程(公里)",2,3,sj2+3,sj2+3));
+						et.add(new Excel_tilte("本年完成投资(万元)",2,3,sj2+4,sj2+4));
+						et.add(new Excel_tilte("工程完成比例",2,3,sj2+5,sj2+5));
+						
+						sj2=sj2+6;
+					}
+					et.add(new Excel_tilte("项目数量",3,3,2,2));
+					et.add(new Excel_tilte("计划里程(公里)",3,3,3,3));
+					int sj3=10;
+					for (int i = 0; i < arr.length; i++) {
+						et.add(new Excel_tilte("项目数量",3,3,sj3,sj3));
+						et.add(new Excel_tilte("计划里程(公里)",3,3,sj3+1,sj3+1));
+						sj3=sj3+6;
+					}
+					eldata.setEt(et);//将表头内容设置到类里面
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					Excel_export.excel_exportmxb(eldata,response);
+					
+				}else
+				JsonUtils.write(eL, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	} 
 	
 	
+	//灾毁恢复完成表
+	
+		public void getZhhfwcb(){
+			List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
+			String tableName="";
+			try{	
+				String xmlx="灾毁恢复";
+					String viewsql="";
+				    	tableName="zhhfwcb";
+				    	viewsql= "CREATE OR REPLACE VIEW zhhfwcb AS "
+				    			+" select "
+				    			+" to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.* from"
+				    			+" (select "
+				    			+" substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,count(distinct j.xmbm) xmsl,sum(nvl(lx.zlc,0)) xmlc,sum(nvl(t.bstz,0)) bstz,sum(nvl(bnwc.bnwclc,0)) bnlc,sum(nvl(ljwc.ljwclc,0)) ljlc,sum(nvl(bnwc.bnwctz,0)) bntz,sum(nvl(ljwc.ljwctz,0)) ljtz,sum(nvl(bncgs.ztz,0)) bndw,sum(nvl(ljcgs.ztz,0)) ljdw,"
+				    			+" sum(nvl(bncgs.cgs,0)) bncgs,sum(nvl(ljcgs.cgs,0)) ljcgs,nvl(to_char(decode(sum(nvl(lx.zlc,0)),'0','0',null,'0',round(sum(nvl(ljwc.ljwclc,0)) / sum(nvl(lx.zlc,0)) * 100, 0))),'0')||'%' wcbl,null mblc,0 mbtz,sum(nvl(bnwc.bnwclc,0)) wcmblc "
+				    			+" from jhsh_sh j,cbsj_sh cb,"
+				    			+" (select xmid,decode(substr(xmid, 11, 1),1,(nvl(sum(jhyilc), 0) + nvl(sum(jherlc), 0) +nvl(sum(jhsanlc), 0) + nvl(sum(jhsilc), 0) +nvl(sum(jhdwlc), 0) + nvl(sum(jhwllc), 0)),(nvl(sum(yilc), 0) + nvl(sum(erlc), 0) + nvl(sum(sanlc), 0) + nvl(sum(silc), 0) +nvl(sum(dwlc), 0) + nvl(sum(wllc), 0))) zlc from lxsh_lx where jdbs = 2 group by xmid) lx,"
+				    			+" (select xmid,min(xdnf) xdnf,sum(nvl(btzzj, 0))+sum(nvl(rys, 0))+sum(nvl(dk, 0))+sum(nvl(jl, 0)) bstz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) bbzorsbz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) +sum(nvl(dfzc, 0)) pfztz from plan_zjxd where jhxdwh is not null group by xmid) t,"
+				    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) ljwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) ljwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') and shzt=1 group by xmbm) ljwc,"
+				    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) bnwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) bnwctz from gcgl_xmjd where substr(ybyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and shzt=1 group by xmbm) bnwc,"
+				    			+" (select xmbm,sum(nvl(bnsslc,0)) bnsslc from gcgl_bnss where nf='"+gcglwqgz.getYbnf()+"' group by xmbm ) bnss,"
+				    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) ljcgs,"
+				    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' group by jhid) bncgs"
+				    			+" where j.xmbm = cb.xmbm(+) and j.xmbm = lx.xmid(+) and j.xmbm = t.xmid(+) and j.xmbm = ljwc.xmbm(+) and j.xmbm = bnwc.xmbm(+) and j.xmbm = ljcgs.jhid(+) and j.xmbm = bncgs.jhid(+) AND J.XMBM = bnss.XMBM(+) "
+				    			+" and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) "
+				    			+" group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1 "
+				    			+" union all"
+				    			+" select "
+				    			+" '全省汇总' xzqhmc,t1.* from"
+				    			+" (select "
+				    			+" '36' xzqh,t.xdnf jhnf,count(distinct j.xmbm) xmsl,sum(nvl(lx.zlc,0)) xmlc,sum(nvl(t.bstz,0)) bstz,sum(nvl(bnwc.bnwclc,0)) bnlc,sum(nvl(ljwc.ljwclc,0)) ljlc,sum(nvl(bnwc.bnwctz,0)) bntz,sum(nvl(ljwc.ljwctz,0)) ljtz,sum(nvl(bncgs.ztz,0)) bndw,sum(nvl(ljcgs.ztz,0)) ljdw,"
+				    			+" sum(nvl(bncgs.cgs,0)) bncgs,sum(nvl(ljcgs.cgs,0)) ljcgs,nvl(to_char(decode(sum(nvl(lx.zlc,0)),'0','0',null,'0',round(sum(nvl(ljwc.ljwclc,0)) / sum(nvl(lx.zlc,0)) * 100, 0))),'0')||'%' wcbl,null mblc,0 mbtz,sum(nvl(bnwc.bnwclc,0)) wcmblc "
+				    			+" from jhsh_sh j,cbsj_sh cb,"
+				    			+" (select xmid,decode(substr(xmid, 11, 1),1,(nvl(sum(jhyilc), 0) + nvl(sum(jherlc), 0) +nvl(sum(jhsanlc), 0) + nvl(sum(jhsilc), 0) +nvl(sum(jhdwlc), 0) + nvl(sum(jhwllc), 0)),(nvl(sum(yilc), 0) + nvl(sum(erlc), 0) + nvl(sum(sanlc), 0) + nvl(sum(silc), 0) +nvl(sum(dwlc), 0) + nvl(sum(wllc), 0))) zlc from lxsh_lx where jdbs = 2 group by xmid) lx,"
+				    			+" (select xmid,min(xdnf) xdnf,sum(nvl(btzzj, 0))+sum(nvl(rys, 0))+sum(nvl(dk, 0))+sum(nvl(jl, 0)) bstz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) bbzorsbz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) +sum(nvl(dfzc, 0)) pfztz from plan_zjxd where jhxdwh is not null group by xmid) t,"
+				    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) ljwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) ljwctz from gcgl_xmjd where to_date(ybyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') and shzt=1 group by xmbm) ljwc,"
+				    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) bnwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) bnwctz from gcgl_xmjd where substr(ybyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and shzt=1 group by xmbm) bnwc,"
+				    			+" (select xmbm,sum(nvl(bnsslc,0)) bnsslc from gcgl_bnss where nf='"+gcglwqgz.getYbnf()+"' group by xmbm ) bnss,"
+				    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) ljcgs,"
+				    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' group by jhid) bncgs"
+				    			+" where j.xmbm = cb.xmbm(+) and j.xmbm = lx.xmid(+) and j.xmbm = t.xmid(+) and j.xmbm = ljwc.xmbm(+) and j.xmbm = bnwc.xmbm(+) and j.xmbm = ljcgs.jhid(+) and j.xmbm = bncgs.jhid(+) AND J.XMBM = bnss.XMBM(+)"
+				    			+" and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) " 
+				    			+" group by t.xdnf) t1 ";               
+				    			
+					gcybbServer.createybView(viewsql);
+					String[] arr=gcglwqgz.getXmnf().split(",");
+					String sql="select xzqhmc";
+					String in="";
+					for(int j=0;j<arr.length;j++){
+						if(j==0)
+						    in=in+"'"+arr[j]+"'";
+						else
+							in=in+",'"+arr[j]+"'";
+						sql=sql+",decode(sum(decode(jhnf,'"+arr[j]+"',xmsl)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',xmsl)) )xmsl"+arr[j]+
+								",decode(sum(decode(jhnf,'"+arr[j]+"',xmlc)),null,0,sum(decode(jhnf,'"+arr[j]+"',xmlc))) xmlc"+arr[j]+
+								",decode(sum(decode(jhnf,'"+arr[j]+"',bstz)),null,0,sum(decode(jhnf,'"+arr[j]+"',bstz))) bstz"+arr[j]+
+								",decode(sum(decode(jhnf,'"+arr[j]+"',bnlc)),null,0,sum(decode(jhnf,'"+arr[j]+"',bnlc))) bnlc"+arr[j]+
+								",decode(sum(decode(jhnf,'"+arr[j]+"',ljlc)),null,0,sum(decode(jhnf,'"+arr[j]+"',ljlc))) ljlc"+arr[j]+
+								",decode(sum(decode(jhnf,'"+arr[j]+"',bntz)),null,0,sum(decode(jhnf,'"+arr[j]+"',bntz))) bntz"+arr[j]+
+								",decode(sum(decode(jhnf,'"+arr[j]+"',ljtz)),null,0,sum(decode(jhnf,'"+arr[j]+"',ljtz))) ljtz"+arr[j]+
+								",decode(sum(decode(jhnf,'"+arr[j]+"',bndw)),null,0,sum(decode(jhnf,'"+arr[j]+"',bndw))) bndw"+arr[j]+
+								",decode(sum(decode(jhnf,'"+arr[j]+"',ljdw)),null,0,sum(decode(jhnf,'"+arr[j]+"',ljdw))) ljdw"+arr[j]+
+								",decode(sum(decode(jhnf,'"+arr[j]+"',bncgs)),null,0,sum(decode(jhnf,'"+arr[j]+"',bncgs))) bncgs"+arr[j]+
+								",decode(sum(decode(jhnf,'"+arr[j]+"',ljcgs)),null,0,sum(decode(jhnf,'"+arr[j]+"',ljcgs))) ljcgs"+arr[j]+
+								",decode(sum(decode(jhnf,'"+arr[j]+"',wcmblc)),null,0,sum(decode(jhnf,'"+arr[j]+"',wcmblc))) wcmblc"+arr[j]+""
+								;
+					}
+					sql=sql+" from "+tableName+"  where jhnf in("+in+") group by xzqhmc,xzqh order by xzqh";		
+					System.out.println(sql);
+					list=gcybbServer.getGjxjmxbsj(sql);
+					NumberFormat nfs = NumberFormat.getInstance(); 
+			        nfs.setRoundingMode(RoundingMode.HALF_UP);//设置四舍五入 
+			        nfs.setMinimumFractionDigits(3);//设置最小保留几位小数 
+			        nfs.setMaximumFractionDigits(3);//设置最大保留几位小数
+					List<Excel_list> eL =new ArrayList<Excel_list>();
+					for(int i=0;i<list.size();i++){
+						Excel_list l = new Excel_list();
+						Class cl = l.getClass();
+						HashMap<String,Object> hm=(HashMap<String, Object>) list.get(i);
+						double xmsl=0;
+						double xmlc=0;
+						double bstz=0;
+						double bnlc=0;
+						double ljlc=0;
+						double bntz=0;
+						double ljtz=0;
+						double bndw=0;
+						double ljdw=0;
+						double bncgs=0;
+						double ljcgs=0;
+						double wcmblc=0;
+						//从18开始的
+						int f=10;
+						for(int j=arr.length-1;j>=0;j--){
+							
+							System.out.println(arr[j]);
+							xmsl=MyUtil.add(xmsl, Double.valueOf(hm.get("XMSL"+arr[j]).toString()));
+							xmlc=MyUtil.add(xmlc, Double.valueOf(hm.get("XMLC"+arr[j]).toString()));
+							bstz=MyUtil.add(bstz, Double.valueOf(hm.get("BSTZ"+arr[j]).toString()));
+							bnlc=MyUtil.add(bnlc, Double.valueOf(hm.get("BNLC"+arr[j]).toString()));
+							ljlc=MyUtil.add(ljlc, Double.valueOf(hm.get("LJLC"+arr[j]).toString()));
+							bntz=MyUtil.add(bntz, Double.valueOf(hm.get("BNTZ"+arr[j]).toString()));
+							ljtz=MyUtil.add(ljtz, Double.valueOf(hm.get("LJTZ"+arr[j]).toString()));
+							bndw=MyUtil.add(bndw, Double.valueOf(hm.get("BNDW"+arr[j]).toString()));
+							ljdw=MyUtil.add(ljdw, Double.valueOf(hm.get("LJDW"+arr[j]).toString()));
+							bncgs=MyUtil.add(bncgs, Double.valueOf(hm.get("BNCGS"+arr[j]).toString()));
+							ljcgs=MyUtil.add(ljcgs, Double.valueOf(hm.get("LJCGS"+arr[j]).toString()));
+							wcmblc=MyUtil.add(wcmblc, Double.valueOf(hm.get("WCMBLC"+arr[j]).toString()));
+							
+							Method method18 = cl.getMethod("setV_"+f, new Class[]{String.class});
+							method18.invoke(l, new Object[]{hm.get("XMSL"+arr[j]).toString()});
+							f++;
+							Method method19 = cl.getMethod("setV_"+f, new Class[]{String.class});
+							method19.invoke(l, new Object[]{hm.get("XMLC"+arr[j]).toString()});
+							f++;
+							Method method191 = cl.getMethod("setV_"+f, new Class[]{String.class});
+							method191.invoke(l, new Object[]{hm.get("BSTZ"+arr[j]).toString()});
+							f++;
+							Method method20 = cl.getMethod("setV_"+f, new Class[]{String.class});
+							method20.invoke(l, new Object[]{hm.get("BNLC"+arr[j]).toString()});
+							f++;
+							Method method21 = cl.getMethod("setV_"+f, new Class[]{String.class});
+							method21.invoke(l, new Object[]{hm.get("LJLC"+arr[j]).toString()});
+							f++;
+							Method method22 = cl.getMethod("setV_"+f, new Class[]{String.class});
+							method22.invoke(l, new Object[]{hm.get("BNTZ"+arr[j]).toString()});
+							f++;
+							String wcblS=MyUtil.divbfb(Double.valueOf(hm.get("LJLC"+arr[j]).toString()), Double.valueOf(hm.get("XMLC"+arr[j]).toString()), 3)+"%";
+							Method method23 = cl.getMethod("setV_"+f, new Class[]{String.class});
+							method23.invoke(l, new Object[]{wcblS});
+							f++;
+							
+						}
+						if(i==0) {
+							l.setV_0("全省汇总");
+							l.setV_0("全省汇总");
+						}else {
+							l.setV_0(i+"");
+						}
+						l.setV_1(list.get(i).get("XZQHMC").toString());
+						DecimalFormat decimalFormat = new DecimalFormat("#,##0.000");//格式化设置 
+						DecimalFormat decimalFormat2 = new DecimalFormat("#,##0");//格式化设置 
+						
+						l.setV_2(decimalFormat2.format(xmsl));
+						l.setV_3(decimalFormat.format(xmlc));
+						l.setV_4(decimalFormat.format(bstz));
+						l.setV_5(decimalFormat.format(bnlc)+"");
+						l.setV_6(decimalFormat.format(ljlc)+"");
+						l.setV_7(decimalFormat.format(bntz)+"");
+						
+						double wcbl=MyUtil.divbfb(ljlc, xmlc, 3)*100; 
+						l.setV_8(decimalFormat2.format(wcbl)+"%");
+						
+						Method method26 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method26.invoke(l, new Object[]{" "});
+						
+					  eL.add(l);
+					}
+					if("flag".equals(flag)){
+						
+						ExcelData eldata=new ExcelData();//创建一个类
+						eldata.setTitleName("普通国省干线公路灾毁恢复建设任务完成情况表");//设置第一行 
+						eldata.setSheetName("灾毁恢复建");//设置sheeet名
+						eldata.setFileName("普通国省干线公路灾毁恢复建设任务完成情况表");//设置文件名
+						eldata.setEl(eL);//将实体list放入类中
+						List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+						et.add(new Excel_tilte("序号",1,3,0,0));
+						et.add(new Excel_tilte("设区市",1,3,1,1));
+						et.add(new Excel_tilte("计划下达及完成情况",1,1,2,8));
+						int sj1=9;
+						for (int i = 0; i < arr.length; i++) {
+							et.add(new Excel_tilte("计划下达及完成情况",1,1,sj1,sj1+6));
+							sj1=sj1+7;
+						}
+						et.add(new Excel_tilte("备注",1,3,sj1,sj1));
+						et.add(new Excel_tilte(arr[0]+"-"+arr[arr.length-1]+"年度",2,2,2,4));
+						et.add(new Excel_tilte("本年完成里程(公里)",2,3,5,5));
+						et.add(new Excel_tilte("累计完成里程(公里)",2,3,6,6));
+						et.add(new Excel_tilte("本年完成投资(万元)",2,3,7,7));
+						et.add(new Excel_tilte("工程完成比例",2,3,8,8));
+						
+						int sj2=9;
+						for (int i = 0; i < arr.length; i++) {
+							et.add(new Excel_tilte(arr[i]+"年度",2,2,sj2,sj2+2));
+							et.add(new Excel_tilte("本年完成里程(公里)",2,3,sj2+3,sj2+3));
+							et.add(new Excel_tilte("累计完成里程(公里)",2,3,sj2+4,sj2+4));
+							et.add(new Excel_tilte("本年完成投资(万元)",2,3,sj2+5,sj2+5));
+							et.add(new Excel_tilte("工程完成比例",2,3,sj2+6,sj2+6));
+							
+							sj2=sj2+7;
+						}
+						et.add(new Excel_tilte("项目数量",3,3,2,2));
+						et.add(new Excel_tilte("计划里程(公里)",3,3,3,3));
+						et.add(new Excel_tilte("中央或省统筹资金（万元）含续建",3,3,4,4));
+						int sj3=9;
+						for (int i = 0; i < arr.length; i++) {
+							et.add(new Excel_tilte("项目数量",3,3,sj3,sj3));
+							et.add(new Excel_tilte("计划里程(公里)",3,3,sj3+1,sj3+1));
+							et.add(new Excel_tilte("中央或省统筹资金（万元）含续建",3,3,sj3+2,sj3+2));
+							sj3=sj3+7;
+						}
+						eldata.setEt(et);//将表头内容设置到类里面
+						HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+						Excel_export.excel_exportmxb(eldata,response);
+						
+					}else
+					JsonUtils.write(eL, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
+		
+		
+		//计划执行情况表
+		public void getYhgc(){
+			try {
+				if("1".equals(flag)){
+					String shijian="";
+					if(Integer.parseInt(yf)<=9){
+						shijian=nf+"-0"+yf;
+					}else{
+						shijian=nf+"-"+yf;
+					}
+					gcglabgc.setSbyf(shijian);
+					String tiaojian2="";
+					String xzqhdm = "";
+					String gydwdm = "";
+					if("1".equals(flag)){
+						HttpServletRequest request = ServletActionContext.getRequest();
+						HttpSession session = request.getSession();
+						xzqhdm=(String) session.getAttribute("xzqhbb");	
+					}else{
+					xzqhdm	= xzqh;
+					}
+					
+					if(xzqhdm.indexOf(",")==-1){
+						tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
+					}else{
+						tiaojian2=getcxtj("xzqhdm",xzqhdm);
+						//tiaojian2="and xzqh in ("+xzqhdm+")";
+					}
+					gcglabgc.setXzqhdm(tiaojian2);
+					gcglabgc.setXmnf(nf);
+					//查总合list
+					//getcxtj
+					gcglabgc.setJhnd(getcxtj("xd.xdnf",gcglabgc.getJhnd()));
+					gcglabgc.setXmlx(getcxtj("jh.xmlx",gcglabgc.getXmlx()));
+					
+					List<Excel_list> eL=gcybbServer.getYhgc(gcglabgc);
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("养护工程任务与实施情况对照表");//设置第一行 
+					eldata.setSheetName("计划执行情况表");//设置sheeet名
+					eldata.setFileName("养护工程任务与实施情况对照表");//设置文件名
+					eldata.setEl(eL);//将实体list放入类中
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					et.add(new Excel_tilte("养护工程批复情况",1,1,0,18));
+					et.add(new Excel_tilte("实施情况",1,1,19,41));
+					et.add(new Excel_tilte("计划下达年份及批次",1,3,42,42));
+					et.add(new Excel_tilte("已完工/已开工/未开工 ",1,3,43,43));
+					et.add(new Excel_tilte("交工证书是否上报省局",1,3,44,44));
+					et.add(new Excel_tilte("进度是否滞后/滞后原因",1,3,45,45));
+					et.add(new Excel_tilte("备注（在备注栏中应说明大中修项目、路面改建、灾毁恢复重建项目，若有二类合并安排的也需说明）",1,3,46,46));
+					
+					et.add(new Excel_tilte("序号",2,3,0,0));
+					et.add(new Excel_tilte("路线编号",2,3,1,1));
+					et.add(new Excel_tilte("原路线编号",2,3,2,2));
+					et.add(new Excel_tilte("工程项目名称",2,3,3,3));
+					et.add(new Excel_tilte("起点桩号",2,3,4,4));
+					et.add(new Excel_tilte("讫点桩号",2,3,5,5));
+					et.add(new Excel_tilte("2016年年报桩号",2,2,6,7));
+					et.add(new Excel_tilte("里程（km）",2,3,8,8));
+					et.add(new Excel_tilte("路面等级",2,3,9,9));
+					et.add(new Excel_tilte("路面宽度(M)",2,3,10,10));
+					et.add(new Excel_tilte("工程分类",2,3,11,11));
+					et.add(new Excel_tilte("技术处治方案",2,3,12,12));
+					et.add(new Excel_tilte("计划下达文号",2,3,13,13));
+					et.add(new Excel_tilte("下达计划",2,3,14,16));
+					et.add(new Excel_tilte("2017年目标任务（公里）",2,3,17,17));
+					et.add(new Excel_tilte("所在地（分局）",2,3,18,18));
+					et.add(new Excel_tilte("开工时间/计划开工时间",2,3,19,19));
+					et.add(new Excel_tilte("完工时间/计划完工时间",2,3,20,20));
+					et.add(new Excel_tilte("本月完成",2,2,21,27));
+					et.add(new Excel_tilte("本年完成",2,2,28,34));
+					et.add(new Excel_tilte("至本月累计完成",2,2,35,41));
+					
+					et.add(new Excel_tilte("起点桩号",3,3,6,7));
+					et.add(new Excel_tilte("讫点桩号",3,3,1,1));
+					et.add(new Excel_tilte("总投资（万元）",3,3,14,14));
+					et.add(new Excel_tilte("其中：1、中央车购税资金（万元）",3,3,15,15));
+					et.add(new Excel_tilte("其中：2、省级补助资金（万元）",3,3,16,16));
+					
+					et.add(new Excel_tilte("里程（km）",3,3,21,21));
+					et.add(new Excel_tilte("完成总投资（万元）",3,3,22,22));
+					et.add(new Excel_tilte("完成省级以上补助资金（万元）",3,3,23,23));
+					et.add(new Excel_tilte("省级以上补助完成比例（%）",3,3,24,24));
+					et.add(new Excel_tilte("中央车购税到位（万元）",3,3,25,25));
+					et.add(new Excel_tilte("省级补助资金到位（万元）",3,3,26,26));
+					et.add(new Excel_tilte("地方自筹资金到位（万元）",3,3,27,27));
+					et.add(new Excel_tilte("里程（km）",3,3,28,28));
+					et.add(new Excel_tilte("完成总投资（万元）",3,3,29,29));
+					et.add(new Excel_tilte("完成省级以上补助资金（万元）",3,3,30,30));
+					et.add(new Excel_tilte("省级以上补助完成比例（%）",3,3,31,31));
+					et.add(new Excel_tilte("中央车购税到位（万元）",3,3,32,32));
+					et.add(new Excel_tilte("省级补助资金到位（万元）",3,3,33,33));
+					et.add(new Excel_tilte("地方自筹资金到位（万元）",3,3,34,34));
+					et.add(new Excel_tilte("里程（km）",3,3,35,35));
+					et.add(new Excel_tilte("完成总投资（万元）",3,3,36,36));
+					et.add(new Excel_tilte("完成省级以上补助资金（万元）",3,3,37,37));
+					et.add(new Excel_tilte("省级以上补助完成比例（%）",3,3,38,38));
+					et.add(new Excel_tilte("中央车购税到位（万元）",3,3,39,39));
+					et.add(new Excel_tilte("省级补助资金到位（万元）",3,3,40,40));
+					et.add(new Excel_tilte("地方自筹资金到位（万元）",3,3,41,41));
+					
+					eldata.setEt(et);//将表头内容设置到类里面
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					Excel_export.excel_exportyhgc(eldata,response);
+				
+			}else{
+				String shijian="";
+				if(Integer.parseInt(yf)<=9){
+					shijian=nf+"-0"+yf;
+				}else{
+					shijian=nf+"-"+yf;
+				}
+				gcglabgc.setSbyf(shijian);
+				String tiaojian2="";
+				String xzqhdm = "";
+				String gydwdm = "";
+				if("1".equals(flag)){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+					xzqhdm=(String) session.getAttribute("xzqhbb");	
+				}else{
+				xzqhdm	= xzqh;
+				}
+				
+				if(xzqhdm.indexOf(",")==-1){
+					tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
+				}else{
+					tiaojian2=getcxtj("xzqhdm",xzqhdm);
+					//tiaojian2="and xzqh in ("+xzqhdm+")";
+				}
+				gcglabgc.setXzqhdm(tiaojian2);
+				gcglabgc.setXmnf(nf);
+				//查总合list
+				//getcxtj
+				gcglabgc.setJhnd(getcxtj("xd.xdnf",gcglabgc.getJhnd()));
+				gcglabgc.setXmlx(getcxtj("jh.xmlx",gcglabgc.getXmlx()));
+				
+				List<Excel_list> list1=gcybbServer.getYhgc(gcglabgc);
+				
+				JsonUtils.write(list1, getresponse().getWriter());
+	           }                                                     
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
 }

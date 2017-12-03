@@ -82,7 +82,6 @@
 			if($('#lxbm').val()!=""){
 				lx.lxbm=$('#lxbm').val();
 			}
-			
 			if($('#ddlSHZT').combo("getValue")!="" && $('#ddlSHZT').combo("getValue")!='全部'){
 				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
 				var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
@@ -123,7 +122,7 @@
 			$('#grid').datagrid('resize'); 
 		});
 	</script>
-					<style type="text/css">
+<style type="text/css">
 TD {
 font-size: 12px;
 }

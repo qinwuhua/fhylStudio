@@ -59,10 +59,16 @@
 		});
 		function searchZhfz(){
 			var jh={jhnf:'',sbzt:'',spzt:'',sfylsjl:$('#sfylsjl').combo("getValue")};
-			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:'',lxjsdj:'',lxbm:'',
+			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:'',lxbh:'',ylxbm:'',lxjsdj:'',lxbm:'',
 					xmklx:$("#xmklx").combobox('getValue'),tsdq:''};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
+			}
+			if($('#lxbh').val()!=""){
+				lx.lxbh=$('#lxbh').val();
+			}
+			if($('#ylxbm').val()!=""){
+				lx.ylxbm=$('#ylxbm').val();
 			}
 			if($('#sbnf').combobox('getText')!=""){
 				jh.jhnf=$('#sbnf').combobox('getValues').join(',');
@@ -136,9 +142,9 @@ text-decoration:none;
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
         						<td align="right">管养单位：</td>
-        						<td colspan="3" ><select id="gydw" style="width:215px;"></select></td>
+        						<td colspan="3" ><select id="gydw" style="width:226px;"></select></td>
         						<td align="right">行政区划：</td>
-        						<td colspan="3" ><select id="xzqh" style="width:214px;"></select></td>
+        						<td colspan="3" ><select id="xzqh" style="width:247px;"></select></td>
         						<td align="right">项目状态：</td>
         						<td><select name="ddlXMtype" id="ddlXMtype" style="width:104px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
@@ -163,7 +169,7 @@ text-decoration:none;
 								<td align="right">特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" style="width:75px;" class="easyui-combobox"></select></td>
 								<td align="right">技术等级：</td>
-								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:55px;" class="easyui-combobox"></select></td>
+								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:78px;" class="easyui-combobox"></select></td>
 								<td align="right">原行政等级：</td>
 								<td><select name="ddlGldj" id="ddlGldj" style="width:104px;" class="easyui-combobox"></select></td>
 								
@@ -175,7 +181,7 @@ text-decoration:none;
 									<option value="无">否</option>
 									<option value="是">是</option>
 								</select></td>
-								<td align="right">路线名称：</td>
+								<td align="right">规划路线名称：</td>
         						<td><input name="txtRoad" type="text" id="txtRoad" style="width:75px;" /></td>
                               <td align="right"> 项目库类型：</td>
 									<td>	
@@ -183,9 +189,14 @@ text-decoration:none;
 												<option value="" selected>请选择</option>
 												<option value="部库">部库</option>
 												<option value="省库">省库</option>
-											</select></td>
-											</tr>
-											<tr>
+											</select>
+                                   </td>
+								<td align="right">规划路线编码：</td>
+        						<td><input name="lxbh" type="text" id="lxbh" style="width:75px;" /></td>
+        						<td align="right">原路线编码：</td>
+        						<td><input name="ylxbm" type="text" id="ylxbm" style="width:101px;" /></td>		
+							</tr>
+							<tr>
                               <td colspan="10">
         								<img onclick="searchZhfz()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 										<img onclick="exportModule('Plan_Disaster')" alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

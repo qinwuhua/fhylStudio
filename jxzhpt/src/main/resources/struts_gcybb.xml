@@ -7,6 +7,10 @@
 	<action name="getGsgxsjgzjdzd" class="gcybbController" method="getGsgxsjgzjdzd"/>
 	<action name="getGsgxsjgzjd" class="gcybbController" method="getGsgxsjgzjd"/>
 	<action name="getJhzxqkb" class="gcybbController" method="getJhzxqkb"/>
+	<action name="getYhdzxwcb" class="gcybbController" method="getYhdzxwcb"/>
+	<action name="getLmgzwcb" class="gcybbController" method="getLmgzwcb"/>
+	<action name="getZhhfwcb" class="gcybbController" method="getZhhfwcb"/>
+	<action name="getYhgc" class="gcybbController" method="getYhgc"/>
 	
 	
 	
@@ -19,6 +23,8 @@
 	<action name="getLwgzAbgcybb" class="gcybbController" method="getLwgzAbgcybb"/>
     <action name="getLwgzWqgzybb" class="gcybbController" method="getLwgzWqgzybb"/>
 	<action name="getLwgzZhfzybb" class="gcybbController" method="getLwgzZhfzybb"/>
+	<action name="getLwgzHzb" class="gcybbController" method="getLwgzHzb"/>
+	
 
 	<action name="getAbgcybb" class="gcybbController" method="getAbgcybb"/>
 	<action name="exportAbgcyb" class="gcybbController" method="exportAbgcyb"/>
