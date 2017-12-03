@@ -239,6 +239,7 @@
 				+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+'&jhsh.jsjsdj='+$("#jsjsdj").combobox("getValues").join(",")
 				+'&jhsh.xmnf='+xmnf+'&jhsh.xmklx='+$('#xmklx').combobox('getValue')+'&jhsh.xmbm='+$('#xmbm').val()+'&jhsh.zydpx='+$('#zydpx').combobox('getValue')
 				+'&jhsh.sbzt='+$('#sbzt').combobox('getValue'); 
+			alert(param);
 			window.location.href="/jxzhpt/qqgl/queryGsdgz_dcexcelsb.do?"+param;
 		}
 		$(window).resize(function () { 

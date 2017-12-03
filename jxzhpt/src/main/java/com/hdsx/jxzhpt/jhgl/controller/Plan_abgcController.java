@@ -8,6 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -394,6 +396,12 @@ public class Plan_abgcController extends BaseActionSupport{
 						lx.setLxjsdj(tsdq);
 					}
 			}
+			
+		try {
+			lx.setYlxmc(URLDecoder.decode(lx.getYlxmc(), "UTF-8"));
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
 		
 		List<Excel_list> list = new ArrayList<Excel_list>();
 		ExportExcel_new ee = new ExportExcel_new();
@@ -485,8 +493,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	 * 查询安保工程的列表信息
 	 */
 	public void queryAbgcList(){
-		try {
-			
+		try {			
 			System.out.println(lx.getGydwdm()+"    "+lx.getGydwbm());
 			jh.setJhxdwh(getTiaoJian(jh.getJhxdwh(),"xd.jhxdwh"));
 			if(lx.getGydwbm()!=null){

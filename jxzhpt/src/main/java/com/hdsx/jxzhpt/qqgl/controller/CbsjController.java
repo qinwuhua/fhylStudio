@@ -1009,9 +1009,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				excelData = cbsjServer.queryLmsjExcel(cbsj);
 				
 				ExcelData eldata=new ExcelData();//创建一个类
-				eldata.setTitleName("改建工程项目初步设计");//设置第一行 
-				eldata.setSheetName("改建工程项目初步设计");//设置sheeet名
-				eldata.setFileName("改建工程项目初步设计");//设置文件名
+				eldata.setTitleName("改建工程项目");//设置第一行 
+				eldata.setSheetName("工程初步设计");//设置sheeet名
+				eldata.setFileName("改建工程项目初步设计或施工图设计");//设置文件名
 				eldata.setEl(excelData);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				et.add(new Excel_tilte("序号",1,1,0,0));
@@ -1101,9 +1101,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				excelData = cbsjServer.querygsdExcel(cbsj);
 				
 				ExcelData eldata=new ExcelData();//创建一个类
-				eldata.setTitleName("国省道改造初步设计");//设置第一行 
-				eldata.setSheetName("国省道改造初步设计");//设置sheeet名
-				eldata.setFileName("国省道改造初步设计");//设置文件名
+				eldata.setTitleName("国省道改造");//设置第一行 
+				eldata.setSheetName("工程初步设计");//设置sheeet名
+				eldata.setFileName("国省道改造初步设计或施工图设计");//设置文件名
 				eldata.setEl(excelData);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				et.add(new Excel_tilte("序号",1,1,0,0));
@@ -1171,9 +1171,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			}else if(cbsj.getXmlx()==2){
 				excelData = cbsjServer.queryLmgzExcel(cbsj);
 				ExcelData eldata=new ExcelData();//创建一个类
-				eldata.setTitleName("路面改造初步设计");//设置第一行 
-				eldata.setSheetName("路面改造初步设计");//设置sheeet名
-				eldata.setFileName("路面改造初步设计");//设置文件名
+				eldata.setTitleName("路面改造工程");//设置第一行 
+				eldata.setSheetName("工程初步设计");//设置sheeet名
+				eldata.setFileName("路面改造初步设计或施工图设计");//设置文件名
 				eldata.setEl(excelData);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				et.add(new Excel_tilte("序号",1,1,0,0));
@@ -1242,9 +1242,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				excelData = cbsjServer.queryXjExcel(cbsj);
 				
 				ExcelData eldata=new ExcelData();//创建一个类
-				eldata.setTitleName("新建工程初步设计");//设置第一行 
-				eldata.setSheetName("新建工程初步设计");//设置sheeet名
-				eldata.setFileName("新建工程初步设计");//设置文件名
+				eldata.setTitleName("新建工程");//设置第一行 
+				eldata.setSheetName("工程初步设计");//设置sheeet名
+				eldata.setFileName("新建初步设计或施工图设计");//设置文件名
 				eldata.setEl(excelData);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				et.add(new Excel_tilte("序号",1,1,0,0));
@@ -1335,9 +1335,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				excelData = cbsjServer.queryYhdzxExcel(cbsj);
 				
 				ExcelData eldata=new ExcelData();//创建一个类
-				eldata.setTitleName("养护大中修施工图设计");//设置第一行 
-				eldata.setSheetName("养护大中修施工图设计");//设置sheeet名
-				eldata.setFileName("养护大中修施工图设计");//设置文件名
+				eldata.setTitleName("养护大中修");//设置第一行 
+				eldata.setSheetName("工程初步设计");//设置sheeet名
+				eldata.setFileName("养护大中修初步设计或施工图设计");//设置文件名
 				eldata.setEl(excelData);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				et.add(new Excel_tilte("序号",1,1,0,0));
@@ -1386,9 +1386,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				excelData = cbsjServer.queryShExcel(cbsj);
 				
 				ExcelData eldata=new ExcelData();//创建一个类
-				eldata.setTitleName("灾毁重建施工图设计");//设置第一行 
-				eldata.setSheetName("灾毁重建施工图设计");//设置sheeet名
-				eldata.setFileName("灾毁重建施工图设计");//设置文件名
+				eldata.setTitleName("灾毁重建");//设置第一行 
+				eldata.setSheetName("工程初步设计");//设置sheeet名
+				eldata.setFileName("灾毁重建初步设计或施工图设计");//设置文件名
 				eldata.setEl(excelData);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				et.add(new Excel_tilte("序号",1,1,0,0));
