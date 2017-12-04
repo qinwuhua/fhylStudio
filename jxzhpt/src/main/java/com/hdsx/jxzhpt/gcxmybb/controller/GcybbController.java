@@ -5096,16 +5096,17 @@ public class GcybbController extends BaseActionSupport{
 				}
 
 				if(xzqhdm.indexOf(",")==-1){
-					tiaojian2="and decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh) like '%"+xzqhdm+"%'";
+					tiaojian2="and t3.xzqhdm like '%"+xzqhdm+"%'";
 				}else{
-					tiaojian2=getcxtj("decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh)",xzqhdm);
+					tiaojian2=getcxtj("t3.xzqhdm",xzqhdm);
 					//tiaojian2="and xzqh in ("+xzqhdm+")";  
 				}
 				gcglabgc.setXzqhdm(tiaojian2);
 				gcglabgc.setXmnf(nf);
+				gcglabgc.setYf(yf);
 				//查总合list
 				//getcxtj
-				gcglabgc.setJhnd(getcxtj("xd.jhnf",gcglabgc.getJhnd()));
+				gcglabgc.setJhnd(getcxtj("xd.xdnf",gcglabgc.getJhnd()));
 				List<Excel_list> eL=gcybbServer.getLwgzHzb(gcglabgc);
 				ExcelData eldata=new ExcelData();//创建一个类
 				eldata.setTitleName("公路路网结构改造工程统计汇总表");//设置第一行 
@@ -5135,9 +5136,9 @@ public class GcybbController extends BaseActionSupport{
 				et.add(new Excel_tilte("累计完成总投资（万元）",3,3,10,10));
 				et.add(new Excel_tilte("已开工（座）",3,3,11,11));
 				et.add(new Excel_tilte("未开工（座）",3,3,12,12));
-				et.add(new Excel_tilte(nf+"年完成（座）",3,3,13,13));
-				et.add(new Excel_tilte(nf+"年完成延米（米）",3,3,14,14));
-				et.add(new Excel_tilte(nf+"年完成总投资（万元）",3,3,15,15));
+				et.add(new Excel_tilte(nf+"年"+yf+"月完成（座）",3,3,13,13));
+				et.add(new Excel_tilte(nf+"年"+yf+"月完成延米（米）",3,3,14,14));
+				et.add(new Excel_tilte(nf+"年"+yf+"月完成总投资（万元）",3,3,15,15));
 				et.add(new Excel_tilte("完成比例",3,3,16,16));
 				et.add(new Excel_tilte("计划（公里）",3,3,17,17));
 				et.add(new Excel_tilte("总投资（万元）",3,3,18,18));
@@ -5153,9 +5154,9 @@ public class GcybbController extends BaseActionSupport{
 				et.add(new Excel_tilte("完成省级以上补助资金（万元）",3,3,28,28));
 				et.add(new Excel_tilte("其中国省道完成补助资金投资（万元）",3,3,29,29));
 				et.add(new Excel_tilte("其中县乡道完成补助资金投资（万元）",3,3,30,30));
-				et.add(new Excel_tilte(nf+"年完成（公里）",3,3,31,31));
-				et.add(new Excel_tilte(nf+"年完成总投资（万元）",3,3,32,32));
-				et.add(new Excel_tilte(nf+"年完成省级以上补助资金（万元）",3,3,33,33));
+				et.add(new Excel_tilte(nf+"年"+yf+"月完成（公里）",3,3,31,31));
+				et.add(new Excel_tilte(nf+"年"+yf+"月完成总投资（万元）",3,3,32,32));
+				et.add(new Excel_tilte(nf+"年"+yf+"月完成省级以上补助资金（万元）",3,3,33,33));
 				et.add(new Excel_tilte("完成比例",3,3,34,34));
 				et.add(new Excel_tilte("计划（公里）",3,3,35,35));
 				et.add(new Excel_tilte("总投资（万元）",3,3,36,36));
@@ -5165,9 +5166,9 @@ public class GcybbController extends BaseActionSupport{
 				et.add(new Excel_tilte("完成（公里）",3,3,40,40));
 				et.add(new Excel_tilte("完成总投资",3,3,41,41));
 				et.add(new Excel_tilte("完成省级以上补助资金（万元）",3,3,42,42));
-				et.add(new Excel_tilte(nf+"年完成（公里）",3,3,43,43));
-				et.add(new Excel_tilte(nf+"年完成总投资（万元）",3,3,44,44));
-				et.add(new Excel_tilte(nf+"年完成省级以上补助资金（万元）",3,3,45,45));
+				et.add(new Excel_tilte(nf+"年"+yf+"月完成（公里）",3,3,43,43));
+				et.add(new Excel_tilte(nf+"年"+yf+"月完成总投资（万元）",3,3,44,44));
+				et.add(new Excel_tilte(nf+"年"+yf+"月完成省级以上补助资金（万元）",3,3,45,45));
 				et.add(new Excel_tilte("完成比例",3,3,46,46));
 				
 				eldata.setEt(et);//将表头内容设置到类里面
@@ -5194,16 +5195,17 @@ public class GcybbController extends BaseActionSupport{
 			}
 			
 			if(xzqhdm.indexOf(",")==-1){
-				tiaojian2="and decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh) like '%"+xzqhdm+"%'";
+				tiaojian2="and t3.xzqhdm like '%"+xzqhdm+"%'";
 			}else{
-				tiaojian2=getcxtj("decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh)",xzqhdm);
+				tiaojian2=getcxtj("t3.xzqhdm",xzqhdm);
 				//tiaojian2="and xzqh in ("+xzqhdm+")";
 			}
 			gcglabgc.setXzqhdm(tiaojian2);
 			gcglabgc.setXmnf(nf);
+			gcglabgc.setYf(yf);
 			//查总合list
 			//getcxtj
-			gcglabgc.setJhnd(getcxtj("xd.jhnf",gcglabgc.getJhnd()));
+			gcglabgc.setJhnd(getcxtj("xd.xdnf",gcglabgc.getJhnd()));
 			List<Excel_list> list1=gcybbServer.getLwgzHzb(gcglabgc);
 			
 			JsonUtils.write(list1, getresponse().getWriter());
