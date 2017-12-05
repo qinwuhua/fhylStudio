@@ -361,7 +361,9 @@
 	</select>
 	<select id="selectSjgzshList" parameterType="lxsh" resultType="lxsh">
 		select * from (select rownum num ,xmklx,t.id,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.xmmc,t.thyy,
-		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,sl.zlc jszlc,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx  from LXSH_SJGZ t left join
+		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,sl.zlc jszlc,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx,
+		(select fn_ReturnFllx(sum(lmd.mqi)/count(*)) mqidj from lkpd_mxb_data_2014 lmd where lmd.lxbh in (lx.ghlxbm) and to_number(lmd.qdzh) &gt;= to_number(lx.ghqdzh)and to_number(lmd.zdzh) &lt;= to_number(lx.ghzdzh)) mqidj
+		  from LXSH_SJGZ t left join
 		(select xmid,lxbm,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,decode(substr(xmid,11,1),'3',xjlxbm,ghlxbm) ghlxbm,ghlxmc,decode(substr(xmid,11,1),'3',xjqdzh,ghqdzh) ghqdzh,decode(substr(xmid,11,1),'3',xjzdzh,ghzdzh) ghzdzh,gxlxbm,gxqdzh,gxzdzh 
 		from lxsh_lx where jdbs='0' and sffirst='1'
 			<if test="ghlxmc!='' and ghlxmc!= null ">and ghlxmc=#{ghlxmc}</if>
@@ -450,8 +452,10 @@
 	<select id="selectLmgzshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
 		select rownum num ,xmklx,t.id,t.xmmc,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,t.thyy,
-		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,lxs.lc,sl.xmsl,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx,sl.zlc jszlc from LXSH_LMGZ t left join 
-		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
+		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,lxs.lc,sl.xmsl,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx,sl.zlc jszlc,
+		(select fn_ReturnFllx(sum(lmd.mqi)/count(*)) mqidj from lkpd_mxb_data_2014 lmd where lmd.lxbh in (lx.ghlxbm) and to_number(lmd.qdzh) &gt;= to_number(lx.ghqdzh)and to_number(lmd.zdzh) &lt;= to_number(lx.ghzdzh)) mqidj
+		 from LXSH_LMGZ t 
+		 left join (select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
 		jhdwlc,jhwllc,decode(substr(xmid,11,1),'3',xjlxbm,ghlxbm) ghlxbm,ghlxmc,decode(substr(xmid,11,1),'3',xjqdzh,ghqdzh) ghqdzh,decode(substr(xmid,11,1),'3',xjzdzh,ghzdzh) ghzdzh,gxlxbm,gxqdzh,gxzdzh from lxsh_lx where jdbs='0' and sffirst='1'
 		<if test="ghlxmc!='' and ghlxmc!= null ">and ghlxmc=#{ghlxmc}</if>
 		) lx on t.xmbm=lx.xmid 
@@ -541,8 +545,10 @@
 	<select id="selectXjshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
 		select rownum num ,xmklx,t.id,t.xmmc,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,sl.xmsl sl,sl.zlc jszlc,(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) xjlc,t.thyy,
-		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx from LXSH_XJ t left join 
-		(select xmid,lxbm,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,decode(substr(xmid,11,1),'3',xjlxbm,ghlxbm) ghlxbm,ghlxmc,decode(substr(xmid,11,1),'3',xjqdzh,ghqdzh) ghqdzh,decode(substr(xmid,11,1),'3',xjzdzh,ghzdzh) ghzdzh,gxlxbm,gxqdzh,gxzdzh  from lxsh_lx where jdbs='0' and sffirst='1'
+		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx,
+		(select fn_ReturnFllx(sum(lmd.mqi)/count(*)) mqidj from lkpd_mxb_data_2014 lmd where lmd.lxbh in (lx.ghlxbm) and to_number(lmd.qdzh) &gt;= to_number(lx.ghqdzh)and to_number(lmd.zdzh) &lt;= to_number(lx.ghzdzh)) mqidj
+		 from LXSH_XJ t 
+		 left join (select xmid,lxbm,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,decode(substr(xmid,11,1),'3',xjlxbm,ghlxbm) ghlxbm,ghlxmc,decode(substr(xmid,11,1),'3',xjqdzh,ghqdzh) ghqdzh,decode(substr(xmid,11,1),'3',xjzdzh,ghzdzh) ghzdzh,gxlxbm,gxqdzh,gxzdzh  from lxsh_lx where jdbs='0' and sffirst='1'
 		) lx on t.xmbm=lx.xmid
 		left join ( select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='0' group by xmid) sl on t.xmbm=sl.xmid
 		where 1=1 <if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
@@ -1906,7 +1912,9 @@ select rownum v_0,t.xmbm v_1,t.xmmc v_2,t1.xzqh v_3,
 	
 	<select id="selectgsdgzList" parameterType="lxsh" resultType="lxsh">
 		select * from (select rownum num ,xmklx,t.id,t.xmbm,to_char(sbzt) sbzt1,t.xmnf,t.xzqhdm,t.xmmc,t.shzt,t.jhkgn,t.jhwgn,t.jsxz,
-		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,sl.zlc jszlc  from lxgsdgz t left join
+		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,sl.zlc jszlc,
+		(select fn_ReturnFllx(sum(lmd.mqi)/count(*)) mqidj from lkpd_mxb_data_2014 lmd where lmd.lxbh in (lx.ghlxbm) and to_number(lmd.qdzh) &gt;= to_number(lx.ghqdzh)and to_number(lmd.zdzh) &lt;= to_number(lx.ghzdzh)) mqidj
+		from lxgsdgz t left join
 		(select xmid,lxbm,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,decode(substr(xmid,11,1),'3',xjlxbm,ghlxbm) ghlxbm,ghlxmc,decode(substr(xmid,11,1),'3',xjqdzh,ghqdzh) ghqdzh,decode(substr(xmid,11,1),'3',xjzdzh,ghzdzh) ghzdzh,gxlxbm,gxqdzh,gxzdzh 
 		from lxsh_lx where jdbs='0' and sffirst='1' 
 		) lx on t.xmbm=lx.xmid

@@ -32,7 +32,10 @@
 		<result property="jhyhlc" column="jhyhlc"/>
 		<result property="jhzlc" column="jhzlc"/>
 		<result property="thlxbm" column="thlxbm"/>
-	    <result property="shengbz" column="shengbz"/>	
+	    <result property="shengbz" column="shengbz"/>
+	    <result property="scyhlc" column="scyhlc"/>
+	    <result property="ylxbm" column="ylxbm"/>
+		<result property="ylxmc" column="ylxmc"/>
 		<association property="jckabgc"  resultMap="abgc_lx">
 		</association>
 	</resultMap>
@@ -100,8 +103,14 @@
 				 	<if test="lx.lxmc!=null and lx.lxmc!=''">
 				 		and lx.lxmc like '%'||#{lx.lxmc}||'%'
 				 	</if>
+				 	<if test="lx.ylxmc!=null and lx.ylxmc!=''">
+				 		and lx.ylxmc like '%'||#{lx.ylxmc}||'%'
+				 	</if>
 				 	<if test="lx.lxbm!=null and lx.lxbm!=''">
 				 		and lx.lxbm like '%'||#{lx.lxbm}||'%'
+				 	</if>
+				 	<if test="lx.ylxbm!=null and lx.ylxbm!=''">
+				 		and lx.ylxbm like '%'||#{lx.ylxbm}||'%'
 				 	</if>
 				 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 				 		${lx.lxjsdj}
@@ -550,8 +559,14 @@
 	 	<if test="lx.lxmc!=null and lx.lxmc!=''">
 	 		and lx.lxmc like '%'||#{lx.lxmc}||'%'
 	 	</if>
+	 	<if test="lx.ylxmc!=null and lx.ylxmc!=''">
+	 		and lx.ylxmc like '%'||#{lx.ylxmc}||'%'
+	 	</if>
 	 	<if test="lx.lxbm!=null and lx.lxbm!=''">
 	 		and lx.lxbm like '%'||#{lx.lxbm}||'%'
+	 	</if>
+	 	<if test="lx.ylxbm!=null and lx.ylxbm!=''">
+	 		and lx.ylxbm like '%'||#{lx.ylxbm}||'%'
 	 	</if>
 	 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 	 		${lx.lxjsdj}
@@ -563,8 +578,8 @@
 	 		${lx.gldj}
 	 	</if>
 	 	<if test="lx.xmklx != null and lx.xmklx != ''">
-	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
-	 				</if>
+	 		and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 	</if>
 	</select>
 	<select id="queryAbgcById"  parameterType="string"  resultType="plan_abgc">
 		<!-- select * from Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where jh.id=#{id} -->
@@ -662,8 +677,14 @@
 	 	<if test="lx.lxmc!=null and lx.lxmc!=''">
 	 		and lx.lxmc like '%'||#{lx.lxmc}||'%'
 	 	</if>
+	   	<if test="lx.ylxmc!=null and lx.ylxmc!=''">
+	 		and lx.ylxmc like '%'||#{lx.ylxmc}||'%'
+	 	</if>
 	 	<if test="lx.lxbm!=null and lx.lxbm!=''">
 	 		and lx.lxbm like '%'||#{lx.lxbm}||'%'
+	 	</if>
+	 	<if test="lx.ylxbm!=null and lx.ylxbm!=''">
+	 		and lx.ylxbm like '%'||#{lx.ylxbm}||'%'
 	 	</if>
 	 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 	 		${lx.lxjsdj}
@@ -892,6 +913,12 @@
 				 	</if>
 				 	<if test="lx.lxbm!=null and lx.lxbm!=''">
 				 		and lx.lxbm like '%'||#{lx.lxbm}||'%'
+				 	</if>
+				 	<if test="lx.ylxmc!=null and lx.ylxmc!=''">
+				 		and lx.ylxmc like '%'||#{lx.ylxmc}||'%'
+				 	</if>
+				 	<if test="lx.ylxbm!=null and lx.ylxbm!=''">
+				 		and lx.ylxbm like '%'||#{lx.ylxbm}||'%'
 				 	</if>
 				 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 				 		${lx.lxjsdj}
@@ -1432,8 +1459,14 @@
 				 	<if test="lx.lxmc!=null and lx.lxmc!=''">
 				 		and lx.lxmc like '%'||#{lx.lxmc}||'%'
 				 	</if>
+				 	<if test="lx.ylxmc!=null and lx.ylxmc!=''">
+				 		and lx.ylxmc like '%'||#{lx.ylxmc}||'%'
+				 	</if>
 				 	<if test="lx.lxbm!=null and lx.lxbm!=''">
 				 		and lx.lxbm like '%'||#{lx.lxbm}||'%'
+				 	</if>
+				 	<if test="lx.ylxbm!=null and lx.ylxbm!=''">
+				 		and lx.ylxbm like '%'||#{lx.ylxbm}||'%'
 				 	</if>
 				 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 				 		${lx.lxjsdj}

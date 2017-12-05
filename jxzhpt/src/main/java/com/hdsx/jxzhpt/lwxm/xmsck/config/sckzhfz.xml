@@ -127,7 +127,7 @@
  
   <select id="selectSckShzhfz" parameterType="sckzhfz" resultType="sckzhfz">
  	select * from (
- 		select rownum num ,t.* from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id where 1=1
+ 		select rownum num ,t.*,(select fn_ReturnFllx(sum(lmd.mqi)/count(*)) mqidj from lkpd_mxb_data_2014 lmd where lmd.lxbh in (lxbm) and to_number(lmd.qdzh)&gt;= to_number(t.scqdzh)and to_number(lmd.zdzh) &lt;= to_number(t.sczdzh)) mqidj from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id where 1=1
  				<if test="tsdq!='' and tsdq!= null ">
  				${tsdq}
  				</if><if test="xmklx !='' and xmklx != null ">

@@ -82,7 +82,14 @@ public class Jckabgc implements Serializable{
 	private String ylxmc;//原路线名称
 	private String yqdzh;//原起点桩号
 	private String yzdzh;//原止点桩号
+	private String scyhlc;
 
+	public String getScyhlc() {
+		return scyhlc;
+	}
+	public void setScyhlc(String scyhlc) {
+		this.scyhlc = scyhlc;
+	}
 	public String getYlxmc() {
 		return ylxmc;
 	}

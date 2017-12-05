@@ -281,8 +281,23 @@ public class Plan_abgc {
 	    private String xmlx;
 	    private String thlxbm;
 	    
-	    private String shengbz;	    
+	    private String shengbz;
 	    
+	    private String ylxbm;
+	    private String ylxmc;
+ 
+	public String getYlxbm() {
+			return ylxbm;
+		}
+		public void setYlxbm(String ylxbm) {
+			this.ylxbm = ylxbm;
+		}
+		public String getYlxmc() {
+			return ylxmc;
+		}
+		public void setYlxmc(String ylxmc) {
+			this.ylxmc = ylxmc;
+		}
 	public String getShengbz() {
 			return shengbz;
 		}

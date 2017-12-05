@@ -72,15 +72,22 @@
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
 			var jh={xmlx:'ab',jhnf:xmnf,sbzt:null,spzt:null,jh_sbthcd:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
-			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:jsdj,lxbm:null,gldj:gldj,tsdq:tsdq,xmklx:$("#xmklx").combobox('getValue')};
+			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:jsdj,lxbm:null,ylxbm:null,ylxmc:null,gldj:gldj,tsdq:tsdq,xmklx:$("#xmklx").combobox('getValue')};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
 			if($('#lxbm').val()!=""){
 				lx.lxbm=$('#lxbm').val();
+			}			
+			if($('#ylxbm').val()!=""){
+				lx.ylxbm=$('#ylxbm').val();
+			}
+			if($('#ylxmc').val()!=""){
+				lx.ylxmc=$('#ylxmc').val();
 			}
 			if($('#ddlSHZT').combo("getValue")!="" && $('#ddlSHZT').combo("getValue")!='全部'){
 				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
@@ -151,7 +158,7 @@ text-decoration:none;
 	        						<td align="right">行政区划：</td>
 	        						<td colspan="3" ><select id="xzqh" style="width:205px;"></select></td>
 								
-	        						<td align="right">路线名称：</td>
+	        						<td align="right">规划路线名称：</td>
 	        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:80px;" /></td>
 	        						
 	        					</tr>
@@ -181,7 +188,7 @@ text-decoration:none;
 										<option value="无">否</option>
 										<option value="是">是</option>
 									</select></td>
-									<td align="right">路线编码：</td>
+									<td align="right">规划路线编码：</td>
 	        						<td><input name="txtRoad" type="text" id="lxbm" style="width:53px;" /></td>
 	                              	<td align="right"> 项目库类型：</td>
 									<td>	
@@ -189,8 +196,16 @@ text-decoration:none;
 												<option value="" selected>请选择</option>
 												<option value="部库">部库</option>
 												<option value="省库">省库</option>
-											</select></td>
-											</tr><tr>
+											</select>
+									</td>
+									<td align="right">原路线编码：</td>
+	        						<td><input name="ylxbm" type="text" id="ylxbm" style="width:53px;" />
+	        						</td>
+									<td align="right">原路线名称：</td>
+	        						<td><input name="ylxmc" type="text" id="ylxmc" style="width:80px;" />
+	        						</td>
+							</tr>
+						<tr>
 	                              	<td colspan="10">
 	        						<img onclick="searchAbgc()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 									<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Security')"/>
@@ -211,7 +226,7 @@ text-decoration:none;
         			总里程共【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
         			隐患里程共【&nbsp;<span id="lblYHLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
         			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
-        			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			其中车购税【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
         		</td>
         	</tr>

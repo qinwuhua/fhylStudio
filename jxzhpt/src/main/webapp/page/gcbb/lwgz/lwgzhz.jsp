@@ -32,7 +32,7 @@
 	</style>
 	<script type="text/javascript">
 	$(function(){
-		//setjhxdnf1("jhnd");
+		setjhxdnf1("jhnd");
 		loadDist1("xzqh",$.cookie("dist"));
 		var myDate = new Date();
 		var y = myDate.getFullYear();
@@ -126,9 +126,9 @@
 			xzqhstr= xzqhdm.join(',');
 		}
 		
-/* 		var data="flag=1&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr
-		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(','); */
-		var data="flag=1&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr;
+ 		var data="flag=1&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr
+		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(','); 
+		//var data="flag=1&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr;
 		loadjzt();
 		 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{xzqh:xzqhstr},function(){
 			window.location.href='/jxzhpt/gcybb/getLwgzHzb.do?'+data;
@@ -155,9 +155,9 @@
 		
 		
 		
-/* 		var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr
-		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(','); */
-		var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr;
+ 		var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr
+		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(','); 
+		//var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr;
 		//alert(data);
 		var tbody = $("#abgclist");
 				tbody.empty();
@@ -245,13 +245,13 @@ text-decoration:none;
         						<tr height="32">
         						<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:150px;"></select></td>
-                                <!--<td align="right">计划年度：</td>
-		        				<td><input id="jhnd" type="text"  style="width: 80px"></td> -->
-        						<td align="right">目标年份：</td>
+                                <td align="right">计划下达年份：</td>
+		        				<td><input id="jhnd" type="text"  style="width: 80px"></td>
+        						<td align="right">月报年份：</td>
 		 						<td><select name="ddlYear" id="ddlYear" style="width: 80px;">
 								</select></td>
-		 						<!-- <td align="right">截止月份：</td> -->
-		 						<td><select name="ddlMonth" id="ddlMonth" style="width: 60px; display:none;">
+		 						<td align="right">月报月份：</td>
+		 						<td><select name="ddlMonth" id="ddlMonth" style="width: 60px;">
 									<option id="yf1" value="1">01</option>
 									<option id="yf2" value="2">02</option>
 									<option id="yf3" value="3">03</option>
@@ -264,7 +264,7 @@ text-decoration:none;
 									<option id="yf10" value="10">10</option>
 									<option id="yf11" value="11">11</option>
 									<option id="yf12" value="12">12</option>
-								</select></td>
+								</select></td>							
 							</tr>
 							
         					<tr height="32">
@@ -291,7 +291,7 @@ text-decoration:none;
 								<tbody id='biaotou'>
 									<tr>
 										<td rowspan="3"  style="width: 200px;">序号</td>
-										<td rowspan="3"  style="width: 500px;">设市区公路局</td>
+										<td rowspan="3"  style="width: 600px;">设市区公路局</td>
 										<td colspan="15">危桥改造</td>
 										<td colspan="18">安防工程</td>
 										<td colspan="12">灾害防治</td>										
@@ -318,9 +318,9 @@ text-decoration:none;
 										<td style="width: 100px;">累计完成总投资（万元）</td>
 										<td style="width: 100px;">已开工（座）</td>
 										<td style="width: 100px;">未开工（座）</td>
-										<td style="width: 100px;"><span class='nian'></span>年完成（座）</td>
-										<td style="width: 100px;"><span class='nian'></span>年完成延米（米）</td>
-										<td style="width: 100px;"><span class='nian'></span>年完成总投资（万元）</td>
+										<td style="width: 100px;"><span class='nianyue1'></span>完成（座）</td>
+										<td style="width: 100px;"><span class='nianyue1'></span>完成延米（米）</td>
+										<td style="width: 100px;"><span class='nianyue1'></span>完成总投资（万元）</td>
 										<td style="width: 100px;">完成比例</td>
 										
 										
@@ -339,9 +339,9 @@ text-decoration:none;
 										<td style="width: 100px;">完成省级以上补助资金（万元）</td>
 										<td style="width: 100px;">其中国省道完成补助资金投资（万元）</td>
 										<td style="width: 100px;">其中县乡道完成补助资金投资（万元）</td>
-										<td style="width: 100px;"><span class='nian'></span>年完成（公里）</td>
-										<td style="width: 100px;"><span class='nian'></span>年完成总投资（万元）</td>
-										<td style="width: 100px;"><span class='nian'></span>年完成省级以上补助资金（万元）</td>
+										<td style="width: 100px;"><span class='nianyue1'></span>完成（公里）</td>
+										<td style="width: 100px;"><span class='nianyue1'></span>完成总投资（万元）</td>
+										<td style="width: 100px;"><span class='nianyue1'></span>完成省级以上补助资金（万元）</td>
 										<td style="width: 100px;">完成比例</td>
 
                                         <!-- 灾害防治 -->
@@ -353,9 +353,9 @@ text-decoration:none;
 		                                <td style="width: 100px;">完成（公里）</td>
 		                                <td style="width: 100px;">完成总投资（万元）</td>
 		                               	<td style="width: 100px;">完成省级以上补助资金（万元）</td>		                                
-		                                <td style="width: 100px;"><span class='nian'></span>年完成（公里）</td>
-		                                <td style="width: 100px;"><span class='nian'></span>年完成总投资（万元）</td>		                                
-		                                <td style="width: 100px;"><span class='nian'></span>年完成省级以上补助资金（万元）</td>
+		                                <td style="width: 100px;"><span class='nianyue1'></span>完成（公里）</td>
+		                                <td style="width: 100px;"><span class='nianyue1'></span>完成总投资（万元）</td>		                                
+		                                <td style="width: 100px;"><span class='nianyue1'></span>完成省级以上补助资金（万元）</td>
 		                                <td style="width: 100px;">完成比例</td>
 									</tr>									
 								</tbody>

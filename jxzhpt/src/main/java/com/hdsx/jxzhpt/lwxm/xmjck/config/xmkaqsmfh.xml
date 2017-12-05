@@ -1027,7 +1027,9 @@
 	</select>
 	<select id="selectSckaqsmfhsh" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
 		select * from (
-	 		select rownum num ,t.* from (select sc.*,xmld.tsdq,xmld.xmklx,xmld.throadname,xmld.throadcode from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT(xm.tsdq) tsdq, WMSYS.WM_CONCAT( distinct xm.xmklx) xmklx,WMSYS.WM_CONCAT(xm.throadcode) throadcode, WMSYS.WM_CONCAT(xm.roadname) throadname from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
+	 		select rownum num ,t.*,
+	 		 (select fn_ReturnFllx(sum(lmd.mqi)/count(*)) mqidj from lkpd_mxb_data_2014 lmd where lmd.lxbh in (t.lxbm) and to_number(lmd.qdzh) &gt;= to_number(t.qdzh)and to_number(lmd.zdzh) &lt;= to_number(t.zdzh)) mqidj
+	 		 from (select sc.*,xmld.tsdq,xmld.xmklx,xmld.throadname,xmld.throadcode from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT(distinct xm.tsdq) tsdq, WMSYS.WM_CONCAT( distinct xm.xmklx) xmklx,WMSYS.WM_CONCAT(xm.throadcode) throadcode, WMSYS.WM_CONCAT(xm.roadname) throadname from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
 	 			and  (to_number(sbthbmcd) &lt;=7 or shyj is not null)
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
@@ -1085,7 +1087,7 @@
 	
 		<select id="selectSckaqsmfhCount" parameterType="xmkaqsmfh" resultType="int">
 	 		select count(*) from 
-				(select sc.*,xmld.tsdq,xmld.xmklx,xmld.throadname,xmld.throadcode from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT( distinct xm.xmklx) xmklx,WMSYS.WM_CONCAT(xm.tsdq) tsdq,WMSYS.WM_CONCAT(xm.throadcode) throadcode,WMSYS.WM_CONCAT(xm.roadname) throadname from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1
+				(select sc.*,xmld.tsdq,xmld.xmklx,xmld.throadname,xmld.throadcode from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT( distinct xm.xmklx) xmklx,WMSYS.WM_CONCAT(distinct xm.tsdq) tsdq,WMSYS.WM_CONCAT(xm.throadcode) throadcode,WMSYS.WM_CONCAT(xm.roadname) throadname from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1
 	 			and  to_number(sbthbmcd) &lt;=to_number(#{sbthbmcd}) 
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
@@ -1127,7 +1129,7 @@
 	</select>
 	<select id="selectSckaqsmfhshCount" parameterType="xmkaqsmfh" resultType="int">
 	 		select count(*) from 
-				(select sc.*,xmld.tsdq,xmld.xmklx,xmld.throadname,xmld.throadcode from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT( distinct xm.xmklx) xmklx,WMSYS.WM_CONCAT(xm.tsdq) tsdq, WMSYS.WM_CONCAT(xm.throadcode) throadcode, WMSYS.WM_CONCAT(xm.roadname) throadname from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
+				(select sc.*,xmld.tsdq,xmld.xmklx,xmld.throadname,xmld.throadcode from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT( distinct xm.xmklx) xmklx,WMSYS.WM_CONCAT(distinct xm.tsdq) tsdq, WMSYS.WM_CONCAT(xm.throadcode) throadcode, WMSYS.WM_CONCAT(xm.roadname) throadname from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
 	 			and  (to_number(sbthbmcd) &lt;=7 or shyj is not null)
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
@@ -1183,7 +1185,7 @@
 	
 		<select id="loadSckaqsmfhCount" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
 	 		select count(*) sbthbmcd,decode(sum(yhlc),null,0,sum(yhlc)) yhlc,decode(sum(czzlc),null,0,sum(czzlc)) czzlc,sum(cztzgs) cztzgs,sum(nsqbbz) nsqbbz from 
-				(select sc.*,xmld.tsdq,xmld.throadname,xmld.xmklx,xmld.throadcode from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT(xm.tsdq) tsdq,WMSYS.WM_CONCAT( distinct xm.xmklx) xmklx, WMSYS.WM_CONCAT(xm.throadcode) throadcode, WMSYS.WM_CONCAT(xm.roadname) throadname from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
+				(select sc.*,xmld.tsdq,xmld.throadname,xmld.xmklx,xmld.throadcode from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT( distinct xm.tsdq) tsdq,WMSYS.WM_CONCAT( distinct xm.xmklx) xmklx, WMSYS.WM_CONCAT(xm.throadcode) throadcode, WMSYS.WM_CONCAT(xm.roadname) throadname from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
 	 			and  to_number(sbthbmcd) &lt;=to_number(#{sbthbmcd}) 
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
@@ -1227,7 +1229,7 @@
 	</select>
 	<select id="loadSckaqsmfhshCount" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
 	 		select count(*) sbthbmcd,decode(sum(yhlc),null,0,sum(yhlc)) yhlc,decode(sum(czzlc),null,0,sum(czzlc)) czzlc,sum(cztzgs) cztzgs,sum(nsqbbz) nsqbbz from 
-				(select sc.*,xmld.tsdq,xmld.throadname,xmld.xmklx, xmld.throadcode from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT( distinct xm.xmklx) xmklx,WMSYS.WM_CONCAT(xm.tsdq) tsdq, WMSYS.WM_CONCAT(xm.throadcode) throadcode, WMSYS.WM_CONCAT(xm.roadname) throadname from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
+				(select sc.*,xmld.tsdq,xmld.throadname,xmld.xmklx, xmld.throadcode from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT( distinct xm.xmklx) xmklx,WMSYS.WM_CONCAT(distinct xm.tsdq) tsdq, WMSYS.WM_CONCAT(xm.throadcode) throadcode, WMSYS.WM_CONCAT(xm.roadname) throadname from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
 	 			and  (to_number(sbthbmcd) &lt;=7 or shyj is not null)
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}

@@ -218,6 +218,7 @@
 				{field:'ylxbh',title:'原路线编码',width:60,align:'center'},
 				{field:'qdzh',title:'原起点桩号',width:80,align:'center'},
 				{field:'zdzh',title:'原止点桩号',width:80,align:'center'},
+			    {field:'mqidj',title:'MQI等级',width:60,align:'center'},				
 				{field:'jhkgsj',title:'计划开工时间',width:80,align:'center'},
 				{field:'jhwgsj',title:'计划完工时间',width:80,align:'center'},
 				//{field:'gq',title:'工期（月）',width:60,align:'center'},
@@ -321,6 +322,7 @@
 								{field:'ylxbh',title:'原路线编码',width:60,align:'center'},
 								{field:'qdzh',title:'原起点桩号',width:80,align:'center'},
 								{field:'zdzh',title:'原止点桩号',width:80,align:'center'},
+							    {field:'mqidj',title:'MQI等级',width:60,align:'center'},				
 								{field:'jhkgsj',title:'计划开工时间',width:80,align:'center'},
 								{field:'jhwgsj',title:'计划完工时间',width:80,align:'center'},
 								//{field:'gq',title:'工期（月）',width:60,align:'center'},
@@ -329,7 +331,6 @@
 								{field:'thyy',title:'退回原因',width:120,align:'center'}]];
 				
 			}
-				
 			gridBind(grid);
 		}
 		function loadLj(params){

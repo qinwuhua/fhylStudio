@@ -305,7 +305,7 @@ function exportExcel(flag,mode){
 		params="&lx.gydwbm="+getgydw("gydw")+"&lx.xzqhdm="+getxzqhdm('xzqh')+"&lx.lxmc="+$('#txtRoad').val()+
 				"&jh.jhnf="+xmnf+"&lx.lxjsdj="+jsdj+"&lx.gldj="+gldj+
 				"&lx.lxbm="+$('#lxbm').val()+"&lx.tsdq="+tsdq.replace(/\+/g,"%2B")+"&jh.jh_sbthcd="+jh.jh_sbthcd+
-				"&lx.xmklx="+$("#xmklx").combobox('getValue');
+				"&lx.xmklx="+$("#xmklx").combobox('getValue')+"&lx.ylxmc="+encodeURI(encodeURI($('#ylxmc').val()))+"&lx.ylxbm="+$('#ylxbm').val();
 		window.location.href="/jxzhpt/jhgl/exportExcel_jh_abgc.do?flag="+flag+"&"+params;
 	}
 	if(flag=='afgc'){

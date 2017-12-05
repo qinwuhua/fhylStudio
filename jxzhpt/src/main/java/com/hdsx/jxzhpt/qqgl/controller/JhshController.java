@@ -160,14 +160,17 @@ public class JhshController extends BaseActionSupport implements
 		}else {eldata.setTitleName("公路建设计划申报（国省道改造）");}
 		// 设置第一行
 		if("1".equals(jhsh.getSbzt())) {
+
 			eldata.setSheetName("公路建设计划预安排（国省道改造）");
 		}
 		else {eldata.setSheetName("公路建设计划申报（国省道改造）");}
 		// 设置sheeet名
+
 		if("1".equals(jhsh.getSbzt())) {
-			eldata.setFileName("公路建设计划预安排（国省道改造）");
-		}
-		else {eldata.setFileName("公路建设计划申报（国省道改造）");}
+
+		eldata.setFileName("国省道改造计划预安排（国省道改造）");
+		}else {eldata.setFileName("国省道改造计划申报（国省道改造）");}
+
 		// 设置文件名
 		// 将实体list放入类中
 		eldata.setEl(li);
@@ -1883,7 +1886,7 @@ public class JhshController extends BaseActionSupport implements
 		}else {
 			eldata.setSheetName("养护大中修计划申报表");
 		}
-	// 设置sheeet名
+		// 设置sheeet名
 		if("1".equals(jhsh.getSbzt())) {
 			eldata.setFileName("养护大中修计划预安排表");
 		}else {
@@ -2023,25 +2026,29 @@ public class JhshController extends BaseActionSupport implements
 		tsdqHandle1();
 		List<Excel_list> l = jhshServer.exportJhshShSbExcel(jhsh);
 		ExcelData eldata = new ExcelData();// 创建一个类
+		
 		if("1".equals(jhsh.getSbzt())) {
-			eldata.setTitleName("公路建设计划预安排（灾毁恢复重建）");
-		}
-		else {
-			eldata.setTitleName("公路建设计划申报（灾毁恢复重建）");
+
+			eldata.setTitleName("公路建设投资计划预安排（灾毁恢复重建项目）");
+		}else {
+			eldata.setTitleName("公路建设投资计划申报（灾毁恢复重建项目）");
+
 		}
 		// 设置第一行
 		if("1".equals(jhsh.getSbzt())) {
-			eldata.setSheetName("公路建设计划预安排（灾毁恢复重建）");
+
+			eldata.setSheetName("公路建设投资计划预安排（灾毁恢复重建项目）");
 		}
 		else {
-			eldata.setSheetName("公路建设计划申报（灾毁恢复重建）");
+			eldata.setSheetName("公路建设投资计划预安排（灾毁恢复重建项目）");
 		}
 		// 设置sheeet名
 		if("1".equals(jhsh.getSbzt())) {
-			eldata.setFileName("公路建设计划预安排（灾毁恢复重建）");
-		}
-		else {
-			eldata.setFileName("公路建设计划申报（灾毁恢复重建）");
+
+			eldata.setFileName("公路建设投资计划预安排（灾毁恢复重建项目）");
+		}else {
+			eldata.setFileName("公路建设投资计划申报（灾毁恢复重建项目）");
+
 		}
 		// 设置文件名
 		eldata.setEl(l);// 将实体list放入类中
@@ -3506,10 +3513,12 @@ public class JhshController extends BaseActionSupport implements
 		// }
 		// }
 		ExcelData eldata = new ExcelData();// 创建一个类
+
 		
 		eldata.setTitleName("公路建设计划下达（国省道改造）");// 设置第一行
 		eldata.setSheetName("公路建设计划下达（国省道改造）");// 设置sheeet名
 		eldata.setFileName("公路建设计划下达（国省道改造）");// 设置文件名
+
 
 		eldata.setEl(l);// 将实体list放入类中
 		List<Excel_tilte> et = new ArrayList<Excel_tilte>();// 创建一个list存放表头

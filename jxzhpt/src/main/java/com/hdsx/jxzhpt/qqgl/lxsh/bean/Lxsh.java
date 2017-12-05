@@ -41,7 +41,14 @@ public class Lxsh implements Serializable {
 	private String cfld;
 	private String lmlx;
 	private String lmkd;
+	private String mqidj;//路面评定等级
 	
+	public String getMqidj() {
+		return mqidj;
+	}
+	public void setMqidj(String mqidj) {
+		this.mqidj = mqidj;
+	}
 	public String getLmkd() {
 		return lmkd;
 	}

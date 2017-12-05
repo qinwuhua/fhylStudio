@@ -22,9 +22,8 @@ function queryZjqf(nf){
 	});
 }
 function querySumAbgc(jh,lx){
-	
-	var param={"jh.xmlx":jh.xmlx,"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,'jh.sfylsjl':jh.sfylsjl,
-			"lx.gydwlx":lx.gydwlx,"lx.gydwdm":lx.gydwdm,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,"lx.gldj":lx.gldj,"lx.lxjsdj":lx.lxjsdj,
+	var param={"jh.xmlx":jh.xmlx,"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.sfylsjl":jh.sfylsjl,
+			"lx.gydwlx":lx.gydwlx,"lx.gydwdm":lx.gydwdm,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,"lx.ylxmc":lx.ylxmc,"lx.gldj":lx.gldj,"lx.lxjsdj":lx.lxjsdj,
 			"lx.lxbm":lx.lxbm,"lx.ylxbm":lx.ylxbm,"lx.tsdq":lx.tsdq,"jh.jh_sbthcd":jh.jh_sbthcd,"lx.xmklx":lx.xmklx};
 	$.ajax({
 		type:'post',
@@ -81,11 +80,12 @@ function openEditWindow1(id){
 function abgcxm(jh,lx){
 	var params={"jh.xmlx":jh.xmlx,"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,'jh.sfylsjl':jh.sfylsjl,
 			"lx.gydwlx":lx.gydwlx,"lx.gydwdm":lx.gydwdm,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,"lx.gldj":lx.gldj,"lx.lxjsdj":lx.lxjsdj,
-			"lx.lxbm":lx.lxbm,"lx.tsdq":lx.tsdq,"jh.jh_sbthcd":jh.jh_sbthcd,"lx.xmklx":lx.xmklx};
+			"lx.lxbm":lx.lxbm,"lx.ylxbm":lx.ylxbm,"lx.ylxmc":lx.ylxmc,"lx.tsdq":lx.tsdq,"jh.jh_sbthcd":jh.jh_sbthcd,"lx.xmklx":lx.xmklx};
 	
 	queryParams='lx.gydwlx='+lx.gydwlx+'&jh.sbzt='+jh.sbzt+'&jh.spzt='+jh.spzt+'&jh.sbnf='+jh.sbnf+'&jh.jhkgsj='+jh.jhkgsj+
-		'&jh.jhwgsj='+jh.jhwgsj+'&jh.pfztz='+jh.pfztz+
+		'&jh.jhwgsj='+jh.jhwgsj+'&jh.pfztz='+jh.pfztz+'&lx.ylxbm='+lx.ylxbm+'&lx.ylxmc='+lx.ylxmc+
 		'&lx.gydw='+lx.gydw+'&lx.gydwdm='+lx.gydwdm+'&lx.xzqhmc='+lx.xzqhmc+'&lx.xzqhdm='+lx.xzqhdm+'&lx.lxmc='+lx.lxmc;
+	
 	var grid={id:'grid',url:'../../../jhgl/queryAbgcList.do',pagination:true,rownumbers:false,
 	    pageNumber:1,pageSize:50,height:$(window).height()-200,width:$('#searchField').width(),queryParams:params,
 	    columns:[[
@@ -192,7 +192,7 @@ function abgcxm(jh,lx){
 	        },
 	        {field:'yhlc',title:'隐患里程',width:60,align:'center',
 	        	formatter : function(value, row, index) {
-					return row.jckabgc.jhyhlc;
+					return row.jckabgc.scyhlc;
 				}
 	        },
 	        {field:'pfztz',title:'批复总投资',width:80,align:'center'}
