@@ -3899,7 +3899,7 @@ select to_char(rownum) v_0, lx.lxbm v_1,  decode(lx.lxmc,'','',concat(lx.lxmc, l
                              group by t.id) ts on lx.id = ts.id
                   left join (select p.*,g.iszh,g.bywc_gl,g.wc_btz,g.wc_stz,g.sbyf,g.wc_ztz,s.issj,g.shzt from plan_af p left join gcgl_abgc g on p.id=g.jhid left join gcgl_jgys s on p.sckid = s.jhid ) jh on jh.sckid=lx.id
                   left join (select p.sckid,nvl(sum(p.pfztz),0) ztz, nvl(sum(p.jhsybbzje),0)+nvl(sum(p.shengbz),0) sbz from plan_af p group by p.sckid) x on x.sckid=lx.id      
-                  left join (select p.sckid,nvl(sum(g.bywc_gl),0) wclc, nvl(sum(g.wc_ztz),0) wcztz, nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0) wcsbz from plan_af p left join gcgl_abgc g on p.id=g.jhid where substr(g.sbyf,0,4) in (#{nf}) group by p.sckid)n on n.sckid = lx.id
+                  left join (select p.sckid,nvl(sum(g.bywc_gl),0) wclc, nvl(sum(g.wc_ztz),0) wcztz, nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0) wcsbz from plan_af p left join gcgl_abgc g on p.id=g.jhid where substr(g.sbyf,0,4) in (#{nf}) and to_number(substr(g.sbyf,6,2)) &lt;= to_number(#{yf}) group by p.sckid)n on n.sckid = lx.id     
                   left join (select p.sckid,nvl(sum(g.bywc_gl),0) wclc, nvl(sum(g.wc_ztz),0) wcztz, nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0) wcsbz from plan_af p left join gcgl_abgc g on p.id=g.jhid where to_date(g.sbyf,'yyyy-MM') &lt;= to_date(#{sbyf},'yyyy-MM') group by p.sckid)l on l.sckid = lx.id       
          where jh.sbyf in (#{sbyf}) and jh.shzt='已审核'
             <if test="gydw != null and  gydw != ''">
@@ -3928,7 +3928,7 @@ select to_char(rownum) v_0, lx.lxbm v_1,  decode(lx.lxmc,'','',concat(lx.lxmc, l
                   left join plan_zjxd xd on (jh.id = xd.xmid)
                   left join (select t.*,g.issj from gcgl_wqgz t left join gcgl_jgys g on t.jhid = g.jhid) gw on gw.jhid = jh.id
                   left join (select g.id, nvl(sum(g.pfztz),0) ztz ,nvl(sum(g.jhsybzje),0) btz,nvl(sum(g.shengbz),0) stz from plan_wqgz g group by g.id) t on t.id = jh.id
-                  left join (select p.sckid,nvl(sum(g.bywcmc),0) wcmc,nvl(sum(g.wc_ztz),0) wcztz, nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0) wcsbz from plan_wqgz p left join gcgl_wqgz g on p.id = g.jhid where substr(g.sbyf, 0, 4) in (#{nf}) group by p.sckid) nl on nl.sckid = jh.sckid
+                  left join (select p.sckid,nvl(sum(g.bywcmc),0) wcmc,nvl(sum(g.wc_ztz),0) wcztz, nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0) wcsbz from plan_wqgz p left join gcgl_wqgz g on p.id = g.jhid where substr(g.sbyf, 0, 4) in (#{nf}) and to_number(substr(g.sbyf,6,2)) &lt;= to_number(#{yf}) group by p.sckid) nl on nl.sckid = jh.sckid
                   left join (select p.sckid,nvl(sum(g.bywcmc),0) wcmc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0) wcsbz from plan_wqgz p left join gcgl_wqgz g on p.id = g.jhid where to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM') group by p.sckid) l on l.sckid = jh.sckid    
         where gw.sbyf in (#{sbyf}) and gw.shzt='已审核'
             <if test="gydw != null and  gydw != ''">
@@ -3958,7 +3958,7 @@ select to_char(rownum) v_0, lx.lxbm v_1,  decode(lx.lxmc,'','',concat(lx.lxmc, l
                   left join plan_zjxd xd on (jh.id = xd.xmid)
                   left join (select t.*,g.issj from gcgl_zhfz t left join gcgl_jgys g on t.id = g.jhid) gw on gw.jhid = jh.id    
                   left join (select p.id, nvl(sum(p.pfztz),0) ztz, nvl(sum(p.jhsybzje),0) btz from plan_zhfz p group by p.id) pz on pz.id = jh.id
-                  left join (select p.sckid,nvl(sum(g.bywcgl),0) wclc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0) wcsbz from plan_zhfz p left join gcgl_zhfz g on p.id = g.jhid where substr(g.sbyf, 0, 4) in (#{nf}) group by p.sckid) n on n.sckid = jh.sckid
+                  left join (select p.sckid,nvl(sum(g.bywcgl),0) wclc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0) wcsbz from plan_zhfz p left join gcgl_zhfz g on p.id = g.jhid where substr(g.sbyf, 0, 4) in (#{nf}) and to_number(substr(g.sbyf,6,2)) &lt;= to_number(#{yf}) group by p.sckid) n on n.sckid = jh.sckid
                   left join (select p.sckid,nvl(sum(g.bywcgl),0) wclc,nvl(sum(g.wc_ztz),0) wcztz,nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0) wcsbz from plan_zhfz p left join gcgl_zhfz g on p.id = g.jhid where to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM') group by p.sckid) l on l.sckid = jh.sckid    
              where gw.sbyf in (#{sbyf}) and gw.shzt='已审核'
             <if test="gydw != null and  gydw != ''">
@@ -4586,112 +4586,39 @@ nvl(round(decode(sum(t.v_18),0,0,(sum(t.v_25)/sum(t.v_18))*100), 2),0)||'%' v_34
 nvl(sum(t.v_41),0) v_41,nvl(sum(t.v_42),0) v_42,nvl(sum(t.v_43),0) v_43,nvl(sum(t.v_44),0) v_44,nvl(sum(t.v_45),0) v_45,nvl(round(decode(sum(t.v_36),0,0,(sum(t.v_41)/sum(t.v_36))*100), 2),0)||'%' v_46 
 from(
 select decode((select name from xtgl_xzqh where id in decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh)||'00'),null,decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh), (select name from xtgl_xzqh where id in decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh)||'00'))v_1,
-afwq.v_2, afwq.v_3,afwq.v_4,afwq.v_5,afwq.v_6,'' v_7,
-afwq.v_8,afwq.v_9,afwq.v_10,afwq.v_11,afwq.v_12,afwq.v_13,afwq.v_14,afwq.v_15,afwq.v_16,
+afwq.v_2, afwq.v_3,afwq.v_4,afwq.v_5,afwq.v_6,'' v_7,afwq.v_8,afwq.v_9,afwq.v_10,afwq.v_11,afwq.v_12,afwq.v_13,afwq.v_14,afwq.v_15,afwq.v_16,
 afwq.v_17,afwq.v_18,afwq.v_19,afwq.v_20,'' v_21,afwq.v_22,afwq.v_23,afwq.v_24,afwq.v_25,afwq.v_26,afwq.v_27,afwq.v_28,afwq.v_29,afwq.v_30,afwq.v_31,afwq.v_32,afwq.v_33,afwq.v_34,
 zh.v_35,zh.v_36,zh.v_37,zh.v_38,'' v_39,zh.v_40,zh.v_41,zh.v_42,zh.v_43,zh.v_44,zh.v_45,zh.v_46
 from(select decode(wq.wqxzqh,'',af.afxzqh,wq.wqxzqh)xzqh, wq.*,af.* from(
 select substr(t3.xzqhdm,0,4) wqxzqh, count(t1.id) v_2,nvl(sum(t1.JHQLQC),0) v_3,nvl(sum(t1.pfztz),0) v_4,nvl(sum(t1.JHSYBZJE),0) v_5,
        nvl(sum(t1.SHENGBZ), 0) v_6,'' v_7,count(*) v_8,nvl(sum(t2.scqlqc),0) v_9,round(nvl(sum(t4.wcztz), 0),2) v_10,
-       count(ykg.id) v_11, count(wkg.id) v_12, count(t5.jhid) v_13, nvl(sum(t5.bnwcym),0) v_14, round(nvl(sum(t5.bnwctz),0),2) v_15,
+       count(ykg.id) v_11, count(wkg.id) v_12,count(t5.jhid) v_13, nvl(sum(t5.bnwcym),0) v_14, round(nvl(sum(t5.bnwctz),0),2) v_15,
        round(decode(nvl(sum(t1.pfztz),0),0,0,(nvl(sum(t4.wcztz), 0)/nvl(sum(t1.pfztz),0))*100), 2)||'%' v_16
   from PLAN_WQGZ t1
   left join SCK_WQGZ t2 on t1.SCKID = t2.SCKID
   left join XMK_WQGZ t3 on t2.xmkid = t3.id
+  left join plan_zjxd xd on t1.id = xd.xmid
   left join (select xmid, sum(xdzj) zbz from plan_zjxd group by xmid) zj on t1.id = zj.xmid
   left join gcgl_jgys jg on t1.id = jg.jhid
   left join (select g.jhid,sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) wcztz,sum(g.wc_btz) wcbtz,sum(g.wc_stz) wcstz
-               from gcgl_wqgz g where g.shzt='已审核' group by g.jhid ) t4 on t1.id = t4.jhid    
+               from gcgl_wqgz g where g.shzt='已审核' group by g.jhid ) t4 on t1.id = t4.jhid              
   left join (select g.jhid,sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) bnwctz,sum(nvl(g.bywcmc,0)) bnwcym
               from gcgl_wqgz g
-              where substr(g.sbyf, 0, 4) in (#{xmnf}) and g.shzt='已审核'
-              group by g.jhid) t5 on t1.id = t5.jhid  
+              where substr(g.sbyf, 0, 4) in (#{xmnf}) and to_number(substr(g.sbyf, 6, 2)) &lt;= to_number(#{yf})
+              and g.shzt='已审核'
+              group by g.jhid) t5 on t1.id = t5.jhid
   left join (select jh.id,count(jh.id)kgql from plan_wqgz jh where jh.kgzt='1' group by jh.id) ykg on ykg.id = t1.id 
   left join (select jh.id,count(jh.id)kgql from plan_wqgz jh where jh.kgzt='0' group by jh.id) wkg on wkg.id = t1.id
  where t1.spzt = '1'
    and t1.sfylrbwqk = '是'
    and t1.kgzt like '%' || trim('1') || '%'
    and t1.jgzt like '%' || trim('1') || '%' 
-   group by substr(t3.xzqhdm,0,4) order by substr(t3.xzqhdm,0,4) asc)wq
-full outer join (
-select substr(t3.xzqhdm,0,4) afxzqh, nvl(sum(t1.jhzlc),0) v_17, nvl(sum(t1.pfztz), 0) v_18,  nvl(sum(t1.jhsybbzje), 0) v_19,
-  nvl(sum(t1.shengbz), 0) v_20, '' v_21, nvl(sum(t5.wcgl),0) v_22, nvl(sum(t6.wcgl),0) v_23, nvl(sum(t7.wcgl),0) v_24,
-  round(nvl(sum(t5.wcztz),0),2) v_25, round(nvl(sum(t6.wcztz),0),2) v_26, round(nvl(sum(t7.wcztz),0),2) v_27,
-  nvl(sum(t5.wcsj),0) v_28,nvl(sum(t6.wcsj),0) v_29,nvl(sum(t7.wcsj),0) v_30,
-  nvl(sum(t8.wcgl),0) v_31,round(nvl(sum(t8.wcztz),0),2) v_32,nvl(sum(t8.wcsj),0) v_33,
-  round(decode(nvl(sum(t1.pfztz),0),0,0,(nvl(sum(t5.wcztz), 0)/nvl(sum(t1.pfztz),0))*100), 2)||'%' v_34  
-  from PLAN_AF t1
-  left join SCK_AQSMFH t3 on t1.SCKID = t3.ID
-  left join (select WMSYS.WM_CONCAT(xmklx) xmklx, xmbm from sck_aqsmfh_ld sl left join xmk_aqsmfh xm on sl.xmkid = xm.id group by xmbm) t4 on t3.xmbm = t4.xmbm
-  left join (select xmid, sum(xdzj) zbz from plan_zjxd group by xmid) zj on t1.id = zj.xmid
-  left join gcgl_jgys jg on t1.id = jg.jhid
-  left join (select g.jhid,sum(g.bywc_gl) wcgl, sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) wcztz,
-             sum(g.wc_btz)+sum(g.wc_stz) wcsj from gcgl_abgc g where g.shzt='已审核' group by g.jhid)t5 on t5.jhid=t1.id
-  left join (select g.jhid,sum(g.bywc_gl) wcgl, sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) wcztz,
-             sum(g.wc_btz)+sum(g.wc_stz) wcsj from PLAN_AF t1 left join SCK_AQSMFH t3 on t1.SCKID = t3.ID
-             left join gcgl_abgc g on g.jhid=t1.id where t3.lxbm like 'G%' or t3.lxbm like 'S%' and g.shzt='已审核' group by g.jhid)t6 on t6.jhid=t1.id       
-  left join (select g.jhid,sum(g.bywc_gl) wcgl, sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) wcztz,
-             sum(g.wc_btz)+sum(g.wc_stz) wcsj from PLAN_AF t1 left join SCK_AQSMFH t3 on t1.SCKID = t3.ID
-             left join gcgl_abgc g on g.jhid=t1.id where t3.lxbm like 'X%' or t3.lxbm like 'Y%' and g.shzt='已审核' group by g.jhid)t7 on t7.jhid=t1.id
-  left join (select g.jhid,sum(g.bywc_gl) wcgl, sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) wcztz,
-             sum(g.wc_btz)+sum(g.wc_stz) wcsj from gcgl_abgc g where substr(g.sbyf,0,4)in(#{xmnf}) and g.shzt='已审核' group by g.jhid)t8 on t8.jhid=t1.id
- where 1 = 1
-   and spzt = '1'
-   and t1.kgzt like '%' || trim('1') || '%'
-   and t1.jgzt like '%' || trim('1') || '%'
-   group by substr(t3.xzqhdm,0,4) order by substr(t3.xzqhdm,0,4) asc)af on wq.wqxzqh = af.afxzqh)afwq
-full outer join (
-select substr(t3.xzqhdm,0,4) xzqhdm,nvl(sum(t1.jhzlc),0) v_35, nvl(sum(t1.pfztz),0) v_36,nvl(sum(t1.jhsybzje), 0) v_37,
-       '0' v_38, '' v_39, nvl(sum(t4.wcgl),0) v_40, nvl(sum(t4.wcztz),0) v_41, nvl(sum(t4.wcsj),0) v_42,nvl(sum(t5.wcgl),0) v_43,
-       nvl(sum(t5.wcztz),0) v_44,nvl(sum(t5.wcsj),0) v_45,
-       round(decode(nvl(sum(t1.pfztz),0),0,0,(nvl(sum(t4.wcztz), 0)/nvl(sum(t1.pfztz),0))*100), 2)||'%' v_46
-  from PLAN_ZHFZ t1
-  left join SCK_ZHFZ t2 on t1.SCKID = t2.SCKID
-  left join XMK_ZHFZ t3 on t2.xmkid = t3.id
-  left join (select xmid, sum(xdzj) zbz from plan_zjxd group by xmid) zj on t1.id = zj.xmid
-  left join (select g.jhid, sum(g.bywcgl) wcgl, sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) wcztz,sum(g.wc_btz) + sum(g.wc_stz) wcsj 
-             from gcgl_zhfz g where g.shzt='已审核' group by g.jhid)t4 on t1.id  = t4.jhid         
-  left join (select g.jhid, sum(g.bywcgl) wcgl, sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) wcztz,sum(g.wc_btz) + sum(g.wc_stz) wcsj 
-             from gcgl_zhfz g where substr(g.sbyf,0,4) in (#{xmnf}) and g.shzt='已审核' group by g.jhid)t5 on t1.id  = t5.jhid        
-  left join gcgl_jgys jg on t1.id = jg.jhid
- where t1.spzt = '1'
-   and t1.kgzt like '%' || trim('1') || '%'
-   and t1.jgzt like '%' || trim('1') || '%'
-   group by substr(t3.xzqhdm,0,4) order by substr(t3.xzqhdm,0,4) asc) zh on afwq.xzqh = zh.xzqhdm
-      where 1=1
-     <if test="xzqhdm != null and  xzqhdm != ''">
-		    ${xzqhdm}
-	 </if>
- )t
-	</select>
-	<select id="getLwgzHzb" parameterType="gcglabgc" resultType="elist">
-select decode((select name from xtgl_xzqh where id in decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh)||'00'),null,decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh), (select name from xtgl_xzqh where id in decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh)||'00'))v_1,
-afwq.v_2, afwq.v_3,afwq.v_4,afwq.v_5,afwq.v_6,'' v_7,
-afwq.v_8,afwq.v_9,afwq.v_10,afwq.v_11,afwq.v_12,afwq.v_13,afwq.v_14,afwq.v_15,afwq.v_16,
-afwq.v_17,afwq.v_18,afwq.v_19,afwq.v_20,'' v_21,afwq.v_22,afwq.v_23,afwq.v_24,afwq.v_25,afwq.v_26,afwq.v_27,afwq.v_28,afwq.v_29,afwq.v_30,afwq.v_31,afwq.v_32,afwq.v_33,afwq.v_34,
-zh.v_35,zh.v_36,zh.v_37,zh.v_38,'' v_39,zh.v_40,zh.v_41,zh.v_42,zh.v_43,zh.v_44,zh.v_45,zh.v_46
-from(select decode(wq.wqxzqh,'',af.afxzqh,wq.wqxzqh)xzqh, wq.*,af.* from(
-select substr(t3.xzqhdm,0,4) wqxzqh, count(t1.id) v_2,nvl(sum(t1.JHQLQC),0) v_3,nvl(sum(t1.pfztz),0) v_4,nvl(sum(t1.JHSYBZJE),0) v_5,
-       nvl(sum(t1.SHENGBZ), 0) v_6,'' v_7,count(*) v_8,nvl(sum(t2.scqlqc),0) v_9,round(nvl(sum(t4.wcztz), 0),2) v_10,
-       count(ykg.id) v_11, count(wkg.id) v_12, count(t5.jhid) v_13, nvl(sum(t5.bnwcym),0) v_14, round(nvl(sum(t5.bnwctz),0),2) v_15,
-       round(decode(nvl(sum(t1.pfztz),0),0,0,(nvl(sum(t4.wcztz), 0)/nvl(sum(t1.pfztz),0))*100), 2)||'%' v_16
-  from PLAN_WQGZ t1
-  left join SCK_WQGZ t2 on t1.SCKID = t2.SCKID
-  left join XMK_WQGZ t3 on t2.xmkid = t3.id
-  left join (select xmid, sum(xdzj) zbz from plan_zjxd group by xmid) zj on t1.id = zj.xmid
-  left join gcgl_jgys jg on t1.id = jg.jhid
-  left join (select g.jhid,sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) wcztz,sum(g.wc_btz) wcbtz,sum(g.wc_stz) wcstz
-               from gcgl_wqgz g where g.shzt='已审核' group by g.jhid ) t4 on t1.id = t4.jhid    
-  left join (select g.jhid,sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) bnwctz,sum(nvl(g.bywcmc,0)) bnwcym
-              from gcgl_wqgz g
-              where substr(g.sbyf, 0, 4) in (#{xmnf}) and g.shzt='已审核'
-              group by g.jhid) t5 on t1.id = t5.jhid  
-  left join (select jh.id,count(jh.id)kgql from plan_wqgz jh where jh.kgzt='1' group by jh.id) ykg on ykg.id = t1.id 
-  left join (select jh.id,count(jh.id)kgql from plan_wqgz jh where jh.kgzt='0' group by jh.id) wkg on wkg.id = t1.id
- where t1.spzt = '1'
-   and t1.sfylrbwqk = '是'
-   and t1.kgzt like '%' || trim('1') || '%'
-   and t1.jgzt like '%' || trim('1') || '%' 
+   <if test="jhnd != null and  jhnd != ''">
+      ${jhnd}
+   </if>
+   <if test="xzqhdm != null and  xzqhdm != ''">
+	  ${xzqhdm}
+   </if> 
    group by substr(t3.xzqhdm,0,4) order by substr(t3.xzqhdm,0,4) asc)wq
 full outer join (
 select substr(t3.xzqhdm,0,4) afxzqh, nvl(sum(t1.jhzlc),0) v_17, nvl(sum(t1.pfztz), 0) v_18,  nvl(sum(t1.jhsybbzje), 0) v_19,
@@ -4702,6 +4629,7 @@ select substr(t3.xzqhdm,0,4) afxzqh, nvl(sum(t1.jhzlc),0) v_17, nvl(sum(t1.pfztz
   round(decode(nvl(sum(t1.pfztz),0),0,0,(nvl(sum(t5.wcztz), 0)/nvl(sum(t1.pfztz),0))*100), 2)||'%' v_34  
   from PLAN_AF t1
   left join SCK_AQSMFH t3 on t1.SCKID = t3.ID
+  left join plan_zjxd xd on t1.id = xd.xmid
   left join (select WMSYS.WM_CONCAT(xmklx) xmklx, xmbm from sck_aqsmfh_ld sl left join xmk_aqsmfh xm on sl.xmkid = xm.id group by xmbm) t4 on t3.xmbm = t4.xmbm
   left join (select xmid, sum(xdzj) zbz from plan_zjxd group by xmid) zj on t1.id = zj.xmid
   left join gcgl_jgys jg on t1.id = jg.jhid
@@ -4714,11 +4642,17 @@ select substr(t3.xzqhdm,0,4) afxzqh, nvl(sum(t1.jhzlc),0) v_17, nvl(sum(t1.pfztz
              sum(g.wc_btz)+sum(g.wc_stz) wcsj from PLAN_AF t1 left join SCK_AQSMFH t3 on t1.SCKID = t3.ID
              left join gcgl_abgc g on g.jhid=t1.id where t3.lxbm like 'X%' or t3.lxbm like 'Y%' and g.shzt='已审核' group by g.jhid)t7 on t7.jhid=t1.id
   left join (select g.jhid,sum(g.bywc_gl) wcgl, sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) wcztz,
-             sum(g.wc_btz)+sum(g.wc_stz) wcsj from gcgl_abgc g where substr(g.sbyf,0,4)in(#{xmnf}) and g.shzt='已审核' group by g.jhid)t8 on t8.jhid=t1.id
+             sum(g.wc_btz)+sum(g.wc_stz) wcsj from gcgl_abgc g where substr(g.sbyf,0,4)in(#{xmnf})and to_number(substr(g.sbyf, 6, 2)) &lt;= to_number(#{yf}) and g.shzt='已审核' group by g.jhid)t8 on t8.jhid=t1.id
  where 1 = 1
    and spzt = '1'
    and t1.kgzt like '%' || trim('1') || '%'
-   and t1.jgzt like '%' || trim('1') || '%'
+   and t1.jgzt like '%' || trim('1') || '%'  
+   <if test="jhnd != null and  jhnd != ''">
+      ${jhnd}
+   </if>
+   <if test="xzqhdm != null and  xzqhdm != ''">
+	  ${xzqhdm}
+   </if>
    group by substr(t3.xzqhdm,0,4) order by substr(t3.xzqhdm,0,4) asc)af on wq.wqxzqh = af.afxzqh)afwq
 full outer join (
 select substr(t3.xzqhdm,0,4) xzqhdm,nvl(sum(t1.jhzlc),0) v_35, nvl(sum(t1.pfztz),0) v_36,nvl(sum(t1.jhsybzje), 0) v_37,
@@ -4728,21 +4662,123 @@ select substr(t3.xzqhdm,0,4) xzqhdm,nvl(sum(t1.jhzlc),0) v_35, nvl(sum(t1.pfztz)
   from PLAN_ZHFZ t1
   left join SCK_ZHFZ t2 on t1.SCKID = t2.SCKID
   left join XMK_ZHFZ t3 on t2.xmkid = t3.id
+  left join plan_zjxd xd on t1.id = xd.xmid
   left join (select xmid, sum(xdzj) zbz from plan_zjxd group by xmid) zj on t1.id = zj.xmid
   left join (select g.jhid, sum(g.bywcgl) wcgl, sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) wcztz,sum(g.wc_btz) + sum(g.wc_stz) wcsj 
              from gcgl_zhfz g where g.shzt='已审核' group by g.jhid)t4 on t1.id  = t4.jhid         
   left join (select g.jhid, sum(g.bywcgl) wcgl, sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) wcztz,sum(g.wc_btz) + sum(g.wc_stz) wcsj 
-             from gcgl_zhfz g where substr(g.sbyf,0,4) in (#{xmnf}) and g.shzt='已审核' group by g.jhid)t5 on t1.id  = t5.jhid        
+             from gcgl_zhfz g where substr(g.sbyf,0,4) in (#{xmnf}) and to_number(substr(g.sbyf, 6, 2)) &lt;= to_number(#{yf}) and g.shzt='已审核' group by g.jhid)t5 on t1.id  = t5.jhid        
   left join gcgl_jgys jg on t1.id = jg.jhid
  where t1.spzt = '1'
    and t1.kgzt like '%' || trim('1') || '%'
    and t1.jgzt like '%' || trim('1') || '%'
-   group by substr(t3.xzqhdm,0,4) order by substr(t3.xzqhdm,0,4) asc) zh on afwq.xzqh = zh.xzqhdm
-     where 1=1
-     <if test="xzqhdm != null and  xzqhdm != ''">
-		    ${xzqhdm}
-	 </if>
-	 order by decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh) asc
+   <if test="jhnd != null and  jhnd != ''">
+      ${jhnd}
+   </if>
+   <if test="xzqhdm != null and  xzqhdm != ''">
+	  ${xzqhdm}
+   </if>
+   group by substr(t3.xzqhdm,0,4) order by substr(t3.xzqhdm,0,4) asc) zh on afwq.xzqh = zh.xzqhdm 
+   order by decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh) asc)t
+	</select>
+	
+	
+	<select id="getLwgzHzb" parameterType="gcglabgc" resultType="elist">
+select decode((select name from xtgl_xzqh where id in decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh)||'00'),null,decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh), (select name from xtgl_xzqh where id in decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh)||'00'))v_1,
+afwq.v_2, afwq.v_3,afwq.v_4,afwq.v_5,afwq.v_6,'' v_7,afwq.v_8,afwq.v_9,afwq.v_10,afwq.v_11,afwq.v_12,afwq.v_13,afwq.v_14,afwq.v_15,afwq.v_16,
+afwq.v_17,afwq.v_18,afwq.v_19,afwq.v_20,'' v_21,afwq.v_22,afwq.v_23,afwq.v_24,afwq.v_25,afwq.v_26,afwq.v_27,afwq.v_28,afwq.v_29,afwq.v_30,afwq.v_31,afwq.v_32,afwq.v_33,afwq.v_34,
+zh.v_35,zh.v_36,zh.v_37,zh.v_38,'' v_39,zh.v_40,zh.v_41,zh.v_42,zh.v_43,zh.v_44,zh.v_45,zh.v_46
+from(select decode(wq.wqxzqh,'',af.afxzqh,wq.wqxzqh)xzqh, wq.*,af.* from(
+select substr(t3.xzqhdm,0,4) wqxzqh, count(t1.id) v_2,nvl(sum(t1.JHQLQC),0) v_3,nvl(sum(t1.pfztz),0) v_4,nvl(sum(t1.JHSYBZJE),0) v_5,
+       nvl(sum(t1.SHENGBZ), 0) v_6,'' v_7,count(*) v_8,nvl(sum(t2.scqlqc),0) v_9,round(nvl(sum(t4.wcztz), 0),2) v_10,
+       count(ykg.id) v_11, count(wkg.id) v_12,count(t5.jhid) v_13, nvl(sum(t5.bnwcym),0) v_14, round(nvl(sum(t5.bnwctz),0),2) v_15,
+       round(decode(nvl(sum(t1.pfztz),0),0,0,(nvl(sum(t4.wcztz), 0)/nvl(sum(t1.pfztz),0))*100), 2)||'%' v_16
+  from PLAN_WQGZ t1
+  left join SCK_WQGZ t2 on t1.SCKID = t2.SCKID
+  left join XMK_WQGZ t3 on t2.xmkid = t3.id
+  left join plan_zjxd xd on t1.id = xd.xmid
+  left join (select xmid, sum(xdzj) zbz from plan_zjxd group by xmid) zj on t1.id = zj.xmid
+  left join gcgl_jgys jg on t1.id = jg.jhid
+  left join (select g.jhid,sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) wcztz,sum(g.wc_btz) wcbtz,sum(g.wc_stz) wcstz
+               from gcgl_wqgz g where g.shzt='已审核' group by g.jhid ) t4 on t1.id = t4.jhid              
+  left join (select g.jhid,sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) bnwctz,sum(nvl(g.bywcmc,0)) bnwcym
+              from gcgl_wqgz g
+              where substr(g.sbyf, 0, 4) in (#{xmnf}) and to_number(substr(g.sbyf, 6, 2)) &lt;= to_number(#{yf})
+              and g.shzt='已审核'
+              group by g.jhid) t5 on t1.id = t5.jhid
+  left join (select jh.id,count(jh.id)kgql from plan_wqgz jh where jh.kgzt='1' group by jh.id) ykg on ykg.id = t1.id 
+  left join (select jh.id,count(jh.id)kgql from plan_wqgz jh where jh.kgzt='0' group by jh.id) wkg on wkg.id = t1.id
+ where t1.spzt = '1'
+   and t1.sfylrbwqk = '是'
+   and t1.kgzt like '%' || trim('1') || '%'
+   and t1.jgzt like '%' || trim('1') || '%' 
+   <if test="jhnd != null and  jhnd != ''">
+      ${jhnd}
+   </if>
+   <if test="xzqhdm != null and  xzqhdm != ''">
+	  ${xzqhdm}
+   </if>
+   group by substr(t3.xzqhdm,0,4) order by substr(t3.xzqhdm,0,4) asc)wq
+full outer join (
+select substr(t3.xzqhdm,0,4) afxzqh, nvl(sum(t1.jhzlc),0) v_17, nvl(sum(t1.pfztz), 0) v_18,  nvl(sum(t1.jhsybbzje), 0) v_19,
+  nvl(sum(t1.shengbz), 0) v_20, '' v_21, nvl(sum(t5.wcgl),0) v_22, nvl(sum(t6.wcgl),0) v_23, nvl(sum(t7.wcgl),0) v_24, 
+  round(nvl(sum(t5.wcztz),0),2) v_25,round(nvl(sum(t6.wcztz),0),2) v_26,round(nvl(sum(t7.wcztz),0),2) v_27,
+  nvl(sum(t5.wcsj),0) v_28,nvl(sum(t6.wcsj),0) v_29,nvl(sum(t7.wcsj),0) v_30,
+  nvl(sum(t8.wcgl),0) v_31,round(nvl(sum(t8.wcztz),0),2) v_32,nvl(sum(t8.wcsj),0) v_33,
+  round(decode(nvl(sum(t1.pfztz),0),0,0,(nvl(sum(t5.wcztz), 0)/nvl(sum(t1.pfztz),0))*100), 2)||'%' v_34  
+  from PLAN_AF t1
+  left join SCK_AQSMFH t3 on t1.SCKID = t3.ID
+  left join plan_zjxd xd on t1.id = xd.xmid
+  left join (select WMSYS.WM_CONCAT(xmklx) xmklx, xmbm from sck_aqsmfh_ld sl left join xmk_aqsmfh xm on sl.xmkid = xm.id group by xmbm) t4 on t3.xmbm = t4.xmbm
+  left join (select xmid, sum(xdzj) zbz from plan_zjxd group by xmid) zj on t1.id = zj.xmid
+  left join gcgl_jgys jg on t1.id = jg.jhid
+  left join (select g.jhid,sum(g.bywc_gl) wcgl, sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) wcztz,
+             sum(g.wc_btz)+sum(g.wc_stz) wcsj from gcgl_abgc g where g.shzt='已审核' group by g.jhid)t5 on t5.jhid=t1.id
+  left join (select g.jhid,sum(g.bywc_gl) wcgl, sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) wcztz,
+             sum(g.wc_btz)+sum(g.wc_stz) wcsj from PLAN_AF t1 left join SCK_AQSMFH t3 on t1.SCKID = t3.ID
+             left join gcgl_abgc g on g.jhid=t1.id where t3.lxbm like 'G%' or t3.lxbm like 'S%' and g.shzt='已审核' group by g.jhid)t6 on t6.jhid=t1.id       
+  left join (select g.jhid,sum(g.bywc_gl) wcgl, sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) wcztz,
+             sum(g.wc_btz)+sum(g.wc_stz) wcsj from PLAN_AF t1 left join SCK_AQSMFH t3 on t1.SCKID = t3.ID
+             left join gcgl_abgc g on g.jhid=t1.id where t3.lxbm like 'X%' or t3.lxbm like 'Y%' and g.shzt='已审核' group by g.jhid)t7 on t7.jhid=t1.id
+  left join (select g.jhid,sum(g.bywc_gl) wcgl, sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) wcztz,
+             sum(g.wc_btz)+sum(g.wc_stz) wcsj from gcgl_abgc g where substr(g.sbyf,0,4)in(#{xmnf})and to_number(substr(g.sbyf, 6, 2)) &lt;= to_number(#{yf}) and g.shzt='已审核' group by g.jhid)t8 on t8.jhid=t1.id
+ where 1 = 1
+   and spzt = '1'
+   and t1.kgzt like '%' || trim('1') || '%'
+   and t1.jgzt like '%' || trim('1') || '%'  
+   <if test="jhnd != null and  jhnd != ''">
+      ${jhnd}
+   </if>
+   <if test="xzqhdm != null and  xzqhdm != ''">
+	  ${xzqhdm}
+   </if>
+   group by substr(t3.xzqhdm,0,4) order by substr(t3.xzqhdm,0,4) asc)af on wq.wqxzqh = af.afxzqh)afwq
+full outer join (
+select substr(t3.xzqhdm,0,4) xzqhdm,nvl(sum(t1.jhzlc),0) v_35, nvl(sum(t1.pfztz),0) v_36,nvl(sum(t1.jhsybzje), 0) v_37,
+       '0' v_38, '' v_39, nvl(sum(t4.wcgl),0) v_40, nvl(sum(t4.wcztz),0) v_41, nvl(sum(t4.wcsj),0) v_42,nvl(sum(t5.wcgl),0) v_43,
+       nvl(sum(t5.wcztz),0) v_44,nvl(sum(t5.wcsj),0) v_45,
+       round(decode(nvl(sum(t1.pfztz),0),0,0,(nvl(sum(t4.wcztz), 0)/nvl(sum(t1.pfztz),0))*100), 2)||'%' v_46
+  from PLAN_ZHFZ t1
+  left join SCK_ZHFZ t2 on t1.SCKID = t2.SCKID
+  left join XMK_ZHFZ t3 on t2.xmkid = t3.id
+  left join plan_zjxd xd on t1.id = xd.xmid
+  left join (select xmid, sum(xdzj) zbz from plan_zjxd group by xmid) zj on t1.id = zj.xmid
+  left join (select g.jhid, sum(g.bywcgl) wcgl, sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) wcztz,sum(g.wc_btz) + sum(g.wc_stz) wcsj 
+             from gcgl_zhfz g where g.shzt='已审核' group by g.jhid)t4 on t1.id  = t4.jhid         
+  left join (select g.jhid, sum(g.bywcgl) wcgl, sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) wcztz,sum(g.wc_btz) + sum(g.wc_stz) wcsj 
+             from gcgl_zhfz g where substr(g.sbyf,0,4) in (#{xmnf}) and to_number(substr(g.sbyf, 6, 2)) &lt;= to_number(#{yf}) and g.shzt='已审核' group by g.jhid)t5 on t1.id  = t5.jhid        
+  left join gcgl_jgys jg on t1.id = jg.jhid
+ where t1.spzt = '1'
+   and t1.kgzt like '%' || trim('1') || '%'
+   and t1.jgzt like '%' || trim('1') || '%'
+   <if test="jhnd != null and  jhnd != ''">
+      ${jhnd}
+   </if>
+   <if test="xzqhdm != null and  xzqhdm != ''">
+	  ${xzqhdm}
+	</if>
+   group by substr(t3.xzqhdm,0,4) order by substr(t3.xzqhdm,0,4) asc) zh on afwq.xzqh = zh.xzqhdm 
+   order by decode(afwq.xzqh,null,zh.xzqhdm,afwq.xzqh) asc
 	</select>
 	
 	
