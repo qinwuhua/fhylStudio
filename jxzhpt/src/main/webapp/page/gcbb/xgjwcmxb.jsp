@@ -327,7 +327,7 @@
 				tbody.empty();
 
 		loadjzt();
-		
+		//alert(ss.join(","));
 		$.ajax({
 			url:"/jxzhpt/gcybb/getXgjwcmxb.do",
 			data:data,
