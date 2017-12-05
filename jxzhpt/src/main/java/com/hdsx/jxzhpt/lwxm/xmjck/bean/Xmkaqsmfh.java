@@ -222,6 +222,16 @@ public class Xmkaqsmfh {
 	
 	private String yzdzh;//原止点桩号
 	
+	private String mqidj;//路面评定等级
+	
+	public String getMqidj() {
+		return mqidj;
+	}
+
+	public void setMqidj(String mqidj) {
+		this.mqidj = mqidj;
+	}
+
 	public String getYlxmc() {
 		return ylxmc;
 	}

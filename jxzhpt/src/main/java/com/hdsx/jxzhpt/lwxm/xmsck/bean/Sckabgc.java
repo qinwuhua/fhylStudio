@@ -10,8 +10,15 @@ import java.util.Date;
 public class Sckabgc implements Serializable{
 	private String gldj;
 	private String jsdj;
-private String xmklx;//项目库类型
-	
+    private String xmklx;//项目库类型
+    private String mqidj;//路面评定等级
+
+	public String getMqidj() {
+		return mqidj;
+	}
+	public void setMqidj(String mqidj) {
+		this.mqidj = mqidj;
+	}
 	public String getXmklx() {
 		return xmklx;
 	}

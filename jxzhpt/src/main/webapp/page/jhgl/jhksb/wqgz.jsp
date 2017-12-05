@@ -234,7 +234,6 @@
 					"&lx.gydwbm="+getgydw("gydw")+"&lx.xzqhdm="+getxzqhdm('xzqh')+"&lx.lxmc="+lx.lxmc+
 					"&lx.lxbm="+lx.lxbm+"&lx.qlmc="+lx.qlmc+"&lx.akjfl="+lx.akjfl+"&lx.jsxz="+lx.jsxz+
 					"&lx.jsdj="+lx.jsdj+"&lx.gldj="+lx.gldj+"&lx.tsdq="+lx.tsdq;
-			alert(param);
 			window.location.href="/jxzhpt/jhgl/exportExcelWqgzJhSb.do?"+param;
 		}
 		function sbList(){

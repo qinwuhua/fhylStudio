@@ -129,7 +129,9 @@
  
   <select id="selectSckShabgc" parameterType="sckabgc" resultType="sckabgc">
  	select * from (
- 		select rownum num ,t.* from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id where 1=1
+ 		select rownum num ,t.*,
+ 		(select fn_ReturnFllx(sum(lmd.mqi)/count(*)) mqidj from lkpd_mxb_data_2014 lmd where lmd.lxbh in (lxbm) and to_number(lmd.qdzh) &gt;= to_number(scqdzh)and to_number(lmd.zdzh) &lt;= to_number(sczdzh)) mqidj
+ 		 from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id where 1=1
  				<if test="tsdq!='' and tsdq!= null ">
  				${tsdq}
  				</if>

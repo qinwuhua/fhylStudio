@@ -17,6 +17,15 @@ public class Sckzhfz implements Serializable {
 	private String yqdzh;// 灾害防治-原起点桩号
 	private String yzdzh;// 灾害防治-原止点桩号
 	private String ylxmc;// 灾害防治-原路线名称
+	private String mqidj;//路面评定等级
+
+	public String getMqidj() {
+		return mqidj;
+	}
+
+	public void setMqidj(String mqidj) {
+		this.mqidj = mqidj;
+	}
 
 	public String getXmklx() {
 		return xmklx;
