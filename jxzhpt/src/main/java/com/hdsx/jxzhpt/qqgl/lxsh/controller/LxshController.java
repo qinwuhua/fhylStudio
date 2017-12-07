@@ -2308,7 +2308,7 @@ public class LxshController extends BaseActionSupport{
 						}
 						lxsh.setXmlx1(tsdq);
 					}
-				xmbt="国省道改造";
+				xmbt="";
 				elist=lxshServer.querylxshgsd(lxsh);
 			}
 			if("sjgz".equals(lxsh.getXmlx())){
