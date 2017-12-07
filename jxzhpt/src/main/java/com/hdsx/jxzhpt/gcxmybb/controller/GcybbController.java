@@ -5077,13 +5077,16 @@ public class GcybbController extends BaseActionSupport{
 	public void getLwgzHzb() {
 		try {
 			if("1".equals(flag)){
+				
 				String shijian="";
-				if(Integer.parseInt(yf)<=9){
+/*				if(Integer.parseInt(yf)<=9){
 					shijian=nf+"-0"+yf;
 				}else{
 					shijian=nf+"-"+yf;
-				}
+				}*/
+				shijian=nf+"-"+yf;
 				gcglabgc.setSbyf(shijian);
+				
 				String tiaojian2="";
 				String xzqhdm = "";
 				String gydwdm = "";
@@ -5177,11 +5180,12 @@ public class GcybbController extends BaseActionSupport{
 			
 		}else{
 			String shijian="";
-			if(Integer.parseInt(yf)<=9){
+/*			if(Integer.parseInt(yf)<=9){
 				shijian=nf+"-0"+yf;
 			}else{
 				shijian=nf+"-"+yf;
-			}
+			}*/
+			shijian=nf+"-"+yf;
 			gcglabgc.setSbyf(shijian);
 			String tiaojian2="";
 			String xzqhdm = "";

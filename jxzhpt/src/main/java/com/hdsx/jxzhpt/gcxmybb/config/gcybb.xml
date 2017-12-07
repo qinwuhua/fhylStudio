@@ -4597,7 +4597,7 @@ select substr(t3.xzqhdm,0,4) wqxzqh, count(t1.id) v_2,nvl(sum(t1.JHQLQC),0) v_3,
   from PLAN_WQGZ t1
   left join SCK_WQGZ t2 on t1.SCKID = t2.SCKID
   left join XMK_WQGZ t3 on t2.xmkid = t3.id
-  left join plan_zjxd xd on t1.id = xd.xmid
+  left join plan_zjxd xd on t1.id = xd.xmid 
   left join (select g.jhid,sum(t2.scqlqc) scqlqc, sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) wcztz,sum(g.wc_btz) wcbtz,sum(g.wc_stz) wcstz
                from plan_wqgz t1 
                left join SCK_WQGZ t2 on t1.SCKID = t2.SCKID 
@@ -4606,6 +4606,7 @@ select substr(t3.xzqhdm,0,4) wqxzqh, count(t1.id) v_2,nvl(sum(t1.JHQLQC),0) v_3,
                and t1.kgzt like '%' || trim('1') || '%'
                and t1.jgzt like '%' || trim('1') || '%' 
                and g.shzt='已审核' 
+               and to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM')
                group by g.jhid) t4 on t1.id = t4.jhid             
  left join (select g.jhid,sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) bnwctz,sum(nvl(g.bywcmc,0)) bnwcym
               from plan_wqgz t1 
@@ -4628,7 +4629,6 @@ select substr(t3.xzqhdm,0,4) wqxzqh, count(t1.id) v_2,nvl(sum(t1.JHQLQC),0) v_3,
    </if>
    group by substr(t3.xzqhdm,0,4) order by substr(t3.xzqhdm,0,4) asc )wq
 full outer join (
-
 select substr(t3.xzqhdm,0,4) afxzqh, nvl(sum(t1.jhzlc),0) v_17, nvl(sum(t1.pfztz), 0) v_18,  nvl(sum(t1.jhsybbzje), 0) v_19,
   nvl(sum(t1.shengbz), 0) v_20, '' v_21, nvl(sum(t5.wcgl),0) v_22, nvl(sum(t6.wcgl),0) v_23, nvl(sum(t7.wcgl),0) v_24, 
   round(nvl(sum(t5.wcztz),0),2) v_25,round(nvl(sum(t6.wcztz),0),2) v_26,round(nvl(sum(t7.wcztz),0),2) v_27,
@@ -4645,19 +4645,24 @@ select substr(t3.xzqhdm,0,4) afxzqh, nvl(sum(t1.jhzlc),0) v_17, nvl(sum(t1.pfztz
              where t1.spzt = '1'
                   and t1.kgzt like '%' || trim('1') || '%'
                   and t1.jgzt like '%' || trim('1') || '%'  
-                  and g.shzt='已审核' group by g.jhid)t5 on t5.jhid=t1.id
+                  and g.shzt='已审核' 
+                  and to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM')
+                  group by g.jhid)t5 on t5.jhid=t1.id   
  left join (select g.jhid,sum(g.bywc_gl) wcgl, sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) wcztz,
              sum(g.wc_btz)+sum(g.wc_stz) wcsj from PLAN_AF t1 left join SCK_AQSMFH t3 on t1.SCKID = t3.ID
              left join gcgl_abgc g on g.jhid=t1.id where t3.lxbm like 'G%' or t3.lxbm like 'S%' and t1.spzt = '1'
              and t1.kgzt like '%' || trim('1') || '%'
              and t1.jgzt like '%' || trim('1') || '%' 
-             and g.shzt='已审核' group by g.jhid)t6 on t6.jhid=t1.id       
+             and g.shzt='已审核' 
+             and to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM')
+             group by g.jhid)t6 on t6.jhid=t1.id         
  left join (select g.jhid,sum(g.bywc_gl) wcgl, sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) wcztz,
              sum(g.wc_btz)+sum(g.wc_stz) wcsj from PLAN_AF t1 left join SCK_AQSMFH t3 on t1.SCKID = t3.ID
              left join gcgl_abgc g on g.jhid=t1.id where t3.lxbm like 'X%' or t3.lxbm like 'Y%' and t1.spzt = '1'
              and t1.kgzt like '%' || trim('1') || '%'
              and t1.jgzt like '%' || trim('1') || '%'
-             and g.shzt='已审核' group by g.jhid)t7 on t7.jhid=t1.id     
+             and to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM')
+             and g.shzt='已审核' group by g.jhid)t7 on t7.jhid=t1.id       
  left join (select g.jhid,sum(g.bywc_gl) wcgl, sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) wcztz,
              sum(g.wc_btz)+sum(g.wc_stz) wcsj from PLAN_AF t1 left join SCK_AQSMFH t3 on t1.SCKID = t3.ID
              left join gcgl_abgc g on g.jhid=t1.id where t1.spzt = '1'and t1.kgzt like '%' || trim('1') || '%'
@@ -4682,7 +4687,9 @@ select substr(t3.xzqhdm,0,4) xzqhdm,nvl(sum(t1.jhzlc),0) v_35, nvl(sum(t1.pfztz)
   left join plan_zjxd xd on t1.id = xd.xmid
   left join (select g.jhid, sum(g.bywcgl) wcgl, sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) wcztz,sum(g.wc_btz) + sum(g.wc_stz) wcsj 
              from PLAN_ZHFZ t1 left join gcgl_zhfz g on t1.id=g.jhid where t1.spzt = '1' and t1.kgzt like '%' || trim('1') || '%'
-             and t1.jgzt like '%' || trim('1') || '%' and g.shzt='已审核' group by g.jhid)t4 on t1.id  = t4.jhid                
+             and t1.jgzt like '%' || trim('1') || '%' and g.shzt='已审核' 
+             and to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM')
+             group by g.jhid)t4 on t1.id  = t4.jhid                
   left join (select g.jhid, sum(g.bywcgl) wcgl, sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) wcztz,sum(g.wc_btz) + sum(g.wc_stz) wcsj 
              from PLAN_ZHFZ t1 left join gcgl_zhfz g on t1.id=g.jhid where t1.spzt = '1' and t1.kgzt like '%' || trim('1') || '%'
              and t1.jgzt like '%' || trim('1') || '%' and g.shzt='已审核' and substr(g.sbyf,0,4) in (#{xmnf}) and to_number(substr(g.sbyf, 6, 2)) &lt;= to_number(#{yf}) group by g.jhid)t5 on t1.id  = t5.jhid
@@ -4711,7 +4718,7 @@ select substr(t3.xzqhdm,0,4) wqxzqh, count(t1.id) v_2,nvl(sum(t1.JHQLQC),0) v_3,
   from PLAN_WQGZ t1
   left join SCK_WQGZ t2 on t1.SCKID = t2.SCKID
   left join XMK_WQGZ t3 on t2.xmkid = t3.id
-  left join plan_zjxd xd on t1.id = xd.xmid
+  left join plan_zjxd xd on t1.id = xd.xmid 
   left join (select g.jhid,sum(t2.scqlqc) scqlqc, sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) wcztz,sum(g.wc_btz) wcbtz,sum(g.wc_stz) wcstz
                from plan_wqgz t1 
                left join SCK_WQGZ t2 on t1.SCKID = t2.SCKID 
@@ -4720,6 +4727,7 @@ select substr(t3.xzqhdm,0,4) wqxzqh, count(t1.id) v_2,nvl(sum(t1.JHQLQC),0) v_3,
                and t1.kgzt like '%' || trim('1') || '%'
                and t1.jgzt like '%' || trim('1') || '%' 
                and g.shzt='已审核' 
+               and to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM')
                group by g.jhid) t4 on t1.id = t4.jhid             
  left join (select g.jhid,sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) bnwctz,sum(nvl(g.bywcmc,0)) bnwcym
               from plan_wqgz t1 
@@ -4742,7 +4750,6 @@ select substr(t3.xzqhdm,0,4) wqxzqh, count(t1.id) v_2,nvl(sum(t1.JHQLQC),0) v_3,
    </if>
    group by substr(t3.xzqhdm,0,4) order by substr(t3.xzqhdm,0,4) asc )wq
 full outer join (
-
 select substr(t3.xzqhdm,0,4) afxzqh, nvl(sum(t1.jhzlc),0) v_17, nvl(sum(t1.pfztz), 0) v_18,  nvl(sum(t1.jhsybbzje), 0) v_19,
   nvl(sum(t1.shengbz), 0) v_20, '' v_21, nvl(sum(t5.wcgl),0) v_22, nvl(sum(t6.wcgl),0) v_23, nvl(sum(t7.wcgl),0) v_24, 
   round(nvl(sum(t5.wcztz),0),2) v_25,round(nvl(sum(t6.wcztz),0),2) v_26,round(nvl(sum(t7.wcztz),0),2) v_27,
@@ -4759,19 +4766,24 @@ select substr(t3.xzqhdm,0,4) afxzqh, nvl(sum(t1.jhzlc),0) v_17, nvl(sum(t1.pfztz
              where t1.spzt = '1'
                   and t1.kgzt like '%' || trim('1') || '%'
                   and t1.jgzt like '%' || trim('1') || '%'  
-                  and g.shzt='已审核' group by g.jhid)t5 on t5.jhid=t1.id
+                  and g.shzt='已审核' 
+                  and to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM')
+                  group by g.jhid)t5 on t5.jhid=t1.id   
  left join (select g.jhid,sum(g.bywc_gl) wcgl, sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) wcztz,
              sum(g.wc_btz)+sum(g.wc_stz) wcsj from PLAN_AF t1 left join SCK_AQSMFH t3 on t1.SCKID = t3.ID
              left join gcgl_abgc g on g.jhid=t1.id where t3.lxbm like 'G%' or t3.lxbm like 'S%' and t1.spzt = '1'
              and t1.kgzt like '%' || trim('1') || '%'
              and t1.jgzt like '%' || trim('1') || '%' 
-             and g.shzt='已审核' group by g.jhid)t6 on t6.jhid=t1.id       
+             and g.shzt='已审核' 
+             and to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM')
+             group by g.jhid)t6 on t6.jhid=t1.id         
  left join (select g.jhid,sum(g.bywc_gl) wcgl, sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) wcztz,
              sum(g.wc_btz)+sum(g.wc_stz) wcsj from PLAN_AF t1 left join SCK_AQSMFH t3 on t1.SCKID = t3.ID
              left join gcgl_abgc g on g.jhid=t1.id where t3.lxbm like 'X%' or t3.lxbm like 'Y%' and t1.spzt = '1'
              and t1.kgzt like '%' || trim('1') || '%'
              and t1.jgzt like '%' || trim('1') || '%'
-             and g.shzt='已审核' group by g.jhid)t7 on t7.jhid=t1.id     
+             and to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM')
+             and g.shzt='已审核' group by g.jhid)t7 on t7.jhid=t1.id       
  left join (select g.jhid,sum(g.bywc_gl) wcgl, sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) wcztz,
              sum(g.wc_btz)+sum(g.wc_stz) wcsj from PLAN_AF t1 left join SCK_AQSMFH t3 on t1.SCKID = t3.ID
              left join gcgl_abgc g on g.jhid=t1.id where t1.spzt = '1'and t1.kgzt like '%' || trim('1') || '%'
@@ -4796,7 +4808,9 @@ select substr(t3.xzqhdm,0,4) xzqhdm,nvl(sum(t1.jhzlc),0) v_35, nvl(sum(t1.pfztz)
   left join plan_zjxd xd on t1.id = xd.xmid
   left join (select g.jhid, sum(g.bywcgl) wcgl, sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) wcztz,sum(g.wc_btz) + sum(g.wc_stz) wcsj 
              from PLAN_ZHFZ t1 left join gcgl_zhfz g on t1.id=g.jhid where t1.spzt = '1' and t1.kgzt like '%' || trim('1') || '%'
-             and t1.jgzt like '%' || trim('1') || '%' and g.shzt='已审核' group by g.jhid)t4 on t1.id  = t4.jhid                
+             and t1.jgzt like '%' || trim('1') || '%' and g.shzt='已审核' 
+             and to_date(g.sbyf, 'yyyy-MM') &lt;= to_date(#{sbyf}, 'yyyy-MM')
+             group by g.jhid)t4 on t1.id  = t4.jhid                
   left join (select g.jhid, sum(g.bywcgl) wcgl, sum(g.wc_btz) + sum(g.wc_stz) + sum(g.wc_qttz) wcztz,sum(g.wc_btz) + sum(g.wc_stz) wcsj 
              from PLAN_ZHFZ t1 left join gcgl_zhfz g on t1.id=g.jhid where t1.spzt = '1' and t1.kgzt like '%' || trim('1') || '%'
              and t1.jgzt like '%' || trim('1') || '%' and g.shzt='已审核' and substr(g.sbyf,0,4) in (#{xmnf}) and to_number(substr(g.sbyf, 6, 2)) &lt;= to_number(#{yf}) group by g.jhid)t5 on t1.id  = t5.jhid
