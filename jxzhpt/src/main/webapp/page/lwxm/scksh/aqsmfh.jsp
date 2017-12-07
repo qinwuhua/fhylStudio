@@ -146,7 +146,20 @@ $("#grid").datagrid({
         {field:'lxmc',title:'规划路线名称',width:120,align:'center'},
         {field:'qdzh',title:'规划起点桩号',width:140,align:'center'},
         {field:'zdzh',title:'规划止点桩号',width:140,align:'center'},
-	    {field:'mqidj',title:'MQI等级',width:60,align:'center'},
+	    {field:'mqidj',title:'MQI等级',align:'center',formatter:function(value,row,index){ 
+	    	 var strs = value.split(",");    	 
+	    	 var arr = new Array(); 
+	    	 if(strs.length > 0){
+	    	     for(i=0;i<strs.length;i++){
+	    	    	 var result = '<a href="javascript:openMqiDetail('+"'"+index+"',"+"'"+strs[i]+"'"+')" style="color:#3399CC;">'+strs[i]+'</a>';
+	    	    	 arr.push(result);
+	    	    }
+	    	     return arr.join(',');
+	    	 }else{
+	    		 return value;
+	    	 } 
+	       }
+	    },
         {field:'yhlc',title:'隐患里程',width:140,align:'center'},
         {field:'czzlc',title:'处置总里程',width:140,align:'center'},
         {field:'xjgjnd',title:'改建/修建年度',width:140,align:'center'},
@@ -314,6 +327,12 @@ function tuihui(){
 			 }
 		});
 	}
+}
+function openMqiDetail(index,flag){
+	var data=$("#grid").datagrid('getRows')[index];
+	YMLib.Var.Obj=data;
+	YMLib.Var.sq=flag;
+	YMLib.UI.createWindow('mqi','MQI等级详细信息','afmqidjcx.jsp','mqi',900,400);
 }
 </script>
 <style type="text/css">

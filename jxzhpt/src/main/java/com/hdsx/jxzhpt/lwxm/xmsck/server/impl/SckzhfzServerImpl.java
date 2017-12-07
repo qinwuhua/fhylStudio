@@ -78,7 +78,16 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 
 	@Override
 	public List<Sckzhfz> selectSckShzhfz(Sckzhfz zhfz) {
-		return queryList("selectSckShzhfz", zhfz);
+		List<Sckzhfz> result = new ArrayList<Sckzhfz>();
+		List<Sckzhfz> lx = queryList("selectSckShzhfz", zhfz);
+		String mqistr = null;
+		for (int i = 0;i< lx.size();i++) {
+			Sckzhfz ls =lx.get(i);
+			mqistr=queryOne("queryMqidj", ls);
+			ls.setMqidj(mqistr);
+			result.add(ls);
+		}		
+		return result;
 	}
 
 	@Override

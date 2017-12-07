@@ -119,7 +119,16 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		params.put("xmsq", xmsq);
 		params.put("page", page);
 		params.put("rows", rows);
-		return queryList("queryYhdzxXmsq",params);
+		List<Xmsq> result = new ArrayList<Xmsq>();
+		List<Xmsq> lx = queryList("queryYhdzxXmsq",params);
+		String mqistr = null;
+		for (int i = 0;i< lx.size();i++) {
+			Xmsq ls =lx.get(i);
+			mqistr=queryOne("queryMqidj", ls);
+			ls.setMqidj(mqistr);
+			result.add(ls);
+		}		
+		return result;
 	}
 	@Override
 	public List<Xmsq> queryYhdzxXmsqbyyhc(Xmsq xmsq,int page,int rows) {
@@ -133,7 +142,18 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		params.put("xmsq", xmsq);
 		params.put("page", page);
 		params.put("rows", rows);
-		return queryList("queryShXmsq",params);
+		
+		List<Xmsq> result = new ArrayList<Xmsq>();
+		List<Xmsq> lx = queryList("queryShXmsq",params);
+		
+		String mqistr = null;
+		for (int i = 0;i< lx.size();i++) {
+			Xmsq ls =lx.get(i);
+			mqistr=queryOne("queryMqidj", ls);
+			ls.setMqidj(mqistr);
+			result.add(ls);
+		}		
+		return result;
 	}
 	@Override
 	public List<Xmsq> queryShXmsqbyyhc(Xmsq xmsq,int page,int rows) {

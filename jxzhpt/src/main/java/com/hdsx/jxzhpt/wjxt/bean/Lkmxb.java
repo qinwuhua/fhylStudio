@@ -65,7 +65,28 @@ public class Lkmxb implements Serializable {
 	private String mqidj;//mqi等级---优良中次差
 	private String pqidj;//mqi等级---优良中次差
 	private String tjzb;
-	
+	private String flag;//标记
+	private String yqdzh;
+	private String yzdzh;
+
+	public String getYqdzh() {
+		return yqdzh;
+	}
+	public void setYqdzh(String yqdzh) {
+		this.yqdzh = yqdzh;
+	}
+	public String getYzdzh() {
+		return yzdzh;
+	}
+	public void setYzdzh(String yzdzh) {
+		this.yzdzh = yzdzh;
+	}
+	public String getFlag() {
+		return flag;
+	}
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
 	public String getTjzb() {
 		return tjzb;
 	}

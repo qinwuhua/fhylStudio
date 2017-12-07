@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckabgcServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
@@ -74,7 +75,16 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 
 	@Override
 	public List<Sckabgc> selectSckShabgc(Sckabgc abgc) {
-		return queryList("selectSckShabgc", abgc);
+		List<Sckabgc> result = new ArrayList<Sckabgc>();
+		List<Sckabgc> lx = queryList("selectSckShabgc", abgc);
+		String mqistr = null;
+		for (int i = 0;i< lx.size();i++) {
+			Sckabgc ls =lx.get(i);
+			mqistr=queryOne("queryMqidj", ls);
+			ls.setMqidj(mqistr);
+			result.add(ls);
+		}		
+		return result;
 	}
 
 	@Override
