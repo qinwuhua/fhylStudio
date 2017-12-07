@@ -1386,9 +1386,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				excelData = cbsjServer.queryShExcel(cbsj);
 				
 				ExcelData eldata=new ExcelData();//创建一个类
-				eldata.setTitleName("灾毁重建施工图设计");//设置第一行 
-				eldata.setSheetName("灾毁重建施工图设计");//设置sheeet名
-				eldata.setFileName("灾毁重建施工图设计");//设置文件名
+				eldata.setTitleName("灾毁恢复重建施工图设计");//设置第一行 
+				eldata.setSheetName("灾毁恢复重建施工图设计");//设置sheeet名
+				eldata.setFileName("灾毁恢复重建施工图设计");//设置文件名
 				eldata.setEl(excelData);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				et.add(new Excel_tilte("序号",1,1,0,0));
