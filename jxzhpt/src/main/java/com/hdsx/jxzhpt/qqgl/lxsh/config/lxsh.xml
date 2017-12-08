@@ -2280,9 +2280,11 @@ select rownum v_0,t.xmbm v_1,t.xmmc v_2,t1.xzqh v_3,
 	   select WMSYS.WM_CONCAT(t.mqidj) mqiStr from(
            select fn_ReturnFllx(lmd.mqi)  mqidj
                   from lkpd_mxb_data_2014 lmd
+                  left join lkpd_mxb2014 m on lmd.mxb_id=m.id
                    where lmd.lxbh in (#{ghlxbm})
                    and to_number(lmd.qdzh) &gt;= to_number(#{ghqdzh})
-                   and to_number(lmd.zdzh) &lt;= to_number(#{ghzdzh}) 
+                   and to_number(lmd.zdzh) &lt;= to_number(#{ghzdzh})
+                   and m.tbnf in ('2016') and lmd.jsdj !='高速'
                    group by fn_ReturnFllx(lmd.mqi)
                    order by DECODE(fn_ReturnFllx(lmd.mqi),'优','1','良','2','中','3','次','4','差','5'))t
 	</select>

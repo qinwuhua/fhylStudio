@@ -1514,11 +1514,14 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 	<select id="queryMqidjxx" parameterType="lkmxb" resultType="lkmxb">
 	    select lmd.*, fn_ReturnFllx(lmd.mqi)  mqidj ,fn_ReturnFllx(lmd.pqi) pqidj,(lmd.zdzh-lmd.qdzh)*1000 cd
                   from lkpd_mxb_data_2014 lmd
+                  left join lkpd_mxb2014 m on lmd.mxb_id=m.id
                    where lmd.lxbh in (#{lxbh})
                    and to_number(lmd.qdzh) &gt;= to_number(#{qdzh})     
                    and to_number(lmd.zdzh) &lt;= to_number(#{zdzh})
+                   and m.tbnf in ('2016') and lmd.jsdj !='高速'
           <if test="flag != null and  flag != ''">
           	  and fn_ReturnFllx(lmd.mqi) like '%'||#{flag}||'%'          
-		  </if>     
+		  </if> 
+		  order by lmd.qdzh asc    
 	</select>
 </mapper>
