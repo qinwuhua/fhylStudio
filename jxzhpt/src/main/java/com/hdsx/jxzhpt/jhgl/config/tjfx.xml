@@ -1518,10 +1518,10 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
                    where lmd.lxbh in (#{lxbh})
                    and to_number(lmd.qdzh) &gt;= to_number(#{qdzh})     
                    and to_number(lmd.zdzh) &lt;= to_number(#{zdzh})
-                   and m.tbnf in ('2016') and lmd.jsdj !='高速'
+                   and m.tbnf in (select max(tbnf) from lkpd_mxb2014) and lmd.jsdj !='高速'
           <if test="flag != null and  flag != ''">
           	  and fn_ReturnFllx(lmd.mqi) like '%'||#{flag}||'%'          
 		  </if> 
-		  order by lmd.qdzh asc    
+		  order by to_number(lmd.qdzh) asc    
 	</select>
 </mapper>

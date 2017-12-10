@@ -5,7 +5,7 @@
        
       select * from (
       select rownum num,jh.*,sz.XMKID,sz.XLXBM,sz.XLXMC,sz.YLXBM,sz.YLXMC,sz.sz.XZQHDM xzqhdm2,sz.XZQH,sz.GHQDZH,sz.GHZDZH,sz.YQDZH,sz.YZDZH,sz.JSDJ,sz.ZLC,sz.XMLX,sz.XLXZH,sz.LLXZH,sz.XYSSLX,sz.sz.FWNR,sz.ZDMJ,sz.BZ,sz.sz.JSSSLX,sz.YDBMC
-   	  ,sg.pfwh
+   	  ,sg.pfwh,wn.gxlxbm,wn.gxqdzh,wn.gxzdzh
       ${tiaojian}
       <if test="xzqh !='' and xzqh != null">${xzqh}</if>
       <if test="gydw !='' and gydw != null">${gydw}</if>

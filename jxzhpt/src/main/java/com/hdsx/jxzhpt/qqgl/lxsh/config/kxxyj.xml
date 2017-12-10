@@ -288,12 +288,12 @@
 	
 	<select id="selectXjkxList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.lsjl,t1.xmklx,t1.ghlxbh lxbh,gydwdm1 gydwdm,gydw1 gydw,t1.tsdq,t1.tz,t.shzt sbzt1,t.sbzt sbzts,lx.*,sl.xmsl,sl.zlc jszlc1 from KXXYJ_XJ t left join lxsh_xj t1 on t.xmbm=t1.xmbm left join 
-		(select qdmc,zdmc,lxmc,qdzh minqdzh,zdzh maxzdzh,xmid, lc,xjlc,yilc,erlc,sanlc,silc,dwlc,wllc,xjlxbm,xjqdzh,xjzdzh
-		from lxsh_lx where jdbs='1' and sffirst='1'
-		) lx on t.xmbm=lx.xmid 
-		left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
-		where 1=1 
+        select rownum num ,t.*,t1.lsjl,t1.xmklx,t1.ghlxbh lxbh,gydwdm1 gydwdm,gydw1 gydw,t1.tsdq,t1.tz,t.shzt sbzt1,t.sbzt sbzts,lx.*,sl.xmsl,sl.zlc jszlc1 from KXXYJ_XJ t left join lxsh_xj t1 on t.xmbm=t1.xmbm left join 
+        (select qdmc,zdmc,lxmc,qdzh minqdzh,zdzh maxzdzh,xmid, lc,xjlc,yilc,erlc,sanlc,silc,dwlc,wllc,xjlxbm,xjqdzh,xjzdzh,gxlxbm,gxqdzh,gxzdzh
+        from lxsh_lx where jdbs='1' and sffirst='1'
+        ) lx on t.xmbm=lx.xmid 
+        left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
+        where 1=1 
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and t.xmmc like '%'||#{xmmc}||'%'</if>
