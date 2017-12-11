@@ -408,6 +408,8 @@
 		<action name="queryylmlx" class="jhshController" method="queryylmlx"></action>
 		<action name="exportJhshxxgsdexcel" class="jhshController"
 			method="exportJhshxxgsdexcel"></action>
+			<action name="exportJhshxxgsxddexcel" class="jhshController"
+			method="exportJhshxxgsxddexcel"></action>
 			<action name="queryGsdgz_dcexcelsb" class="jhshController"
 			method="queryGsdgz_dcexcelsb"></action>
 		<action name="exportJhshShExcel" class="jhshController" method="exportJhshShExcel"></action>

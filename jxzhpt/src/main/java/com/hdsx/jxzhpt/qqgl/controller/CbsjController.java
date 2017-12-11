@@ -1009,9 +1009,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				excelData = cbsjServer.queryLmsjExcel(cbsj);
 				
 				ExcelData eldata=new ExcelData();//创建一个类
-				eldata.setTitleName("公路建设工程初步设计(国省道改造改建工程项目)");//设置第一行 
-				eldata.setSheetName("公路建设工程初步设计(国省道改造改建工程项目)");//设置sheeet名
-				eldata.setFileName("公路建设工程初步设计(国省道改造改建工程项目)");//设置文件名
+				eldata.setTitleName("公路建设工程初步设计(国省道改造改建工程)");//设置第一行 
+				eldata.setSheetName("公路建设工程初步设计(国省道改造改建工程)");//设置sheeet名
+				eldata.setFileName("公路建设工程初步设计(国省道改造改建工程)");//设置文件名
 				eldata.setEl(excelData);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				et.add(new Excel_tilte("序号",1,1,0,0));
@@ -1171,9 +1171,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			}else if(cbsj.getXmlx()==2){
 				excelData = cbsjServer.queryLmgzExcel(cbsj);
 				ExcelData eldata=new ExcelData();//创建一个类
-				eldata.setTitleName("公路建设工程初步设计(国省道改造路面改造工程项目)");//设置第一行 
-				eldata.setSheetName("公路建设工程初步设计(国省道改造路面改造工程项目)");//设置sheeet名
-				eldata.setFileName("公路建设工程初步设计(国省道改造路面改造工程项目)");//设置文件名
+				eldata.setTitleName("公路建设工程初步设计(国省道改造路面改造工程)");//设置第一行 
+				eldata.setSheetName("公路建设工程初步设计(国省道改造路面改造工程)");//设置sheeet名
+				eldata.setFileName("公路建设工程初步设计(国省道改造路面改造工程)");//设置文件名
 				eldata.setEl(excelData);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				et.add(new Excel_tilte("序号",1,1,0,0));
@@ -1242,9 +1242,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				excelData = cbsjServer.queryXjExcel(cbsj);
 				
 				ExcelData eldata=new ExcelData();//创建一个类
-				eldata.setTitleName("公路建设工程初步设计(国省道改造新建工程项目)");//设置第一行 
-				eldata.setSheetName("公路建设工程初步设计(国省道改造新建工程项目)");//设置sheeet名
-				eldata.setFileName("公路建设工程初步设计(国省道改造新建工程项目)");//设置文件名
+				eldata.setTitleName("公路建设工程初步设计(国省道改造新建工程)");//设置第一行 
+				eldata.setSheetName("公路建设工程初步设计(国省道改造新建工程)");//设置sheeet名
+				eldata.setFileName("公路建设工程初步设计(国省道改造新建工程)");//设置文件名
 				eldata.setEl(excelData);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				et.add(new Excel_tilte("序号",1,1,0,0));

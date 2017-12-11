@@ -244,7 +244,7 @@
 				+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+'&jhsh.jsjsdj='+$("#jsjsdj").combobox("getValues").join(",")+'&jhsh.jhxdwh='+jhxdwh
 				+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.scxdnf='+1+'&jhsh.xmbm='+$('#xmbm').val()+'&jhsh.zydpx='+$('#zydpx').combobox("getValue"); 
 			  
-			window.location.href="/jxzhpt/qqgl/exportJhshxxgsdexcel.do?"+param;
+			window.location.href="/jxzhpt/qqgl/exportJhshxxgsxddexcel.do?"+param;
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 

@@ -2029,25 +2029,25 @@ public class JhshController extends BaseActionSupport implements
 		
 		if("1".equals(jhsh.getSbzt())) {
 
-			eldata.setTitleName("公路建设计划预安排（灾毁恢复重建项目）");
+			eldata.setTitleName("公路建设计划预安排（灾毁恢复重建）");
 		}else {
-			eldata.setTitleName("公路建设计划申报（灾毁恢复重建项目）");
+			eldata.setTitleName("公路建设计划申报（灾毁恢复重建）");
 
 		}
 		// 设置第一行
 		if("1".equals(jhsh.getSbzt())) {
 
-			eldata.setSheetName("公路建设计划预安排（灾毁恢复重建项目）");
+			eldata.setSheetName("公路建设计划预安排（灾毁恢复重建）");
 		}
 		else {
-			eldata.setSheetName("公路建设计划申报（灾毁恢复重建项目）");
+			eldata.setSheetName("公路建设计划申报（灾毁恢复重建）");
 		}
 		// 设置sheeet名
 		if("1".equals(jhsh.getSbzt())) {
 
-			eldata.setFileName("公路建设计划预安排（灾毁恢复重建项目）");
+			eldata.setFileName("公路建设计划预安排（灾毁恢复重建）");
 		}else {
-			eldata.setFileName("公路建设计划申报（灾毁恢复重建项目）");
+			eldata.setFileName("公路建设计划申报（灾毁恢复重建）");
 
 		}
 		// 设置文件名
@@ -3515,9 +3515,9 @@ public class JhshController extends BaseActionSupport implements
 		ExcelData eldata = new ExcelData();// 创建一个类
 
 		
-		eldata.setTitleName("公路建设计划下达（国省道改造）");// 设置第一行
-		eldata.setSheetName("公路建设计划下达（国省道改造）");// 设置sheeet名
-		eldata.setFileName("公路建设计划下达（国省道改造）");// 设置文件名
+		eldata.setTitleName("公路建设建议计划下达（国省道改造）");// 设置第一行
+		eldata.setSheetName("公路建设建议计划下达（国省道改造）");// 设置sheeet名
+		eldata.setFileName("公路建设建议计划下达（国省道改造）");// 设置文件名
 
 
 		eldata.setEl(l);// 将实体list放入类中
@@ -3591,7 +3591,133 @@ public class JhshController extends BaseActionSupport implements
 		}
 
 	}
+	public void exportJhshxxgsxddexcel() {
+		/*
+		 * String xmbm = jhsh.getXmnf(); if(!xmbm.equals("")&&xmbm!=null){
+		 * if(xmbm.indexOf(",")>-1){ String[] xmnfArray = xmbm.split(","); for
+		 * (int i = 0; i < xmnfArray.length; i++) { if(i==xmnfArray.length-1){
+		 * xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') "; }else if(i==0){
+		 * xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' "; }else{ xmbm +=
+		 * " or j.xmbm like '" + xmnfArray[i] + "%' "; } } }else{ xmbm =
+		 * "j.xmbm like '" + xmbm + "%' "; } } jhsh.setXmbm(xmbm);
+		 */
+		xdwhHandle();
+		tsdqHandle();
+		jsdjHandle();
+		jsjsdjHandle();
+		ylxbhHandle();
+		xdztHandle();
+		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(), "xzqhdm2"));
+		if (jhsh.getXmlx1() != null)
+			if (jhsh.getXmlx1().length() > 0) {
+				String[] tsdqs = jhsh.getXmlx1().split(",");
+				String tsdq = "";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if ("全部".equals(tsdqs[i])) {
+						tsdq = "";
+						break;
+					}
+					if (i == 0)
+						tsdq += " and (j.xmlx1 like '%" + tsdqs[i] + "%'";
+					else
+						tsdq += " or j.xmlx1 like '%" + tsdqs[i] + "%'";
+				}
+				if (tsdq == "") {
+					tsdq = "";
+				} else {
+					tsdq += ")";
+				}
+				jhsh.setXmlx1(tsdq);
+			}
+		jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+		jhsh.setGhxlxbm(MyUtil.getQueryTJiN(jhsh.getGhxlxbm(), "ghlxbm"));
 
+		List<Excel_list> l = jhshServer.queryGsdgz_dc(jhsh);
+		// int k=1;
+		// for (Excel_list e : l) {
+		// if("1".equals(e.getV_50())) {
+		// e.setV_0(""+k);k++;
+		// }
+		// }
+		ExcelData eldata = new ExcelData();// 创建一个类
+
+		
+		eldata.setTitleName("公路建设已计划下达（国省道改造）");// 设置第一行
+		eldata.setSheetName("公路建设已计划下达（国省道改造）");// 设置sheeet名
+		eldata.setFileName("公路建设已计划下达（国省道改造）");// 设置文件名
+
+
+		eldata.setEl(l);// 将实体list放入类中
+		List<Excel_tilte> et = new ArrayList<Excel_tilte>();// 创建一个list存放表头
+		et.add(new Excel_tilte("序号", 1, 2, 0, 0));
+		et.add(new Excel_tilte("所在省市", 1, 2, 1, 1));
+		et.add(new Excel_tilte("市", 1, 2, 2, 2));
+		et.add(new Excel_tilte("县", 1, 2, 3, 3));
+		et.add(new Excel_tilte("项目名称", 1, 2, 4, 4));		
+		et.add(new Excel_tilte("最新年报桩号", 1, 1, 5, 7));
+		
+		et.add(new Excel_tilte("路网规划前", 1, 1, 8, 10));
+		
+		et.add(new Excel_tilte("建设性质", 1, 2, 11, 11));
+		et.add(new Excel_tilte("建设规模（公里）/（延米）", 1, 1, 12, 18));
+		et.add(new Excel_tilte("建设年限", 1, 1, 19, 20));
+		et.add(new Excel_tilte("总投资（万元）", 1, 2, 21, 21));
+		et.add(new Excel_tilte("中央车购税投资（万元）", 1, 2, 22, 22));
+		et.add(new Excel_tilte("已下达车购税资金（万元）", 1, 2, 23, 23));
+		et.add(new Excel_tilte("已下达厅贷款（万元）", 1, 2, 24, 24));
+		et.add(new Excel_tilte("已下达奖励（万元）", 1, 2, 25, 25));
+		et.add(new Excel_tilte("上年底累计完成投资（万元）", 1, 1, 26, 29));
+		et.add(new Excel_tilte("建议计划（万元）", 1, 1, 30, 37));
+		et.add(new Excel_tilte("计划下达文号", 1, 2, 38, 38));
+		et.add(new Excel_tilte("前期工作情况", 1, 1, 39, 40));
+		et.add(new Excel_tilte("项目编码", 1, 2, 41, 41));
+		et.add(new Excel_tilte("项目年份", 1, 2, 42, 42));
+		et.add(new Excel_tilte("备注", 1, 2, 43, 43));
+		et.add(new Excel_tilte("特殊地区", 1, 2, 44, 44));
+		
+		et.add(new Excel_tilte("路线编码", 2, 2, 5, 5));
+		et.add(new Excel_tilte("起点桩号", 2, 2, 6, 6));
+		et.add(new Excel_tilte("止点桩号", 2, 2, 7, 7));
+		et.add(new Excel_tilte("路线编码", 2, 2, 8, 8));
+		et.add(new Excel_tilte("起点桩号", 2, 2, 9, 9));
+		et.add(new Excel_tilte("止点桩号", 2, 2, 10, 10));
+		
+		et.add(new Excel_tilte("合计", 2, 2, 12, 12));
+		et.add(new Excel_tilte("一级公路", 2, 2, 13, 13));
+		et.add(new Excel_tilte("二级公路", 2, 2, 14, 14));
+		et.add(new Excel_tilte("三级公路", 2, 2, 15, 15));
+		et.add(new Excel_tilte("四级公路", 2, 2, 16, 16));
+		
+		et.add(new Excel_tilte("大桥", 2, 2, 17, 17));
+		et.add(new Excel_tilte("隧道", 2, 2, 18, 18));
+		et.add(new Excel_tilte("开工年", 2, 2, 19, 19));
+		et.add(new Excel_tilte("完工年", 2, 2, 20, 20));
+		
+		et.add(new Excel_tilte("合计", 2, 2, 26, 26));
+		et.add(new Excel_tilte("内：中央车购税", 2, 2, 27, 27));
+		et.add(new Excel_tilte("内：厅贷款", 2, 2, 28, 28));
+		et.add(new Excel_tilte("内：奖励", 2, 2, 29, 29));
+		et.add(new Excel_tilte("合计", 2, 2, 30, 30));
+		et.add(new Excel_tilte("中央车购税投资", 2, 2, 31, 31));
+		et.add(new Excel_tilte("厅贷款", 2, 2, 32, 32));
+		et.add(new Excel_tilte("奖励", 2, 2, 33, 33));
+		et.add(new Excel_tilte("地方自筹", 2, 2, 34, 34));
+		et.add(new Excel_tilte("银行贷款", 2, 2, 35, 35));
+		et.add(new Excel_tilte("主要建设内容", 2, 2, 36, 36));
+		et.add(new Excel_tilte("新增生产能力", 2, 2, 37, 37));
+		et.add(new Excel_tilte("工可批复文号", 2, 2, 39, 39));
+		
+		et.add(new Excel_tilte("设计批复文号", 2, 2, 40, 40));
+
+		eldata.setEt(et);// 将表头内容设置到类里面
+		HttpServletResponse response = getresponse();// 获得一个HttpServletResponse
+		try {
+			Excel_export.excel_export(eldata, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 	// wdd导出灾毁恢复excel start
 	public void exportJhshShExcel() {
 		/*
@@ -3646,9 +3772,28 @@ public class JhshController extends BaseActionSupport implements
 		// }
 
 		ExcelData eldata = new ExcelData();// 创建一个类
-		eldata.setTitleName("公路建设计划下达（灾毁恢复重建）");// 设置第一行
-		eldata.setSheetName("公路建设计划下达（灾毁恢复重建）");// 设置sheeet名
-		eldata.setFileName("公路建设计划下达（灾毁恢复重建）");// 设置文件名
+		if("1".equals(jhsh.getScxdnf())) {
+			eldata.setTitleName("公路建设已计划下达（灾毁恢复重建）");
+		}else
+		{
+			eldata.setTitleName("公路建设建议计划下达（灾毁恢复重建）");
+		}
+		if("1".equals(jhsh.getScxdnf())) {
+			eldata.setSheetName("公路建设已计划下达（灾毁恢复重建）");
+		}else
+		{
+			eldata.setSheetName("公路建设建议计划下达（灾毁恢复重建）");
+		}
+		if("1".equals(jhsh.getScxdnf())) {
+			eldata.setFileName("公路建设已计划下达（灾毁恢复重建）");
+		}else
+		{
+			eldata.setFileName("公路建设建议计划下达（灾毁恢复重建）");
+		}
+		
+		// 设置第一行
+		// 设置sheeet名
+		// 设置文件名
 
 		eldata.setEl(l);// 将实体list放入类中
 		List<Excel_tilte> et = new ArrayList<Excel_tilte>();// 创建一个list存放表头
@@ -3720,9 +3865,9 @@ public class JhshController extends BaseActionSupport implements
 		}
 		// System.out.println(l+"111");
 		ExcelData eldata = new ExcelData();// 创建一个类
-		eldata.setTitleName("公路建设计划（养护大中修）");// 设置第一行
-		eldata.setSheetName("汇总表");// 设置sheeet名
-		eldata.setFileName("公路建设计划（养护大中修）汇总表");// 设置文件名
+		eldata.setTitleName("养护大中修建议计划下达汇总表");// 设置第一行
+		eldata.setSheetName("养护大中修建议计划下达汇总表");// 设置sheeet名
+		eldata.setFileName("养护大中修建议计划下达汇总表");// 设置文件名
 
 		eldata.setEl(l);// 将实体list放入类中
 		System.out.println(eldata + "实体list");
@@ -3789,9 +3934,9 @@ public class JhshController extends BaseActionSupport implements
 		}
 		// System.out.println(l+"111");
 		ExcelData eldata = new ExcelData();// 创建一个类
-		eldata.setTitleName("全省普通国省道养护大中修工程建议计划下达汇总表");// 设置第一行
-		eldata.setSheetName("汇总表");// 设置sheeet名
-		eldata.setFileName("全省普通国省道养护大中修工程建议计划下达汇总表");// 设置文件名
+		eldata.setTitleName("养护大中修已下达计划汇总表");// 设置第一行
+		eldata.setSheetName("养护大中修已下达计划汇总表");// 设置sheeet名
+		eldata.setFileName("养护大中修已下达计划汇总表");// 设置文件名
 
 		eldata.setEl(l);// 将实体list放入类中
 		System.out.println(eldata + "实体list");
@@ -3858,9 +4003,9 @@ public class JhshController extends BaseActionSupport implements
 			l.get(i).setV_0((i + 1) + "");
 		}
 		ExcelData eldata = new ExcelData();// 创建一个类
-		eldata.setTitleName("公路建设计划下达（养护大中修）");// 设置第一行
-		eldata.setSheetName("公路建设计划下达（养护大中修）");// 设置sheeet名
-		eldata.setFileName("公路建设计划下达（养护大中修）");// 设置文件名
+		eldata.setTitleName("养护大中修建议计划下达明细表");// 设置第一行
+		eldata.setSheetName("养护大中修建议计划下达明细表");// 设置sheeet名
+		eldata.setFileName("养护大中修建议计划下达明细表");// 设置文件名
 
 		eldata.setEl(l);// 将实体list放入类中
 		List<Excel_tilte> et = new ArrayList<Excel_tilte>();// 创建一个list存放表头
@@ -3946,9 +4091,9 @@ public class JhshController extends BaseActionSupport implements
 
 		}
 		ExcelData eldata = new ExcelData();// 创建一个类
-		eldata.setTitleName("普通国省道养护大中修工程计划下达明细表");// 设置第一行
-		eldata.setSheetName("明细表");// 设置sheeet名
-		eldata.setFileName("普通国省道养护大中修工程计划下达明细表");// 设置文件名
+		eldata.setTitleName("养护大中修已下达计划明细表");// 设置第一行
+		eldata.setSheetName("养护大中修已下达计划明细表");// 设置sheeet名
+		eldata.setFileName("养护大中修已下达计划明细表");// 设置文件名
 
 		eldata.setEl(l);// 将实体list放入类中
 		List<Excel_tilte> et = new ArrayList<Excel_tilte>();// 创建一个list存放表头
