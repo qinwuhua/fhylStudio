@@ -221,7 +221,20 @@
 				    {field : 'maxzdzh',title : '原止点桩号',width : 80,align : 'center'},
 				    {field:'qdmc',title:'起点名称',width:100,align:'center'},
 				    {field:'zdmc',title:'止点名称',width:100,align:'center'},
-				    {field:'mqidj',title:'MQI等级',width:60,align:'center'},
+				    {field:'mqidj',title:'MQI等级',align:'center',formatter:function(value,row,index){ 
+				    	 var strs = value.split(",");    	 
+				    	 var arr = new Array(); 
+				    	 if(strs.length > 0){
+				    	     for(i=0;i<strs.length;i++){
+				    	    	 var result = '<a href="javascript:openMqiDetail('+"'"+index+"',"+"'"+strs[i]+"'"+')" style="color:#3399CC;">'+strs[i]+'</a>';
+				    	    	 arr.push(result);
+				    	    }
+				    	     return arr.join(',');
+				    	 }else{
+				    		 return value;
+				    	 } 
+				       }
+				    },
 				    {field : 'jhkgn',title : '计划开工年',width : 70,align : 'center'},
 				    {field : 'jhwgn',title : '计划完工年',width : 70,align : 'center'},
 				    {field : 'tz',title : '投资',width : 80,align : 'center'},

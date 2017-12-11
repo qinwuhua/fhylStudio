@@ -49,5 +49,6 @@
 		<action name="selectKxjcLx" class="tjfxController" method="selectKxjcLx"></action>
 		<action name="queryKxjc_lx" class="tjfxController" method="queryKxjc_lx"></action>
 		<action name="exportLkpdmx" class="tjfxController" method="exportLkpdmx"></action>
+		<action name="queryMqidjxx" class="tjfxController" method="queryMqidjxx"></action>
 	</package>
 </struts>

@@ -102,7 +102,16 @@ public class XmkaqsmfhServerImpl extends BaseOperate implements XmkaqsmfhServer 
 	}
 	@Override
 	public List<Xmkaqsmfh> selectSckaqsmfhsh(Xmkaqsmfh xmkaqsmfh) {
-		return queryList("selectSckaqsmfhsh",xmkaqsmfh);
+		List<Xmkaqsmfh> result = new ArrayList<Xmkaqsmfh>();
+		List<Xmkaqsmfh> lx = queryList("selectSckaqsmfhsh",xmkaqsmfh);
+		String mqistr = null;
+		for (int i = 0;i< lx.size();i++) {
+			Xmkaqsmfh ls =lx.get(i);
+			mqistr=queryOne("queryMqidj", ls);
+			ls.setMqidj(mqistr);
+			result.add(ls);
+		}		
+		return result;
 	}
 	@Override
 	public int selectSckaqsmfhshCount(Xmkaqsmfh xmkaqsmfh) {

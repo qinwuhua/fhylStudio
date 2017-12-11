@@ -348,13 +348,21 @@ text-decoration:none;
         			</fieldset>
         		</td>
         	</tr>
-       
-        	
+            <tr>
+           	    <td style="padding-left: 10px; font-size:12px;">
+           		     项目【<span id="" style="color: red;">0</span>】个，
+            	     建设里程【<span id="" style="color: red;">0</span>】公里，
+            	     总投资【<span id="" style="color: red;">0</span>】万元，
+            	     其中车购税【<span id="" style="color: red;">0</span>】万元，
+            	     省补资金【<span id="" style="color: red;">0</span>】万元，
+            	     省奖励资金【<span id="" style="color: red;">0</span>】万元，
+            	     燃油税【<span id="" style="color: red;">0</span>】万元，
+            	     厅贷款【<span id="" style="color: red;">0</span>】万元，
+            	     地方投资【<span id="" style="color: red;">0</span>】万元。
+           	    </td>
+       	     </tr>
 		</table>
 	</form>
-	
-	
-	
 	<%-- <div id="searchDiv" style="margin-left: 20px;margin-top: 5px;margin-bottom: 5px;">
 		<table>
 			<tr>
