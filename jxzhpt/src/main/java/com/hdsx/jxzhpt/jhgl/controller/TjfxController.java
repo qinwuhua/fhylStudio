@@ -80,6 +80,73 @@ public class TjfxController extends BaseActionSupport{
 	private int rows=10;
 	private Xmsq xmsq=new Xmsq();
 	private String tbnf;
+	
+	public String getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
+	}
+	public String getNf() {
+		return nf;
+	}
+	public void setNf(String nf) {
+		this.nf = nf;
+	}
+	public String getEnd() {
+		return end;
+	}
+	public void setEnd(String end) {
+		this.end = end;
+	}
+	public String getXzqhdm() {
+		return xzqhdm;
+	}
+	public void setXzqhdm(String xzqhdm) {
+		this.xzqhdm = xzqhdm;
+	}
+	public String getFtlName() {
+		return ftlName;
+	}
+	public void setFtlName(String ftlName) {
+		this.ftlName = ftlName;
+	}
+	public Lkmxb getLkmxb() {
+		return lkmxb;
+	}
+	public void setLkmxb(Lkmxb lkmxb) {
+		this.lkmxb = lkmxb;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getRows() {
+		return rows;
+	}
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+	public String getTjfl() {
+		return tjfl;
+	}
+	public void setTjfl(String tjfl) {
+		this.tjfl = tjfl;
+	}
+	public Xmsq getXmsq() {
+		return xmsq;
+	}
+	public void setXmsq(Xmsq xmsq) {
+		this.xmsq = xmsq;
+	}
+	public String getTbnf() {
+		return tbnf;
+	}
+	public void setTbnf(String tbnf) {
+		this.tbnf = tbnf;
+	}
 	/**
 	 * 基础库行政区划统计
 	 */
@@ -2057,71 +2124,15 @@ public class TjfxController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
-	public String getXmlx() {
-		return xmlx;
-	}
-	public void setXmlx(String xmlx) {
-		this.xmlx = xmlx;
-	}
-	public String getNf() {
-		return nf;
-	}
-	public void setNf(String nf) {
-		this.nf = nf;
-	}
-	public String getEnd() {
-		return end;
-	}
-	public void setEnd(String end) {
-		this.end = end;
-	}
-	public String getXzqhdm() {
-		return xzqhdm;
-	}
-	public void setXzqhdm(String xzqhdm) {
-		this.xzqhdm = xzqhdm;
-	}
-	public String getFtlName() {
-		return ftlName;
-	}
-	public void setFtlName(String ftlName) {
-		this.ftlName = ftlName;
-	}
-	public Lkmxb getLkmxb() {
-		return lkmxb;
-	}
-	public void setLkmxb(Lkmxb lkmxb) {
-		this.lkmxb = lkmxb;
-	}
-	public int getPage() {
-		return page;
-	}
-	public void setPage(int page) {
-		this.page = page;
-	}
-	public int getRows() {
-		return rows;
-	}
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
-	public String getTjfl() {
-		return tjfl;
-	}
-	public void setTjfl(String tjfl) {
-		this.tjfl = tjfl;
-	}
-	public Xmsq getXmsq() {
-		return xmsq;
-	}
-	public void setXmsq(Xmsq xmsq) {
-		this.xmsq = xmsq;
-	}
-	public String getTbnf() {
-		return tbnf;
-	}
-	public void setTbnf(String tbnf) {
-		this.tbnf = tbnf;
-	}
 	
+	public void queryMqidjxx() {
+		List<Lkmxb> list = tjfxServer.queryMqidjxx(lkmxb);
+			try {
+				JsonUtils.write(list, this.getresponse().getWriter());
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+		}
+    }
 }

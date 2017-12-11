@@ -136,6 +136,7 @@
 			}
 			querySumWqgz(jh,lx);
 			wqxm_sh(jh,lx);
+		
 		}
 		function spBatch(){
 			var xmnf=$("#sbnf").combobox("getValues").join(",");

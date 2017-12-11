@@ -21,6 +21,7 @@
 	<script type="text/javascript" src="../../../js/YMLib.js"></script>
 	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
+	
 	<script type="text/javascript">
 	var title='';
 	$(function(){
@@ -218,6 +219,20 @@
 				{field:'ylxbh',title:'原路线编码',width:60,align:'center'},
 				{field:'qdzh',title:'原起点桩号',width:80,align:'center'},
 				{field:'zdzh',title:'原止点桩号',width:80,align:'center'},
+			    {field:'mqidj',title:'MQI等级',align:'center',formatter:function(value,row,index){ 
+			    	 var strs = value.split(",");    	 
+			    	 var arr = new Array(); 
+			    	 if(strs.length > 0){
+			    	     for(i=0;i<strs.length;i++){
+			    	    	 var result = '<a href="javascript:openMqiDetail('+"'"+index+"',"+"'"+strs[i]+"'"+')" style="color:#3399CC;">'+strs[i]+'</a>';
+			    	    	 arr.push(result);
+			    	    }
+			    	     return arr.join(',');
+			    	 }else{
+			    		 return value;
+			    	 } 
+			       }
+			    },				
 				{field:'jhkgsj',title:'计划开工时间',width:80,align:'center'},
 				{field:'jhwgsj',title:'计划完工时间',width:80,align:'center'},
 				//{field:'gq',title:'工期（月）',width:60,align:'center'},
@@ -321,6 +336,20 @@
 								{field:'ylxbh',title:'原路线编码',width:60,align:'center'},
 								{field:'qdzh',title:'原起点桩号',width:80,align:'center'},
 								{field:'zdzh',title:'原止点桩号',width:80,align:'center'},
+							    {field:'mqidj',title:'MQI等级',align:'center',formatter:function(value,row,index){ 
+							    	 var strs = value.split(",");    	 
+							    	 var arr = new Array(); 
+							    	 if(strs.length > 0){
+							    	     for(i=0;i<strs.length;i++){
+							    	    	 var result = '<a href="javascript:openMqiDetail('+"'"+index+"',"+"'"+strs[i]+"'"+')" style="color:#3399CC;">'+strs[i]+'</a>';
+							    	    	 arr.push(result);
+							    	    }
+							    	     return arr.join(',');
+							    	 }else{
+							    		 return value;
+							    	 } 
+							       }
+							    },				
 								{field:'jhkgsj',title:'计划开工时间',width:80,align:'center'},
 								{field:'jhwgsj',title:'计划完工时间',width:80,align:'center'},
 								//{field:'gq',title:'工期（月）',width:60,align:'center'},
@@ -329,7 +358,6 @@
 								{field:'thyy',title:'退回原因',width:120,align:'center'}]];
 				
 			}
-				
 			gridBind(grid);
 		}
 		function loadLj(params){
@@ -699,6 +727,12 @@ function deleteSh(){
 				return;
 			}
 		}
+		}
+		function openMqiDetail(index,flag){
+			var data=$("#grid").datagrid('getRows')[index];
+			YMLib.Var.Obj=data;
+			YMLib.Var.sq=flag;
+			YMLib.UI.createWindow('mqi','MQI等级详细信息','/jxzhpt/page/qqgl/lxsh/mqidjcx.jsp','mqi',900,400);
 		}
 	</script>
 		<style type="text/css">

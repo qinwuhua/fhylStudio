@@ -2308,7 +2308,7 @@ public class LxshController extends BaseActionSupport{
 						}
 						lxsh.setXmlx1(tsdq);
 					}
-				xmbt="国省道改造";
+				xmbt="";
 				elist=lxshServer.querylxshgsd(lxsh);
 			}
 			if("sjgz".equals(lxsh.getXmlx())){
@@ -2325,9 +2325,9 @@ public class LxshController extends BaseActionSupport{
 			}
 			
 			ExcelData eldata=new ExcelData();//创建一个类
-			eldata.setTitleName(xmbt+"工程项目立项审核信息表");//设置第一行 
-			eldata.setSheetName("立项审核信息");//设置sheeet名
-			eldata.setFileName(xmbt+"工程项目立项审核信息表");//设置文件名
+			eldata.setTitleName("公路建设项目立项(国省道改造"+xmbt+"工程项目)");//设置第一行 
+			eldata.setSheetName("公路建设项目立项(国省道改造"+xmbt+"工程项目)");//设置sheeet名
+			eldata.setFileName("公路建设项目立项(国省道改造"+xmbt+"工程项目)");//设置文件名
 			eldata.setEl(elist);//将实体list放入类中
 			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 			et.add(new Excel_tilte("序号",1,1,0,0));
@@ -2512,7 +2512,7 @@ public class LxshController extends BaseActionSupport{
 						lxsh.setXmlx1(tsdq);
 					}
 				
-				xmbt="国省道";
+				xmbt="";
 				elist=lxshServer.querykxxgsd(lxsh);
 				et.clear();
 				et.add(new Excel_tilte("序号",1,1,0,0));
@@ -2699,9 +2699,9 @@ public class LxshController extends BaseActionSupport{
 			}
 			
 			ExcelData eldata=new ExcelData();//创建一个类
-			eldata.setTitleName(xmbt+"工程项目工可信息表");//设置第一行 
-			eldata.setSheetName("工可信息");//设置sheeet名
-			eldata.setFileName(xmbt+"工程项目工可信息表");//设置文件名
+			eldata.setTitleName("公路建设项目工程可行性研究(国省道改造"+xmbt+"工程项目)");//设置第一行 
+			eldata.setSheetName("公路建设项目工程可行性研究(国省道改造"+xmbt+"工程项目)");//设置sheeet名
+			eldata.setFileName("公路建设项目工程可行性研究(国省道改造"+xmbt+"工程项目)");//设置文件名
 			eldata.setEl(elist);//将实体list放入类中
 			
 			eldata.setEt(et);//将表头内容设置到类里面

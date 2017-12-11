@@ -1439,9 +1439,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}
 		 
 		    ExcelData eldata=new ExcelData();//创建一个类
-			eldata.setTitleName("灾毁恢复重建建议计划表");//设置第一行
-			eldata.setSheetName("灾毁恢复重建");//设置sheeet名
-			eldata.setFileName("灾毁恢复重建建议计划表");//设置文件名
+			eldata.setTitleName("公路建设项目立项(灾毁恢复重建)");//设置第一行
+			eldata.setSheetName("公路建设项目立项(灾毁恢复重建)");//设置sheeet名
+			eldata.setFileName("公路建设项目立项(灾毁恢复重建)");//设置文件名
 			
 			eldata.setEl(l);//将实体list放入类中
 			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
@@ -2015,9 +2015,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		}
 		
 		ExcelData eldata=new ExcelData();//创建一个类
-		eldata.setTitleName("养护大中修工程建议计划表");//设置第一行
-		eldata.setSheetName("养护大中修");//设置sheeet名
-		eldata.setFileName("养护大中修工程建议计划表");//设置文件名
+		eldata.setTitleName("养护大中修项目立项");//设置第一行
+		eldata.setSheetName("养护大中修项目立项");//设置sheeet名
+		eldata.setFileName("养护大中修项目立项");//设置文件名
 		
 		eldata.setEl(l);//将实体list放入类中
 		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头

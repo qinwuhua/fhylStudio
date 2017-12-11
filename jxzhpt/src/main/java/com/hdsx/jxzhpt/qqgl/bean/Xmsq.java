@@ -15,7 +15,14 @@ public class Xmsq {
 	private String wbc;
 	private String wbchd;
 	private String yxylxbh;
-	
+	private String mqidj;//路面评定等级
+
+	public String getMqidj() {
+		return mqidj;
+	}
+	public void setMqidj(String mqidj) {
+		this.mqidj = mqidj;
+	}
 	public String getYxylxbh() {
 		return yxylxbh;
 	}

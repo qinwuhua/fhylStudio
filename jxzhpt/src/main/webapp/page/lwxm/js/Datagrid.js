@@ -2685,10 +2685,28 @@ function sckshAbgc(){
 			{field:'bzls',title:'补助历史',width:60,align:'center'},
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
-	        {field:'lxbm',title:'路线编码',width:120,align:'center'},
-	        {field:'lxmc',title:'路线名称',width:120,align:'center'},
-	        {field:'scqdzh',title:'起点桩号',width:140,align:'center'},
-	        {field:'sczdzh',title:'止点桩号',width:140,align:'center'},
+	        {field:'lxbm',title:'规划路线编码',width:120,align:'center'},
+	        {field:'lxmc',title:'规划路线名称',width:120,align:'center'},
+	        {field:'scqdzh',title:'规划起点桩号',width:140,align:'center'},
+	        {field:'sczdzh',title:'规划止点桩号',width:140,align:'center'},	        
+	        {field:'ylxbm',title:'原路线编码',width:120,align:'center'},
+	        {field:'ylxmc',title:'原路线名称',width:120,align:'center'},
+	        {field:'yqdzh',title:'原起点桩号',width:140,align:'center'},
+	        {field:'yzdzh',title:'原止点桩号',width:140,align:'center'},
+		    {field:'mqidj',title:'MQI等级',align:'center',formatter:function(value,row,index){ 
+		    	 var strs = value.split(",");    	 
+		    	 var arr = new Array(); 
+		    	 if(strs.length > 0){
+		    	     for(i=0;i<strs.length;i++){
+		    	    	 var result = '<a href="javascript:openMqiDetail('+"'"+index+"',"+"'"+strs[i]+"'"+')" style="color:#3399CC;">'+strs[i]+'</a>';
+		    	    	 arr.push(result);
+		    	    }
+		    	     return arr.join(',');
+		    	 }else{
+		    		 return value;
+		    	 } 
+		       }
+		    },	        
 	        {field:'sczlc',title:'起止里程',width:140,align:'center'},
 	        {field:'sczlc',title:'总里程',width:140,align:'center'},
 	        {field:'scyhlc',title:'隐患里程',width:140,align:'center'},
@@ -2916,13 +2934,27 @@ function sckshZhfz(){
 			{field:'bzls',title:'补助历史',width:60,align:'center'},
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
-	        {field:'lxbm',title:'路线编码',width:120,align:'center'},
-	        {field:'lxmc',title:'路线名称',width:120,align:'center'},
-	        {field:'scqdzh',title:'起点桩号',width:140,align:'center'},
-	        {field:'sczdzh',title:'止点桩号',width:140,align:'center'},
+	        {field:'lxbm',title:'规划路线编码',width:120,align:'center'},
+	        {field:'lxmc',title:'规划路线名称',width:120,align:'center'},
+	        {field:'scqdzh',title:'规划起点桩号',width:140,align:'center'},
+	        {field:'sczdzh',title:'规划止点桩号',width:140,align:'center'},
 	        {field:'sczlc',title:'起止里程',width:140,align:'center'},
 	        {field:'sczlc',title:'总里程',width:140,align:'center'},
 	        {field:'scyhlc',title:'隐患里程',width:140,align:'center'},
+		    {field:'mqidj',title:'MQI等级',align:'center',formatter:function(value,row,index){ 
+		    	 var strs = value.split(",");    	 
+		    	 var arr = new Array(); 
+		    	 if(strs.length > 0){
+		    	     for(i=0;i<strs.length;i++){
+		    	    	 var result = '<a href="javascript:openMqiDetail('+"'"+index+"',"+"'"+strs[i]+"'"+')" style="color:#3399CC;">'+strs[i]+'</a>';
+		    	    	 arr.push(result);
+		    	    }
+		    	     return arr.join(',');
+		    	 }else{
+		    		 return value;
+		    	 } 
+		       }
+		    },
 	        {field:'gjxjnd',title:'改建/修建年度',width:140,align:'center'},
 	        {field:'xmnf',title:'项目年份',width:140,align:'center'},
 	        {field:'jsxz',title:'建设性质',width:140,align:'center'},
@@ -2956,9 +2988,12 @@ function sckshZhfz(){
 	 },
 });
 }
-
-
-
+function openMqiDetail(index,flag){
+	var data=$("#grid").datagrid('getRows')[index];
+	YMLib.Var.Obj=data;
+	YMLib.Var.sq=flag;
+	YMLib.UI.createWindow('mqi','MQI等级详细信息','mqidjcx.jsp','mqi',900,400);
+}
 function sckshZhfz123(){
 	var gydw=$("#gydw").combotree("getValues");
 		if(gydw.length==0){

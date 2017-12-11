@@ -505,8 +505,8 @@ public class Plan_wqgzController extends BaseActionSupport {
 	public void exportExcelWqgzJhSh() {
 		lx.setGydwbm(gydwBm(lx.getGydwbm(), "gydwbm"));
 		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(), "xzqhdm"));
-		String fileTitle = "<title=行政区划,fieid=xzqhmc>,<title=管养单位,fieid=gydw>,<title=路线编码,fieid=lxbm>,<title=路线名称,fieid=lxmc>,<title=桥梁编号,fieid=qlbh>,<title=桥梁名称,fieid=qlmc>,<title=桥梁中心桩号,fieid=qlzxzh>,<title=审查桥梁全长,fieid=scqlqc>,<title=审查桥梁全宽,fieid=scqlqk>,<title=方案评估单位,fieid=fapgdw>,<title=方案审查单位,fieid=fascdw>,<title=方案审批时间,fieid=faspsj>,<title=审批文号,fieid=spwh>,<title=投资估算,fieid=tzgs>,<title=建设性质,fieid=jsxz>,<title=建设内容,fieid=jsnr>,<title=审查备注,fieid=scbz>,<title=上报年份,fieid=sbnf>,<title=计划开工时间,fieid=jhkgsj1>,<title=计划完工时间,fieid=jhwgsj1>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfdw>,<title=批复文号,fieid=pfwh>,<title=批复时间,fieid=pfsj1>,<title=是否申请按比例补助,fieid=sfsqablbz>,<title=按比例补助文号,fieid=ablbzsqwh>,<title=批复总投资,fieid=pfztz>,<title=部补助资金,fieid=jhsybzje>,<title=地方自筹,fieid=jhsydfzcje>,<title=计划备注,fieid=bz>,<title=计划ID,fieid=id,hidden=true>,<title=审查库ID,fieid=sckid,hidden=true>";
-		String fileName = "危桥改造工程计划库审核";
+		String fileTitle = "<title=行政区划,fieid=xzqhmc>,<title=管养单位,fieid=gydw>,<title=路线编码,fieid=lxbm>,<title=路线名称,fieid=lxmc>,<title=桥梁编号,fieid=qlbh>,<title=桥梁名称,fieid=qlmc>,<title=桥梁中心桩号,fieid=qlzxzh>,<title=审查桥梁全长,fieid=scqlqc>,<title=审查桥梁全宽,fieid=scqlqk>,<title=方案评估单位,fieid=fapgdw>,<title=方案审查单位,fieid=fascdw>,<title=方案审批时间,fieid=faspsj>,<title=审批文号,fieid=spwh>,<title=投资估算,fieid=tzgs>,<title=建设性质,fieid=jsxz>,<title=建设内容,fieid=jsnr>,<title=审查备注,fieid=scbz>,<title=上报年份,fieid=sbnf>,<title=计划开工时间,fieid=jhkgsj1>,<title=计划完工时间,fieid=jhwgsj1>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfdw>,<title=批复文号,fieid=pfwh>,<title=批复时间,fieid=pfsj1>,<title=是否申请按比例补助,fieid=sfsqablbz>,<title=按比例补助文号,fieid=ablbzsqwh>,<title=批复总投资,fieid=pfztz>,<title=部补助资金,fieid=jhsybzje>,<title=地方自筹,fieid=jhsydfzcje>,<title=计划备注,fieid=bz>,<title=计划ID,fieid=id,hidden=true>,<title=审查库ID,fieid=sckid,hidden=true>";		
+		String fileName = "路网结构改造计划预安排（危桥改造）";
 		List<Object> excelData = new ArrayList<Object>();
 		excelData = wqgzServer.exportExcelWqgzJhSh(jh, lx);
 		ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,
@@ -612,7 +612,7 @@ public class Plan_wqgzController extends BaseActionSupport {
 		System.out.println(lx.getJsdj());
 
 		String fileTitle = "<title=行政区划,fieid=xzqhmc>,<title=管养单位,fieid=gydw>,<title=路线编码,fieid=lxbm>,<title=路线名称,fieid=lxmc>,<title=桥梁编号,fieid=qlbh>,<title=桥梁名称,fieid=qlmc>,<title=桥梁中心桩号,fieid=qlzxzh>,<title=审查桥梁全长,fieid=scqlqc>,<title=审查桥梁全宽,fieid=scqlqk>,<title=计划开工时间,fieid=jhkgsj>,<title=计划完工时间,fieid=jhwgsj>,<title=批复总投资,fieid=pfztz>";
-		String fileName = "危桥改造工程计划库上报";
+		String fileName = "路网结构改造计划申报（危桥改造）";
 		List<Object> excelData = new ArrayList<Object>();
 		excelData = wqgzServer.queryWqgzList1(jh, lx);
 		ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,

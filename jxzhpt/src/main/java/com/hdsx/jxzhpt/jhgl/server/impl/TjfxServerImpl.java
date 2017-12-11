@@ -355,4 +355,9 @@ public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 			  return queryList("queryTsbl_lx",params);
 			}
 	}
+
+	@Override
+	public List<Lkmxb> queryMqidjxx(Lkmxb lkmxb) {
+		return queryList("queryMqidjxx",lkmxb);
+	}	
 }

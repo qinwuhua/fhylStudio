@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang.ObjectUtils.Null;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -413,7 +414,16 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	
 	@Override
 	public List<Lxsh> selectSjgzshList(Lxsh lxsh) {
-		return queryList("selectSjgzshList", lxsh);
+		List<Lxsh> result = new ArrayList<Lxsh>();
+		List<Lxsh> lx = queryList("selectSjgzshList", lxsh);
+		String mqistr = null;
+		for (int i = 0;i< lx.size();i++) {
+			Lxsh ls =lx.get(i);
+			mqistr=queryOne("queryMqidj", ls);
+			ls.setMqidj(mqistr);
+			result.add(ls);
+		}		
+		return result;
 	}
 
 	@Override
@@ -592,7 +602,16 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	}
 	@Override
 	public List<Lxsh> selectLmgzshList(Lxsh lxsh) {
-		return queryList("selectLmgzshList", lxsh);
+		List<Lxsh> result = new ArrayList<Lxsh>();
+		List<Lxsh> lx = queryList("selectLmgzshList", lxsh);
+		String mqistr = null;
+		for (int i = 0;i< lx.size();i++) {
+			Lxsh ls =lx.get(i);
+			mqistr=queryOne("queryMqidj", ls);
+			ls.setMqidj(mqistr);
+			result.add(ls);
+		}		
+		return result;
 	}
 
 	@Override
@@ -612,7 +631,16 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 
 	@Override
 	public List<Lxsh> selectXjshList(Lxsh lxsh) {
-		return queryList("selectXjshList",lxsh);
+		List<Lxsh> result = new ArrayList<Lxsh>();
+		List<Lxsh> lx = queryList("selectXjshList", lxsh);
+		String mqistr = null;
+		for (int i = 0;i< lx.size();i++) {
+			Lxsh ls =lx.get(i);
+			mqistr=queryOne("queryMqidj", ls);
+			ls.setMqidj(mqistr);
+			result.add(ls);
+		}		
+		return result;
 	}
 
 	@Override
@@ -1018,7 +1046,16 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 
 	@Override
 	public List<Lxsh> selectgsdgzList(Lxsh lxsh) {
-		return queryList("selectgsdgzList", lxsh);
+		List<Lxsh> result = new ArrayList<Lxsh>();
+		List<Lxsh> lx = queryList("selectgsdgzList", lxsh);
+		String mqistr = null;
+		for (int i = 0;i< lx.size();i++) {
+			Lxsh ls =lx.get(i);
+			mqistr=queryOne("queryMqidj", ls);
+			ls.setMqidj(mqistr);
+			result.add(ls);
+		}		
+		return result;
 	}
 
 	@Override

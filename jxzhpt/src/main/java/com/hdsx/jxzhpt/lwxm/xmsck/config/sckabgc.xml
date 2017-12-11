@@ -129,7 +129,8 @@
  
   <select id="selectSckShabgc" parameterType="sckabgc" resultType="sckabgc">
  	select * from (
- 		select rownum num ,t.* from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id where 1=1
+ 		select rownum num ,t.*
+ 		 from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id where 1=1
  				<if test="tsdq!='' and tsdq!= null ">
  				${tsdq}
  				</if>
@@ -518,4 +519,16 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  <update id="xgAbgcXmnf" parameterType="sckabgc" >
  		update xmk_abgc set xmnf=#{xmnf} where id=#{xmkid}
  </update>
+ <select id="queryMqidj" parameterType="sckabgc" resultType="String">
+	   select WMSYS.WM_CONCAT(t.mqidj) mqiStr from(
+           select fn_ReturnFllx(lmd.mqi)  mqidj
+                  from lkpd_mxb_data_2014 lmd
+                  left join lkpd_mxb2014 m on lmd.mxb_id=m.id   
+                   where lmd.lxbh in (#{lxbm})
+                   and to_number(lmd.qdzh) &gt;= to_number(#{scqdzh})
+                   and to_number(lmd.zdzh) &lt;= to_number(#{sczdzh}) 
+                   and m.tbnf in (select max(tbnf) from lkpd_mxb2014) and lmd.jsdj !='高速'   
+                   group by fn_ReturnFllx(lmd.mqi)
+                   order by DECODE(fn_ReturnFllx(lmd.mqi),'优','1','良','2','中','3','次','4','差','5'))t
+</select>
 </mapper>

@@ -205,8 +205,8 @@
 					jh.sbzt,jh.spzt,jh.jh_sbthcd,jh.kgzt,jh.jgzt,lx.bzls as sfylsjl,
                		lx.gydw,lx.xzqh xzqhmc,lx.xzqhdm,lx.lxbm,lx.lxmc,lx.qdzh as qdzh,lx.zdzh as zdzh,lx.yhlc as yhlc,lx.yhlc scyhlc,lx.yhlc jhyhlc,xa.ylxbm,xa.ylxmc,xa.yqdzh,xa.yzdzh 		
                 	from sck_aqsmfh lx left join xmk_aqsmfh xa on lx.id = xa.id
-                	left join (select t.id,replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(distinct xm.throadcode),',',';') thlxbm,replace(WMSYS.WM_CONCAT(xm.xmklx),',',';') xmklx from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) where 1=1 
-					and lx.gydwdm like '2%'
+                	left join (select t.id,replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(distinct xm.throadcode),',',';') thlxbm,replace(WMSYS.WM_CONCAT(xm.xmklx),',',';') xmklx from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) 
+                	where 1=1
 					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
 					</if>
@@ -268,8 +268,7 @@
     	where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
 	<select id="queryAfgcCount"  parameterType="java.util.Map"  resultType="int">
-		select count(*) from sck_aqsmfh lx left join (select t.id,replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(distinct xm.xmklx),',',';') xmklx from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) where 1=1 
-		and lx.gydwdm like '2%'
+		select count(*) from sck_aqsmfh lx left join (select t.id,replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(distinct xm.xmklx),',',';') xmklx from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) where 1=1
 		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
 		</if>
@@ -962,7 +961,6 @@
              right join plan_af jh on (lx.id = jh.sckid)
               left join plan_zjxd zj on jh.id = zj.xmid
              where 1 = 1
-               and lx.gydwdm like '2%'
 			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
 					</if>
