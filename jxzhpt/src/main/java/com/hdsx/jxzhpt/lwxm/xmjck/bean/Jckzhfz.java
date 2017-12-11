@@ -18,7 +18,28 @@ public class Jckzhfz implements Serializable{
 	private String yzdzh;//灾害防治-原止点桩号
 	private String ylxmc;//灾害防治-原路线名称
 	private String lxbh;//灾害防治路线编码别称
-
+	private String gxlxbm;
+	private String gxqdzh;
+	private String gxzdzh;
+	
+	public String getGxlxbm() {
+		return gxlxbm;
+	}
+	public void setGxlxbm(String gxlxbm) {
+		this.gxlxbm = gxlxbm;
+	}
+	public String getGxqdzh() {
+		return gxqdzh;
+	}
+	public void setGxqdzh(String gxqdzh) {
+		this.gxqdzh = gxqdzh;
+	}
+	public String getGxzdzh() {
+		return gxzdzh;
+	}
+	public void setGxzdzh(String gxzdzh) {
+		this.gxzdzh = gxzdzh;
+	}
 	public String getLxbh() {
 		return lxbh;
 	}

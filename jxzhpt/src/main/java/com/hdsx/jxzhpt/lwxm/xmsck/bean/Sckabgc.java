@@ -12,7 +12,49 @@ public class Sckabgc implements Serializable{
 	private String jsdj;
     private String xmklx;//项目库类型
     private String mqidj;//路面评定等级
-
+    private String gxlxbm;
+    private String gxqdzh;
+    private String gxzdzh;
+    private String sckgxlxbm;
+    private String sckgxqdzh;
+    private String sckgxzdzh;
+    
+	public String getSckgxlxbm() {
+		return sckgxlxbm;
+	}
+	public void setSckgxlxbm(String sckgxlxbm) {
+		this.sckgxlxbm = sckgxlxbm;
+	}
+	public String getSckgxqdzh() {
+		return sckgxqdzh;
+	}
+	public void setSckgxqdzh(String sckgxqdzh) {
+		this.sckgxqdzh = sckgxqdzh;
+	}
+	public String getSckgxzdzh() {
+		return sckgxzdzh;
+	}
+	public void setSckgxzdzh(String sckgxzdzh) {
+		this.sckgxzdzh = sckgxzdzh;
+	}
+	public String getGxlxbm() {
+		return gxlxbm;
+	}
+	public void setGxlxbm(String gxlxbm) {
+		this.gxlxbm = gxlxbm;
+	}
+	public String getGxqdzh() {
+		return gxqdzh;
+	}
+	public void setGxqdzh(String gxqdzh) {
+		this.gxqdzh = gxqdzh;
+	}
+	public String getGxzdzh() {
+		return gxzdzh;
+	}
+	public void setGxzdzh(String gxzdzh) {
+		this.gxzdzh = gxzdzh;
+	}
 	public String getMqidj() {
 		return mqidj;
 	}

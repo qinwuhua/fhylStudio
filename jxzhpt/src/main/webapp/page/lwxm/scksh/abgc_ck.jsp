@@ -57,6 +57,12 @@
 				$("#jsnr").html(msg.jsnr);
 				$("#scbz").html(msg.scbz);
 				$("#nsqbzzj").html(msg.nsqbzzj);
+				$("#gxlxbm").html(msg.gxlxbm);
+				$("#gxqdzh").html(msg.gxqdzh);
+				$("#gxzdzh").html(msg.gxzdzh);
+				$("#sckgxlxbm").html(msg.sckgxlxbm);
+				$("#sckgxqdzh").html(msg.sckgxqdzh);
+				$("#sckgxzdzh").html(msg.sckgxzdzh);
 				}
 			});
 		}		
@@ -154,6 +160,17 @@ text-decoration:none;
 					<span id="qzlc"></span>
 			</tr>
 			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">共线路线编码：</td>
+				<td style="background-color: #ffffff; " align="left">
+					<span id="gxlxbm"></span>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">共线起点桩号：</td>
+				<td style="background-color: #ffffff; " align="left">
+					<span id="gxqdzh"></span>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">共线止点桩号：</td>
+				<td style="background-color: #ffffff; " align="left">
+					<span id="gxzdzh"></span>
+			</tr>
+			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划代码：</td>
 				<td style="background-color: #ffffff; " align="left">
 					<span id="xzqhdm"></span>
@@ -213,6 +230,17 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="sczlc"></span>&nbsp;公里
 				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">共线路线编码：</td>
+				<td style="background-color: #ffffff; " align="left">
+					<span id="sckgxlxbm"></span>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">共线起点桩号：</td>
+				<td style="background-color: #ffffff; " align="left">
+					<span id="sckgxqdzh"></span>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">共线止点桩号：</td>
+				<td style="background-color: #ffffff; " align="left">
+					<span id="sckgxzdzh"></span>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患里程：</td>

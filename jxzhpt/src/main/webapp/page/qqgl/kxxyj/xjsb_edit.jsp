@@ -37,7 +37,9 @@ text-decoration:none;
 	function load(){
 		var data=parent.obj;
 // 		loadDist3("xzqh",data.xzqhdm,$.cookie("dist"));
-		
+		$("#gxlxbm").val(data.gxlxbm);
+		$("#gxqdzh").val(data.gxqdzh);
+		$("#gxzdzh").val(data.gxzdzh);
 		$("#xmmc").val(data.xmmc);
 		$("#lxbh").val(data.lxbh);
 		$("#lxmc").val(data.lxmc);
@@ -69,7 +71,6 @@ text-decoration:none;
 		$("#tzgs").val(data.tzgs);
 		$("#dfzc").val(data.dfzc);
 		$("#yhdk").val(data.yhdk);
-		
 		$("#gkpfwh").val(data.gkpfwh);
 		$("#kgny").datebox('setValue',data.kgny);
 		$("#wgny").datebox('setValue',data.wgny);
@@ -309,6 +310,20 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新建里程：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" name="xjlc" id="xjlc" style="width: 120px;"/>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">共线路线编码：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input type="text" name="gxlxbm" id="gxlxbm" style="width: 120px;" onblur="changeZlc()"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">共线起点桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input type="text" name="gxqdzh" id="gxqdzh" style="width: 120px;" onblur="changeZlc()"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">共线止点桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input type="text" name="gxzdzh" id="gxzdzh" style="width: 120px;"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

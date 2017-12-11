@@ -64,7 +64,9 @@ text-decoration:none;
 		$("#yqdzh").html(item.yqdzh);
 		$("#yzdzh").html(item.yzdzh);
 		$("#ylxbm").html(item.ylxbm);
-
+		$("#gxlxbm").html(item.gxlxbm);
+		$("#gxqdzh").html(item.gxqdzh);
+		$("#gxzdzh").html(item.gxzdzh);
 		
 	}
 </script>
@@ -105,6 +107,17 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left"><br>
 					<span id="yzdzh" ></span></td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">共线路线编码：</td>
+				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
+				    <span id="gxlxbm" ></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">共线起点桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span  id="gxqdzh" ></span><br></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">共线止点桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left"><br>
+					<span id="gxzdzh" ></span></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">省：</td>

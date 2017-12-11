@@ -319,6 +319,23 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>共线路线编码：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="gxlxbm" id="gxlxbm" style="width: 120px"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>共线起点桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="gxqdzh" id="gxqdzh" style="width: 120px"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>共线止点桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="gxzdzh" id="gxzdzh" style="width: 120px"/>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					新建技术等级及里程
 				</td>

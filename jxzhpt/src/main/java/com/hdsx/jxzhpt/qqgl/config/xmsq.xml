@@ -2518,8 +2518,8 @@
                   from lkpd_mxb_data_2014 lmd
                   left join lkpd_mxb2014 m on lmd.mxb_id=m.id
                    where lmd.lxbh in (#{ghlxbm})
-                   and to_number(lmd.qdzh) &gt;= to_number(#{ghqdzh})
-                   and to_number(lmd.zdzh) &lt;= to_number(#{ghzdzh}) 
+                   and to_number(lmd.qdzh) &lt;= to_number(#{ghzdzh})
+                   and to_number(lmd.zdzh) &gt;= to_number(#{ghqdzh})
                    and m.tbnf in (select max(tbnf) from lkpd_mxb2014) and lmd.jsdj !='高速'
                    group by fn_ReturnFllx(lmd.mqi)
                    order by DECODE(fn_ReturnFllx(lmd.mqi),'优','1','良','2','中','3','次','4','差','5'))t

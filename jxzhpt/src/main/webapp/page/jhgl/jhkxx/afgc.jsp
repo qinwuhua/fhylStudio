@@ -113,7 +113,14 @@
 							$('#jsxz').val(sck.jsxz);
 							$('#jsnr').val(sck.jsnr);
 							$('#remarks').val(sck.scbz);
+							$('#gxlxbm').html(sck.gxlxbm);
+							$('#gxqdzh').html(sck.gxqdzh);
+							$('#gxzdzh').html(sck.gxzdzh);
+							$('#sckgxlxbm').html(sck.sckgxlxbm);
+							$('#sckgxqdzh').html(sck.sckgxqdzh);
+							$('#sckgxzdzh').html(sck.sckgxzdzh);
 							$('#sckid').val(data.sckid);
+							
 						}
 					}
 				});
@@ -354,6 +361,12 @@
 						$("#ylxbm").html(item.ylxbm);
 						$("#yqdzh").html(item.yqdzh);
 						$("#yzdzh").html(item.yzdzh);
+						$('#gxlxbm').html(item.gxlxbm);
+						$('#gxqdzh').html(item.gxqdzh);
+						$('#gxzdzh').html(item.gxzdzh);
+						$('#sckgxlxbm').html(item.sckgxlxbm);
+						$('#sckgxqdzh').html(item.sckgxqdzh);
+						$('#sckgxzdzh').html(item.sckgxzdzh);
 					}
 				}
 			});
@@ -472,7 +485,19 @@
 				<td  style="background-color: #ffffff; height: 20px;width:180px" align="left">
 				<span id="yzdzh"></span></td>		
 			</tr>
-			
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:110px" align="right">共线路线编码：</td>
+				<td style="background-color: #ffffff; height: 20px;width:180px" align="left">
+				<span id="sckgxlxbm"></span></td>
+				
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:110px" align="right">共线起点桩号：</td>
+				<td  style="background-color: #ffffff; height: 20px;width:180px" align="left">
+				<span id="sckgxqdzh"></span></td>
+				
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:110px" align="right">共线止点桩号：</td>
+				<td  style="background-color: #ffffff; height: 20px;width:180px" align="left">
+				<span id="sckgxzdzh"></span></td>		
+			</tr>
 				
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">隐患里程：</td>

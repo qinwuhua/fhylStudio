@@ -48,6 +48,9 @@
 			$("#yqdzh").html(msg.yqdzh);
 			$("#yzdzh").html(msg.yzdzh);
 			$("#ylxmc").html(msg.ylxmc);
+			$("#gxlxbm").html(msg.gxlxbm);
+			$("#gxqdzh").html(msg.gxqdzh);
+			$("#gxzdzh").html(msg.gxzdzh);
 			}
 		});
 	}		
@@ -90,6 +93,17 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原止点桩号：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<span id="yzdzh"></span></td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">共线路线编码：</td>
+				<td style="background-color: #ffffff;" align="left">
+					<span id="gxlxbm"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">共线起点桩号：</td>
+				<td style="background-color: #ffffff;" align="left">
+					<span id="gxqdzh"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">共线止点桩号：</td>
+				<td style="background-color: #ffffff;" align="left">
+					<span id="gxzdzh"></span></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">规划路线名称：</td>
