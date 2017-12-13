@@ -53,8 +53,8 @@
 							$('#lxmc').html(data.lxmc);
 							$('#lxbm').html(data.lxbm);
 							$('#gydwxx').html(data.gydw);			
-							$('#qdzh').html(data.scqdzh);
-							$('#zdzh').html(data.sczdzh);
+							$('#qdzh').html(data.qdzh);
+							$('#zdzh').html(data.zdzh);
 							$('#qzlc').html(data.qzlc);
 							$('#xzqhdm').html(data.xzqhdm);
 							$('#xzqhmc').html(data.xzqhmc);

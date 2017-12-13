@@ -10053,24 +10053,22 @@ select to_char(rownum) v_0, j.ZYDPX v_1, j.ds v_2, j.XMBM v_3, j.xmmc v_4, lx.gh
 	</select>
 	<update id="insertOrUpdateJhshDj" parameterType="java.util.List">
       begin
-      UPDATE jhsh_dj j 
-      <set>
-       <if test="yjgdql!=null and yjgdql!=''">j.yjgdql=#{yjgdql,jdbcType=VARCHAR},</if>
-       <if test="ejgdql!=null and ejgdql!=''">j.ejgdql=#{ejgdql,jdbcType=VARCHAR},</if>
-       <if test="yjsdql!=null and yjsdql!=''">j.yjsdql=#{yjsdql,jdbcType=VARCHAR},</if>
-       <if test="ejsdql!=null and ejsdql!=''">j.ejsdql=#{ejsdql,jdbcType=VARCHAR},</if>
-       <if test="sjsdql!=null and sjsdql!=''">j.sjsdql=#{sjsdql,jdbcType=VARCHAR},</if>
-       <if test="yjgdsd!=null and yjgdsd!=''">j.yjgdsd=#{yjgdsd,jdbcType=VARCHAR},</if>      
-       <if test="ejgdsd!=null and ejgdsd!=''">j.ejgdsd=#{ejgdsd,jdbcType=VARCHAR},</if>
-       <if test="yjsdsd!=null and yjsdsd!=''">j.yjsdsd=#{yjsdsd,jdbcType=VARCHAR},</if>
-       <if test="ejsdsd!=null and ejsdsd!=''">j.ejsdsd=#{ejsdsd,jdbcType=VARCHAR},</if>
-       <if test="sjsdsd!=null and sjsdsd!=''">j.sjsdsd=#{sjsdsd,jdbcType=VARCHAR},</if>
-       <if test="yjgd!=null and yjgd!=''">j.yjgd=#{yjgd,jdbcType=VARCHAR},</if>
-       <if test="ejgd!=null and ejgd!=''">j.ejgd=#{ejgd,jdbcType=VARCHAR},</if>
-       <if test="yjsd!=null and yjsd!=''">j.yjsd=#{yjsd,jdbcType=VARCHAR},</if>
-       <if test="ejsd!=null and ejsd!=''">j.ejsd=#{ejsd,jdbcType=VARCHAR},</if>  
-       <if test="sjsd!=null and sjsd!=''">j.sjsd=#{sjsd,jdbcType=VARCHAR}</if>
-      </set>
+      UPDATE jhsh_dj j set
+      j.yjgdql=#{yjgdql,jdbcType=VARCHAR},
+      j.ejgdql=#{ejgdql,jdbcType=VARCHAR},
+      j.yjsdql=#{yjsdql,jdbcType=VARCHAR},
+      j.ejsdql=#{ejsdql,jdbcType=VARCHAR},
+      j.sjsdql=#{sjsdql,jdbcType=VARCHAR},
+      j.yjgdsd=#{yjgdsd,jdbcType=VARCHAR},
+      j.ejgdsd=#{ejgdsd,jdbcType=VARCHAR},
+      j.yjsdsd=#{yjsdsd,jdbcType=VARCHAR},
+      j.ejsdsd=#{ejsdsd,jdbcType=VARCHAR},
+      j.sjsdsd=#{sjsdsd,jdbcType=VARCHAR},
+      j.yjgd=#{yjgd,jdbcType=VARCHAR},
+      j.ejgd=#{ejgd,jdbcType=VARCHAR},
+      j.yjsd=#{yjsd,jdbcType=VARCHAR},
+      j.ejsd=#{ejsd,jdbcType=VARCHAR},
+      j.sjsd=#{sjsd,jdbcType=VARCHAR}
       WHERE j.xmbm = #{xmbm}; 
       if sql%notfound then
       INSERT INTO jhsh_dj(xmbm,yjgdql,ejgdql,yjsdql,ejsdql,sjsdql,yjgdsd,ejgdsd,yjsdsd,ejsdsd,sjsdsd,yjgd,ejgd,yjsd,ejsd,sjsd) 
