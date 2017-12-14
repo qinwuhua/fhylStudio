@@ -20,7 +20,22 @@
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
 	</style>
 	<script type="text/javascript">
+	$(function(){
+		ybnf('ybnf');
+		ybyf('ybyf');
+		setjhxdnf();
+		var urlid=getUrlParame('id');
+		//urlxmnf("jhxdnf",urlid);
+		loadUnit("gydw",$.cookie("unit"));
+		loadDist1("xzqh",$.cookie("dist"));
+	//	loadBmbm2("xmlx","项目类型2");
+		xgjxmlx('xmlx');
+		//$("#jhxdnf").combotree("setValues",arr);
+		showAll();
+	});
+	
 	function ybnf(id){
+		
 		var myDate = new Date();
 		
 		var years=[];
@@ -52,19 +67,7 @@
 
 		$('#'+id).combobox("setValue",+first);
 	}
-		$(function(){
-			ybnf('ybnf');
-			ybyf('ybyf');
-			setjhxdnf();
-			var urlid=getUrlParame('id');
-			//urlxmnf("jhxdnf",urlid);
-			loadUnit("gydw",$.cookie("unit"));
-			loadDist("xzqh",$.cookie("dist"));
-		//	loadBmbm2("xmlx","项目类型2");
-			xgjxmlx('xmlx');
-			//$("#jhxdnf").combotree("setValues",arr);
-			showAll();
-		});
+		
 		function setjhxdnf(){
 			var id='jhxdnf';
 			var myDate = new Date();
@@ -133,6 +136,18 @@
 				alert("请选择年份");
 				return;
 			}
+			var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		xzqhstr=xzqhdm[0];
+			}else{
+				xzqhstr= xzqhdm.join(',');
+			}
+			
 			var biaotou = $("#biaotou");
 			var str1='';
 			var str2='';
@@ -161,7 +176,7 @@
 			biaotou.append(biaotstr);
 			var tbody = $("#wqgzlist");
 			tbody.empty();
-			var data="gcglwqgz.tiaojian="+xmlx+"&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue');
+			var data="gcglwqgz.tiaojian="+xmlx+"&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue')+"&gcglwqgz.xzqh="+xzqhstr;
 			//alert(data);
 			$.ajax({
 				url:"/jxzhpt/gcybb/getXgjwchzb.do",
@@ -272,6 +287,8 @@ text-decoration:none;
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
+								<td align="right">行政区划：</td>
+        						<td><select id="xzqh" style="width:150px;"></select></td>
         						<td align="right">下达年份：</td>
         						<td><input type="text" id="jhxdnf"  style="width:80px;"></td>
         						<td align="right">项目类型：</td>
