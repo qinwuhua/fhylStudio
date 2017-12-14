@@ -4475,6 +4475,10 @@ public class GcybbController extends BaseActionSupport{
 					xmlx="'改建','新建'";
 				else
 					xmlx="'"+gcglwqgz.getTiaojian().replaceAll(",", "','")+"'";
+				
+				String xzqhtj= MyUtil.getQueryTJ(gcglwqgz.getXzqh(), "cb.xzqhdm"); 
+				
+				
 				String viewsql="";
 			    	tableName="xgjwchzb";
 			    	viewsql="CREATE OR REPLACE VIEW xgjwchzb AS "
@@ -4494,6 +4498,7 @@ public class GcybbController extends BaseActionSupport{
 			                +" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) bncgs"
 			                +" where j.xmbm = cb.xmbm(+) and j.xmbm = lx.xmid(+) and j.xmbm = t.xmid(+) and j.xmbm = tt.xmid(+) and j.xmbm = ljwc.xmbm(+) and j.xmbm = bnwc.xmbm(+) and j.xmbm = ljcgs.jhid(+) and j.xmbm = bncgs.jhid(+) AND J.XMBM = bnss.XMBM(+) "
 			                +" and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) "
+			                +xzqhtj
 			                +" and decode(substr(lx.xmid,11,1),'1','改建','3','新建') in ("+xmlx+")"
 			                +" group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1 "
 			    			+" union all"
@@ -4513,6 +4518,7 @@ public class GcybbController extends BaseActionSupport{
 			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) bncgs"
 			    			+" where j.xmbm = cb.xmbm(+) and j.xmbm = lx.xmid(+) and j.xmbm = t.xmid(+) and j.xmbm = tt.xmid(+) and j.xmbm = ljwc.xmbm(+) and j.xmbm = bnwc.xmbm(+) and j.xmbm = ljcgs.jhid(+) and j.xmbm = bncgs.jhid(+) AND J.XMBM = bnss.XMBM(+)"
 			    			+" and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) " 
+			    			+xzqhtj
 			    			+" and decode(substr(lx.xmid,11,1),'1','改建','3','新建') in ("+xmlx+") "
 			    			+" group by t.xdnf) t1 ";
 			    			
