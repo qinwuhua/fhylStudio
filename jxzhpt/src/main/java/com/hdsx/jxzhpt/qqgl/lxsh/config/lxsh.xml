@@ -2001,7 +2001,7 @@ select rownum v_0,t.xmbm v_1,t.xmmc v_2,t1.xzqh v_3,
 		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 	</select>
 	<select id="queryLxshLjgsd" resultType="java.util.Map" parameterType="lxsh">
-    	select count(xmbm) xmsl,nvl(sum(tz),0) tz,nvl(sum(lc),0) lc,nvl(sum(bzcs),0) bzcs,(sum(tz)-sum(bzcs)) dftz,'0' sbz,'0' sjl from(
+    	select count(xmbm) xmsl,nvl(sum(tz),0) tz,nvl(sum(lc),0) lc,nvl(sum(bzcs),0) bzcs,(nvl(sum(tz),0)-nvl(sum(bzcs),0)) dftz,'0' sbz,'0' sjl from(
 			select t.xmbm,t.tz ,sum(lx.lc) lc,sum(t.bzys) bzcs from lxgsdgz t left join 
 			(select  xmid,jsxz,jsjsdj,xjsdj,
 					(case when substr(xmid,11,1)='1' then to_number(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
