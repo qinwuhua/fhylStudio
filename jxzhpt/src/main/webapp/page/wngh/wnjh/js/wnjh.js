@@ -1259,6 +1259,7 @@ function tjxjlx(index){
 function delsjlx(index1,index){
 	var xmbm=$("#datagrid").datagrid('getRows')[index1].id;
 	var data=$("#table_lx"+xmbm).datagrid('getRows')[index];
+	if(confirm('您确定删除该路线？')){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/deleteWnlx.do',
@@ -1274,6 +1275,7 @@ function delsjlx(index1,index){
 			}
 		}
 	});
+   }
 }
 function editsjlx(index1,index){
 	var xmbm=$("#datagrid").datagrid('getRows')[index1].id;

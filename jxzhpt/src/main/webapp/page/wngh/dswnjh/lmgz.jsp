@@ -225,6 +225,12 @@
 				alert("请选择要删除项目！");
 				return;
 			}
+			for(var x=0;x<rows.length;x++){
+				if(rows[x].xmklx != "库外"){
+					alert("删除失败，请选择库外项目！");
+					return;
+				}
+			}
 			var id=rows[0].id;			
 			for(var i=1;i<rows.length;i++){
 				id+=","+rows[i].id ;

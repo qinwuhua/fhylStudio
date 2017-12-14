@@ -244,12 +244,12 @@ text-decoration:none;
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input readonly="readonly" type="text" name="qdzh" id="qdzh"  onblur="changeZlc()" style="width: 120px;"/><br/>
+					<input readonly="readonly" type="text" name="minqdzh" id="minqdzh"  onblur="changeZlc()" style="width: 120px;"/><br/>
 					
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input readonly="readonly" type="text" name="zdzh" id="zdzh" onblur="changeZlc()" style="width: 120px;"/><br/>
+					<input readonly="readonly" type="text" name="maxzdzh" id="maxzdzh" onblur="changeZlc()" style="width: 120px;"/><br/>
 					
 				</td>
 			</tr>

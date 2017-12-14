@@ -139,7 +139,6 @@ text-decoration:none;
 	});
 	
 	function saveLxsh(){
-		alert("保存！！！");
 		var tz=0;var bzcs=0;var yhdk=0;var gz=0;var sz=0;
 		if($("#tz").val()!='')
 			tz=parseFloat($("#tz").val());
