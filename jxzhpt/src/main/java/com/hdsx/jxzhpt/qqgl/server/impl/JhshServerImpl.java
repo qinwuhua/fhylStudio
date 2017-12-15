@@ -336,6 +336,11 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 			lxsh.setGhlxbm(lx.getGhlxbm());
 			lxsh.setGhqdzh(lx.getGhqdzh());
 			lxsh.setGhzdzh(lx.getGhzdzh());
+			if(lx.getGhqdzh()!=null&&lx.getGpsqdzh()!=null&&lx.getGhqdzh().indexOf(",")==-1)
+			if(Double.parseDouble(lx.getGpsqdzh())>=Double.parseDouble(lx.getGhzdzh())||Double.parseDouble(lx.getGpszdzh())<=Double.parseDouble(lx.getGhqdzh())  ){
+				lx.setGpsqdzh(null);lx.setGpszdzh(null);
+			}
+			
 			MyUtil.insertMethd("deletelxcfld", lxsh);
 			MyUtil.insertMethd("insertlxcfld", lxsh);
 		}
