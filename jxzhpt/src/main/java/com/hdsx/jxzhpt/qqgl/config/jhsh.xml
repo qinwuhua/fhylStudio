@@ -2148,19 +2148,19 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	</select>
 	<select id="queryLmsjKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
 		select k.XMMC,k.XMBM,k.JSDW,k.XZQH,k.QDZH,k.ZDZH,k.DQ,k.SD,k.KGNY,k.WGNY,k.JSJSDJ,k.JSXZ,k.GKPFWH,k.PFSJ,k.TZGS,k.BZDW,k.XZQHDM,k.SHZT,k.SBZT,k.SBTHCD,k.DQ_M,k.SD_M,k.TBBMBM,k.DFZC,k.YHDK,k.TZXZ,k.TZSJ,k.GYDW1,k.GYDWDM1,k.THYY,k.BZ,k.KXXYJ_SJGZ,nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0) jszlc,t.xmklx,l.XMID, l.LXBM, l.LXMC, l.XZQH, l.XZQHDM, l.GYDW, decode(k.gydwdm1,null,l.gydwdm) gydwdm, l.QDZH minqdzh, l.ZDZH maxzdzh, l.JSJSDJ,nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) LC, l.XJSDJ, l.JSXZ, l.QDMC, l.ZDMC, l.BZCS, l.SFFIRST, l.JDBS, l.JSFA, l.YILC, l.ERLC, l.SANLC, l.SILC, l.DWLC, l.WLLC, l.JHYILC, l.JHERLC, l.JHSANLC, l.JHSILC, l.JHDWLC, l.JHWLLC, l.XJLXBM, l.XJQDZH, l.XJZDZH, l.XJLC, l.JHLC, l.GHLXBM, l.GHLXMC, l.LXLMKD, l.XZQHDM2, l.XZQHMC2, l.GXLXBM, l.GXQDZH, l.GXZDZH, l.GHQDZH, l.GHZDZH ,
-		decode(gpsqdzh,null,l.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l.zdzh,gpszdzh) gpszdzh from kxxyj_sjgz k left join lxsh_sjgz t on k.xmbm=t.xmbm left join lxsh_lx l on k.xmbm=l.xmid
+		decode(gpsqdzh,null,l.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l.zdzh,gpszdzh) gpszdzh,k.hyscyj,k.tgsj from kxxyj_sjgz k left join lxsh_sjgz t on k.xmbm=t.xmbm left join lxsh_lx l on k.xmbm=l.xmid
 		left join(select max(gpszdzh) gpszdzh1,min(gpsqdzh) gpsqdzh1,xmid from LXSH_LX group by xmid) lxx on k.xmbm=lxx.xmid
 	    where k.xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
 	</select>
 	<select id="queryLmgzKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
 		select k.*,t.xmklx,l.XMID, l.LXBM, l.LXMC, l.XZQH, l.XZQHDM, l.GYDW, decode(k.gydwdm1,null,l.gydwdm) gydwdm, l.QDZH minqdzh, l.ZDZH maxzdzh, l.JSJSDJ, nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) LC, l.XJSDJ, l.JSXZ, l.QDMC, l.ZDMC, l.BZCS, l.SFFIRST, l.JDBS, l.JSFA, l.YILC, l.ERLC, l.SANLC, l.SILC, l.DWLC, l.WLLC, l.JHYILC, l.JHERLC, l.JHSANLC, l.JHSILC, l.JHDWLC, l.JHWLLC, l.XJLXBM, l.XJQDZH, l.XJZDZH, l.XJLC, l.JHLC, l.GHLXBM, l.GHLXMC, l.LXLMKD, l.XZQHDM2, l.XZQHMC2, l.GXLXBM, l.GXQDZH, l.GXZDZH, l.GHQDZH, l.GHZDZH ,
-		decode(gpsqdzh,null,l.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l.zdzh,gpszdzh) gpszdzh from kxxyj_lmgz k left join lxsh_lmgz t on k.xmbm=t.xmbm  left join lxsh_lx l on k.xmbm=l.xmid
+		decode(gpsqdzh,null,l.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l.zdzh,gpszdzh) gpszdzh,k.hyscyj,k.tgsj from kxxyj_lmgz k left join lxsh_lmgz t on k.xmbm=t.xmbm  left join lxsh_lx l on k.xmbm=l.xmid
 		left join(select max(gpszdzh) gpszdzh1,min(gpsqdzh) gpsqdzh1,xmid from LXSH_LX group by xmid) lxx on k.xmbm=lxx.xmid
 	    where k.xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
 	</select>
 	<select id="queryXjKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
 		select k.*,t.xmklx,l.XMID, l.LXBM, l.LXMC, l.XZQH, l.XZQHDM, l.GYDW, decode(k.gydwdm1,null,l.gydwdm) gydwdm, l.QDZH minqdzh, l.ZDZH maxzdzh, l.JSJSDJ, nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) LC, l.XJSDJ, l.JSXZ, l.QDMC, l.ZDMC, l.BZCS, l.SFFIRST, l.JDBS, l.JSFA, l.YILC, l.ERLC, l.SANLC, l.SILC, l.DWLC, l.WLLC, l.JHYILC, l.JHERLC, l.JHSANLC, l.JHSILC, l.JHDWLC, l.JHWLLC, l.XJLXBM, l.XJQDZH, l.XJZDZH, l.XJLC, l.JHLC, l.GHLXBM, l.GHLXMC, l.LXLMKD, l.XZQHDM2, l.XZQHMC2, l.GXLXBM, l.GXQDZH, l.GXZDZH, l.GHQDZH, l.GHZDZH ,
-		decode(gpsqdzh,null,l.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l.zdzh,gpszdzh) gpszdzh from kxxyj_xj k left join lxsh_xj t on k.xmbm=t.xmbm  left join lxsh_lx l on k.xmbm=l.xmid
+		decode(gpsqdzh,null,l.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l.zdzh,gpszdzh) gpszdzh,k.hyscyj,k.tgsj from kxxyj_xj k left join lxsh_xj t on k.xmbm=t.xmbm  left join lxsh_lx l on k.xmbm=l.xmid
 		left join(select max(gpszdzh) gpszdzh1,min(gpsqdzh) gpsqdzh1,xmid from LXSH_LX group by xmid) lxx on k.xmbm=lxx.xmid
 		where k.xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
 	</select>

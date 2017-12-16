@@ -20,7 +20,21 @@ public class Kxxyj implements Serializable {
 	private String lsxmnf;//项目库类型
 	private String lsxmlx;//项目库类型
 	private String bz;//备注
+	private String hyscyj;//行业审查意见
+	private String tgsj;//通过时间
 	
+	public String getHyscyj() {
+		return hyscyj;
+	}
+	public void setHyscyj(String hyscyj) {
+		this.hyscyj = hyscyj;
+	}
+	public String getTgsj() {
+		return tgsj;
+	}
+	public void setTgsj(String tgsj) {
+		this.tgsj = tgsj;
+	}
 	public String getBz() {
 		return bz;
 	}

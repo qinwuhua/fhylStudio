@@ -427,7 +427,7 @@
 		insert into plan_upload(filename,filedata,parentid,filetype) values(#{filename},#{filedata},#{parentid},#{filetype})
 	</insert>
 	<update id="updateSjgzkxx" parameterType="kxxyj">
-		update kxxyj_sjgz set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},jsxz=#{jsxz},dq=#{dq},
+		update kxxyj_sjgz set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},jsxz=#{jsxz},dq=#{dq},tgsj=#{tgsj},hyscyj=#{hyscyj},
 		dq_m=#{dq_m},jsjsdj=#{jsjsdj},sd=#{sd},sd_m=#{sd_m},jsdw=#{jsdw},sbthcd=#{sbthcd},tbbmbm=#{tbbmbm},
 		kgny=#{kgny},wgny=#{wgny},bzdw=#{bzdw},tzgs=#{tzgs},gkpfwh=#{gkpfwh},pfsj=#{pfsj},xzqh=#{xzqh},xzqhdm=#{xzqhdm},
 		dfzc=#{dfzc},yhdk=#{yhdk},jszlc=#{jszlc}<if test="gydw != null">,gydw1=#{gydw}</if>
@@ -435,7 +435,7 @@
 		where xmbm=#{xmbm}
 	</update>
 	<update id="updateLmgzkxx" parameterType="kxxyj">
-		update kxxyj_lmgz set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},jsxz=#{jsxz},dq=#{dq},
+		update kxxyj_lmgz set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},jsxz=#{jsxz},dq=#{dq},tgsj=#{tgsj},hyscyj=#{hyscyj},
 		dq_m=#{dq_m},jsjsdj=#{jsjsdj},sd=#{sd},sd_m=#{sd_m},jsdw=#{jsdw},sbthcd=#{sbthcd},tbbmbm=#{tbbmbm},
 		kgny=#{kgny},wgny=#{wgny},bzdw=#{bzdw},tzgs=#{tzgs},gkpfwh=#{gkpfwh},pfsj=#{pfsj},xzqh=#{xzqh},xzqhdm=#{xzqhdm},
 		dfzc=#{dfzc},yhdk=#{yhdk}<if test="gydw != null">,gydw1=#{gydw}</if>
@@ -451,7 +451,7 @@
 		where xmbm=#{xmbm}
 	</update>
 	<update id="updateXjkxx" parameterType="kxxyj">
-		update kxxyj_xj set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},jsxz=#{jsxz},dq=#{dq},
+		update kxxyj_xj set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},jsxz=#{jsxz},dq=#{dq},tgsj=#{tgsj},hyscyj=#{hyscyj},
 		dq_m=#{dq_m},jsjsdj=#{jsjsdj},sd=#{sd},sd_m=#{sd_m},jsdw=#{jsdw},sbthcd=#{sbthcd},tbbmbm=#{tbbmbm},
 		kgny=#{kgny},wgny=#{wgny},bzdw=#{bzdw},tzgs=#{tzgs},gkpfwh=#{gkpfwh},pfsj=#{pfsj},xzqh=#{xzqh},xzqhdm=#{xzqhdm},
 		dfzc=#{dfzc},yhdk=#{yhdk}<if test="gydw != null">,gydw1=#{gydw}</if>

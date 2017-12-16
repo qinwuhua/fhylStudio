@@ -103,6 +103,8 @@ text-decoration:none;
 				$("#xmbm").html(msg.xmbm);
 				$("#jsjsdj").html(msg.jsjsdj);
 				$('#xmklx').val(msg.xmklx);
+				$('#hyscyj').val(msg.hyscyj);
+				$("#tgsj").datebox('setValue',msg.tgsj);
 			}
 		});
 		
@@ -130,6 +132,7 @@ text-decoration:none;
 		xmny('kgny');
 		xmny('wgny');
 		xmsj('pfsj');
+		xmsj('tgsj');
 		load();
 		loadFileUpload();
 		$("#save_button").click(function(){
@@ -171,13 +174,14 @@ text-decoration:none;
 		+"&kxxyj.sd="+$('#sd').val()+"&kxxyj.sd_m="+$('#sd_m').val()+"&kxxyj.jsdw="
 		+"&kxxyj.kgny="+$('#kgny').datebox('getValue')+"&kxxyj.wgny="+$('#wgny').datebox('getValue')+"&kxxyj.bzdw="+$('#bzdw').val()
 		+"&kxxyj.tzgs="+$('#tzgs').val()+"&kxxyj.gkpfwh="+$('#gkpfwh').val()+"&kxxyj.pfsj="+$('#pfsj').datebox('getValue')
-		+"&kxxyj.dfzc="+$('#dfzc').val()+"&kxxyj.yhdk="+$('#yhdk').val();
+		+"&kxxyj.dfzc="+$('#dfzc').val()+"&kxxyj.yhdk="+$('#yhdk').val()+"&kxxyj.hyscyj="+$('#hyscyj').val()+"&kxxyj.tgsj="+$('#tgsj').datebox('getValue');
 		data+="&lx.xjlxbm="+$('#xjlxbh').val()+"&lx.xjqdzh="+$('#xjqdzh').val()+"&lx.xjzdzh="+$('#xjzdzh').val();
 		data+="&lx.ghlxbm="+$('#xjlxbh').val()+"&lx.ghqdzh="+$('#xjqdzh').val()+"&lx.ghzdzh="+$('#xjzdzh').val();
 		data+="&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()+"&lx.silc="+$('#silc').val()
 		+"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lx.lxmc="+$('#lxmc').val()+"&lx.qdmc="+$('#qdmc').val()
 		+"&lx.zdmc="+$('#zdmc').val()+"&lx.xjlc="+$('#xjlc').val();
 		//alert(data);
+		if(confirm('您确定要更改当前数据？')){
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/updateXjkxx.do',
@@ -193,6 +197,7 @@ text-decoration:none;
 				}
 			}
 		});
+	  }
 	}
 	function changeZlc(){
 		/* if(parseFloat($("#qdzh").val())>parseFloat(zdStr)){
@@ -222,7 +227,7 @@ text-decoration:none;
 			'sizeLimit' : 100000000,
 			'queueSizeLimit' : 5,
 			'fileDesc' : '支持格式:xls',
-			'fileExt' : '',
+			'fileExt' : '*.doc;*.docx;*.pdf;',
 			'height' : 30,
 			'width' : 92,
 			'scriptData' : {
@@ -424,7 +429,7 @@ text-decoration:none;
 			</tr>
 			
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可批复文件：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复文件：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left" colspan="5">
 					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
 							<tbody id="gkpfTable"></tbody>
@@ -440,8 +445,19 @@ text-decoration:none;
 								</td>
 							</tr>
 						</table>
+				</td>	
+			</tr>
+			<tr style="height: 60px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行业审查意见：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<textarea id="hyscyj" name="hyscyj" style="width: 500px;height: 50px;"></textarea>
 				</td>
-				
+			</tr>
+            <tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">通过时间：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id='tgsj' name="tgsj" type='text' style="width: 124px;"/>
+				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td colspan="6" style="background-color: #ffffff;"align="center">

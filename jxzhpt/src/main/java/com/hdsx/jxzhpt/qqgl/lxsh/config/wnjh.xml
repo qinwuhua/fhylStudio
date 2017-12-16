@@ -2139,7 +2139,7 @@
 		from WNJH_LX where sffirst='1' group by xmid) lx on t.id=lx.xmid 
 		left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid
 		left join (select xmid,
-		sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
+		sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghxlxbm)),',',',') ghxlxbmtj,
         replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
         replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
         replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
@@ -2149,7 +2149,7 @@
         else to_number(lc)
         end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
         else ghxlxbm
-        end) ghxlxbm,ghxlxmc,jsjsdj,xjsdj
+        end) ghxlxbm,ghxlxmc,jsjsdj,xjsdj,xjlxbm
         from WNJH_LX ) group by xmid) lx2 on t.id=lx2.xmid
 		where 1=1 and (xmlx1='改建工程' or xmlx1='新建工程')
 		<if test="xzqh!='' and xzqh!= null ">
