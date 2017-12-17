@@ -265,8 +265,26 @@ public class Jhsh implements Serializable {
 	private String ejsd;//二级省道
 	private String sjsd;//三级省道
 	
-	
+	//计划预安排增加初设完成情况和计划下达情况（0未完成，1已完成）
+	private String cbsjwc;
+	private String jhxdwc;
 		
+	public String getCbsjwc() {
+		return cbsjwc;
+	}
+
+	public void setCbsjwc(String cbsjwc) {
+		this.cbsjwc = cbsjwc;
+	}
+
+	public String getJhxdwc() {
+		return jhxdwc;
+	}
+
+	public void setJhxdwc(String jhxdwc) {
+		this.jhxdwc = jhxdwc;
+	}
+
 	public String getYjgd() {
 		return yjgd;
 	}

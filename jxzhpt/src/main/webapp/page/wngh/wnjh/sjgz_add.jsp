@@ -139,6 +139,7 @@ text-decoration:none;
 		autoCompleteGHLXBM();
 	});
 	
+	
 	function saveLxsh(){
 		var tz=0;var bzcs=0;var yhdk=0;var gz=0;var sz=0;
 		if($("#tz").val()!='')
@@ -392,12 +393,12 @@ text-decoration:none;
 					现技术等<br/>级及里程
 				</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					一级：<input onchange="jslc()" id="yilc" name="yilc" style="width: 50px;" type="text" value="0"/>
-					二级：<input onchange="jslc()" id="erlc" name="erlc" style="width: 50px;" type="text" value="0"/>
-					三级：<input onchange="jslc()" id="sanlc" name="sanlc" style="width: 50px;" type="text" value="0"/>
-					四级：<input onchange="jslc()" id="silc" name="silc" style="width: 50px;" type="text" value="0"/>
-					等外：<input onchange="jslc()" id="dwlc" name="dwlc" style="width: 50px;" type="text" value="0"/>
-					无路：<input onchange="jslc()" id="wllc" name="wllc" style="width: 50px;" type="text" value="0"/>
+					一级：<input onchange="jslc()" id="yilc" name="yilc" style="width: 50px;" type="text" value="0" onblur="checkSZ(this)"/>
+					二级：<input onchange="jslc()" id="erlc" name="erlc" style="width: 50px;" type="text" value="0" onblur="checkSZ(this)"/>
+					三级：<input onchange="jslc()" id="sanlc" name="sanlc" style="width: 50px;" type="text" value="0" onblur="checkSZ(this)"/>
+					四级：<input onchange="jslc()" id="silc" name="silc" style="width: 50px;" type="text" value="0" onblur="checkSZ(this)"/>
+					等外：<input onchange="jslc()" id="dwlc" name="dwlc" style="width: 50px;" type="text" value="0" onblur="checkSZ(this)"/>
+					无路：<input onchange="jslc()" id="wllc" name="wllc" style="width: 50px;" type="text" value="0" onblur="checkSZ(this)"/>
 					总计：<span id="lc" style="font-size: 14px">0</span>&nbsp;公里
 				</td>
 			</tr>
@@ -406,12 +407,12 @@ text-decoration:none;
 					建设技术<br/>等级及里程
 				</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					一级：<input id="jhyilc" onchange="cesuan()" name="jhyilc" style="width: 50px;" value="0" type="text"/>
-					二级：<input id="jherlc" onchange="cesuan()" name="jherlc" style="width: 50px;" value="0" type="text"/>
-					三级：<input id="jhsanlc" onchange="cesuan()" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
-					四级：<input id="jhsilc" onchange="cesuan()" name="jhsilc" style="width: 50px;" value="0" type="text"/>
-					等外：<input id="jhdwlc" onchange="cesuan()" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
-					无路：<input id="jhwllc" onchange="cesuan()" name="jhwllc" style="width: 50px;" type="text" value="0"/>
+					一级：<input id="jhyilc" onchange="cesuan()" name="jhyilc" style="width: 50px;" value="0" type="text" onblur="checkSZ(this)"/>
+					二级：<input id="jherlc" onchange="cesuan()" name="jherlc" style="width: 50px;" value="0" type="text" onblur="checkSZ(this)"/>
+					三级：<input id="jhsanlc" onchange="cesuan()" name="jhsanlc" style="width: 50px;" value="0" type="text" onblur="checkSZ(this)"/>
+					四级：<input id="jhsilc" onchange="cesuan()" name="jhsilc" style="width: 50px;" value="0" type="text" onblur="checkSZ(this)"/>
+					等外：<input id="jhdwlc" onchange="cesuan()" name="jhdwlc" style="width: 50px;" value="0" type="text" onblur="checkSZ(this)"/>
+					无路：<input id="jhwllc" onchange="cesuan()" name="jhwllc" style="width: 50px;" type="text" value="0" onblur="checkSZ(this)"/>
 					总计：<span id="jhlc" style="font-size: 14px">0</span>&nbsp;公里
 				</td>
 			</tr>

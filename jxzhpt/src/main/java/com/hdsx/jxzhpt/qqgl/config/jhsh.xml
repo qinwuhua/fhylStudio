@@ -4991,6 +4991,12 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 				<if test="jhsh.xmbm !=null and jhsh.xmbm !=''">
 					and j.xmbm like '%'||#{jhsh.xmbm}||'%'
 				</if>
+				<if test="jhsh.cbsjwc !=null and jhsh.cbsjwc !=''">
+					${jhsh.cbsjwc}
+				</if>
+				<if test="jhsh.jhxdwc !=null and jhsh.jhxdwc !=''">
+					${jhsh.jhxdwc}
+				</if>
 				order by <if test="jhsh.zydpx =='升序'">to_number(j.zydpx),</if><if test="jhsh.zydpx =='降序'">to_number(j.zydpx) desc,</if>j.xdzt,j.xmbm desc
 			) t 
 		) 
@@ -5329,6 +5335,12 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 				<if test="jhsh.xmbm !=null and jhsh.xmbm !=''">
 					and j.xmbm like '%'||#{jhsh.xmbm}||'%'
 				</if>
+				<if test="jhsh.cbsjwc !=null and jhsh.cbsjwc !=''">
+					${jhsh.cbsjwc}
+				</if>
+				<if test="jhsh.jhxdwc !=null and jhsh.jhxdwc !=''">
+					${jhsh.jhxdwc}
+				</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 
@@ -5530,6 +5542,12 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 				</if>
 				<if test="xmbm !=null and xmbm !=''">
 					and j.xmbm like '%'||#{xmbm}||'%'
+				</if>
+				<if test="cbsjwc !=null and cbsjwc !=''">
+					${cbsjwc}
+				</if>
+				<if test="jhxdwc !=null and jhxdwc !=''">
+					${jhxdwc}
 				</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
@@ -7179,6 +7197,12 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 				<if test="jhsh.xmbm !=null and jhsh.xmbm !=''">
 					and j.xmbm like '%'||#{jhsh.xmbm}||'%'
 				</if>
+				<if test="jhsh.cbsjwc !=null and jhsh.cbsjwc !=''">
+					${jhsh.cbsjwc}
+				</if>
+				<if test="jhsh.jhxdwc !=null and jhsh.jhxdwc !=''">
+					${jhsh.jhxdwc}
+				</if>
 				order by <if test="jhsh.zydpx =='升序'">to_number(j.zydpx),</if><if test="jhsh.zydpx =='降序'">to_number(j.zydpx) desc,</if>j.xdzt,j.xmbm desc
 			) t 
 		) 
@@ -7394,6 +7418,12 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 				</if>
 				<if test="jhsh.xmbm !=null and jhsh.xmbm !=''">
 					and j.xmbm like '%'||#{jhsh.xmbm}||'%'
+				</if>
+				<if test="jhsh.cbsjwc !=null and jhsh.cbsjwc !=''">
+					${jhsh.cbsjwc}
+				</if>
+				<if test="jhsh.jhxdwc !=null and jhsh.jhxdwc !=''">
+					${jhsh.jhxdwc}
 				</if>
 				order by <if test="jhsh.zydpx =='升序'">to_number(j.zydpx),</if><if test="jhsh.zydpx =='降序'">to_number(j.zydpx) desc,</if>j.xdzt,j.xmbm desc
 			) t 

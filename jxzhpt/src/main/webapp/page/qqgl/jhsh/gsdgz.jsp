@@ -58,8 +58,8 @@
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),
 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.zydpx':$('#zydpx').combobox('getValue'),'jhsh.sbzt':1,
-					'jhsh.shzt':$('#shzt').combobox("getValue"),'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly,'jhsh.xmbm':$('#xmbm').val(),'jhsh.xmklx':$('#xmklx').combobox('getValue')
-					};
+					'jhsh.shzt':$('#shzt').combobox("getValue"),'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly,'jhsh.xmbm':$('#xmbm').val(),'jhsh.xmklx':$('#xmklx').combobox('getValue'),
+					'jhsh.cbsjwc':$('#cbsjwc').combobox("getValue"),'jhsh.jhxdwc':$('#jhxdwc').combobox("getValue")};
 			grid.queryParams=params;
 			loadLj(params);
 			grid.height=$(window).height()-210;
@@ -235,8 +235,9 @@
 					'&jhsh.ghlxbh='+$("#lxbm").combotree('getText')+'&jhsh.lxmc='+$("#lxmc").val()+
 					'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+
 					'&jhsh.lsjl='+$("#lsjl").combobox("getValue")+'&jhsh.zydpx='+$("#zydpx").val()+'&jhsh.sbzt=1'+
-					'&jhsh.shzt='+$("#shzt").combobox("getValue")+'&jhsh.gyfl='+$("#gyfl").val()+'&jhsh.zjly='+zjly
-					+'&jhsh.xmbm='+$('#xmbm').val()+'&xmklx='+$("#xmklx").combobox("getValue");
+					'&jhsh.shzt='+$("#shzt").combobox("getValue")+'&jhsh.gyfl='+$("#gyfl").val()+'&jhsh.zjly='+zjly+
+					'&jhsh.xmbm='+$('#xmbm').val()+'&xmklx='+$("#xmklx").combobox("getValue")+
+					'&jhsh.cbsjwc='+$('#cbsjwc').combobox("getValue")+'&jhsh.jhxdwc='+$('#jhxdwc').combobox("getValue");
 			window.location.href="/jxzhpt/qqgl/queryGsdgz_dcexcelsb.do?"+param;
 		}
 		$(window).resize(function () { 
@@ -410,7 +411,7 @@ text-decoration:none;
 								<td align="right">项目库类型：</td>
 								<td>
 									<select id='xmklx' class="easyui-combobox" style="width: 75px;">
-										<option value="">请选择</option>
+										<option value="" selected="selected">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
 									</select>
@@ -423,6 +424,25 @@ text-decoration:none;
 								<td><select name="xmlx" id="xmlx" style="width:104px;" ></select></td>
                             	<td>资金来源：</td>
         						<td><input name="zjly" type="text" id="zjly" style="width:104px;" /></td> -->
+								
+								<td align="right">初设完成情况：</td>
+								<td>
+									<select id='cbsjwc' class="easyui-combobox" style="width: 118px;"data-options="editable:false,panelHeight:'auto'">
+										<option value="" selected="selected">请选择</option>
+										<option value="0">未批复</option>
+										<option value="1">已批复</option>
+									</select>
+								</td>
+        						</tr>
+        						<tr height="28">
+        						<td align="right">计划下达情况：</td>
+								<td>
+									<select id='jhxdwc' class="easyui-combobox" style="width: 118px;"data-options="editable:false,panelHeight:'auto'">
+										<option value="" selected="selected">请选择</option>
+										<option value="0">未下达</option>
+										<option value="1">已下达</option>
+									</select>
+								</td>
         						</tr>
         						<tr height="28">
                             	<td colspan="8">

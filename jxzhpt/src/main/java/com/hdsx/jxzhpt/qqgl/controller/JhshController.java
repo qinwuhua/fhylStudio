@@ -149,6 +149,22 @@ public class JhshController extends BaseActionSupport implements
 		} else {
 			jhsh.setScxdnf("substr(xmbm,0,4)");
 		}
+		//工可查询初设未批复
+        if ("0".equals(jhsh.getCbsjwc())) {
+			jhsh.setCbsjwc("and j.sjpfwh is null");
+		}
+		//工可查询初设已批复
+        if ("1".equals(jhsh.getCbsjwc())) {
+			jhsh.setCbsjwc("and j.sjpfwh is not null");
+		}
+        //工可查询计划下达未完成
+        if ("0".equals(jhsh.getJhxdwc())) {
+			jhsh.setJhxdwc("and j.xmbm not in (select xmid from plan_zjxd)");
+		}
+        //工可查询计划下达已完成
+        if ("1".equals(jhsh.getJhxdwc())) {
+			jhsh.setJhxdwc("and j.xmbm in (select xmid from plan_zjxd)");
+		}
 		jhsh.setTsdq(jhsh.getTsdq().replace(" ", "+"));
 		tsdqHandle();
 		List<Excel_list> l = jhshServer.queryGsdgz_dcexcelsb(jhsh);
@@ -311,7 +327,22 @@ public class JhshController extends BaseActionSupport implements
 			} else {
 				jhsh.setScxdnf("substr(xmbm,0,4)");
 			}
-
+			//工可查询初设未批复
+            if ("0".equals(jhsh.getCbsjwc())) {
+				jhsh.setCbsjwc("and j.sjpfwh is null");
+			}
+			//工可查询初设已批复
+            if ("1".equals(jhsh.getCbsjwc())) {
+				jhsh.setCbsjwc("and j.sjpfwh is not null");
+			}
+            //工可查询计划下达未完成
+            if ("0".equals(jhsh.getJhxdwc())) {
+				jhsh.setJhxdwc("and j.xmbm not in (select xmid from plan_zjxd)");
+			}
+            //工可查询计划下达已完成
+            if ("1".equals(jhsh.getJhxdwc())) {
+				jhsh.setJhxdwc("and j.xmbm in (select xmid from plan_zjxd)");
+			}
 			listData = jhshServer.queryGsdgz(jhsh, jhsh.getPage(),
 					jhsh.getRows());
 			total = jhshServer.queryGsdgzCount(jhsh);
@@ -427,6 +458,22 @@ public class JhshController extends BaseActionSupport implements
 				jhsh.setScxdnf("fun_scxdnf(xmbm)");
 			} else {
 				jhsh.setScxdnf("substr(xmbm,0,4)");
+			}
+			//工可查询初设未批复
+            if ("0".equals(jhsh.getCbsjwc())) {
+				jhsh.setCbsjwc("and j.sjpfwh is null");
+			}
+			//工可查询初设已批复
+            if ("1".equals(jhsh.getCbsjwc())) {
+				jhsh.setCbsjwc("and j.sjpfwh is not null");
+			}
+            //工可查询计划下达未完成
+            if ("0".equals(jhsh.getJhxdwc())) {
+				jhsh.setJhxdwc("and j.xmbm not in (select xmid from plan_zjxd)");
+			}
+            //工可查询计划下达已完成
+            if ("1".equals(jhsh.getJhxdwc())) {
+				jhsh.setJhxdwc("and j.xmbm in (select xmid from plan_zjxd)");
 			}
 			result = jhshServer.queryJhshLjgsdgz(jhsh);
 			JsonUtils.write(result, getresponse().getWriter());
