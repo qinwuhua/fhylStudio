@@ -259,6 +259,11 @@ text-decoration:none;
 </script>
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
+			<tr style="height: 25px;">
+				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+					项目基本信息
+				</td>
+		    </tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
@@ -352,6 +357,28 @@ text-decoration:none;
 					无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
 				</td>
 			</tr>
+			<tr style="height: 25px; margin -top:10px">
+				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+					行业审查
+				</td>
+		    </tr>
+			<tr style="height: 60px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行业审查意见：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<textarea id="hyscyj" name="hyscyj" style="width: 500px;height: 50px;"></textarea>
+				</td>
+			</tr>
+            <tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">通过时间：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id='tgsj' name="tgsj" type='text' style="width: 124px;"/>
+				</td>
+			</tr>
+			<tr style="height: 25px; margin -top:10px">
+				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+					工程可行性研究
+				</td>
+		    </tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目编码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
@@ -446,18 +473,6 @@ text-decoration:none;
 							</tr>
 						</table>
 				</td>	
-			</tr>
-			<tr style="height: 60px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行业审查意见：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea id="hyscyj" name="hyscyj" style="width: 500px;height: 50px;"></textarea>
-				</td>
-			</tr>
-            <tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">通过时间：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input id='tgsj' name="tgsj" type='text' style="width: 124px;"/>
-				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td colspan="6" style="background-color: #ffffff;"align="center">
