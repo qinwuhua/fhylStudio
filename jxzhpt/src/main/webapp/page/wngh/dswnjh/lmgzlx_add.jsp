@@ -282,13 +282,13 @@ a{text-decoration:none;}
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					技术等级及里程
 				</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					一级：<input id="yilc" onchange="cesuan2()" name="yilc" style="width: 50px;" type="text"/>
-					二级：<input id="erlc" onchange="cesuan2()" name="erlc" style="width: 50px;" type="text"/>
-					三级：<input id="sanlc" onchange="cesuan2()" name="sanlc" style="width: 50px;" type="text"/>
-					四级：<input id="silc" onchange="cesuan2()" name="silc" style="width: 50px;" type="text"/>
-					等外：<input id="dwlc" onchange="cesuan2()" name="dwlc" style="width: 50px;" type="text"/>
-					无路：<input id="wllc" onchange="cesuan2()" name="wllc" style="width: 50px;" type="text"/>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left" onblur="checkSZ(this)">
+					一级：<input id="yilc" onchange="cesuan2()" name="yilc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					二级：<input id="erlc" onchange="cesuan2()" name="erlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					三级：<input id="sanlc" onchange="cesuan2()" name="sanlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					四级：<input id="silc" onchange="cesuan2()" name="silc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					等外：<input id="dwlc" onchange="cesuan2()" name="dwlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					无路：<input id="wllc" onchange="cesuan2()" name="wllc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
 					总计：<span id="lc" style="font-size: 14px">0</span>&nbsp;公里
 				</td>
 			</tr>

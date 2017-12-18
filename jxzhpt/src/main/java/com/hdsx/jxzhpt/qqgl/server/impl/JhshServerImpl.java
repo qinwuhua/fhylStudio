@@ -1710,16 +1710,16 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public List<Map<String, String>> querySzxmList(Jhsh jhsh) {
 		//示范路
 		if("sflsb".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("FROM JHSH_SFL JH LEFT JOIN SGT_SFL sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1 ");
+			jhsh.setTiaojian(",wn.gxlxbm,wn.gxqdzh,wn.gxzdzh FROM JHSH_SFL JH LEFT JOIN SGT_SFL sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1 ");
 		}
 		if("sflsh".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("FROM JHSH_SFL JH LEFT JOIN SGT_SFL sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.sbzt='1'");
+			jhsh.setTiaojian(",wn.gxlxbm,wn.gxqdzh,wn.gxzdzh FROM JHSH_SFL JH LEFT JOIN SGT_SFL sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.sbzt='1'");
 		}
 		if("sflxd".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("FROM JHSH_SFL JH LEFT JOIN SGT_SFL sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1'");
+			jhsh.setTiaojian(",wn.gxlxbm,wn.gxqdzh,wn.gxzdzh FROM JHSH_SFL JH LEFT JOIN SGT_SFL sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1'");
 		}
 		if("sflcx".equals(jhsh.getXmlx1())) {
-			jhsh.setTiaojian("FROM JHSH_SFL JH LEFT JOIN SGT_SFL sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1' and fun_scxdnf(jh.xmbm) is not null");
+			jhsh.setTiaojian(",wn.gxlxbm,wn.gxqdzh,wn.gxzdzh FROM JHSH_SFL JH LEFT JOIN SGT_SFL sg ON JH.XMBM=SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID=WN.ID left join szxmzd sz on wn.id=sz.xmkid WHERE 1=1  and jh.shzt='1' and fun_scxdnf(jh.xmbm) is not null");
 		}
 		
 		//养护中心
