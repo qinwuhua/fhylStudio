@@ -30,18 +30,20 @@
 			tsdqdx("tsdq");
 			if($.cookie("unit2").length!=7){
 				//alert($.cookie("unit2").length);
-				title='上报状态';
+				title='工可上报状态';
 				$("#shenPi,#thxj,#thwsh").attr('style','display:none');
-				$('#sqzttext').html('上报状态');
+				$('#sqzttext').html('工可上报状态');
 				$("#sqzt1").attr('style','display:none');
 				$("#sqzt2").attr('style','');
+				sctitle='行业审查上报状态'
 			}else{
-				title='审核状态';
-				$('#sqzttext').html('审核状态');
+				title='工可审核状态';
+				$('#sqzttext').html('工可审核状态');
 				$("img[name='bxs']").attr('style','');
 				$("#shangbao").attr('style','display:none');
 				$("#sqzt1").attr('style','');
 				$("#sqzt2").attr('style','display:none');
+				sctitle='行业审查审核状态'
 			}
 			
 			loadUnit1("gydw",$.cookie("unit"));
@@ -201,8 +203,7 @@ text-decoration:none;
 								<td align="right">原路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:75px;" /></td>
         						<td align="right">规划路线编码：</td>
-        						<td><input type="text" id="ghlxbm" style="width:118px;" /></td>
-        						
+        						<td><input type="text" id="ghlxbm" style="width:118px;" /></td>        						
         					</tr>
         					<tr height="32">
         					<td align="right">规划路线名称：</td>
@@ -217,7 +218,7 @@ text-decoration:none;
 								<td align="right">特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" style="width:118px;" >
 								</select></td>
-								<td align="right"><span id='sqzttext'>审核状态：</span>   </td>
+								<td align="right"><span id='sqzttext'>工可审核状态：</span>   </td>
         						<td>
         						<span id='sqzt1'>
         						<select id="shzt"  style="width:77px;" class="easyui-combobox">

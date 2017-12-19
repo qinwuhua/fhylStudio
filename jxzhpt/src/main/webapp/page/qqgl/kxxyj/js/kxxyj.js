@@ -2051,6 +2051,28 @@ function fileShow(xmbm,type){
 		}
 	});
 }
+function fileShowXx(xmbm,type){
+	$.ajax({
+		type:'post',
+//		url:'/jxzhpt/qqgl/queryFileByXmbm.do',
+//		data:'file.parentid='+xmbm+'&file.filetype='+type,
+//		dataType:'json',
+		url:'/jxzhpt/jhgl/queryFjByParentId.do',
+		dataType:'json',
+		data:'uploads.id='+xmbm,
+		success:function(data){
+			$("#gkpfTable").empty();
+			for ( var i = 0; i < data.length; i++) {
+				if(data[i].filetype==type){
+					var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>" +
+					'<a href="javascript:downFile('+"'"+data[i].fileurl.replace(/\\/g,"%2F")+"',"+"'"+data[i].filename+"'"+')" style="text-decoration:none;color:#3399CC;">&nbsp;下载&nbsp;</a>'+
+					"</td></tr>";
+					$("#gkpfTable").append(tr);
+				}
+			}
+		}
+	});
+}
 function fileShow1(xmbm,type){
 	$.ajax({
 		type:'post',

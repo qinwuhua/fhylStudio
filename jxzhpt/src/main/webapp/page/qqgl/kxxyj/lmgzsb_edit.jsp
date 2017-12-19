@@ -60,6 +60,8 @@ text-decoration:none;
 				$("#xmbm").html(msg.xmbm);
 				$("#jsjsdj").html(msg.jsjsdj);
 				$('#xmklx').val(msg.xmklx);
+				$('qdzh').val(msg.minqdzh);
+				$('zdzh').val(mgs.maxzdzh);
 			}
 		});
 		fileShow(parent.obj.xmbm,"工可批复文件");
@@ -252,12 +254,12 @@ text-decoration:none;
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input readonly="readonly" type="text" name="minqdzh" id="minqdzh"  onblur="changeZlc()" style="width: 120px;"/><br/>
+					<input readonly="readonly" type="text" name="qdzh" id="qdzh"  onblur="changeZlc()" style="width: 120px;"/><br/>
 					
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input readonly="readonly" type="text" name="maxzdzh" id="maxzdzh" onblur="changeZlc()" style="width: 120px;"/><br/>
+					<input readonly="readonly" type="text" name="zdzh" id="zdzh" onblur="changeZlc()" style="width: 120px;"/><br/>
 					
 				</td>
 			</tr>
@@ -335,17 +337,16 @@ text-decoration:none;
 					行业审查
 				</td>
 		    </tr>
-			<tr style="height: 60px;">
+		    <tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行业审查意见：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea id="hyscyj" name="hyscyj" style="width: 500px;height: 50px;"></textarea>
-				</td>
-			</tr>
-            <tr style="height: 35px;">
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+				<input type="text" id="hyscyj" name="hyscyj" style="width: 120px;"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">通过时间：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input id='tgsj' name="tgsj" type='text' style="width: 124px;"/>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input type="text" id="tgsj" name="tgsj" style="width: 120px;"/>
 				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left"></td>
 			</tr>
 			<tr style="height: 25px; margin -top:10px">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
@@ -353,6 +354,10 @@ text-decoration:none;
 				</td>
 		    </tr>	
 			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input type="text" id="jsxz" name="jsxz" style="width: 120px;"/>
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="jsjsdj" name="jsjsdj" style="width: 120px;"/>
@@ -361,7 +366,6 @@ text-decoration:none;
 				<td colspan="3" style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="gydw" name="gydw" style="width: 120px;"/>
 				</td>
-				
 			</tr>
 			<!-- <tr style="height: 35px;">
 				
@@ -370,40 +374,38 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">开工年月：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type='text' id='kgny' name="kgny"/>
+					<input type='text' id='kgny' name="kgny" style="width: 120px;"/>
 					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完工年月：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type='text' id='wgny' name="wgny"/>
+					<input type='text' id='wgny' name="wgny" style="width: 120px;"/>
 					</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left"></td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可批复文号：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+				<input type="text" id="gkpfwh" name="gkpfwh" style="width: 120px;"/></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复时间：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input type="text" id="pfsj" name="pfsj" style="width: 120px;"/>
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">编制单位：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-						<input type="text" id="bzdw" name="bzdw"/>
-						</td>
+					<input type="text" id="bzdw" name="bzdw" style="width: 120px;"/>
+				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投资估算：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="tzgs" name="tzgs" onblur="checkSZ(this)"/></td>
+					<input type="text" id="tzgs" name="tzgs" onblur="checkSZ(this)" style="width: 120px;"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">地方自筹：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="dfzc" name="dfzc"/></td>
+					<input type="text" id="dfzc" name="dfzc" style="width: 120px;"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">银行贷款：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="yhdk" name="yhdk"/>
-				</td>
-			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="jsxz" name="jsxz"/>
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可批复文号：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-				<input type="text" id="gkpfwh" name="gkpfwh"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复时间：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="pfsj" name="pfsj"/>
+					<input type="text" id="yhdk" name="yhdk" style="width: 120px;"/>
 				</td>
 			</tr>
 			

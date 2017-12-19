@@ -81,8 +81,11 @@ text-decoration:none;
 		$('#lc').html(data.lc);
 		$('#qdmc').html(data.qdmc);
 		$('#zdmc').html(data.zdmc);
-		fileShow1(parent.obj.xmbm,"工可批复文件");
+		fileShowXx(parent.obj.xmbm,"工可批复文件");
 		$('#xmklx').val(data.xmklx);
+		$('#hyscyj').html(data.hyscyj);
+		$('#tgsj').html(data.tgsj);
+		$('#gydw').html(data.gydw);
 	}
 	
 	$(function(){
@@ -167,6 +170,11 @@ text-decoration:none;
 </script>
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
+			<tr style="height: 25px;">
+				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+					项目基本信息
+				</td>
+		    </tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">
 					原路线编码：</td>
@@ -259,10 +267,7 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">
 					</td>
 				<td style="background-color: #ffffff; height: 20px;width:200px;" align="left">
-					
 				</td>
-				
-				
 			</tr>
 			<tr style="height: 35px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
@@ -292,18 +297,40 @@ text-decoration:none;
 					总计：<span id="jszlc"></span>
 				</td>
 			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可批复文号：</td>
+			<tr style="height: 25px;">
+				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+					行业审查
+				</td>
+		    </tr>
+		    <tr style="height: 35px;">
+		        <td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行业审查意见：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="gkpfwh"></span>
+					<span id="hyscyj"></span>
+				</td>
+		    	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行业审查意见：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<span id="tgsj"></span>
+				</td>
+		    	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left"></td>
+			</tr>
+			<tr style="height: 25px; margin -top:10px">
+				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+					工程可行性研究
+				</td>
+		    </tr>	    	
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<span id="jsxz"></span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="jsjsdj"></span>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
+ 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="jsxz"></span>
+					<span id="gydw"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -315,12 +342,12 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 25px;" align="left">
 					<span id="dq"></span>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">开工年月：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-<!-- 					<span id="jsdw"></span> -->
+					<span id='kgny'></span>
 				</td>
 			</tr>
-			<tr style="height: 35px;">
+			<tr style="height: 35px;">			
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隧道（米）：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="sd_m"></span>
@@ -329,23 +356,23 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="sd"></span>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">编制单位：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="bzdw"></span>
-				</td>
-			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">开工年月：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id='kgny'></span>
-				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完工年月：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id='wgny'></span>
 				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可批复文号：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<span id="gkpfwh"></span>
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复时间：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="pfsj"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">编制单位：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<span id="bzdw"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -362,6 +389,15 @@ text-decoration:none;
 					<span id="yhdk"></span>
 				</td>
 			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复文件：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left" colspan="5">
+					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+						<tbody id="gkpfTable"></tbody>
+						</table>
+				</td>
+			</tr>
+			
 			<tr style="height: 35px;">
 				<td colspan="6" style="background-color: #ffffff;"align="center">
 				<a href="# "  onclick="removes('lxxx')" class="easyui-linkbutton"  plain="true" iconCls="icon-cancel">关闭</a></td>
