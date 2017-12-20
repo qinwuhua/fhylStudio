@@ -151,8 +151,8 @@
 			var max=xmnf[0];
 			var len=(xmnf.length+1)*1000+"px";
 			$("#kdtb").attr('width',len);
-			var sv="v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8,v_9";
-			var l=10;
+			var sv="v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8,v_9,v_10,v_11,v_12";
+			var l=13;
 			for(var i=xmnf.length-1;i>=0;i--){
 				sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;
 				str1=str1+'<td colspan="6">计划下达及完成情况</td>';
@@ -161,9 +161,9 @@
 			}
 			sv+=",v_"+l;l++;
 			var ss=sv.split(",");
-			biaotstr='<tr><td rowspan="3">序号</td><td rowspan="3">设区市</td><td colspan="8">计划下达及完成情况</td>'
+			biaotstr='<tr><td rowspan="3">序号</td><td rowspan="3">设区市</td><td colspan="11">计划下达及完成情况</td>'
 			+str1+'<td rowspan="3">备注</td></tr>'
-			+'<td rowspan="1" colspan="2">'+min+'-'+max+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">工程完成比例</td><td rowspan="2">'+max+'年目标任务里程（公里）</td><td rowspan="2">'+max+'年目标任务已完成里程（公里）</td>'
+			+'<td rowspan="1" colspan="2">'+min+'-'+max+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">累计完成投资（万元）</td><td rowspan="2">本年到位资金（万元）</td><td rowspan="2">累计到位资金（万元）</td><td rowspan="2">工程完成比例</td><td rowspan="2">'+max+'年目标任务里程（公里）</td><td rowspan="2">'+max+'年目标任务已完成里程（公里）</td>'
 			+str2+'</tr>'
 			+'<td>项目数量</td><td>计划里程（公里）</td>'
 			+str3+'</tr>';

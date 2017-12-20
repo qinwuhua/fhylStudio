@@ -5319,7 +5319,7 @@ public class GcybbController extends BaseActionSupport{
 					double ljcgs=0;
 					double wcmblc=0;
 					//从18开始的
-					int f=10;
+					int f=13;
 					for(int j=arr.length-1;j>=0;j--){
 						
 						System.out.println(arr[j]);
@@ -5349,6 +5349,7 @@ public class GcybbController extends BaseActionSupport{
 						f++;
 						Method method22 = cl.getMethod("setV_"+f, new Class[]{String.class});
 						method22.invoke(l, new Object[]{hm.get("BNTZ"+arr[j]).toString()});
+						
 						f++;
 						String wcblS=MyUtil.divbfb(Double.valueOf(hm.get("LJLC"+arr[j]).toString()), Double.valueOf(hm.get("XMLC"+arr[j]).toString()), 3)+"%";
 						Method method23 = cl.getMethod("setV_"+f, new Class[]{String.class});
@@ -5371,11 +5372,14 @@ public class GcybbController extends BaseActionSupport{
 					l.setV_4(decimalFormat.format(bnlc)+"");
 					l.setV_5(decimalFormat.format(ljlc)+"");
 					l.setV_6(decimalFormat.format(bntz)+"");
+					l.setV_7(decimalFormat.format(ljtz)+"");
+					l.setV_8(decimalFormat.format(bndw)+"");
+					l.setV_9(decimalFormat.format(ljdw)+"");
 					
 					double wcbl=MyUtil.divbfb(ljlc, xmlc, 3)*100; 
-					l.setV_7(decimalFormat2.format(wcbl)+"%");
-					l.setV_8("");
-					l.setV_9(decimalFormat.format(wcmblc)+"");
+					l.setV_10(decimalFormat2.format(wcbl)+"%");
+					l.setV_11("");
+					l.setV_12(decimalFormat.format(wcmblc)+"");
 					
 					Method method26 = cl.getMethod("setV_"+f, new Class[]{String.class});
 					method26.invoke(l, new Object[]{" "});
@@ -5392,8 +5396,8 @@ public class GcybbController extends BaseActionSupport{
 					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 					et.add(new Excel_tilte("序号",1,3,0,0));
 					et.add(new Excel_tilte("设区市",1,3,1,1));
-					et.add(new Excel_tilte("计划下达及完成情况",1,1,2,9));
-					int sj1=10;
+					et.add(new Excel_tilte("计划下达及完成情况",1,1,2,12));
+					int sj1=13;
 					for (int i = 0; i < arr.length; i++) {
 						et.add(new Excel_tilte("计划下达及完成情况",1,1,sj1,sj1+5));
 						sj1=sj1+6;
@@ -5403,12 +5407,15 @@ public class GcybbController extends BaseActionSupport{
 					et.add(new Excel_tilte("本年完成里程(公里)",2,3,4,4));
 					et.add(new Excel_tilte("累计完成里程(公里)",2,3,5,5));
 					et.add(new Excel_tilte("本年完成投资(万元)",2,3,6,6));
-					et.add(new Excel_tilte("工程完成比例",2,3,7,7));
-					et.add(new Excel_tilte(arr[arr.length-1]+"年目标任务里程（公里）",2,3,8,8));
-					et.add(new Excel_tilte(arr[arr.length-1]+"年目标任务已完成里程（公里）",2,3,9,9));
+					et.add(new Excel_tilte("累计完成投资(万元)",2,3,7,7));
+					et.add(new Excel_tilte("本年到位投资(万元)",2,3,8,8));
+					et.add(new Excel_tilte("累计到位投资(万元)",2,3,9,9));
+					et.add(new Excel_tilte("工程完成比例",2,3,10,10));
+					et.add(new Excel_tilte(arr[arr.length-1]+"年目标任务里程（公里）",2,3,11,11));
+					et.add(new Excel_tilte(arr[arr.length-1]+"年目标任务已完成里程（公里）",2,3,12,12));
 					
 					
-					int sj2=10;
+					int sj2=13;
 					for (int i = 0; i < arr.length; i++) {
 						et.add(new Excel_tilte(arr[i]+"年度",2,2,sj2,sj2+1));
 						et.add(new Excel_tilte("本年完成里程(公里)",2,3,sj2+2,sj2+2));
@@ -5420,7 +5427,7 @@ public class GcybbController extends BaseActionSupport{
 					}
 					et.add(new Excel_tilte("项目数量",3,3,2,2));
 					et.add(new Excel_tilte("计划里程(公里)",3,3,3,3));
-					int sj3=10;
+					int sj3=13;
 					for (int i = 0; i < arr.length; i++) {
 						et.add(new Excel_tilte("项目数量",3,3,sj3,sj3));
 						et.add(new Excel_tilte("计划里程(公里)",3,3,sj3+1,sj3+1));
