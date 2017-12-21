@@ -116,8 +116,9 @@
 		<action name="queryLxshShLjXj" class="lxshController" method="queryLxshShLjXj" />
 		<action name="querygkxmXX" class="kxxyjController" method="querygkxmXX" />
 		<action name="hbxmSjgzlx" class="lxshController" method="hbxmSjgzlx" />
-
-
+      
+      	<action name="hyscthxj" class="kxxyjController" method="hyscthxj" />
+		<action name="thwshkxxyjhysc" class="kxxyjController" method="thwshkxxyjhysc" />
 		<action name="thwshkxxyj" class="kxxyjController" method="thwshkxxyj" />
 		<action name="thkxxyjsb" class="kxxyjController" method="thkxxyjsb" />
 		<action name="thjhshsb" class="kxxyjController" method="thjhshsb" />
@@ -173,6 +174,8 @@
 		<action name="importlmgzkxx" class="kxxyjController" method="importlmgzkxx" />
 		<action name="importxjkxx" class="kxxyjController" method="importxjkxx" />
 		<action name="sbgcxmkxx" class="kxxyjController" method="sbgcxmkxx" />
+		<action name="sbgcxmhysc" class="kxxyjController" method="sbgcxmhysc" />
+		<action name="shgcxmhysc" class="kxxyjController" method="shgcxmhysc" />
 
 
 

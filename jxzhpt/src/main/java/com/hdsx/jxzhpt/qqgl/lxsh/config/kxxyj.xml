@@ -17,6 +17,9 @@
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and to_char(t.sbzt) like '%'||#{sbzt1}||'%'
 		</if>
+		<if test="scsbzt!='' and scsbzt!= null ">
+			or to_char(t.scsbzt) like '%'||#{scsbzt}||'%'
+		</if>
 		<if test="shzt!='' and shzt!= null ">
 			and to_char(t.shzt) like '%'||#{shzt}||'%'
 		</if>
@@ -1717,5 +1720,17 @@
 	</update>
 	<update id="tzxmcb" parameterType="lxsh">
 	update ${bz} set bz=(case when bz like '%'||sjpfwh||'%' then bz when bz is null or bz='' then sjpfwh else bz||','||sjpfwh end),TZXZ='变更' where xmbm=#{xmbm}
+	</update>
+	<update id="sbgcxmhysc" parameterType="lxsh">
+	update ${bz} set scsbzt='1',scsbthcd=#{sbthcd} where xmbm in (${xmbm})
+	</update>
+	<update id="shgcxmhysc" parameterType="lxsh">
+	update ${bz} set scshzt='1' where xmbm in (${xmbm})
+	</update>
+	<update id="thwshkxxyjhysc" parameterType="lxsh">
+		update ${bz} set scshzt='0' where xmbm in (${xmbm})
+	</update>
+	<update id="hyscthxj" parameterType="lxsh">
+	update ${bz} set scthyy=#{thyy},scsbzt=#{sbzt},scsbthcd=#{sbthcd} where xmbm in (${xmbm})
 	</update>
 </mapper>

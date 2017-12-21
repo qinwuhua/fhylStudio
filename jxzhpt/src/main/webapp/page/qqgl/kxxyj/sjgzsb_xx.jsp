@@ -307,7 +307,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="hyscyj"></span>
 				</td>
-		    	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行业审查意见：</td>
+		    	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">通过时间：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="tgsj"></span>
 				</td>

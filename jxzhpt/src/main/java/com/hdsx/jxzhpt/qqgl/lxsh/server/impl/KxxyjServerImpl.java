@@ -852,5 +852,59 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 		}
 		
 	}
+
+	@Override
+	public boolean sbgcxmhysc(Lxsh lxsh) {
+		if("1".equals(lxsh.getXmlx()))
+			lxsh.setBz("kxxyj_sjgz");
+		if("2".equals(lxsh.getXmlx()))
+			lxsh.setBz("kxxyj_lmgz");
+		if("3".equals(lxsh.getXmlx()))
+			lxsh.setBz("kxxyj_xj");
+/*		if("5".equals(lxsh.getXmlx()))
+			lxsh.setBz("kxxyj_sh");*/
+		return update("sbgcxmhysc", lxsh)>0;
+	}
+
+	@Override
+	public boolean shgcxmhysc(Lxsh lxsh) {
+		if("1".equals(lxsh.getXmlx()))
+			lxsh.setBz("kxxyj_sjgz");
+		if("2".equals(lxsh.getXmlx()))
+			lxsh.setBz("kxxyj_lmgz");
+		if("3".equals(lxsh.getXmlx()))
+			lxsh.setBz("kxxyj_xj");
+/*		if("5".equals(lxsh.getXmlx()))
+			lxsh.setBz("kxxyj_sh");*/
+		return update("shgcxmhysc", lxsh)>0;
+	}
+
+	@Override
+	public boolean thwshkxxyjhysc(Lxsh lxsh) {
+		if("1".equals(lxsh.getXmlx()))
+			lxsh.setBz("kxxyj_sjgz");
+		if("2".equals(lxsh.getXmlx()))
+			lxsh.setBz("kxxyj_lmgz");
+		if("3".equals(lxsh.getXmlx()))
+			lxsh.setBz("kxxyj_xj");
+/*		if("5".equals(lxsh.getXmlx()))
+			lxsh.setBz("kxxyj_sh");*/
+		return update("thwshkxxyjhysc", lxsh)>0;
+	}
 	
+	@Override
+	public boolean hyscthxj(Lxsh lxsh) {
+		String table="";
+		if("1".equals(lxsh.getXmlx()))
+			table="kxxyj_sjgz";
+		if("2".equals(lxsh.getXmlx()))
+			table="kxxyj_lmgz";
+		if("3".equals(lxsh.getXmlx()))
+			table="kxxyj_xj";
+		
+/*		if("5".equals(lxsh.getXmlx()))
+			table="kxxyj_sh";*/
+		lxsh.setBz(table);
+		return update("hyscthxj", lxsh)>0;
+	}
 }

@@ -1368,6 +1368,10 @@ public class KxxyjController extends BaseActionSupport{
 		}
 	}
 	
+	public void shgcxmhysc() {
+		ResponseUtils.write(getresponse(), ""+kxxyjServer.shgcxmhysc(lxsh));
+	}
+	
 	public void shlmgzkxx(){
 		boolean bl=kxxyjServer.shlmgzkxx(lxsh);
 		if(bl){
@@ -1830,7 +1834,10 @@ public class KxxyjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	//行业审查上报流程
+	public void sbgcxmhysc() {
+		ResponseUtils.write(getresponse(), ""+kxxyjServer.sbgcxmhysc(lxsh));
+	}
 	
 	
 	public void sbgcxmkxx(){
@@ -1848,5 +1855,11 @@ public class KxxyjController extends BaseActionSupport{
 		ResponseUtils.write(getresponse(), ""+kxxyjServer.thwshkxxyj(lxsh));
 	}
 	
+	public void thwshkxxyjhysc(){
+		ResponseUtils.write(getresponse(), ""+kxxyjServer.thwshkxxyjhysc(lxsh));
+	}
+	public void hyscthxj(){
+		ResponseUtils.write(getresponse(), ""+kxxyjServer.hyscthxj(lxsh));
+	}
 }
 

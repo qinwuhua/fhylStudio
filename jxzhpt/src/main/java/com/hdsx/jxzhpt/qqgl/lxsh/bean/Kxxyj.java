@@ -22,21 +22,28 @@ public class Kxxyj implements Serializable {
 	private String bz;//备注
 	private String hyscyj;//行业审查意见
 	private String tgsj;//通过时间
-	private String scsbzt;//行业审查上报状态
-	private String scshzt;//行业审查审核状态
+	private int scsbzt;//行业审查上报状态
+	private int scshzt;//行业审查审核状态
 	private String scthyy;//行业审查退回原因
-	
-	public String getScsbzt() {
+	private int scsbthcd;//行业审查上报用户等级
+
+	public int getScsbzt() {
 		return scsbzt;
 	}
-	public void setScsbzt(String scsbzt) {
+	public void setScsbzt(int scsbzt) {
 		this.scsbzt = scsbzt;
 	}
-	public String getScshzt() {
+	public int getScshzt() {
 		return scshzt;
 	}
-	public void setScshzt(String scshzt) {
+	public void setScshzt(int scshzt) {
 		this.scshzt = scshzt;
+	}
+	public int getScsbthcd() {
+		return scsbthcd;
+	}
+	public void setScsbthcd(int scsbthcd) {
+		this.scsbthcd = scsbthcd;
 	}
 	public String getScthyy() {
 		return scthyy;
