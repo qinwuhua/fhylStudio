@@ -312,6 +312,8 @@ text-decoration:none;
 									<option value="五年项目库">五年项目库</option>
 									<option value="立项已上报">立项已上报</option>
 									<option value="立项已审核">立项已审核</option>
+									<option value="行业审查已上报">行业审查已上报</option>
+									<option value="行业审查已审核">行业审查已审核</option>
 									<option value="工可已上报">工可已上报</option>
 									<option value="工可已审核">工可已审核</option>
 									<option value="初设已上报">初设已上报</option>
@@ -356,7 +358,7 @@ text-decoration:none;
 								</td>
         							<td align="right">项目库类型：</td>
 								<td>
-									<select id='xmklx' class="easyui-combobox"  style="width: 78px;">
+									<select id='xmklx' class="easyui-combobox"  style="width: 78px;" data-options="editable:false,panelHeight:'auto'">
 										<option value="">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>

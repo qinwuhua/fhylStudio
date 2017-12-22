@@ -297,6 +297,8 @@ text-decoration:none;
 									<option value="五年项目库">五年项目库</option>
 									<option value="立项已上报">立项已上报</option>
 									<option value="立项已审核">立项已审核</option>
+									<option value="行业审查已上报">行业审查已上报</option>
+									<option value="行业审查已审核">行业审查已审核</option>
 									<option value="工可已上报">工可已上报</option>
 									<option value="工可已审核">工可已审核</option>
 									<option value="初设已上报">初设已上报</option>
@@ -334,7 +336,7 @@ text-decoration:none;
         						<td align="right">特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" style="width:85px" ></select></td>
 								<td align="right">前期开展状态：</td>
-        						<td><select id="qqkzzt" style="width:105px" class="easyui-combobox">
+        						<td><select id="qqkzzt" style="width:105px" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'">
 									<option selected="selected" value="">全部</option>
 									<option value="已开展">已开展</option>
 									<option value="部分开展">部分开展</option>

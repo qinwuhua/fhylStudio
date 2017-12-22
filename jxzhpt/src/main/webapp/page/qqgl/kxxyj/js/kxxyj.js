@@ -344,7 +344,7 @@ function edit(index){
 }
 
 //工可对审批按钮进行行业审查和工可选择
-function shenhxz(){
+function shenhxz(flag){
 	var rows=$('#datagrid').datagrid('getSelections');
 	if(rows.length==0) {
 		alert("请选择要审核项目！");
@@ -380,9 +380,17 @@ function shenhxz(){
 			   if(rows[i].scshzt != '1' && rows[i].sbzt1 !='1'){
 				     alert("审核失败，有需要先审核行业审查的项目！");
 				     return;
-			   }		   
-			   shangB();
-			   } 
+			   }
+			   if("sjgz" == flag){
+				   shenhSjgz();
+			   }else if("lmgz" == flag){
+				   shenhLmgz();
+			   }else if("xj" == flag){
+				   shenhXj();
+			   }else{
+				   return;
+			   }
+			 } 
 		   }
 	   });
 }
@@ -443,9 +451,8 @@ function shenhysc(index){
 		});
 	}
 }
-
-function shangB(){
-	alert("asdfad");
+//工可审核改建项目
+function shenhSjgz(){
 	var rows=$('#datagrid').datagrid('getSelections');
 /* 			if(rows.length==0) {
 		alert("请选择要审核项目！");
@@ -488,6 +495,95 @@ function shangB(){
 		});
 	}
 } 
+
+//工可审核路面改造项目
+function shenhLmgz(){
+	var rows=$('#datagrid').datagrid('getSelections');
+/*	if(rows.length==0) {
+		alert("请选择要审核项目！");
+		return;
+	}*/
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].sbzt1=='1'){
+			alert("对不起，项目已审核！");
+			return;
+		}
+	}
+	if($.cookie("unit2").length!=7) {
+		alert("您无审核项目权限！");
+		return;
+	}
+	var id=rows[0].id;
+	var xmbm=rows[0].xmbm;
+	for(var i=1;i<rows.length;i++){
+		id+=","+rows[i].id ;
+		xmbm+=","+rows[i].xmbm ;
+	}
+	if(confirm('您确定审核该项目？')){
+		var data = "lxsh.id="+id+"&lxsh.xmbm="+xmbm;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/shlmgzkxx.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('审核成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('审核失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+} 
+
+function shenhXj(){
+	var rows=$('#datagrid').datagrid('getSelections');
+/*	if(rows.length==0) {
+		alert("请选择要审核项目！");
+		return;
+	}*/
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].sbzt1=='1'){
+			alert("对不起，项目已审核！");
+			return;
+		}
+	}
+	if($.cookie("unit2").length!=7) {
+		alert("您无审核项目权限！");
+		return;
+	}
+	var id=rows[0].id;
+	var xmbm=rows[0].xmbm;
+	for(var i=1;i<rows.length;i++){
+		id+=","+rows[i].id ;
+		xmbm+=","+rows[i].xmbm ;
+	}
+	if(confirm('您确定审核该项目？')){
+		var data = "lxsh.id="+id+"&lxsh.xmbm="+xmbm;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/shxjkxx.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('审核成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('审核失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
 
 function shenh(index){
 	var data1=$("#datagrid").datagrid('getRows')[index];
@@ -1600,8 +1696,63 @@ function showAlllmsh(){
 */
 	        
 	        }},
-	        
-	        {field:'c1',title:title,width:60,align:'center',formatter:function(value,row,index){
+	        {field:'cs',title:sctitle,width:120,align:'center',formatter:function(value,row,index){
+	        	//如果不是省级用户
+	        	if($.cookie("unit2").length!=7){
+	        		if(row.scsbzt == '1'){
+	        			if(row.scshzt == '1') 
+	        				return '已审核';
+	        			else 
+	        				return '已上报'
+	        		}else{
+    				if(row.scthyy!='' && row.scthyy!=null) 
+    					    return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaohysc('+index+')">未上报</a>'+'    <a style="text-decoration:none;color:#3399CC;" href="#" onclick="hyscthyy('+index+')">退回原因</a>';
+        				else 
+        					return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaohysc('+index+')">未上报</a>';
+	        	}
+	          }else{
+	        		if(row.scshzt=='0'){
+		        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenhysc('+index+')">未审核</a>';
+	        		}else if(row.scshzt=='1')
+		        		return '已审核';
+	          }
+	        }},
+	        {field:'c1',title:title,width:100,align:'center',formatter:function(value,row,index){
+	        	if($.cookie("unit2").length!=7){
+	        		if(row.sbzts=='1'){
+	        			if(row.sbzt1=='1')
+	        				return '已审核';
+	        			else
+	        			    return '已上报';
+        			}else{
+        				//对工可的退回可以看到退回原因
+        				if(row.scshzt == '1'){
+        					if(row.thyy!=''&&row.thyy!=null)
+        						return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaokxx('+index+')">未上报</a>'+'    <a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckthyy('+index+')">退回原因</a>';
+        				    else
+	        			        return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaokxx('+index+')">未上报</a>';
+        				}else{
+        					if(row.thyy!=''&&row.thyy!=null)
+        						return '未上报'+'    <a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckthyy('+index+')">退回原因</a>';
+        				    else
+	        			        return '未上报';
+        					}
+        				}
+	        	}else{
+	        		if(row.sbzts=='0'){ return '未上报'; }
+	        		
+	        		if(row.scshzt == '1'){
+		        		if(row.sbzt1=='0'){
+			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh('+index+')">未审核</a>';
+		        		}
+	        		}else{
+		        		if(row.sbzt1=='0'){ return '未审核'; }  
+	        		}
+	        		if(row.sbzt1=='1'){ return '已审核'; }
+        		}
+	        	
+	        }},
+/*	        {field:'c1',title:title,width:60,align:'center',formatter:function(value,row,index){
 	        	if($.cookie("unit2").length!=7){
 	        		if(row.sbzts=='1'){
 	        			if(row.sbzt1=='1')
@@ -1622,7 +1773,7 @@ function showAlllmsh(){
 		        		return '已审核';
         		}
 	        	
-	        }},
+	        }},*/
 	        
 	        {field:'lsjl',title:'历史记录',width:60,align:'center',
 				formatter: function(value,row,index){
@@ -1967,8 +2118,63 @@ function showAllxjsh(){
         		return re+'   <a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>     <a href="javascript:tz('+"'"+row.xmbm+"','xj'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 */
 	        }},
-	        
-	        {field:'c1',title:title,width:60,align:'center',formatter:function(value,row,index){
+	        {field:'cs',title:sctitle,width:120,align:'center',formatter:function(value,row,index){
+	        	//如果不是省级用户
+	        	if($.cookie("unit2").length!=7){
+	        		if(row.scsbzt == '1'){
+	        			if(row.scshzt == '1') 
+	        				return '已审核';
+	        			else 
+	        				return '已上报'
+	        		}else{
+    				if(row.scthyy!='' && row.scthyy!=null) 
+    					    return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaohysc('+index+')">未上报</a>'+'    <a style="text-decoration:none;color:#3399CC;" href="#" onclick="hyscthyy('+index+')">退回原因</a>';
+        				else 
+        					return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaohysc('+index+')">未上报</a>';
+	        	}
+	          }else{
+	        		if(row.scshzt=='0'){
+		        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenhysc('+index+')">未审核</a>';
+	        		}else if(row.scshzt=='1')
+		        		return '已审核';
+	          }
+	        }},
+	        {field:'c1',title:title,width:100,align:'center',formatter:function(value,row,index){
+	        	if($.cookie("unit2").length!=7){
+	        		if(row.sbzts=='1'){
+	        			if(row.sbzt1=='1')
+	        				return '已审核';
+	        			else
+	        			    return '已上报';
+        			}else{
+        				//对工可的退回可以看到退回原因
+        				if(row.scshzt == '1'){
+        					if(row.thyy!=''&&row.thyy!=null)
+        						return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaokxx('+index+')">未上报</a>'+'    <a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckthyy('+index+')">退回原因</a>';
+        				    else
+	        			        return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaokxx('+index+')">未上报</a>';
+        				}else{
+        					if(row.thyy!=''&&row.thyy!=null)
+        						return '未上报'+'    <a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckthyy('+index+')">退回原因</a>';
+        				    else
+	        			        return '未上报';
+        					}
+        				}
+	        	}else{
+	        		if(row.sbzts=='0'){ return '未上报'; }
+	        		
+	        		if(row.scshzt == '1'){
+		        		if(row.sbzt1=='0'){
+			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh('+index+')">未审核</a>';
+		        		}
+	        		}else{
+		        		if(row.sbzt1=='0'){ return '未审核'; }  
+	        		}
+	        		if(row.sbzt1=='1'){ return '已审核'; }
+        		}
+	        	
+	        }},
+/*	        {field:'c1',title:title,width:60,align:'center',formatter:function(value,row,index){
 	        	if($.cookie("unit2").length!=7){
 	        		if(row.sbzts=='1'){
 	        			if(row.sbzt1=='1')
@@ -1989,7 +2195,7 @@ function showAllxjsh(){
 		        		return '已审核';
         		}
 	        	
-	        }},
+	        }},*/
 	        {field:'lsjl',title:'历史记录',width:60,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
@@ -3048,8 +3254,9 @@ function rollbackxz(){
 		alert("请选择要退回的项目！");
 		return;
 	}
-	for(var i=0;i<rows.length;i++){
-	   if(rows[i].sbzt1=='1' && rows[1].scshzt == '1'){
+	
+	for(var i=0; i<rows.length; i++){
+	   if(rows[i].scshzt == '1' && rows[i].sbzt1=='1'){
 			alert('请您勿勾选已审核的项目');
 			return;
 	   }	

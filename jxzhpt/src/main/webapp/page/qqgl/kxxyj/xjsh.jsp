@@ -29,18 +29,20 @@
 			tsdqdx("tsdq");
 			if($.cookie("unit2").length!=7){
 				//alert($.cookie("unit2").length);
-				title='上报状态';
+				title='工可上报状态';
 				$("#shenPi,#thxj,#thwsh").attr('style','display:none');
-				$('#sqzttext').html('上报状态');
+				$('#sqzttext').html('工可上报状态');
 				$("#sqzt1").attr('style','display:none');
 				$("#sqzt2").attr('style','');
+				sctitle='行业审查上报状态';
 			}else{
-				title='审核状态';
-				$('#sqzttext').html('审核状态');
+				title='工可审核状态';
+				$('#sqzttext').html('工可审核状态');
 				$("img[name='bxs']").attr('style','');
 				$("#shangbao").attr('style','display:none');
 				$("#sqzt1").attr('style','');
 				$("#sqzt2").attr('style','display:none');
+				sctitle='行业审查审核状态';
 			}
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
@@ -56,7 +58,7 @@
 			setTimeout("showAllxjsh()",'1700');
 		});
 		
-		function shangB(){
+/* 		function shangB(){
 			var rows=$('#datagrid').datagrid('getSelections');
 			if(rows.length==0) {
 				alert("请选择要审核项目！");
@@ -98,7 +100,7 @@
 					 }
 				});
 			}
-		} 
+		} */ 
 		
 		function tuiHui(){
 			var rows=$('#datagrid').datagrid('getSelections');
@@ -306,10 +308,11 @@ text-decoration:none;
 								</td>
 								<td align="right">项目库类型：</td>
 								<td>
-									<select id='xmklx' class="easyui-combobox" style="width: 75px;">
+									<select id='xmklx' class="easyui-combobox" style="width: 75px;" data-options="editable:false,panelHeight:'auto'">
 										<option value="">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
+										<option value="省库">库外</option>
 									</select>
 								</td>
 								<!-- 筛选历史条件 -->
@@ -336,10 +339,10 @@ text-decoration:none;
 	<!--         						<img   id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="dckxxModule('xj');" style="border-width:0px;cursor: hand;vertical-align:middle;" /> -->
 									<img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dckxxModule('xj');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
 <!-- 									<img id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importxjkxx('xjsh')" style="border-width:0px;vertical-align:middle;" /> -->
-								<img  id="shangbao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangbaokxx();" style="border-width:0px;vertical-align:middle;" />
-								<img onclick="shangB();"  id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" style="border-width:0px;vertical-align:middle;" />
-								<img id="thxj" src="../../../images/thxj1.jpg" onmouseover="this.src='../../../images/thxj2.jpg'" onmouseout="this.src='../../../images/thxj1.jpg'   " src=""  onclick="rollback();" style="border-width:0px;vertical-align:middle;" />
-								<img id="thwsh" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'   " src=""  onclick="thwshkxx();" style="border-width:0px;vertical-align:middle;" />
+								<img  id="shangbao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangbaoxz();" style="border-width:0px;vertical-align:middle;" />
+								<img onclick="shenhxz('xj');"  id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" style="border-width:0px;vertical-align:middle;" />
+								<img id="thxj" src="../../../images/thxj1.jpg" onmouseover="this.src='../../../images/thxj2.jpg'" onmouseout="this.src='../../../images/thxj1.jpg'   " src=""  onclick="rollbackxz();" style="border-width:0px;vertical-align:middle;" />
+								<img id="thwsh" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'   " src=""  onclick="thwshxz();" style="border-width:0px;vertical-align:middle;" />
 								</td>
 
 	                           </tr>

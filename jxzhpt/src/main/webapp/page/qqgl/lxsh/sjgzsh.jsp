@@ -239,10 +239,11 @@ text-decoration:none;
 								</select></td>
         						<td align="right">项目库类型：</td>
 								<td>
-									<select id='xmklx' class="easyui-combobox" style="width: 118px;">
+									<select id='xmklx' class="easyui-combobox" style="width: 118px;" data-options="editable:false,panelHeight:'auto'">
 										<option value="">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
+										<option value="库外">库外</option>	
 									</select>
 								</td>
 								
