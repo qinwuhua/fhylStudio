@@ -100,6 +100,7 @@ function urlxmnf(id,flag){
 	$('#'+id).combobox("setValue",first+'');
 	$('#id'+first).attr('checked', true);
 }
+
 function showkxxTjxx(xmlx){
 	var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
 	if(lsxmnf=='')
@@ -136,22 +137,29 @@ function showkxxTjxx(xmlx){
 	var lsjl=$("#lsjl").combobox('getValue');
 	else lsjl='';
 	var xmlx1='';
-	var sbzt='';var shzt='';
+	var sbzt='';var shzt='';var scsbzt='';var scshzt='';var tiaojian='dssb';
 	if(xmlx=='gsdgz'){
 		xmlx1=$("#xmlx").combobox("getValues").join(",");
 		if(xmlx1.substr(0,1)==',')
 			xmlx1=xmlx1.substr(1,xmlx1.length);
 		if($.cookie('unit2').length==7){
+			tiaojian='sjsb';
 			sbzt='1';
+			scsbzt='1';
 		}
 		shzt=$("#sbzt").combobox('getValue');
+		scshzt=$("#scshzt").combobox('getValue');
 	}else{
 		sbzt=$("#sbzt").combobox('getValue');
 		shzt=$("#shzt").combobox('getValue');
+		scsbzt=$("#scsbzt").combobox('getValue');
+		scshzt=$("#scshzt").combobox('getValue');
 	}
 
 	if($.cookie('unit2').length==7){
+		tiaojian='sjsb';
 		sbzt='1';
+		scsbzt='1';
 	}
 	
 	var  data='lxsh.lsjl='+lsjl+
@@ -172,7 +180,10 @@ function showkxxTjxx(xmlx){
 	'&lxsh.lxmc='+$("#lxmc").val()+
 	'&lxsh.xmlx='+xmlx+
 	'&lxsh.xmklx='+$("#xmklx").combobox('getValue')+'&lxsh.lsxmnf='+lsxmnf+'&lxsh.lsxmlx='+lsxmlx+
-	'&lxsh.xmbm='+$("#xmbm").val();
+	'&lxsh.xmbm='+$("#xmbm").val()+
+	'&lxsh.tiaojian='+tiaojian+
+	'&lxsh.scsbzt='+scsbzt+
+	'&lxsh.scshzt='+scshzt;
 	
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{jsdj:jsdj,jsjsdj:jsjsdj,gldj:gldj,tsdq:tsdq},function(){
 	$.ajax({
@@ -1178,7 +1189,6 @@ function showxjAll(){
 }
 //升级审核
 function showAllsjsh(){
-	var scsbzt='';
 	showkxxTjxx('sjgz');
 	var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
 	if(lsxmnf=='')
@@ -1213,9 +1223,13 @@ function showAllsjsh(){
 	var jsjsdj=$("#jsjsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValues').join(",");
 	var lsjl=$("#lsjl").combobox('getValue');
+	var tiaojian='dssb';
 	var sbzt=$("#sbzt").combobox('getValue');
 	var shzt=$("#shzt").combobox('getValue');
+	var scsbzt=$("#scsbzt").combobox('getValue');
+	var scshzt=$("#scshzt").combobox('getValue');
 	if($.cookie('unit2').length==7){
+		tiaojian='sjsb';
 		sbzt='1';
 		scsbzt='1';
 	}
@@ -1235,8 +1249,10 @@ function showAllsjsh(){
 	    	//gydw:gydwstr,
 	    	xmmc:xmmc,
 			xmnf:xmnf,
+			'lxsh.tiaojian':tiaojian,
 			sbzt:sbzt,
 			'lxsh.scsbzt':scsbzt,
+			'lxsh.scshzt':scshzt,
 			'lxsh.shzt':shzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
@@ -1360,6 +1376,7 @@ function showAllsjsh(){
 		    {field : 'lxbh',title : '原路线编码',width : 60,align : 'center'},
 		    {field : 'minqdzh',title : '原起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '原止点桩号',width : 100,align : 'center'},
+		    {field : 'hyscyj',title : '行业审查文件',width : 190,align : 'center'},
 		    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'},
 		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
 		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'},
@@ -1633,10 +1650,15 @@ function showAlllmsh(){
 	var gldj=$("#gldj").combobox('getValues').join(",");
 	var lsjl=$("#lsjl").combobox('getValue');
 	var jsjsdj=$("#jsjsdj").combobox('getValues').join(",");
+	var tiaojian='dssb';
 	var sbzt=$("#sbzt").combobox('getValue');
 	var shzt=$("#shzt").combobox('getValue');
+	var scsbzt=$("#scsbzt").combobox('getValue');
+	var scshzt=$("#scshzt").combobox('getValue');
 	if($.cookie('unit2').length==7){
+		tiaojian='sjsb';
 		sbzt='1';
+		scsbzt='1';
 	}
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectLmgzkxList.do',
@@ -1654,7 +1676,10 @@ function showAlllmsh(){
 	    	//gydw:gydwstr,
 	    	xmmc:xmmc,
 			xmnf:xmnf,
+			'lxsh.tiaojian':tiaojian,
 			sbzt:sbzt,
+			'lxsh.scsbzt':scsbzt,
+			'lxsh.scshzt':scshzt,
 			'lxsh.shzt':shzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
@@ -1804,6 +1829,7 @@ function showAlllmsh(){
 		    {field : 'lxbh',title : '原路线编码',width : 60,align : 'center'},
 		    {field : 'minqdzh',title : '原起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '原止点桩号',width : 100,align : 'center'},
+		    {field : 'hyscyj',title : '行业审查文件',width : 190,align : 'center'},
 		    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'},
 		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
 		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'},
@@ -2061,10 +2087,15 @@ function showAllxjsh(){
 		tsdq=tsdq.substr(1,tsdq.length);
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValues').join(",");
+	var tiaojian='dssb';
 	var sbzt=$("#sbzt").combobox('getValue');
 	var shzt=$("#shzt").combobox('getValue');
+	var scsbzt=$("#scsbzt").combobox('getValue');
+	var scshzt=$("#scshzt").combobox('getValue');
 	if($.cookie('unit2').length==7){
+		tiaojian='sjsb';
 		sbzt='1';
+		scsbzt='1';
 	}
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectXjkxList.do',
@@ -2081,7 +2112,10 @@ function showAllxjsh(){
 	    	//gydw:gydwstr,
 	    	xmmc:xmmc,
 			xmnf:xmnf,
+			'lxsh.tiaojian':tiaojian,
 			sbzt:sbzt,
+			'lxsh.scsbzt':scsbzt,
+			'lxsh.scshzt':scshzt,
 			'lxsh.shzt':shzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
@@ -2222,6 +2256,7 @@ function showAllxjsh(){
 		    {field : 'xjlxbm',title : '规划路线编码',width : 60,align : 'center'},
 		    {field : 'xjqdzh',title : '规划起点桩号',width : 100,align : 'center'},
 		    {field : 'xjzdzh',title : '规划止点桩号',width : 100,align : 'center'},
+		    {field : 'hyscyj',title : '行业审查文件',width : 190,align : 'center'}, 
 		    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'},
 		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
 		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'},

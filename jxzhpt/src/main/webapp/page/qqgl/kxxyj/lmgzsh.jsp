@@ -35,6 +35,9 @@
 				$("#sqzt1").attr('style','display:none');
 				$("#sqzt2").attr('style','');
 				sctitle='行业审查上报状态';
+				$('#hyscbt').html('行业审查上报状态：');
+				$("#hyscds").attr('style','display:none');
+				$("#hyscsj").attr('style','');
 			}else{
 				title='工可审核状态';
 				$('#sqzttext').html('工可审核状态');
@@ -43,6 +46,9 @@
 				$("#sqzt1").attr('style','');
 				$("#sqzt2").attr('style','display:none');
 				sctitle='行业审查审核状态';
+				$('#hyscbt').html('行业审查审核状态：');
+				$("#hyscds").attr('style','');
+				$("#hyscsj").attr('style','display:none');	
 			}
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
@@ -323,6 +329,25 @@ text-decoration:none;
 								</td>
 								<td align="right">项目编码：</td>
 	        					<td><input type="text" id="xmbm" style="width:110px;" /></td>
+	        					
+	        					<td align="right"><span id='hyscbt'></span></td>
+        						<td>
+        						<span id='hyscds'>
+        						<select id="scshzt"  style="width:77px;" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'">
+									<option selected="selected" value="">全部</option>
+									<option value="0">未审核</option>
+									<option value="1">已审核</option> 
+								</select>
+        						</span>
+        						<span id='hyscsj' >
+        						<select id="scsbzt"  style="width:77px;" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'">
+									<option selected="selected" value="">全部</option>
+									<option value="0">未上报</option>
+									<option value="1">已上报</option> 
+								</select>
+        						</span>
+								</td>
+								
 								</tr>
 								<tr height="29">
 								<td colspan="10">

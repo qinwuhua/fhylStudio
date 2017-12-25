@@ -3,6 +3,10 @@ package com.hdsx.jxzhpt.qqgl.lxsh.bean;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author Administrator
+ *
+ */
 public class Lxsh implements Serializable {
 
 	/**
@@ -42,20 +46,34 @@ public class Lxsh implements Serializable {
 	private String lmlx;
 	private String lmkd;
 	private String mqidj;//路面评定等级
-	private int scsbzt;//行业审查上报状态
-	private int scshzt;//行业审查审核状态
+	private String scsbzt;//行业审查上报状态
+	private String scshzt;//行业审查审核状态
 	private String scthyy;//行业审查退回原因
+	private int scsbthcd;//行业审查上报用户等级
+    private String tiaojian;//SQL条件
 
-	public int getScsbzt() {
+	public String getTiaojian() {
+		return tiaojian;
+	}
+	public void setTiaojian(String tiaojian) {
+		this.tiaojian = tiaojian;
+	}
+	public int getScsbthcd() {
+		return scsbthcd;
+	}
+	public void setScsbthcd(int scsbthcd) {
+		this.scsbthcd = scsbthcd;
+	}
+	public String getScsbzt() {
 		return scsbzt;
 	}
-	public void setScsbzt(int scsbzt) {
+	public void setScsbzt(String scsbzt) {
 		this.scsbzt = scsbzt;
 	}
-	public int getScshzt() {
+	public String getScshzt() {
 		return scshzt;
 	}
-	public void setScshzt(int scshzt) {
+	public void setScshzt(String scshzt) {
 		this.scshzt = scshzt;
 	}
 	public String getScthyy() {

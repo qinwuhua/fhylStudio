@@ -32,18 +32,24 @@
 				//alert($.cookie("unit2").length);
 				title='工可上报状态';
 				$("#shenPi,#thxj,#thwsh").attr('style','display:none');
-				$('#sqzttext').html('工可上报状态');
+				$('#sqzttext').html('工可上报状态：');
 				$("#sqzt1").attr('style','display:none');
 				$("#sqzt2").attr('style','');
-				sctitle='行业审查上报状态'
+				sctitle='行业审查上报状态';
+				$('#hyscbt').html('行业审查上报状态：');
+				$("#hyscds").attr('style','display:none');
+				$("#hyscsj").attr('style','');
 			}else{
 				title='工可审核状态';
-				$('#sqzttext').html('工可审核状态');
+				$('#sqzttext').html('工可审核状态：');
 				$("img[name='bxs']").attr('style','');
 				$("#shangbao").attr('style','display:none');
 				$("#sqzt1").attr('style','');
 				$("#sqzt2").attr('style','display:none');
-				sctitle='行业审查审核状态'
+				sctitle='行业审查审核状态';
+				$('#hyscbt').html('行业审查审核状态：');
+				$("#hyscds").attr('style','');
+				$("#hyscsj").attr('style','display:none');
 			}
 			
 			loadUnit1("gydw",$.cookie("unit"));
@@ -173,20 +179,19 @@ text-decoration:none;
 								<td align="right"><span id='sqzttext'>工可审核状态：</span>   </td>
         						<td>
         						<span id='sqzt1'>
-        						<select id="shzt"  style="width:77px;" class="easyui-combobox">
+        						<select id="shzt"  style="width:77px;" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'">
 									<option selected="selected" value="">全部</option>
 									<option value="0">未审核</option>
 									<option value="1">已审核</option> 
 								</select>
         						</span>
         						<span id='sqzt2' >
-        						<select id="sbzt"  style="width:77px;" class="easyui-combobox">
+        						<select id="sbzt"  style="width:77px;" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'">
 									<option selected="selected" value="">全部</option>
 									<option value="0">未上报</option>
 									<option value="1">已上报</option> 
 								</select>
         						</span>
-								
 								</td>
 								<td align="right">项目库类型：</td>
 								<td>
@@ -227,7 +232,26 @@ text-decoration:none;
 								</td>
 								<td align="right">项目编码：</td>
 	        					<td><input type="text" id="xmbm" style="width:110px;" /></td>
-								</tr>
+	        					
+								<td align="right"><span id='hyscbt'></span></td>
+        						<td>
+        						<span id='hyscds'>
+        						<select id="scshzt"  style="width:77px;" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'">
+									<option selected="selected" value="">全部</option>
+									<option value="0">未审核</option>
+									<option value="1">已审核</option> 
+								</select>
+        						</span>
+        						<span id='hyscsj' >
+        						<select id="scsbzt"  style="width:77px;" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'">
+									<option selected="selected" value="">全部</option>
+									<option value="0">未上报</option>
+									<option value="1">已上报</option> 
+								</select>
+        						</span>
+								</td>
+	        					
+							</tr>
 								<tr>
 	                            <td colspan="10">
 	        						<img  onclick="showAllsjsh()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>

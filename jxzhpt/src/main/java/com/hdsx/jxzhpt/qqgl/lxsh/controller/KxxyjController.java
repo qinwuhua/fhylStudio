@@ -362,7 +362,6 @@ public class KxxyjController extends BaseActionSupport{
 			if(!"".equals(sbzt)){
 				lxsh.setSbzt1(sbzt);
 			}
-			
 			if(jsjsdj.indexOf(",")>-1){
 				String[] split = jsjsdj.split(",");
 				for (int i = 0; i < split.length; i++) {
@@ -416,6 +415,22 @@ public class KxxyjController extends BaseActionSupport{
 					tsdq+=")";
 				}
 				lxsh.setTsdq(tsdq);
+			}
+			if ("sjsb".equals(lxsh.getTiaojian())) {
+				lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+			}
+			if ("dssb".equals(lxsh.getTiaojian())) {
+				if ("".equals(sbzt) && !"".equals(lxsh.getScsbzt())) {
+					lxsh.setTiaojian("and to_char(t.scsbzt) like '%'||#{scsbzt}||'%'");
+				}else if (!"".equals(sbzt) && "".equals(lxsh.getScsbzt())) {
+					lxsh.setSbzt1(sbzt);
+					lxsh.setTiaojian("and to_char(t.sbzt) like '%'||#{sbzt1}||'%'");
+				}else if(!"".equals(sbzt) && !"".equals(lxsh.getScsbzt())){
+					lxsh.setSbzt1(sbzt);
+					lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' and to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+				}else {
+					lxsh.setTiaojian("");
+				}
 			}
 			List<Kxxyj> list=kxxyjServer.selectSjgzList(lxsh);
 			int count=kxxyjServer.selectSjgzListCount(lxsh);
@@ -689,8 +704,24 @@ public class KxxyjController extends BaseActionSupport{
 		}
 		lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
-		if(!"".equals(sbzt)){
+/*		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
+		}*/
+		if ("sjsb".equals(lxsh.getTiaojian())) {
+			lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+		}
+		if ("dssb".equals(lxsh.getTiaojian())) {
+			if ("".equals(sbzt) && !"".equals(lxsh.getScsbzt())) {
+				lxsh.setTiaojian("and to_char(t.scsbzt) like '%'||#{scsbzt}||'%'");
+			}else if (!"".equals(sbzt) && "".equals(lxsh.getScsbzt())) {
+				lxsh.setSbzt1(sbzt);
+				lxsh.setTiaojian("and to_char(t.sbzt) like '%'||#{sbzt1}||'%'");
+			}else if(!"".equals(sbzt) && !"".equals(lxsh.getScsbzt())){
+				lxsh.setSbzt1(sbzt);
+				lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' and to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+			}else {
+				lxsh.setTiaojian("");
+			}
 		}
 		lxsh.setSbthcd(sbthcd);
 		lxsh.setTsdq(tsdq);
@@ -854,9 +885,9 @@ public class KxxyjController extends BaseActionSupport{
 		}
 		lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
-		if(!"".equals(sbzt)){
+/*		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
-		}
+		}*/
 		lxsh.setSbthcd(sbthcd);
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
@@ -887,6 +918,22 @@ public class KxxyjController extends BaseActionSupport{
 				tsdq+=")";
 			}
 			lxsh.setTsdq(tsdq);
+		}
+		if ("sjsb".equals(lxsh.getTiaojian())) {
+			lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+		}
+		if ("dssb".equals(lxsh.getTiaojian())) {
+			if ("".equals(sbzt) && !"".equals(lxsh.getScsbzt())) {
+				lxsh.setTiaojian("and to_char(t.scsbzt) like '%'||#{scsbzt}||'%'");
+			}else if (!"".equals(sbzt) && "".equals(lxsh.getScsbzt())) {
+				lxsh.setSbzt1(sbzt);
+				lxsh.setTiaojian("and to_char(t.sbzt) like '%'||#{sbzt1}||'%'");
+			}else if(!"".equals(sbzt) && !"".equals(lxsh.getScsbzt())){
+				lxsh.setSbzt1(sbzt);
+				lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' and to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+			}else {
+				lxsh.setTiaojian("");
+			}
 		}
 		List<Kxxyj> list=kxxyjServer.selectXjkxList(lxsh);
 		int count=kxxyjServer.selectXjkxListCount(lxsh);
@@ -1632,7 +1679,23 @@ public class KxxyjController extends BaseActionSupport{
 				lxsh.setTsdq(tsdq);
 			}
 			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "lxbm"));
-			lxsh.setGhlxbm(MyUtil.getQueryTJ(lxsh.getGhlxbm(), "ghlxbm"));
+			lxsh.setGhlxbm(MyUtil.getQueryTJ(lxsh.getGhlxbm(), "ghlxbm"));	
+			
+			if ("sjsb".equals(lxsh.getTiaojian())) {
+				lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+			}
+			if ("dssb".equals(lxsh.getTiaojian())) {
+				if ("".equals(lxsh.getSbzt1()) && !"".equals(lxsh.getScsbzt())) {
+					lxsh.setTiaojian("and to_char(t.scsbzt) like '%'||#{scsbzt}||'%'");
+				}else if (!"".equals(lxsh.getSbzt1()) && "".equals(lxsh.getScsbzt())) {
+					lxsh.setTiaojian("and to_char(t.sbzt) like '%'||#{sbzt1}||'%'");
+				}else if(!"".equals(lxsh.getSbzt1()) && !"".equals(lxsh.getScsbzt())){
+					lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' and to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+				}else {
+					lxsh.setTiaojian("");
+				}
+			}
+			
 			if("gsdgz".equals(lxsh.getXmlx())){
 				if(lxsh.getXmlx1()!=null)
 					if(lxsh.getXmlx1().length()>0){

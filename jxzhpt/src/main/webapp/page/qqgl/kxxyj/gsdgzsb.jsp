@@ -40,6 +40,17 @@
 			loadBmbm3('lsxmnf','历史项目年份');  
 			urlxmnf("xmnf",getUrlParame('id'));
 			gsdxmlx('xmlx');
+			if($.cookie("unit2").length!=7){
+				sctitle='行业审查上报状态';
+				$('#hyscbt').html('行业审查上报状态：');
+				$("#hyscds").attr('style','display:none');
+				$("#hyscsj").attr('style','');
+			}else{
+				sctitle='行业审查审核状态';
+				$('#hyscbt').html('行业审查审核状态：');
+				$("#hyscds").attr('style','');
+				$("#hyscsj").attr('style','display:none');
+			}
 			setTimeout("showAllgsd()",'1700');
 		});
 		function showAllgsd(){
@@ -378,7 +389,26 @@ text-decoration:none;
 								</td>
 								<td align="right">项目编码：</td>
 	        					<td><input type="text" id="xmbm" style="width:100px;" /></td>
-								</tr><tr height="29">
+	        					
+	        					<td align="right"><span id='hyscbt'></span></td>
+        						<td>
+        						<span id='hyscds'>
+        						<select id="scshzt"  style="width:77px;" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'">
+									<option selected="selected" value="">全部</option>
+									<option value="0">未审核</option>
+									<option value="1">已审核</option> 
+								</select>
+        						</span>
+        						<span id='hyscsj' >
+        						<select id="scsbzt"  style="width:77px;" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'">
+									<option selected="selected" value="">全部</option>
+									<option value="0">未上报</option>
+									<option value="1">已上报</option> 
+								</select>
+        						</span>
+								</td>
+								</tr>
+								<tr height="29">
 	                            	<td colspan="10">
 	        						<img onclick="showAllgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 	        						<img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dckxxModule('gsdgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />

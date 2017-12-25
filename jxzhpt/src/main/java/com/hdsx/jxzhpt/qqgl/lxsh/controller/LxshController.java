@@ -2482,6 +2482,21 @@ public class LxshController extends BaseActionSupport{
 				lxsh.setTsdq(tsdq);
 			}
 			
+			if ("sjsb".equals(lxsh.getTiaojian())) {
+				lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+			}
+			if ("dssb".equals(lxsh.getTiaojian())) {
+				if ("".equals(lxsh.getSbzt()) && !"".equals(lxsh.getScsbzt())) {
+					lxsh.setTiaojian("and to_char(t.scsbzt) like '%'||#{scsbzt}||'%'");
+				}else if (!"".equals(lxsh.getSbzt()) && "".equals(lxsh.getScsbzt())) {
+					lxsh.setTiaojian("and to_char(t.sbzt) like '%'||#{sbzt}||'%'");
+				}else if(!"".equals(lxsh.getSbzt()) && !"".equals(lxsh.getScsbzt())){
+					lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt}||'%' and to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+				}else {
+					lxsh.setTiaojian("");
+				}
+			}
+
 			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "lxbm"));
 			lxsh.setGhlxbm(MyUtil.getQueryTJ(lxsh.getGhlxbm(), "ghlxbm"));
 			lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));

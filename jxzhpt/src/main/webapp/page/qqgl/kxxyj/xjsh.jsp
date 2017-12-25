@@ -35,6 +35,9 @@
 				$("#sqzt1").attr('style','display:none');
 				$("#sqzt2").attr('style','');
 				sctitle='行业审查上报状态';
+				$('#hyscbt').html('行业审查上报状态：');
+				$("#hyscds").attr('style','display:none');
+				$("#hyscsj").attr('style','');
 			}else{
 				title='工可审核状态';
 				$('#sqzttext').html('工可审核状态');
@@ -43,6 +46,9 @@
 				$("#sqzt1").attr('style','');
 				$("#sqzt2").attr('style','display:none');
 				sctitle='行业审查审核状态';
+				$('#hyscbt').html('行业审查审核状态：');
+				$("#hyscds").attr('style','');
+				$("#hyscsj").attr('style','display:none');
 			}
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
@@ -312,7 +318,7 @@ text-decoration:none;
 										<option value="">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
-										<option value="省库">库外</option>
+										<option value="库外">库外</option>
 									</select>
 								</td>
 								<!-- 筛选历史条件 -->
@@ -332,6 +338,25 @@ text-decoration:none;
 	        					<td><input type="text" id="xmbm" style="width:110px;" /></td>
 	        					<!-- <td>管养单位：</td>
         						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td> -->
+        						
+        						<td align="right"><span id='hyscbt'></span></td>
+        						<td>
+        						<span id='hyscds'>
+        						<select id="scshzt"  style="width:77px;" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'">
+									<option selected="selected" value="">全部</option>
+									<option value="0">未审核</option>
+									<option value="1">已审核</option> 
+								</select>
+        						</span>
+        						<span id='hyscsj' >
+        						<select id="scsbzt"  style="width:77px;" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'">
+									<option selected="selected" value="">全部</option>
+									<option value="0">未上报</option>
+									<option value="1">已上报</option> 
+								</select>
+        						</span>
+								</td>
+        						
         						</tr>
         						<tr height="28">
 	                            <td colspan="10">
