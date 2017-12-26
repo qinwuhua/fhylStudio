@@ -396,6 +396,10 @@ public class KxxyjController extends BaseActionSupport{
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
 			//System.out.println(gldj);
+			lxsh.setSbzt1(sbzt);
+	        if(!"".equals(sbzt)){
+		       lxsh.setSbzt1(sbzt);
+	        }
 			if(lxsh.getTsdq().length()>0){
 				String[] tsdqs=lxsh.getTsdq().split(",");
 				String tsdq="and(";
@@ -423,10 +427,8 @@ public class KxxyjController extends BaseActionSupport{
 				if ("".equals(sbzt) && !"".equals(lxsh.getScsbzt())) {
 					lxsh.setTiaojian("and to_char(t.scsbzt) like '%'||#{scsbzt}||'%'");
 				}else if (!"".equals(sbzt) && "".equals(lxsh.getScsbzt())) {
-					lxsh.setSbzt1(sbzt);
 					lxsh.setTiaojian("and to_char(t.sbzt) like '%'||#{sbzt1}||'%'");
 				}else if(!"".equals(sbzt) && !"".equals(lxsh.getScsbzt())){
-					lxsh.setSbzt1(sbzt);
 					lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' and to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
 				}else {
 					lxsh.setTiaojian("");
@@ -531,7 +533,7 @@ public class KxxyjController extends BaseActionSupport{
 				}
 				lxsh.setTsdq(tsdq);
 			}
-			if(lxsh.getXmlx1()!=null)
+			if(lxsh.getXmlx1()!=null) {
 				if(lxsh.getXmlx1().length()>0){
 					String[] tsdqs=lxsh.getXmlx1().split(",");
 					String tsdq="";
@@ -552,7 +554,22 @@ public class KxxyjController extends BaseActionSupport{
 					}
 					lxsh.setXmlx1(tsdq);
 				}
-			
+		     }
+			if ("sjsb".equals(lxsh.getTiaojian())) {
+				lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+			}
+			if ("dssb".equals(lxsh.getTiaojian())) {
+				System.out.println("-----------------------------------------------");
+				if ("".equals(sbzt) && !"".equals(lxsh.getScsbzt())) {
+					lxsh.setTiaojian("and to_char(t.scsbzt) like '%'||#{scsbzt}||'%'");
+				}else if (!"".equals(sbzt) && "".equals(lxsh.getScsbzt())) {
+					lxsh.setTiaojian("and to_char(t.sbzt) like '%'||#{sbzt1}||'%'");
+				}else if(!"".equals(sbzt) && !"".equals(lxsh.getScsbzt())){
+					lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' and to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+				}else {
+					lxsh.setTiaojian("");
+				}
+			}
 			List<Kxxyj> list=kxxyjServer.selectgsdkxList(lxsh);
 			int count=kxxyjServer.selectgsdkxListCount(lxsh);
 			EasyUIPage<Kxxyj> e=new EasyUIPage<Kxxyj>();
@@ -680,9 +697,7 @@ public class KxxyjController extends BaseActionSupport{
 		}
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
-		}
-		
-		
+		}	
 		//技术等级
 		if(jsjsdj.indexOf(",")>-1){
 			String[] split = jsjsdj.split(",");
@@ -704,9 +719,9 @@ public class KxxyjController extends BaseActionSupport{
 		}
 		lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
-/*		if(!"".equals(sbzt)){
+		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
-		}*/
+		}
 		if ("sjsb".equals(lxsh.getTiaojian())) {
 			lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
 		}
@@ -714,10 +729,8 @@ public class KxxyjController extends BaseActionSupport{
 			if ("".equals(sbzt) && !"".equals(lxsh.getScsbzt())) {
 				lxsh.setTiaojian("and to_char(t.scsbzt) like '%'||#{scsbzt}||'%'");
 			}else if (!"".equals(sbzt) && "".equals(lxsh.getScsbzt())) {
-				lxsh.setSbzt1(sbzt);
 				lxsh.setTiaojian("and to_char(t.sbzt) like '%'||#{sbzt1}||'%'");
 			}else if(!"".equals(sbzt) && !"".equals(lxsh.getScsbzt())){
-				lxsh.setSbzt1(sbzt);
 				lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' and to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
 			}else {
 				lxsh.setTiaojian("");
@@ -885,9 +898,9 @@ public class KxxyjController extends BaseActionSupport{
 		}
 		lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
-/*		if(!"".equals(sbzt)){
+		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
-		}*/
+		}
 		lxsh.setSbthcd(sbthcd);
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
@@ -926,10 +939,8 @@ public class KxxyjController extends BaseActionSupport{
 			if ("".equals(sbzt) && !"".equals(lxsh.getScsbzt())) {
 				lxsh.setTiaojian("and to_char(t.scsbzt) like '%'||#{scsbzt}||'%'");
 			}else if (!"".equals(sbzt) && "".equals(lxsh.getScsbzt())) {
-				lxsh.setSbzt1(sbzt);
 				lxsh.setTiaojian("and to_char(t.sbzt) like '%'||#{sbzt1}||'%'");
 			}else if(!"".equals(sbzt) && !"".equals(lxsh.getScsbzt())){
-				lxsh.setSbzt1(sbzt);
 				lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' and to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
 			}else {
 				lxsh.setTiaojian("");

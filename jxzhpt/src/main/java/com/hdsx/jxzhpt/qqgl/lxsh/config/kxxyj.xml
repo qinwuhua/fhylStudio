@@ -1422,11 +1422,14 @@
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx t where jdbs='1'and ${jsdj})</if>
 		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsjsdj})</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and to_char(t.sbzt) like '%'||#{sbzt1}||'%'
-		</if>
+		<if test="tiaojian!='' and tiaojian!= null ">
+       	    ${tiaojian}
+       	</if> 
 		<if test="shzt!='' and shzt!= null ">
 			and to_char(t.shzt) like '%'||#{shzt}||'%'
+		</if>
+        <if test="scshzt!='' and scshzt!= null ">
+			and to_char(t.scshzt) like '%'||#{scshzt}||'%'
 		</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
@@ -1464,11 +1467,14 @@
 		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and to_char(t.sbzt) like '%'||#{sbzt1}||'%'
-		</if>
+		<if test="tiaojian!='' and tiaojian!= null ">
+       	    ${tiaojian}
+       	</if> 
 		<if test="shzt!='' and shzt!= null ">
 			and to_char(t.shzt) like '%'||#{shzt}||'%'
+		</if>
+        <if test="scshzt!='' and scshzt!= null ">
+			and to_char(t.scshzt) like '%'||#{scshzt}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx t where jdbs='1'and ${jsdj})</if>
 		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsjsdj})</if>

@@ -2570,8 +2570,9 @@ public class LxshController extends BaseActionSupport{
 				et.add(new Excel_tilte("投资估算",1,1,37,37));
 				et.add(new Excel_tilte("地方自筹",1,1,38,38));
 				et.add(new Excel_tilte("银行贷款",1,1,39,39));
-				et.add(new Excel_tilte("工可批复文号",1,1,40,40));
-				et.add(new Excel_tilte("批复时间",1,1,41,41));
+				et.add(new Excel_tilte("行业审查文件",1,1,40,40));
+				et.add(new Excel_tilte("工可批复文号",1,1,41,41));
+				et.add(new Excel_tilte("批复时间",1,1,42,42));
 			}
 			if("sjgz".equals(lxsh.getXmlx())){
 				xmbt="改建";
@@ -2617,8 +2618,9 @@ public class LxshController extends BaseActionSupport{
 				et.add(new Excel_tilte("投资估算",1,1,37,37));
 				et.add(new Excel_tilte("地方自筹",1,1,38,38));
 				et.add(new Excel_tilte("银行贷款",1,1,39,39));
-				et.add(new Excel_tilte("工可批复文号",1,1,40,40));
-				et.add(new Excel_tilte("批复时间",1,1,41,41));
+				et.add(new Excel_tilte("行业审查文件",1,1,40,40));
+				et.add(new Excel_tilte("工可批复文号",1,1,41,41));
+				et.add(new Excel_tilte("批复时间",1,1,42,42));
 			}
 			if("lmgz".equals(lxsh.getXmlx())){
 				et.add(new Excel_tilte("序号",1,1,0,0));
@@ -2661,8 +2663,9 @@ public class LxshController extends BaseActionSupport{
 				et.add(new Excel_tilte("投资估算",1,1,37,37));
 				et.add(new Excel_tilte("地方自筹",1,1,38,38));
 				et.add(new Excel_tilte("银行贷款",1,1,39,39));
-				et.add(new Excel_tilte("工可批复文号",1,1,40,40));
-				et.add(new Excel_tilte("批复时间",1,1,41,41));
+				et.add(new Excel_tilte("行业审查文件",1,1,40,40));
+				et.add(new Excel_tilte("工可批复文号",1,1,41,41));
+				et.add(new Excel_tilte("批复时间",1,1,42,42));
 				xmbt="路面改造";
 				elist=lxshServer.querykxxLmgz(lxsh);
 			}
@@ -2707,8 +2710,9 @@ public class LxshController extends BaseActionSupport{
 				et.add(new Excel_tilte("投资估算",1,1,37,37));
 				et.add(new Excel_tilte("地方自筹",1,1,38,38));
 				et.add(new Excel_tilte("银行贷款",1,1,39,39));
-				et.add(new Excel_tilte("工可批复文号",1,1,40,40));
-				et.add(new Excel_tilte("批复时间",1,1,41,41));
+				et.add(new Excel_tilte("行业审查文件",1,1,40,40));
+				et.add(new Excel_tilte("工可批复文号",1,1,41,41));
+				et.add(new Excel_tilte("批复时间",1,1,42,42));
 				xmbt="新建";
 				elist=lxshServer.querykxxXj(lxsh);
 			}

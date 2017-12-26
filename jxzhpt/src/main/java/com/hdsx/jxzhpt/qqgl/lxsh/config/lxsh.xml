@@ -1177,7 +1177,7 @@
     to_char(lx.jhyilc,'fm9999999990.000') v_22, to_char(lx.jherlc,'fm9999999990.000') v_23, 
     to_char(lx.jhsanlc,'fm9999999990.000') v_24, to_char(lx.jhsilc,'fm9999999990.000') v_25, to_char(lx.jhdwlc,'fm9999999990.000') v_26, 
     to_char(lx.jhwllc,'fm9999999990.000') v_27,lx.jsxz v_28,nvl(t.dq_m,0) v_29,nvl(t.dq,0) v_30,RemoveSameStr(lx.jsjsdjtj,',') v_31,
-    nvl(t.sd_m,0) v_32,nvl(t.sd,0) v_33,t.kgny v_34,t.wgny v_35,t.bzdw v_36,nvl(t.tzgs,0) v_37,nvl(t.dfzc,0) v_38,nvl(t.yhdk,0) v_39,t.gkpfwh v_40,t.pfsj v_41 
+    nvl(t.sd_m,0) v_32,nvl(t.sd,0) v_33,t.kgny v_34,t.wgny v_35,t.bzdw v_36,nvl(t.tzgs,0) v_37,nvl(t.dfzc,0) v_38,nvl(t.yhdk,0) v_39,t.hyscyj v_40,t.gkpfwh v_41,t.pfsj v_42 
     from KXXYJ_SJGZ t 
     Left join (select xmbm xmbh,lsjl,xmklx,tsdq,lsxmbm,xzqh,xzqhdm2 from lxsh_sjgz) t1 on t.xmbm=t1.xmbh
     left join (
@@ -1282,7 +1282,7 @@ select rownum v_0,t.xmbm v_1,t.xmmc v_2,t1.xzqh v_3,
     to_char(lx.jhyilc,'fm9999999990.000') v_22, to_char(lx.jherlc,'fm9999999990.000') v_23, 
     to_char(lx.jhsanlc,'fm9999999990.000') v_24, to_char(lx.jhsilc,'fm9999999990.000') v_25, to_char(lx.jhdwlc,'fm9999999990.000') v_26, 
     to_char(lx.jhwllc,'fm9999999990.000') v_27,lx.jsxz v_28,nvl(t.dq_m,0) v_29,nvl(t.dq,0) v_30,RemoveSameStr(lx.jsjsdjtj,',') v_31,
-    nvl(t.sd_m,0) v_32,nvl(t.sd,0) v_33,t.kgny v_34,t.wgny v_35,t.bzdw v_36,nvl(t.tzgs,0) v_37,nvl(t.dfzc,0) v_38,nvl(t.yhdk,0) v_39,t.gkpfwh v_40,t.pfsj v_41 
+    nvl(t.sd_m,0) v_32,nvl(t.sd,0) v_33,t.kgny v_34,t.wgny v_35,t.bzdw v_36,nvl(t.tzgs,0) v_37,nvl(t.dfzc,0) v_38,nvl(t.yhdk,0) v_39,t.hyscyj v_40,t.gkpfwh v_41,t.pfsj v_42
     from KXXYJ_LMGZ t 
     Left join (select xmbm xmbh,lsjl,xmklx,tsdq,lsxmbm,xzqh,xzqhdm2 from lxsh_lmgz) t1 on t.xmbm=t1.xmbh
     left join (
@@ -1383,7 +1383,7 @@ select rownum v_0,t.xmbm v_1,t.xmmc v_2,t1.xzqh v_3,
     to_char(lx.jhyilc,'fm9999999990.000') v_22, to_char(lx.jherlc,'fm9999999990.000') v_23, 
     to_char(lx.jhsanlc,'fm9999999990.000') v_24, to_char(lx.jhsilc,'fm9999999990.000') v_25, to_char(lx.jhdwlc,'fm9999999990.000') v_26, 
     to_char(lx.jhwllc,'fm9999999990.000') v_27,lx.jsxz v_28,nvl(t.dq_m,0) v_29,nvl(t.dq,0) v_30,RemoveSameStr(lx.jsjsdjtj,',') v_31,
-    nvl(t.sd_m,0) v_32,nvl(t.sd,0) v_33,t.kgny v_34,t.wgny v_35,t.bzdw v_36,nvl(t.tzgs,0) v_37,nvl(t.dfzc,0) v_38,nvl(t.yhdk,0) v_39,t.gkpfwh v_40,t.pfsj v_41 
+    nvl(t.sd_m,0) v_32,nvl(t.sd,0) v_33,t.kgny v_34,t.wgny v_35,t.bzdw v_36,nvl(t.tzgs,0) v_37,nvl(t.dfzc,0) v_38,nvl(t.yhdk,0) v_39,t.hyscyj v_40,t.gkpfwh v_41,t.pfsj v_42 
     from KXXYJ_XJ t 
     Left join (select xmbm xmbh,lsjl,xmklx,tsdq,lsxmbm,xzqh,xzqhdm2 from lxsh_xj) t1 on t.xmbm=t1.xmbh
     left join (
@@ -2170,7 +2170,7 @@ select rownum v_0,t.xmbm v_1,t.xmmc v_2,t1.xzqh v_3,
     to_char(lx.jhyilc,'fm9999999990.000') v_22, to_char(lx.jherlc,'fm9999999990.000') v_23, 
     to_char(lx.jhsanlc,'fm9999999990.000') v_24, to_char(lx.jhsilc,'fm9999999990.000') v_25, to_char(lx.jhdwlc,'fm9999999990.000') v_26, 
     to_char(lx.jhwllc,'fm9999999990.000') v_27,lx.jsxz v_28,nvl(t.dq_m,0) v_29,nvl(t.dq,0) v_30,RemoveSameStr(lx.jsjsdjtj,',') v_31,
-    nvl(t.sd_m,0) v_32,nvl(t.sd,0) v_33,t.kgny v_34,t.wgny v_35,t.bzdw v_36,nvl(t.tzgs,0) v_37,nvl(t.dfzc,0) v_38,nvl(t.yhdk,0) v_39,t.gkpfwh v_40,t.pfsj v_41 
+    nvl(t.sd_m,0) v_32,nvl(t.sd,0) v_33,t.kgny v_34,t.wgny v_35,t.bzdw v_36,nvl(t.tzgs,0) v_37,nvl(t.dfzc,0) v_38,nvl(t.yhdk,0) v_39,t.hyscyj v_40,t.gkpfwh v_41,t.pfsj v_42 
     from kxgsdgz t 
     Left join (select xmbm xmbh,lsjl,xmklx,tsdq,lsxmbm,xzqh,xzqhdm2 from lxgsdgz) t1 on t.xmbm=t1.xmbh
     left join (
@@ -2237,11 +2237,14 @@ select rownum v_0,t.xmbm v_1,t.xmmc v_2,t1.xzqh v_3,
 		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
 		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+		<if test="tiaojian!='' and tiaojian!= null ">
+       	    ${tiaojian}
+       	</if> 
 		<if test="shzt!='' and shzt!= null ">
 			and to_char(t.shzt) like '%'||#{shzt}||'%'
 		</if>
-		<if test="sbzt!='' and sbzt!= null ">
-			and to_char(t.sbzt) like '%'||#{sbzt}||'%' 
+       	<if test="scshzt!='' and scshzt!= null ">
+			and to_char(t.scshzt) like '%'||#{scshzt}||'%'
 		</if>
 	</select>
 	<select id="selectWqjlbz" resultType="wqbzbz">

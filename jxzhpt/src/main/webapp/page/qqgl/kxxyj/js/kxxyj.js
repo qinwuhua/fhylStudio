@@ -146,7 +146,11 @@ function showkxxTjxx(xmlx){
 			tiaojian='sjsb';
 			sbzt='1';
 			scsbzt='1';
+			shzt=$("#sbzt").combobox('getValue');
+			scshzt=$("#scshzt").combobox('getValue');
 		}
+		sbzt=$("#sbzt").combobox('getValue');
+		scsbzt=$("#scsbzt").combobox('getValue');
 		shzt=$("#sbzt").combobox('getValue');
 		scshzt=$("#scshzt").combobox('getValue');
 	}else{

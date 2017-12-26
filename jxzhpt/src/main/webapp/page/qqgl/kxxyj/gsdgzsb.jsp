@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>安保工程项目</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
@@ -27,8 +27,30 @@
 	<script type="text/javascript">
 		$(function(){
 			tsdqdx("tsdq");
-			if($.cookie("unit2").length!=7)
-			$("img[name='bxs']").attr('style','display:none');
+			if($.cookie("unit2").length!=7){
+				title='工可上报状态';
+				$('#sqzttext').html('工可上报状态：');
+				$("img[name='bxs']").attr('style','display:none');
+				$("#sqzt1").attr('style','display:none');
+				$("#sqzt2").attr('style','');
+				sctitle='行业审查上报状态';
+				$('#hyscbt').html('行业审查上报状态：');
+				$("#hyscds").attr('style','display:none');
+				$("#hyscsj").attr('style','');
+				
+			}else{
+				title='工可审核状态';
+				$('#sqzttext').html('工可审核状态：');
+				$("img[name='bxs']").attr('style','display:none');
+				$("#sqzt1").attr('style','');
+				$("#sqzt2").attr('style','display:none');
+				sctitle='行业审查审核状态';
+				$('#hyscbt').html('行业审查审核状态：');
+				$("#hyscds").attr('style','');
+				$("#hyscsj").attr('style','display:none');
+			}	
+/* 			if($.cookie("unit2").length!=7)		
+			$("img[name='bxs']").attr('style','display:none'); */
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
@@ -40,27 +62,13 @@
 			loadBmbm3('lsxmnf','历史项目年份');  
 			urlxmnf("xmnf",getUrlParame('id'));
 			gsdxmlx('xmlx');
-			if($.cookie("unit2").length!=7){
-				sctitle='行业审查上报状态';
-				$('#hyscbt').html('行业审查上报状态：');
-				$("#hyscds").attr('style','display:none');
-				$("#hyscsj").attr('style','');
-			}else{
-				sctitle='行业审查审核状态';
-				$('#hyscbt').html('行业审查审核状态：');
-				$("#hyscds").attr('style','');
-				$("#hyscsj").attr('style','display:none');
-			}
 			setTimeout("showAllgsd()",'1700');
 		});
 		function showAllgsd(){
-			
 			showkxxTjxx('gsdgz');
-			
 			var xzqhdm=$("#xzqh").combotree("getValues");
 			if(xzqhdm.length==0){
 				xzqhstr= $.cookie("dist2");
-				
 			}else if(xzqhdm.length==1){
 				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
 				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
@@ -85,13 +93,24 @@
 			var lsjl=$("#lsjl").combobox('getValue');
 			var xmlx=$("#xmlx").combobox("getValues").join(",");
 			//var sbzt=$("#sbzt").combobox('getValue');
-			if(xmlx.substr(0,1)==',')
+			if(xmlx.substr(0,1)==','){
 				xmlx=xmlx.substr(1,xmlx.length);
-			var shzt=$("#sbzt").combobox('getValue');
+			}
+/* 			var shzt=$("#sbzt").combobox('getValue');
 			//var shzt=$("#shzt").combobox('getValue');
 			var sbzt='';
 			if($.cookie('unit2').length==7){
 				sbzt='1';
+			} */
+			var tiaojian="dssb";
+			var sbzt=$("#sbzt").combobox('getValue');
+			var shzt=$("#shzt").combobox('getValue');
+			var scsbzt=$("#scsbzt").combobox('getValue');
+			var scshzt=$("#scshzt").combobox('getValue');
+			if($.cookie("unit2").length==7){
+				tiaojian='sjsb';
+				sbzt='1';
+				scsbzt='1';
 			}
 			var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
 			if(lsxmnf=='')
@@ -119,12 +138,11 @@
 			    	//gydw:gydwstr,
 			    	xmmc:xmmc,
 					xmnf:xmnf,
-					sbzt:sbzt,
-					'lxsh.shzt':shzt,
 					tsdq:tsdq,
 					jsdj:jsdj,
 					jsjsdj:jsjsdj,
 					gldj:gldj,
+					sbzt:sbzt,
 					ghlxbm:$("#ghlxbm").combotree('getText'),
 					ghlxmc:$("#ghlxmc").val(),
 					'lxsh.ghlxbh':$("#lxbm").combotree('getText'),
@@ -133,11 +151,15 @@
 					'lxsh.xmklx':$("#xmklx").combobox('getValue'),
 					'lxsh.lsxmnf':lsxmnf,
 					'lxsh.lsxmlx':lsxmlx,
-					'lxsh.xmbm':$("#xmbm").val()
+					'lxsh.xmbm':$("#xmbm").val(),
+					'lxsh.scsbzt':scsbzt,
+					'lxsh.scshzt':scshzt,
+					'lxsh.shzt':shzt,
+					'lxsh.tiaojian':tiaojian
 				},
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
-			        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
+			        {field:'c',title:'操作',width:80,align:'center',formatter:function(value,row,index){
 			        	//if(row.sbzt1=='1')
 			        	//	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑    ';
 			        	if($.cookie("unit2").length!=7)
@@ -145,7 +167,22 @@
 
 			        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    ';
 			        }},
-			        {field:'c1',title:'项目状态',width:60,align:'center',formatter:function(value,row,index){
+			        {field:'cs',title:sctitle,width:100,align:'center',formatter:function(value,row,index){
+			        	if(row.scsbzt=='1'){
+		        			if(row.scshzt=='1')
+		        				return '已审核';
+		        			else
+		        			return '已上报';
+		        		}else{
+		        			return '未上报';
+		        		}
+			        	
+			        	if(row.scshzt=='0'){
+			        		return '未审核';
+			        	}else if(row.scshzt=='1')
+			        		return '已审核';
+			        }},
+			        {field:'c1',title:title,width:80,align:'center',formatter:function(value,row,index){
 			        	if(row.sbzts=='1'){
 		        			if(row.sbzt1=='1')
 		        				return '已审核';
@@ -355,12 +392,29 @@ text-decoration:none;
 	        						<td align="right">特殊地区：</td>
 									<td><select name="tsdq" id="tsdq" style="width:118px;" >
 									</select></td>
-									<td align="right">审核状态：</td>
+<!-- 									<td align="right">审核状态：</td>
 	        						<td><select id="sbzt" style="width:77px;" class="easyui-combobox">
 										<option selected="selected" value="">全部</option>
 										<option value="0">未审核</option>
 										<option value="1">已审核</option> 
-									</select></td>
+									</select></td> -->
+								<td align="right"><span id='sqzttext'>工可审核状态：</span></td>
+        						<td>
+        						<span id='sqzt1'>
+        						<select id="shzt"  style="width:77px;" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'">
+									<option selected="selected" value="">全部</option>
+									<option value="0">未审核</option>
+									<option value="1">已审核</option> 
+								</select>
+        						</span>
+        						<span id='sqzt2' >
+        						<select id="sbzt"  style="width:77px;" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'">
+									<option selected="selected" value="">全部</option>
+									<option value="0">未上报</option>
+									<option value="1">已上报</option> 
+								</select>
+        						</span>
+								</td>
 									<td align="right">建设性质：</td>
 									<td><select name="xmlx" id="xmlx" style="width:118px;" ></select></td>
 <!-- 									<td>管养单位：</td> -->
