@@ -859,21 +859,20 @@ public class Plan_abgcController extends BaseActionSupport{
 		while((length= is.read(buffer))>0){
 			os.write(buffer,0,length);
 		}
-		is.close();
 		os.flush();
 		os.close();
+		is.close();
 	}
 	/**
 	 * 下载文件
 	 */
 	public void downAbgcFile(){
         try {
-        	System.out.println(uploads.getFileurl());
-        	File file =new File(uploads.getFileurl());
+        	File file =new File(java.net.URLDecoder.decode(uploads.getFileurl(), "UTF-8"));
         	HttpServletResponse response = getresponse();
         	OutputStream out = response.getOutputStream();
         	response.setContentType("application/x-download");
-        	response.addHeader("Content-Disposition", "attachment;filename="+new String(uploads.getFilename().getBytes("GBK"),"ISO-8859-1"));
+        	response.addHeader("Content-Disposition", "attachment;filename="+new String(java.net.URLDecoder.decode(uploads.getFilename(), "UTF-8")));
         	byte[] buffer = new byte[1024];
         	InputStream is = new FileInputStream(file);
         	int length = 0;
@@ -883,6 +882,7 @@ public class Plan_abgcController extends BaseActionSupport{
         	out.write(buffer);
         	out.flush();
         	out.close();
+        	is.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

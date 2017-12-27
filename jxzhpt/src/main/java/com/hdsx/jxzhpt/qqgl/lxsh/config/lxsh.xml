@@ -361,8 +361,7 @@
 	</select>
 	<select id="selectSjgzshList" parameterType="lxsh" resultType="lxsh">
 		select * from (select rownum num ,xmklx,t.id,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.xmmc,t.thyy,
-		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,sl.zlc jszlc,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx,
-		(select fn_ReturnFllx(sum(lmd.mqi)/count(*)) mqidj from lkpd_mxb_data_2014 lmd where lmd.lxbh in (lx.ghlxbm) and to_number(lmd.qdzh) &gt;= to_number(lx.ghqdzh)and to_number(lmd.zdzh) &lt;= to_number(lx.ghzdzh)) mqidj
+		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,sl.zlc jszlc,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx
 		  from LXSH_SJGZ t left join
 		(select xmid,lxbm,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,decode(substr(xmid,11,1),'3',xjlxbm,ghlxbm) ghlxbm,ghlxmc,decode(substr(xmid,11,1),'3',xjqdzh,ghqdzh) ghqdzh,decode(substr(xmid,11,1),'3',xjzdzh,ghzdzh) ghzdzh,gxlxbm,gxqdzh,gxzdzh 
 		from lxsh_lx where jdbs='0' and sffirst='1'
@@ -544,8 +543,7 @@
 	<select id="selectXjshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
 		select rownum num ,xmklx,t.id,t.xmmc,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,sl.xmsl sl,sl.zlc jszlc,(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) xjlc,t.thyy,
-		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx,
-		(select fn_ReturnFllx(sum(lmd.mqi)/count(*)) mqidj from lkpd_mxb_data_2014 lmd where lmd.lxbh in (lx.ghlxbm) and to_number(lmd.qdzh) &gt;= to_number(lx.ghqdzh)and to_number(lmd.zdzh) &lt;= to_number(lx.ghzdzh)) mqidj
+		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx
 		 from LXSH_XJ t 
 		 left join (select xmid,lxbm,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,decode(substr(xmid,11,1),'3',xjlxbm,ghlxbm) ghlxbm,ghlxmc,decode(substr(xmid,11,1),'3',xjqdzh,ghqdzh) ghqdzh,decode(substr(xmid,11,1),'3',xjzdzh,ghzdzh) ghzdzh,gxlxbm,gxqdzh,gxzdzh  from lxsh_lx where jdbs='0' and sffirst='1'
 		) lx on t.xmbm=lx.xmid
