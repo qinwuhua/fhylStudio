@@ -319,7 +319,7 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否部分立项</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id='sfbflx' class="easyui-combobox" style="width: 120px;">
+					<select id='sfbflx' class="easyui-combobox" style="width: 120px;" data-options="editable:false,panelHeight:'auto'">
 						<option value="否" selected="selected">否</option>
 						<option value="是">是</option>
 					</select>

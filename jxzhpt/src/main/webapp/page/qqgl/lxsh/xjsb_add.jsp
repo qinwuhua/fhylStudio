@@ -175,10 +175,44 @@ text-decoration:none;
 					$("#tsdq").val(item.tsdq);$("#xmnf").combobox('setValue',item.xmnf);
 					$("#jhkgn").combobox('setValue',item.jhkgn);
 					$("#jhwgn").combobox('setValue',item.jhwgn);
-					$("#qdzh").val(item.qdzh);
+					
+/* 					$("#qdzh").val(item.qdzh);
 					$("#zdzh").val(item.zdzh);
 					$("#tz").val(parseFloat(item.tz));$("#bzcs").val(parseFloat(item.bzys));$("#dfzc").html(parseFloat(item.dfzc));
-					$("#yhdk").val(item.yhdk);$("#bz").val(item.bz);
+					$("#yhdk").val(item.yhdk); */
+					if(isNaN(parseFloat(item.qdzh))){
+						$("#qdzh").val(item.qdzh);
+					}else{
+						$("#qdzh").val(parseFloat(item.qdzh));
+					}
+					if(isNaN(parseFloat(item.zdzh))){
+						$("#zdzh").val(item.zdzh);
+					}else{
+						$("#zdzh").val(parseFloat(item.zdzh));
+					}
+					if(isNaN(parseFloat(item.tz))){
+						$("#tz").val(item.tz);
+					}else{
+						$("#tz").val(parseFloat(item.tz).toFixed(2));
+					}
+					if(isNaN(parseFloat(item.bzys))){
+						$("#bzcs").val(item.bzys);
+					}else{
+						$("#bzcs").val(parseFloat(item.bzys).toFixed(2));
+					}
+					
+					if(isNaN(parseFloat(item.dfzc))){
+						$("#dfzc").html(item.dfzc);
+					}else{
+						$("#dfzc").html(parseFloat(item.dfzc).toFixed(2));
+					}
+					
+					if(isNaN(parseFloat(item.yhdk))){
+						$("#yhdk").val(item.yhdk);
+					}else{
+						$("#yhdk").val(parseFloat(item.yhdk).toFixed(2));
+					}	
+					$("#bz").val(item.bz);
 					$("#xzqhdm").val(item.xzqhdm);$("#gydwdm").val(item.gydwdm);
 					loadUnitedit("gydw",'36',item.gydwdm);
 					$("#gydw").combotree('setValues',item.gydwdm.split(","));
@@ -226,11 +260,20 @@ text-decoration:none;
 		});
 	}
 	function saveLxsh(){
-		var tz=0;var bzcs=0;
+		/* var tz=0;var bzcs=0;
 		if($("#tz").val()!='')
 			tz=parseFloat($("#tz").val());
 		if($("#bzcs").val()!='')
+			bzcs=parseFloat($("#bzcs").val()); */
+		var tz=0; var bzcs=0;		
+		if($("#tz").val()!='' || $("#tz").val()!=undefined || $("#tz").val()!=null){
+			tz=parseFloat($("#tz").val());
+		}	
+		if($("#bzcs").val()!=''|| $("#bzcs").val()!=undefined || $("#bzcs").val()!=null){
 			bzcs=parseFloat($("#bzcs").val());
+		}
+		var dfzc = accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").val()));
+		if(isNaN(dfzc)){ dfzc=0;}
 		if(bzcs>tz){
 			alert("投资不能小于补助测算");
 			return;
@@ -246,7 +289,7 @@ text-decoration:none;
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValues").join(',')+"&lxsh.xzqhdm="+$.cookie("dist")+"&lxsh.xzqhdm2="+$("#xzqh").combobox("getValues").join(',')+"&lxsh.tsdq="+$("#tsdq").val()
 		+"&lxsh.jsjsdj="+$("#jsjsdj").val()+"&lxsh.xjsdj="+$("#xjsdj").val()+"&lxsh.xmbm="+$("#xmbm").html()
 		+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
-		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").val()))+"&lxsh.tbbmbm="+$.cookie("unit")
+		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+dfzc+"&lxsh.tbbmbm="+$.cookie("unit")
 		+"&lxsh.sbthcd="+sbthcd+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh=''&lxsh.gpszdzh=''";
 		
 		data+="&lxsh.xjlxbm="+$('#xjlxbm').val()+"&lxsh.xjqdzh="+$('#xjqdzh').val()+"&lxsh.xjzdzh="+$('#xjzdzh').val()+

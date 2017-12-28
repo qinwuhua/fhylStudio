@@ -160,7 +160,7 @@
 			if(confirm('您确定删除该项目？')){
 					$.ajax({
 						 type : "POST",
-						 url : "/jxzhpt/qqgl/delLmgz.do",
+						 url : "/jxzhpt/qqgl/delXj.do",
 						 dataType : 'json',
 						 data : data,
 						 success : function(msg){

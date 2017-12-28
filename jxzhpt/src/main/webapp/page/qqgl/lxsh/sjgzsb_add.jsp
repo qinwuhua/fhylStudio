@@ -297,15 +297,32 @@ text-decoration:none;
 	}
 	
 	function saveLxsh(){
-		$("#dfzc").html('');
-		var tz=0;var bzcs=0;
-		if($("#tz").val()!='')
+        if(isNaN(parseFloat($("#lc").html()))){
+        	alert("现技术等级及里程输入错误！");
+        	return;
+        }
+        if(isNaN(parseFloat($("#jszlc").html()))){
+        	alert("建设技术等级及里程输入错误！");
+        	return;
+        }
+        if(isNaN(parseFloat($("#dfzc").html()))){
+        	alert("地方自筹数据错误！");
+        	return;
+        }
+		//$("#dfzc").html('');
+		var tz=0; var bzcs=0;		
+		if($("#tz").val()!='' || $("#tz").val()!=undefined || $("#tz").val()!=null){
 			tz=parseFloat($("#tz").val());
-		if($("#bzcs").val()!='')
+		}	
+		if($("#bzcs").val()!=''|| $("#bzcs").val()!=undefined || $("#bzcs").val()!=null){
 			bzcs=parseFloat($("#bzcs").val());
+		}
+		var dfzc = accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").val()));
+		if(isNaN(dfzc)){ dfzc=0;}
+
 		if(bzcs>tz){
 			alert("投资不能小于补助测算");
-			return
+			return;
 		}
 		var sbthcd=$.cookie("unit2").length;
 		if($.cookie("unit2")=="______36"){
@@ -317,7 +334,7 @@ text-decoration:none;
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValues").join(',')+"&lxsh.xzqhdm="+$.cookie("dist")+"&lxsh.xzqhdm2="+$("#xzqh").combobox("getValues").join(',')+"&lxsh.tsdq="+$("#tsdq").html()
 		+"&lxsh.jsjsdj="+$("#jsjsdj").val()+"&lxsh.xjsdj="+$("#xjsdj").val()+"&lxsh.xmbm="+$("#xmbm").html()
 		+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
-		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").val()))+"&lxsh.tbbmbm="+$.cookie("unit")
+		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+dfzc+"&lxsh.tbbmbm="+$.cookie("unit")
 		+"&lxsh.sbthcd="+sbthcd+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh="+qdStr+"&lxsh.gpszdzh="+zdStr;
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+
 		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val();
@@ -380,13 +397,45 @@ text-decoration:none;
 				$("#tsdq").html(item.tsdq);$("#xmnf").combobox('setValue',item.xmnf);
 				$("#jhkgn").combobox('setValue',item.jhkgn);
 				$("#jhwgn").combobox('setValue',item.jhwgn);
-			
-				$("#qdzh").val(parseFloat(item.qdzh));
+				
+				if(isNaN(parseFloat(item.qdzh))){
+					$("#qdzh").val(item.qdzh);
+				}else{
+					$("#qdzh").val(parseFloat(item.qdzh));
+				}
+				if(isNaN(parseFloat(item.zdzh))){
+					$("#zdzh").val(item.zdzh);
+				}else{
+					$("#zdzh").val(parseFloat(item.zdzh));
+				}
+				if(isNaN(parseFloat(item.tz))){
+					$("#tz").val(item.tz);
+				}else{
+					$("#tz").val(parseFloat(item.tz).toFixed(2));
+				}
+				if(isNaN(parseFloat(item.bzys))){
+					$("#bzcs").val(item.bzys);
+				}else{
+					$("#bzcs").val(parseFloat(item.bzys).toFixed(2));
+				}
+				
+				if(isNaN(parseFloat(item.dfzc))){
+					$("#dfzc").html(item.dfzc);
+				}else{
+					$("#dfzc").html(parseFloat(item.dfzc).toFixed(2));
+				}
+				
+				if(isNaN(parseFloat(item.yhdk))){
+					$("#yhdk").val(item.yhdk);
+				}else{
+					$("#yhdk").val(parseFloat(item.yhdk).toFixed(2));
+				}			
+/* 				$("#qdzh").val(parseFloat(item.qdzh));
 				$("#zdzh").val(parseFloat(item.zdzh));
 				$("#tz").val(parseFloat(item.tz).toFixed(2));
 				$("#bzcs").val(parseFloat(item.bzys).toFixed(2));
 				$("#dfzc").html(parseFloat(item.dfzc).toFixed(2));
-				$("#yhdk").val(parseFloat(item.yhdk).toFixed(2));
+				$("#yhdk").val(parseFloat(item.yhdk).toFixed(2)); */	
 				$("#bz").val(item.bz);$("#xzqhdm").val(item.xzqhdm);$("#gydwdm").val(item.gydwdm);
 				$("#xmklx").val(item.xmklx);
 				loadUnitedit("gydw",'36',item.gydwdm);
@@ -577,12 +626,12 @@ text-decoration:none;
 					现技术等<br/>级及里程
 				</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					一级：<input id="yilc" onblur="jsyzlc()" name="yilc" style="width: 50px;" type="text"/>
-					二级：<input id="erlc" onblur="jsyzlc()" name="erlc" style="width: 50px;" type="text"/>
-					三级：<input id="sanlc" onblur="jsyzlc()" name="sanlc" style="width: 50px;" type="text"/>
-					四级：<input id="silc" onblur="jsyzlc()" name="silc" style="width: 50px;" type="text"/>
-					等外：<input id="dwlc" onblur="jsyzlc()" name="dwlc" style="width: 50px;" type="text"/>
-					无路：<input id="wllc" onblur="jsyzlc()" name="wllc" style="width: 50px;" type="text"/>
+					一级：<input id="yilc" onblur="jsyzlc()" name="yilc" style="width: 50px;" type="text" value="0"/>
+					二级：<input id="erlc" onblur="jsyzlc()" name="erlc" style="width: 50px;" type="text" value="0"/>
+					三级：<input id="sanlc" onblur="jsyzlc()" name="sanlc" style="width: 50px;" type="text" value="0"/>
+					四级：<input id="silc" onblur="jsyzlc()" name="silc" style="width: 50px;" type="text" value="0"/>
+					等外：<input id="dwlc" onblur="jsyzlc()" name="dwlc" style="width: 50px;" type="text" value="0"/>
+					无路：<input id="wllc" onblur="jsyzlc()" name="wllc" style="width: 50px;" type="text" value="0"/>
 					总计：<span id="lc" style="font-size: 14px">0</span>&nbsp;公里
 				</td>
 			</tr>
@@ -675,7 +724,7 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>银行贷款(万元)：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="yhdk" style="width: 120px;"/>
+					<input type="text" id="yhdk" style="width: 120px;" onblur="checkSZ(this)"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
 				<td style="background-color: #ffffff; height: 20px;" align="left"></td>

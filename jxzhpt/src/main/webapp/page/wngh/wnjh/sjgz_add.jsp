@@ -34,7 +34,6 @@ text-decoration:none;
 	var zdStr;
 	var xzqh;
 	$(function(){
-		
 		loadUnitadd("gydw",$.cookie("unit"));
 		loadDistadd("xzqh",$.cookie("dist"));
 		xmnf1("xmnf");
@@ -84,6 +83,30 @@ text-decoration:none;
 				$("#zdzh").focus();
 				return false;
 			} */
+			if($("#ghlxbm").val()=="" || $("#ghlxbm").val()==null){
+				alert("请输入规划路线编码！");
+				$("#ghlxbm").focus();
+				return false;
+			}
+			if($("#xmmc").val()=="" || $("#xmmc").val()==null){
+				alert("请输入项目名称！");
+				$("#xmmc").focus();
+				return false;
+			}
+			if($("#xmklx").combobox('getValue')==''||$("#xmklx").combobox('getValue')==null){
+				alert("请选择项目库类型");
+				return
+			}
+			
+			if($("#gydw").combobox("getValues")==""||$("#gydw").combobox("getValues")==null){
+				alert("请选择管养单位！");
+				return false;
+			}
+			
+			if($("#xzqh").combobox("getValues")==""||$("#xzqh").combobox("getValues")==null){
+				alert("请选择行政区划！");
+				return false;
+			}
 			
 			var redqdzh = $("#span_qdzh").text().substr(5,$("#span_qdzh").text().length);
 			var redzdzh = $("#span_zdzh").text().substr(5,$("#span_zdzh").text().length);
@@ -136,12 +159,25 @@ text-decoration:none;
 			
 		});
 		
-		autoCompleteGHLXBM();
+		autoCompleteGHLXBM();	
 	});
 	
 	
 	function saveLxsh(){
-		var tz=0;var bzcs=0;var yhdk=0;var gz=0;var sz=0;
+        if(isNaN(parseFloat($("#lc").html()))){
+        	alert("现技术等级及里程输入错误！");
+        	return;
+        }
+        if(isNaN(parseFloat($("#jhlc").html()))){
+        	alert("建设技术等级及里程输入错误！");
+        	return;
+        }
+        if(isNaN(parseFloat($("#dfzc").html()))){
+        	alert("地方自筹数据错误！");
+        	return;
+        }
+        
+		var tz=0;var bzcs=0;var yhdk=0;var gz=0;var sz=0;	
 		if($("#tz").val()!='')
 			tz=parseFloat($("#tz").val());
 		if($("#bzcs").val()!='')
@@ -154,16 +190,14 @@ text-decoration:none;
 			sz=parseFloat($("#sz").val());
 		if(bzcs>tz){
 			alert("投资不能小于补助测算");
-			return
+			return;
 		}
-		if($("#xmklx").combobox('getValue')==''||$("#xmklx").combobox('getValue')==null){
-			alert("请选择项目库类型");
-			return
-		}
+		
 		var zh=accSub(tz,bzcs);
 		var dfzc=accSub(zh,yhdk);
 		var dfzc1=accSub(dfzc,gz);
 		var dfzc2=accSub(dfzc1,sz);
+		
 		var id=newGuid();
 		var sbthcd=$.cookie("unit2").length;
 		if($.cookie("unit2")=="______36"){
@@ -357,7 +391,7 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>项目库类型：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id='xmklx' class="easyui-combobox" style="width: 120px;">
+					<select id='xmklx' class="easyui-combobox" style="width: 120px;"data-options="editable:false,panelHeight:'auto'">
 						<option value="">请选择</option>
 						<option value="部库">部库</option>
 						<option value="省库">省库</option>
@@ -393,12 +427,12 @@ text-decoration:none;
 					现技术等<br/>级及里程
 				</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					一级：<input onchange="jslc()" id="yilc" name="yilc" style="width: 50px;" type="text" value="0" onblur="checkSZ(this)"/>
-					二级：<input onchange="jslc()" id="erlc" name="erlc" style="width: 50px;" type="text" value="0" onblur="checkSZ(this)"/>
-					三级：<input onchange="jslc()" id="sanlc" name="sanlc" style="width: 50px;" type="text" value="0" onblur="checkSZ(this)"/>
-					四级：<input onchange="jslc()" id="silc" name="silc" style="width: 50px;" type="text" value="0" onblur="checkSZ(this)"/>
-					等外：<input onchange="jslc()" id="dwlc" name="dwlc" style="width: 50px;" type="text" value="0" onblur="checkSZ(this)"/>
-					无路：<input onchange="jslc()" id="wllc" name="wllc" style="width: 50px;" type="text" value="0" onblur="checkSZ(this)"/>
+					一级：<input onchange="jslc()" id="yilc" name="yilc" style="width: 50px;" type="text" value="0"  onblur="checkSZ(this)"/>
+					二级：<input onchange="jslc()" id="erlc" name="erlc" style="width: 50px;" type="text" value="0"  onblur="checkSZ(this)"/>
+					三级：<input onchange="jslc()" id="sanlc" name="sanlc" style="width: 50px;" type="text" value="0"  onblur="checkSZ(this)"/>
+					四级：<input onchange="jslc()" id="silc" name="silc" style="width: 50px;" type="text" value="0"  onblur="checkSZ(this)"/>
+					等外：<input onchange="jslc()" id="dwlc" name="dwlc" style="width: 50px;" type="text" value="0"  onblur="checkSZ(this)"/>
+					无路：<input onchange="jslc()" id="wllc" name="wllc" style="width: 50px;" type="text" value="0"  onblur="checkSZ(this)"/>
 					总计：<span id="lc" style="font-size: 14px">0</span>&nbsp;公里
 				</td>
 			</tr>
@@ -407,12 +441,12 @@ text-decoration:none;
 					建设技术<br/>等级及里程
 				</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					一级：<input id="jhyilc" onchange="cesuan()" name="jhyilc" style="width: 50px;" value="0" type="text" onblur="checkSZ(this)"/>
-					二级：<input id="jherlc" onchange="cesuan()" name="jherlc" style="width: 50px;" value="0" type="text" onblur="checkSZ(this)"/>
-					三级：<input id="jhsanlc" onchange="cesuan()" name="jhsanlc" style="width: 50px;" value="0" type="text" onblur="checkSZ(this)"/>
-					四级：<input id="jhsilc" onchange="cesuan()" name="jhsilc" style="width: 50px;" value="0" type="text" onblur="checkSZ(this)"/>
-					等外：<input id="jhdwlc" onchange="cesuan()" name="jhdwlc" style="width: 50px;" value="0" type="text" onblur="checkSZ(this)"/>
-					无路：<input id="jhwllc" onchange="cesuan()" name="jhwllc" style="width: 50px;" type="text" value="0" onblur="checkSZ(this)"/>
+					一级：<input id="jhyilc" onchange="cesuan()" name="jhyilc" style="width: 50px;" value="0" type="text"  onblur="checkSZ(this)"/>
+					二级：<input id="jherlc" onchange="cesuan()" name="jherlc" style="width: 50px;" value="0" type="text"  onblur="checkSZ(this)"/>
+					三级：<input id="jhsanlc" onchange="cesuan()" name="jhsanlc" style="width: 50px;" value="0" type="text"  onblur="checkSZ(this)"/>
+					四级：<input id="jhsilc" onchange="cesuan()" name="jhsilc" style="width: 50px;" value="0" type="text"  onblur="checkSZ(this)"/>
+					等外：<input id="jhdwlc" onchange="cesuan()" name="jhdwlc" style="width: 50px;" value="0" type="text"  onblur="checkSZ(this)"/>
+					无路：<input id="jhwllc" onchange="cesuan()" name="jhwllc" style="width: 50px;" type="text" value="0"  onblur="checkSZ(this)"/>
 					总计：<span id="jhlc" style="font-size: 14px">0</span>&nbsp;公里
 				</td>
 			</tr>
@@ -471,6 +505,7 @@ text-decoration:none;
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="tz"  onblur="checkdfzc(this)" style="width: 120px;"/></td>
+					
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>补助测算(万元)：
 				</td>

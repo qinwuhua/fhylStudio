@@ -62,7 +62,6 @@ text-decoration:none;
 				zdStr=msg.gpszdzh;
 				$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+msg.gpsqdzh);
 				$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+msg.gpszdzh);
-				
 				$("#xmklx").val(msg.xmklx);
 			}
 		});
@@ -70,6 +69,46 @@ text-decoration:none;
 	}
 	
 	$(function(){
+		var data=parent.obj;
+		$("#lxbm").val(data.ghlxbh);
+		$("#lxmc").val(data.lxmc);
+		$("#xmmc").val(data.xmmc);
+		$("#qdzh").val(data.minqdzh);
+		$("#zdzh").val(data.maxzdzh);
+		$("#lc").val(data.lc);
+		$("#qdmc").val(data.qdmc);
+		$("#zdmc").val(data.zdmc);
+		$("#jsxz").val(data.jsxz);
+		$("#gydw").val(data.gydw);
+		$("#xzqh").val(data.xzqh);
+		$("#tsdq").val(data.tsdq);
+		$("#jsjsdj").val(data.jsjsdj);
+		$("#xjsdj").val(data.xjsdj);
+		$("#xmbm").val(data.xmbm);
+		$("#xmnf").val(data.xmnf);
+		$("#jhkgn").val(data.jhkgn);
+		$("#jhwgn").val(data.jhwgn);
+		$("#tz").val(data.tz);
+		$('#bz').val(data.bz);
+		$("#bzcs").val(data.bzys);
+		$("#dfzc").val(data.dfzc);
+		$("#ghlxmc").val(data.ghlxmc);
+		$("#ghlxbm").val(data.ghlxbm);
+		$("#ghqdzh").val(data.ghqdzh);
+		$("#ghzdzh").val(data.ghzdzh);
+		$("#gxlxbm").val(data.gxlxbm);
+		$("#gxqdzh").val(data.gxqdzh);
+		$("#gxzdzh").val(data.gxzdzh);
+		$('#yilc').val(data.yilc);
+		$('#erlc').val(data.erlc);
+		$('#sanlc').val(data.sanlc);
+		$('#silc').val(data.silc);
+		$('#dwlc').val(data.dwlc);
+		$('#wllc').val(data.wllc);
+		$("#yhdk").val(data.yhdk);
+		$("#sfbflx").val(data.sfbflx);
+		$("#xmklx").val(data.xmklx);
+	
 		xmnf1("xmnf",'2');
 		xmnf2("jhkgn");
 		xmnf2("jhwgn");
@@ -103,7 +142,7 @@ text-decoration:none;
 	
 	
 	function saveLxsh(){
-		$("#dfzc").html('');
+		//$("#dfzc").html('');
 		var tz=0;var bzcs=0;
 		if($("#tz").val()!='')
 			tz=parseFloat($("#tz").val());

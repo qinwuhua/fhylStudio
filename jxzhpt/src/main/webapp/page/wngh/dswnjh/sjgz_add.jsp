@@ -83,7 +83,29 @@ text-decoration:none;
 				$("#zdzh").focus();
 				return false;
 			} */
+			if($("#ghlxbm").val()=="" || $("#ghlxbm").val()==null){
+				alert("请输入规划路线编码！");
+				$("#ghlxbm").focus();
+				return false;
+			}
+			if($("#xmmc").val()=="" || $("#xmmc").val()==null){
+				alert("请输入项目名称！");
+				$("#xmmc").focus();
+				return false;
+			}
+			if($("#xmklx").combobox('getValue')==''||$("#xmklx").combobox('getValue')==null){
+				alert("请选择项目库类型！");
+				return
+			}
+			if($("#gydw").combobox("getValues")==""||$("#gydw").combobox("getValues")==null){
+				alert("请选择管养单位！");
+				return false;
+			}
 			
+			if($("#xzqh").combobox("getValues")==""||$("#xzqh").combobox("getValues")==null){
+				alert("请选择行政区划！");
+				return false;
+			}
 			var redqdzh = $("#span_qdzh").text().substr(5,$("#span_qdzh").text().length);
 			var redzdzh = $("#span_zdzh").text().substr(5,$("#span_zdzh").text().length);
 			
@@ -136,9 +158,21 @@ text-decoration:none;
 		});
 		
 		autoCompleteGHLXBM();
-	});
+});
 	
 	function saveLxsh(){
+        if(isNaN(parseFloat($("#lc").html()))){
+        	alert("现技术等级及里程输入错误！");
+        	return;
+        }
+        if(isNaN(parseFloat($("#jhlc").html()))){
+        	alert("建设技术等级及里程输入错误！");
+        	return;
+        }
+        if(isNaN(parseFloat($("#dfzc").html()))){
+        	alert("地方自筹数据错误！");
+        	return;
+        }
 		var tz=0;var bzcs=0;var yhdk=0;var gz=0;var sz=0;
 		if($("#tz").val()!='')
 			tz=parseFloat($("#tz").val());
@@ -152,10 +186,6 @@ text-decoration:none;
 			sz=parseFloat($("#sz").val());
 		if(bzcs>tz){
 			alert("投资不能小于补助测算");
-			return
-		}
-		if($("#xmklx").combobox('getValue')==''||$("#xmklx").combobox('getValue')==null){
-			alert("请选择项目库类型");
 			return
 		}
 		var zh=accSub(tz,bzcs);
