@@ -8,7 +8,7 @@
 <!-- 		xmid=#{wnid} -->
 	</insert>
 	<insert id="updateqqgllx" parameterType="lxsh">
-		update lxsh_lx set xmid=#{xmbm},jdbs='0',gpsqdzh=qdzh,gpszdzh=zdzh where xmid in (${wnid})
+		update lxsh_lx set xmid=#{xmbm},jdbs='0',gpsqdzh=ghqdzh,gpszdzh=ghzdzh where xmid in (${wnid})
 <!-- 		xmid=#{wnid} -->
 	</insert>
 	

@@ -301,7 +301,7 @@ text-decoration:none;
         	alert("现技术等级及里程输入错误！");
         	return;
         }
-        if(isNaN(parseFloat($("#jszlc").html()))){
+        if(isNaN(parseFloat($("#jszlc").val()))){
         	alert("建设技术等级及里程输入错误！");
         	return;
         }
@@ -646,7 +646,7 @@ text-decoration:none;
 					四级：<input id="jhsilc" onchange="cesuan()" name="jhsilc" style="width: 50px;" value="0" type="text"/>
 					等外：<input id="jhdwlc" onchange="cesuan()" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
 					无路：<input id="jhwllc" onchange="cesuan()" name="jhwllc" style="width: 50px;" type="text" value="0"/>
-					总计：<input id="jszlc" name="jszlc" style="width: 50px;" readonly="readonly"  type="text" value="0"/>
+					总计：<input id="jszlc" name="jszlc" style="width: 50px;" readonly="readonly"  type="text"/>公里
 				</td>
 			</tr>
 			<tr style="height: 35px;">
