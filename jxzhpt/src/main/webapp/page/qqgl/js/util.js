@@ -1529,7 +1529,7 @@ function fileShow1(id,xmbm,type){
  * @param id 文件ID
  */
 function downFile(fileurl,filename){
-	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.fileurl="+fileurl+"&uploads.filename="+filename;
+	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.fileurl="+encodeURI(encodeURI(fileurl))+"&uploads.filename="+encodeURI(encodeURI(filename));
 }
 /**
  * 删除文件
