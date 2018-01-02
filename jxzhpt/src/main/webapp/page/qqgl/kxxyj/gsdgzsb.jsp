@@ -37,6 +37,7 @@
 				$('#hyscbt').html('行业审查上报状态：');
 				$("#hyscds").attr('style','display:none');
 				$("#hyscsj").attr('style','');
+				gkzt = '已上报';
 				
 			}else{
 				title='工可审核状态';
@@ -48,6 +49,7 @@
 				$('#hyscbt').html('行业审查审核状态：');
 				$("#hyscds").attr('style','');
 				$("#hyscsj").attr('style','display:none');
+				gkzt='未审核';
 			}	
 /* 			if($.cookie("unit2").length!=7)		
 			$("img[name='bxs']").attr('style','display:none'); */
@@ -172,7 +174,7 @@
 		        			if(row.scshzt=='1')
 		        				return '已审核';
 		        			else
-		        			return '已上报';
+		        			return gkzt;
 		        		}else{
 		        			return '未上报';
 		        		}
@@ -187,7 +189,7 @@
 		        			if(row.sbzt1=='1')
 		        				return '已审核';
 		        			else
-		        			return '已上报';
+		        			return gkzt;
 		        		}else{
 		        			return '未上报';
 		        		}
@@ -403,8 +405,9 @@ text-decoration:none;
         						<span id='sqzt1'>
         						<select id="shzt"  style="width:77px;" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'">
 									<option selected="selected" value="">全部</option>
+									<option value="wsb">未上报</option>
 									<option value="0">未审核</option>
-									<option value="1">已审核</option> 
+									<option value="1">已审核</option>
 								</select>
         						</span>
         						<span id='sqzt2' >

@@ -2483,7 +2483,17 @@ public class LxshController extends BaseActionSupport{
 			}
 			
 			if ("sjsb".equals(lxsh.getTiaojian())) {
-				lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+				String tiaojian = "and (to_char(t.sbzt) like '%'||#{sbzt}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')";
+				if ("wsb".equals(lxsh.getShzt())) {
+					tiaojian += "and to_char(t.sbzt) like '%' || '0' || '%'";
+					lxsh.setShzt("");
+				}
+				if ("0".equals(lxsh.getShzt())) {
+					tiaojian += "and to_char(t.sbzt) like '%' || '1' || '%' and to_char(t.shzt) like '%'||'0'||'%' ";
+					lxsh.setShzt("");
+				}
+				lxsh.setTiaojian(tiaojian);
+				//lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
 			}
 			if ("dssb".equals(lxsh.getTiaojian())) {
 				if ("".equals(lxsh.getSbzt()) && !"".equals(lxsh.getScsbzt())) {

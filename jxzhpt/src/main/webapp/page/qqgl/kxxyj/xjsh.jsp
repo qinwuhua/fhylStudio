@@ -299,8 +299,9 @@ text-decoration:none;
         						<span id='sqzt1'>
         						<select id="shzt"  style="width:118px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
+									<option value="wsb">未上报</option>
 									<option value="0">未审核</option>
-									<option value="1">已审核</option> 
+									<option value="1">已审核</option>
 								</select>
         						</span>
         						<span id='sqzt2' >

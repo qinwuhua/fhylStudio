@@ -181,8 +181,9 @@ text-decoration:none;
         						<span id='sqzt1'>
         						<select id="shzt"  style="width:77px;" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'">
 									<option selected="selected" value="">全部</option>
+									<option value="wsb">未上报</option>
 									<option value="0">未审核</option>
-									<option value="1">已审核</option> 
+									<option value="1">已审核</option>
 								</select>
         						</span>
         						<span id='sqzt2' >
@@ -239,7 +240,7 @@ text-decoration:none;
         						<select id="scshzt"  style="width:77px;" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'">
 									<option selected="selected" value="">全部</option>
 									<option value="0">未审核</option>
-									<option value="1">已审核</option> 
+									<option value="1">已审核</option>
 								</select>
         						</span>
         						<span id='hyscsj' >

@@ -421,7 +421,16 @@ public class KxxyjController extends BaseActionSupport{
 				lxsh.setTsdq(tsdq);
 			}
 			if ("sjsb".equals(lxsh.getTiaojian())) {
-				lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+				String tiaojian = "and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')";
+				if ("wsb".equals(lxsh.getShzt())) {
+					tiaojian += "and to_char(t.sbzt) like '%' || '0' || '%'";
+					lxsh.setShzt("");
+				}
+				if ("0".equals(lxsh.getShzt())) {
+					tiaojian += "and to_char(t.sbzt) like '%' || '1' || '%' and to_char(t.shzt) like '%'||'0'||'%' ";
+					lxsh.setShzt("");
+				}
+				lxsh.setTiaojian(tiaojian);
 			}
 			if ("dssb".equals(lxsh.getTiaojian())) {
 				if ("".equals(sbzt) && !"".equals(lxsh.getScsbzt())) {
@@ -556,10 +565,20 @@ public class KxxyjController extends BaseActionSupport{
 				}
 		     }
 			if ("sjsb".equals(lxsh.getTiaojian())) {
-				lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+				String tiaojian = "and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')";
+				if ("wsb".equals(lxsh.getShzt())) {
+					tiaojian += "and to_char(t.sbzt) like '%' || '0' || '%'";
+					lxsh.setShzt("");
+				}
+				if ("0".equals(lxsh.getShzt())) {
+					tiaojian += "and to_char(t.sbzt) like '%' || '1' || '%' and to_char(t.shzt) like '%'||'0'||'%' ";
+					lxsh.setShzt("");
+				}
+				lxsh.setTiaojian(tiaojian);
+				//lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+			
 			}
 			if ("dssb".equals(lxsh.getTiaojian())) {
-				System.out.println("-----------------------------------------------");
 				if ("".equals(sbzt) && !"".equals(lxsh.getScsbzt())) {
 					lxsh.setTiaojian("and to_char(t.scsbzt) like '%'||#{scsbzt}||'%'");
 				}else if (!"".equals(sbzt) && "".equals(lxsh.getScsbzt())) {
@@ -723,7 +742,17 @@ public class KxxyjController extends BaseActionSupport{
 			lxsh.setSbzt1(sbzt);
 		}
 		if ("sjsb".equals(lxsh.getTiaojian())) {
-			lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+			String tiaojian = "and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')";
+			if ("wsb".equals(lxsh.getShzt())) {
+				tiaojian += "and to_char(t.sbzt) like '%' || '0' || '%'";
+				lxsh.setShzt("");
+			}
+			if ("0".equals(lxsh.getShzt())) {
+				tiaojian += "and to_char(t.sbzt) like '%' || '1' || '%' and to_char(t.shzt) like '%'||'0'||'%' ";
+				lxsh.setShzt("");
+			}
+			lxsh.setTiaojian(tiaojian);
+			//lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
 		}
 		if ("dssb".equals(lxsh.getTiaojian())) {
 			if ("".equals(sbzt) && !"".equals(lxsh.getScsbzt())) {
@@ -933,7 +962,17 @@ public class KxxyjController extends BaseActionSupport{
 			lxsh.setTsdq(tsdq);
 		}
 		if ("sjsb".equals(lxsh.getTiaojian())) {
-			lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+			String tiaojian = "and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')";
+			if ("wsb".equals(lxsh.getShzt())) {
+				tiaojian += "and to_char(t.sbzt) like '%' || '0' || '%'";
+				lxsh.setShzt("");
+			}
+			if ("0".equals(lxsh.getShzt())) {
+				tiaojian += "and to_char(t.sbzt) like '%' || '1' || '%' and to_char(t.shzt) like '%'||'0'||'%' ";
+				lxsh.setShzt("");
+			}			
+			lxsh.setTiaojian(tiaojian);
+			//lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
 		}
 		if ("dssb".equals(lxsh.getTiaojian())) {
 			if ("".equals(sbzt) && !"".equals(lxsh.getScsbzt())) {
@@ -1693,7 +1732,17 @@ public class KxxyjController extends BaseActionSupport{
 			lxsh.setGhlxbm(MyUtil.getQueryTJ(lxsh.getGhlxbm(), "ghlxbm"));	
 			
 			if ("sjsb".equals(lxsh.getTiaojian())) {
-				lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
+				String tiaojian = "and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')";
+				if ("wsb".equals(lxsh.getShzt())) {
+					tiaojian += "and to_char(t.sbzt) like '%' || '0' || '%'";
+					lxsh.setShzt("");
+				}
+				if ("0".equals(lxsh.getShzt())) {
+					tiaojian += "and to_char(t.sbzt) like '%' || '1' || '%' and to_char(t.shzt) like '%'||'0'||'%' ";
+					lxsh.setShzt("");
+				}
+				lxsh.setTiaojian(tiaojian);	
+				//lxsh.setTiaojian("and (to_char(t.sbzt) like '%'||#{sbzt1}||'%' or to_char(t.scsbzt) like '%'||#{scsbzt}||'%')");
 			}
 			if ("dssb".equals(lxsh.getTiaojian())) {
 				if ("".equals(lxsh.getSbzt1()) && !"".equals(lxsh.getScsbzt())) {

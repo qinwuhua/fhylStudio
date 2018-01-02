@@ -1350,11 +1350,14 @@ select rownum v_0,t.xmbm v_1,t.xmmc v_2,t1.xzqh v_3,
 		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
 		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+		<if test="tiaojian!='' and tiaojian!= null ">
+       	    ${tiaojian}
+       	</if> 
+       	<if test="scshzt!='' and scshzt!= null ">
+			and to_char(t.scshzt) like '%'||#{scshzt}||'%'
+		</if>
 		<if test="shzt!='' and shzt!= null ">
 			and to_char(t.shzt) like '%'||#{shzt}||'%'
-		</if>
-		<if test="sbzt!='' and sbzt!= null ">
-			and to_char(t.sbzt) like '%'||#{sbzt}||'%' 
 		</if>
 		
 	</select>
@@ -1454,11 +1457,14 @@ select rownum v_0,t.xmbm v_1,t.xmmc v_2,t1.xzqh v_3,
 		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
 		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+		<if test="tiaojian!='' and tiaojian!= null ">
+       	    ${tiaojian}
+       	</if> 
+       	<if test="scshzt!='' and scshzt!= null ">
+			and to_char(t.scshzt) like '%'||#{scshzt}||'%'
+		</if>
 		<if test="shzt!='' and shzt!= null ">
 			and to_char(t.shzt) like '%'||#{shzt}||'%'
-		</if>
-		<if test="sbzt!='' and sbzt!= null ">
-			and to_char(t.sbzt) like '%'||#{sbzt}||'%' 
 		</if>
 		
 	</select>
