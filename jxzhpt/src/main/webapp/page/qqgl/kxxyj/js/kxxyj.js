@@ -1772,7 +1772,7 @@ function showAlllmsh(){
 	        		
 	        		if(row.scshzt == '1'){
 		        		if(row.sbzt1=='0'){
-			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh('+index+')">未审核</a>';
+			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh1('+index+')">未审核</a>';
 		        		}
 	        		}else{
 		        		if(row.sbzt1=='0'){ return '未审核'; }  
