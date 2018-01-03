@@ -99,7 +99,7 @@
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 			        {field:'c',title:'操作',width:180,align:'center',formatter:function(value,row,index){
-			        	if("库外" != row.xmklx){
+/* 			        	if("库外" != row.xmklx){
 			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '
 				        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dslmxiangxi('+index+')">详细</a>    '
 			        		+'编辑  '+'删除  '+'添加路线 ';
@@ -109,7 +109,10 @@
 				        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editlm('+index+')">编辑</a>  '
 				        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellm('+index+')">删除</a>  '
 				        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">     添加路线</a>  ';
-			        	}
+			        	} */
+		        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '
+			        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dslmxiangxi('+index+')">详细</a>    '
+		        		+'编辑  '+'删除  '+'添加路线 ';
 			        }},
 			        {field:'lsjl',title:'历史记录',width:60,align:'center',
 						formatter: function(value,row,index){
@@ -374,7 +377,7 @@ text-decoration:none;
 				                <img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="dcwnjhExcel('lmgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
 								<!-- <img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="import_lmgz('lmgz')" style="border-width:0px;vertical-align:middle;" /> -->
 								<!-- <img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="dcMoBan('lmgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" /> -->
-				                <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="delsjgz()" style="vertical-align:middle;">
+				                <!-- <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="delsjgz()" style="vertical-align:middle;"> -->
 				              </td>
                             </tr></table>
         				</div>

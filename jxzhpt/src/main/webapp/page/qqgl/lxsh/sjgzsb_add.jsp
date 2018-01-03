@@ -297,6 +297,7 @@ text-decoration:none;
 	}
 	
 	function saveLxsh(){
+		alert($("#xmbms").val());
         if(isNaN(parseFloat($("#lc").html()))){
         	alert("现技术等级及里程输入错误！");
         	return;

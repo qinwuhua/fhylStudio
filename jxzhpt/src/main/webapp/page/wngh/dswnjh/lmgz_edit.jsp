@@ -137,7 +137,7 @@ text-decoration:none;
 				var redqdzh = $("#span_qdzh").text().substr(5,$("#span_qdzh").text().length);
 				var redzdzh = $("#span_zdzh").text().substr(5,$("#span_zdzh").text().length);
 				
-				 if(parseFloat($("#ghqdzh").val())*1000<redqdzh*1000){
+/* 				 if(parseFloat($("#ghqdzh").val())*1000<redqdzh*1000){
 					alert("对不起，起点桩号不能小于"+redqdzh+"！");
 					$("#ghqdzh").focus();
 					return false;
@@ -151,7 +151,7 @@ text-decoration:none;
 					alert("对不起，起点桩号不能大于止点桩号！");
 					$("#ghqdzh").focus();
 					return false;
-				} 
+				}  */
 			if(parseInt($("#xmnf").html())>parseInt($("#jhkgn").combobox('getText'))){
 				alert("对不起，开工年不能小于项目年份！");
 				return false;
