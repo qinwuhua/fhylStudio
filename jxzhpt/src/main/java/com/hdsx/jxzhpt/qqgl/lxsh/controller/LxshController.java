@@ -2438,15 +2438,15 @@ public class LxshController extends BaseActionSupport{
 					String[] split = lxsh.getXmnf().split(",");
 					for (int i = 0; i < split.length; i++) {
 						if(i==0){
-							xmnf1 = "(xmbm like '"+split[i]+"%'";
+							xmnf1 = "(t1.xmnf like '"+split[i]+"%'";
 						}else if(i==split.length-1){
-							xmnf1 += " or xmbm like '"+split[i]+"%')";
+							xmnf1 += " or t1.xmnf like '"+split[i]+"%')";
 						}else{
-							xmnf1 += " or xmbm like '"+split[i]+"%'";
+							xmnf1 += " or t1.xmnf like '"+split[i]+"%'";
 						}
 					}
 				}else{
-					xmnf1 = "xmbm like '"+lxsh.getXmnf()+"%'";
+					xmnf1 = "t1.xmnf like '"+lxsh.getXmnf()+"%'";
 				}
 				lxsh.setXmnf(xmnf1);
 			}
