@@ -93,11 +93,11 @@ a{text-decoration:none;}
 			
 			if(parseInt($("#xmnf").combobox('getText'))>parseInt($("#jhkgn").combobox('getText'))){
 				alert("对不起，开工年不能小于项目年份！");
-				return false;
+				return;
 			}
 			if(parseInt($("#jhkgn").combobox('getText'))>parseInt($("#jhwgn").combobox('getText'))){
 				alert("对不起，开工年不能大于完工年！");
-				return false;
+				return;
 			}
 			var redqdzh = $("#span_qdzh").text().substr(5,$("#span_qdzh").text().length);
 			var redzdzh = $("#span_zdzh").text().substr(5,$("#span_zdzh").text().length);
@@ -111,20 +111,20 @@ a{text-decoration:none;}
 				alert("对不起，止点桩号不能大于"+redzdzh+"！");
 				$("#ghzdzh").focus();
 				return false;
-			} 
+			} */
 			 if(parseFloat($("#ghqdzh").val())*1000>parseFloat($("#ghzdzh").val())*1000){
 				alert("对不起，起点桩号不能大于止点桩号！");
 				$("#ghqdzh").focus();
-				return false;
-			}  */
+				return;
+			} 
 			
 			if(parseInt($("#xmnf").combobox('getText'))>parseInt($("#jhkgn").combobox('getText'))){
 				alert("对不起，开工年不能小于项目年份！");
-				return false;
+				return;
 			}
 			if(parseInt($("#jhkgn").combobox('getText'))>parseInt($("#jhwgn").combobox('getText'))){
 				alert("对不起，开工年不能大于完工年！");
-				return false;
+				return;
 			}
 			var xzqhdm=$("#xzqh").combobox("getValues")[0];
 			if(xzqhdm=='360000')

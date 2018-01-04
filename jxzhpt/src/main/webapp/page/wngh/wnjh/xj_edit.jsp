@@ -87,20 +87,20 @@ text-decoration:none;
 			if($("#jsxz").val()=="" || $("#jsxz").val()==null){
 				alert("请填写建设性质！");
 				$("#jsxz").focus();
-				return false;
+				return;
 			}
 			if($("#tz").val()=="" || $("#tz").val()==null){
 				alert("请填写投资！");
 				$("#tz").focus();
-				return false;
+				return;
 			}
 			if($("#dfzc").html()=="" || $("#dfzc").html()==null){
 				alert("请填写地方自筹！");
-				return false;
+				return;
 			}
 			if($("#bzcs").val()=="" || $("#bzcs").val()==null){
 				alert("请填写补助测算");
-				return false;
+				return;
 			}
 			/* if($("#qdzh").val()==null || $("#qdzh").val()=='' || isNaN($("#qdzh").val()) || parseFloat($("#qdzh").val())<0){
 				alert("请填写正确的起点桩号！");
@@ -111,19 +111,19 @@ text-decoration:none;
 				alert("请填写正确的止点桩号！");
 				$("#zdzh").focus();
 				return false;
-			}
+			}*/
 			if(parseFloat($("#qdzh").val())*1000>parseFloat($("#zdzh").val())*1000){
 				alert("对不起，起点桩号不能大于止点桩号！");
 				$("#qdzh").focus();
-				return false;
-			} */
+				return;
+			} 
 			if(parseInt($("#xmnf").html())>parseInt($("#jhkgn").combobox('getText'))){
 				alert("对不起，开工年不能小于项目年份！");
-				return false;
+				return;
 			}
 			if(parseInt($("#jhkgn").combobox('getText'))>parseInt($("#jhwgn").combobox('getText'))){
 				alert("对不起，开工年不能大于完工年！");
-				return false;
+				return;
 			}
 			saveLxsh();
 		});

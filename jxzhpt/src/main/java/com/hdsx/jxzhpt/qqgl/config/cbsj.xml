@@ -93,7 +93,7 @@
 	<select id="queryCbsjLmsj" parameterType="java.util.Map" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.id, c.xmmc, c.xmbm, c.jsdw, c.xzqh, c.jsxz, c.lj, c.ql, c.hd, c.mc, c.jc, c.dc, c.sd, c.dq, c.sdmc, k.kgny kgsj,k.wgny wgsj, c.gq, c.sjdw, c.sjpfwh, c.pfsj, c.jaf,l.gydw,c.tz,l.tsdq,k.gkpfwh,
+				select distinct c.id, c.xmmc, c.xmbm, c.jsdw, c.xzqh, c.jsxz, c.lj, c.ql, c.hd, c.mc, c.jc, c.dc, c.sd, c.dq, c.sdmc, k.kgny kgsj,k.wgny wgsj, c.gq, c.sjdw, c.sjpfwh, c.pfsj, c.jaf,l.gydw,c.tz,l.tsdq,k.gkpfwh,
 		        c.shzt, c.sbzt, ql_ym, hd_m, sd_ym, dq_cd, dq_dk, sd_sfcd, sd_lx, sfbj, mc_lc, jc_lc, dc_lc, c.dfzc, c.yhdk,l.ghlxbh,l.lsjl,
 		        lx.qdzh,lx.zdzh,c.jsjsdj,lx.lc,sl.xmsl,lx.ghlxbm,lx.ghlxmc,lx.ghqdzh,lx.ghzdzh,sl.zlc,c.bz
 		        from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm left join kxxyj_sjgz k on c.xmbm=k.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
@@ -537,7 +537,7 @@
 	</select>
 	
 	<select id="queryCbsjLmsjCount" parameterType="java.util.Map" resultType="int">
-		select count(c.id) from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(decode(xzqhdm2,null,xzqhdm,xzqhdm2))) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
+		select count(distinct c.id) from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(decode(xzqhdm2,null,xzqhdm,xzqhdm2))) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 		left join lxsh_lx lx
 		     on c.xmbm = lx.xmid
 		left join (select xmid, count(xmid) xmsl
