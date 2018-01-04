@@ -240,13 +240,13 @@ a{text-decoration:none;}
 					规划起点桩号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="ghqdzh" name="ghqdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
-					<span id="span_qdzh" style="font-size: small;color: red;"></span>
+					<span id="span_qdzh" style="font-size: small;color: red; display:none;"></span>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					规划止点桩号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="ghzdzh" name="ghzdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
-					<span id="span_zdzh" style="font-size: small;color: red;"></span>
+					<span id="span_zdzh" style="font-size: small;color: red; display:none;"></span>
 				</td>
             </tr>
             <tr style="height: 30px;">

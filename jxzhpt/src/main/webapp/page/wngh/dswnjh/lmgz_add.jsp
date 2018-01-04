@@ -93,11 +93,11 @@ a{text-decoration:none;}
 			
 			if(parseInt($("#xmnf").combobox('getText'))>parseInt($("#jhkgn").combobox('getText'))){
 				alert("对不起，开工年不能小于项目年份！");
-				return false;
+				return;
 			}
 			if(parseInt($("#jhkgn").combobox('getText'))>parseInt($("#jhwgn").combobox('getText'))){
 				alert("对不起，开工年不能大于完工年！");
-				return false;
+				return;
 			}
 			var redqdzh = $("#span_qdzh").text().substr(5,$("#span_qdzh").text().length);
 			var redzdzh = $("#span_zdzh").text().substr(5,$("#span_zdzh").text().length);
@@ -111,20 +111,20 @@ a{text-decoration:none;}
 				alert("对不起，止点桩号不能大于"+redzdzh+"！");
 				$("#ghzdzh").focus();
 				return false;
-			} 
+			} */
 			 if(parseFloat($("#ghqdzh").val())*1000>parseFloat($("#ghzdzh").val())*1000){
 				alert("对不起，起点桩号不能大于止点桩号！");
 				$("#ghqdzh").focus();
-				return false;
-			} */ 
+				return;
+			} 
 			
 			if(parseInt($("#xmnf").combobox('getText'))>parseInt($("#jhkgn").combobox('getText'))){
 				alert("对不起，开工年不能小于项目年份！");
-				return false;
+				return;
 			}
 			if(parseInt($("#jhkgn").combobox('getText'))>parseInt($("#jhwgn").combobox('getText'))){
 				alert("对不起，开工年不能大于完工年！");
-				return false;
+				return;
 			}
 			var xzqhdm=$("#xzqh").combobox("getValues")[0];
 			if(xzqhdm=='360000')
@@ -240,13 +240,13 @@ a{text-decoration:none;}
 					规划起点桩号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="ghqdzh" name="ghqdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
-					<span id="span_qdzh" style="font-size: small;color: red;"></span>
+					<span id="span_qdzh" style="font-size: small;color: red; display:none;"></span>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					规划止点桩号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="ghzdzh" name="ghzdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
-					<span id="span_zdzh" style="font-size: small;color: red;"></span>
+					<span id="span_zdzh" style="font-size: small;color: red; display:none;"></span>
 				</td>
             </tr>
             <tr style="height: 30px;">

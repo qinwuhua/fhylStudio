@@ -111,12 +111,12 @@ text-decoration:none;
 				alert("请填写正确的止点桩号！");
 				$("#zdzh").focus();
 				return false;
-			}
+			}*/
 			if(parseFloat($("#qdzh").val())*1000>parseFloat($("#zdzh").val())*1000){
 				alert("对不起，起点桩号不能大于止点桩号！");
 				$("#qdzh").focus();
 				return false;
-			} */
+			} 
 			if(parseInt($("#xmnf").html())>parseInt($("#jhkgn").combobox('getText'))){
 				alert("对不起，开工年不能小于项目年份！");
 				return false;

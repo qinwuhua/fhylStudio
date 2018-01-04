@@ -46,8 +46,8 @@ text-decoration:none;
 				$("#jsdj").val(msg.xjsdj);
 				$("#gpsqdzh").val(msg.gpsqdzh);
 				$("#gpszdzh").val(msg.gpszdzh);
-				$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+msg.gpsqdzh);
-				$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+msg.gpszdzh);
+				//$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+msg.gpsqdzh);
+				//$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+msg.gpszdzh);
 				qdStr=parseFloat(msg.gpsqdzh);
 				zdStr=parseFloat(msg.gpszdzh);
 	}

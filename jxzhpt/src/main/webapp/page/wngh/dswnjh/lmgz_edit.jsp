@@ -71,8 +71,8 @@ text-decoration:none;
 				$("#gxzdzh").val(msg.gxzdzh);
 				$("#gpsqdzh").val(msg.gpsqdzh);
 				$("#gpszdzh").val(msg.gpszdzh);
-				$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+msg.gpsqdzh);
-				$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+msg.gpszdzh);
+				//$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+msg.gpsqdzh);
+				//$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+msg.gpszdzh);
 				qdStr=parseFloat(msg.gpsqdzh);
 				zdStr=parseFloat(msg.gpszdzh);
 			}
@@ -146,12 +146,12 @@ text-decoration:none;
 					alert("对不起，止点桩号不能大于"+redzdzh+"！");
 					$("#ghzdzh").focus();
 					return false;
-				} 
+				} */
 				 if(parseFloat($("#ghqdzh").val())*1000>parseFloat($("#ghzdzh").val())*1000){
 					alert("对不起，起点桩号不能大于止点桩号！");
 					$("#ghqdzh").focus();
 					return false;
-				}  */
+				} 
 			if(parseInt($("#xmnf").html())>parseInt($("#jhkgn").combobox('getText'))){
 				alert("对不起，开工年不能小于项目年份！");
 				return false;

@@ -47,8 +47,8 @@ text-decoration:none;
 				$("#xjsdj").val(msg.xjsdj);
 				$("#gpsqdzh").val(msg.gpsqdzh);
 				$("#gpszdzh").val(msg.gpszdzh);
-				$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+msg.gpsqdzh);
-				$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+msg.gpszdzh);
+				//$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+msg.gpsqdzh);
+				//$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+msg.gpszdzh);
 				qdStr=parseFloat(msg.gpsqdzh);
 				zdStr=parseFloat(msg.gpszdzh);
 	}
@@ -93,7 +93,7 @@ text-decoration:none;
 			var redqdzh = $("#span_qdzh").text().substr(5,$("#span_qdzh").text().length);
 			var redzdzh = $("#span_zdzh").text().substr(5,$("#span_zdzh").text().length);
 			
-			 if(parseFloat($("#ghqdzh").val())*1000<redqdzh*1000){
+/* 			 if(parseFloat($("#ghqdzh").val())*1000<redqdzh*1000){
 				alert("对不起，起点桩号不能小于"+redqdzh+"！");
 				$("#ghqdzh").focus();
 				return false;
@@ -102,7 +102,7 @@ text-decoration:none;
 				alert("对不起，止点桩号不能大于"+redzdzh+"！");
 				$("#ghzdzh").focus();
 				return false;
-			} 
+			}  */
 			 if(parseFloat($("#ghqdzh").val())*1000>parseFloat($("#ghzdzh").val())*1000){
 				alert("对不起，起点桩号不能大于止点桩号！");
 				$("#ghqdzh").focus();

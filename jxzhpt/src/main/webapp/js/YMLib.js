@@ -3670,8 +3670,8 @@ function autoCompleteGHLXBM(){
 			$('#lc').html(accSub(parseFloat(item.xzdzh),parseFloat(item.xqdzh)));
 			$('#gpsqdzh').val(item.xqdzh);
 			$('#gpszdzh').val(item.xzdzh);
-			//$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+item.xqdzh);
-			//$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+item.xzdzh);			
+			$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+item.xqdzh);
+			$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+item.xzdzh);			
 	});
 }
 
