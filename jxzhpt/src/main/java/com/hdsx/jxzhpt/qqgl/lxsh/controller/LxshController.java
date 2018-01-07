@@ -444,6 +444,19 @@ public class LxshController extends BaseActionSupport{
 	}
 	public void insertLmgz(){
 		try {
+			if(lxsh.getWnid()!=null&&!lxsh.getWnid().equals("")){
+				String xmbmVal="";
+				String[] val = lxsh.getWnid().split(",");
+				for (int i = 0; i < val.length; i++) {
+					if(i==val.length-1){
+						xmbmVal+="'"+val[i]+"'";}
+					else{
+						xmbmVal+="'"+val[i]+"',";
+						}
+					
+				}
+				lxsh.setWnid(xmbmVal);
+			}
 			Map<String, Object> result =new HashMap<String, Object>();
 			Lx lx=new Lx();
 			lx.setXmid(lxsh.getXmbm());
@@ -470,6 +483,19 @@ public class LxshController extends BaseActionSupport{
 	}
 	public void insertXj(){
 		try {
+			if(lxsh.getWnid()!=null&&!lxsh.getWnid().equals("")){
+				String xmbmVal="";
+				String[] val = lxsh.getWnid().split(",");
+				for (int i = 0; i < val.length; i++) {
+					if(i==val.length-1){
+						xmbmVal+="'"+val[i]+"'";}
+					else{
+						xmbmVal+="'"+val[i]+"',";
+						}
+					
+				}
+				lxsh.setWnid(xmbmVal);
+			}
 			Map<String, Object> result =new HashMap<String, Object>();
 			Lx lx=new Lx();
 			lx.setXmid(lxsh.getXmbm());

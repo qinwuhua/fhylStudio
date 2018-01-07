@@ -12,6 +12,11 @@
 <!-- 		xmid=#{wnid} -->
 	</insert>
 	
+	<insert id="updateqqgllxAdd" parameterType="lxsh">
+		update lxsh_lx set xmid=#{xmbm},sffirst='1',jdbs='0',gpsqdzh=ghqdzh,gpszdzh=ghzdzh where xmid in (${wnid})
+<!-- 		xmid=#{wnid} -->
+	</insert>
+	
 	<update id="updatesffirst" parameterType="lxsh">
 	update lxsh_lx set sffirst='1' where id=#{lxid}
 	</update>

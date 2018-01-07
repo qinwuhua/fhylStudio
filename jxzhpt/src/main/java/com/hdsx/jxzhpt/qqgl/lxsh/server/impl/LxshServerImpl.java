@@ -120,7 +120,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	public boolean insertLmgz(Lxsh lxsh) {
 		if (insert("insertLmgz", lxsh) > 0) {
 			insert("insertqqgllx", lxsh);
-			update("updateqqgllx", lxsh);
+			update("updateqqgllxAdd", lxsh);
 			if("是".equals(lxsh.getSfbflx())){
 				lxsh.setSfbflx("部分开展");
 			}
@@ -131,8 +131,6 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			lxsh.setBz("lxsh_lmgz");
 			lxsh.setBzcs("wnjh_lmgz");
 			update("updateqqglls", lxsh);
-			
-			
 			return true;
 		} else
 			return false;
@@ -141,7 +139,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	public boolean insertXj(Lxsh lxsh) {
 		if (insert("insertXj", lxsh) > 0) {
 			insert("insertqqgllx", lxsh);
-			update("updateqqgllx", lxsh);
+			update("updateqqgllxAdd", lxsh);
 			if("是".equals(lxsh.getSfbflx())){
 				lxsh.setSfbflx("部分开展");
 			}
@@ -152,7 +150,6 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			lxsh.setBz("lxsh_xj");
 			lxsh.setBzcs("wnjh_xj");
 			update("updateqqglls", lxsh);
-			
 			return true;
 		} else
 			return false;
