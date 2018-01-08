@@ -868,10 +868,13 @@ public class Plan_abgcController extends BaseActionSupport{
 	 */
 	public void downAbgcFile(){
         try {
-        	File file =new File(java.net.URLDecoder.decode(uploads.getFileurl(), "UTF-8"));
+        	String fileurl = java.net.URLDecoder.decode(uploads.getFileurl(), "UTF-8");
+        	fileurl = fileurl.replace("amp", "&");
+        	File file =new File(fileurl);
         	HttpServletResponse response = getresponse();
         	OutputStream out = response.getOutputStream();
         	String fileName = new String(java.net.URLDecoder.decode(uploads.getFilename(), "UTF-8"));
+        	fileName = fileName.replace("amp", "&");
         	response.setContentType("application/x-download;charset=UTF-8");
         	response.addHeader("Content-Disposition", "attachment;filename="+new String(fileName.getBytes(),"ISO8859-1"));
             response.setCharacterEncoding("UTF-8");

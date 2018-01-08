@@ -111,7 +111,8 @@
 					if(msg.result){
 						alert("修改成功！");
 						//parent.$("#grid").datagrid("reload");
-						closeWindow("xjgcedit");
+						parent.queryXj();
+						closeWindow('xjgcedit');
 					}
 				},
 				error:function(msg){

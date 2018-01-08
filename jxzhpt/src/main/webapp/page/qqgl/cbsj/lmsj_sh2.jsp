@@ -332,6 +332,7 @@
 					alert("不能包含已审核的项目！");
 					return;
 				}
+				if(confirm('您确定要审核吗？')){
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/shCbsjByXmbm.do',
@@ -345,6 +346,7 @@
 						}
 					}
 				});
+			  }
 			}else{
 				alert("请选择要审核的信息！");
 			}

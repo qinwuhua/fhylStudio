@@ -105,11 +105,16 @@
 				        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dsxjxiangxi('+index+')">详细</a>  '
 				        	+'编辑  '+'删除  '+'添加路线 ';
 			        	}else{
-				        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '
+			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '
+				        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dsxjxiangxi('+index+')">详细</a>  '
+				        	+'编辑  '
+				        	+'删除  '
+				        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>  ';
+				        	/* return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '
 				        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dsxjxiangxi('+index+')">详细</a>  '
 				        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editxj('+index+')">编辑</a>  '
 				        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delxj('+index+')">删除</a>  '
-				        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">     添加路线</a>  ';
+				        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">     添加路线</a>  '; */
 			        	}
 			        }},
 			        {field:'lsjl',title:'历史记录',width:60,align:'center',

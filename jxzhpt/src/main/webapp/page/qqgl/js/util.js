@@ -1529,6 +1529,8 @@ function fileShow1(id,xmbm,type){
  * @param id 文件ID
  */
 function downFile(fileurl,filename){
+	fileurl=fileurl.replace("&","amp");
+	filename=filename.replace("&","amp");
 	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.fileurl="+encodeURI(encodeURI(fileurl))+"&uploads.filename="+encodeURI(encodeURI(filename));
 }
 /**

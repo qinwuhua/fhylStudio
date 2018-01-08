@@ -131,6 +131,7 @@
 						if(msg.result){
 							alert("修改成功！");
 							//parent.$("#grid").datagrid("reload");
+							parent.queryLmsj();
 							closeWindow("lmsjedit");
 						}
 					},

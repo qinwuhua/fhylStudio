@@ -130,7 +130,8 @@
 					success:function(msg){
 						if(msg.result){
 							alert("修改成功！");
-							closeWindow("lmgzedit");
+							parent.queryLmgz();
+							closeWindow('lmgzedit');
 						}
 					},
 					error:function(msg){

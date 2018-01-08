@@ -164,6 +164,10 @@ text-decoration:none;
 	});
 	
 	function saveLxsh(){
+		//五年项目库去除桩号限制，五年项目库编辑保存后在项目立项中取桩号限制的gpsqdzh和gpszdzh同时也要更新
+		$("#gpsqdzh").val($('#ghqdzh').val());
+		$("#gpszdzh").val($('#ghzdzh').val());
+
 		if($.cookie("unit2")=="______36"){
 			sbthcd=7;
 		}
