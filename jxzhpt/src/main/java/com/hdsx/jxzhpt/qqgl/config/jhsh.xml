@@ -9277,6 +9277,38 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 		select distinct lxbm,qdzh,zdzh from lxsh_lx where xmid=#{xmbm}
 	</select>
 	
+    <select id="queryLsxxTotal" parameterType="lx" resultType="lx">
+    select nvl(sum(xmsl), 0) xmsl, nvl(sum(jhlc), 0) jhlc, nvl(sum(ztz), 0) ztz, nvl(sum(cgs), 0) cgs, nvl(sum(stz), 0) stz, nvl(sum(sjl), 0) sjl, nvl(sum(rys), 0) rys, nvl(sum(tdk), 0) tdk, nvl(sum(dfzc), 0) dfzc
+    from (select count(*) xmsl,max(jhlc) jhlc,max(ztz) ztz,max(cgs) cgs,max(stz) stz, max(sjl) sjl,max(rys) rys, max(tdk) tdk,max(dfzc) dfzc
+          from query_lsjl where 1=1
+          <if test="xzqhdm != null and xzqhdm != ''">and ${xzqhdm}</if>
+		<if test="jsxz != null and jsxz != ''">and ${jsxz}</if>
+		<if test="lxbm != null and lxbm != ''">and lxbm like '%'||#{lxbm}||'%' </if>
+		<if test="ghlxbm != null and ghlxbm != ''">and ghlxbm like '%'||#{ghlxbm}||'%' </if>
+		<if test="tsdq != null and tsdq != ''">and ${tsdq}</if>
+		<if test="xdnf != null and xdnf != ''">and ${xdnf}</if>
+		<if test="qdzh != null and qdzh != ''">
+		and to_number(fun_zdzxz(qdzh,zdzh,'max'))>to_number(#{qdzh})
+		</if>
+		<if test="zdzh != null and zdzh != ''">
+		and to_number(fun_zdzxz(qdzh,zdzh,'min'))&lt;to_number(#{zdzh})
+		</if>
+		<if test="ghqdzh != null and ghqdzh != ''">
+		and to_number(fun_zdzxz(ghqdzh,ghzdzh,'max'))>to_number(#{ghqdzh})
+		</if>
+		<if test="ghzdzh != null and ghzdzh != ''">
+		and to_number(fun_zdzxz(ghqdzh,ghzdzh,'min'))&lt;to_number(#{ghzdzh})
+		</if>
+		<if test="xmknf != null and xmknf != ''">and ${xmknf}</if>
+		<if test="sjlx != null and sjlx != ''">
+		and ${sjlx}
+		</if>
+		<if test="xmid != null and xmid != ''">and xmid like '%'||#{xmid}||'%' </if>
+		<if test="xmmc != null and xmmc != ''">and xmmc like '%'||#{xmmc}||'%' </if>
+        group by xmid)  
+	</select>
+	
+	
 	<select id="queryLsxx2new" parameterType="lx" resultType="lx">
 		select * from query_lsjl where 1=1
 		<if test="xzqhdm != null and xzqhdm != ''">and ${xzqhdm}</if>
@@ -9301,6 +9333,8 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 		<if test="sjlx != null and sjlx != ''">
 		and ${sjlx}
 		</if>
+		<if test="xmid != null and xmid != ''">and xmid like '%'||#{xmid}||'%' </if>
+		<if test="xmmc != null and xmmc != ''">and xmmc like '%'||#{xmmc}||'%' </if>
 	</select>
 	
 	<select id="exportLsjlSearchExcel" parameterType="lx" resultType="elist">

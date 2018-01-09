@@ -57,13 +57,13 @@
 			var sjlx=$("#sjlx").combobox("getValues").join(",");
 			if(sjlx.substr(0,1)==',')
 				sjlx=sjlx.substr(1,sjlx.length);
-		
+ 			var params={'lx.lxbm': lxbm,'lx.qdzh':$('#qdzh').val(),'lx.zdzh':$('#zdzh').val(),
+					'lx.ghlxbm': ghlxbm,'lx.ghqdzh':$('#ghqdzh').val(),'lx.ghzdzh':$('#ghzdzh').val(),'lx.xmlx':xmlx,'lx.xzqh':xzqhstr,'lx.xdnf':xdnf,'lx.tsdq':tsdq,
+					'lx.xmknf':xmknf,'lx.sjlx':sjlx,'lx.xmid':$('#xmid').val(),'lx.xmmc':$('#xmmc').val()};
+			loadLj(params);
 			$('#grid').datagrid({
 				url:'../../../qqgl/queryLsxx2new.do',
-				queryParams: {'lx.lxbm': lxbm,'lx.qdzh':$('#qdzh').val(),'lx.zdzh':$('#zdzh').val(),
-					'lx.ghlxbm': ghlxbm,'lx.ghqdzh':$('#ghqdzh').val(),'lx.ghzdzh':$('#ghzdzh').val(),'lx.xmlx':xmlx,'lx.xzqh':xzqhstr,'lx.xdnf':xdnf,'lx.tsdq':tsdq,
-					'lx.xmknf':xmknf,'lx.sjlx':sjlx
-				},
+				queryParams: params,
 				rownumbers:true,
 				fitColumns:true,
 				height:$(window).height()-120,
@@ -117,9 +117,51 @@
 									else return value;
 							}
 					}
+/* 					{field:'jhlc',title:'计划里程',width:100,align:'center'},
+					{field:'ztz',title:'总投资',width:100,align:'center'},
+					{field:'cgs',title:'车购税',width:100,align:'center'},
+					{field:'stz',title:'省补助资金',width:100,align:'center'},
+					{field:'sjl',title:'省奖励资金',width:100,align:'center'},
+					{field:'rys',title:'燃油税',width:100,align:'center'},
+					{field:'tdk',title:'厅贷款',width:100,align:'center'},
+					{field:'dfzc',title:'地方自筹',width:100,align:'center'} */
 					]]
 			});
 		}
+		
+		function loadLj(params){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/queryLsxxTotal.do',
+				data:params,
+				dataType:'json',
+				success:function(msg){
+					if(msg!=null){
+						 $("#xmsl").html(msg.xmsl);
+						 $("#jhlc").html(msg.jhlc);
+						 $("#ztz").html(msg.ztz);
+						 $("#cgs").html(msg.cgs);
+						 $("#stz").html(msg.stz);
+						 $("#sjl").html(msg.sjl);
+						 $("#rys").html(msg.rys);
+						 $("#tdk").html(msg.tdk);
+						 $("#dfzc").html(msg.dfzc);
+					}/* else{
+						$('#xmsl').html("0");
+						$('#jhlc').html("0");
+						$('#ztz').html("0");
+						$('#cgs').html("0");
+						$('#stz').html("0");
+						$('#sjl').html("0");
+						$('#rys').html("0");
+						$('#tdk').html("0");
+						$('#dfzc').html("0");
+					} */
+				}
+			});
+		}
+		
+		
 		var obj;
 		function msgxx(xmid,jsdj,ghqdzh,ghzdzh,qdzh,zdzh){
 			
@@ -332,6 +374,12 @@ text-decoration:none;
         						<td style="text-align: left;"><input id="sjlx" type="text" style="width: 100px;margin-right: 10px;"/></td>
         					
         					</tr>
+        					<tr height="32">
+								<td style="text-align: right;">项目编码：</td>
+        						<td style="text-align: left;"><input id="xmid" type="text" style="width: 70px;margin-right: 10px;"/></td>
+								<td style="text-align: right;">项目名称：</td>
+        						<td style="text-align: left;"><input id="xmmc" type="text" style="width: 60px;margin-right: 10px;"/></td>
+        					</tr>
                             <tr height="32">
                             	<td colspan="8">
 								<a style="margin-top: 1px;margin-bottom: 1px;" href="javascript:search()" class="button button-tiny button-raised button-primary">查询</a>
@@ -350,15 +398,15 @@ text-decoration:none;
         	</tr>
             <tr>
            	    <td style="padding-left: 10px; font-size:12px;">
-           		     项目【<span id="" style="color: red;">0</span>】个，
-            	     建设里程【<span id="" style="color: red;">0</span>】公里，
-            	     总投资【<span id="" style="color: red;">0</span>】万元，
-            	     其中车购税【<span id="" style="color: red;">0</span>】万元，
-            	     省补资金【<span id="" style="color: red;">0</span>】万元，
-            	     省奖励资金【<span id="" style="color: red;">0</span>】万元，
-            	     燃油税【<span id="" style="color: red;">0</span>】万元，
-            	     厅贷款【<span id="" style="color: red;">0</span>】万元，
-            	     地方投资【<span id="" style="color: red;">0</span>】万元。
+           		     项目【<span id="xmsl" style="color: red;">0</span>】个，
+            	     建设里程【<span id="jhlc" style="color: red;">0</span>】公里，
+            	     总投资【<span id="ztz" style="color: red;">0</span>】万元，
+            	     其中车购税【<span id="cgs" style="color: red;">0</span>】万元，
+            	     省补资金【<span id="stz" style="color: red;">0</span>】万元，
+            	     省奖励资金【<span id="sjl" style="color: red;">0</span>】万元，
+            	     燃油税【<span id="rys" style="color: red;">0</span>】万元，
+            	     厅贷款【<span id="tdk" style="color: red;">0</span>】万元，
+            	     地方投资【<span id="dfzc" style="color: red;">0</span>】万元。
            	    </td>
        	     </tr>
 		</table>

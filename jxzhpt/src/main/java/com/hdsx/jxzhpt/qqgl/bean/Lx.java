@@ -6,7 +6,71 @@ public class Lx {
 	private String sjlx;
 	private String wbc;
 	private String wbchd;
+	private String jhlc;//计划里程（建设里程）
+	private String ztz; //批复总投资
+	private String cgs; //车购税
+	private String stz; //省投资
+	private String sjl; //省奖励
+	private String rys; //燃油税
+	private String tdk; //厅贷款
+	private String dfzc; //地方自筹
+	private String xmsl;//项目数量
+
+	public String getXmsl() {
+		return xmsl;
+	}
+	public void setXmsl(String xmsl) {
+		this.xmsl = xmsl;
+	}
+	public String getJhlc() {
+		return jhlc;
+	}
+	public void setJhlc(String jhlc) {
+		this.jhlc = jhlc;
+	}
+	public String getZtz() {
+		return ztz;
+	}
+	public void setZtz(String ztz) {
+		this.ztz = ztz;
+	}
 	
+	public String getCgs() {
+		return cgs;
+	}
+	public void setCgs(String cgs) {
+		this.cgs = cgs;
+	}
+	public String getStz() {
+		return stz;
+	}
+	public void setStz(String stz) {
+		this.stz = stz;
+	}
+	public String getSjl() {
+		return sjl;
+	}
+	public void setSjl(String sjl) {
+		this.sjl = sjl;
+	}
+	public String getRys() {
+		return rys;
+	}
+	public void setRys(String rys) {
+		this.rys = rys;
+	}
+	public String getTdk() {
+		return tdk;
+	}
+	public void setTdk(String tdk) {
+		this.tdk = tdk;
+	}
+	public String getDfzc() {
+		return dfzc;
+	}
+	public void setDfzc(String dfzc) {
+		this.dfzc = dfzc;
+	}
 	public String getWbc() {
 		return wbc;
 	}

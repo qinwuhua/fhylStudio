@@ -4710,4 +4710,29 @@ public class JhshController extends BaseActionSupport implements
 			e.printStackTrace();
 		}
 	}
+	public void queryLsxxTotal(){
+		try {
+			String xzqh = lx.getXzqh();
+			// lx.setXzqh(getcxtj("l.xzqhdm",xzqh));
+			// lx.setXzqhdm(getcxtj("t.xlxbm",xzqh));
+			lx.setXzqhdm(getcxtj("xzqhdm2", xzqh));
+			lx.setXdnf(getcxtj("xdnf", lx.getXdnf()));
+			lx.setTsdq(getcxtj("tsdq", lx.getTsdq()));
+			lx.setJsxz(getcxtj("jsxz", lx.getXmlx()));
+			lx.setXmknf(getcxtj("xmknf", lx.getXmknf()));
+			/*
+			 * if(!"".equals(lx.getXmknf())&&!"".equals(lx.getXdnf()))
+			 * lx.setXdnf("("+lx.getXdnf()+"  or  "+lx.getXmknf()+")"); else
+			 * lx.setXdnf(lx.getXdnf()+" "+lx.getXmknf());
+			 */
+			lx.setSjlx(getcxtj("sjlx", lx.getSjlx()));
+			JsonUtils.write(jhshServer.queryLsxxTotal(lx), getresponse().getWriter());
+/*		Map<String, String> result = new HashMap<String, String>();
+		result = jhshServer.queryLsxxTotal(lx);
+		JsonUtils.write(result, getresponse().getWriter());*/
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

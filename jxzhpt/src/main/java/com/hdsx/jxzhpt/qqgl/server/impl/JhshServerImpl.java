@@ -1988,4 +1988,31 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public boolean insertOrUpdateJhshDj(List<Jhsh> list) {
 		return updateBatch("insertOrUpdateJhshDj", list) == list.size();
 	}
+
+	@Override
+	public Lx queryLsxxTotal(Lx lx) {
+		//Lx result = new ArrayList<Lx>();
+		Lx result = queryOne("queryLsxxTotal", lx);
+		if (!"".equals(lx.getGhlxbm())) {
+			if ("".equals(lx.getGhqdzh()))
+				lx.setGhqdzh("0");
+			if ("".equals(lx.getGhzdzh()))
+				lx.setGhzdzh("9999");	
+			List<Lx> l = queryList("getgxlxbyzh", lx);
+			if (l.size() > 0)
+				for (Lx lx2 : l) {
+					lx.setLxbm(null);
+					lx.setQdzh(null);
+					lx.setZdzh(null);
+					lx.setGhlxbm(lx2.getLxbm());
+					lx.setGhqdzh(lx2.getQdzh());
+					lx.setGhzdzh(lx2.getZdzh());
+					Lx l2 = queryOne("queryLsxxTotal", lx);
+					result.setXmsl((Integer.parseInt(result.getXmsl()) + Integer.parseInt(l2.getXmsl()))+"");
+					//result.setZtz((Double.parseDouble(result.getZtz()) + Double.parseDouble(l2.getZtz()))+"");
+					//result.addAll(l2);
+				}
+		}
+		return result;
+	}
 }
