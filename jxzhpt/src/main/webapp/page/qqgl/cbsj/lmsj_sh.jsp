@@ -176,7 +176,7 @@
 		        	}else{
 		        		if(row.shzt=='0'){
 		        			//return '未审核';
- 			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="batchSb('+index+')">未审核</a>';
+ 			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="sh('+row.xmbm+')">未审核</a>';
 		        		}else if(row.shzt=='1'){
 			        		return '已审核';
 		        		}
@@ -299,6 +299,7 @@
 		
 		
 		function sh(xmbm){
+			if(confirm('您确定要审核吗？')){
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/shCbsjByXmbm.do',
@@ -308,16 +309,21 @@
 					if(msg.result=="true"){
 						selArray.splice(0,selArray.length);
 						alert("审核成功!");
-						queryLmsj();
+						$("#grid").datagrid('reload');
 					}
 				}
 			});
+		  }
 		}
 		function batchSb(){
 			if(selArray.length!=0){
 				var xmbm="",sbzt="",shzt="";
 				var sels =$('#grid').datagrid("getSelections");
-				var breakTh=true;
+/* 				$.each(sels,function(index,item){
+					alert((sels.length-1) +","+index);
+					alert(index+","+item.xmmc);
+				});  */
+				var breakTh=true;	
 				$.each(sels,function(index,item){
 					if(item.shzt==1){
 						breakTh=false;
@@ -347,7 +353,7 @@
 						if(msg.result=="true"){
 							selArray.splice(0,selArray.length);
 							alert("审核成功!");
-							queryLmsj();
+							$("#grid").datagrid('reload');
 						}
 					}
 				});

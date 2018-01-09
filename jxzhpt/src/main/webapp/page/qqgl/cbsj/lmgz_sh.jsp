@@ -164,7 +164,7 @@
 		        	}else{
 		        		if(row.shzt=='0'){
 		        			//return '未审核';
- 			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="batchSb('+index+')">未审核</a>';
+ 			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="sh('+row.xmbm+')">未审核</a>';
 		        		}else if(row.shzt=='1'){
 			        		return '已审核';
 		        		}
@@ -292,6 +292,7 @@
 			}
 		} */
 		function sh(xmbm){
+			if(confirm('您确定要审核吗？')){
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/shCbsjByXmbm.do',
@@ -305,6 +306,7 @@
 					}
 				}
 			});
+		  }	
 		}
 		function batchSb(){
 			if(selArray.length!=0){
@@ -340,7 +342,7 @@
 						if(msg.result=="true"){
 							selArray.splice(0,selArray.length);
 							alert("审核成功!");
-							queryLmgz();
+							$("#grid").datagrid('reload');
 						}
 					}
 				});

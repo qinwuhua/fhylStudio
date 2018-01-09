@@ -460,7 +460,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	     kgsj=(select kgsj from cbsj_lmgz c where c.xmbm=#{xmbm}),
 	     wgsj=(select wgsj from cbsj_lmgz c where c.xmbm=#{xmbm}),
 	     gq=(select gq from cbsj_lmgz c where c.xmbm=#{xmbm}),
-	     sjpfwh=(select sjpfwh from cbsj_lmgz c where c.xmbm=#{xmbm}),
+	     sjpfwh=(select sjpfwh from cbsj_lmgz c where c.xmbm=#{xmbm})
 	    where j.xmbm=#{xmbm}
 	</insert>
 	<insert id="insertJhshXjFromCbsj" parameterType="java.util.List">
@@ -474,7 +474,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	     kgsj=(select kgsj from cbsj_xj c where c.xmbm=#{xmbm}),
 	     wgsj=(select wgsj from cbsj_xj c where c.xmbm=#{xmbm}),
 	     gq=(select gq from cbsj_xj c where c.xmbm=#{xmbm}),
-	     sjpfwh=(select sjpfwh from cbsj_xj c where c.xmbm=#{xmbm}),
+	     sjpfwh=(select sjpfwh from cbsj_xj c where c.xmbm=#{xmbm})
 	    where j.xmbm=#{xmbm}
 	</insert>
 	<insert id="insertJhshYhdzxFromCbsj" parameterType="cbsj">
