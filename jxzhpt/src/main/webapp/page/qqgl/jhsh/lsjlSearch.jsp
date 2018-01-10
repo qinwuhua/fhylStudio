@@ -65,13 +65,13 @@
 				url:'../../../qqgl/queryLsxx2new.do',
 				queryParams: params,
 				rownumbers:true,
-				fitColumns:true,
+				//fitColumns:true,
 				height:$(window).height()-120,
 			    width:$(window).width()-20,
 				columns:[[
 					{field:'sjlx',title:'数据类型',width:100,align:'center'},
 					{field:'xmlx',title:'项目类型',width:100,align:'center'},
-					{field:'xmmc',title:'项目名称',width:200,fixed:true,align:'center',
+					{field:'xmmc',title:'项目名称',width:220,fixed:true,align:'center',
 						formatter:function(value,row,index){
 							var a="";
 							if(row.sjlx=='补助历史')
@@ -82,15 +82,15 @@
 							return a;
 						}
 					},
-					{field:'xmid',title:'项目年份',width:100,align:'center',
+					{field:'xmnf',title:'项目年份',width:100,align:'center',
 						formatter:function(value,row,index){
 							if(row.sjlx=='补助历史')
-							return value.substring(0,4);
+							return row.xmid.substring(0,4);
 							else
 							return row.xmknf;
 						}
 					},
-					{field:'xdnf',title:'下达年份',width:180,align:'center'},
+					{field:'xdnf',title:'下达年份',width:100,align:'center'},
 					{field:'ghlxbm',title:'规划路线编码',width:110,align:'center'},
 					{field:'jsjsdj',title:'规划技术等级',width:110,align:'center',
 						formatter:function(value,row,index){
@@ -116,16 +116,72 @@
 									return '';
 									else return value;
 							}
-					}
-/* 					{field:'jhlc',title:'计划里程',width:100,align:'center'},
+					},
+ 					{field:'xmid',title:'项目编码',width:160,align:'center'},
+ 					{field:'jhlc',title:'计划里程',width:100,align:'center'},
 					{field:'ztz',title:'总投资',width:100,align:'center'},
 					{field:'cgs',title:'车购税',width:100,align:'center'},
 					{field:'stz',title:'省补助资金',width:100,align:'center'},
 					{field:'sjl',title:'省奖励资金',width:100,align:'center'},
 					{field:'rys',title:'燃油税',width:100,align:'center'},
 					{field:'tdk',title:'厅贷款',width:100,align:'center'},
-					{field:'dfzc',title:'地方自筹',width:100,align:'center'} */
-					]]
+					{field:'dfzc',title:'地方自筹',width:100,align:'center'}
+					]],
+					onLoadSuccess: function(data){
+						 var mark = 1;
+		                    for (var i = 1; i < data.rows.length; i++) {
+		                        if (data.rows[i]['xmid'] == data.rows[i - 1]['xmid']) {
+		                            mark += 1;
+		                            $("#grid").datagrid('mergeCells', {
+		                                index: i + 1 - mark,
+		                                field: 'xmid',
+		                                rowspan: mark
+		                            });
+		                            $("#grid").datagrid('mergeCells', {
+		                                index: i + 1 - mark,
+		                                field: 'jhlc',
+		                                rowspan: mark
+		                            });
+ 		                            $("#grid").datagrid('mergeCells', {
+		                                index: i + 1 - mark,
+		                                field: 'ztz',
+		                                rowspan: mark
+		                            });
+		                            $("#grid").datagrid('mergeCells', {
+		                                index: i + 1 - mark,
+		                                field: 'cgs',
+		                                rowspan: mark
+		                            });
+		                            $("#grid").datagrid('mergeCells', {
+		                                index: i + 1 - mark,
+		                                field: 'stz',
+		                                rowspan: mark
+		                            });
+		                            $("#grid").datagrid('mergeCells', {
+		                                index: i + 1 - mark,
+		                                field: 'sjl',
+		                                rowspan: mark
+		                            });
+		                            $("#grid").datagrid('mergeCells', {
+		                                index: i + 1 - mark,
+		                                field: 'rys',
+		                                rowspan: mark
+		                            });
+		                            $("#grid").datagrid('mergeCells', {
+		                                index: i + 1 - mark,
+		                                field: 'tdk',
+		                                rowspan: mark
+		                            });
+		                            $("#grid").datagrid('mergeCells', {
+		                                index: i + 1 - mark,
+		                                field: 'dfzc',
+		                                rowspan: mark
+		                            });
+		                        } else {
+		                            mark = 1;
+		                        }
+		                    }
+		           }
 			});
 		}
 		
@@ -315,10 +371,10 @@
 			
 			var param='lx.lxbm='+lxbm+'&lx.qdzh='+$('#qdzh').val()+'&lx.zdzh='+$('#zdzh').val()+'&lx.ghlxbm='+ghlxbm+
 			'&lx.ghqdzh='+$('#ghqdzh').val()+'&lx.ghzdzh='+$('#ghzdzh').val()+'&lx.xmlx='+encodeURI(encodeURI(xmlx))+'&lx.xzqh='+xzqhstr+
-			'&lx.xdnf='+xdnf+'&lx.tsdq='+tsdq+'&lx.xmknf='+xmknf+'&lx.sjlx='+sjlx;
+			'&lx.xdnf='+xdnf+'&lx.tsdq='+tsdq+'&lx.xmknf='+xmknf+'&lx.sjlx='+encodeURI(encodeURI(sjlx))+'&lx.xmid='+$('#xmid').val()+'&lx.xmmc='+encodeURI(encodeURI($('#xmmc').val()));
 			
 			window.location.href="/jxzhpt/qqgl/exportLsjlSearchExcel.do?"+param;
-		}
+		} 
 	</script>
 	<style>
 	TD {
@@ -429,8 +485,8 @@ text-decoration:none;
 			</tr>
 		</table>
 	</div> --%>
-	<table id="grid" width="98%" border="0" class="easyui-datagrid" data-options="fitColumns:true" style="margin-top:1px;margin-left:1px;" cellspacing="0" cellpadding="0">
-		 <thead>
+	<table id="grid" width="98%" border="0" class="easyui-datagrid" style="margin-top:1px;margin-left:1px;" cellspacing="0" cellpadding="0">
+<!-- 		 <thead>
         	<tr>
         		<th data-options="field:'sjlx',width:150,fixed:true,align:'center'">数据类型</th>
         		<th data-options="field:'xmlx',width:150,fixed:true,align:'center'">项目类型</th>
@@ -445,7 +501,7 @@ text-decoration:none;
 				<th data-options="field:'yqdzh',width:100,align:'center'">原起点桩号</th>
 				<th data-options="field:'yzdzh',width:100,align:'center'">原止点桩号</th>
         	</tr>
-    	</thead> 
+    	</thead>  -->
 	</table>
 </body>
 </html>

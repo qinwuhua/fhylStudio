@@ -9336,12 +9336,49 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 		<if test="xmid != null and xmid != ''">and xmid like '%'||#{xmid}||'%' </if>
 		<if test="xmmc != null and xmmc != ''">and xmmc like '%'||#{xmmc}||'%' </if>
 	</select>
-	
+	<select id="exportLsjlSearchExcelTotal" parameterType="lx" resultType="elist">
+	    select '合计' v_0, ''v_1,''v_2,''v_3,''v_4,''v_5,''v_6,''v_7,''v_8,''v_9,''v_10,''v_11,''v_12,''v_13,nvl(sum(zh.jhlc),0) v_14,
+    nvl(sum(zh.ztz),0) v_15,nvl(sum(zh.cgs),0) v_16,nvl(sum(zh.stz),0) v_17,nvl(sum(zh.sjl),0) v_18,nvl(sum(zh.rys),0) v_19,nvl(sum(zh.tdk),0) v_20,nvl(sum(zh.dfzc),0) v_21  from
+    (select max(t.v_14)jhlc,max(t.v_15)ztz,max(t.v_16)cgs,max(t.v_17)stz,max(t.v_18)sjl,max(t.v_19)rys,max(t.v_20)tdk,max(t.v_21)dfzc from
+    (select ql.xmid,to_char(rownum) v_0,ql.sjlx v_1,ql.xmlx v_2,ql.xmmc v_3,
+        decode(ql.sjlx,'补助历史', substr(ql.xmid, 0, 4),ql.xmknf) v_4,
+        ql.xdnf v_5, ql.ghlxbm v_6,ql.jsjsdj v_7,ql.ghqdzh v_8,ql.ghzdzh v_9,ql.lxbm v_10,
+        ql.xjsdj v_11,ql.qdzh v_12,ql.zdzh v_13,ql.jhlc v_14,ql.ztz v_15,ql.cgs v_16,ql.stz v_17,
+        ql.sjl v_18, ql.rys v_19, ql.tdk v_20, ql.dfzc v_21
+      from query_lsjl ql where 1=1 
+        <if test="xzqhdm != null and xzqhdm != ''">and ${xzqhdm}</if>
+		<if test="jsxz != null and jsxz != ''">and ${jsxz}</if>
+		<if test="lxbm != null and lxbm != ''">and lxbm like '%'||#{lxbm}||'%' </if>
+		<if test="ghlxbm != null and ghlxbm != ''">and ghlxbm like '%'||#{ghlxbm}||'%' </if>
+		<if test="tsdq != null and tsdq != ''">and ${tsdq}</if>
+		<if test="xdnf != null and xdnf != ''">and ${xdnf}</if>
+		<if test="qdzh != null and qdzh != ''">
+		and to_number(fun_zdzxz(qdzh,zdzh,'max'))>to_number(#{qdzh})
+		</if>
+		<if test="zdzh != null and zdzh != ''">
+		and to_number(fun_zdzxz(qdzh,zdzh,'min'))&lt;to_number(#{zdzh})
+		</if>
+		<if test="ghqdzh != null and ghqdzh != ''">
+		and to_number(fun_zdzxz(ghqdzh,ghzdzh,'max'))>to_number(#{ghqdzh})
+		</if>
+		<if test="ghzdzh != null and ghzdzh != ''">
+		and to_number(fun_zdzxz(ghqdzh,ghzdzh,'min'))&lt;to_number(#{ghzdzh})
+		</if>
+		<if test="xmknf != null and xmknf != ''">and ${xmknf}</if>
+		<if test="sjlx != null and sjlx != ''">
+		and ${sjlx}
+		</if>
+		<if test="xmid != null and xmid != ''">and xmid like '%'||#{xmid}||'%' </if>
+		<if test="xmmc != null and xmmc != ''">and xmmc like '%'||#{xmmc}||'%' </if>
+      )t group by t.xmid) zh
+	</select>
+
 	<select id="exportLsjlSearchExcel" parameterType="lx" resultType="elist">
       select to_char(rownum) v_0,ql.sjlx v_1,ql.xmlx v_2,ql.xmmc v_3,
         decode(ql.sjlx,'补助历史', substr(ql.xmid, 0, 4),ql.xmknf) v_4,
         ql.xdnf v_5, ql.ghlxbm v_6,ql.jsjsdj v_7,ql.ghqdzh v_8,ql.ghzdzh v_9,ql.lxbm v_10,
-        ql.xjsdj v_11,ql.qdzh v_12,ql.zdzh v_13
+        ql.xjsdj v_11,ql.qdzh v_12,ql.zdzh v_13,ql.jhlc v_14,ql.ztz v_15,ql.cgs v_16,ql.stz v_17,
+        ql.sjl v_18, ql.rys v_19, ql.tdk v_20, ql.dfzc v_21
       from query_lsjl ql where 1=1
 	    <if test="xzqhdm != null and xzqhdm != ''">and ${xzqhdm}</if>
 		<if test="jsxz != null and jsxz != ''">and ${jsxz}</if>
@@ -9365,6 +9402,8 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 		<if test="sjlx != null and sjlx != ''">
 		and ${sjlx}
 		</if>
+		<if test="xmid != null and xmid != ''">and xmid like '%'||#{xmid}||'%' </if>
+		<if test="xmmc != null and xmmc != ''">and xmmc like '%'||#{xmmc}||'%' </if>
 	</select>
 	<select id="getgxlxbyzh" parameterType="lx" resultType="lx">
 		select * from table(fun_cfld(#{ghlxbm},${ghqdzh},${ghzdzh}))

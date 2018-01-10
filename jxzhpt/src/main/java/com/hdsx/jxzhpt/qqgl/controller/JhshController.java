@@ -2577,10 +2577,11 @@ public class JhshController extends BaseActionSupport implements
 			lx.setXdnf(getcxtj("xdnf", lx.getXdnf()));
 			lx.setTsdq(getcxtj("tsdq", lx.getTsdq()));
 			String xmlx = java.net.URLDecoder.decode(lx.getXmlx(),"UTF-8");
-			System.out.println(xmlx);
 			lx.setJsxz(getcxtj("jsxz", xmlx));
 			lx.setXmknf(getcxtj("xmknf", lx.getXmknf()));
-			lx.setSjlx(getcxtj("sjlx", lx.getSjlx()));
+			String sjlx = java.net.URLDecoder.decode(lx.getSjlx(),"UTF-8");
+			lx.setSjlx(getcxtj("sjlx", sjlx));
+			lx.setXmmc(java.net.URLDecoder.decode(lx.getXmmc(), "UTF-8"));
 			List<Excel_list> l = jhshServer.exportLsjlSearchExcel(lx);		
 			ExcelData eldata = new ExcelData();// 创建一个类
 			eldata.setTitleName("综合查询导出Excel");// 设置第一行
@@ -2602,6 +2603,14 @@ public class JhshController extends BaseActionSupport implements
 			et.add(new Excel_tilte("原技术等级", 1, 2, 11, 11));
 			et.add(new Excel_tilte("原起点桩号", 1, 2, 12, 12));
 			et.add(new Excel_tilte("原止点桩号", 1, 2, 13, 13));
+			et.add(new Excel_tilte("计划总里程", 1, 2, 14, 14));
+			et.add(new Excel_tilte("总投资", 1, 2, 15, 15));
+			et.add(new Excel_tilte("车购税", 1, 2, 16, 16));
+			et.add(new Excel_tilte("省补资金", 1, 2, 17, 17));
+			et.add(new Excel_tilte("省奖励资金", 1, 2, 18, 18));
+			et.add(new Excel_tilte("燃油税", 1, 2, 19, 19));
+			et.add(new Excel_tilte("厅贷款", 1, 2, 20, 20));
+			et.add(new Excel_tilte("地方自筹", 1, 2, 21, 21));
 			eldata.setEt(et);
 			HttpServletResponse response = getresponse();// 获得一个HttpServletResponse
 		    Excel_export.excel_export(eldata, response);
