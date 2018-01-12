@@ -210,10 +210,12 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 		}
 		str="id in("+str+"')";
 		if(updateBatch("shsjgzkxx", lm)>0){
+			//根据值查找出工可表（kxxyj）中的信息
 			List<Kxxyj> list=queryList("queryshsjgz", str);
 			for (Kxxyj lxsh2 : list) {
 				lxsh2.setJdbs("1");
 				System.out.println(lxsh2.getXmbm());
+				//根据查找出来的每条信息又查找出立项路线表的信息（lxsh_lx）
 				List<Lxsh> list3=queryList("querylxlist",lxsh2);
 				for (Lxsh lxsh3 : list3) {
 					lxsh3.setJdbs("2");
@@ -224,14 +226,11 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 					lxsh2.setJsdw("");
 				}
 				insert("insertsjgzcb", lxsh2);
-				
 				//下面这三行代码是为了直接可以进行计划申报。
-				lxsh.setBz("kxxyj_sjgz");
+				/*lxsh.setBz("kxxyj_sjgz");
 				lxsh.setBzcs("jhsh_sjgz");
-				insert("insertjhshsb", lxsh);
-				//
+				insert("insertjhshsb", lxsh);*/
 			}
-			
 			return true;
 		}
 		else
@@ -268,9 +267,9 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 				}
 				insert("insertlmgzcb", lxsh2);
 				//下面这三行代码是为了直接可以进行计划申报。
-				lxsh.setBz("kxxyj_lmgz");
+				/*lxsh.setBz("kxxyj_lmgz");
 				lxsh.setBzcs("jhsh_lmgz");
-				insert("insertjhshsb", lxsh);
+				insert("insertjhshsb", lxsh);*/
 			}
 			
 			return true;
@@ -309,9 +308,9 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 				}
 				insert("insertxjcb", lxsh2);
 				//下面这三行代码是为了直接可以进行计划申报。
-				lxsh.setBz("kxxyj_xj");
+				/*lxsh.setBz("kxxyj_xj");
 				lxsh.setBzcs("jhsh_xj");
-				insert("insertjhshsb", lxsh);
+				insert("insertjhshsb", lxsh);*/
 			}
 			
 			return true;

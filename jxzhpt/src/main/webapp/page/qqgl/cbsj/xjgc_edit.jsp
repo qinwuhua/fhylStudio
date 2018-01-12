@@ -21,6 +21,7 @@
 	<script type="text/javascript">
 		$(function(){
 			loadBmbm2('jsjsdj','技术等级');
+			alert(parent.YMLib.Var.xmbm);
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/queryCbsjByXmbm.do',

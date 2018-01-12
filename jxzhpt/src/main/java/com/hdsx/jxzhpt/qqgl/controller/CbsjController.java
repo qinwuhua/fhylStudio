@@ -784,7 +784,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			boolean b=false;
 			if(cbsj.getXmlx()==1){
 				b=cbsjServer.shCbsjLmsjByXmbm(cbsj,sbzt1,shzt1);
-				if(b && (shzt1!=null && !shzt1.equals(""))){
+				if(b && (shzt1!=null && !"".equals(shzt1))){
 					jhshServer.insertJhshLmsjFromCbsj(cbsj.getXmbm());
 					Lxsh lxsh=new Lxsh();
 					lxsh.setXmbm(cbsj.getXmbm());

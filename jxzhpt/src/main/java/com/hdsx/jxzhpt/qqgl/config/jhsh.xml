@@ -434,10 +434,10 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	</update>
         
 	<insert id="insertJhshLmsjFromCbsj" parameterType="java.util.List">
-		<!-- insert into jhsh_sjgz (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh,jszlc)
+		insert into jhsh_sjgz (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh,jszlc)
 		select sys_guid(),c.xmbm,c.xmmc,c.xzqh,c.qdzh,c.zdzh,c.kgsj,c.wgsj,c.gq,k.gkpfwh,c.sjpfwh,c.jszlc
-		from cbsj_sjgz c left join kxxyj_sjgz k on c.xmbm=k.xmbm where c.xmbm=#{xmbm} -->
-		update jhsh_sjgz j set xmmc=(select xmmc from cbsj_sjgz c where c.xmbm=#{xmbm}), 
+		from cbsj_sjgz c left join kxxyj_sjgz k on c.xmbm=k.xmbm where c.xmbm=#{xmbm}
+        <!-- update jhsh_sjgz j set xmmc=(select xmmc from cbsj_sjgz c where c.xmbm=#{xmbm}), 
 	     xzqh=(select xzqh from cbsj_sjgz c where c.xmbm=#{xmbm}),
 	     qdzh=(select qdzh from cbsj_sjgz c where c.xmbm=#{xmbm}),
 	     zdzh=(select zdzh from cbsj_sjgz c where c.xmbm=#{xmbm}),
@@ -446,14 +446,14 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	     gq=(select gq from cbsj_sjgz c where c.xmbm=#{xmbm}),
 	     sjpfwh=(select sjpfwh from cbsj_sjgz c where c.xmbm=#{xmbm}),
 	     jszlc=(select jszlc from cbsj_sjgz c where c.xmbm=#{xmbm})
-	    where j.xmbm=#{xmbm}	
+	    where j.xmbm=#{xmbm}-->
 	</insert>
 	
 	<insert id="insertJhshLmgzFromCbsj" parameterType="java.util.List">
-		<!-- insert into jhsh_lmgz (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh)
+		insert into jhsh_lmgz (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh)
 		select sys_guid(),c.xmbm,c.xmmc,c.xzqh,c.qdzh,c.zdzh,c.kgsj,c.wgsj,c.gq,k.gkpfwh,c.sjpfwh
-		from cbsj_lmgz c left join kxxyj_lmgz k on c.xmbm=k.xmbm where c.xmbm=#{xmbm} -->
-		update jhsh_lmgz j set xmmc=(select xmmc from cbsj_lmgz c where c.xmbm=#{xmbm}), 
+		from cbsj_lmgz c left join kxxyj_lmgz k on c.xmbm=k.xmbm where c.xmbm=#{xmbm}
+		<!-- update jhsh_lmgz j set xmmc=(select xmmc from cbsj_lmgz c where c.xmbm=#{xmbm}), 
 	     xzqh=(select xzqh from cbsj_lmgz c where c.xmbm=#{xmbm}),
 	     qdzh=(select qdzh from cbsj_lmgz c where c.xmbm=#{xmbm}),
 	     zdzh=(select zdzh from cbsj_lmgz c where c.xmbm=#{xmbm}),
@@ -461,13 +461,13 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	     wgsj=(select wgsj from cbsj_lmgz c where c.xmbm=#{xmbm}),
 	     gq=(select gq from cbsj_lmgz c where c.xmbm=#{xmbm}),
 	     sjpfwh=(select sjpfwh from cbsj_lmgz c where c.xmbm=#{xmbm})
-	    where j.xmbm=#{xmbm}
+	    where j.xmbm=#{xmbm} -->
 	</insert>
 	<insert id="insertJhshXjFromCbsj" parameterType="java.util.List">
-		<!-- insert into jhsh_xj (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh)
+		insert into jhsh_xj (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh)
 		select sys_guid(),c.xmbm,c.xmmc,c.xzqh,c.qdzh,c.zdzh,c.kgsj,c.wgsj,c.gq,k.gkpfwh,c.sjpfwh
-		from cbsj_xj c left join kxxyj_xj k on c.xmbm=k.xmbm where c.xmbm=#{xmbm} -->
-		update jhsh_xj j set xmmc=(select xmmc from cbsj_xj c where c.xmbm=#{xmbm}), 
+		from cbsj_xj c left join kxxyj_xj k on c.xmbm=k.xmbm where c.xmbm=#{xmbm}
+		<!-- update jhsh_xj j set xmmc=(select xmmc from cbsj_xj c where c.xmbm=#{xmbm}), 
 	     xzqh=(select xzqh from cbsj_xj c where c.xmbm=#{xmbm}),
 	     qdzh=(select qdzh from cbsj_xj c where c.xmbm=#{xmbm}),
 	     zdzh=(select zdzh from cbsj_xj c where c.xmbm=#{xmbm}),
@@ -475,7 +475,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	     wgsj=(select wgsj from cbsj_xj c where c.xmbm=#{xmbm}),
 	     gq=(select gq from cbsj_xj c where c.xmbm=#{xmbm}),
 	     sjpfwh=(select sjpfwh from cbsj_xj c where c.xmbm=#{xmbm})
-	    where j.xmbm=#{xmbm}
+	    where j.xmbm=#{xmbm} -->
 	</insert>
 	<insert id="insertJhshYhdzxFromCbsj" parameterType="cbsj">
 		insert into jhsh_yhdzx (xmbm,xmmc,ylxbh,ghlxbh,gcfl,xzqh,xzqhdm,qdzh,zdzh,lc,jhkgsj,jhwgsj)
