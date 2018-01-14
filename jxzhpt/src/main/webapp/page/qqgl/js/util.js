@@ -1030,6 +1030,7 @@ function openLxAdd2(id,xmbm,jdbs){
  */
 function deleteLx(id,xmlx){
 	var params={'lx.id':id};
+	if(confirm("确定要删除吗？")){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/deleteLx.do',
@@ -1046,6 +1047,7 @@ function deleteLx(id,xmlx){
 			}
 		}
 	});
+   }
 }
 //--------------------------------------------------公用方法---------------------------------------
 /**
@@ -2203,6 +2205,8 @@ function updateLxWin(index,xmbm,id){
 		YMLib.UI.createWindow('lxxx','编辑路线信息','sjgzlx_edit.jsp','lxxx',900,350);
 	}else if(xmbm.substring(10,11)=="2"){
 		YMLib.UI.createWindow('lxxx','编辑路线信息','lmgzlx_edit.jsp','lxxx',900,350);
+	}else if(xmbm.substring(10,11)=="3"){
+		YMLib.UI.createWindow('lxxx','编辑路线信息','xjgclx_edit.jsp','lxxx',900,350);
 	}
 	else if(xmbm.substring(10,11)=="4"){
 		YMLib.UI.createWindow('lxxx','编辑路线信息','lx_update.jsp','lxxx',900,350);
@@ -2311,6 +2315,13 @@ var Rh={
 
 var Qwh={
 		onLoadSuccess:function(data){
+			 var dg = $(this);
+	            var rows=dg.datagrid("getRows");
+		    	for (var i=0;i<rows.length;i++){
+		    		if(rows[i].xmsl<=1){
+		    			dg.datagrid('getExpander', i).hide();
+		    		}
+		    	}
 		},
 		onClickRow:function(rowIndex, rowData){
 		},
@@ -2708,11 +2719,11 @@ function gridBindsle(grid){
 function jslckdgbbzzj(){
 	$.messager.show({  
         title: "提示",  
-        msg: "正在计算补助资金，请等待。。。！",  
+        msg: "正在计算补助资金，请等待！！",  
         showType: 'slide',  
-        timeout: 7000  
+        timeout: 3000  
     });  
-	setTimeout('jslckdgbbzzj1()',7000);
+	setTimeout('jslckdgbbzzj1()',3000);
 }
 //计算里程宽度改变补助资金
 function jslckdgbbzzj1(){
@@ -2804,6 +2815,9 @@ function jsbzzj(flag){
 	var zj16=0;
 	var zj17=0;
 	var zj18=0;
+	var dxbz=0;
+	var zxbz=0;
+	var yfxyhbz=0;
 	if(flag=='lqhntmc'){
 		if($("#lmkd").val()!=null && $("#lmkd").val()!='' && $("#lqhntmchd").numberbox('getValue')!=null && $("#lqhntmchd").numberbox('getValue')!=''){
 			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
@@ -3018,9 +3032,6 @@ function jsbzzj(flag){
 		}
 	}
 	
-	
-	
-	
 	if($("#lqhntmc").val()!='')
 	zj1=$("#lqhntmc").val();
 	if($("#gxlqhntmc").val()!='')
@@ -3055,6 +3066,12 @@ function jsbzzj(flag){
 	zj16=$("#bx").val();
 	if($("#snhntmcssh").val()!='')
 	zj17=$("#snhntmcssh").val();
+	if($("#dxbz").val()!='')
+		dxbz=$("#dxbz").val();
+	if($("#zxbz").val()!='')
+		zxbz=$("#zxbz").val();
+	if($("#yfxyhbz").val()!='')
+		yfxyhbz=$("#yfxyhbz").val();
 	
 	var tt='fcbc30,bc6,bc25,bc30,bmc25,wfc,xjfc,wbc';
 	var tt1=tt.split(",");
@@ -3063,9 +3080,11 @@ function jsbzzj(flag){
 			zj18=accAdd(zj18,$("#"+tt1[i]).val());
 	}
 	var zbz=accAdd(accAdd(accAdd(accAdd(accAdd(accAdd(zj1,zj2),accAdd(zj3,zj4)),accAdd(accAdd(zj5,zj6),accAdd(zj7,zj8))),accAdd(accAdd(accAdd(zj9,zj10),accAdd(zj11,zj12)),accAdd(accAdd(zj13,zj14),accAdd(zj15,zj16)))),zj17),zj18);
-	$("#sbzj1").html(zbz.toFixed(0));
-	$("#sbzj").val(zbz.toFixed(0));
-	
+	var bzje=accAdd(accAdd(dxbz,zxbz),yfxyhbz);
+	if(isNaN(bzje)){bzje=0;}
+	zbz = accAdd(zbz,bzje);
+	$("#sbzj1").html(zbz.toFixed(2));
+	$("#sbzj").val(zbz.toFixed(2));
 }
 
 

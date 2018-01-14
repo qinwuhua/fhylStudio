@@ -284,8 +284,21 @@ public class Xmsq {
 	private String lxbm;
 	private String zlc;
 	private String snhntmchbmj;
+	private String bzlx135;
+	private String bzje135;
 	
-	
+	public String getBzlx135() {
+		return bzlx135;
+	}
+	public void setBzlx135(String bzlx135) {
+		this.bzlx135 = bzlx135;
+	}
+	public String getBzje135() {
+		return bzje135;
+	}
+	public void setBzje135(String bzje135) {
+		this.bzje135 = bzje135;
+	}
 	public String getFcbc30() {
 		return fcbc30;
 	}

@@ -39,13 +39,13 @@
 	</select>
 	
 	<select id="queryAutoList1" parameterType="xmsq" resultType="lx">
-	
 		select replace(WMSYS.WM_CONCAT(ylmlx),',','、') ylmlx from(
 			select x.lxbm,x.lxmc,x.qdzh,x.zdzh,x.qzlc lc,x.qdmc,x.zdmc,x.yjsdj xjsdj,x.ylmlx from (
-			select * from table(funlmkd(#{ylxbh},#{xzqhdm})) order by lxbm,qdzh) x
-		) where to_number(qdzh)&lt;=to_number(#{qdzh}) and to_number(zdzh)>=to_number(#{zdzh})
-		
+			select * from table(funlmkd(#{ylxbh},#{xzqhdm})) order by lxbm,qdzh) x group by ylmlx
+		)where to_number(qdzh) &lt;= to_number(#{zdzh}) and to_number(zdzh) &gt;= to_number(#{qdzh}) 
+		<!-- where to_number(qdzh)&lt;=to_number(#{qdzh}) and to_number(zdzh)>=to_number(#{zdzh}) -->	
 	</select>
+	
 	<select id="queryLsjl" parameterType="java.util.Map" resultType="int">
 		<![CDATA[
 		select c1_x.CON1+c1_y.CON2 + c2_x.CON1+c2_y.CON2 + c3_x.CON1+c3_y.CON2 + c4_x.CON1+c4_y.CON2 + c5_x.CON1+c5_y.CON2 from
@@ -658,7 +658,7 @@
 	<select id="queryYhdzxXmsq" parameterType="xmsq" resultType="xmsq">
 		select * from (
 			select rownum num,t.* from (
-				select x.xmbm, x.gcfl, l.ghlxbm ghlxbh, l.lxbm ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy,  
+				select distinct x.xmbm, x.gcfl, l.ghlxbm ghlxbh, l.lxbm ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy,  
 				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc lc,sl.xmsl,sl.zlc,sl.sbzj,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh,x.yhcsh
 				from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid 
 				left join (select xmid,count(xmid) xmsl,sum(sbzj) sbzj,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='1' 
@@ -772,7 +772,7 @@
 	<select id="queryShXmsq" parameterType="xmsq" resultType="xmsq">
 		select * from (
 			select rownum num,t.* from (
-				select x.xmbm, x.gcfl, l.ghlxbm ghlxbh, l.lxbm ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy, 
+				select distinct x.xmbm, x.gcfl, l.ghlxbm ghlxbh, l.lxbm ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy, 
 				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc lc,sl.xmsl,sl.zlc,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh,x.yhcsh
 				from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid 
 				left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='0' group by xmid) sl on x.xmbm=sl.xmid
@@ -907,7 +907,7 @@
 		</if>
 	</select>
 	<select id="queryYhdzxCount" parameterType="xmsq" resultType="int">
-		select count(x.xmbm) from xmsq_yhdzx x where 1=1
+		select count(distinct x.xmbm) from xmsq_yhdzx x where 1=1
 		<if test="wnxmk!=null and wnxmk!=''">and x.wnxmk=#{wnxmk}</if>
 		<if test="gydwdm!=null and gydwdm!=''">
 			and ${gydwdm}
@@ -1013,7 +1013,7 @@
 	</select>
 	
 	<select id="queryShCount" parameterType="xmsq" resultType="int">
-		select count(x.xmbm) from xmsq_sh x 
+		select count(distinct x.xmbm) from xmsq_sh x 
 		left join lxsh_lx l on x.xmbm = l.xmid
 		where 1=1 and l.jdbs = '0' and l.sffirst = '1'
 		<if test="wnxmk!=null and wnxmk!=''">and x.wnxmk=#{wnxmk}</if>
@@ -1183,7 +1183,7 @@
 		lqhntmc,gxlqhntmc,snhntmc,lqlmjdrzs,lqlmcbrzs,swjc,lqlmpmlqjdlzs,lqlmrhlqjdlzs,lqlmcblzs,
 		xzrxjc,swjclzs,xfc,wcsnmb,wcswjc,snhntmchb,bx,snhntmcssh,
 		lqhntmchd,gxlqhntmchd,snhntmchd,lqlmjdrzshd,lqlmcbrzshd,swjchd,lqlmpmlqjdlzshd,lqlmrhlqjdlzshd,lqlmcblzshd,
-		xzrxjchd,swjclzshd,xfchd,wcsnmbhd,wcswjchd,snhntmchbhd,bxhd,snhntmcsshhd,sbzj,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,snhntmchbmj,fcbc30,bc6 ,bc25 ,bc30 ,bmc25 , wfc ,xjfc ,fcbc30hd ,bc6hd ,bc25hd ,bc30hd ,bmc25hd , wfchd ,xjfchd,wbc,wbchd   
+		xzrxjchd,swjclzshd,xfchd,wcsnmbhd,wcswjchd,snhntmchbhd,bxhd,snhntmcsshhd,sbzj,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,snhntmchbmj,fcbc30,bc6 ,bc25 ,bc30 ,bmc25 , wfc ,xjfc ,fcbc30hd ,bc6hd ,bc25hd ,bc30hd ,bmc25hd , wfchd ,xjfchd,wbc,wbchd,bzlx135,bzje135   
 		from xmsq_yhdzx x inner join lxsh_lx l on x.xmbm=l.xmid where xmbm=#{xmbm} and l.sffirst='1' and l.jdbs='1'
 	</select>
 	<select id="queryYhdzxqxByXmbm" parameterType="xmsq" resultType="xmsq">
@@ -1457,7 +1457,7 @@
 	</select>
 	<select id="queryLjYhdzx" parameterType="xmsq" resultType="java.util.Map">
 		select count(*) sl,nvl(sum(ntz),0) tz,nvl(sum(lc),0) lc,nvl(sum(sbzj),0) sbz,'0' sjl,'0' bzcs,'0' dftz from (
-			select xmbm,ntz,l.lc,l.sbzj from xmsq_yhdzx x left join 
+			select distinct xmbm,ntz,l.lc,l.sbzj from xmsq_yhdzx x left join 
 			(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc,to_char(nvl(sum(sbzj),0)) sbzj from lxsh_lx where jdbs=#{jdbs} and xmid like '%4___' group by xmid) l on x.xmbm=l.xmid where 1=1
 			<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
 			<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -1530,7 +1530,7 @@
 	
 	<select id="queryLjSh" parameterType="xmsq" resultType="java.util.Map">
 		select count(*) sl,nvl(sum(ntz),0) tz,nvl(sum(lc),0) lc,'0' sbz,'0' sjl,'0' bzcs,'0' dftz from (
-			select xmbm,ntz,l.lc from xmsq_sh x left join 
+			select distinct xmbm,ntz,l.lc from xmsq_sh x left join 
 			(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc 
 			from lxsh_lx where jdbs=#{jdbs} and xmid like '%5___' group by xmid) l 
 			on x.xmbm=l.xmid 

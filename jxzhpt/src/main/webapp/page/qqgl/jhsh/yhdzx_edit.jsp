@@ -25,6 +25,14 @@
 	var qdStr;
 	var zdStr;
 		$(function(){
+			//十三五补助标准选择复选框只选其中一个
+			var groupCheckbox=$("input[name='bzbzs']");
+			groupCheckbox.click(function () {
+	               if(this.checked || this.checked=='checked'){
+	            	   groupCheckbox.removeAttr("checked");
+	                   $(this).attr("checked", true);
+	                 }
+	        });			
 			xmnf0("xmnf",'4');
 			queryyhdzxsfdj();
 			loadBmbm2("gcfl1",'工程分类');
@@ -83,12 +91,23 @@
 					if(msg.xjfchd=='是'){
 						$("#xjfcse").attr('checked','checked');
 					}
+ 					if("1"==msg.bzlx135){
+						$("#dxxz").attr('checked','checked');
+						$("#dxbz").val(msg.bzje135);
+					}else if("2"==msg.bzlx135){
+						$("#zxxz").attr('checked','checked');
+						$("#zxbz").val(msg.bzje135);
+						jsbzzj();
+					}else if("3"==msg.bzlx135){
+						$("#yfxyhxz").attr('checked','checked');
+						$("#yfxyhbz").val(msg.bzje135);
+					} 
 					$("#sbzj1").html(msg.sbzj);
 					$("#sbzj").val(msg.sbzj);
 					if(msg.ylmlx==''||msg.ylmlx==null){
 						queryYlmlxByLxInfo(msg.ylxbh,msg.qdzh,msg.zdzh,msg.xzqhdm);
 					}
-					
+					//jsbzzj();
 				}
 			});
 			
@@ -101,12 +120,15 @@
 		function queryYlmlxByLxInfo(ylxbh,qdzh,zdzh,xzqhdm){
 			$.post('/jxzhpt/qqgl/queryYlmlxByLxInfo.do',{ylxbh:ylxbh,qdzh:qdzh,zdzh:zdzh,xzqhdm:xzqhdm},
 					function(msg){
-				//alert(msg.ylmlx);
+				if(msg.ylmlx == null || msg.ylmlx == ""){
+					 $("#ylmlx").val("");
+				}else{
 					 $("#ylmlx").val(msg.ylmlx);
+				}
+/* 				alert(msg.ylmlx);
+					 $("#ylmlx").val(msg.ylmlx); */
 				},'json');
 		}
-		
-		
 		
 		function update(){
 			$('#gcfl').val($('#gcfl1').combo("getText"));
@@ -131,6 +153,27 @@
 				$("#bzsf input").removeAttr("disabled");
 				$("#lmkd").removeAttr("disabled");
 				$("#xmbm").removeAttr("disabled");
+				$('#bzlx135').val("");
+            	$('#bzje135').val("");
+ 				var groupCheckbox=$("input[name='bzbzs']");
+			    for(i=0;i<groupCheckbox.length;i++){
+			        if(groupCheckbox[i].checked){
+			            var id =groupCheckbox[i].id;
+	                    if(id=="dxxz"){
+	                    	$('#bzlx135').val("1");
+	                    	$('#bzje135').val($('#dxbz').val());
+	                    }
+	                    if(id=="zxxz"){
+	                    	$('#bzlx135').val("2");
+	                    	$('#bzje135').val($('#zxbz').val());
+	                    	
+	                    }
+	                    if(id=="yfxyhxz"){
+			            	$('#bzlx135').val("3");
+	                    	$('#bzje135').val($('#yfxyhbz').val());
+			            }
+			        }
+			    } 
 				$('#submit').ajaxSubmit({
 					dataType:'json',
 					success:function(msg){
@@ -169,6 +212,57 @@
 				return false;
 			} 
 			return true;
+		}
+		
+		//十三五补助标准
+		function bzbz(flag){
+			if("dxxz" == flag){
+				if($('#dxxz').is(':checked')){
+	 				if($('#ghlxbm').val().substring(0,1) == "G"){
+		                $('#dxbz').val(accMul(accMul(accMul($('#lc').val(),$('#lmkd').val()),0.7),26));
+					}else if($('#ghlxbm').val().substring(0,1) == "S"){
+		                $('#dxbz').val(accMul(accMul(accMul($('#lc').val(),$('#lmkd').val()),0.7),21));
+					}else{
+						$('#dxbz').val("0");
+					}
+					$('#zxbz').val("");
+					$('#yfxyhbz').val(""); 
+					//$('#bzje').val($('#dxbz').val()); 
+				}else{
+					$('#dxbz').val("");
+				}
+			}
+			if("zxxz" == flag){
+				if($('#zxxz').is(':checked')){
+                $('#zxbz').val(accMul($('#lc').val(),70));
+                $('#dxbz').val("");
+                $('#yfxyhbz').val("");
+				//$('#bzje').val($('#zxbz').val()); 
+                //jsbzzj("zxxz");
+			  }else{
+				  $('#zxbz').val("");
+			  }
+			}
+			if("yfxyhxz" == flag){
+				if($('#yfxyhxz').is(':checked')){
+                $('#yfxyhbz').val(accMul($('#lc').val(),50));
+                $('#zxbz').val("");
+                $('#dxbz').val("");
+				//$('#bzje').val($('#yfxyhbz').val()); 
+			}else{
+				$('#yfxyhbz').val("");
+			}
+		  }
+			jsbzzj();
+		}
+		function changelc(){
+		   var groupCheckbox=$("input[name='bzbzs']");
+		   for(i=0;i<groupCheckbox.length;i++){
+			   if(groupCheckbox[i].checked){
+		            var id =groupCheckbox[i].id;
+		            bzbz(id);
+			  }
+			}
 		}
 	</script>
 </head>
@@ -279,7 +373,7 @@
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					里程</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="lc" name="lc" type="text" style="width: 80px;"/>&nbsp;km&nbsp;<span style="color: red;">*</span>
+					<input id="lc" name="lc" type="text" style="width: 80px;" onchange="changelc()"/>&nbsp;km&nbsp;<span style="color: red;">*</span>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					原路面类型</td>
@@ -402,6 +496,65 @@
 				</td>
             </tr>
             <tbody id='bzsf'>
+            <tr>
+	            	<td rowspan="3" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						十三五补助标准</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						大修
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<!-- 单价：<span id="fcbc30dj">50</span>元/平方米 -->
+						单价：国道26万元/千平方的70%，省道21万元/千平方的70%
+					</td> 
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='dxxz' name='bzbzs' onclick="bzbz('dxxz')" type="checkbox" value="1"/>
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='dxbz' name='dxbz' type="text" style="width: 50px;" readonly="readonly" />万元
+					          <input id='bzlx135' name='bzlx135' type="hidden"/>
+                              <input id='bzje135' name='bzje135' type="hidden"/>
+					</td>
+	            </tr>
+	            <tr>
+	            	<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						中修
+					</td>
+ 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<!-- 单价：<span id="bc6dj">35</span>元/平方米 -->
+						单价：70万元/公里
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='zxxz' name='bzbzs' onclick="bzbz('zxxz')" type="checkbox" value="2"/>
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='zxbz' name='zxbz' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            	<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						预防性养护
+					</td>
+ 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<!-- 单价：<span id="bc25dj">45</span>元/平方米 -->
+						单价：50万元/公里
+					</td> 
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='yfxyhxz' name='bzbzs' onclick="bzbz('yfxyhxz')" type="checkbox" value="3"/>
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='yfxyhbz' name='yfxyhbz' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+            
 	            <tr>
 	            	<td rowspan="5" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						面层</td>
@@ -866,6 +1019,7 @@
 					<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<span id='sbzj1'></span>万元
 						<input type="hidden" id='sbzj' name="sbzj">
+						<input type="hidden" id='bzje' name="bzje">
 					</td>
 					
 	            </tr>

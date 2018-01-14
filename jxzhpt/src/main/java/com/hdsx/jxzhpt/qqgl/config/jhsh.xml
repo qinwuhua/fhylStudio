@@ -2395,6 +2395,12 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	      <if test="wbc != null">
 	        wbc=#{wbc},
 	      </if>
+	      <if test="bzlx135 != null">
+	        bzlx135=#{bzlx135},
+	      </if>
+	      <if test="bzje135 != null">
+	        bzje135=#{bzje135},
+	      </if>
 		<if test="lc!=null and lc!=''">l.lc=#{lc},</if>
 		l.xmid=#{xmid} 
 		where l.xmid=#{xmid} 
@@ -3028,7 +3034,12 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	      <if test="wbc != null">
 	        wbc=#{xmsq.wbc},
 	      </if>
-		
+	      <if test="xmsq.bzlx135 != null">
+            bzlx135 = #{xmsq.bzlx135},
+          </if>
+		  <if test="xmsq.bzje135 != null">
+            bzje135 = #{xmsq.bzje135},
+          </if>
 		<if test="lx.lc!=null and lx.lc!=''">l.lc=#{lx.lc},</if>
 		
 		l.xmid=#{lx.xmid} 
@@ -3441,7 +3452,12 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	      <if test="wbc != null">
 	        ,wbc
 	      </if>
-	      
+	      <if test="bzlx135 != null">
+	        ,bzlx135
+	      </if>
+	      <if test="bzje135 != null">
+	        ,bzje135
+	      </if>
 	     <if test="ghlxbm != null">,ghlxbm</if>
 		<if test="ghlxmc != null">,ghlxmc</if>
 		<if test="ghqdzh != null">,ghqdzh</if>
@@ -3643,6 +3659,12 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	      <if test="wbc != null">
 	         ,#{wbc}
 	      </if>
+	      <if test="bzlx135 != null">
+	         ,#{bzlx135}
+	      </if>
+	      <if test="bzje135 != null">
+	         ,#{bzje135}
+	      </if>
 	      <if test="ghlxbm != null">,#{ghlxbm}</if>
 		<if test="ghlxmc != null">,#{ghlxmc}</if>
 		<if test="ghqdzh != null">,#{ghqdzh}</if>
@@ -3658,7 +3680,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	<select id="selectlxList" parameterType="lx" resultType="lx">
 		select id,xmid,lxbm,lxmc,xzqh,xzqhdm ,gydw,gydwdm ,qdzh,zdzh,jsjsdj, 
 		decode(substr(xmid,11,1),1,(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)),(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)))  lc,
-		xjsdj  ,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc  ,silc,dwlc,wllc,jhyilc ,jherlc ,jhsanlc,jhsilc ,jhdwlc ,jhwllc ,xjlxbm ,xjqdzh ,xjzdzh ,xjlc,jhlc,ghlxbm ,ghlxmc ,lqhntmchd  ,lqhntmc,gxlqhntmchd,gxlqhntmc  ,snhntmchd  ,snhntmc,lqlmjdrzshd,lqlmjdrzs  ,lqlmcbrzshd,lqlmcbrzs  ,swjchd ,swjc,lqlmpmlqjdlzshd ,lqlmpmlqjdlzs,lqlmrhlqjdlzshd ,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs  ,xzrxjchd,xzrxjc ,swjclzshd  ,swjclzs,xfchd  ,xfc ,wcsnmbhd,wcsnmb ,wcswjchd,wcswjc ,snhntmchbhd,snhntmchb  ,bxhd,bx,snhntmcsshhd ,snhntmcssh ,sbzj,lxlmkd ,xzqhdm2,xzqhmc2,gxlxbm ,gxqdzh ,gxzdzh ,ghqdzh ,ghzdzh ,snhntmchbmj,fcbc30,bc6 ,bc25 ,bc30 ,bmc25 , wfc ,xjfc ,fcbc30hd ,bc6hd ,bc25hd ,bc30hd ,bmc25hd , wfchd ,xjfchd,wbchd,wbc   
+		xjsdj  ,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc  ,silc,dwlc,wllc,jhyilc ,jherlc ,jhsanlc,jhsilc ,jhdwlc ,jhwllc ,xjlxbm ,xjqdzh ,xjzdzh ,xjlc,jhlc,ghlxbm ,ghlxmc ,lqhntmchd  ,lqhntmc,gxlqhntmchd,gxlqhntmc  ,snhntmchd  ,snhntmc,lqlmjdrzshd,lqlmjdrzs  ,lqlmcbrzshd,lqlmcbrzs  ,swjchd ,swjc,lqlmpmlqjdlzshd ,lqlmpmlqjdlzs,lqlmrhlqjdlzshd ,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs  ,xzrxjchd,xzrxjc ,swjclzshd  ,swjclzs,xfchd  ,xfc ,wcsnmbhd,wcsnmb ,wcswjchd,wcswjc ,snhntmchbhd,snhntmchb  ,bxhd,bx,snhntmcsshhd ,snhntmcssh ,sbzj,lxlmkd ,xzqhdm2,xzqhmc2,gxlxbm ,gxqdzh ,gxzdzh ,ghqdzh ,ghzdzh ,snhntmchbmj,fcbc30,bc6 ,bc25 ,bc30 ,bmc25 , wfc ,xjfc ,fcbc30hd ,bc6hd ,bc25hd ,bc30hd ,bmc25hd , wfchd ,xjfchd,wbchd,wbc,bzlx135,bzje135   
 		from lxsh_lx
 		 where xmid=#{xmid} 
 		<if test="jdbs!=null"> and jdbs=#{jdbs}</if>

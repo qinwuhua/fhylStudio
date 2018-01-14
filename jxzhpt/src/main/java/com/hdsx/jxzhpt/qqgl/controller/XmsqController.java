@@ -66,6 +66,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	private String fileuploadFileName;
 	private File fileupload;
 	private String tbbmbm2;//填报部门编码，用于Excel
+
 	/**
 	 * 查询下一个项目编码
 	 * @throws Exception
