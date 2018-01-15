@@ -218,6 +218,8 @@ text-decoration:none;
 		if($("#ghzdzh").val()!='')
 			cxzdmc($("#ghlxbm").val(),$("#ghzdzh").val());
 	}
+	
+	
 </script>
 <form action="" id="lxsh">
 	<table style="width: 100%; background-color: #aacbf8; font-size: 12px" border="0" cellpadding="3" cellspacing="1">
@@ -348,12 +350,12 @@ text-decoration:none;
 					建设技术<br/>等级及里程
 				</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					一级：<input id="jhyilc" onchange="cesuan()" name="jhyilc" style="width: 50px;" value="0" type="text"/>
-					二级：<input id="jherlc" onchange="cesuan()" name="jherlc" style="width: 50px;" value="0" type="text"/>
-					三级：<input id="jhsanlc" onchange="cesuan()" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
-					四级：<input id="jhsilc" onchange="cesuan()" name="jhsilc" style="width: 50px;" value="0" type="text"/>
-					等外：<input id="jhdwlc" onchange="cesuan()" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
-					无路：<input id="jhwllc" onchange="cesuan()" name="jhwllc" style="width: 50px;" type="text" value="0"/>
+					一级：<input id="jhyilc" onchange="cesuan()"  onblur="isnotnumber(this)" name="jhyilc" style="width: 50px;" value="0" type="text"/>
+					二级：<input id="jherlc" onchange="cesuan()"  onblur="isnotnumber(this)" name="jherlc" style="width: 50px;" value="0" type="text"/>
+					三级：<input id="jhsanlc" onchange="cesuan()"  onblur="isnotnumber(this)" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
+					四级：<input id="jhsilc" onchange="cesuan()"  onblur="isnotnumber(this)" name="jhsilc" style="width: 50px;" value="0" type="text"/>
+					等外：<input id="jhdwlc" onchange="cesuan()"  onblur="isnotnumber(this)" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
+					无路：<input id="jhwllc" onchange="cesuan()"  onblur="isnotnumber(this)" name="jhwllc" style="width: 50px;" type="text" value="0"/>
 					总计：<input id="jszlc" name="jszlc" style="width: 50px;" readonly="readonly" type="text" value="0"/>
 				</td>
 			</tr>

@@ -281,12 +281,12 @@
 					建设技术<br/>等级及里程
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="5">
-					一级：<input id="jhyilc" name="jhyilc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
-					二级：<input id="jherlc" name="jherlc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
-					三级：<input id="jhsanlc" name="jhsanlc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
-					四级：<input id="jhsilc" name="jhsilc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
-					等外：<input id="jhdwlc" name="jhdwlc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
-					无路：<input id="jhwllc" name="jhwllc" onchange="cesuan()" style="width: 50px;" type="text" value="0"/>
+					一级：<input id="jhyilc" name="jhyilc" onchange="cesuan()"  onblur="isnotnumber(this)" style="width: 50px;" value="0" type="text"/>
+					二级：<input id="jherlc" name="jherlc" onchange="cesuan()"  onblur="isnotnumber(this)" style="width: 50px;" value="0" type="text"/>
+					三级：<input id="jhsanlc" name="jhsanlc" onchange="cesuan()"  onblur="isnotnumber(this)" style="width: 50px;" value="0" type="text"/>
+					四级：<input id="jhsilc" name="jhsilc" onchange="cesuan()"  onblur="isnotnumber(this)" style="width: 50px;" value="0" type="text"/>
+					等外：<input id="jhdwlc" name="jhdwlc" onchange="cesuan()"  onblur="isnotnumber(this)" style="width: 50px;" value="0" type="text"/>
+					无路：<input id="jhwllc" name="jhwllc" onchange="cesuan()"  onblur="isnotnumber(this)" style="width: 50px;" type="text" value="0"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

@@ -1231,6 +1231,13 @@ function jsyzlc(){
 	$('#lc').html(hj5);
 	$('#lc').val(hj5);
 }
+function isnotnumber(t){
+	if(isNaN($(t).val())){
+		alert("请填入正确的数字");
+		$(t).val('0');
+		$(t).focus();
+	}
+}
 function cesuan(){
 	jsjszlc();
 /*	var yi=0;
