@@ -3083,8 +3083,8 @@ function jsbzzj(flag){
 	var bzje=accAdd(accAdd(dxbz,zxbz),yfxyhbz);
 	if(isNaN(bzje)){bzje=0;}
 	zbz = accAdd(zbz,bzje);
-	$("#sbzj1").html(zbz.toFixed(2));
-	$("#sbzj").val(zbz.toFixed(2));
+	$("#sbzj1").html(zbz.toFixed(0));
+	$("#sbzj").val(zbz.toFixed(0));
 }
 
 

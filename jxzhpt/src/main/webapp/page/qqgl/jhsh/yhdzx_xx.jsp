@@ -75,6 +75,17 @@
 					if(msg.xjfchd=='是'){
 						$("#xjfcse").attr('checked','checked');
 					}
+ 					if("1"==msg.bzlx135){
+						$("#dxxz").attr('checked','checked');
+						$("#dxbz").val(msg.bzje135);
+					}else if("2"==msg.bzlx135){
+						$("#zxxz").attr('checked','checked');
+						$("#zxbz").val(msg.bzje135);
+						jsbzzj();
+					}else if("3"==msg.bzlx135){
+						$("#yfxyhxz").attr('checked','checked');
+						$("#yfxyhbz").val(msg.bzje135);
+					}
 					$("#sbzj1").html(msg.sbzj);
 					$("#sbzj").val(msg.sbzj);
 					//getghxxone(parent.YMLib.Var.xmbm,msg.qdzh,msg.zdzh);
@@ -328,6 +339,64 @@
 				</td>
             </tr>
             <tbody id='bzsf'>
+                <tr>
+	            	<td rowspan="3" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						十三五补助标准</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						大修
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<!-- 单价：<span id="fcbc30dj">50</span>元/平方米 -->
+						单价：国道26万元/千平方的70%，省道21万元/千平方的70%
+					</td> 
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='dxxz' name='bzbzs' onclick="bzbz('dxxz')" type="checkbox" value="1"/>
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='dxbz' name='dxbz' type="text" style="width: 50px;" readonly="readonly" />万元
+					          <input id='bzlx135' name='bzlx135' type="hidden"/>
+                              <input id='bzje135' name='bzje135' type="hidden"/>
+					</td>
+	            </tr>
+	            <tr>
+	            	<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						中修
+					</td>
+ 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<!-- 单价：<span id="bc6dj">35</span>元/平方米 -->
+						单价：70万元/公里
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='zxxz' name='bzbzs' onclick="bzbz('zxxz')" type="checkbox" value="2"/>
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='zxbz' name='zxbz' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            	<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						预防性养护
+					</td>
+ 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<!-- 单价：<span id="bc25dj">45</span>元/平方米 -->
+						单价：50万元/公里
+					</td> 
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='yfxyhxz' name='bzbzs' onclick="bzbz('yfxyhxz')" type="checkbox" value="3"/>
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='yfxyhbz' name='yfxyhbz' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
 	            <tr>
 	            	<td rowspan="5" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						面层</td>

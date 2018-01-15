@@ -240,7 +240,7 @@
 				{field:'ql',title:'桥梁(延米/座)',width:100,align:'center'},
 				{field:'hd',title:'涵洞(米/座)',width:100,align:'center'},
 				{field:'mc_lc',title:'面层（类型/公里）',width:100,align:'center'},
-				{field:'jc_lc',title:'基基（公里）',width:100,align:'center'},
+				{field:'jc_lc',title:'基层（公里）',width:100,align:'center'},
 				{field:'dc_lc',title:'垫基（公里）',width:100,align:'center'},
 				{field:'sd',title:'隧道（延米/座）',width:100,align:'center'},
 				{field:'dq',title:'大桥(名称/长度/单跨)',width:150,align:'center'},
