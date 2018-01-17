@@ -690,6 +690,7 @@ function loadcbsjTjxx(data){
 				 $("#sjl").html(msg.sjl);
 				 $("#lc").html(msg.lc);
 				 $("#dftz").html(msg.dftz);
+				 $("#jaf").html(msg.jaf);
 			}else{
 				$('#xmsl').html('0');
 				$('#tz').html('0');
@@ -698,6 +699,7 @@ function loadcbsjTjxx(data){
 			    $("#stz").html('0');
 			    $("#sjl").html('0');
 			    $("#dftz").html('0');
+			    $("#jaf").html('0');
 			}
 			
 		}

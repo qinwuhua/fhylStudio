@@ -51,7 +51,14 @@ public class Lxsh implements Serializable {
 	private String scthyy;//行业审查退回原因
 	private int scsbthcd;//行业审查上报用户等级
     private String tiaojian;//SQL条件
-
+    private String jaf;//建安费
+    
+	public String getJaf() {
+		return jaf;
+	}
+	public void setJaf(String jaf) {
+		this.jaf = jaf;
+	}
 	public String getTiaojian() {
 		return tiaojian;
 	}
