@@ -219,11 +219,11 @@
 				},
 				
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
+				{field:'zlc',title:'里程',width:80,align:'center'},
 				{field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
 				{field:'ghlxbh',title:'规划路线编码',width:60,align:'center'},
 				{field:'qdzh',title:'规划起点桩号',width:80,align:'center'},
 				{field:'zdzh',title:'规划止点桩号',width:80,align:'center'},
-				{field:'zlc',title:'里程',width:80,align:'center'},
 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
 				{field:'gkpfwh',title:'工可批复文号',width:100,align:'center'},
 				{field:'kgsj',title:'开工时间',width:80,align:'center'},

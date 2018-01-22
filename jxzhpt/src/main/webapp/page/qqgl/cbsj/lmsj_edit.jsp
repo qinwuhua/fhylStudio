@@ -106,8 +106,8 @@
 				submit = false;
 			} 
 			
-			submit=validateText('qdzh','number',submit);
-			submit=validateText('zdzh','number',submit);
+			//submit=validateText('qdzh','number',submit);
+			//submit=validateText('zdzh','number',submit);
 			submit=validateText('mc_lc','number',submit);
 			submit=validateText('jc_lc','number',submit);
 			submit=validateText('dc_lc','number',submit);

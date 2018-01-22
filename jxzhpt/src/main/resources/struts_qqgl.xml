@@ -224,7 +224,9 @@
 		<action name="deleteWnlx" class="wnjhController" method="deleteWnlx" />
 		<action name="showgjtj" class="wnjhController" method="showgjtj" />
 		<action name="dclwjg" class="wnjhController" method="dclwjg" />
-
+		<action name="queryTjbxx" class="wnjhController" method="queryTjbxx"/>
+		<action name="insertWnqqtjb" class="wnjhController" method="insertWnqqtjb"/>
+		<action name="exportWnqqtjExcel" class="wnjhController" method="exportWnqqtjExcel"/>
 
 		<!-- qwh -->
 		<!-- rh -->

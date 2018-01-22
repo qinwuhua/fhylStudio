@@ -401,8 +401,6 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 		}else{
 			return queryList("xljgbhalx",lxsh);
 		}
-		
-		
 	}
 	
 	@Override
@@ -417,5 +415,22 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	public Lxsh cxwnxmkbyxmbm(Lxsh lxsh) {
 		return queryOne("cxwnxmkbyxmbm", lxsh);
 	}
-
+	@Override
+	public List<Lxsh> queryTjbxx(Lxsh lxsh) {
+		return queryList("queryTjbxx", lxsh);
+	}
+	@Override
+	public boolean insertOrUpdateWnqqtjb(Lxsh lxsh) {         
+		return update("insertOrUpdateWnqqtjb", lxsh) <=0;
+	}
+	@Override
+	public List<Excel_list> exportWnqqtjExcel(Lxsh lxsh) {
+		int rowNum = 0;
+		List<Excel_list> result = queryList("exportWnqqtjExcel", lxsh);
+		for(int i = 0; i < result.size();i++) {
+			rowNum ++;
+			result.get(i).setV_0(rowNum+"");
+		}	
+		return result;
+	}
 }

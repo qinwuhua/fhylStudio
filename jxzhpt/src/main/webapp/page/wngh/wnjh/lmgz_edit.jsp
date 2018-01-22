@@ -364,10 +364,11 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>项目库类型：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id='xmklx' class="easyui-combobox" style="width: 120px;">
+					<select id='xmklx' class="easyui-combobox" style="width: 120px;" data-options="editable:false,panelHeight:'auto'">
 						<option value="">请选择</option>
 						<option value="部库">部库</option>
 						<option value="省库">省库</option>
+						<option value="库外">库外</option>
 					</select>
 					
 				</td>

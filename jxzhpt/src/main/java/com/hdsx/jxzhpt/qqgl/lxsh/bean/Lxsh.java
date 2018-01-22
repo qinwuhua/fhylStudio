@@ -3,6 +3,8 @@ package com.hdsx.jxzhpt.qqgl.lxsh.bean;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.aspectj.weaver.AjAttribute.PrivilegedAttribute;
+
 /**
  * @author Administrator
  *
@@ -52,7 +54,14 @@ public class Lxsh implements Serializable {
 	private int scsbthcd;//行业审查上报用户等级
     private String tiaojian;//SQL条件
     private String jaf;//建安费
+    private String xmid;
     
+	public String getXmid() {
+		return xmid;
+	}
+	public void setXmid(String xmid) {
+		this.xmid = xmid;
+	}
 	public String getJaf() {
 		return jaf;
 	}
@@ -480,8 +489,240 @@ public class Lxsh implements Serializable {
 	private String ghlxbm;
 	private String ghlxmc;
 	private String lxid;//路线id
-	
-	
+	private String ql_ym;//桥梁延米
+	private String sd_ym;//隧道延米
+	private String kgsj;
+	private String wgsj;
+	private String scxdnf;
+	private String ztz;
+	private String yjgd;//一级国道
+	private String ejgd;//二级国道
+	private String yjsd;//一级省道
+	private String ejsd;//二级省道
+	private String sjsd;//三级省道
+	private String gksb;//工可申报
+	private String hyscsb;//行业审查申报
+	private String hyscyj;//行业生产意见
+	private String tgsj;//通过时间
+	private String gkpfwh;//工可批复文件
+	private String pfsj;//批复时间
+	private String sjpfwh;//设计批复文号
+	private String sjpfsj;//设计批复时间
+	private String yjgdql;
+	private String ejgdql;
+	private String yjsdql;
+	private String ejsdql;
+	private String sjsdql;
+	private String yjgdsd;
+	private String ejgdsd;
+	private String yjsdsd;
+	private String ejsdsd;
+	private String sjsdsd;
+	private String ghwh;
+	private String ghpfsj;
+	private String ydwh;
+	private String ydpfsj;
+
+	public String getGhwh() {
+		return ghwh;
+	}
+	public void setGhwh(String ghwh) {
+		this.ghwh = ghwh;
+	}
+	public String getGhpfsj() {
+		return ghpfsj;
+	}
+	public void setGhpfsj(String ghpfsj) {
+		this.ghpfsj = ghpfsj;
+	}
+	public String getYdwh() {
+		return ydwh;
+	}
+	public void setYdwh(String ydwh) {
+		this.ydwh = ydwh;
+	}
+	public String getYdpfsj() {
+		return ydpfsj;
+	}
+	public void setYdpfsj(String ydpfsj) {
+		this.ydpfsj = ydpfsj;
+	}
+	public String getYjgdql() {
+		return yjgdql;
+	}
+	public void setYjgdql(String yjgdql) {
+		this.yjgdql = yjgdql;
+	}
+	public String getEjgdql() {
+		return ejgdql;
+	}
+	public void setEjgdql(String ejgdql) {
+		this.ejgdql = ejgdql;
+	}
+	public String getYjsdql() {
+		return yjsdql;
+	}
+	public void setYjsdql(String yjsdql) {
+		this.yjsdql = yjsdql;
+	}
+	public String getEjsdql() {
+		return ejsdql;
+	}
+	public void setEjsdql(String ejsdql) {
+		this.ejsdql = ejsdql;
+	}
+	public String getSjsdql() {
+		return sjsdql;
+	}
+	public void setSjsdql(String sjsdql) {
+		this.sjsdql = sjsdql;
+	}
+	public String getYjgdsd() {
+		return yjgdsd;
+	}
+	public void setYjgdsd(String yjgdsd) {
+		this.yjgdsd = yjgdsd;
+	}
+	public String getEjgdsd() {
+		return ejgdsd;
+	}
+	public void setEjgdsd(String ejgdsd) {
+		this.ejgdsd = ejgdsd;
+	}
+	public String getYjsdsd() {
+		return yjsdsd;
+	}
+	public void setYjsdsd(String yjsdsd) {
+		this.yjsdsd = yjsdsd;
+	}
+	public String getEjsdsd() {
+		return ejsdsd;
+	}
+	public void setEjsdsd(String ejsdsd) {
+		this.ejsdsd = ejsdsd;
+	}
+	public String getSjsdsd() {
+		return sjsdsd;
+	}
+	public void setSjsdsd(String sjsdsd) {
+		this.sjsdsd = sjsdsd;
+	}
+	public String getGksb() {
+		return gksb;
+	}
+	public void setGksb(String gksb) {
+		this.gksb = gksb;
+	}
+	public String getHyscsb() {
+		return hyscsb;
+	}
+	public void setHyscsb(String hyscsb) {
+		this.hyscsb = hyscsb;
+	}
+	public String getHyscyj() {
+		return hyscyj;
+	}
+	public void setHyscyj(String hyscyj) {
+		this.hyscyj = hyscyj;
+	}
+	public String getTgsj() {
+		return tgsj;
+	}
+	public void setTgsj(String tgsj) {
+		this.tgsj = tgsj;
+	}
+
+	public String getGkpfwh() {
+		return gkpfwh;
+	}
+	public void setGkpfwh(String gkpfwh) {
+		this.gkpfwh = gkpfwh;
+	}
+	public String getPfsj() {
+		return pfsj;
+	}
+	public void setPfsj(String pfsj) {
+		this.pfsj = pfsj;
+	}
+	public String getSjpfwh() {
+		return sjpfwh;
+	}
+	public void setSjpfwh(String sjpfwh) {
+		this.sjpfwh = sjpfwh;
+	}
+	public String getSjpfsj() {
+		return sjpfsj;
+	}
+	public void setSjpfsj(String sjpfsj) {
+		this.sjpfsj = sjpfsj;
+	}
+	public String getYjgd() {
+		return yjgd;
+	}
+	public void setYjgd(String yjgd) {
+		this.yjgd = yjgd;
+	}
+	public String getEjgd() {
+		return ejgd;
+	}
+	public void setEjgd(String ejgd) {
+		this.ejgd = ejgd;
+	}
+	public String getYjsd() {
+		return yjsd;
+	}
+	public void setYjsd(String yjsd) {
+		this.yjsd = yjsd;
+	}
+	public String getEjsd() {
+		return ejsd;
+	}
+	public void setEjsd(String ejsd) {
+		this.ejsd = ejsd;
+	}
+	public String getSjsd() {
+		return sjsd;
+	}
+	public void setSjsd(String sjsd) {
+		this.sjsd = sjsd;
+	}
+	public String getZtz() {
+		return ztz;
+	}
+	public void setZtz(String ztz) {
+		this.ztz = ztz;
+	}
+
+	public String getScxdnf() {
+		return scxdnf;
+	}
+	public void setScxdnf(String scxdnf) {
+		this.scxdnf = scxdnf;
+	}
+	public String getKgsj() {
+		return kgsj;
+	}
+	public void setKgsj(String kgsj) {
+		this.kgsj = kgsj;
+	}
+	public String getWgsj() {
+		return wgsj;
+	}
+	public void setWgsj(String wgsj) {
+		this.wgsj = wgsj;
+	}
+	public String getQl_ym() {
+		return ql_ym;
+	}
+	public void setQl_ym(String ql_ym) {
+		this.ql_ym = ql_ym;
+	}
+	public String getSd_ym() {
+		return sd_ym;
+	}
+	public void setSd_ym(String sd_ym) {
+		this.sd_ym = sd_ym;
+	}
 	public String getLxid() {
 		return lxid;
 	}

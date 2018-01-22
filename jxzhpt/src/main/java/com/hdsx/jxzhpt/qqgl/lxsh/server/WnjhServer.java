@@ -68,4 +68,7 @@ public interface WnjhServer {
 	List<Lxsh> selectGsdyxzxm(Lxsh lxsh);
 	boolean insertMethd(String arg,Object obj);
 	Lxsh cxwnxmkbyxmbm(Lxsh lxsh);
+	List<Lxsh> queryTjbxx(Lxsh lxsh);
+	boolean insertOrUpdateWnqqtjb(Lxsh lxsh);
+	List<Excel_list> exportWnqqtjExcel(Lxsh lxsh);
 }
