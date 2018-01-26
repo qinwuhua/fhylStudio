@@ -101,6 +101,21 @@ public class WnjhController extends BaseActionSupport{
 	private String lxbm;
 	private String xmlx;
 
+	 public String getcxtj(String id,String param){
+			String tj="";
+			if(param!=null&&!"".equals(param)){
+				String[] s=param.split(",");
+				for (int i = 0; i < s.length; i++) {
+					if(i==0)
+					tj+=" and ("+id+" like '%"+s[i]+"%'";
+					else
+					tj+=" or "+id+" like '%"+s[i]+"%'";
+				}
+				tj+=")";
+			}
+			return tj;
+		}
+	 
 	public String xzqhBm(String bh,String name){
 		String result="";
 		if(bh!=null){
@@ -1756,7 +1771,12 @@ public class WnjhController extends BaseActionSupport{
 		}
 	}
 	 public void queryTjbxx() {
-			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
+			if(xzqh.indexOf(",")==-1){
+				lxsh.setXzqh("and xzqhdm2 like '%"+xzqh+"%'");
+			}else{
+				lxsh.setXzqh(getcxtj("xzqhdm2",xzqh));
+			}
+			//lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 			List<Lxsh> l=wnjhServer.queryTjbxx(lxsh);
 			try {
 				JsonUtils.write(l, getresponse().getWriter());
@@ -1774,12 +1794,20 @@ public class WnjhController extends BaseActionSupport{
 		}
 	 }
 	 public void exportWnqqtjExcel() {
-		 lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
-		 try {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		lxsh.setCgs(((String) session.getAttribute("sql")));
+		String xzqhdm = lxsh.getXzqh();
+		try {
 			lxsh.setJsxz(java.net.URLDecoder.decode(lxsh.getJsxz(), "UTF-8"));
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
+		if(xzqhdm.indexOf(",")==-1){
+			lxsh.setXzqh("and xzqhdm2 like '%"+xzqhdm+"%'");
+		}else{
+			lxsh.setXzqh(getcxtj("xzqhdm2",xzqhdm));
+		}		 
 		 List<Excel_list> l = wnjhServer.exportWnqqtjExcel(lxsh);
 			ExcelData eldata = new ExcelData();// 创建一个类
 			eldata.setTitleName("“十三五”普通国省道建设项目前期工作推进表");// 设置第一行
@@ -1803,28 +1831,29 @@ public class WnjhController extends BaseActionSupport{
 			et.add(new Excel_tilte("首次下达计划年份", 1, 2, 24, 24));	
 			et.add(new Excel_tilte("总投资（万元）", 1, 2, 25, 25));
 			et.add(new Excel_tilte("中央车购税投资（万元）", 1, 2, 26, 26));
-			et.add(new Excel_tilte("是否完成工可文本编制", 1, 2, 27, 27));	
-			et.add(new Excel_tilte("是否组织行业审查", 1, 2, 28, 28));	
+			et.add(new Excel_tilte("是否组织行业审查", 1, 2, 27, 27));
+			et.add(new Excel_tilte("是否完成工可文本编制", 1, 2, 28, 28));
 			et.add(new Excel_tilte("工可行业审查意见", 1, 1, 29, 30));
 			et.add(new Excel_tilte("工可批复", 1, 1, 31, 32));
 			et.add(new Excel_tilte("初设批复", 1, 1, 33, 34));
 			et.add(new Excel_tilte("规划", 1, 1, 35, 36));
 			et.add(new Excel_tilte("用地", 1, 1, 37, 38));
-			
-			et.add(new Excel_tilte("合计", 2, 2, 11, 11));
-			et.add(new Excel_tilte("一级公里", 2, 2, 12, 12));
-			et.add(new Excel_tilte("二级公里", 2, 2, 13, 13));
-			et.add(new Excel_tilte("三级公里", 2, 2, 14, 14));
-			et.add(new Excel_tilte("四级公里", 2, 2, 15, 15));
-			et.add(new Excel_tilte("等外公里", 2, 2, 16, 16));
-			et.add(new Excel_tilte("合计", 2, 2, 17, 17));
-			et.add(new Excel_tilte("一级公里", 2, 2, 18, 18));
-			et.add(new Excel_tilte("二级公里", 2, 2, 19, 19));
-			et.add(new Excel_tilte("三级公里", 2, 2, 20, 20));
-			et.add(new Excel_tilte("独立桥梁", 2, 2, 21, 21));
-			et.add(new Excel_tilte("独立隧道", 2, 2, 22, 22));
-			et.add(new Excel_tilte("开工年", 2, 2, 23, 23));
-			et.add(new Excel_tilte("完工年", 2, 2, 24, 24));
+			et.add(new Excel_tilte("项目编码", 1, 2, 39, 39));
+
+			et.add(new Excel_tilte("合计", 2, 2, 10, 10));
+			et.add(new Excel_tilte("一级公里", 2, 2, 11, 11));
+			et.add(new Excel_tilte("二级公里", 2, 2, 12, 12));
+			et.add(new Excel_tilte("三级公里", 2, 2, 13, 13));
+			et.add(new Excel_tilte("四级公里", 2, 2, 14, 14));
+			et.add(new Excel_tilte("等外公里", 2, 2, 15, 15));
+			et.add(new Excel_tilte("合计", 2, 2, 16, 16));
+			et.add(new Excel_tilte("一级公里", 2, 2, 17, 17));
+			et.add(new Excel_tilte("二级公里", 2, 2, 18, 18));
+			et.add(new Excel_tilte("三级公里", 2, 2, 19, 19));
+			et.add(new Excel_tilte("独立桥梁", 2, 2, 20, 20));
+			et.add(new Excel_tilte("独立隧道", 2, 2, 21, 21));
+			et.add(new Excel_tilte("开工年", 2, 2, 22, 22));
+			et.add(new Excel_tilte("完工年", 2, 2, 23, 23));
 			
 			et.add(new Excel_tilte("文号", 2, 2, 29, 29));
 			et.add(new Excel_tilte("批复时间", 2, 2, 30, 30));

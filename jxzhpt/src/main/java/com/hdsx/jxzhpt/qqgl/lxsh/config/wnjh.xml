@@ -2343,21 +2343,33 @@
 	</select>
 	
 	<select id="queryTjbxx" parameterType="lxsh" resultType="lxsh">
-     select gt.xmid,gt.wnid,(select name from xtgl_xzqh where id in gt.XZQHDM) xzqhdm,xzqh,ghlxbm,xmmc,tsdq,ghqdzh,ghzdzh,jsxz,lc,yilc,erlc,sanlc,silc,dwlc,
-     JSZLC,JHYILC,JHERLC,JHSANLC,QL_YM,SD_YM,KGSJ,WGSJ,SCXDNF,ZTZ,YJGD,EJGD,YJSD,EJSD,SJSD,GKSB,HYSCSB,HYSCYJ,TGSJ,GKPFWH,PFSJ,sjpfwh,sjpfsj,
-     yjgdql,ejgdql,yjsdql,ejsdql,sjsdql,yjgdsd,ejgdsd,yjsdsd,ejsdsd,sjsdsd,wq.xmbm,ghwh,ghpfsj,ydwh,ydpfsj
-     from gsdgz_tjb gt 
-     left join wnjh_qqxmtjb wq on gt.WNID = wq.wnjhid
+     select lsxmid,(select name from xtgl_xzqh where id in gt.XZQHDM) xzqhdm,xzqh,ghlxbm,xmmc,tsdq,ghqdzh,ghzdzh,jsxz,
+      decode(gt.JSXZ,'改建',lc,'路面改造',lc,'新建',jszlc)lc,
+      decode(gt.JSXZ,'改建',yilc,'路面改造',yilc,'新建',jhyilc)yilc,
+      decode(gt.JSXZ,'改建',erlc,'路面改造',erlc,'新建',jherlc)erlc,
+      decode(gt.JSXZ,'改建',sanlc,'路面改造',sanlc,'新建',jhsanlc)sanlc,
+      decode(gt.JSXZ,'改建',silc,'路面改造',silc,'新建',jhsilc) silc,
+      decode(gt.JSXZ,'改建',dwlc,'路面改造',dwlc,'新建',jhdwlc) dwlc,
+      decode(gt.JSXZ,'改建',jszlc,'路面改造',lc,'新建',lc)jszlc,
+      decode(gt.JSXZ,'改建',jhyilc,'路面改造',yilc,'新建',yilc)jhyilc,
+      decode(gt.JSXZ,'改建',jherlc,'路面改造',erlc,'新建',erlc)jherlc,
+      decode(gt.JSXZ,'改建',jhsanlc,'路面改造',sanlc,'新建',sanlc)jhsanlc, 
+      QL_YM,SD_YM,KGSJ,WGSJ,SCXDNF,ZTZ,GKSB,HYSCSB,HYSCYJ,TGSJ,GKPFWH,PFSJ,sjpfwh,sjpfsj,
+      wq.xmbm,ghwh,ghpfsj,ydwh,ydpfsj,gt.xmbm lsxmbm,wq.xmbm,wq.ghwh,wq.ghpfsj,
+      wq.ydwh,wq.ydpfsj,nvl(gt.YJGD,0) yjgd,nvl(gt.EJGD,0) ejgd,nvl(gt.YJSD,0)yjsd,nvl(gt.EJSD,0) ejsd,nvl(gt.SJSD,0)sjsd,nvl(gt.YJGDQL,0) yjgdql,nvl(gt.EJGDQL,0) ejgdql,nvl(gt.YJSDQL,0)yjsdql,nvl(gt.EJSDQL,0) ejsdql,nvl(gt.SJSDQL,0) sjsdql,
+      nvl(gt.YJGDSD,0) yjgdsd,nvl(gt.EJGDSD,0) ejgdsd,nvl(gt.YJSDSD,0) yjsdsd,nvl(gt.EJSDSD,0) ejsdsd,nvl(gt.SJSDSD,0) sjsdsd,cgs
+     from gsdgz_tjb gt
+     left join wnjh_qqxmtjb wq on gt.lsxmid = wq.wnjhid
      where 1=1
-     	<if test="xzqh!='' and xzqh!= null ">
+       <if test="xzqh!='' and xzqh!= null ">
 			${xzqh}
 		</if>
 		<if test="jsxz !='' and jsxz != null ">
 			and jsxz like '%'||#{jsxz}||'%'
 		</if>
-	order by gt.xzqhdm
+	  order by gt.xzqhdm
 	</select>
-	
+		
 	<update id="insertOrUpdateWnqqtjb" parameterType="lxsh">
 	  begin
       UPDATE wnjh_qqxmtjb j set
@@ -2366,30 +2378,32 @@
       j.ghpfsj=#{ghpfsj,jdbcType=VARCHAR},
       j.ydwh=#{ydwh,jdbcType=VARCHAR},
       j.ydpfsj=#{ydpfsj,jdbcType=VARCHAR}      
-      WHERE j.wnjhid = #{wnid}; 
+      WHERE j.wnjhid = #{lsxmid}; 
       if sql%notfound then
       INSERT INTO wnjh_qqxmtjb(id,wnjhid,xmbm,ghwh,ghpfsj,ydwh,ydpfsj) 
-              VALUES (sys_guid(),#{wnid,jdbcType=VARCHAR},#{xmbm,jdbcType=VARCHAR},#{ghwh,jdbcType=VARCHAR},#{ghpfsj,jdbcType=VARCHAR},#{ydwh,jdbcType=VARCHAR},#{ydpfsj,jdbcType=VARCHAR});
+              VALUES (sys_guid(),#{lsxmid,jdbcType=VARCHAR},#{xmbm,jdbcType=VARCHAR},#{ghwh,jdbcType=VARCHAR},#{ghpfsj,jdbcType=VARCHAR},#{ydwh,jdbcType=VARCHAR},#{ydpfsj,jdbcType=VARCHAR});
       end if;
       end;
 	</update>
-	
+		
 	<select id="exportWnqqtjExcel" parameterType="lxsh" resultType="elist">
-	 select to_char(rownum) v_0, (select name from xtgl_xzqh where id in gt.XZQHDM) v_1,xzqh v_2,ghlxbm v_3,xmmc v_4,wq.xmbm v_5,tsdq v_6,
-            ghqdzh v_7,ghzdzh v_8,jsxz v_9,lc v_10,yilc v_11,erlc v_12,sanlc v_13,silc v_14,dwlc v_15,jszlc v_16,jhyilc v_17,jherlc v_18,
-            jhsanlc v_19,ql_ym v_20, sd_ym v_21,kgsj v_22,wgsj v_23,scxdnf v_24,ztz v_25, '' v_26, case gksb when 0 then '否' when 1 then '是' end v_27,
-            case hyscsb when 0 then '否' when 1 then '是' end v_28,hyscyj v_29,tgsj v_30,gkpfwh v_31,pfsj v_32,sjpfwh v_33,sjpfsj v_34,
-            ghwh v_35,ghpfsj v_36,ydwh v_37,ydpfsj v_38      
-     from gsdgz_tjb gt 
-     left join wnjh_qqxmtjb wq on gt.WNID = wq.wnjhid
-     where 1=1
+	  select to_char(rownum) v_0, (select name from xtgl_xzqh where id in gt.XZQHDM) v_1,xzqh v_2,
+	  ghlxbm v_3,xmmc v_4,wq.xmbm v_5,tsdq v_6, ghqdzh v_7,ghzdzh v_8,jsxz v_9,lc v_10,yilc v_11,
+	  erlc v_12,sanlc v_13,silc v_14,dwlc v_15,jszlc v_16,jhyilc v_17,jherlc v_18, jhsanlc v_19,
+	  ql_ym v_20, sd_ym v_21,kgsj v_22,wgsj v_23,scxdnf v_24,ztz v_25, '' v_26, 
+	  case hyscsb when '0' then '否' when '1' then '是' end v_27,
+	  case gksb when '0' then '否' when '1' then '是' end v_28, 
+	  hyscyj v_29,tgsj v_30,gkpfwh v_31,pfsj v_32,sjpfwh v_33,sjpfsj v_34, ghwh v_35,ghpfsj v_36,
+	  ydwh v_37,ydpfsj v_38,gt.xmbm v_39 
+	  from gsdgz_tjb gt 
+	  left join wnjh_qqxmtjb wq on gt.lsxmid = wq.wnjhid where 1=1 
         <if test="xzqh!='' and xzqh!= null ">
 			${xzqh}
 		</if>
 		<if test="jsxz !='' and jsxz != null ">
 			and jsxz like '%'||#{jsxz}||'%'
 		</if>
-  order by gt.xzqhdm
+      order by gt.xzqhdm
 	</select>
 </mapper>
 

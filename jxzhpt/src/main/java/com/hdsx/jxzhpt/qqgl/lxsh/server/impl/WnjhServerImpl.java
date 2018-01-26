@@ -1,11 +1,18 @@
 package com.hdsx.jxzhpt.qqgl.lxsh.server.impl;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
+
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
@@ -28,6 +35,10 @@ import com.hdsx.jxzhpt.wjxt.server.DbyhServer;
 import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
 import com.hdsx.jxzhpt.wjxt.server.ZdxxServer;
 import com.hdsx.jxzhpt.wjxt.server.ZhqkServer;
+
+import jsx3.gui.DatePicker;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Service
 public class WnjhServerImpl extends BaseOperate implements WnjhServer {
@@ -419,17 +430,29 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	public List<Lxsh> queryTjbxx(Lxsh lxsh) {
 		return queryList("queryTjbxx", lxsh);
 	}
+	
 	@Override
-	public boolean insertOrUpdateWnqqtjb(Lxsh lxsh) {         
-		return update("insertOrUpdateWnqqtjb", lxsh) <=0;
+	public boolean insertOrUpdateWnqqtjb(Lxsh lxsh) {
+		  update("insertOrUpdateWnqqtjb", lxsh);
+		return true;
 	}
 	@Override
-	public List<Excel_list> exportWnqqtjExcel(Lxsh lxsh) {
-		int rowNum = 0;
-		List<Excel_list> result = queryList("exportWnqqtjExcel", lxsh);
-		for(int i = 0; i < result.size();i++) {
-			rowNum ++;
-			result.get(i).setV_0(rowNum+"");
+	public List<Excel_list> exportWnqqtjExcel(Lxsh lxsh){
+		List<Excel_list> result = new ArrayList<Excel_list>();
+		ObjectMapper mapper = new ObjectMapper();
+        try {
+			List<Lxsh> cgs = mapper.readValue(lxsh.getCgs(),new TypeReference<List<Lxsh>>() { });
+			int rowNum = 0; 
+			result = queryList("exportWnqqtjExcel", lxsh);
+			for(int i = 0; i < result.size();i++) {
+				rowNum ++;
+				result.get(i).setV_0(rowNum+"");
+				if (result.get(i).getV_26()==""||result.get(i).getV_26()==null) {
+					result.get(i).setV_26(cgs.get(i).getCgs());
+				} 
+			}
+        } catch (Exception e) {
+			e.printStackTrace();
 		}	
 		return result;
 	}

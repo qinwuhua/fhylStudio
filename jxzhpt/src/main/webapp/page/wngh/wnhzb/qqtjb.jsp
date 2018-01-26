@@ -30,7 +30,8 @@
 		showTjb();
 	});
 
-	function showTjb(){		
+	function showTjb(){
+		var  params = [];
 		var datagrid; //定义全局变量datagrid
 		var xzqhdm=$("#xzqh").combotree("getValues");
 		if(xzqhdm.length==0){
@@ -52,49 +53,61 @@
 		    checkOnSelect:true,
 		    height:$(window).height()-160,
 		    width:$(window).width()-20,
-		    idField: 'wnid', //主键
+		    idField: 'lsxmid', //主键
 		    queryParams: {
 		    	xzqh:xzqhstr,
 		    	'lxsh.jsxz':$("#jsxz").combobox('getValue')
 			},
-		   columns:[[
-				{field:'ck',checkbox:true,rowspan:2,hidden:true},
-				{field:'xzqhdm',title:'地市',width:80,align:'center',rowspan:2},
+			frozenColumns:[[
+				{field:'ck',checkbox:true,rowspan:2},
+				{field:'xzqhdm',title:'地市',width:60,align:'center',rowspan:2},
 		        {field:'xzqh',title:'县、区',width:100,align:'center',rowspan:2},
 		        {field:'ghlxbm',title:'规划路线编码',width:100,align:'center',rowspan:2},
-		        {field:'xmmc',title:'项目名称',width:100,align:'center',rowspan:2},
-		        {field:'xmbm',title:'项目编码',width:100,align:'center',rowspan:2,editor:{type: 'text',options:{required:false}}},
+		        {field:'xmmc',title:'项目名称',width:180,align:'center',rowspan:2},
+		        {field:'xmbm',title:'项目库编码',width:120,align:'center',rowspan:2,editor:{type: 'text',options:{required:false}}},
+			]],
+		   columns:[[
 		        {field:'tsdq',title:'项目所属的集中连片特困区域',width:100,align:'center',rowspan:2},
 		        {field:'ghqdzh',title:'规划起点桩号',width:100,align:'center',rowspan:2},
 		        {field:'ghzdzh',title:'规划止点桩号',width:100,align:'center',rowspan:2},
 		        {field:'jsxz',title:'建设性质',width:100,align:'center',rowspan:2},
-		        {filed:'xjsdj',title:'现技术等级（公里）',colspan:6},
-		        {filed:'jsgm',title:'建设规模（公里）/（延米）',colspan:6},
-		        {filed:'jsnx',title:'建设年限',colspan:2},
+		        //{field:'xmbm',title:'项目编码',width:100,align:'center',rowspan:2},
+		        {title:'现技术等级（公里）',colspan:6},
+		        {title:'建设规模（公里）/（延米）',colspan:6},
+		        {title:'建设年限',colspan:2},
 		        {field:'scxdnf',title:'首次下达年份',width:100,align:'center',rowspan:2},
 		        {field:'ztz',title:'总投资（万元）',width:100,align:'center',rowspan:2},
-		        {field:'zycgs',title:'中央车购税投资（万元）',width:100,align:'center',rowspan:2,
+		        {field:'cgs',title:'中央车购税投资（万元）',width:100,align:'center',rowspan:2,
 		        	formatter: function(value,row,index){
-						return zycgscs(row);
-					}
+	        			var zj = zycgscs(row);
+	     	 	        params.push({"lsxmid":row.lsxmid,"cgs":zj});
+	     	 		    var json = JSON.stringify(params);  
+	     	 		    $('#excelcgs').val(json);
+		        		if(row.cgs==""){
+							return '<font style="color:#2F4F4F;">'+zj+'</font>';
+		        		}else{
+		        			return value;
+		        		}
+					} 
 		        },
 		        {field:'hyscsb',title:'是否组织行业审查',width:100,align:'center',rowspan:2,
 		        	formatter: function(value,row,index){
-						if(value=="1"){return '是';}
 						if(value=="0"){return '否';}
+						if(value=="1"){return '是';}
 					}
 		        },
 		        {field:'gksb',title:'是否完成工可文本编制',width:100,align:'center',rowspan:2,
 					formatter: function(value,row,index){
-						if(value=="1"){return '是';}
 						if(value=="0"){return '否';}
+						if(value=="1"){return '是';}
 					}
 		        },
-		        {filed:'gkhyscyj',title:'工可行业审查意见',colspan:2},
-		        {filed:'gkpf',title:'工可批复',colspan:2},
-		        {filed:'cspf',title:'初设批复',colspan:2},
-		        {filed:'gh',title:'规划',colspan:2},
-		        {filed:'yd',title:'用地',colspan:2},
+		        {title:'工可行业审查意见',colspan:2},
+		        {title:'工可批复',colspan:2},
+		        {title:'初设批复',colspan:2},
+		        {title:'规划',colspan:2},
+		        {title:'用地',colspan:2},
+		        {field:'lsxmbm',title:'项目编码',width:100,align:'center',rowspan:2}
 	         ],
 			[	
 			    {field:'lc',title:'合计',width:80,align:'center',rowspan:1},
@@ -111,24 +124,24 @@
 			    {field:'sd_ym',title:'独立隧道',width:80,align:'center',rowspan:1},
 			    {field:'kgsj',title:'开工年',width:80,align:'center',rowspan:1},
 			    {field:'wgsj',title:'完工年',width:80,align:'center',rowspan:1},
-			    {field:'hyscyj',title:'文号',width:80,align:'center',rowspan:1},
-			    {field:'tgsj',title:'批复时间',width:80,align:'center',rowspan:1},
-			    {field:'gkpfwh',title:'文号',width:80,align:'center',rowspan:1},
-			    {field:'pfsj',title:'批复时间',width:80,align:'center',rowspan:1},
-			    {field:'sjpfwh',title:'文号',width:80,align:'center',rowspan:1},
-			    {field:'sjpfsj',title:'批复时间',width:80,align:'center',rowspan:1},
-			    {field:'ghwh',title:'文号',width:80,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
-			    {field:'ghpfsj',title:'批复时间',width:80,align:'center',rowspan:1,editor:{type: 'datebox',options:{required:false}}},
-			    {field:'ydwh',title:'文号',width:80,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
-			    {field:'ydpfsj',title:'批复时间',width:80,align:'center',rowspan:1,editor:{type: 'datebox',options:{required:false}}}
+			    {field:'hyscyj',title:'文号',width:100,align:'center',rowspan:1},
+			    {field:'tgsj',title:'批复时间',width:100,align:'center',rowspan:1},
+			    {field:'gkpfwh',title:'文号',width:100,align:'center',rowspan:1},
+			    {field:'pfsj',title:'批复时间',width:100,align:'center',rowspan:1},
+			    {field:'sjpfwh',title:'文号',width:100,align:'center',rowspan:1},
+			    {field:'sjpfsj',title:'批复时间',width:100,align:'center',rowspan:1},
+			    {field:'ghwh',title:'文号',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
+			    {field:'ghpfsj',title:'批复时间',width:100,align:'center',rowspan:1,editor:{type: 'datebox',options:{required:false}}},
+			    {field:'ydwh',title:'文号',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
+			    {field:'ydpfsj',title:'批复时间',width:100,align:'center',rowspan:1,editor:{type: 'datebox',options:{required:false}}}
 		    ]],
-		    toolbar: [{ text: '编辑', iconCls: 'icon-edit', handler: function () {}
-             }, '-',
+		    toolbar: [
+		    	//{ text: '编辑', iconCls: 'icon-edit', handler: function () {}}, '-',
              { text: '保存', iconCls: 'icon-save', handler: function () {
             	 endEditing();
                  //保存时结束当前编辑的行，自动触发onAfterEdit事件如果要与后台交互可将数据通过Ajax提交后台
-                var rows=$('#datagrid').datagrid('getSelections');
-        		if(rows.length==0){
+        		 var rows=datagrid.datagrid('getSelections');
+                 if(rows.length==0){
         			alert("请勾选要保存的数据！");
         			return;
         		}else{
@@ -142,7 +155,7 @@
                  //取消当前编辑行把当前编辑行罢undefined回滚改变的数据,取消选择的行
                  if(confirm("确定要撤销所有的更改？")){
                      editRow = undefined;
-                     datagrid.datagrid('hideColumn', 'ck');
+                     //datagrid.datagrid('hideColumn', 'ck');
                      datagrid.datagrid("rejectChanges");
                      datagrid.datagrid("unselectAll");
                  }
@@ -179,29 +192,29 @@
 	    }
 	}
 	function saveQqtjb(rows){
-		var data='';
-        for(var i=0;i<rows.length;i++){
-        	data="lxsh.wnid="+rows[i].wnid+"&lxsh.xmbm="+rows[i].xmbm+"&lxsh.ghwh="+rows[i].ghwh+"&lxsh.ghpfsj="+rows[i].ghpfsj+
-        	     "&lxsh.ydwh="+rows[i].ydwh+"&lxsh.ydpfsj="+rows[i].ydpfsj+"&lxsh.xmid="+rows[i].xmid;
+       for(var i=0;i<rows.length;i++){
+        	data="lxsh.lsxmid="+rows[i].lsxmid+"&lxsh.xmbm="+rows[i].xmbm+"&lxsh.ghwh="+rows[i].ghwh+"&lxsh.ghpfsj="+rows[i].ghpfsj+
+        	     "&lxsh.ydwh="+rows[i].ydwh+"&lxsh.ydpfsj="+rows[i].ydpfsj;
     		$.ajax({
     			type:'post',
     			url:'/jxzhpt/qqgl/insertWnqqtjb.do',
     	        data:data,
     			dataType:'json',
     			success:function(msg){
-    	        	$('#datagrid').datagrid('reload');
     			}
     		});
-        }	
+        }
+		alert("保存成功！");
 	}
 
 	function zycgscs(row){
+		
 		var tsdqbz = contains(row.tsdq,"原中央苏区");
 		var xzqhbz = contains(row.xzqhdm,"赣州市");
 		
 		 //路总金额
 		var lxgd = accAdd(accMul(row.yjgd,1000),accMul(row.ejgd,500));
-		 var lxsd = accAdd(accAdd(accMul(row.yjsd,350),accMul(row.ejsd,350)),accMul(row.sjsd,150));
+		var lxsd = accAdd(accAdd(accMul(row.yjsd,350),accMul(row.ejsd,350)),accMul(row.sjsd,150));
 		if(true == tsdqbz && false == xzqhbz){
 			lxsd = accMul(lxsd,1.1);
 		} 
@@ -230,7 +243,7 @@
         var sdsdbz = accAdd(accAdd(accMul(accDiv(row.yjsdsd,1000),350),accMul(accDiv(row.ejsdsd,1000),350)),accMul(accDiv(row.sjsdsd,1000),150));
         var sdbz = accAdd(sdgdbz,sdsdbz);
         
-		return new Number(accSub(accAdd(lx,accAdd(ql,sd)),accAdd(qlbz,sdbz))).toFixed(2);
+		return new Number(accSub(accAdd(lx,accAdd(ql,sd)),accAdd(qlbz,sdbz))).toFixed(0);
 	}
 	
 	//模糊查询字段
@@ -248,17 +261,7 @@
 		}
 	}
 	
-	function getColumns(){  
-
-	} 
-	
 	function dcExcel(){
-		/* var cgs=new Array()
-		var rows = $("#datagrid").datagrid("getRows");
-		for (var i = 0; i<rows.length;i++){
-			cgs.push(rows[i].zycgs);
-		}
-		alert(cgs); */
 		var xzqhdm=$("#xzqh").combotree("getValues");
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");		
@@ -269,8 +272,11 @@
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
-		var param="lxsh.xzqh="+xzqhstr+'&lxsh.jsxz='+encodeURI(encodeURI($("#jsxz").combobox('getValue')));
-		window.location.href="/jxzhpt/qqgl/exportWnqqtjExcel.do?"+param;
+		var param='lxsh.xzqh='+xzqhstr+'&lxsh.jsxz='+encodeURI(encodeURI($("#jsxz").combobox('getValue')));
+		var sql=$("#excelcgs").val();
+		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{sql:sql},function(){
+			window.location.href="/jxzhpt/qqgl/exportWnqqtjExcel.do?"+param;
+		 });		
 	}
 	
 	</script>
@@ -306,6 +312,7 @@ text-decoration:none;
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
+        				    <input id="excelcgs" name="excelcgs" type="hidden"/>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
         						<tr height="32">
         						<td align="right">行政区划：</td>
@@ -316,7 +323,7 @@ text-decoration:none;
 									<option value="改建">改建</option>
 									<option value="路面改造">路面改造</option>
 									<option value="新建">新建</option>
-								</select></td>													
+								</select></td>												
 							</tr>
 							
         					<tr height="32">
