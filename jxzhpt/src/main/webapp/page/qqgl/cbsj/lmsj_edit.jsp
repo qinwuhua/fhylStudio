@@ -78,7 +78,7 @@
 				'sizeLimit' : 100000000,
 				'queueSizeLimit' : 5,
 				'fileDesc' : '支持格式:xls',
-				'fileExt' : '',
+				'fileExt' : '*.doc;*.docx;*.pdf;',
 				'height' : 30,
 				'width' : 92,
 				'scriptData' : {

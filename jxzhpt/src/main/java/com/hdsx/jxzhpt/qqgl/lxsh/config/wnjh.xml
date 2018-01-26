@@ -2390,7 +2390,7 @@
 	  select to_char(rownum) v_0, (select name from xtgl_xzqh where id in gt.XZQHDM) v_1,xzqh v_2,
 	  ghlxbm v_3,xmmc v_4,wq.xmbm v_5,tsdq v_6, ghqdzh v_7,ghzdzh v_8,jsxz v_9,lc v_10,yilc v_11,
 	  erlc v_12,sanlc v_13,silc v_14,dwlc v_15,jszlc v_16,jhyilc v_17,jherlc v_18, jhsanlc v_19,
-	  ql_ym v_20, sd_ym v_21,kgsj v_22,wgsj v_23,scxdnf v_24,ztz v_25, '' v_26, 
+	  ql_ym v_20, sd_ym v_21,kgsj v_22,wgsj v_23,scxdnf v_24,ztz v_25, cgs v_26, 
 	  case hyscsb when '0' then '否' when '1' then '是' end v_27,
 	  case gksb when '0' then '否' when '1' then '是' end v_28, 
 	  hyscyj v_29,tgsj v_30,gkpfwh v_31,pfsj v_32,sjpfwh v_33,sjpfsj v_34, ghwh v_35,ghpfsj v_36,

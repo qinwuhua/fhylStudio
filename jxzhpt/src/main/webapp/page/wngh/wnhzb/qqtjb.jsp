@@ -59,7 +59,7 @@
 		    	'lxsh.jsxz':$("#jsxz").combobox('getValue')
 			},
 			frozenColumns:[[
-				{field:'ck',checkbox:true,rowspan:2},
+				{field:'ck',checkbox:true,rowspan:2,hidden:true},
 				{field:'xzqhdm',title:'地市',width:60,align:'center',rowspan:2},
 		        {field:'xzqh',title:'县、区',width:100,align:'center',rowspan:2},
 		        {field:'ghlxbm',title:'规划路线编码',width:100,align:'center',rowspan:2},
@@ -138,6 +138,7 @@
 		    toolbar: [
 		    	//{ text: '编辑', iconCls: 'icon-edit', handler: function () {}}, '-',
              { text: '保存', iconCls: 'icon-save', handler: function () {
+                 datagrid.datagrid('hideColumn', 'ck');
             	 endEditing();
                  //保存时结束当前编辑的行，自动触发onAfterEdit事件如果要与后台交互可将数据通过Ajax提交后台
         		 var rows=datagrid.datagrid('getSelections');
@@ -155,15 +156,15 @@
                  //取消当前编辑行把当前编辑行罢undefined回滚改变的数据,取消选择的行
                  if(confirm("确定要撤销所有的更改？")){
                      editRow = undefined;
-                     //datagrid.datagrid('hideColumn', 'ck');
+                     datagrid.datagrid('hideColumn', 'ck');
                      datagrid.datagrid("rejectChanges");
                      datagrid.datagrid("unselectAll");
                  }
              }
              }, '-'],
 		    onClickCell: function (rowIndex, field, value) {
-		    	datagrid.datagrid('showColumn', 'ck'); 
 		    	beginEditing(rowIndex,field,value);
+		    	datagrid.datagrid('showColumn', 'ck'); 
 		    }
 
 		}); 

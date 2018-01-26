@@ -1551,7 +1551,7 @@ function deleteFile(id){
 			 success : function(msg){
 				 if(msg){
 					 alert('删除成功！');
-					 fileShow(parent.YMLib.Var.xmbm);
+					 fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
 				 }else{
 					 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
 				 }
