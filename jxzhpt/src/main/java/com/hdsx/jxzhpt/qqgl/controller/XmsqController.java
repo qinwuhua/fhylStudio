@@ -1484,6 +1484,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			et.add(new Excel_tilte("建设方案",1,1,34,34));
 			et.add(new Excel_tilte("备注",1,1,35,35));
 			et.add(new Excel_tilte("计划核对结果",1,1,36,36));
+			et.add(new Excel_tilte("五年项目库",1,1,37,37));
+			et.add(new Excel_tilte("MQI等级",1,1,38,38));
 			eldata.setEt(et);//将表头内容设置到类里面
 			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 			try {
@@ -2006,7 +2008,6 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				}
 				xmsq.setTsdq(tsdq);
 			}
-			System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 			l= xmsqServer.queryYhdzxExport1(xmsq);
 //			int k=1;
 //			for (Excel_list e : l) {
@@ -2054,6 +2055,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 //		et.add(new Excel_tilte("通过村镇、街道路段",1,1,28,28));
 		et.add(new Excel_tilte("备注",1,1,26,26));
 		et.add(new Excel_tilte("计划核对结果",1,1,27,27));
+		et.add(new Excel_tilte("五年项目库",1,1,28,28));
+		et.add(new Excel_tilte("MQI等级",1,1,29,29));
 		eldata.setEt(et);//将表头内容设置到类里面
 		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 		try {
