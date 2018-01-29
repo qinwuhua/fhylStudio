@@ -1556,10 +1556,14 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				
 			}
 		}
-		
-		
-		
-		
 		return l1;
+	}
+
+	@Override
+	public List<Excel_list> getWnjhQqtjhzb(Gcglabgc gcglabgc) {
+		List<Excel_list> total = queryList("getWnjhQqtjhzbTotal",gcglabgc);
+		List<Excel_list> result= queryList("getWnjhQqtjhzb",gcglabgc);
+		total.addAll(result);
+		return total;
 	}
 }

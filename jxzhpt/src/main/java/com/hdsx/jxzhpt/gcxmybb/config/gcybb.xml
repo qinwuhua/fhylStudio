@@ -5044,6 +5044,90 @@ select substr(t3.xzqhdm,0,4)||t3.gldj xzqhdm,nvl(sum(t1.jhzlc),0) v_35, nvl(sum(
 		</if>
 		order by xzqhdm,xmlx,xdnf
 	</select>
+	<select id="getWnjhQqtjhzbTotal" parameterType="gcglabgc" resultType="elist">
+	     select '全省' v_0,nvl(sum(bkwc),0)+nvl(sum(skwc),0) v_1,nvl(sum(bkwc),0) v_2,
+decode(nvl(sum(bkwc),0),'0','0%',round(nvl(sum(bksc),0)*100/nvl(sum(bkwc),0),0)||'%') v_3,
+nvl(sum(bksc),0) v_4,nvl(sum(bkgh),0) v_5,nvl(sum(bkyd),0) v_6,nvl(sum(bkgk),0) v_7,
+decode(nvl(sum(bkwc),0),'0','0%',round(nvl(sum(bkgk),0)*100/nvl(sum(bkwc),0),0)||'%') v_8,
+nvl(sum(bkcs),0) v_9,decode(nvl(sum(bkwc),0),'0','0%',round(nvl(sum(bkcs),0)*100/nvl(sum(bkwc),0),0)||'%') v_10,
+nvl(sum(skwc),0) v_11,decode(nvl(sum(skwc),0),'0','0%',round(nvl(sum(sksc),0)*100/nvl(sum(skwc),0),0)||'%') v_12,
+nvl(sum(sksc),0) v_13,nvl(sum(skgh),0) v_14,nvl(sum(skyd),0) v_15,nvl(sum(skgk),0) v_16,
+decode(nvl(sum(skwc),0),'0','0%',round(nvl(sum(skgk),0)*100/nvl(sum(skwc),0),0)||'%') v_17,
+nvl(sum(skcs),0) v_18,decode(nvl(sum(skwc),0),'0','0%',round(nvl(sum(skcs),0)*100/nvl(sum(skwc),0),0)||'%') v_19,
+nvl(sum(kwwc),0) v_20,decode(nvl(sum(kwwc),0),'0','0%',round(nvl(sum(kwsc),0)*100/nvl(sum(kwwc),0),0)||'%') v_21,
+nvl(sum(kwsc),0) v_22,nvl(sum(kwgh),0) v_23,nvl(sum(kwyd),0) v_24,
+nvl(sum(kwgk),0) v_25,decode(nvl(sum(kwwc),0),'0','0%',round(nvl(sum(kwgk),0)*100/nvl(sum(kwwc),0),0)||'%') v_26,
+nvl(sum(kwcs),0) v_27,decode(nvl(sum(kwwc),0),'0','0%',round(nvl(sum(kwcs),0)*100/nvl(sum(kwwc),0),0)||'%') v_28
+from (
+select gt.lsxmid,gt.XZQHDM,sl.bkwc,sc.bksc,gh.bkgh,yd.bkyd,gk.bkgk, cs.bkcs
+from gsdgz_tjhzb gt 
+left join(select gt.LSXMID,count(*)bkwc from gsdgz_tjhzb gt where gt.xmklx like '%部库%' group by gt.LSXMID)sl on sl.lsxmid = gt.LSXMID
+left join(select gt.LSXMID,count(*)bksc from gsdgz_tjhzb gt where gt.XMKLX like '%部库%' and gt.SCSHZT ='1' group by gt.LSXMID) sc on sc.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)bkgh from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%部库%' and gt.SCSHZT ='1' and wq.ghwh is not null group by gt.LSXMID) gh on gh.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)bkyd from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%部库%' and gt.SCSHZT ='1' and wq.ydwh is not null group by gt.LSXMID) yd on yd.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)bkgk from gsdgz_tjhzb gt where gt.XMKLX like '%部库%' and gt.GKSHZT ='1' group by gt.LSXMID) gk on gk.lsxmid=gt.LSXMID
+left join(select gt.LSXMID,count(*)bkcs from gsdgz_tjhzb gt where gt.XMKLX like '%部库%' and gt.CSSHZT ='1' group by gt.LSXMID) cs on cs.lsxmid=gt.LSXMID) bk
+left join
+(select gt.lsxmid,gt.XZQHDM,sl.skwc,sc.sksc,gh.skgh,yd.skyd,gk.skgk, cs.skcs
+from gsdgz_tjhzb gt 
+left join(select gt.LSXMID,count(*)skwc from gsdgz_tjhzb gt where gt.xmklx like '%省库%' group by gt.LSXMID)sl on sl.lsxmid = gt.LSXMID
+left join(select gt.LSXMID,count(*)sksc from gsdgz_tjhzb gt where gt.XMKLX like '%省库%' and gt.SCSHZT ='1' group by gt.LSXMID) sc on sc.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)skgh from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%省库%' and gt.SCSHZT ='1' and wq.ghwh is not null group by gt.LSXMID) gh on gh.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)skyd from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%省库%' and gt.SCSHZT ='1' and wq.ydwh is not null group by gt.LSXMID) yd on yd.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)skgk from gsdgz_tjhzb gt where gt.XMKLX like '%省库%' and gt.GKSHZT ='1' group by gt.LSXMID) gk on gk.lsxmid=gt.LSXMID
+left join(select gt.LSXMID,count(*)skcs from gsdgz_tjhzb gt where gt.XMKLX like '%省库%' and gt.CSSHZT ='1' group by gt.LSXMID) cs on cs.lsxmid=gt.LSXMID)sk on bk.lsxmid = sk.lsxmid
+left join
+(select gt.lsxmid,gt.XZQHDM,sl.kwwc,sc.kwsc,gh.kwgh,yd.kwyd,gk.kwgk,cs.kwcs
+from gsdgz_tjhzb gt 
+left join(select gt.LSXMID,count(*)kwwc from gsdgz_tjhzb gt where gt.xmklx like '%库外%' group by gt.LSXMID)sl on sl.lsxmid = gt.LSXMID
+left join(select gt.LSXMID,count(*)kwsc from gsdgz_tjhzb gt where gt.XMKLX like '%库外%' and gt.SCSHZT ='1' group by gt.LSXMID) sc on sc.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)kwgh from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%库外%' and gt.SCSHZT ='1' and wq.ghwh is not null group by gt.LSXMID) gh on gh.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)kwyd from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%库外%' and gt.SCSHZT ='1' and wq.ydwh is not null group by gt.LSXMID) yd on yd.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)kwgk from gsdgz_tjhzb gt where gt.XMKLX like '%库外%' and gt.GKSHZT ='1' group by gt.LSXMID) gk on gk.lsxmid=gt.LSXMID
+left join(select gt.LSXMID,count(*)kwcs from gsdgz_tjhzb gt where gt.XMKLX like '%库外%' and gt.CSSHZT ='1' group by gt.LSXMID) cs on cs.lsxmid=gt.LSXMID)kw on bk.lsxmid = kw.lsxmid
+	</select>
 	
-	
+	<select id="getWnjhQqtjhzb" parameterType="gcglabgc" resultType="elist">
+	select (select name from xtgl_xzqh where id in (bk.xzqhdm)) v_0,nvl(sum(bkwc),0)+nvl(sum(skwc),0) v_1,nvl(sum(bkwc),0) v_2,
+decode(nvl(sum(bkwc),0),'0','0%',round(nvl(sum(bksc),0)*100/nvl(sum(bkwc),0),0)||'%') v_3,
+nvl(sum(bksc),0) v_4,nvl(sum(bkgh),0) v_5,nvl(sum(bkyd),0) v_6,nvl(sum(bkgk),0) v_7,
+decode(nvl(sum(bkwc),0),'0','0%',round(nvl(sum(bkgk),0)*100/nvl(sum(bkwc),0),0)||'%') v_8,
+nvl(sum(bkcs),0) v_9,decode(nvl(sum(bkwc),0),'0','0%',round(nvl(sum(bkcs),0)*100/nvl(sum(bkwc),0),0)||'%') v_10,
+nvl(sum(skwc),0) v_11,decode(nvl(sum(skwc),0),'0','0%',round(nvl(sum(sksc),0)*100/nvl(sum(skwc),0),0)||'%') v_12,
+nvl(sum(sksc),0) v_13,nvl(sum(skgh),0) v_14,nvl(sum(skyd),0) v_15,nvl(sum(skgk),0) v_16,
+decode(nvl(sum(skwc),0),'0','0%',round(nvl(sum(skgk),0)*100/nvl(sum(skwc),0),0)||'%') v_17,
+nvl(sum(skcs),0) v_18,decode(nvl(sum(skwc),0),'0','0%',round(nvl(sum(skcs),0)*100/nvl(sum(skwc),0),0)||'%') v_19,
+nvl(sum(kwwc),0) v_20,decode(nvl(sum(kwwc),0),'0','0%',round(nvl(sum(kwsc),0)*100/nvl(sum(kwwc),0),0)||'%') v_21,
+nvl(sum(kwsc),0) v_22,nvl(sum(kwgh),0) v_23,nvl(sum(kwyd),0) v_24,
+nvl(sum(kwgk),0) v_25,decode(nvl(sum(kwwc),0),'0','0%',round(nvl(sum(kwgk),0)*100/nvl(sum(kwwc),0),0)||'%') v_26,
+nvl(sum(kwcs),0) v_27,decode(nvl(sum(kwwc),0),'0','0%',round(nvl(sum(kwcs),0)*100/nvl(sum(kwwc),0),0)||'%') v_28
+from (
+select gt.lsxmid,gt.XZQHDM,sl.bkwc,sc.bksc,gh.bkgh,yd.bkyd,gk.bkgk, cs.bkcs
+from gsdgz_tjhzb gt 
+left join(select gt.LSXMID,count(*)bkwc from gsdgz_tjhzb gt where gt.xmklx like '%部库%' group by gt.LSXMID)sl on sl.lsxmid = gt.LSXMID
+left join(select gt.LSXMID,count(*)bksc from gsdgz_tjhzb gt where gt.XMKLX like '%部库%' and gt.SCSHZT ='1' group by gt.LSXMID) sc on sc.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)bkgh from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%部库%' and gt.SCSHZT ='1' and wq.ghwh is not null group by gt.LSXMID) gh on gh.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)bkyd from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%部库%' and gt.SCSHZT ='1' and wq.ydwh is not null group by gt.LSXMID) yd on yd.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)bkgk from gsdgz_tjhzb gt where gt.XMKLX like '%部库%' and gt.GKSHZT ='1' group by gt.LSXMID) gk on gk.lsxmid=gt.LSXMID
+left join(select gt.LSXMID,count(*)bkcs from gsdgz_tjhzb gt where gt.XMKLX like '%部库%' and gt.CSSHZT ='1' group by gt.LSXMID) cs on cs.lsxmid=gt.LSXMID) bk
+left join
+(select gt.lsxmid,gt.XZQHDM,sl.skwc,sc.sksc,gh.skgh,yd.skyd,gk.skgk, cs.skcs
+from gsdgz_tjhzb gt 
+left join(select gt.LSXMID,count(*)skwc from gsdgz_tjhzb gt where gt.xmklx like '%省库%' group by gt.LSXMID)sl on sl.lsxmid = gt.LSXMID
+left join(select gt.LSXMID,count(*)sksc from gsdgz_tjhzb gt where gt.XMKLX like '%省库%' and gt.SCSHZT ='1' group by gt.LSXMID) sc on sc.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)skgh from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%省库%' and gt.SCSHZT ='1' and wq.ghwh is not null group by gt.LSXMID) gh on gh.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)skyd from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%省库%' and gt.SCSHZT ='1' and wq.ydwh is not null group by gt.LSXMID) yd on yd.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)skgk from gsdgz_tjhzb gt where gt.XMKLX like '%省库%' and gt.GKSHZT ='1' group by gt.LSXMID) gk on gk.lsxmid=gt.LSXMID
+left join(select gt.LSXMID,count(*)skcs from gsdgz_tjhzb gt where gt.XMKLX like '%省库%' and gt.CSSHZT ='1' group by gt.LSXMID) cs on cs.lsxmid=gt.LSXMID)sk on bk.lsxmid = sk.lsxmid
+left join
+(select gt.lsxmid,gt.XZQHDM,sl.kwwc,sc.kwsc,gh.kwgh,yd.kwyd,gk.kwgk,cs.kwcs
+from gsdgz_tjhzb gt 
+left join(select gt.LSXMID,count(*)kwwc from gsdgz_tjhzb gt where gt.xmklx like '%库外%' group by gt.LSXMID)sl on sl.lsxmid = gt.LSXMID
+left join(select gt.LSXMID,count(*)kwsc from gsdgz_tjhzb gt where gt.XMKLX like '%库外%' and gt.SCSHZT ='1' group by gt.LSXMID) sc on sc.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)kwgh from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%库外%' and gt.SCSHZT ='1' and wq.ghwh is not null group by gt.LSXMID) gh on gh.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)kwyd from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%库外%' and gt.SCSHZT ='1' and wq.ydwh is not null group by gt.LSXMID) yd on yd.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)kwgk from gsdgz_tjhzb gt where gt.XMKLX like '%库外%' and gt.GKSHZT ='1' group by gt.LSXMID) gk on gk.lsxmid=gt.LSXMID
+left join(select gt.LSXMID,count(*)kwcs from gsdgz_tjhzb gt where gt.XMKLX like '%库外%' and gt.CSSHZT ='1' group by gt.LSXMID) cs on cs.lsxmid=gt.LSXMID)kw on bk.lsxmid = kw.lsxmid 
+group by bk.xzqhdm order by bk.xzqhdm
+	</select>
 </mapper>

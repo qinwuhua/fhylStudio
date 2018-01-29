@@ -5085,7 +5085,6 @@ public class GcybbController extends BaseActionSupport{
 	public void getLwgzHzb() {
 		try {
 			if("1".equals(flag)){
-				
 				String shijian="";
 /*				if(Integer.parseInt(yf)<=9){
 					shijian=nf+"-0"+yf;
@@ -5803,6 +5802,142 @@ public class GcybbController extends BaseActionSupport{
 			}
 		}
 		
-		
-		
+		public void getWnjhQqtjhzb() {
+			try {
+				if("1".equals(flag)){
+					String shijian="";
+	/*				if(Integer.parseInt(yf)<=9){
+						shijian=nf+"-0"+yf;
+					}else{
+						shijian=nf+"-"+yf;
+					}*/
+					shijian=nf+"-"+yf;
+					gcglabgc.setSbyf(shijian);
+					
+					String tiaojian2="";
+					String xzqhdm = "";
+					String gydwdm = "";
+					if("1".equals(flag)){
+						HttpServletRequest request = ServletActionContext.getRequest();
+						HttpSession session = request.getSession();
+						xzqhdm=(String) session.getAttribute("xzqhbb");	
+					}else{
+					xzqhdm	= xzqh;
+					}
+
+					if(xzqhdm.indexOf(",")==-1){
+						tiaojian2="and t3.xzqhdm like '%"+xzqhdm+"%'";
+					}else{
+						tiaojian2=getcxtj("t3.xzqhdm",xzqhdm);
+						//tiaojian2="and xzqh in ("+xzqhdm+")";  
+					}
+					gcglabgc.setXzqhdm(tiaojian2);
+					gcglabgc.setXmnf(nf);
+					gcglabgc.setYf(yf);
+					//查总合list
+					//getcxtj
+					gcglabgc.setJhnd(getcxtj("xd.xdnf",gcglabgc.getJhnd()));
+					
+					List<Excel_list> eL=gcybbServer.getWnjhQqtjhzb(gcglabgc);
+					
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("江西省“十三五”普通国省干线规划项目前期工作进度表");//设置第一行 
+					eldata.setSheetName("普通国省干线规划项目前期工作进度表");//设置sheeet名
+					eldata.setFileName("江西省“十三五”普通国省干线规划项目前期工作进度表");//设置文件名
+					eldata.setEl(eL);//将实体list放入类中
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					
+					et.add(new Excel_tilte("地区",1,5,0,0));
+					et.add(new Excel_tilte("对接后规划库项目个数",1,5,1,1));
+					et.add(new Excel_tilte("十三五规划项目",1,1,2,19));
+					et.add(new Excel_tilte("库外新增项目",1,2,20,28));
+					et.add(new Excel_tilte("部库",2,2,2,10));
+					et.add(new Excel_tilte("省库",2,2,11,19));
+					
+                    et.add(new Excel_tilte("项目个数",3,5,2,2));        
+					et.add(new Excel_tilte("工可批复",3,3,3,8));
+					et.add(new Excel_tilte("初设批复",3,3,9,10));
+					
+                    et.add(new Excel_tilte("项目个数",3,5,11,11));
+                    et.add(new Excel_tilte("工可批复",3,3,12,17));
+					et.add(new Excel_tilte("初设批复",3,3,18,19));	
+					et.add(new Excel_tilte("项目个数",3,5,20,20));
+                    et.add(new Excel_tilte("工可批复",3,3,21,26));
+					et.add(new Excel_tilte("初设批复",3,3,27,28));
+					
+					et.add(new Excel_tilte("出具审查意见占比",4,5,3,3));
+					et.add(new Excel_tilte("已出具审查意见",4,4,4,6));
+					et.add(new Excel_tilte("完成工可批复",4,5,7,7));
+					et.add(new Excel_tilte("完成工可批复占比",4,5,8,8));
+					et.add(new Excel_tilte("完成初设批复",4,5,9,9));
+					et.add(new Excel_tilte("完成初设批复占比",4,5,10,10));
+					
+					et.add(new Excel_tilte("出具审查意见占比",4,5,12,12));
+					et.add(new Excel_tilte("已出具审查意见",4,4,13,15));
+					et.add(new Excel_tilte("完成工可批复",4,5,16,16));
+					et.add(new Excel_tilte("完成工可批复占比",4,5,17,17));
+					et.add(new Excel_tilte("完成初设批复",4,5,18,18));
+					et.add(new Excel_tilte("完成初设批复占比",4,5,19,19));
+					
+					et.add(new Excel_tilte("出具审查意见占比",4,5,21,21));
+					et.add(new Excel_tilte("已出具审查意见",4,4,22,24));
+					et.add(new Excel_tilte("完成工可批复",4,5,25,25));
+					et.add(new Excel_tilte("完成工可批复占比",4,5,26,26));
+					et.add(new Excel_tilte("完成初设批复",4,5,27,27));
+					et.add(new Excel_tilte("完成初设批复占比",4,5,28,28));
+					
+					et.add(new Excel_tilte("",5,5,4,4));
+					et.add(new Excel_tilte("其中完成规划选址",5,5,5,5));
+					et.add(new Excel_tilte("其中完成用地预审",5,5,6,6));
+					et.add(new Excel_tilte("",5,5,13,13));
+					et.add(new Excel_tilte("其中完成规划选址",5,5,14,14));
+					et.add(new Excel_tilte("其中完成用地预审",5,5,15,15));
+					et.add(new Excel_tilte("",5,5,22,22));
+					et.add(new Excel_tilte("其中完成规划选址",5,5,23,23));
+					et.add(new Excel_tilte("其中完成用地预审",5,5,24,24));
+					
+					eldata.setEt(et);//将表头内容设置到类里面
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					Excel_export.excel_export(eldata,response);
+				
+			}else{
+				String shijian="";
+	/*			if(Integer.parseInt(yf)<=9){
+					shijian=nf+"-0"+yf;
+				}else{
+					shijian=nf+"-"+yf;
+				}*/
+				shijian=nf+"-"+yf;
+				gcglabgc.setSbyf(shijian);
+				String tiaojian2="";
+				String xzqhdm = "";
+				String gydwdm = "";
+				if("1".equals(flag)){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+					xzqhdm=(String) session.getAttribute("xzqhbb");	
+				}else{
+				xzqhdm	= xzqh;
+				}
+				
+				if(xzqhdm.indexOf(",")==-1){
+					tiaojian2="and t3.xzqhdm like '%"+xzqhdm+"%'";
+				}else{
+					tiaojian2=getcxtj("t3.xzqhdm",xzqhdm);
+					//tiaojian2="and xzqh in ("+xzqhdm+")";
+				}
+				gcglabgc.setXzqhdm(tiaojian2);
+				gcglabgc.setXmnf(nf);
+				gcglabgc.setYf(yf);
+				//查总合list
+				//getcxtj
+				gcglabgc.setJhnd(getcxtj("xd.xdnf",gcglabgc.getJhnd()));
+				List<Excel_list> list1=gcybbServer.getWnjhQqtjhzb(gcglabgc);
+				
+				JsonUtils.write(list1, getresponse().getWriter());
+	           }                                                     
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 }

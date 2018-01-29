@@ -369,6 +369,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				result.put("result", new Boolean(b).toString());
 			}
 			JsonUtils.write(result, getresponse().getWriter());
+			
 		}catch(Exception e){
 			e.printStackTrace();
 			throw e;
