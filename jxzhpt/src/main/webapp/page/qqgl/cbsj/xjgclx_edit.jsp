@@ -260,13 +260,26 @@ a{text-decoration:none;}
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					现技术等<br/>级及里程
 				</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					一级公路：<input id="jhyilc" name="jhyilc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					二级公路：<input id="jherlc" name="jherlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					三级公路：<input id="jhsanlc" name="jhsanlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					四级公路：<input id="jhsilc" name="jhsilc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					等外公路：<input id="jhdwlc" name="jhdwlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					无路：<input id="jhwllc" name="jhwllc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					新建技术等<br/>级及里程
+				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="5">
-					一级公路：<input id="yilc" name="yilc" onchange="cesuan()" style="width: 50px;" type="text"/>
-					二级公路：<input id="erlc" name="erlc" onchange="cesuan()" style="width: 50px;" type="text"/>
-					三级公路：<input id="sanlc" name="sanlc" onchange="cesuan()" style="width: 50px;" type="text"/>
-					四级公路：<input id="silc" name="silc" onchange="cesuan()" style="width: 50px;" type="text"/>
-					等外公路：<input id="dwlc" name="dwlc" onchange="cesuan()" style="width: 50px;" type="text"/>
-					无路：<input id="wllc" name="wllc" onchange="cesuan()" style="width: 50px;" type="text"/>
+					一级公路：<input id="yilc" name="yilc" onchange="cesuan()" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					二级公路：<input id="erlc" name="erlc" onchange="cesuan()" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					三级公路：<input id="sanlc" name="sanlc" onchange="cesuan()" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					四级公路：<input id="silc" name="silc" onchange="cesuan()" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					等外公路：<input id="dwlc" name="dwlc" onchange="cesuan()" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					无路：<input id="wllc" name="wllc" onchange="cesuan()" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

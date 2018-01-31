@@ -132,7 +132,7 @@
 						var result="";
 						result+='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"',"+"'2'"+')">定位</a>';
 						result+='&nbsp;<a href="javascript:openWindow1('+"'xjgcxx'"+','+"'新建工程项目'"+','+
-						"'/jxzhpt/page/qqgl/cbsj/xjgc_xx.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">详细</a>';
+						"'/jxzhpt/page/qqgl/cbsj/xjgc_xx.jsp'"+",950,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">详细</a>';
 			        	
 						if($.cookie("unit2").length!=7){
 			        		if(row.sbzt=='1' || row.shzt=='1'){

@@ -166,6 +166,8 @@ text-decoration:none;
 		+"&lxsh.xjlxbm="+$('#xjlxbm').val()+"&lxsh.xjqdzh="+$('#xjqdzh').val()+"&lxsh.xjzdzh="+$('#xjzdzh').val()+
 		"&lxsh.xjlc="+$('#xjlc').html()+"&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+
 		"&lxsh.sanlc="+$('#sanlc').val()+"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val();
+		data+="&lxsh.jhyilc="+$('#jhyilc').val()+"&lxsh.jherlc="+$('#jherlc').val()+"&lxsh.jhsanlc="+$('#jhsanlc').val()+"&lxsh.jhsilc="+$('#jhsilc').val()+"&lxsh.jhdwlc="+$('#jhdwlc').val()+"&lxsh.jhwllc="+$('#jhwllc').val();
+		
 		//alert(data);
 		$.ajax({
 			type:'post',
@@ -298,15 +300,28 @@ function changeZlc2(){
 			</tr>
 			<tr style="height: 35px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					技术等级及里程
+					现技术等级及里程
 				</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					一级：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
-					二级：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
-					三级：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
-					四级：<input id="silc" name="silc" style="width: 50px;" type="text"/>
-					等外：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
-					无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
+					一级公路：<input id="jhyilc" name="jhyilc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					二级公路：<input id="jherlc" name="jherlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					三级公路：<input id="jhsanlc" name="jhsanlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					四级公路：<input id="jhsilc" name="jhsilc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					等外公路：<input id="jhdwlc" name="jhdwlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					无路：<input id="jhwllc" name="jhwllc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					新建技术等级及里程
+				</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					一级：<input id="yilc" name="yilc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					二级：<input id="erlc" name="erlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					三级：<input id="sanlc" name="sanlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					四级：<input id="silc" name="silc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					等外：<input id="dwlc" name="dwlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					无路：<input id="wllc" name="wllc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

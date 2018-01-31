@@ -2076,7 +2076,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 		select xmmc,xmklx,l1.lxbm ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj, xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm,l.xzqhdm2,l.wnid,l.sfbflx,
 		l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, xmid, lxbm, l1.lxmc,l1.qdzh, 
 		l1.zdzh, l1.jsjsdj, nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
-		decode(gpsqdzh,null,l1.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l1.zdzh,gpszdzh) gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,l1.xjlxbm,l1.xjqdzh,l1.xjzdzh,l1.xjlc,l1.ghlxbm,l1.ghlxmc,l1.ghqdzh,l1.ghzdzh,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh 
+		decode(gpsqdzh,null,l1.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l1.zdzh,gpszdzh) gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,l1.xjlxbm,l1.xjqdzh,l1.xjzdzh,l1.xjlc,l1.ghlxbm,l1.ghlxmc,l1.ghqdzh,l1.ghzdzh,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh 
 		from lxsh_xj l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
 	</select>
 	<select id="queryLxshLmsjqxByXmbm" parameterType="java.util.Map" resultType="lxsh">
@@ -4952,7 +4952,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	             	sum(j.btzzj)+nvl(sum(j.rys), 0) + nvl(sum(j.dk), 0) +
                            nvl(sum(j.gz), 0) + nvl(sum(j.sz), 0) +
                            nvl(sum(j.zq), 0)+sum(j.dfzc)  bcztz,
-	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0)  bcstz,
+	             	nvl(sum(j.rys),0) + nvl(sum(j.dk),0) + nvl(sum(j.zq), 0) + nvl(sum(j.sz), 0) + nvl(sum(j.gz), 0)  bcstz,
 	             	sum(j.gz) + sum(j.sz) + sum(j.zq) + sum(j.yhdk) bcdftz,
 	            	sum(j.btzzj) bccgs
 	          		from gsdgz g

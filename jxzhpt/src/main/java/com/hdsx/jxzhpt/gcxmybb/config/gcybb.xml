@@ -5063,8 +5063,8 @@ select gt.lsxmid,gt.XZQHDM,sl.bkwc,sc.bksc,gh.bkgh,yd.bkyd,gk.bkgk, cs.bkcs
 from gsdgz_tjhzb gt 
 left join(select gt.LSXMID,count(*)bkwc from gsdgz_tjhzb gt where gt.xmklx like '%部库%' group by gt.LSXMID)sl on sl.lsxmid = gt.LSXMID
 left join(select gt.LSXMID,count(*)bksc from gsdgz_tjhzb gt where gt.XMKLX like '%部库%' and gt.SCSHZT ='1' group by gt.LSXMID) sc on sc.lsxmid=gt.lsxmid
-left join(select gt.LSXMID,count(*)bkgh from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%部库%' and gt.SCSHZT ='1' and wq.ghwh is not null group by gt.LSXMID) gh on gh.lsxmid=gt.lsxmid
-left join(select gt.LSXMID,count(*)bkyd from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%部库%' and gt.SCSHZT ='1' and wq.ydwh is not null group by gt.LSXMID) yd on yd.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)bkgh from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%部库%' and wq.ghwh is not null group by gt.LSXMID) gh on gh.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)bkyd from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%部库%' and wq.ydwh is not null group by gt.LSXMID) yd on yd.lsxmid=gt.lsxmid
 left join(select gt.LSXMID,count(*)bkgk from gsdgz_tjhzb gt where gt.XMKLX like '%部库%' and gt.GKSHZT ='1' group by gt.LSXMID) gk on gk.lsxmid=gt.LSXMID
 left join(select gt.LSXMID,count(*)bkcs from gsdgz_tjhzb gt where gt.XMKLX like '%部库%' and gt.CSSHZT ='1' group by gt.LSXMID) cs on cs.lsxmid=gt.LSXMID) bk
 left join
@@ -5072,8 +5072,8 @@ left join
 from gsdgz_tjhzb gt 
 left join(select gt.LSXMID,count(*)skwc from gsdgz_tjhzb gt where gt.xmklx like '%省库%' group by gt.LSXMID)sl on sl.lsxmid = gt.LSXMID
 left join(select gt.LSXMID,count(*)sksc from gsdgz_tjhzb gt where gt.XMKLX like '%省库%' and gt.SCSHZT ='1' group by gt.LSXMID) sc on sc.lsxmid=gt.lsxmid
-left join(select gt.LSXMID,count(*)skgh from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%省库%' and gt.SCSHZT ='1' and wq.ghwh is not null group by gt.LSXMID) gh on gh.lsxmid=gt.lsxmid
-left join(select gt.LSXMID,count(*)skyd from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%省库%' and gt.SCSHZT ='1' and wq.ydwh is not null group by gt.LSXMID) yd on yd.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)skgh from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%省库%' and wq.ghwh is not null group by gt.LSXMID) gh on gh.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)skyd from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%省库%' and wq.ydwh is not null group by gt.LSXMID) yd on yd.lsxmid=gt.lsxmid
 left join(select gt.LSXMID,count(*)skgk from gsdgz_tjhzb gt where gt.XMKLX like '%省库%' and gt.GKSHZT ='1' group by gt.LSXMID) gk on gk.lsxmid=gt.LSXMID
 left join(select gt.LSXMID,count(*)skcs from gsdgz_tjhzb gt where gt.XMKLX like '%省库%' and gt.CSSHZT ='1' group by gt.LSXMID) cs on cs.lsxmid=gt.LSXMID)sk on bk.lsxmid = sk.lsxmid
 left join
@@ -5081,8 +5081,8 @@ left join
 from gsdgz_tjhzb gt 
 left join(select gt.LSXMID,count(*)kwwc from gsdgz_tjhzb gt where gt.xmklx like '%库外%' group by gt.LSXMID)sl on sl.lsxmid = gt.LSXMID
 left join(select gt.LSXMID,count(*)kwsc from gsdgz_tjhzb gt where gt.XMKLX like '%库外%' and gt.SCSHZT ='1' group by gt.LSXMID) sc on sc.lsxmid=gt.lsxmid
-left join(select gt.LSXMID,count(*)kwgh from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%库外%' and gt.SCSHZT ='1' and wq.ghwh is not null group by gt.LSXMID) gh on gh.lsxmid=gt.lsxmid
-left join(select gt.LSXMID,count(*)kwyd from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%库外%' and gt.SCSHZT ='1' and wq.ydwh is not null group by gt.LSXMID) yd on yd.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)kwgh from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%库外%' and wq.ghwh is not null group by gt.LSXMID) gh on gh.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)kwyd from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%库外%' and wq.ydwh is not null group by gt.LSXMID) yd on yd.lsxmid=gt.lsxmid
 left join(select gt.LSXMID,count(*)kwgk from gsdgz_tjhzb gt where gt.XMKLX like '%库外%' and gt.GKSHZT ='1' group by gt.LSXMID) gk on gk.lsxmid=gt.LSXMID
 left join(select gt.LSXMID,count(*)kwcs from gsdgz_tjhzb gt where gt.XMKLX like '%库外%' and gt.CSSHZT ='1' group by gt.LSXMID) cs on cs.lsxmid=gt.LSXMID)kw on bk.lsxmid = kw.lsxmid
 	</select>
@@ -5106,8 +5106,8 @@ select gt.lsxmid,gt.XZQHDM,sl.bkwc,sc.bksc,gh.bkgh,yd.bkyd,gk.bkgk, cs.bkcs
 from gsdgz_tjhzb gt 
 left join(select gt.LSXMID,count(*)bkwc from gsdgz_tjhzb gt where gt.xmklx like '%部库%' group by gt.LSXMID)sl on sl.lsxmid = gt.LSXMID
 left join(select gt.LSXMID,count(*)bksc from gsdgz_tjhzb gt where gt.XMKLX like '%部库%' and gt.SCSHZT ='1' group by gt.LSXMID) sc on sc.lsxmid=gt.lsxmid
-left join(select gt.LSXMID,count(*)bkgh from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%部库%' and gt.SCSHZT ='1' and wq.ghwh is not null group by gt.LSXMID) gh on gh.lsxmid=gt.lsxmid
-left join(select gt.LSXMID,count(*)bkyd from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%部库%' and gt.SCSHZT ='1' and wq.ydwh is not null group by gt.LSXMID) yd on yd.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)bkgh from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%部库%' and wq.ghwh is not null group by gt.LSXMID) gh on gh.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)bkyd from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%部库%' and wq.ydwh is not null group by gt.LSXMID) yd on yd.lsxmid=gt.lsxmid
 left join(select gt.LSXMID,count(*)bkgk from gsdgz_tjhzb gt where gt.XMKLX like '%部库%' and gt.GKSHZT ='1' group by gt.LSXMID) gk on gk.lsxmid=gt.LSXMID
 left join(select gt.LSXMID,count(*)bkcs from gsdgz_tjhzb gt where gt.XMKLX like '%部库%' and gt.CSSHZT ='1' group by gt.LSXMID) cs on cs.lsxmid=gt.LSXMID) bk
 left join
@@ -5115,8 +5115,8 @@ left join
 from gsdgz_tjhzb gt 
 left join(select gt.LSXMID,count(*)skwc from gsdgz_tjhzb gt where gt.xmklx like '%省库%' group by gt.LSXMID)sl on sl.lsxmid = gt.LSXMID
 left join(select gt.LSXMID,count(*)sksc from gsdgz_tjhzb gt where gt.XMKLX like '%省库%' and gt.SCSHZT ='1' group by gt.LSXMID) sc on sc.lsxmid=gt.lsxmid
-left join(select gt.LSXMID,count(*)skgh from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%省库%' and gt.SCSHZT ='1' and wq.ghwh is not null group by gt.LSXMID) gh on gh.lsxmid=gt.lsxmid
-left join(select gt.LSXMID,count(*)skyd from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%省库%' and gt.SCSHZT ='1' and wq.ydwh is not null group by gt.LSXMID) yd on yd.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)skgh from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%省库%' and wq.ghwh is not null group by gt.LSXMID) gh on gh.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)skyd from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%省库%' and wq.ydwh is not null group by gt.LSXMID) yd on yd.lsxmid=gt.lsxmid
 left join(select gt.LSXMID,count(*)skgk from gsdgz_tjhzb gt where gt.XMKLX like '%省库%' and gt.GKSHZT ='1' group by gt.LSXMID) gk on gk.lsxmid=gt.LSXMID
 left join(select gt.LSXMID,count(*)skcs from gsdgz_tjhzb gt where gt.XMKLX like '%省库%' and gt.CSSHZT ='1' group by gt.LSXMID) cs on cs.lsxmid=gt.LSXMID)sk on bk.lsxmid = sk.lsxmid
 left join
@@ -5124,8 +5124,8 @@ left join
 from gsdgz_tjhzb gt 
 left join(select gt.LSXMID,count(*)kwwc from gsdgz_tjhzb gt where gt.xmklx like '%库外%' group by gt.LSXMID)sl on sl.lsxmid = gt.LSXMID
 left join(select gt.LSXMID,count(*)kwsc from gsdgz_tjhzb gt where gt.XMKLX like '%库外%' and gt.SCSHZT ='1' group by gt.LSXMID) sc on sc.lsxmid=gt.lsxmid
-left join(select gt.LSXMID,count(*)kwgh from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%库外%' and gt.SCSHZT ='1' and wq.ghwh is not null group by gt.LSXMID) gh on gh.lsxmid=gt.lsxmid
-left join(select gt.LSXMID,count(*)kwyd from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%库外%' and gt.SCSHZT ='1' and wq.ydwh is not null group by gt.LSXMID) yd on yd.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)kwgh from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%库外%' and wq.ghwh is not null group by gt.LSXMID) gh on gh.lsxmid=gt.lsxmid
+left join(select gt.LSXMID,count(*)kwyd from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on wq.wnjhid = gt.LSXMID where gt.XMKLX like '%库外%' and wq.ydwh is not null group by gt.LSXMID) yd on yd.lsxmid=gt.lsxmid
 left join(select gt.LSXMID,count(*)kwgk from gsdgz_tjhzb gt where gt.XMKLX like '%库外%' and gt.GKSHZT ='1' group by gt.LSXMID) gk on gk.lsxmid=gt.LSXMID
 left join(select gt.LSXMID,count(*)kwcs from gsdgz_tjhzb gt where gt.XMKLX like '%库外%' and gt.CSSHZT ='1' group by gt.LSXMID) cs on cs.lsxmid=gt.LSXMID)kw on bk.lsxmid = kw.lsxmid 
 group by bk.xzqhdm order by bk.xzqhdm

@@ -215,6 +215,8 @@ text-decoration:none;
 		"&lxsh.xjlc="+$('#xjlc').val()+"&lxsh.bz="+$('#bz').val();
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+
 		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.gz="+$('#gz').val()+"&lxsh.sz="+$('#sz').val()+"&lxsh.xmklx="+$('#xmklx').combobox('getValue')+"&lxsh.ghxlxmc="+$('#ghxlxmc').val()+"&lxsh.ghxlxbm="+$('#xjlxbm').val();
+		//地市添加新建现技术等级
+		data+="&lxsh.jhyilc="+$('#jhyilc').val()+"&lxsh.jherlc="+$('#jherlc').val()+"&lxsh.jhsanlc="+$('#jhsanlc').val()+"&lxsh.jhsilc="+$('#jhsilc').val()+"&lxsh.jhdwlc="+$('#jhdwlc').val()+"&lxsh.jhwllc="+$('#jhwllc').val();
 		//alert(data);
 		$.ajax({
 			type:'post',
@@ -349,6 +351,19 @@ text-decoration:none;
 					<select id='xmklx' class="easyui-combobox" style="width: 120px;" disabled="disabled">
 						<option value="库外">库外</option>
 					</select>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					现技术等级及里程
+				</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					一级公路：<input id="jhyilc" name="jhyilc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					二级公路：<input id="jherlc" name="jherlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					三级公路：<input id="jhsanlc" name="jhsanlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					四级公路：<input id="jhsilc" name="jhsilc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					等外公路：<input id="jhdwlc" name="jhdwlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					无路：<input id="jhwllc" name="jhwllc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

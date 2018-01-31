@@ -523,7 +523,7 @@
 		select rownum num ,t.*,tt.bzys1,lx1.*,lx2.sl,lx3.jhlc from WNJH_XJ t left join (select xmid,sum(bzcs) bzys1 from wnjh_lx where sffirst='1' group by xmid) tt on t.id=tt.xmid 
 		left join 
 		(select qdzh minqdzh,zdzh maxzdzh,xmid,yilc yilc,erlc erlc,sanlc sanlc,silc silc,
-		dwlc dwlc,wllc wllc,xjlxbm xjlxbm,xjqdzh xjqdzh,xjzdzh xjzdzh,xjlc xjlc,gxlxbm,gxqdzh,gxzdzh
+		dwlc dwlc,wllc wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,xjlxbm xjlxbm,xjqdzh xjqdzh,xjzdzh xjzdzh,xjlc xjlc,gxlxbm,gxqdzh,gxzdzh
 		from wnjh_lx where sffirst='1') lx1 on t.id=lx1.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx2 on t.id=lx2.xmid
 		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0))  jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
    		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
@@ -2365,7 +2365,7 @@
 			${xzqh}
 		</if>
 		<if test="jsxz !='' and jsxz != null ">
-			and jsxz like '%'||#{jsxz}||'%'
+			${jsxz}
 		</if>
 	  order by gt.xzqhdm
 	</select>
@@ -2401,7 +2401,7 @@
 			${xzqh}
 		</if>
 		<if test="jsxz !='' and jsxz != null ">
-			and jsxz like '%'||#{jsxz}||'%'
+			${jsxz}
 		</if>
       order by gt.xzqhdm
 	</select>

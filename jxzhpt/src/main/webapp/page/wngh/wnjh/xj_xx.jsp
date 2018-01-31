@@ -63,7 +63,13 @@ text-decoration:none;
 		$('#sanlc').html(data.sanlc);
 		$('#silc').html(data.silc);
 		$('#dwlc').html(data.dwlc);
-		$('#wllc').html(data.wllc);
+		$('#wllc').html(data.wllc);		
+		$('#jhyilc').html(data.jhyilc);
+		$('#jherlc').html(data.jherlc);
+		$('#jhsanlc').html(data.jhsanlc);
+		$('#jhsilc').html(data.jhsilc);
+		$('#jhdwlc').html(data.jhdwlc);
+		$('#jhwllc').html(data.jhwllc);		
 		$('#yhdk').html(data.yhdk);
 		$('#bz').html(data.bz);
 		$("#ghlxmc").html(data.ghlxmc);
@@ -284,6 +290,21 @@ text-decoration:none;
 				</td> -->
 				
 			</tr>
+			
+			<tr style="height: 35px;">
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					现技术等级及里程
+				</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					一级公路：<span id="jhyilc"></span>
+					二级公路：<span id="jherlc"></span>
+					三级公路：<span id="jhsanlc"></span>
+					四级公路：<span id="jhsilc"></span>
+					等外公路：<span id="jhdwlc"></span>
+					无路：<span id="jhwllc"></span>
+				</td>
+			</tr>
+			
 			<tr style="height: 35px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					新建技术等级及里程

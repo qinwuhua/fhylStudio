@@ -1771,10 +1771,16 @@ public class WnjhController extends BaseActionSupport{
 		}
 	}
 	 public void queryTjbxx() {
+		    String jsxz = lxsh.getJsxz();
 			if(xzqh.indexOf(",")==-1){
 				lxsh.setXzqh("and xzqhdm2 like '%"+xzqh+"%'");
 			}else{
 				lxsh.setXzqh(getcxtj("xzqhdm2",xzqh));
+			}
+			if (jsxz.indexOf(",")==-1) {
+				lxsh.setJsxz("and jsxz like '%"+jsxz+"%'");
+			}else {
+				lxsh.setJsxz(getcxtj("jsxz",jsxz));
 			}
 			//lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 			List<Lxsh> l=wnjhServer.queryTjbxx(lxsh);
@@ -1797,12 +1803,18 @@ public class WnjhController extends BaseActionSupport{
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 		lxsh.setCgs(((String) session.getAttribute("sql")));
-		String xzqhdm = lxsh.getXzqh();
+		String jsxz = "";
 		try {
-			lxsh.setJsxz(java.net.URLDecoder.decode(lxsh.getJsxz(), "UTF-8"));
+		    jsxz = java.net.URLDecoder.decode(lxsh.getJsxz(), "UTF-8");
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
+		if (jsxz.indexOf(",")==-1) {
+			lxsh.setJsxz("and jsxz like '%"+jsxz+"%'");
+		}else {
+			lxsh.setJsxz(getcxtj("jsxz",jsxz));
+		}
+		String xzqhdm = lxsh.getXzqh();
 		if(xzqhdm.indexOf(",")==-1){
 			lxsh.setXzqh("and xzqhdm2 like '%"+xzqhdm+"%'");
 		}else{

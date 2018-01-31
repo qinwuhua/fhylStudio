@@ -44,7 +44,7 @@
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
-		
+				
 		datagrid=$('#datagrid').datagrid({    
 		    url:'/jxzhpt/qqgl/queryTjbxx.do',
 		    striped:true,
@@ -56,7 +56,7 @@
 		    idField: 'lsxmid', //主键
 		    queryParams: {
 		    	xzqh:xzqhstr,
-		    	'lxsh.jsxz':$("#jsxz").combobox('getValue')
+		    	'lxsh.jsxz':$("#jsxz").combobox('getValues').join(',')
 			},
 			frozenColumns:[[
 				{field:'ck',checkbox:true,rowspan:2,hidden:true},
@@ -273,18 +273,20 @@
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
-		var param='lxsh.xzqh='+xzqhstr+'&lxsh.jsxz='+encodeURI(encodeURI($("#jsxz").combobox('getValue')));
+		var param='lxsh.xzqh='+xzqhstr+'&lxsh.jsxz='+encodeURI(encodeURI($("#jsxz").combobox('getValues').join(',')));
 		var sql=$("#excelcgs").val();
 		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{sql:sql},function(){
 			window.location.href="/jxzhpt/qqgl/exportWnqqtjExcel.do?"+param;
 		 });		
 	}
 	
+	 function onSelect(r) {
+	        if (r.text == '全部') {
+	            $(this).combobox('clear').combobox('setValue', r.value)
+	        }
+	        else $(this).combobox('unselect', "改建,路面改造,新建");
+	        }
 	</script>
-	
-	
-	
-	
 	<style type="text/css">
 TD {
 font-size: 12px;
@@ -319,8 +321,8 @@ text-decoration:none;
         						<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:150px;"></select></td>
         						<td align="right">建设性质：</td>
-		 						<td><select class="easyui-combobox" name="jsxz" id="jsxz" style="width: 100px;"data-options="editable:false,panelHeight:'auto'">
-									<option value="">全部</option>
+		 						<td><select class="easyui-combobox" name="jsxz" id="jsxz" style="width: 130px;"data-options="editable:false,panelHeight:'auto',multiple:true,onSelect:onSelect">
+									<option value="改建,路面改造,新建">全部</option>
 									<option value="改建">改建</option>
 									<option value="路面改造">路面改造</option>
 									<option value="新建">新建</option>

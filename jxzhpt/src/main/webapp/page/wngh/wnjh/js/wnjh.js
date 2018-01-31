@@ -139,7 +139,7 @@ function lmxiangxi(index){
 function xjxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('lxxx','五年规划详细信息','xj_xx.jsp','lxxx',900,360);
+	YMLib.UI.createWindow('lxxx','五年规划详细信息','xj_xx.jsp','lxxx',950,360);
 }
 function dingwei(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
@@ -1238,7 +1238,7 @@ function editlm(index){
 function editxj(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('lxxx','编辑五年规划信息','xj_edit.jsp','lxxx',900,380);
+	YMLib.UI.createWindow('lxxx','编辑五年规划信息','xj_edit.jsp','lxxx',950,380);
 }
 
 function tjsjlx(index){

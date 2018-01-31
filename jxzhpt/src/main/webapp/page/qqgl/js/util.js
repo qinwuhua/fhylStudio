@@ -1911,6 +1911,7 @@ function queryZjxdgsdzh(xmbm){
 		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
 		{field : 'xdzj',title : '总补助资金',width : 150,align : 'center'},
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
+		{field : 'stz',title : '省补助资金',width : 150,align : 'center'},
 		{field : 'gz',title : '国债',width : 150,align : 'center'}, 
 		{field : 'sz',title : '省债',width : 150,align : 'center'}, 
 		{field : 'zq',title : '债券',width : 150,align : 'center'}, 

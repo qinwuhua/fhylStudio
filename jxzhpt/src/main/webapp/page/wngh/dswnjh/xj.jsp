@@ -220,7 +220,7 @@
 			var xmbm=$("#datagrid").datagrid('getRows')[index1].id;
 			var data=$("#table_lx"+xmbm).datagrid('getRows')[index];
 			obj=data;
-			YMLib.UI.createWindow('lxxx','编辑路线','xjlx_xg.jsp','lxxx',900,380);
+			YMLib.UI.createWindow('lxxx','编辑路线','/jxzhpt/page/wngh/wnjh/xjlx_xg.jsp','lxxx',900,380);
 		}
 		function editxj(index){
 			var data=$("#datagrid").datagrid('getRows')[index];
@@ -378,7 +378,7 @@ text-decoration:none;
 							</td>
                               <td colspan="10">
         						<img onclick="showAllxjDs()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-								<img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addWNJH('xj_add.jsp','900','400');" style="border-width:0px;vertical-align:middle;"/>
+								<img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addWNJH('xj_add.jsp','950','400');" style="border-width:0px;vertical-align:middle;"/>
 				                <img  name="btnDCMB" onclick="dcwnjhExcel('xj');" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" />
 								<!-- <img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="import_xj('xj')" style="border-width:0px;vertical-align:middle;" /> -->
 				               	<!-- <img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="dcMoBan('xj');" style="border-width:0px;cursor: hand;vertical-align:middle;" /> -->
