@@ -228,6 +228,7 @@
 			YMLib.Var.xmbm=xmid;
 			if(jsdj=='安防工程'||jsdj=='危桥改造'||jsdj=='灾害防治'){
 				obj=xmid.substr(4,xmid.length);
+				YMLib.Var.jhbm=obj;
 				if(jsdj=='危桥改造'){
 					YMLib.UI.createWindow('lmsjxx','危桥改造项目','/jxzhpt/page/jhgl/jhkxx/wqgz.jsp','lmsjxx',980,400);
 				}
