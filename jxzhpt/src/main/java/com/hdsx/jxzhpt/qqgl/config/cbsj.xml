@@ -1278,6 +1278,7 @@
 				<if test="lsxmlx !='' and lsxmlx != null ">
 					${lsxmlx}
 				</if>
+				<if test="xmklx!=null and xmklx!=''">and t1.xmklx like '%'||#{xmklx}||'%'</if>
 	</select>
 	<select id="queryYhdzxExcel" parameterType="cbsj" resultType="elist">
 		 select rownum v_0,c.xmmc v_1,c.xmbm v_2,c.xzqh v_3,c.jsdw v_4,RemoveSameStr(lx.jsjsdjtj,',') v_5,lx.jsxz v_6,
@@ -1545,6 +1546,8 @@
 				<if test="lsxmlx !='' and lsxmlx != null ">
 					${lsxmlx}
 				</if>
+				<if test="xmklx!=null and xmklx!=''">and t1.xmklx like '%'||#{xmklx}||'%'</if>
+				
 	</select>
 	<select id="queryXjExcel" parameterType="cbsj" resultType="elist">
 		<!-- select * from (
@@ -1641,9 +1644,9 @@
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
 				</if>
 				<if test="ghlxbm!=null and ghlxbm!=''">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbm})
-					)
+					and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbm}))
 				</if>
+				<if test="xmklx!=null and xmklx!=''">and t1.xmklx like '%'||#{xmklx}||'%'</if>
 	</select>
 	<select id="queryFj" resultType="plan_upload">
 		select filename,substr(parentid,0,4) xmbm from plan_upload where fileurl is null and filetype='设计批复文件' group by filename,substr(parentid,0,4)

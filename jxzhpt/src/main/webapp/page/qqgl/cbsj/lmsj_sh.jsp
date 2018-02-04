@@ -399,7 +399,7 @@
 			'&ghlxbh='+$('#txtlxbm').combotree('getText')+'&xjsdj='+yjsdj+'&jsjsdj='+jsjsdj+
 			'&tsdq='+tsdq+'&ylxbh='+gldj+'&lxmc='+lxmc+
 			'&ghlxmc='+ghlxmc+'&ghlxbm='+ghlxbm+'&lsjl='+$('#lsjl').combobox("getValue")+'&lsxmnf='+lsxmnf+
-			'&lsxmlx='+lsxmlx+'&sbzt='+sbzt+'&shzt='+$('#shzt').combo("getValue")+'&xmklx='+$('#xmklx').combo("getValue")+
+			'&lsxmlx='+lsxmlx+'&sbzt='+sbzt+'&shzt='+$('#shzt').combo("getValue")+'&xmklx='+encodeURI(encodeURI($('#xmklx').combo("getValue")))+
 			'&xmbm='+$("#xmbm").val();
 			
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{tsdq:tsdq},function(){
@@ -517,10 +517,11 @@ text-decoration:none;
 								</select></td>
 								<td align="right">项目库类型：</td>
 								<td>
-									<select id='xmklx' class="easyui-combobox" style="width: 118px;">
+									<select id='xmklx' class="easyui-combobox" style="width: 118px;" data-options="editable:false,panelHeight:'auto'">
 										<option value="">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
+										<option value="库外">库外</option>
 									</select>
 								</td>
 								<!-- 筛选历史条件 -->

@@ -69,6 +69,7 @@ text-decoration:none;
 				$("#gxzdzh").val(msg.gxzdzh);
 				$("#gpsqdzh").val(msg.gpsqdzh);
 				$("#gpszdzh").val(msg.gpszdzh);
+				$("#qqkzzt").val(msg.qqkzzt);
 				//$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+msg.gpsqdzh);
 				//$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+msg.gpszdzh);
 				qdStr=parseFloat(msg.gpsqdzh);
@@ -193,6 +194,7 @@ text-decoration:none;
 		+"&lxsh.ghxlxmc="+$('#ghlxmc').val()+"&lxsh.ghxlxbm="+$('#ghlxbm').val()+"&lxsh.xmklx="+$('#xmklx').combobox('getValue')
 		+"&lxsh.ghlxmc="+$('#ghlxmc').val()+"&lxsh.ghlxbm="+$('#ghlxbm').val()+"&lxsh.ghqdzh="+$('#ghqdzh').val()+"&lxsh.ghzdzh="+$('#ghzdzh').val()
 		+"&lxsh.gxlxbm="+$('#gxlxbm').val()+"&lxsh.gxqdzh="+$('#gxqdzh').val()+"&lxsh.gxzdzh="+$('#gxzdzh').val();
+		data+="&lxsh.qqkzzt="+$('#qqkzzt').val();
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/updatewnjhsj.do',
@@ -240,7 +242,7 @@ text-decoration:none;
 					规划路线编码</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="ghlxbm" name="ghlxbm" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
-					
+					<input id="qqkzzt" name="qqkzzt" type="hidden"/>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					规划起点桩号</td>

@@ -127,7 +127,7 @@
 			}
 		});
 		loadUploadify();
-		queryZjxdgsdzh(parent.YMLib.Var.jhbm);
+		queryZjxdLwgz(parent.YMLib.Var.jhbm);
 	});
 	function downFile(id){
 		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;

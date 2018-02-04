@@ -375,7 +375,7 @@
 			var param='xmlx=1&shzt=-1&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+xmnf+
 			'&ghlxbh='+$('#txtlxbm').val().toUpperCase()+'&xjsdj='+yjsdj+'&jsjsdj='+jsjsdj+
 			'&tsdq='+tsdq+'&ylxbh='+gldj+'&lxmc='+lxmc+'&jsjsdj='+jsjsdj+
-			'&ghlxmc='+ghlxmc+'&ghlxbm='+ghlxbm;
+			'&ghlxmc='+ghlxmc+'&ghlxbm='+ghlxbm+'&xmklx='+encodeURI(encodeURI($('#xmklx').combo("getValue")));
 			window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
 		}
 		
@@ -489,10 +489,11 @@ text-decoration:none;
 								</select></td>
 								<td align="right">项目库类型：</td>
 								<td>
-									<select id='xmklx' class="easyui-combobox" style="width: 118px;">
+									<select id='xmklx' class="easyui-combobox" style="width: 118px;" data-options="editable:false,panelHeight:'auto'">
 										<option value="">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
+										<option value="库外">库外</option>
 									</select>
 								</td>
 								<!-- 筛选历史条件 -->

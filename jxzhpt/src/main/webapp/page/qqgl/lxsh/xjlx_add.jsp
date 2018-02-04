@@ -316,11 +316,11 @@ function changeZlc2(){
 					新建技术等级及里程
 				</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					一级：<input id="yilc" name="yilc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
-					二级：<input id="erlc" name="erlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
-					三级：<input id="sanlc" name="sanlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
-					四级：<input id="silc" name="silc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
-					等外：<input id="dwlc" name="dwlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					一级公路：<input id="yilc" name="yilc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					二级公路：<input id="erlc" name="erlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					三级公路：<input id="sanlc" name="sanlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					四级公路：<input id="silc" name="silc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					等外公路：<input id="dwlc" name="dwlc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
 					无路：<input id="wllc" name="wllc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
 				</td>
 			</tr>

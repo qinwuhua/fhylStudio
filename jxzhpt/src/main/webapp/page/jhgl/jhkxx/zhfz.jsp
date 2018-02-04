@@ -134,7 +134,7 @@
 			}
 		}
 	});*/
-	queryZjxdgsdzh(parent.YMLib.Var.jhbm);
+	queryZjxdLwgz(parent.YMLib.Var.jhbm);
 	});
 	function closeWindow(id){
 		parent.$('#'+id).window('destroy');

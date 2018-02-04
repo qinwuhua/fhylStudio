@@ -1886,6 +1886,46 @@ function queryZjxdgsd(xmbm){
 		]];
 	gridBind1(grid);
 }
+//路网结构工程
+function queryZjxdLwgz(xmbm){
+	grid.id="zjxdList";
+	grid.url="/jxzhpt/jhgl/queryZjxdByXmId.do";
+	var params={'zjxd.xmid':xmbm};
+	grid.queryParams=params;
+	grid.height=$(window).height()-180;
+	grid.width=$('#searchField').width();
+	grid.pageSize=5;
+	grid.pageNumber=1;
+	grid.columns=[[
+		{field:'cz',title:'操作',width:60,align:'center',
+			formatter: function(value,row,index){
+				var result='<a href="javascript:delzjxd('+"'"+row.id+"',"+"'"+row.xmid+"'"+')" style="color:#3399CC;">删除</a>';
+				return result;
+			}
+		},
+		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
+		//{field : 'xdzj',title : '总补助资金',width : 150,align : 'center'},
+		{field : 'zbz',title : '总补助资金',width : 150,align : 'center',
+			formatter: function(value,row,index){
+			    var result= accAdd(row.stz,row.zbz);
+			    return result;
+		   }
+		},
+		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
+		{field : 'stz',title : '省补助资金',width : 150,align : 'center'},
+		{field : 'gz',title : '国债',width : 150,align : 'center'}, 
+		{field : 'sz',title : '省债',width : 150,align : 'center'}, 
+		{field : 'zq',title : '债券',width : 150,align : 'center'}, 
+		{field : 'dk',title : '厅贷款',width : 150,align : 'center'}, 
+		{field : 'jl',title : '奖励',width : 150,align : 'center'}, 
+		{field : 'qt',title : '其他',width : 150,align : 'center'}, 
+		{field : 'dfzc',title : '地方自筹',width : 150,align : 'center'}, 
+		{field : 'jhxdwh',title : '下达文号',width : 150,align : 'center'}, 
+		{field : 'tbtime',title : '下达时间',width : 150,align : 'center'}]];
+	gridBind1(grid);
+}
+
+
 //、灾毁
 function queryZjxdgsdzh(xmbm){
 	grid.id="zjxdList";
@@ -1902,7 +1942,7 @@ function queryZjxdgsdzh(xmbm){
 				return row.sfzj == "0" ? "否" : "是";
 			}
 		},*/
-		{field:'cz',title:'删除',width:60,align:'center',
+		{field:'cz',title:'操作',width:60,align:'center',
 			formatter: function(value,row,index){
 				var result='<a href="javascript:delzjxd('+"'"+row.id+"',"+"'"+row.xmid+"'"+')" style="color:#3399CC;">删除</a>';
 				return result;

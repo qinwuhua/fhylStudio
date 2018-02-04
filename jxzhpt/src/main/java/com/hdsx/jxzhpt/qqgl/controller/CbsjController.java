@@ -1000,6 +1000,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			if(",".equals(cbsj.getJsjsdj()))
 				cbsj.setJsjsdj("");
 			//数据
+			cbsj.setXmklx(java.net.URLDecoder.decode(cbsj.getXmklx(), "UTF-8"));
 			List<Excel_list> excelData=new ArrayList<Excel_list>();
 			//设置标题、文件名称
 			String titleName="";

@@ -405,8 +405,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			update("updateqqglxj", lxsh);
 			return true;
 		}
-		else
-		return false;
+		return false;	
 	}
 	
 	@Override

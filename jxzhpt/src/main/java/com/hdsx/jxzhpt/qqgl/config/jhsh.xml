@@ -4964,7 +4964,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 	         		</if>
 	         		group by j.xmid) wh on j.xmbm=wh.xmid
 		        
-	            where 1=1 and j.jhxdwh  like '%' and j.xdzt='1'
+	            where 1=1 and j.jhxdwh  like '%'
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
 				<if test="jhsh.xmnf !=null and jhsh.xmnf !=''">

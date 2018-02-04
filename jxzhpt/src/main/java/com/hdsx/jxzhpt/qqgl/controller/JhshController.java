@@ -144,6 +144,7 @@ public class JhshController extends BaseActionSupport implements
 		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(), "xzqhdm2"));
 		jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
 		jhsh.setGhxlxbm(MyUtil.getQueryTJiN(jhsh.getGhxlxbm(), "ghlxbm"));
+		jhsh.setXmklx(java.net.URLDecoder.decode(jhsh.getXmklx(), "UTF-8"));
 		if ("1".equals(jhsh.getScxdnf())) {
 			jhsh.setScxdnf("fun_scxdnf(xmbm)");
 		} else {
@@ -3560,6 +3561,12 @@ public class JhshController extends BaseActionSupport implements
 			}
 		jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
 		jhsh.setGhxlxbm(MyUtil.getQueryTJiN(jhsh.getGhxlxbm(), "ghlxbm"));
+		try {
+			jhsh.setXmklx(java.net.URLDecoder.decode(jhsh.getXmklx(), "UTF-8"));
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		List<Excel_list> l = jhshServer.queryGsdgz_dc(jhsh);
 		// int k=1;
@@ -3687,6 +3694,12 @@ public class JhshController extends BaseActionSupport implements
 			}
 		jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
 		jhsh.setGhxlxbm(MyUtil.getQueryTJiN(jhsh.getGhxlxbm(), "ghlxbm"));
+		try {
+			jhsh.setXmklx(java.net.URLDecoder.decode(jhsh.getXmklx(), "UTF-8"));
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		List<Excel_list> l = jhshServer.queryGsdgz_dc(jhsh);
 		// int k=1;

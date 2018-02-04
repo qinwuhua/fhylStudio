@@ -39,7 +39,7 @@ text-decoration:none;
 		$("#lxmc").html(msg.lxmc);
 		$("#lxbm").val(msg.ghlxbh);
 		loadUnit5("gydw",msg.gydwdm,$.cookie("unit"));
-		loadDist5("xzqh",msg.xzqhdm,$.cookie("dist"));
+		loadDistedit("xzqh",msg.xzqhdm,$.cookie("dist"));
 		$("#tsdq").html(msg.tsdq);
 		$("#xjsdj").val(msg.xjsdj);
 		$("#xjlc").val(msg.xjlc);

@@ -3072,7 +3072,7 @@ function xdzt(id){
 			first=myDate.getFullYear()-i;
 		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
 	}*/
-	years.push({text:'未下达',value:'未下达'});
+	//years.push({text:'未下达',value:'未下达'});
 	years.push({text:'未完成',value:'未完成'});
 	years.push({text:'已完成',value:'已完成'});
 	

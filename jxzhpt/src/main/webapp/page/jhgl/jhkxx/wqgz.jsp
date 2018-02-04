@@ -26,7 +26,7 @@
 <script type="text/javascript">
 $(function(){
 	loadJhkxx();
-	queryZjxdgsdzh(parent.YMLib.Var.jhbm);
+	queryZjxdLwgz(parent.YMLib.Var.jhbm);
 });
 function loadJhkxx(){
 	$.ajax({

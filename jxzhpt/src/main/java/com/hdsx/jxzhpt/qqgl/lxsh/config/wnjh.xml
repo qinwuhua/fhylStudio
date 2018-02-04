@@ -525,7 +525,7 @@
 		(select qdzh minqdzh,zdzh maxzdzh,xmid,yilc yilc,erlc erlc,sanlc sanlc,silc silc,
 		dwlc dwlc,wllc wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,xjlxbm xjlxbm,xjqdzh xjqdzh,xjzdzh xjzdzh,xjlc xjlc,gxlxbm,gxqdzh,gxzdzh
 		from wnjh_lx where sffirst='1') lx1 on t.id=lx1.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx2 on t.id=lx2.xmid
-		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0))  jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
+		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))  jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
    		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
    		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
     	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'新建工程' xmlx1 
@@ -829,21 +829,21 @@
 	<select id="cxwnghsjByid" parameterType="lxsh" resultType="lxsh">
 		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.ghxlxbm,l.ghxlxmc,l.xmklx, 
 		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm, l.xzqhdm2, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk,gz,sz, 
-		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
+		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, qqkzzt,
 		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc,jhlc,l1.ghlxbm,l1.ghqdzh,l1.ghzdzh,l1.ghlxmc,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh
 		from wnjh_sjgz l left join wnjh_lx l1 on l.id=l1.xmid where l.id=#{xmbm}  and l1.sffirst='1'
 	</select>
 	<select id="cxwnghlmByid" parameterType="lxsh" resultType="lxsh">
 		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.ghxlxbm,l.ghxlxmc,l.xmklx,  
 		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm, l.xzqhdm2, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk,gz,sz, 
-		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
+		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, qqkzzt,
 		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc,l1.ghlxbm,l1.ghqdzh,l1.ghzdzh,l1.ghlxmc,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh 
 		from wnjh_lmgz l left join wnjh_lx l1 on l.id=l1.xmid where l.id=#{xmbm}  and l1.sffirst='1'
 	</select>
 	<select id="cxwnghxjByid" parameterType="lxsh" resultType="lxsh">
 		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.ghxlxbm,l.ghxlxmc,l.xmklx,  
 		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm, l.xzqhdm2, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk,gz,sz, 
-		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
+		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, qqkzzt,
 		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc,l1.xjlxbm,l1.xjqdzh,l1.xjzdzh,l1.xjlc,l1.ghlxbm,l1.ghqdzh,l1.ghzdzh,l1.ghlxmc,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh  
 		from wnjh_xj l left join wnjh_lx l1 on l.id=l1.xmid where l.id=#{xmbm}  and l1.sffirst='1'
 	</select>

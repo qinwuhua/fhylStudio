@@ -236,7 +236,7 @@
 					'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+
 					'&jhsh.lsjl='+$("#lsjl").combobox("getValue")+'&jhsh.zydpx='+$("#zydpx").val()+'&jhsh.sbzt=1'+
 					'&jhsh.shzt='+$("#shzt").combobox("getValue")+'&jhsh.gyfl='+$("#gyfl").val()+'&jhsh.zjly='+zjly+
-					'&jhsh.xmbm='+$('#xmbm').val()+'&xmklx='+$("#xmklx").combobox("getValue")+
+					'&jhsh.xmbm='+$('#xmbm').val()+'&xmklx='+encodeURI(encodeURI($('#xmklx').combobox("getValue")))+
 					'&jhsh.cbsjwc='+$('#cbsjwc').combobox("getValue")+'&jhsh.jhxdwc='+$('#jhxdwc').combobox("getValue");
 			window.location.href="/jxzhpt/qqgl/queryGsdgz_dcexcelsb.do?"+param;
 		}
@@ -410,10 +410,11 @@ text-decoration:none;
 								</select></td>
 								<td align="right">项目库类型：</td>
 								<td>
-									<select id='xmklx' class="easyui-combobox" style="width: 75px;">
+									<select id='xmklx' class="easyui-combobox" style="width: 75px;" data-options="editable:false,panelHeight:'auto'">
 										<option value="" selected="selected">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
+										<option value="库外">库外</option>
 									</select>
 								</td>
 								<td align="right">项目编码：</td>
