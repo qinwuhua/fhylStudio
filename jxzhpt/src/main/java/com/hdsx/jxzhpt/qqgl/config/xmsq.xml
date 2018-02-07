@@ -1379,7 +1379,7 @@
     x.jsdj v_27,substr(x.xmbm,0,4) v_28,x.gcfl v_29,x.jhkgsj v_30,x.jhwgsj v_31,x.gq v_32,x.ntz v_33,x.jsfa v_34,x.bz v_35,
     (decode(x.lsjl,'是',( select WMSYS.WM_CONCAT(distinct xmlx||'  '||xmmc||'  '||xdnf||'  '||ghlxbm||'  '||ghqdzh||'  '||ghzdzh) from all_lsjl where 1=1 and length(xmbm)=14 and x.lsxmid like '%'||id||'%'),' ')) v_36,
     (decode(x.wnxmk,'是',( select WMSYS.WM_CONCAT(distinct xmlx||'  '||xmmc||'  '||xmnf||'  '||ghlxbm||'  '||ghqdzh||'  '||ghzdzh) from wn_xmxx where 1=1 and x.WNXMID like '%'||ID||'%'),' ')) v_37,
-    decode(substr(fun_mqi1(lx.ghlxbm,lx.ghqdzh,lx.ghzdzh),0,1),',',substr(fun_mqi1(lx.ghlxbm,lx.ghqdzh,lx.ghzdzh),2),'') v_38
+    decode(substr(fun_mqi1(l.ghlxbm,l.ghqdzh,l.ghzdzh),0,1),',',substr(fun_mqi1(l.ghlxbm,l.ghqdzh,l.ghzdzh),2),fun_mqi1(l.ghlxbm,l.ghqdzh,l.ghzdzh)) v_38
    from xmsq_sh x
    left join lxsh_lx l on x.xmbm = l.xmid
    left join (
