@@ -242,35 +242,6 @@ a{text-decoration:none;}
 					<input id="ghlxmc" name="ghlxmc" style="width: 120px;" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>管养单位：
-				</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type='text' id='gydw' name="gydw" style="width: 124px;">
-					<input id='gydwdm' name="gydwdm" style="width: 124px;" type="hidden">
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>行政区划：
-				</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type='text' id='xzqh' name="xzqh" style="width: 124px;">
-					<input id='xzqhdm' name="xzqhdm" style="width: 124px;" type="hidden">
-				</td>
-			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					现技术等<br/>级及里程
-				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="5">
-					一级公路：<input id="yilc" name="yilc" onchange="cesuan()" style="width: 50px;" type="text"/>
-					二级公路：<input id="erlc" name="erlc" onchange="cesuan()" style="width: 50px;" type="text"/>
-					三级公路：<input id="sanlc" name="sanlc" onchange="cesuan()" style="width: 50px;" type="text"/>
-					四级公路：<input id="silc" name="silc" onchange="cesuan()" style="width: 50px;" type="text"/>
-					等外公路：<input id="dwlc" name="dwlc" onchange="cesuan()" style="width: 50px;" type="text"/>
-					无路：<input id="wllc" name="wllc" onchange="cesuan()" style="width: 50px;" type="text"/>
-				</td>
-			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>建设技术等级：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
@@ -282,13 +253,51 @@ a{text-decoration:none;}
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input name="jsdj" id="jsdj" type="text" style="width: 120px;"/>
 				</td>
+			</tr>
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-<!-- 					<font color='red' size='2'>*&nbsp;</font>补助测算(万元)： -->
+					现技术等<br/>级及里程
 				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-<!-- 					<input id="bzcs" name="bzcs" type="text" style="width: 120px;"/> -->
+				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="5">
+					一级公路：<input id="yilc" name="yilc" onchange="cesuan()" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					二级公路：<input id="erlc" name="erlc" onchange="cesuan()" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					三级公路：<input id="sanlc" name="sanlc" onchange="cesuan()" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					四级公路：<input id="silc" name="silc" onchange="cesuan()" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					等外公路：<input id="dwlc" name="dwlc" onchange="cesuan()" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
+					无路：<input id="wllc" name="wllc" onchange="cesuan()" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
 				</td>
 			</tr>
+			<!-- <tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>补助测算(万元)：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="bzcs" name="bzcs" type="text" style="width: 120px;"/>
+				</td>
+			</tr> -->
+			
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>管养单位：
+				</td>
+				<td colspan="3" style="background-color: #ffffff; height: 25px;" align="left">
+					<input type='text' id='gydw' name="gydw" style="width: 400px;">
+					<input id='gydwdm' name="gydwdm" style="width: 120px;" type="hidden">
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
+			</tr> 
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>行政区划：
+				</td>
+				<td colspan="3" style="background-color: #ffffff; height: 25px;" align="left">
+					<input type='text' id='xzqh' name="xzqh" style="width: 400px;">
+					<input id='xzqhdm' name="xzqhdm" style="width: 124px;" type="hidden">
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
+			</tr>	
 			<tr style="height: 35px;">
 				<td colspan="6" style="background-color: #ffffff;"align="center">
 				<a href="javascript:saveLxsh()" id="save_button" class="easyui-linkbutton" plain="true" iconCls="icon-save">保存</a>

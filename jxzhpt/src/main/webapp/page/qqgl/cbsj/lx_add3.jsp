@@ -307,7 +307,7 @@ text-decoration:none;
 					无路：<input id="wllc" name="wllc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
 				</td>
 			</tr>
-			<tr style="height: 35px;">
+			<!-- <tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>管养单位：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
 					<input type='text' id='gydw' style="width:130px;"></td>
@@ -317,6 +317,20 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="jsxz" style="width: 120px"  value='新建'/></td>
+			</tr> -->
+			<tr style="height: 35px;">
+			    <td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>管养单位：</td>
+				<td colspan="3" style="background-color: #ffffff; height: 25px;" align="left">
+					<input type='text' id='gydw' style="width:400px;"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><!--<font color='red' size='2'> *&nbsp;</font>补助测算(万元)： --></td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+			</tr>
+			<tr style="height: 35px;">
+			    <td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>行政区划：</td>
+				<td colspan="3"style="background-color: #ffffff; height: 25px;" align="left">
+					<input type='text' id='xzqh' style="width: 400px;"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><!--<font color='red' size='2'> *&nbsp;</font>补助测算(万元)： --></td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>建设技术等级：</td>
@@ -339,9 +353,10 @@ text-decoration:none;
 						<option value="等外公路">等外公路</option>
 						<option value="高速公路">高速公路</option>
 					</select></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算(万元)：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-				<input type="text" id='bzcs' style="width:120px;" onblur="checkSZ(this)"/></td>
+					<input type="text" id="jsxz" style="width: 120px"  value='新建'/></td>
+				<!-- <input type="text" id='bzcs' style="width:120px;" onblur="checkSZ(this)"/></td> -->
 			</tr>
 		
 			<tr style="height: 35px;">

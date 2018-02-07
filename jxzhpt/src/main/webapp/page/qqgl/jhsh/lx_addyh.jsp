@@ -322,30 +322,31 @@
 				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+			   <td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>管养单位：
 				</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type='text' id='gydw' name="gydw" style="width: 124px;">
+				<td colspan="3" style="background-color: #ffffff; height: 25px;" align="left">
+					<input type='text' id='gydw' name="gydw" style="width: 468px;">
 					<input id='gydwdm' name="gydwdm" style="width: 124px;" type="hidden">
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+			   <td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>行政区划：
 				</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type='text' id='xzqh' name="xzqh" style="width: 124px;">
+				<td colspan="3" style="background-color: #ffffff; height: 25px;" align="left">
+					<input type='text' id='xzqh' name="xzqh" style="width: 468px;">
 					<input id='xzqhdm' name="xzqhdm" style="width: 124px;" type="hidden">
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>路面宽度：
+					</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
 				</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left" colspan="3">
-					<input id="lmkd" name="lmkd" readonly="readonly" type="text" style="width: 80px;"/>&nbsp;米&nbsp;
-				</td>
-				
-			</tr>
-			
-			
+			</tr>			
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>起点名称：
@@ -378,8 +379,10 @@
 					<input id="jsdj" name="jsdj" type="text" style="width: 124px;"/>&nbsp;<span style="color: red;">*</span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<font color='red' size='2'>*&nbsp;</font>路面宽度：
+				</td>
+				<td style="background-color: #ffffff; height: 25px;" align="left" colspan="3">
+					<input id="lmkd" name="lmkd" readonly="readonly" type="text" style="width: 80px;"/>&nbsp;米&nbsp;
 				</td>
 			</tr>
 			<tr style="height: 35px;">

@@ -2006,6 +2006,13 @@ function editGzlx(xmid,index){
 	YMLib.Var.Obj=data;
 	YMLib.UI.createWindow('lxxx','编辑路线信息','lmgzlx_add.jsp','lxxx',900,350);
 }
+
+function editXjlx(xmid,index){
+	var data=$("#table_lx"+xmid).datagrid('getRows')[index];
+	YMLib.Var.Obj=data;
+	YMLib.UI.createWindow('lxxx','编辑路线信息','xjlx_edit.jsp','lxxx',900,350);
+}
+
 //XJ
 function showAllxj(){
 	var xzqhdm=$("#xzqh").combotree("getValues");
@@ -2410,7 +2417,7 @@ function showAllxjsh(){
 	    			},
     			columns:[[
 					{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
-						var result ='<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>'+'&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')">删除</a>   ';
+						var result ='<a href="javascript:editXjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>'+'&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delxjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')">删除</a>   ';
 						/*if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
 							result+= '&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellmlx('+parentindex+','+index+')">删除</a>   ';
 						}
@@ -2429,8 +2436,8 @@ function showAllxjsh(){
     			    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
     			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
     			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
-    			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
-    			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
+    			    {field:'jsjsdj',title:'现技术等级',width:80,align:'center'},		    
+    			    {field:'xjsdj',title:'建设技术等级',width:80,align:'center'},
     			    {field:'lc',title:'里程',width:60,align:'center'},
     			    {field:'bzys',title:'补助测算',width:60,align:'center'}
     			]]

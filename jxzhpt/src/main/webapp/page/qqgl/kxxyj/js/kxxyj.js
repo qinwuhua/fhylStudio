@@ -2277,6 +2277,7 @@ function showAllxjsh(){
 	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
 	    },
 	    onExpandRow: function(index,row){
+	    	parentindex=index;
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
@@ -2285,6 +2286,11 @@ function showAllxjsh(){
 	    			 'lx.sffirst':'1'
 	    			},
     			columns:[[
+    				{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
+    					//alert(row.xmid+"|"+index);
+    					return '<a href="javascript:editXjlx('+"'"+parentindex+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>'+'&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delxjlx('+"'"+parentindex+"',"+"'"+index+"'"+')">删除</a>   ';
+    				  }
+    				},
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
@@ -2293,8 +2299,8 @@ function showAllxjsh(){
     			    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
     			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
     			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
-    			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
-    			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
+    			    {field:'jsjsdj',title:'现技术等级',width:80,align:'center'},
+    			    {field:'xjsdj',title:'建设技术等级',width:80,align:'center'},  			    
     			    {field:'lc',title:'里程',width:60,align:'center'}
     			]]
 	    	});
@@ -2669,6 +2675,13 @@ function dellmlx(index1,index){
 		}
 	});
 }
+function editXjlx(xmid,index){
+	//alert(xmid+"|"+index);
+	var data=$("#table_lx"+xmid).datagrid('getRows')[index];
+	YMLib.Var.Obj=data;
+	YMLib.UI.createWindow('lxxx','编辑路线信息','xjlx_edit.jsp','lxxx',900,350);
+}
+
 function delxjlx(index1,index){
 	var data=$("#table_lx"+index1).datagrid('getRows')[index];
 	//alert(data.xmbm+"--"+data.id);

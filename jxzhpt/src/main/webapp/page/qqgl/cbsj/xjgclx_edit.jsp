@@ -74,6 +74,7 @@ a{text-decoration:none;}
 		+"&lx.bzcs="+$('#bzcs').val()+"&lx.jdbs=2"+"&lx.xmid="+$('#xmbm').html()
 		+"&lx.ghlxmc="+$('#ghlxmc').val()+"&lx.ghlxbm="+$('#ghlxbm').val()+"&lx.ghqdzh="+$('#ghqdzh').val()+"&lx.ghzdzh="+$('#ghzdzh').val()
 		+"&lx.gxlxbm="+$('#gxlxbm').val()+"&lx.gxqdzh="+$('#gxqdzh').val()+"&lx.gxzdzh="+$('#gxzdzh').val()
+		+"&lx.jhyilc="+$('#jhyilc').val()+"&lx.jherlc="+$('#jherlc').val()+"&lx.jhsanlc="+$('#jhsanlc').val()+"&lx.jhsilc="+$('#jhsilc').val()+"&lx.jhdwlc="+$('#jhdwlc').val()+"&lx.jhwllc="+$('#jhwllc').val()
 		;
 		$.ajax({
 			type:'post',
@@ -83,7 +84,7 @@ a{text-decoration:none;}
 			success:function(msg){
 				if(msg.result=="true"){
 					alert("保存成功！");
-					parent.$('#datagrid').datagrid('reload');
+					parent.queryXj();
 					removes('lxxx');
 				}else{
 					alert("保存失败！");
@@ -242,18 +243,16 @@ a{text-decoration:none;}
 					<input id="ghlxmc" name="ghlxmc" style="width: 120px;" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>管养单位：
+					<font color='red' size='2'>*&nbsp;</font>现技术等级：
 				</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type='text' id='gydw' name="gydw" style="width: 124px;">
-					<input id='gydwdm' name="gydwdm" style="width: 124px;" type="hidden">
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input name="jsdj" id="jsdj" type="text" style="width: 120px;"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>行政区划：
+					<font color='red' size='2'>*&nbsp;</font>建设技术等级：
 				</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type='text' id='xzqh' name="xzqh" style="width: 124px;">
-					<input id='xzqhdm' name="xzqhdm" style="width: 124px;" type="hidden">
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="jsjsdj" name="jsjsdj" type="text" style="width: 120px;"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -271,7 +270,7 @@ a{text-decoration:none;}
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					新建技术等<br/>级及里程
+					建设技术等<br/>级及里程
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="5">
 					一级公路：<input id="yilc" name="yilc" onchange="cesuan()" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
@@ -282,25 +281,28 @@ a{text-decoration:none;}
 					无路：<input id="wllc" name="wllc" onchange="cesuan()" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
 				</td>
 			</tr>
-			<tr style="height: 35px;">
+			<tr style="height: 35px;">  
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>建设技术等级：
+					<font color='red' size='2'>*&nbsp;</font>管养单位：
 				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="jsjsdj" name="jsjsdj" type="text" style="width: 120px;"/>
+				<td colspan="3" style="background-color: #ffffff; height: 25px;" align="left">
+					<input type='text' id='gydw' name="gydw" style="width: 400px;">
+					<input id='gydwdm' name="gydwdm" style="width: 124px;" type="hidden">
 				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
+			</tr>
+			<tr style="height: 35px;">	
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>现状技术等级：
+					<font color='red' size='2'>*&nbsp;</font>行政区划：
 				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input name="jsdj" id="jsdj" type="text" style="width: 120px;"/>
+				<td colspan="3" style="background-color: #ffffff; height: 25px;" align="left">
+					<input type='text' id='xzqh' name="xzqh" style="width: 400px;">
+					<input id='xzqhdm' name="xzqhdm" style="width: 124px;" type="hidden">
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-<!-- 					<font color='red' size='2'>*&nbsp;</font>补助测算(万元)： -->
-				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-<!-- 					<input id="bzcs" name="bzcs" type="text" style="width: 120px;"/> -->
-				</td>
+								
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td colspan="6" style="background-color: #ffffff;"align="center">

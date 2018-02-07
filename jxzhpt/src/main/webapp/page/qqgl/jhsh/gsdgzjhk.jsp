@@ -192,16 +192,15 @@
 						$("#lc").html(msg.LC);
 						 $("#tz").html(msg.TZ);
 						 $("#cgs").html(msg.CGS);
+						 $("#zsbz").html(msg.ZSBZ);
+						 $("#zjl").html(msg.ZJL);
 						 $("#bcxd").html(msg.BCXD);
 						 $("#btz").html(msg.BTZ);
 						 $("#sbz").html(msg.SBZ);
-						 $("#sjl").html(msg.SJL);
-						 
+						 $("#sjl").html(msg.SJL);	 
 						 $("#dftz").html(msg.DFTZ);
 						 //BCXD是哪里的 实体里没找到  上面还有几个也没找到
 						 $("#yhdk").html(msg.YHDK);
-						 
-
 					}else{
 						$('#spanbbz').html("0");
 						$('#spansbz').html("0");
@@ -456,14 +455,16 @@ text-decoration:none;
             		<div>项目【<span id="xmsl" style="color: red;">0</span>】个,
             		建设里程【<span id="lc" style="color: red;">0</span>】公里,
             		总投资【<span id="tz" style="color: red;">0</span>】万元,
-            		其中车购税【<span id="cgs" style="color: red;">0</span>】万元。
+            		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
+            		省补资金【<span id="zsbz" style="color: red;">0</span>】万元,
+            		省奖励资金【<span id="zjl" style="color: red;">0</span>】万元。
             		本次下达【<span id="bcxd" style="color: red;">0</span>】万元,
             		其中车购税【<span id="btz" style="color: red;">0</span>】万元,
             		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
-            		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
+            		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元。
             		<!-- 地方投资【<span id="dftz" style="color: red;">0</span>】万元。、银行贷款 -->
-            		地方自筹【<span id="dftz" style="color: red;">0</span>】万元,
-            		银行贷款【<span id="yhdk" style="color: red;">0</span>】万元。
+            		<!-- 地方自筹【<span id="dftz" style="color: red;">0</span>】万元,
+            		银行贷款【<span id="yhdk" style="color: red;">0</span>】万元。 -->
             		</div>
             		<div><table id="grid"></table></div>
             	</td>

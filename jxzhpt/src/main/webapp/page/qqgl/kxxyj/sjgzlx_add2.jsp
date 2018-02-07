@@ -260,20 +260,35 @@ var xzqh;
 					总计：<span id="jhlc" style="font-size: 14px">0</span>&nbsp;公里
 				</td>
 			</tr>
-
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+			   <td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>管养单位：</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type='text' id='gydw' style="width: 124px;"></td>
+				<td colspan="3" style="background-color: #ffffff; height: 25px;" align="left">
+					<input type='text' id='gydw' style="width: 400px;"></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>行政区划：</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type='text' id='xzqh' style="width: 124px;"></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>项目编码：</td>
+					</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
+				</td>
+            </tr>
+            <tr style="height: 35px;">
+			    <td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>行政区划：</td>
+				<td colspan="3" style="background-color: #ffffff; height: 25px;" align="left">
+					<input type='text' id='xzqh' style="width: 400px;"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+				</td>
+            </tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>项目编码：</td>
+				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xmbm"></span>
 					<input id="id" name="id" type="hidden"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
 				</td>
 			</tr>
 			<tr style="height: 35px;">

@@ -39,7 +39,8 @@ text-decoration:none;
 		$("#lxmc").html(msg.lxmc);
 		$("#lxbm").val(msg.ghlxbh);
 		loadUnit5("gydw",msg.gydwdm,$.cookie("unit"));
-		loadDistedit("xzqh",msg.xzqhdm,$.cookie("dist"));
+		loadDistedit("xzqh",$.cookie("dist"),msg.xzqhdm);
+		//loadDistedit("xzqh",msg.xzqhdm,$.cookie("dist"));
 		$("#tsdq").html(msg.tsdq);
 		$("#xjsdj").val(msg.xjsdj);
 		$("#xjlc").val(msg.xjlc);
@@ -251,7 +252,7 @@ text-decoration:none;
 					无路：<input id="wllc" name="wllc" style="width: 50px;" type="text" onblur="checkSZ(this)"/>
 				</td>
 			</tr>
-			<tr style="height: 35px;">
+<!-- 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>管养单位：
 				</td>
@@ -284,8 +285,30 @@ text-decoration:none;
 				</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 				</td>
-			</tr>
-			
+			</tr> -->
+			<tr style="height: 35px;">
+			    <td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>管养单位：</td>
+				<td colspan="3" style="background-color: #ffffff; height: 25px;" align="left">
+					<input type='text' id='gydw' style="width: 400px;"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>建设技术等级：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="jsjsdj" name="jsjsdj" type="text" style="width: 120px;"/>
+				</td>
+            </tr>
+            <tr style="height: 35px;">
+			    <td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>行政区划：</td>
+				<td colspan="3" style="background-color: #ffffff; height: 25px;" align="left">
+					<input type='text' id='xzqh' style="width: 400px;"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>现状技术等级：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="xjsdj" name="xjsdj" type="text" style="width: 120px;"/>
+				</td>
+            </tr>
 			<tr style="height: 35px;">
 				<td colspan="6" style="background-color: #ffffff;"align="center">
 				<a href="javascript:void(0)" id="save_button" class="easyui-linkbutton" plain="true" iconCls="icon-save">保存</a>

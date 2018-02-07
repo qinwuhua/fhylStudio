@@ -31,9 +31,20 @@
 			//loadUnit("gydw",parent.YMLib.Var.Obj.gydwdm);
 			//loadDist("xzqh",parent.YMLib.Var.Obj.xzqhdm);
 			$('#xmbm').html(parent.YMLib.Var.Obj.xmid);
-			if(parent.YMLib.Var.Obj.xmid.substr(10,1)!="1"){
+/*  			if(parent.YMLib.Var.Obj.xmid.substr(10,1)!="1"){
 				$('#trjhlc').hide();
 			}else{
+				$('#trjhlc').show();
+			}  */
+			if(parent.YMLib.Var.Obj.xmid.substr(10,1) =="1"){
+				$('#trjhlc').show();
+			}
+			if(parent.YMLib.Var.Obj.xmid.substr(10,1)=="2"){
+				$('#trjhlc').hide();
+			}
+			if(parent.YMLib.Var.Obj.xmid.substr(10,1)=="3"){
+				$('#tdxlc').html("建设技术等<br/>级及里程");
+				$('#tdjhlc').html("现技术等<br/>级及里程");
 				$('#trjhlc').show();
 			}
 			var inputArray= $('input');
@@ -124,7 +135,7 @@
 				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+				<td id="tdxlc" style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					现技术等<br/>级及里程
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="5">
@@ -137,7 +148,7 @@
 				</td>
 			</tr>
 			<tr id="trjhlc" style="height: 35px;">
-				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+				<td id="tdjhlc" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					建设技术<br/>等级及里程
 				</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">

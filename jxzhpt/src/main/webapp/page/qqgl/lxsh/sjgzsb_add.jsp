@@ -357,7 +357,7 @@ text-decoration:none;
 					parent.showAll();
 					removes('lxxx');
 				}else if(msg.result=="have"){
-					alert("路线 "+$('#lxbm').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在"+panduanxmlx(msg.lx.xmid)+"【"+msg.lx.xmmc+"】"+"中！");
+					alert("路线 "+$('#ghlxbm').val()+"【"+$('#ghqdzh').val()+"-"+$('#ghzdzh').val()+"】已存在"+panduanxmlx(msg.lx.xmid)+"【"+msg.lx.xmmc+"】"+"中！");
 				}else{
 					alert('保存失败！');
 				}

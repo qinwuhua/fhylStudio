@@ -405,7 +405,7 @@ public class LxshController extends BaseActionSupport{
 	}
 	public void insertSjgz(){
 		try {
-			if(lxsh.getWnid()!=null&&!lxsh.getWnid().equals("")){
+			if(lxsh.getWnid()!=null&&!"".equals(lxsh.getWnid())){
 				String xmbmVal="";
 				String[] val = lxsh.getWnid().split(",");
 				for (int i = 0; i < val.length; i++) {
@@ -421,7 +421,7 @@ public class LxshController extends BaseActionSupport{
 			Map<String, Object> result =new HashMap<String, Object>();
 			Lx lx=new Lx();
 			lx.setXmid(lxsh.getXmbm());
-			lx.setGhlxbm(lxsh.getGhlxbh());
+			lx.setGhlxbm(lxsh.getGhlxbm());
 			lx.setGhqdzh(lxsh.getGhqdzh());
 			lx.setGhzdzh(lxsh.getGhzdzh());
 			JhshServer jhshServer=new JhshServerImpl();

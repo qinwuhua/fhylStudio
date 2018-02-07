@@ -395,6 +395,7 @@ text-decoration:none;
 						<option value="">请选择</option>
 						<option value="部库">部库</option>
 						<option value="省库">省库</option>
+						<option value="库外">库外</option>
 					</select>
 					
 				</td>
@@ -466,18 +467,22 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="jsxz" style="width: 120px" value='升级改造'/></td>
 			</tr> -->
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+            <tr style="height: 35px;">
+			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>管养单位：</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type='text' id='gydw' style="width: 124px;"></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>行政区划：</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type='text' id='xzqh' style="width: 124px;"></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left">
+			<td colspan="3" style="background-color: #ffffff; height: 25px;" align="left">
+					<input type='text' id='gydw' style="width: 410px;"></td>
+					
+			<td rowspan="2" style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
+			<td rowspan="2" style="background-color: #ffffff; height: 25px;" align="left">
 					<span id="tsdq" style="font-size: 14px"></span></td>
+			</tr>
+			
+			<tr style="height: 35px;">
+			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>行政区划：</td>
+			<td colspan="3" style="background-color: #ffffff; height: 25px;" align="left">
+					<input type='text' id='xzqh' style="width: 410px;"></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
