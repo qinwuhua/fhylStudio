@@ -34,6 +34,9 @@
 		$("#jsdj").val(parent.YMLib.Var.Obj.xjsdj);
 		$('#xmbm').html(parent.YMLib.Var.Obj.xmid);
 		$('#lx').form("load",parent.YMLib.Var.Obj);
+		$('#ghlxbm').val(parent.YMLib.Var.Obj.xjlxbm);
+		$('#ghzdzh').val(parent.YMLib.Var.Obj.xjzdzh);
+		$('#ghqdzh').val(parent.YMLib.Var.Obj.xjqdzh);
 		loadUnitedit("gydw",$.cookie("unit"),parent.YMLib.Var.Obj.gydwdm);
 		$("#gydw").combotree('setValues',parent.YMLib.Var.Obj.gydwdm.split(","));
 		loadDistedit("xzqh",$.cookie("dist"),parent.YMLib.Var.Obj.xzqhdm);

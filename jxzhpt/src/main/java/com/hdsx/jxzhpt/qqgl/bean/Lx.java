@@ -17,7 +17,14 @@ public class Lx {
 	private String xmsl;//项目数量
 	private String bzlx135;
 	private String bzje135;
+	private String xmjd;
 
+	public String getXmjd() {
+		return xmjd;
+	}
+	public void setXmjd(String xmjd) {
+		this.xmjd = xmjd;
+	}
 	public String getBzlx135() {
 		return bzlx135;
 	}

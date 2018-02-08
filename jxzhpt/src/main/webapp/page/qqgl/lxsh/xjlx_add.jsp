@@ -162,7 +162,7 @@ text-decoration:none;
 		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")
 		+"&lxsh.jsjsdj="+$("#jsjsdj").combobox("getText")+"&lxsh.xjsdj="+$("#xjsdj").combobox("getText")+"&lxsh.xmbm="+$("#xmbm").html()
-		+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.xmlx=xj"+"&lxsh.sffirst=0"+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh=''&lxsh.gpszdzh=''"
+		+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.xmlx=xj"+"&lxsh.sffirst=0"+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh="+$('#xjqdzh').val()+"&lxsh.gpszdzh="+$('#xjzdzh').val()
 		+"&lxsh.xjlxbm="+$('#xjlxbm').val()+"&lxsh.xjqdzh="+$('#xjqdzh').val()+"&lxsh.xjzdzh="+$('#xjzdzh').val()+
 		"&lxsh.xjlc="+$('#xjlc').html()+"&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+
 		"&lxsh.sanlc="+$('#sanlc').val()+"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val();
@@ -176,8 +176,7 @@ text-decoration:none;
 			dataType:'json',
 			success:function(msg){
 				if(msg.result=="true"){
-					alert("保存成功！");
-					if(YMLib.Var.sq=="sq"){
+					if(parent.YMLib.Var.sq=="sq"){
 						parent.showAllxj();
 					}else{
 						parent.showAllxjsh();
@@ -326,15 +325,21 @@ function changeZlc2(){
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>管养单位：</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type='text' id='gydw' style="width:130px;"></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>行政区划：</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type='text' id='xzqh' style="width: 130px;"></td>
+				<td colspan="3" style="background-color: #ffffff; height: 25px;" align="left">
+					<input type='text' id='gydw' style="width:400px;"></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="jsxz" style="width: 120px"  value='新建'/></td>
-			</tr>
+					<input type="text" id="jsxz" style="width: 120px"  value='新建'/></td>	
+			</tr>		
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>行政区划：</td>
+				<td colspan="3" style="background-color: #ffffff; height: 25px;" align="left">
+					<input type='text' id='xzqh' style="width: 400px;"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算(万元)：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<input type="text" id='bzcs' style="width:120px;" onblur="checkSZ(this)"/></td>
+			</tr>		
+
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>建设技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
@@ -356,9 +361,8 @@ function changeZlc2(){
 						<option value="等外公路">等外公路</option>
 						<option value="高速公路">高速公路</option>
 					</select></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算(万元)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-				<input type="text" id='bzcs' style="width:120px;" onblur="checkSZ(this)"/></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
 			</tr>
 		
 			<tr style="height: 35px;">
