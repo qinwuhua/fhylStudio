@@ -2182,6 +2182,7 @@ function showAllxj(){
 	        return '<div style="padding:2px"><table id="table_lx' + row.xmbm + '"></table></div>';   
 	    },
 	    onExpandRow: function(index,row){
+	    	parentindex=index;
 	    	$('#table_lx'+row.xmbm).datagrid({
 	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
@@ -2197,9 +2198,9 @@ function showAllxj(){
 							   return '删除';
 					}},*/
 					{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
-						var result ='<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
+						var result ='<a href="javascript:editXjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
 						if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
-							result+= '&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')">删除</a>   ';
+							result+= '&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delxjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')">删除</a>   ';
 						}
 						if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
 							result+='&nbsp;删除';
@@ -2546,7 +2547,7 @@ function delxjlx(index1,index){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/deleteLx.do',
-        data:'lxsh.xmbm='+data.xmbm+'&lxsh.id='+data.id+"&lxsh.xmlx=xj",
+        data:'lx.xmbm='+index1+'&lx.id='+data.id+"&lx.xmlx=xj",
 		dataType:'json',
 		success:function(msg){
 			if(Boolean(msg)){

@@ -61,7 +61,8 @@
 									return a;
 								}
 							},
-							{field:'xmnf',title:'计划年份',width:100,align:'center'},
+							/* {field:'xmnf',title:'计划年份',width:100,align:'center'}, */
+							{field:'xmjd',title:'项目进度',width:100,align:'center'},
 							{field:'ghlxbm',title:'现路线编码',width:100,align:'center'},
 							{field:'jsjsdj',title:'现技术等级',width:100,align:'center'},
 							{field:'ghqdzh',title:'现起点桩号',width:100,align:'center'},

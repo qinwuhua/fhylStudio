@@ -217,7 +217,7 @@ text-decoration:none;
 	}
 	function upload(){
 		if($('#gkpfwh').val()==""){
-			alert("请填写计划下达文号！");
+			alert("请填写工可批复文号！");
 			return;
 		}else{
 			//alert($('#gkpfwh').val());
