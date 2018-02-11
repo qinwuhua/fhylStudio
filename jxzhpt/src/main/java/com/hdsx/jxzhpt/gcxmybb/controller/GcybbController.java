@@ -5720,7 +5720,7 @@ public class GcybbController extends BaseActionSupport{
 					et.add(new Excel_tilte("工程分类",2,3,11,11));
 					et.add(new Excel_tilte("技术处治方案",2,3,12,12));
 					et.add(new Excel_tilte("计划下达文号",2,3,13,13));
-					et.add(new Excel_tilte("下达计划",2,3,14,16));
+					et.add(new Excel_tilte("下达计划",2,2,14,16));
 					et.add(new Excel_tilte("2017年目标任务（公里）",2,3,17,17));
 					et.add(new Excel_tilte("所在地（分局）",2,3,18,18));
 					et.add(new Excel_tilte("开工时间/计划开工时间",2,3,19,19));
@@ -5729,8 +5729,8 @@ public class GcybbController extends BaseActionSupport{
 					et.add(new Excel_tilte("本年完成",2,2,28,34));
 					et.add(new Excel_tilte("至本月累计完成",2,2,35,41));
 					
-					et.add(new Excel_tilte("起点桩号",3,3,6,7));
-					et.add(new Excel_tilte("讫点桩号",3,3,1,1));
+					et.add(new Excel_tilte("起点桩号",3,3,6,6));
+					et.add(new Excel_tilte("讫点桩号",3,3,7,7));
 					et.add(new Excel_tilte("总投资（万元）",3,3,14,14));
 					et.add(new Excel_tilte("其中：1、中央车购税资金（万元）",3,3,15,15));
 					et.add(new Excel_tilte("其中：2、省级补助资金（万元）",3,3,16,16));
