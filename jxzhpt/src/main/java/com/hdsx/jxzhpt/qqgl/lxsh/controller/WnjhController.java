@@ -90,6 +90,7 @@ public class WnjhController extends BaseActionSupport{
 	private File fileupload;
 	private Lx lx=new Lx();
 	private String name;
+	private String flag;
 	
 	private Gcgl_jgys gcgl_jgys = new Gcgl_jgys();
 	private File uploadSGXK;
@@ -164,6 +165,15 @@ public class WnjhController extends BaseActionSupport{
 				lxsh.setXmlx1(tsdq);
 			}
 	}
+	
+	public String getFlag() {
+		return flag;
+	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+
 	public String getXmlx() {
 		return xmlx;
 	}
@@ -1803,6 +1813,7 @@ public class WnjhController extends BaseActionSupport{
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 		lxsh.setCgs(((String) session.getAttribute("sql")));
+		
 		String jsxz = "";
 		try {
 		    jsxz = java.net.URLDecoder.decode(lxsh.getJsxz(), "UTF-8");
@@ -1828,55 +1839,58 @@ public class WnjhController extends BaseActionSupport{
 			eldata.setEl(l);// 将实体list放入类中
 			List<Excel_tilte> et = new ArrayList<Excel_tilte>();// 创建一个list存放表头
 			et.add(new Excel_tilte("序号", 1, 2, 0, 0));	
-			et.add(new Excel_tilte("地市", 1, 2, 1, 1));
-			et.add(new Excel_tilte("县、区", 1, 2, 2, 2));
+			et.add(new Excel_tilte("设区市", 1, 2, 1, 1));
+			et.add(new Excel_tilte("县（市、区）", 1, 2, 2, 2));
 			et.add(new Excel_tilte("规划路线编号", 1, 2, 3, 3));
 			et.add(new Excel_tilte("项 目 名 称", 1, 2, 4, 4));			
-			et.add(new Excel_tilte("项目编码", 1, 2, 5, 5));			
-			et.add(new Excel_tilte("项目所属的集中连片特困区域", 1, 2, 6, 6));
-			et.add(new Excel_tilte("规划起点桩号", 1, 2, 7, 7));
-			et.add(new Excel_tilte("规划止点桩号", 1, 2, 8, 8));
-			et.add(new Excel_tilte("建设性质", 1, 2, 9, 9));
-			et.add(new Excel_tilte("现技术等级（公里）", 1, 1, 10, 15));
-			et.add(new Excel_tilte("建设规模（公里）/（延米）", 1, 1, 16, 21));
-			et.add(new Excel_tilte("建设年限", 1, 1, 22, 23));			
-			et.add(new Excel_tilte("首次下达计划年份", 1, 2, 24, 24));	
-			et.add(new Excel_tilte("总投资（万元）", 1, 2, 25, 25));
-			et.add(new Excel_tilte("中央车购税投资（万元）", 1, 2, 26, 26));
-			et.add(new Excel_tilte("是否组织行业审查", 1, 2, 27, 27));
-			et.add(new Excel_tilte("是否完成工可文本编制", 1, 2, 28, 28));
-			et.add(new Excel_tilte("工可行业审查意见", 1, 1, 29, 30));
-			et.add(new Excel_tilte("工可批复", 1, 1, 31, 32));
-			et.add(new Excel_tilte("初设批复", 1, 1, 33, 34));
-			et.add(new Excel_tilte("规划", 1, 1, 35, 36));
-			et.add(new Excel_tilte("用地", 1, 1, 37, 38));
-			et.add(new Excel_tilte("项目编码", 1, 2, 39, 39));
-
-			et.add(new Excel_tilte("合计", 2, 2, 10, 10));
-			et.add(new Excel_tilte("一级公里", 2, 2, 11, 11));
-			et.add(new Excel_tilte("二级公里", 2, 2, 12, 12));
-			et.add(new Excel_tilte("三级公里", 2, 2, 13, 13));
-			et.add(new Excel_tilte("四级公里", 2, 2, 14, 14));
-			et.add(new Excel_tilte("等外公里", 2, 2, 15, 15));
-			et.add(new Excel_tilte("合计", 2, 2, 16, 16));
-			et.add(new Excel_tilte("一级公里", 2, 2, 17, 17));
-			et.add(new Excel_tilte("二级公里", 2, 2, 18, 18));
-			et.add(new Excel_tilte("三级公里", 2, 2, 19, 19));
-			et.add(new Excel_tilte("独立桥梁", 2, 2, 20, 20));
-			et.add(new Excel_tilte("独立隧道", 2, 2, 21, 21));
-			et.add(new Excel_tilte("开工年", 2, 2, 22, 22));
-			et.add(new Excel_tilte("完工年", 2, 2, 23, 23));
-			
-			et.add(new Excel_tilte("文号", 2, 2, 29, 29));
-			et.add(new Excel_tilte("批复时间", 2, 2, 30, 30));
-			et.add(new Excel_tilte("文号", 2, 2, 31, 31));
-			et.add(new Excel_tilte("批复时间", 2, 2, 32, 32));
-			et.add(new Excel_tilte("文号", 2, 2, 33, 33));
-			et.add(new Excel_tilte("批复时间", 2, 2, 34, 34));
-			et.add(new Excel_tilte("文号", 2, 2, 35, 35));
-			et.add(new Excel_tilte("批复时间", 2, 2, 36, 36));
-			et.add(new Excel_tilte("文号", 2, 2, 37, 37));
-			et.add(new Excel_tilte("批复时间", 2, 2, 38, 38));
+			et.add(new Excel_tilte("原项目库编码", 1, 2, 5, 5));
+			et.add(new Excel_tilte("中期调整后项目库编码", 1, 2, 6, 6));
+			et.add(new Excel_tilte("特殊地区", 1, 2, 7, 7));
+			et.add(new Excel_tilte("规划起点桩号", 1, 2, 8, 8));
+			et.add(new Excel_tilte("规划止点桩号", 1, 2, 9, 9));
+			et.add(new Excel_tilte("建设性质", 1, 2, 10, 10));
+			et.add(new Excel_tilte("现技术等级（公里）", 1, 1, 11, 16));
+			et.add(new Excel_tilte("建设规模（公里）/（延米）", 1, 1, 17, 22));
+			//et.add(new Excel_tilte("建设年限", 1, 1, 22, 23));			
+			et.add(new Excel_tilte("首次下达计划年份", 1, 2, 23, 23));	
+			et.add(new Excel_tilte("总投资（万元）", 1, 2, 24, 24));
+			et.add(new Excel_tilte("中央车购税投资（万元）", 1, 2, 25, 25));
+			et.add(new Excel_tilte("任务目标建设年", 1, 1, 26, 27));
+			et.add(new Excel_tilte("是否组织行业审查", 1, 2, 28, 28));
+			et.add(new Excel_tilte("是否完成工可文本编制", 1, 2, 29, 29));
+			et.add(new Excel_tilte("工可行业审查意见", 1, 1, 30, 31));
+			et.add(new Excel_tilte("工可批复", 1, 1, 32, 33));
+			et.add(new Excel_tilte("初设批复", 1, 1, 34, 35));
+			et.add(new Excel_tilte("施工图批复", 1, 1, 36, 37));
+			et.add(new Excel_tilte("规划", 1, 1, 38, 39));
+			et.add(new Excel_tilte("用地", 1, 1, 40, 41));
+			et.add(new Excel_tilte("项目编码", 1, 2, 42, 42));
+			et.add(new Excel_tilte("合计", 2, 2, 11, 11));
+			et.add(new Excel_tilte("一级", 2, 2, 12, 12));
+			et.add(new Excel_tilte("二级", 2, 2, 13, 13));
+			et.add(new Excel_tilte("三级", 2, 2, 14, 14));
+			et.add(new Excel_tilte("四级", 2, 2, 15, 15));
+			et.add(new Excel_tilte("等外", 2, 2, 16, 16));
+			et.add(new Excel_tilte("合计", 2, 2, 17, 17));
+			et.add(new Excel_tilte("一级", 2, 2, 18, 18));
+			et.add(new Excel_tilte("二级", 2, 2, 19, 19));
+			et.add(new Excel_tilte("三级", 2, 2, 20, 20));
+			et.add(new Excel_tilte("独立桥梁", 2, 2, 21, 21));
+			et.add(new Excel_tilte("独立隧道", 2, 2, 22, 22));
+			et.add(new Excel_tilte("开工年", 2, 2, 26, 26));
+			et.add(new Excel_tilte("完工年", 2, 2, 27, 27));
+			et.add(new Excel_tilte("文号", 2, 2, 30, 30));
+			et.add(new Excel_tilte("批复时间", 2, 2, 31, 31));
+			et.add(new Excel_tilte("文号", 2, 2, 32, 32));
+			et.add(new Excel_tilte("批复时间", 2, 2, 33, 33));
+			et.add(new Excel_tilte("文号", 2, 2, 34, 34));
+			et.add(new Excel_tilte("批复时间", 2, 2, 35, 35));
+			et.add(new Excel_tilte("文号", 2, 2, 36, 36));
+			et.add(new Excel_tilte("批复时间", 2, 2, 37, 37));
+			et.add(new Excel_tilte("文号", 2, 2, 38, 38));
+			et.add(new Excel_tilte("批复时间", 2, 2, 39, 39));
+			et.add(new Excel_tilte("文号", 2, 2, 40, 40));
+			et.add(new Excel_tilte("批复时间", 2, 2, 41, 41));
 			eldata.setEt(et);// 将表头内容设置到类里面
 			HttpServletResponse response = getresponse();// 获得一个HttpServletResponse
 			try {
@@ -1885,5 +1899,143 @@ public class WnjhController extends BaseActionSupport{
 				e.printStackTrace();
 			}
 	 }
+	 public void getSjgzjdxxb() {		 
+		 try {
+				if("1".equals(flag)){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+					lxsh.setCgs(((String) session.getAttribute("sql")));
+					lxsh.setDftz(((String) session.getAttribute("nameValue")));
+					List<Excel_list> el=wnjhServer.getSjgzjdxxbExcel(lxsh);				
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("普通国省道升级改造前期工作及项目建设进度表");//设置第一行 
+					eldata.setSheetName("普通国省道升级改造前期工作及项目建设进度表");//设置sheeet名
+					eldata.setFileName("普通国省道升级改造前期工作及项目建设进度表");//设置文件名
+					eldata.setEl(el);//将实体list放入类中
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					et.add(new Excel_tilte("序号",1,3,0,0));
+					et.add(new Excel_tilte("项目编码",1,3,1,1));
+					et.add(new Excel_tilte("设区市",1,3,2,2));
+					et.add(new Excel_tilte("县（市、区）",1,3,3,3));
+					et.add(new Excel_tilte("特殊地区",1,3,4,4));
+					et.add(new Excel_tilte("项目名称",1,3,5,5));
+					et.add(new Excel_tilte("规划路线编码",1,3,6,6));
+					et.add(new Excel_tilte("项目库类型",1,3,7,7));
+					et.add(new Excel_tilte("项目库编码",1,3,8,8));
+					et.add(new Excel_tilte("现状等级（公里）",1,2,9,10));
+					et.add(new Excel_tilte("建设规模（公里）",1,2,11,13));
+					et.add(new Excel_tilte("总投资（万元）",1,3,14,14));
+					et.add(new Excel_tilte("补助资金（万元）",1,2,15,16));
+					et.add(new Excel_tilte("地方自筹（万元）",1,3,17,17));
+					et.add(new Excel_tilte("工可批复",1,3,18,18));
+					et.add(new Excel_tilte("初设批复",1,3,19,19));
+					et.add(new Excel_tilte("施工图批复",1,3,20,20));
+					et.add(new Excel_tilte("计划下达情况",1,2,21,22));
+					et.add(new Excel_tilte("项目建设",1,1,23,34));
+					et.add(new Excel_tilte("备注",1,3,35,35));	
+					et.add(new Excel_tilte("2018年项目建设目标",2,2,23,25));
+					et.add(new Excel_tilte("项目建设状态",2,2,26,28));
+					et.add(new Excel_tilte("项目建设进度情况",2,2,29,34));		
+					et.add(new Excel_tilte("三级及以下",3,3,9,9));
+					et.add(new Excel_tilte("二级及以上",3,3,10,10));	
+					et.add(new Excel_tilte("升一",3,3,11,11));
+					et.add(new Excel_tilte("升二",3,3,12,12));
+					et.add(new Excel_tilte("升三",3,3,13,13));
+					et.add(new Excel_tilte("中央车购税",3,3,15,15));
+					et.add(new Excel_tilte("省级补助",3,3,16,16));
+					et.add(new Excel_tilte("计划年份",3,3,21,21));
+					et.add(new Excel_tilte("计划文号",3,3,22,22));
+					et.add(new Excel_tilte("开工里程（公里）",3,3,23,23));
+					et.add(new Excel_tilte("完工里程（公里）",3,3,24,24));
+					et.add(new Excel_tilte("完成投资（万元）",3,3,25,25));
+					et.add(new Excel_tilte("已完工",3,3,26,26));
+					et.add(new Excel_tilte("在建",3,3,27,27));
+					et.add(new Excel_tilte("未开工",3,3,28,28));
+					et.add(new Excel_tilte("建设开工时间",3,3,29,29));
+					et.add(new Excel_tilte("建设完工时间",3,3,30,30));
+					et.add(new Excel_tilte("累计已完工（公里）",3,3,31,31));
+					et.add(new Excel_tilte("本年度完工里程（公里）",3,3,32,32));
+					et.add(new Excel_tilte("累计完成总投资（万元）",3,3,33,33));
+					et.add(new Excel_tilte("本年度完成总投资（万元）",3,3,34,34));
+					eldata.setEt(et);//将表头内容设置到类里面
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					Excel_export.excel_export(eldata,response);
+			}else{
+				List<Lxsh> list1=wnjhServer.getSjgzjdxxb(lxsh);
+				JsonUtils.write(list1, getresponse().getWriter());
+	           }                                                     
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	 }
+	 public void insertSjgzjdxxb() {
+		 try {
+			boolean b = wnjhServer.insertOrUpdateSjgzjdxxb(lxsh);
+			ResponseUtils.write(getresponse(), b+"");
+		 }catch (Exception e) {
+			// TODO: handle exception
+			 e.printStackTrace();
+		}
+	 }
+	 
+		public void getSjgzjdhzb() {
+			try {
+				if("1".equals(flag)){
+					List<Excel_list> eL=wnjhServer.getSjgzjdhzb(lxsh);				
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("普通国省道升级改造项目建设进度汇总表");//设置第一行 
+					eldata.setSheetName("普通国省道升级改造项目建设进度汇总表");//设置sheeet名
+					eldata.setFileName("普通国省道升级改造项目建设进度汇总表");//设置文件名
+					eldata.setEl(eL);//将实体list放入类中
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					et.add(new Excel_tilte("设区市",1,3,0,0));			
+					et.add(new Excel_tilte("2018年项目建设",1,1,1,17));
+					et.add(new Excel_tilte("2018年项目建设目标",2,2,1,4));
+					et.add(new Excel_tilte("目标任务内项目建设进度情况",2,2,5,12));
+					et.add(new Excel_tilte("目标任务外项目建设进度情况",2,2,13,17));
+					et.add(new Excel_tilte("开工里程（公里）",3,3,1,1));
+					et.add(new Excel_tilte("开工项目个数",3,3,2,2));
+					et.add(new Excel_tilte("完工里程（公里）",3,3,3,3));
+					et.add(new Excel_tilte("完成投资（万元）",3,3,4,4));
+					et.add(new Excel_tilte("已完工",3,3,5,5));
+					et.add(new Excel_tilte("在建",3,3,6,6));
+					et.add(new Excel_tilte("其中2018年新开工",2,2,7,7));	
+					et.add(new Excel_tilte("未开工",3,3,8,8));
+					et.add(new Excel_tilte("自开工建设累计已完成（公里）",3,3,9,9));
+					et.add(new Excel_tilte("其中2018年完工里程（公里）",3,3,10,10));
+					et.add(new Excel_tilte("自开工建设累计完成总投资（万元）",3,3,11,11));
+					et.add(new Excel_tilte("其中2018年完成投资（万元）",3,3,12,12));
+					et.add(new Excel_tilte("2018年新开工个数",3,3,13,13));
+					et.add(new Excel_tilte("自开工建设累计已完工（公里）",3,3,14,14));
+					et.add(new Excel_tilte("其中2018年完工里程（公里）",3,3,15,15));
+					et.add(new Excel_tilte("自开工建设累计完成总投资（万元）",3,3,16,16));
+					et.add(new Excel_tilte("其中2018年完成投资（万元）",3,3,17,17));	
+					eldata.setEt(et);//将表头内容设置到类里面
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					Excel_export.excel_export(eldata,response);
+			}else{
+				String tiaojian2="";
+				String xzqhdm = "";
+				if("1".equals(flag)){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+					xzqhdm=(String) session.getAttribute("xzqhbb");	
+				}else{
+				xzqhdm	= xzqh;
+				}
+				
+				if(xzqhdm.indexOf(",")==-1){
+					tiaojian2="and t3.xzqhdm like '%"+xzqhdm+"%'";
+				}else{
+					tiaojian2=getcxtj("t3.xzqhdm",xzqhdm);
+				}
+				lxsh.setXzqhdm(tiaojian2);
+				List<Excel_list> list1=wnjhServer.getSjgzjdhzb(lxsh);
+				JsonUtils.write(list1, getresponse().getWriter());
+	           }                                                     
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 }
 

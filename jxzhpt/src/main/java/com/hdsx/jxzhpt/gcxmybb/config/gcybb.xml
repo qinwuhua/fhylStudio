@@ -5130,4 +5130,25 @@ left join(select gt.LSXMID,count(*)kwgk from gsdgz_tjhzb gt where gt.XMKLX like 
 left join(select gt.LSXMID,count(*)kwcs from gsdgz_tjhzb gt where gt.XMKLX like '%库外%' and gt.CSSHZT ='1' group by gt.LSXMID) cs on cs.lsxmid=gt.LSXMID)kw on bk.lsxmid = kw.lsxmid 
 group by bk.xzqhdm order by bk.xzqhdm
 	</select>
+	
+	<select id="getGsdyhjdhzb" parameterType="gcglabgc" resultType="elist">
+	    select * from TEMP_GSDYHJDHZ
+	</select>
+	
+	<update id="updateGsdyhjdhzb" parameterType="elist">
+      UPDATE TEMP_GSDYHJDHZ t set
+      t.v_21=#{v_21,jdbcType=VARCHAR},t.v_22=#{v_22,jdbcType=VARCHAR},t.v_23=#{v_23,jdbcType=VARCHAR},
+      t.v_24=#{v_24,jdbcType=VARCHAR},t.v_25=#{v_25,jdbcType=VARCHAR},t.v_26=#{v_26,jdbcType=VARCHAR},
+      t.v_27=#{v_27,jdbcType=VARCHAR},t.v_28=#{v_28,jdbcType=VARCHAR},t.v_29=#{v_29,jdbcType=VARCHAR},
+      t.v_30=#{v_30,jdbcType=VARCHAR},t.v_31=#{v_31,jdbcType=VARCHAR},t.v_32=#{v_32,jdbcType=VARCHAR},
+      t.v_33=#{v_33,jdbcType=VARCHAR},t.v_34=#{v_34,jdbcType=VARCHAR},t.v_35=#{v_35,jdbcType=VARCHAR},
+      t.v_36=#{v_36,jdbcType=VARCHAR},t.v_37=#{v_37,jdbcType=VARCHAR},t.v_38=#{v_38,jdbcType=VARCHAR},
+      t.v_39=#{v_39,jdbcType=VARCHAR},t.v_40=#{v_40,jdbcType=VARCHAR},t.v_41=#{v_41,jdbcType=VARCHAR},
+      t.v_42=#{v_42,jdbcType=VARCHAR},t.v_43=#{v_43,jdbcType=VARCHAR},t.v_44=#{v_44,jdbcType=VARCHAR},
+      t.v_45=#{v_45,jdbcType=VARCHAR},t.v_46=#{v_46,jdbcType=VARCHAR},t.v_47=#{v_47,jdbcType=VARCHAR},
+      t.v_48=#{v_48,jdbcType=VARCHAR},t.v_49=#{v_49,jdbcType=VARCHAR},t.v_50=#{v_50,jdbcType=VARCHAR},
+      t.v_51=#{v_51,jdbcType=VARCHAR}     
+      WHERE t.id = #{id}
+	</update>
+	
 </mapper>

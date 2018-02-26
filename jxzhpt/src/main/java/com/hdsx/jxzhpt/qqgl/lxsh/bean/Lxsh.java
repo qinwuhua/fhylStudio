@@ -522,7 +522,189 @@ public class Lxsh implements Serializable {
 	private String ghpfsj;
 	private String ydwh;
 	private String ydpfsj;
+	private String minghqdzh;
+	private String maxghzdzh;
+	private String minyqdzh;
+	private String maxyzdzh;
+	
+	//---------------------------临时表字段-------------------------------------	
+	private String sbzzj;//省补助资金	
+	private String sgtpf;
+	private String xdwh;
+	private String kglc;
+	private String wglc;
+	private String wctz;
+	private String jskgsj;
+	private String jswgsj;
+	private String zwglc;
+	private String bnwglc;
+	private String wcztz;
+	private String bnwcztz;
+	private String ywg;
+	private String zj;
+	private String wkg;
+	private String sgtpfsj;
+    private String xmkbm;
+    private String mbkgn;
+    private String mbwgn;
+    private String sfhysc;
+    private String sfgksc;
+    
+	public String getXmkbm() {
+		return xmkbm;
+	}
+	public void setXmkbm(String xmkbm) {
+		this.xmkbm = xmkbm;
+	}
+	public String getMbkgn() {
+		return mbkgn;
+	}
+	public void setMbkgn(String mbkgn) {
+		this.mbkgn = mbkgn;
+	}
+	public String getMbwgn() {
+		return mbwgn;
+	}
+	public void setMbwgn(String mbwgn) {
+		this.mbwgn = mbwgn;
+	}
+	public String getSfhysc() {
+		return sfhysc;
+	}
+	public void setSfhysc(String sfhysc) {
+		this.sfhysc = sfhysc;
+	}
+	public String getSfgksc() {
+		return sfgksc;
+	}
+	public void setSfgksc(String sfgksc) {
+		this.sfgksc = sfgksc;
+	}
+	public String getSgtpfsj() {
+		return sgtpfsj;
+	}
+	public void setSgtpfsj(String sgtpfsj) {
+		this.sgtpfsj = sgtpfsj;
+	}
+	public String getYwg() {
+		return ywg;
+	}
+	public void setYwg(String ywg) {
+		this.ywg = ywg;
+	}
+	public String getZj() {
+		return zj;
+	}
+	public void setZj(String zj) {
+		this.zj = zj;
+	}
+	public String getWkg() {
+		return wkg;
+	}
+	public void setWkg(String wkg) {
+		this.wkg = wkg;
+	}
+	public String getSbzzj() {
+		return sbzzj;
+	}
+	public void setSbzzj(String sbzzj) {
+		this.sbzzj = sbzzj;
+	}
 
+	public String getSgtpf() {
+		return sgtpf;
+	}
+	public void setSgtpf(String sgtpf) {
+		this.sgtpf = sgtpf;
+	}
+	public String getXdwh() {
+		return xdwh;
+	}
+	public void setXdwh(String xdwh) {
+		this.xdwh = xdwh;
+	}
+	public String getKglc() {
+		return kglc;
+	}
+	public void setKglc(String kglc) {
+		this.kglc = kglc;
+	}
+
+	public String getWglc() {
+		return wglc;
+	}
+	public void setWglc(String wglc) {
+		this.wglc = wglc;
+	}
+	public String getWctz() {
+		return wctz;
+	}
+	public void setWctz(String wctz) {
+		this.wctz = wctz;
+	}
+	public String getJskgsj() {
+		return jskgsj;
+	}
+	public void setJskgsj(String jskgsj) {
+		this.jskgsj = jskgsj;
+	}
+
+	public String getJswgsj() {
+		return jswgsj;
+	}
+	public void setJswgsj(String jswgsj) {
+		this.jswgsj = jswgsj;
+	}
+
+	public String getZwglc() {
+		return zwglc;
+	}
+	public void setZwglc(String zwglc) {
+		this.zwglc = zwglc;
+	}
+	public String getBnwglc() {
+		return bnwglc;
+	}
+	public void setBnwglc(String bnwglc) {
+		this.bnwglc = bnwglc;
+	}
+	public String getWcztz() {
+		return wcztz;
+	}
+	public void setWcztz(String wcztz) {
+		this.wcztz = wcztz;
+	}
+	public String getBnwcztz() {
+		return bnwcztz;
+	}
+	public void setBnwcztz(String bnwcztz) {
+		this.bnwcztz = bnwcztz;
+	}
+//------------------------------------------------------------------------
+	public String getMinghqdzh() {
+		return minghqdzh;
+	}
+	public void setMinghqdzh(String minghqdzh) {
+		this.minghqdzh = minghqdzh;
+	}
+	public String getMaxghzdzh() {
+		return maxghzdzh;
+	}
+	public void setMaxghzdzh(String maxghzdzh) {
+		this.maxghzdzh = maxghzdzh;
+	}
+	public String getMinyqdzh() {
+		return minyqdzh;
+	}
+	public void setMinyqdzh(String minyqdzh) {
+		this.minyqdzh = minyqdzh;
+	}
+	public String getMaxyzdzh() {
+		return maxyzdzh;
+	}
+	public void setMaxyzdzh(String maxyzdzh) {
+		this.maxyzdzh = maxyzdzh;
+	}
 	public String getGhwh() {
 		return ghwh;
 	}

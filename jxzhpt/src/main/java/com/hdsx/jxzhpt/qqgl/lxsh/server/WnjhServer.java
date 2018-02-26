@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.qqgl.lxsh.server;
 import java.util.List;
 import java.util.Map;
 
+import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
@@ -71,4 +72,8 @@ public interface WnjhServer {
 	List<Lxsh> queryTjbxx(Lxsh lxsh);
 	boolean insertOrUpdateWnqqtjb(Lxsh lxsh);
 	List<Excel_list> exportWnqqtjExcel(Lxsh lxsh);
+	List<Lxsh> getSjgzjdxxb(Lxsh lxsh);
+	List<Excel_list> getSjgzjdxxbExcel(Lxsh lxsh);
+	boolean insertOrUpdateSjgzjdxxb(Lxsh lxsh);
+	List<Excel_list> getSjgzjdhzb(Lxsh lxsh);
 }

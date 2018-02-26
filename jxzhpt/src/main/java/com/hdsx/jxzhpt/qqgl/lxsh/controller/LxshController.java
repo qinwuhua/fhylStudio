@@ -3457,7 +3457,6 @@ public class LxshController extends BaseActionSupport{
 		public void thlxshsbyhc(){
 			boolean bl=lxshServer.thlxshsbyhc(lxsh);
 			ResponseUtils.write(getresponse(), bl+"");
-			
 		}
 }
 

@@ -1490,7 +1490,11 @@ function showAllsjsh(){
 		    {field : 'tz',title : '投资',width : 80,align : 'center'},
 		    {field : 'bzys',title : '补助测算',width : 70,align : 'center'},
 		    {field : 'dfzc',title : '地方自筹',width : 70,align : 'center'},
-		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'},
+		    {field:'minghqdzh',title:'最小路线规划起点桩号',width:60,align:'center',hidden:true},
+		    {field:'maxghzdzh',title:'最大路线规划止点桩号',width:60,align:'center',hidden:true},
+		    {field:'minyqdzh',title:'最小路线原起点桩号',width:60,align:'center',hidden:true},
+		    {field:'maxyzdzh',title:'最大路线原止点桩号',width:60,align:'center',hidden:true}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -1926,9 +1930,9 @@ function showAlllmsh(){
 		    {field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
 		    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
 		    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
-		    {field : 'ghlxbh',title : '原路线编码',width : 80,align : 'center'},
-		    {field : 'minqdzh',title : '原起点桩号',width : 80,align : 'center'},
-		    {field : 'maxzdzh',title : '原止点桩号',width : 80,align : 'center'},
+		    {field :'ghlxbh',title : '原路线编码',width : 80,align : 'center'},
+		    {field :'minqdzh',title : '原起点桩号',width : 80,align : 'center'},
+		    {field :'maxzdzh',title : '原止点桩号',width : 80,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:100,align:'center'},
 		    {field:'zdmc',title:'止点名称',width:100,align:'center'},
 		    {field:'mqidj',title:'MQI等级',align:'center',formatter:function(value,row,index){ 
@@ -1950,7 +1954,11 @@ function showAlllmsh(){
 		    {field : 'tz',title : '投资',width : 80,align : 'center'},
 		    {field : 'bzys',title : '补助测算',width : 70,align : 'center'},
 		    {field : 'dfzc',title : '地方自筹',width : 70,align : 'center'},
-		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'},
+		    {field:'minghqdzh',title:'最小路线规划起点桩号',width:60,align:'center',hidden:true},
+		    {field:'maxghzdzh',title:'最大路线规划止点桩号',width:60,align:'center',hidden:true},
+		    {field:'minyqdzh',title:'最小路线原起点桩号',width:60,align:'center',hidden:true},
+		    {field:'maxyzdzh',title:'最大路线原止点桩号',width:60,align:'center',hidden:true}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   

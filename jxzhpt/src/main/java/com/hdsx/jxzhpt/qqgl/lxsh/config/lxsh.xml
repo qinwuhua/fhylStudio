@@ -21,6 +21,10 @@
 	update lxsh_lx set sffirst='1' where id=#{lxid}
 	</update>
 	
+	<update id="updatesWnqqtjb" parameterType="lxsh">
+	    update wnjh_qqxmtjb set wnjhid=#{xmbm} where wnjhid in (${wnid})
+	</update>
+	
 	<insert id="updateqqglls" parameterType="lxsh">
 		update ${bz} l set lsjl=(select lsjl from ${bzcs} w where id=#{wnid} ),
 		lsxmbm=(select lsxmbm from ${bzcs} w where id=#{wnid} ),
@@ -366,7 +370,9 @@
 	</select>
 	<select id="selectSjgzshList" parameterType="lxsh" resultType="lxsh">
 		select * from (select rownum num ,xmklx,t.id,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.xmmc,t.thyy,
-		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,sl.zlc jszlc,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx
+		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,sl.zlc jszlc,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx,
+		decode(sl.minghqdzh,'',ghqdzh,sl.minghqdzh) minghqdzh,decode(sl.maxghzdzh,'',ghzdzh,sl.maxghzdzh) maxghzdzh,decode(sl.minyqdzh,'',lx.minqdzh,sl.minyqdzh) minyqdzh,
+		decode(sl.maxyzdzh,'',lx.maxzdzh,sl.maxyzdzh) maxyzdzh
 		  from LXSH_SJGZ t left join
 		(select xmid,lxbm,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,decode(substr(xmid,11,1),'3',xjlxbm,ghlxbm) ghlxbm,ghlxmc,decode(substr(xmid,11,1),'3',xjqdzh,ghqdzh) ghqdzh,decode(substr(xmid,11,1),'3',xjzdzh,ghzdzh) ghzdzh,gxlxbm,gxqdzh,gxzdzh 
 		from lxsh_lx where jdbs='0' and sffirst='1'
@@ -379,7 +385,9 @@
 	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc
 	            from lxsh_lx where jdbs='0' and sffirst='1' ) lxs 
 		        on t.xmbm=lxs.xmid
-		left join ( select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='0' group by xmid) sl on t.xmbm=sl.xmid
+		left join ( select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc,
+		            min(to_number(decode(f_str_or_num(ghqdzh),1,'',ghqdzh)))minghqdzh,max(to_number(decode(f_str_or_num(ghzdzh),1,'',ghzdzh)))maxghzdzh,min(to_number(decode(f_str_or_num(qdzh),1,'',qdzh)))minyqdzh,max(to_number(decode(f_str_or_num(zdzh),1,'',zdzh)))maxyzdzh
+		            from lxsh_lx where jdbs='0' group by xmid) sl on t.xmbm=sl.xmid
 		where 1=1 <if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
@@ -456,7 +464,9 @@
 	<select id="selectLmgzshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
 		select rownum num ,xmklx,t.id,t.xmmc,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,t.thyy,
-		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,lxs.lc,sl.xmsl,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx,sl.zlc jszlc
+		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,lxs.lc,sl.xmsl,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx,sl.zlc jszlc,
+		decode(sl.minghqdzh,'',ghqdzh,sl.minghqdzh) minghqdzh,decode(sl.maxghzdzh,'',ghzdzh,sl.maxghzdzh) maxghzdzh,decode(sl.minyqdzh,'',lx.minqdzh,sl.minyqdzh) minyqdzh,
+		decode(sl.maxyzdzh,'',lx.maxzdzh,sl.maxyzdzh) maxyzdzh
 		 from LXSH_LMGZ t 
 		 left join (select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
 		jhdwlc,jhwllc,decode(substr(xmid,11,1),'3',xjlxbm,ghlxbm) ghlxbm,ghlxmc,decode(substr(xmid,11,1),'3',xjqdzh,ghqdzh) ghqdzh,decode(substr(xmid,11,1),'3',xjzdzh,ghzdzh) ghzdzh,gxlxbm,gxqdzh,gxzdzh from lxsh_lx where jdbs='0' and sffirst='1'
@@ -469,7 +479,9 @@
 	            from lxsh_lx where jdbs='0' and sffirst='1' ) lxs 
 		        on t.xmbm=lxs.xmid
 		
-		left join ( select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='0' group by xmid) sl on t.xmbm=sl.xmid
+		left join ( select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc,
+		            min(to_number(decode(f_str_or_num(ghqdzh),1,'',ghqdzh)))minghqdzh,max(to_number(decode(f_str_or_num(ghzdzh),1,'',ghzdzh)))maxghzdzh,min(to_number(decode(f_str_or_num(qdzh),1,'',qdzh)))minyqdzh,max(to_number(decode(f_str_or_num(zdzh),1,'',zdzh)))maxyzdzh
+		            from lxsh_lx where jdbs='0' group by xmid) sl on t.xmbm=sl.xmid
 		where 1=1 <if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>

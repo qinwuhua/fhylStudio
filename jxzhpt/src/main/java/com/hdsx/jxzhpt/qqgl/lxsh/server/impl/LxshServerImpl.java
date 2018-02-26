@@ -80,6 +80,10 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			insert("insertqqgllx", lxsh);
 			update("updateqqgllx", lxsh);
 			update("updatesffirst", lxsh);
+			
+			//更新五年项目推进表里面的wnjhid
+			update("updatesWnqqtjb", lxsh);
+			
 			if("是".equals(lxsh.getSfbflx())){
 				lxsh.setSfbflx("部分开展");
 			}
@@ -109,8 +113,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 				lsxmid=lsxmid.substring(0, lsxmid.length()-1);
 			lxsh.setLsxmbm(lsxmbm);
 			lxsh.setLsxmid(lsxmid);
-			update("updatesjgzls", lxsh);
-			
+			update("updatesjgzls", lxsh);			
 			return true;
 		} else
 			return false;
@@ -121,6 +124,10 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		if (insert("insertLmgz", lxsh) > 0) {
 			insert("insertqqgllx", lxsh);
 			update("updateqqgllxAdd", lxsh);
+			
+			//更新五年项目推进表里面的wnjhid
+			update("updatesWnqqtjb", lxsh);
+			
 			if("是".equals(lxsh.getSfbflx())){
 				lxsh.setSfbflx("部分开展");
 			}
@@ -140,6 +147,10 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		if (insert("insertXj", lxsh) > 0) {
 			insert("insertqqgllx", lxsh);
 			update("updateqqgllxAdd", lxsh);
+			
+			//更新五年项目推进表里面的wnjhid
+			update("updatesWnqqtjb", lxsh);
+			
 			if("是".equals(lxsh.getSfbflx())){
 				lxsh.setSfbflx("部分开展");
 			}

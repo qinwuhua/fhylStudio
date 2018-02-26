@@ -1566,4 +1566,14 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		total.addAll(result);
 		return total;
 	}
+
+	@Override
+	public List<Excel_list> getGsdyhjdhzb(Gcglabgc gcglabgc) {
+		return queryList("getGsdyhjdhzb",gcglabgc);
+	}
+
+	@Override
+	public boolean updateGsdyhjdhzb(Excel_list excel_list) {
+		return update("updateGsdyhjdhzb", excel_list)>0;
+	}
 }

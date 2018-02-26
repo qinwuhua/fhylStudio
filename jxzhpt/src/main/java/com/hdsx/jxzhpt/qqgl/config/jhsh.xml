@@ -3685,7 +3685,7 @@ FROM plan_zjxd GROUP BY xmid) pz ON js.xmbm = pz.xmid
 		 where xmid=#{xmid} 
 		<if test="jdbs!=null"> and jdbs=#{jdbs}</if>
 		<if test="sffirst==1">and sffirst!='1'</if>
-		order by to_number(ghqdzh) asc
+		order by decode(f_str_or_num(ghqdzh),1,ghqdzh,to_number(ghqdzh)) asc
 	</select>
 	<select id="selectlxbgList" parameterType="lx" resultType="lx">
 		select * from lxsh_lx_tz where xmid=#{xmid} 

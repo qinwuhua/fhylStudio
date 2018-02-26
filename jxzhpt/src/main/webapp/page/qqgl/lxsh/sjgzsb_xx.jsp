@@ -35,8 +35,10 @@ text-decoration:none;
 		$("#lxbm").html(data.ghlxbh);
 		$("#lxmc").html(data.lxmc);
 		$("#xmmc").html(data.xmmc);
-		$("#qdzh").html(data.minqdzh);
-		$("#zdzh").html(data.maxzdzh);
+		/* $("#qdzh").html(data.minqdzh);
+		$("#zdzh").html(data.maxzdzh); */
+		$("#qdzh").html(data.minyqdzh);
+		$("#zdzh").html(data.maxyzdzh);
 		$("#lc").html(data.lc);
 		$("#qdmc").html(data.qdmc);
 		$("#zdmc").html(data.zdmc);
@@ -70,8 +72,10 @@ text-decoration:none;
 		$("#bz").html(data.bz);
 		$("#ghlxmc").html(data.ghlxmc);
 		$("#ghlxbm").val(data.ghlxbm);
-		$("#ghqdzh").val(data.ghqdzh);
-		$("#ghzdzh").val(data.ghzdzh);
+		/* $("#ghqdzh").val(data.ghqdzh);
+		$("#ghzdzh").val(data.ghzdzh); */
+		$("#ghqdzh").val(data.minghqdzh);
+		$("#ghzdzh").val(data.maxghzdzh);
 		$("#gxlxbm").val(data.gxlxbm);
 		$("#gxqdzh").val(data.gxqdzh);
 		$("#gxzdzh").val(data.gxzdzh);

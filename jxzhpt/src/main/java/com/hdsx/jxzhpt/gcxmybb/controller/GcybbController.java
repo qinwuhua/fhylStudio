@@ -5940,4 +5940,148 @@ public class GcybbController extends BaseActionSupport{
 				e.printStackTrace();
 			}
 		}
+		
+		public void getGsdyhjdhzb() {
+			try {
+				if("1".equals(flag)){
+					List<Excel_list> eL=gcybbServer.getGsdyhjdhzb(gcglabgc);				
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("国省道养护工作进度汇总表");//设置第一行 
+					eldata.setSheetName("国省道养护工作进度汇总表");//设置sheeet名
+					eldata.setFileName("国省道养护工作进度汇总表");//设置文件名
+					eldata.setEl(eL);//将实体list放入类中
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					
+					et.add(new Excel_tilte("设区市",1,4,0,0));
+					et.add(new Excel_tilte("2018年养护工作目标",1,1,1,20));	
+					et.add(new Excel_tilte("2018年养护工作进度情况",1,1,21,51));
+					et.add(new Excel_tilte("养护大中修(含路面改造工程、灾毁恢复重建工程）",2,3,1,2));
+					et.add(new Excel_tilte("路网结构改造工程",2,2,3,8));
+					et.add(new Excel_tilte("“畅安舒美”示范路",2,3,9,10));			
+					et.add(new Excel_tilte("服务设施",2,2,11,18));				
+					et.add(new Excel_tilte("安全隐患整治",2,3,19,20));
+					et.add(new Excel_tilte("本年完成总投资",2,4,21,21));
+					et.add(new Excel_tilte("养护大中修(含路面改造工程、灾毁恢复重建工程）",2,3,22,24));
+					et.add(new Excel_tilte("路网结构改造工程",2,2,25,33));
+					et.add(new Excel_tilte("“畅安舒美”示范路",2,3,34,36));			
+					et.add(new Excel_tilte("服务设施",2,2,37,48));				
+					et.add(new Excel_tilte("安全隐患整治",2,3,49,51));
+					et.add(new Excel_tilte("危桥改造",3,3,3,4));
+					et.add(new Excel_tilte("安全生命防护工程",3,3,5,6));
+					et.add(new Excel_tilte("灾害防治工程",3,3,7,8));
+					et.add(new Excel_tilte("综合养护中心",3,3,11,12));
+					et.add(new Excel_tilte("服务区",3,3,13,14));
+					et.add(new Excel_tilte("驿站、停车区",3,3,15,16));
+					et.add(new Excel_tilte("道班",3,3,17,18));
+					et.add(new Excel_tilte("危桥改造",3,3,25,27));
+					et.add(new Excel_tilte("安全生命防护工程",3,3,28,30));
+					et.add(new Excel_tilte("灾害防治工程",3,3,31,33));
+					et.add(new Excel_tilte("综合养护中心",3,3,37,39));
+					et.add(new Excel_tilte("服务区",3,3,40,42));
+					et.add(new Excel_tilte("驿站、停车区",3,3,43,45));
+					et.add(new Excel_tilte("道班",3,3,46,48));
+
+					et.add(new Excel_tilte("里程（公里）",4,4,1,1));
+					et.add(new Excel_tilte("总投资（万元）",4,4,2,2));
+					et.add(new Excel_tilte("座数（座）",4,4,3,3));
+					et.add(new Excel_tilte("总投资（万元）",4,4,4,4));		
+					et.add(new Excel_tilte("里程（公里）",4,4,5,5));
+					et.add(new Excel_tilte("总投资（万元）",4,4,6,6));
+					et.add(new Excel_tilte("里程（公里）",4,4,7,7));
+					et.add(new Excel_tilte("总投资（万元）",4,4,8,8));
+					et.add(new Excel_tilte("里程（公里）",4,4,9,9));
+					et.add(new Excel_tilte("总投资（万元）",4,4,10,10));
+					et.add(new Excel_tilte("项目个数（个数）",4,4,11,11));
+					et.add(new Excel_tilte("总投资（万元）",4,4,12,12));
+					et.add(new Excel_tilte("项目个数（个数）",4,4,13,13));
+					et.add(new Excel_tilte("总投资（万元）",4,4,14,14));
+					et.add(new Excel_tilte("项目个数（个数）",4,4,15,15));
+					et.add(new Excel_tilte("总投资（万元）",4,4,16,16));
+					et.add(new Excel_tilte("项目个数（个数）",4,4,17,17));
+					et.add(new Excel_tilte("总投资（万元）",4,4,18,18));
+					et.add(new Excel_tilte("完成时间",4,4,19,19));
+					et.add(new Excel_tilte("总投资（万元）",4,4,20,20));
+					
+					et.add(new Excel_tilte("里程（公里）",4,4,22,22));
+					et.add(new Excel_tilte("总投资（万元）",4,4,23,23));
+					et.add(new Excel_tilte("完成比例",4,4,24,24));
+					et.add(new Excel_tilte("座数（座）",4,4,25,25));
+					et.add(new Excel_tilte("总投资（万元）",4,4,26,26));	
+					et.add(new Excel_tilte("完成比例",4,4,27,27));
+					et.add(new Excel_tilte("里程（公里）",4,4,28,28));
+					et.add(new Excel_tilte("总投资（万元）",4,4,29,29));
+					et.add(new Excel_tilte("完成比例",4,4,30,30));
+					et.add(new Excel_tilte("里程（公里）",4,4,31,31));
+					et.add(new Excel_tilte("总投资（万元）",4,4,32,32));
+					et.add(new Excel_tilte("完成比例",4,4,33,33));
+					et.add(new Excel_tilte("里程（公里）",4,4,34,34));
+					et.add(new Excel_tilte("总投资（万元）",4,4,35,35));
+					et.add(new Excel_tilte("完成比例",4,4,36,36));
+					et.add(new Excel_tilte("项目个数（个数）",4,4,37,37));
+					et.add(new Excel_tilte("总投资（万元）",4,4,38,38));
+					et.add(new Excel_tilte("完成比例",4,4,39,39));
+					et.add(new Excel_tilte("项目个数（个数）",4,4,40,40));
+					et.add(new Excel_tilte("总投资（万元）",4,4,41,41));
+					et.add(new Excel_tilte("完成比例",4,4,42,42));
+					et.add(new Excel_tilte("项目个数（个数）",4,4,43,43));
+					et.add(new Excel_tilte("总投资（万元）",4,4,44,44));
+					et.add(new Excel_tilte("完成比例",4,4,45,45));
+					et.add(new Excel_tilte("项目个数（个数）",4,4,46,46));
+					et.add(new Excel_tilte("总投资（万元）",4,4,47,47));
+					et.add(new Excel_tilte("完成比例",4,4,48,48));
+					et.add(new Excel_tilte("完成时间",4,4,49,49));
+					et.add(new Excel_tilte("总投资（万元）",4,4,50,50));
+					et.add(new Excel_tilte("完成比例",4,4,51,51));
+					eldata.setEt(et);//将表头内容设置到类里面
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					Excel_export.excel_export(eldata,response);
+			}else{
+				String shijian="";
+	/*			if(Integer.parseInt(yf)<=9){
+					shijian=nf+"-0"+yf;
+				}else{
+					shijian=nf+"-"+yf;
+				}*/
+				shijian=nf+"-"+yf;
+				gcglabgc.setSbyf(shijian);
+				String tiaojian2="";
+				String xzqhdm = "";
+				String gydwdm = "";
+				if("1".equals(flag)){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+					xzqhdm=(String) session.getAttribute("xzqhbb");	
+				}else{
+				xzqhdm	= xzqh;
+				}
+				
+				if(xzqhdm.indexOf(",")==-1){
+					tiaojian2="and t3.xzqhdm like '%"+xzqhdm+"%'";
+				}else{
+					tiaojian2=getcxtj("t3.xzqhdm",xzqhdm);
+					//tiaojian2="and xzqh in ("+xzqhdm+")";
+				}
+				gcglabgc.setXzqhdm(tiaojian2);
+				gcglabgc.setXmnf(nf);
+				gcglabgc.setYf(yf);
+				//查总合list
+				//getcxtj
+				gcglabgc.setJhnd(getcxtj("xd.xdnf",gcglabgc.getJhnd()));
+				List<Excel_list> list1=gcybbServer.getGsdyhjdhzb(gcglabgc);
+				JsonUtils.write(list1, getresponse().getWriter());
+	           }                                                     
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		 public void insertGsdyhjdhzb() {
+			 try {
+				boolean b = gcybbServer.updateGsdyhjdhzb(excel_list);
+				ResponseUtils.write(getresponse(), b+"");
+			 }catch (Exception e) {
+				// TODO: handle exception
+				 e.printStackTrace();
+			}
+		 }
 }

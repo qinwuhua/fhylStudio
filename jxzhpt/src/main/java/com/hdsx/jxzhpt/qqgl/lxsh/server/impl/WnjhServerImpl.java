@@ -16,6 +16,7 @@ import org.codehaus.jackson.type.TypeReference;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
@@ -428,7 +429,23 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	}
 	@Override
 	public List<Lxsh> queryTjbxx(Lxsh lxsh) {
-		return queryList("queryTjbxx", lxsh);
+		List<Lxsh> result = new ArrayList<Lxsh>();
+		result = queryList("queryTjbxx", lxsh);
+		for(int i = 0; i < result.size();i++) {
+			String buf = "";
+			int a = result.get(i).getXzqh().indexOf("市")+1;
+			if (result.get(i).getXzqh().contains(",")) {
+				String[] strs=result.get(i).getXzqh().split(",");
+				for(int j=0;j<strs.length;j++){
+					buf=buf+strs[j].substring(a)+",";
+					result.get(i).setXzqh(buf.substring(0, buf.length()-1));
+				}
+			}else {
+				String subs = result.get(i).getXzqh().substring(a);
+				result.get(i).setXzqh(subs);
+			}
+		}
+		return result;
 	}
 	
 	@Override
@@ -447,13 +464,94 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 			for(int i = 0; i < result.size();i++) {
 				rowNum ++;
 				result.get(i).setV_0(rowNum+"");
-				if (result.get(i).getV_26()==""||result.get(i).getV_26()==null) {
-					result.get(i).setV_26(cgs.get(i).getCgs());
-				} 
+				if (result.get(i).getV_25()==""||result.get(i).getV_25()==null) {
+					result.get(i).setV_25(cgs.get(i).getCgs());
+				}
+				String buf = "";
+				int a = result.get(i).getV_2().indexOf("市")+1;
+				if (result.get(i).getV_2().contains(",")) {
+					String[] strs=result.get(i).getV_2().split(",");
+					for(int j=0;j<strs.length;j++){
+						buf=buf+strs[j].substring(a)+",";
+						result.get(i).setV_2(buf.substring(0, buf.length()-1));
+					}
+				}else {
+					String subs = result.get(i).getV_2().substring(a);
+					result.get(i).setV_2(subs);
+				}	
 			}
         } catch (Exception e) {
 			e.printStackTrace();
 		}	
+		return result;
+	}
+	@Override
+	public List<Lxsh> getSjgzjdxxb(Lxsh lxsh) {		
+		List<Lxsh> result = new ArrayList<Lxsh>();
+		result = queryList("getSjgzjdxxb", lxsh);
+		for(int i = 0; i < result.size();i++) {
+			String buf = "";
+			int a = result.get(i).getXzqh().indexOf("市")+1;
+			if (result.get(i).getXzqh().contains(",")) {
+				String[] strs=result.get(i).getXzqh().split(",");
+				for(int j=0;j<strs.length;j++){
+					buf=buf+strs[j].substring(a)+",";
+					result.get(i).setXzqh(buf.substring(0, buf.length()-1));
+				}
+			}else {
+				String subs = result.get(i).getXzqh().substring(a);
+				result.get(i).setXzqh(subs);
+			}
+		}
+		return result;
+	}
+	@Override
+	public List<Excel_list> getSjgzjdxxbExcel(Lxsh lxsh) {
+		List<Excel_list> result = new ArrayList<Excel_list>();
+		ObjectMapper mapper = new ObjectMapper();
+        try {
+			List<Lxsh> cgs = mapper.readValue(lxsh.getCgs(),new TypeReference<List<Lxsh>>() { });
+			List<Lxsh> dftz = mapper.readValue(lxsh.getDftz(),new TypeReference<List<Lxsh>>() { });
+			int rowNum = 0; 
+			result = queryList("getSjgzjdxxbExcel", lxsh);
+			for(int i = 0; i < result.size();i++) {
+				rowNum ++;
+				result.get(i).setV_0(rowNum+"");
+				if (result.get(i).getV_15()==""||result.get(i).getV_15()==null) {
+					result.get(i).setV_15(cgs.get(i).getCgs());
+				}
+				if (result.get(i).getV_17()==""||result.get(i).getV_17()==null) {
+					result.get(i).setV_17(dftz.get(i).getDftz());
+				}
+				String buf = "";
+				int a = result.get(i).getV_3().indexOf("市")+1;
+				if (result.get(i).getV_3().contains(",")) {
+					String[] strs=result.get(i).getV_3().split(",");
+					for(int j=0;j<strs.length;j++){
+						buf=buf+strs[j].substring(a)+",";
+						result.get(i).setV_3(buf.substring(0, buf.length()-1));
+					}
+				}else {
+					String subs = result.get(i).getV_3().substring(a);
+					result.get(i).setV_3(subs);
+				}
+			}
+        } catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return result;
+	}
+	@Override
+	public boolean insertOrUpdateSjgzjdxxb(Lxsh lxsh) {
+		update("insertOrUpdateSjgzjdxxb", lxsh);
+		return true;
+	}
+	
+	@Override
+	public List<Excel_list> getSjgzjdhzb(Lxsh lxsh) {
+		List<Excel_list> result = queryList("getSjgzjdhzbTotal",lxsh);
+		List<Excel_list> detail = queryList("getSjgzjdhzb",lxsh);
+		result.addAll(detail);
 		return result;
 	}
 }
