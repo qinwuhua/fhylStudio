@@ -2386,7 +2386,7 @@ public class LxshController extends BaseActionSupport{
 			et.add(new Excel_tilte("项目库类型",1,1,27,27));
 			et.add(new Excel_tilte("备注",1,1,28,28));
 			et.add(new Excel_tilte("计划核对结果",1,1,29,29));
-			et.add(new Excel_tilte("PQI",1,1,30,30));
+			et.add(new Excel_tilte("MQI",1,1,30,30));
 			eldata.setEt(et);//将表头内容设置到类里面
 			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 			Excel_export.excel_export(eldata,response);
