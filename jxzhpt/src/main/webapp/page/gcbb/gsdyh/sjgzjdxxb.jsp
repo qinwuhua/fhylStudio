@@ -74,15 +74,7 @@
 		        {title:'建设规模（公里）',width:100,align:'center',rowspan:2,colspan:3},
 		        {field:'ztz',title:'总投资（万元）',width:100,align:'center',rowspan:3},
 		        {title:'补助资金（万元）',width:100,align:'center',rowspan:2,colspan:2},
-		        {field:'dfzc',title:'地方自筹（万元）',width:100,align:'center',rowspan:3,
-		        	formatter: function(value,row,index){
-		        		var dfzc=accSub(row.ztz,accAdd(zycgscs(row),row.sbzzj));
-		        		dfzcJson.push({"lsxmid":row.lsxmid,"dftz":dfzc});
-	     	 		    var json = JSON.stringify(dfzcJson);  
-	     	 		    $('#exceldfzc').val(json);	
-		        		return dfzc;
-		        	}
-		        },
+		        {field:'dfzc',title:'地方自筹（万元）',width:100,align:'center',rowspan:3},
 			    {field:'gkpfwh',title:'工可批复',width:100,align:'center',rowspan:3},
 			    {field:'sjpfwh',title:'初设批复',width:100,align:'center',rowspan:3},
 			    {field:'sgtpf',title:'施工图批复',width:100,align:'center',rowspan:3,editor:{type: 'text',options:{required:false}}},
@@ -99,19 +91,7 @@
 				{field:'jhyilc',title:'升一',width:100,align:'center',rowspan:1},
 				{field:'jherlc',title:'升二',width:100,align:'center',rowspan:1},
 				{field:'jhsanlc',title:'升三',width:100,align:'center',rowspan:1},
-				{field:'cgs',title:'中央车购税投资（万元）',width:100,align:'center',rowspan:1,
-		        	formatter: function(value,row,index){
-	        			var zj = zycgscs(row);
-	     	 	        params.push({"lsxmid":row.lsxmid,"cgs":zj});
-	     	 		    var json = JSON.stringify(params);  
-	     	 		    $('#excelcgs').val(json);
-		        		if(row.cgs==""){
-							return '<font style="color:#2F4F4F;">'+zj+'</font>';
-		        		}else{
-		        			return value;
-		        		}
-					} 
-		        },
+				{field:'cgs',title:'部级补助',width:100,align:'center',rowspan:1},
 				{field:'sbzzj',title:'省级补助',width:100,align:'center',rowspan:1},
 				{field:'scxdnf',title:'计划年份',width:100,align:'center',rowspan:1},
 				{field:'xdwh',title:'计划文号',width:100,align:'center',rowspan:1},

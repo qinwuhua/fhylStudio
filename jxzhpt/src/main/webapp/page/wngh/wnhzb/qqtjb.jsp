@@ -79,7 +79,7 @@
 		        //{title:'建设年限',colspan:2},
 		        {field:'scxdnf',title:'首次下达年份',width:100,align:'center',rowspan:2},
 		        {field:'ztz',title:'总投资（万元）',width:100,align:'center',rowspan:2},
-		        {field:'cgs',title:'中央车购税投资（万元）',width:100,align:'center',rowspan:2,
+		        /* {field:'cgs',title:'中央车购税投资（万元）',width:100,align:'center',rowspan:2,
 		        	formatter: function(value,row,index){
 	        			var zj = zycgscs(row);
 	     	 	        params.push({"lsxmid":row.lsxmid,"cgs":zj});
@@ -91,7 +91,10 @@
 		        			return value;
 		        		}
 					} 
-		        },
+		        }, */
+		        {field:'cgs',title:'部级补助（万元）',width:100,align:'center',rowspan:2,},
+		        {field:'sbzzj',title:'省级补助（万元）',width:100,align:'center',rowspan:2},
+		        {field:'sjl',title:'省级奖励（万元）',width:100,align:'center',rowspan:2},
 		        {title:'任务目标建设年',colspan:2},
 		        {field:'sfhysc',title:'是否组织行业审查',width:100,align:'center',rowspan:2,
 		        	formatter: function(value,row,index){

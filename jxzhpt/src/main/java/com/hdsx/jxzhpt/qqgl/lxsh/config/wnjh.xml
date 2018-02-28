@@ -2356,8 +2356,8 @@
       decode(gt.JSXZ,'改建',jhsanlc,'路面改造',sanlc,'新建',sanlc)jhsanlc, 
       QL_YM,SD_YM,KGSJ,WGSJ,SCXDNF,round(ZTZ,0) ZTZ,GKSB,HYSCSB,HYSCYJ,TGSJ,GKPFWH,PFSJ,sjpfwh,sjpfsj,
       wq.xmbm,ghwh,ghpfsj,ydwh,ydpfsj,gt.xmbm lsxmbm,wq.xmbm,wq.ghwh,wq.ghpfsj,
-      wq.ydwh,wq.ydpfsj,nvl(gt.YJGD,0) yjgd,nvl(gt.EJGD,0) ejgd,nvl(gt.YJSD,0)yjsd,nvl(gt.EJSD,0) ejsd,nvl(gt.SJSD,0)sjsd,nvl(gt.YJGDQL,0) yjgdql,nvl(gt.EJGDQL,0) ejgdql,nvl(gt.YJSDQL,0)yjsdql,nvl(gt.EJSDQL,0) ejsdql,nvl(gt.SJSDQL,0) sjsdql,
-      nvl(gt.YJGDSD,0) yjgdsd,nvl(gt.EJGDSD,0) ejgdsd,nvl(gt.YJSDSD,0) yjsdsd,nvl(gt.EJSDSD,0) ejsdsd,nvl(gt.SJSDSD,0) sjsdsd,cgs,wq.sgtpfsj,wq.xmkbm,wq.mbkgn,wq.mbwgn,wq.sfhysc,wq.sfgksc,wq.sgtpf
+      wq.ydwh,wq.ydpfsj,nvl(gt.YJGDQL,0) yjgdql,nvl(gt.EJGDQL,0) ejgdql,nvl(gt.YJSDQL,0)yjsdql,nvl(gt.EJSDQL,0) ejsdql,nvl(gt.SJSDQL,0) sjsdql,
+      nvl(gt.YJGDSD,0) yjgdsd,nvl(gt.EJGDSD,0) ejgdsd,nvl(gt.YJSDSD,0) yjsdsd,nvl(gt.EJSDSD,0) ejsdsd,nvl(gt.SJSDSD,0) sjsdsd,cgs,wq.sgtpfsj,wq.xmkbm,wq.mbkgn,wq.mbwgn,wq.sfhysc,wq.sfgksc,wq.sgtpf,gt.jaf,gt.sjl,gt.sbzzj,gt.xmklx
      from gsdgz_tjb gt
      left join wnjh_qqxmtjb wq on gt.lsxmid = wq.wnjhid
      where 1=1
@@ -2411,13 +2411,14 @@
       decode(gt.JSXZ,'改建',jherlc,'路面改造',erlc,'新建',erlc)v_19,
       decode(gt.JSXZ,'改建',jhsanlc,'路面改造',sanlc,'新建',sanlc)v_20,
 	  ql_ym v_21, sd_ym v_22,
-	  scxdnf v_23,round(ztz,0) v_24, cgs v_25, 
-	  wq.mbkgn v_26, wq.mbwgn v_27,
-	  case wq.sfhysc when '1' then '是' else '' end v_28,
-	  case wq.sfgksc when '1' then '是' else '' end v_29, 
-	  hyscyj v_30,tgsj v_31,gkpfwh v_32,pfsj v_33,sjpfwh v_34,sjpfsj v_35, wq.sgtpf v_36, wq.sgtpfsj v_37,
-	  ghwh v_38,ghpfsj v_39,
-	  ydwh v_40,ydpfsj v_41,gt.xmbm v_42 
+	  scxdnf v_23,round(ztz,0) v_24,
+	  cgs v_25, gt.sbzzj v_26, gt.sjl v_27,
+	  wq.mbkgn v_28, wq.mbwgn v_29,
+	  case wq.sfhysc when '1' then '是' else '' end v_30,
+	  case wq.sfgksc when '1' then '是' else '' end v_31, 
+	  hyscyj v_32,tgsj v_33,gkpfwh v_34,pfsj v_35,sjpfwh v_36,sjpfsj v_37, wq.sgtpf v_38, wq.sgtpfsj v_39,
+	  ghwh v_40,ghpfsj v_41,
+	  ydwh v_42,ydpfsj v_43,gt.xmbm v_44,gt.jaf v_45,gt.xmklx v_46
 	  from gsdgz_tjb gt 
       left join wnjh_qqxmtjb wq on gt.lsxmid = wq.wnjhid
  	  where 1=1 
@@ -2439,7 +2440,7 @@
        decode(gt.JSXZ,'改建',jhyilc,'路面改造',yilc,'新建',yilc)jhyilc,
        decode(gt.JSXZ,'改建',jherlc,'路面改造',erlc,'新建',erlc)jherlc,
        decode(gt.JSXZ,'改建',jhsanlc,'路面改造',sanlc,'新建',sanlc)jhsanlc, 
-       round(nvl(ztz,0),0) ztz,cgs,nvl(sbzzj,0) sbzzj,nvl(ztz,0)-nvl(cgs,0)-nvl(sbzzj,0) dfzc,gkpfwh,sjpfwh,scxdnf,xdwh,xmklx,wq.*
+       round(ztz,0) ztz,cgs,gt.sbzzj,nvl(ztz,0)-nvl(cgs,0)-nvl(sbzzj,0) dfzc,gkpfwh,sjpfwh,scxdnf,xdwh,xmklx,wq.*,gt.jaf
    from sjgz_tjb gt
      left join wnjh_qqxmtjb wq on gt.lsxmid = wq.wnjhid
      where wq.target like '%1%' or gt.LSXMID in (
@@ -2474,8 +2475,8 @@
   wq.xmbm v_8,decode(gt.JSXZ,'改建',sanlc,'路面改造',sanlc,'新建',jhsanlc)+decode(gt.JSXZ,'改建',silc,'路面改造',silc,'新建',jhsilc) 
        + decode(gt.JSXZ,'改建',dwlc,'路面改造',dwlc,'新建',jhdwlc) v_9,decode(gt.JSXZ,'改建',yilc,'路面改造',yilc,'新建',jhyilc)+decode(gt.JSXZ,'改建',erlc,'路面改造',erlc,'新建',jherlc)v_10,
   decode(gt.JSXZ,'改建',jhyilc,'路面改造',yilc,'新建',yilc)v_11,decode(gt.JSXZ,'改建',jherlc,'路面改造',erlc,'新建',erlc) v_12,decode(gt.JSXZ,'改建',jhsanlc,'路面改造',sanlc,'新建',sanlc) v_13,
- round(nvl(ztz,0),0) v_14,cgs v_15,nvl(sbzzj,0) v_16, '' v_17, gt.GKPFWH v_18, gt.SJPFWH v_19, wq.sgtpf v_20,gt.SCXDNF v_21,gt.XDWH v_22,wq.kglc v_23,wq.wglc v_24,
- wq.wctz v_25,wq.ywg v_26,wq.zj v_27,wq.wkg v_28,wq.jskgsj v_29,wq.jswgsj v_30,wq.zwglc v_31,wq.bnwglc v_32,wq.wcztz v_33,wq.bnwcztz v_34,wq.bz v_35
+ round(ztz,0) v_14,cgs v_15,gt.sbzzj v_16, '' v_17, gt.GKPFWH v_18, gt.SJPFWH v_19, wq.sgtpf v_20,gt.SCXDNF v_21,gt.XDWH v_22,wq.kglc v_23,wq.wglc v_24,
+ wq.wctz v_25,wq.ywg v_26,wq.zj v_27,wq.wkg v_28,wq.jskgsj v_29,wq.jswgsj v_30,wq.zwglc v_31,wq.bnwglc v_32,wq.wcztz v_33,wq.bnwcztz v_34,wq.bz v_35,gt.jaf v_36,gt.jsxz v_37
    from sjgz_tjb gt
      left join wnjh_qqxmtjb wq on gt.lsxmid = wq.wnjhid
    where wq.target like '%1%' or gt.LSXMID in (

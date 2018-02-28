@@ -1854,17 +1854,20 @@ public class WnjhController extends BaseActionSupport{
 			//et.add(new Excel_tilte("建设年限", 1, 1, 22, 23));			
 			et.add(new Excel_tilte("首次下达计划年份", 1, 2, 23, 23));	
 			et.add(new Excel_tilte("总投资（万元）", 1, 2, 24, 24));
-			et.add(new Excel_tilte("中央车购税投资（万元）", 1, 2, 25, 25));
-			et.add(new Excel_tilte("任务目标建设年", 1, 1, 26, 27));
-			et.add(new Excel_tilte("是否组织行业审查", 1, 2, 28, 28));
-			et.add(new Excel_tilte("是否完成工可文本编制", 1, 2, 29, 29));
-			et.add(new Excel_tilte("工可行业审查意见", 1, 1, 30, 31));
-			et.add(new Excel_tilte("工可批复", 1, 1, 32, 33));
-			et.add(new Excel_tilte("初设批复", 1, 1, 34, 35));
-			et.add(new Excel_tilte("施工图批复", 1, 1, 36, 37));
-			et.add(new Excel_tilte("规划", 1, 1, 38, 39));
-			et.add(new Excel_tilte("用地", 1, 1, 40, 41));
-			et.add(new Excel_tilte("项目编码", 1, 2, 42, 42));
+			et.add(new Excel_tilte("部级补助（万元）", 1, 2, 25, 25));
+			et.add(new Excel_tilte("省级补助（万元）", 1, 2, 26, 26));
+			et.add(new Excel_tilte("省级奖励（万元）", 1, 2, 27, 27));
+			//et.add(new Excel_tilte("中央车购税投资（万元）", 1, 2, 25, 25));	
+			et.add(new Excel_tilte("任务目标建设年", 1, 1, 28, 29));
+			et.add(new Excel_tilte("是否组织行业审查", 1, 2, 30, 30));
+			et.add(new Excel_tilte("是否完成工可文本编制", 1, 2, 31, 31));
+			et.add(new Excel_tilte("工可行业审查意见", 1, 1, 32, 33));
+			et.add(new Excel_tilte("工可批复", 1, 1, 34, 35));
+			et.add(new Excel_tilte("初设批复", 1, 1, 36, 37));
+			et.add(new Excel_tilte("施工图批复", 1, 1, 38, 39));
+			et.add(new Excel_tilte("规划", 1, 1, 40, 41));
+			et.add(new Excel_tilte("用地", 1, 1, 42, 43));
+			et.add(new Excel_tilte("项目编码", 1, 2, 44, 44));
 			et.add(new Excel_tilte("合计", 2, 2, 11, 11));
 			et.add(new Excel_tilte("一级", 2, 2, 12, 12));
 			et.add(new Excel_tilte("二级", 2, 2, 13, 13));
@@ -1877,10 +1880,8 @@ public class WnjhController extends BaseActionSupport{
 			et.add(new Excel_tilte("三级", 2, 2, 20, 20));
 			et.add(new Excel_tilte("独立桥梁", 2, 2, 21, 21));
 			et.add(new Excel_tilte("独立隧道", 2, 2, 22, 22));
-			et.add(new Excel_tilte("开工年", 2, 2, 26, 26));
-			et.add(new Excel_tilte("完工年", 2, 2, 27, 27));
-			et.add(new Excel_tilte("文号", 2, 2, 30, 30));
-			et.add(new Excel_tilte("批复时间", 2, 2, 31, 31));
+			et.add(new Excel_tilte("开工年", 2, 2, 28, 28));
+			et.add(new Excel_tilte("完工年", 2, 2, 29, 29));
 			et.add(new Excel_tilte("文号", 2, 2, 32, 32));
 			et.add(new Excel_tilte("批复时间", 2, 2, 33, 33));
 			et.add(new Excel_tilte("文号", 2, 2, 34, 34));
@@ -1891,6 +1892,8 @@ public class WnjhController extends BaseActionSupport{
 			et.add(new Excel_tilte("批复时间", 2, 2, 39, 39));
 			et.add(new Excel_tilte("文号", 2, 2, 40, 40));
 			et.add(new Excel_tilte("批复时间", 2, 2, 41, 41));
+			et.add(new Excel_tilte("文号", 2, 2, 42, 42));
+			et.add(new Excel_tilte("批复时间", 2, 2, 43, 43));
 			eldata.setEt(et);// 将表头内容设置到类里面
 			HttpServletResponse response = getresponse();// 获得一个HttpServletResponse
 			try {
@@ -1941,7 +1944,7 @@ public class WnjhController extends BaseActionSupport{
 					et.add(new Excel_tilte("升一",3,3,11,11));
 					et.add(new Excel_tilte("升二",3,3,12,12));
 					et.add(new Excel_tilte("升三",3,3,13,13));
-					et.add(new Excel_tilte("中央车购税",3,3,15,15));
+					et.add(new Excel_tilte("部级补助",3,3,15,15));
 					et.add(new Excel_tilte("省级补助",3,3,16,16));
 					et.add(new Excel_tilte("计划年份",3,3,21,21));
 					et.add(new Excel_tilte("计划文号",3,3,22,22));
