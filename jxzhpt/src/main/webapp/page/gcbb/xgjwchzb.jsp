@@ -178,12 +178,14 @@
 			tbody.empty();
 			var data="gcglwqgz.tiaojian="+xmlx+"&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue')+"&gcglwqgz.xzqh="+xzqhstr;
 			//alert(data);
+			loadjzt();
 			$.ajax({
 				url:"/jxzhpt/gcybb/getXgjwchzb.do",
 				data:data,
 				type:"post",
 				dataType:"JSON",
 				success:function(msg){
+					disLoadjzt();
 						for ( var x = 0; x < msg.length; x++) {
 							var tr="";
 							if(x==0){
