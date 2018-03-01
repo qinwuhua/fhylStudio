@@ -2040,5 +2040,107 @@ public class WnjhController extends BaseActionSupport{
 				e.printStackTrace();
 			}
 		}
+		
+		public void queryXmQqjdhzb2() {
+			try {
+				if("1".equals(flag)){
+					List<Excel_list> eL=wnjhServer.queryXmQqjdhzb2(lxsh);				
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("江西省“十三五”普通国省干线规划项目前期工作汇总表-2");//设置第一行 
+					eldata.setSheetName("江西省“十三五”普通国省干线规划项目前期工作汇总表-2");//设置sheeet名
+					eldata.setFileName("江西省“十三五”普通国省干线规划项目前期工作汇总表-2");//设置文件名
+					eldata.setEl(eL);//将实体list放入类中
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					et.add(new Excel_tilte("设区市",1,4,0,0));
+					et.add(new Excel_tilte("十三五规划项目",1,1,1,27));
+					et.add(new Excel_tilte("库外新增项目",1,2,28,35));
+
+					et.add(new Excel_tilte("规划库项目个数",2,4,1,1));
+					et.add(new Excel_tilte("未报审工可文本",2,4,2,2));
+					et.add(new Excel_tilte("未组织行业审查",2,4,3,3));
+
+					et.add(new Excel_tilte("部库",2,2,4,11));
+					et.add(new Excel_tilte("省库",2,2,12,19));
+					et.add(new Excel_tilte("其中贫困地区",2,2,20,27));
+
+					et.add(new Excel_tilte("项目个数",3,4,4,4));
+					et.add(new Excel_tilte("工可批复",3,3,5,7));
+					et.add(new Excel_tilte("初设批复",3,3,8,9));
+					et.add(new Excel_tilte("施工图批复",3,3,10,11));
+
+					et.add(new Excel_tilte("项目个数",3,4,12,12));
+					et.add(new Excel_tilte("工可批复",3,3,13,15));
+					et.add(new Excel_tilte("初设批复",3,3,16,17));
+					et.add(new Excel_tilte("施工图批复",3,3,18,19));
+					
+					et.add(new Excel_tilte("项目个数",3,4,20,20));
+					et.add(new Excel_tilte("工可批复",3,3,21,23));
+					et.add(new Excel_tilte("初设批复",3,3,24,25));
+					et.add(new Excel_tilte("施工图批复",3,3,26,27));
+
+					et.add(new Excel_tilte("项目个数",3,4,28,28));
+					et.add(new Excel_tilte("工可批复",3,3,29,31));
+					et.add(new Excel_tilte("初设批复",3,3,32,33));
+					et.add(new Excel_tilte("施工图批复",3,3,34,35));
+					
+					et.add(new Excel_tilte("未出具审查意见",4,4,5,5));
+					et.add(new Excel_tilte("未完成工可批复",4,4,6,6));
+					et.add(new Excel_tilte("完成工可批复占比",4,4,7,7));
+					et.add(new Excel_tilte("未完成初设批复",4,4,8,8));
+					et.add(new Excel_tilte("完成初设批复占比",4,4,9,9));
+					et.add(new Excel_tilte("未完成施工图批复",4,4,10,10));
+					et.add(new Excel_tilte("完成施工图批复占比",4,4,11,11));
+					
+					et.add(new Excel_tilte("未出具审查意见",4,4,13,13));
+					et.add(new Excel_tilte("未完成工可批复",4,4,14,14));
+					et.add(new Excel_tilte("完成工可批复占比",4,4,15,15));
+					et.add(new Excel_tilte("未完成初设批复",4,4,16,16));
+					et.add(new Excel_tilte("完成初设批复占比",4,4,17,17));
+					et.add(new Excel_tilte("未完成施工图批复",4,4,18,18));
+					et.add(new Excel_tilte("完成施工图批复占比",4,4,19,19));
+					
+					et.add(new Excel_tilte("未出具审查意见",4,4,21,21));
+					et.add(new Excel_tilte("未完成工可批复",4,4,22,22));
+					et.add(new Excel_tilte("完成工可批复占比",4,4,23,23));
+					et.add(new Excel_tilte("未完成初设批复",4,4,24,24));
+					et.add(new Excel_tilte("完成初设批复占比",4,4,25,25));
+					et.add(new Excel_tilte("未完成施工图批复",4,4,26,26));
+					et.add(new Excel_tilte("完成施工图批复占比",4,4,27,27));
+					
+					et.add(new Excel_tilte("未出具审查意见",4,4,29,29));
+					et.add(new Excel_tilte("未完成工可批复",4,4,30,30));
+					et.add(new Excel_tilte("完成工可批复占比",4,4,31,31));
+					et.add(new Excel_tilte("未完成初设批复",4,4,32,32));
+					et.add(new Excel_tilte("完成初设批复占比",4,4,33,33));
+					et.add(new Excel_tilte("未完成施工图批复",4,4,34,34));
+					et.add(new Excel_tilte("完成施工图批复占比",4,4,35,35));
+					
+					eldata.setEt(et);//将表头内容设置到类里面
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					Excel_export.excel_export(eldata,response);
+			}else{
+				String tiaojian2="";
+				String xzqhdm = "";
+				if("1".equals(flag)){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+					xzqhdm=(String) session.getAttribute("xzqhbb");	
+				}else{
+				xzqhdm	= xzqh;
+				}
+				
+				if(xzqhdm.indexOf(",")==-1){
+					tiaojian2="and t3.xzqhdm like '%"+xzqhdm+"%'";
+				}else{
+					tiaojian2=getcxtj("t3.xzqhdm",xzqhdm);
+				}
+				lxsh.setXzqhdm(tiaojian2);
+				List<Excel_list> list1=wnjhServer.queryXmQqjdhzb2(lxsh);
+				JsonUtils.write(list1, getresponse().getWriter());
+	           }                                                     
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 }
 

@@ -2551,5 +2551,52 @@ from sjgz_tjb gt
 )c where a.xzqhdm = b.xzqhdm(+) and b.xzqhdm=c.xzqhdm(+) order by a.xzqhdm
 	</select>
 
+    <select id="queryXmQqjdhzb2Total" parameterType="lxsh" resultType="elist">
+     select '全省'v_0,sum(v_1)v_1,sum(v_2)v_2,sum(v_3)v_3,sum(v_4)v_4,sum(v_5)v_5,sum(v_6)v_6,round((sum(v_4)-sum(v_6))*100/sum(v_4))||'%' v_7,
+sum(v_8)v_8,round((sum(v_4)-sum(v_8))*100/sum(v_4))||'%' v_9,sum(v_10)v_10,round((sum(v_4)-sum(v_10))*100/sum(v_4))||'%'v_11,
+sum(v_12)v_12,sum(v_13)v_13,sum(v_14)v_14,round((sum(v_12)-sum(v_14))*100/sum(v_12))||'%' v_15,sum(v_16)v_16,
+round((sum(v_12)-sum(v_16))*100/sum(v_12))||'%' v_17,sum(v_18)v_18,round((sum(v_12)-sum(v_18))*100/sum(v_12))||'%' v_19,
+sum(v_20)v_20,sum(v_21)v_21,sum(v_22)v_22,round((sum(v_20)-sum(v_22))*100/sum(v_20))||'%' v_23,
+sum(v_24)v_24,round((sum(v_20)-sum(v_24))*100/sum(v_20))||'%' v_25,sum(v_26)v_26,round((sum(v_20)-sum(v_26))*100/sum(v_20))||'%' v_27,
+sum(v_28)v_28,sum(v_29)v_29,sum(v_30)v_30,round((sum(v_28)-sum(v_30))*100/sum(v_28))||'%' v_31,sum(v_32)v_32,round((sum(v_28)-sum(v_32))*100/sum(v_28))||'%' v_33,
+sum(v_34)v_34,round((sum(v_28)-sum(v_34))*100/sum(v_28))||'%' v_35 from 
+(select xzqhdm,count(gt.LSXMID) v_1,sum(decode(wq.sfgksc,'1',0,1)) v_2,sum(decode(wq.sfhysc,'1',0,1)) v_3 from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid group by xzqhdm)t1,
+(select xzqhdm, count(gt.LSXMID) v_4,sum(decode(gt.SCSHZT,'1',0,1)) v_5, sum(decode(gt.GKSHZT,'1',0,1)) v_6, round(sum(decode(gt.GKSHZT,'1',1,0)) *100/ count(gt.LSXMID)) ||'%' v_7,sum(decode(gt.CSSHZT,'1',0,1)) v_8,
+round(sum(decode(gt.CSSHZT,'1',1,0)) *100/ count(gt.LSXMID)) ||'%' v_9,sum(decode(wq.sgtpf,'',1,0)) v_10,round(sum(decode(wq.sgtpf,'',0,1)) *100/ count(gt.LSXMID)) ||'%' v_11
+from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid where wq.xmbm like '%部%' group by xzqhdm)t2,
+(select xzqhdm,count(gt.LSXMID) v_12,sum(decode(gt.SCSHZT,'1',0,1)) v_13, sum(decode(gt.GKSHZT,'1',0,1)) v_14, round(sum(decode(gt.GKSHZT,'1',1,0)) *100/ count(gt.LSXMID)) ||'%' v_15,
+sum(decode(gt.CSSHZT,'1',0,1)) v_16,round(sum(decode(gt.CSSHZT,'1',1,0)) *100/ count(gt.LSXMID)) ||'%' v_17,sum(decode(wq.sgtpf,'',1,0)) v_18,round(sum(decode(wq.sgtpf,'',0,1)) *100/ count(gt.LSXMID)) ||'%' v_19
+from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid where wq.xmbm like '%省%' group by xzqhdm)t3,
+(select xzqhdm,count(gt.LSXMID) v_20,sum(decode(gt.SCSHZT,'1',0,1)) v_21, sum(decode(gt.GKSHZT,'1',0,1)) v_22, round(sum(decode(gt.GKSHZT,'1',1,0)) *100/ count(gt.LSXMID)) ||'%' v_23,sum(decode(gt.CSSHZT,'1',0,1)) v_24,
+round(sum(decode(gt.CSSHZT,'1',1,0)) *100/ count(gt.LSXMID)) ||'%' v_25,sum(decode(wq.sgtpf,'',1,0)) v_26,round(sum(decode(wq.sgtpf,'',0,1)) *100/ count(gt.LSXMID)) ||'%' v_27
+from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid where (wq.xmbm like '%部%' or wq.xmbm like '%省%') and gt.tsdq like '%扶贫地区%' group by xzqhdm)t4,
+(select xzqhdm,count(gt.LSXMID) v_28,sum(decode(gt.SCSHZT,'1',0,1)) v_29, sum(decode(gt.GKSHZT,'1',0,1)) v_30, round(sum(decode(gt.GKSHZT,'1',1,0)) *100/ count(gt.LSXMID)) ||'%' v_31,sum(decode(gt.CSSHZT,'1',0,1)) v_32,
+round(sum(decode(gt.CSSHZT,'1',1,0)) *100/ count(gt.LSXMID)) ||'%' v_33,sum(decode(wq.sgtpf,'',1,0)) v_34,round(sum(decode(wq.sgtpf,'',0,1)) *100/ count(gt.LSXMID)) ||'%' v_35
+from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid where wq.xmbm like '%库外%' group by xzqhdm
+)t5 where t1.xzqhdm = t2.xzqhdm(+) and t1.xzqhdm=t3.xzqhdm(+) and t1.xzqhdm=t4.xzqhdm(+) and t1.xzqhdm=t5.xzqhdm(+) order by t1.xzqhdm
+    </select>
+    
+    <select id="queryXmQqjdhzb2" parameterType="lxsh" resultType="elist">
+    select (select name from xtgl_xzqh where id in (t1.xzqhdm)) v_0,nvl(v_1,0) v_1,nvl(v_2,0) v_2,nvl(v_3,0)v_3,nvl(v_4,0)v_4,nvl(v_5,0)v_5,nvl(v_6,0)v_6,nvl(v_7,0)||'%' v_7,nvl(v_8,0)v_8,nvl(v_9,0)||'%'v_9,nvl(v_10,0)v_10,nvl(v_11,0)||'%'v_11,
+       nvl(v_12,0)v_12,nvl(v_13,0)v_13,nvl(v_14,0)v_14,nvl(v_15,0)||'%' v_15,nvl(v_16,0)v_16,nvl(v_17,0)||'%'v_17,nvl(v_18,0)v_18,nvl(v_19,0)||'%'v_19,
+       nvl(v_20,0)v_20,nvl(v_21,0)v_21,nvl(v_22,0)v_22,nvl(v_23,0)||'%' v_23,nvl(v_24,0)v_24,nvl(v_25,0)||'%'v_25,nvl(v_26,0)v_26,nvl(v_27,0)||'%'v_27,
+       nvl(v_28,0)v_28,nvl(v_29,0)v_29,nvl(v_30,0)v_30,nvl(v_31,0)||'%' v_31,nvl(v_32,0)v_32,nvl(v_33,0)||'%'v_33,nvl(v_34,0)v_34,nvl(v_35,0)||'%'v_35 
+    from 
+(select xzqhdm,count(gt.LSXMID) v_1,sum(decode(wq.sfgksc,'1',0,1)) v_2,sum(decode(wq.sfhysc,'1',0,1)) v_3 from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid group by xzqhdm)t1,
+(select xzqhdm, count(gt.LSXMID) v_4,sum(decode(gt.SCSHZT,'1',0,1)) v_5, sum(decode(gt.GKSHZT,'1',0,1)) v_6, round(sum(decode(gt.GKSHZT,'1',1,0)) *100/ count(gt.LSXMID)) v_7,sum(decode(gt.CSSHZT,'1',0,1)) v_8,
+round(sum(decode(gt.CSSHZT,'1',1,0)) *100/ count(gt.LSXMID)) v_9,sum(decode(wq.sgtpf,'',1,0)) v_10,round(sum(decode(wq.sgtpf,'',0,1)) *100/ count(gt.LSXMID)) v_11
+from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid where wq.xmbm like '%部%' group by xzqhdm)t2,
+(select xzqhdm,count(gt.LSXMID) v_12,sum(decode(gt.SCSHZT,'1',0,1)) v_13, sum(decode(gt.GKSHZT,'1',0,1)) v_14, round(sum(decode(gt.GKSHZT,'1',1,0)) *100/ count(gt.LSXMID))v_15,
+sum(decode(gt.CSSHZT,'1',0,1)) v_16,round(sum(decode(gt.CSSHZT,'1',1,0)) *100/ count(gt.LSXMID)) v_17,sum(decode(wq.sgtpf,'',1,0)) v_18,round(sum(decode(wq.sgtpf,'',0,1)) *100/ count(gt.LSXMID)) v_19
+from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid where wq.xmbm like '%省%' group by xzqhdm)t3,
+(select xzqhdm,count(gt.LSXMID) v_20,sum(decode(gt.SCSHZT,'1',0,1)) v_21, sum(decode(gt.GKSHZT,'1',0,1)) v_22, round(sum(decode(gt.GKSHZT,'1',1,0)) *100/ count(gt.LSXMID))v_23,sum(decode(gt.CSSHZT,'1',0,1)) v_24,
+round(sum(decode(gt.CSSHZT,'1',1,0)) *100/ count(gt.LSXMID)) v_25,sum(decode(wq.sgtpf,'',1,0)) v_26,round(sum(decode(wq.sgtpf,'',0,1)) *100/ count(gt.LSXMID))v_27
+from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid where (wq.xmbm like '%部%' or wq.xmbm like '%省%') and gt.tsdq like '%扶贫地区%' group by xzqhdm)t4,
+(select xzqhdm,count(gt.LSXMID) v_28,sum(decode(gt.SCSHZT,'1',0,1)) v_29, sum(decode(gt.GKSHZT,'1',0,1)) v_30, round(sum(decode(gt.GKSHZT,'1',1,0)) *100/ count(gt.LSXMID)) v_31,sum(decode(gt.CSSHZT,'1',0,1)) v_32,
+round(sum(decode(gt.CSSHZT,'1',1,0)) *100/ count(gt.LSXMID)) v_33,sum(decode(wq.sgtpf,'',1,0)) v_34,round(sum(decode(wq.sgtpf,'',0,1)) *100/ count(gt.LSXMID)) v_35
+from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid where wq.xmbm like '%库外%' group by xzqhdm
+)t5 where t1.xzqhdm = t2.xzqhdm(+) and t1.xzqhdm=t3.xzqhdm(+) and t1.xzqhdm=t4.xzqhdm(+) and t1.xzqhdm=t5.xzqhdm(+) order by t1.xzqhdm
+    </select>
+
 </mapper>
 
