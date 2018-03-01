@@ -2809,9 +2809,9 @@ public class GcybbController extends BaseActionSupport{
 					//tiaojian1="and gydw in ("+gydwdm+")";
 				}
 				if(xzqhdm.indexOf(",")==-1){
-					tiaojian2="and xzqh like '%"+xzqhdm+"%'";
+					tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
 				}else{
-					tiaojian2=getcxtj("xzqh",xzqhdm);
+					tiaojian2=getcxtj("xzqhdm",xzqhdm);
 					//tiaojian2="and xzqh in ("+xzqhdm+")";
 				}
 				gcglabgc.setGydw(tiaojian1);
