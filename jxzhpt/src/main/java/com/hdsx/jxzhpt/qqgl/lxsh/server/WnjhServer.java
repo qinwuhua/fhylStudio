@@ -77,4 +77,5 @@ public interface WnjhServer {
 	boolean insertOrUpdateSjgzjdxxb(Lxsh lxsh);
 	List<Excel_list> getSjgzjdhzb(Lxsh lxsh);
 	List<Excel_list> queryXmQqjdhzb2(Lxsh lxsh);
+	List<Excel_list> queryXmQqjdhzb1(Lxsh lxsh);
 }
