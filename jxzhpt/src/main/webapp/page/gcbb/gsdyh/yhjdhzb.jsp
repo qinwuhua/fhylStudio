@@ -56,8 +56,8 @@
 		    width:$(window).width()-20,
 		    idField: 'id', //主键
 		    queryParams: {
-		    	xzqh:xzqhstr,
-		    	'lxsh.jsxz':$("#jsxz").combobox('getValues').join(',')
+		    	xzqh:xzqhstr
+		    	//'lxsh.jsxz':$("#jsxz").combobox('getValues').join(',')
 			},
 		   columns:[[
 				{field:'ck',width:60,checkbox:true,rowspan:4,hidden:true},
@@ -189,9 +189,11 @@
 		  if (rowIndex != editIndex) {
 		        if (endEditing()) {
 		        	$('#datagrid').datagrid('beginEdit', rowIndex);
+	                setEditing(rowIndex);
 		            editIndex = rowIndex;
 		        } else {
 		            $('#datagrid').datagrid('selectRow', editIndex);
+	                setEditing(rowIndex);
 		        }
 		    }
 	}
@@ -205,6 +207,132 @@
 	        return false;
 	    }
 	}
+	
+	function setEditing(rowIndex){
+        var objGrid = $('#datagrid');  
+        var v22Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_22'});
+        var v25Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_25'});
+        var v28Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_28'});
+        var v31Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_31'});
+        var v34Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_34'});
+        var v37Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_37'});
+        var v40Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_40'});
+        var v43Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_43'});
+        var v46Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_46'});
+        var v50Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_50'});
+
+
+        v22Editor.target.bind("change", function(){    
+            calculateV_22(rowIndex);
+        }); 
+        v25Editor.target.bind("change", function(){    
+            calculateV_25(rowIndex);
+        });
+        v28Editor.target.bind("change", function(){    
+            calculateV_28(rowIndex);
+        }); 
+        v31Editor.target.bind("change", function(){    
+            calculateV_31(rowIndex);
+        });
+        v34Editor.target.bind("change", function(){    
+            calculateV_34(rowIndex);
+        });
+        v37Editor.target.bind("change", function(){    
+            calculateV_37(rowIndex);
+        });
+        v40Editor.target.bind("change", function(){    
+            calculateV_40(rowIndex);
+        });
+        v43Editor.target.bind("change", function(){    
+            calculateV_43(rowIndex);
+        });
+        v46Editor.target.bind("change", function(){    
+            calculateV_46(rowIndex);
+        });
+        v50Editor.target.bind("change", function(){    
+            calculateV_50(rowIndex);
+        });
+	}
+	
+	function calculateV_22(rowIndex){
+		var objGrid = $('#datagrid'); 
+		var selectedRowData = objGrid.datagrid('getSelected');
+		var v22Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_22'});
+        var v24Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_24'});
+		$(v24Edt.target).val(Math.round(($(v22Edt.target).val()/selectedRowData.v_1) * 100) + '%');
+	}
+	function calculateV_25(rowIndex){
+		var objGrid = $('#datagrid'); 
+		var selectedRowData = objGrid.datagrid('getSelected');
+		var v25Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_25'});
+        var v27Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_27'});
+		$(v27Edt.target).val(Math.round(($(v25Edt.target).val()/selectedRowData.v_3) * 100) + '%');
+	}
+
+	function calculateV_28(rowIndex){
+		var objGrid = $('#datagrid'); 
+		var selectedRowData = objGrid.datagrid('getSelected');
+		var v28Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_28'});
+        var v30Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_30'});
+		$(v30Edt.target).val(Math.round(($(v28Edt.target).val()/selectedRowData.v_5) * 100) + '%');
+	}
+
+	function calculateV_31(rowIndex){
+		var objGrid = $('#datagrid'); 
+		var selectedRowData = objGrid.datagrid('getSelected');
+		var v31Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_31'});
+        var v33Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_33'});
+		$(v33Edt.target).val(Math.round(($(v31Edt.target).val()/selectedRowData.v_7) * 100) + '%');
+	}
+
+	function calculateV_34(rowIndex){
+		var objGrid = $('#datagrid'); 
+		var selectedRowData = objGrid.datagrid('getSelected');
+		var v34Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_34'});
+        var v36Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_36'});
+		$(v36Edt.target).val(Math.round(($(v34Edt.target).val()/selectedRowData.v_9) * 100) + '%');
+	}
+
+	function calculateV_37(rowIndex){
+		var objGrid = $('#datagrid'); 
+		var selectedRowData = objGrid.datagrid('getSelected');
+		var v37Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_37'});
+        var v39Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_39'});
+		$(v39Edt.target).val(Math.round(($(v37Edt.target).val()/selectedRowData.v_11) * 100) + '%');
+	}
+
+	function calculateV_40(rowIndex){
+		var objGrid = $('#datagrid'); 
+		var selectedRowData = objGrid.datagrid('getSelected');
+		var v40Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_40'});
+        var v42Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_42'});
+		$(v42Edt.target).val(Math.round(($(v40Edt.target).val()/selectedRowData.v_13) * 100) + '%');
+	}
+	
+	function calculateV_43(rowIndex){
+		var objGrid = $('#datagrid'); 
+		var selectedRowData = objGrid.datagrid('getSelected');
+		var v43Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_43'});
+        var v45Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_45'});
+		$(v45Edt.target).val(Math.round(($(v43Edt.target).val()/selectedRowData.v_15) * 100) + '%');
+	}
+
+	function calculateV_46(rowIndex){
+		var objGrid = $('#datagrid'); 
+		var selectedRowData = objGrid.datagrid('getSelected');
+		var v46Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_46'});
+        var v48Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_48'});
+		$(v48Edt.target).val(Math.round(($(v46Edt.target).val()/selectedRowData.v_17) * 100) + '%');
+	}
+
+	function calculateV_50(rowIndex){
+		var objGrid = $('#datagrid'); 
+		var selectedRowData = objGrid.datagrid('getSelected');
+		var v50Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_50'});
+        var v51Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_51'});
+		$(v51Edt.target).val(Math.round(($(v50Edt.target).val()/selectedRowData.v_20) * 100) + '%');
+	}
+	
 	function saveQqtjb(rows){
        for(var i=0;i<rows.length;i++){
         	data="excel_list.id="+rows[i].id+"&excel_list.v_0="+rows[i].v_0+"&excel_list.v_21="+rows[i].v_21+"&excel_list.v_22="+rows[i].v_22+"&excel_list.v_23="+rows[i].v_23+

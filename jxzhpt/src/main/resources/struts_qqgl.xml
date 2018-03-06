@@ -233,6 +233,9 @@
 	    
 	    <action name="getSjgzjdhzb" class="wnjhController" method="getSjgzjdhzb"/>
 	    <action name="insertSjgzjdhzb" class="wnjhController" method="insertSjgzjdhzb"/>
+	    
+	    <action name="queryXmQqjdhzb1" class="wnjhController" method="queryXmQqjdhzb1"/>
+	    <action name="queryXmQqjdhzb2" class="wnjhController" method="queryXmQqjdhzb2"/>
 
 		<!-- qwh -->
 		<!-- rh -->

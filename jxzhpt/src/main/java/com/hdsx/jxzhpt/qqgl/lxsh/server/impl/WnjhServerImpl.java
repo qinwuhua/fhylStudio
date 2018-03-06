@@ -662,4 +662,18 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 		result.addAll(detail);
 		return result;
 	}
+	@Override
+	public List<Excel_list> queryXmQqjdhzb2(Lxsh lxsh) {
+		List<Excel_list> result = queryList("queryXmQqjdhzb2Total",lxsh);
+		List<Excel_list> detail = queryList("queryXmQqjdhzb2",lxsh);
+		result.addAll(detail);
+		return result;
+	}
+	@Override
+	public List<Excel_list> queryXmQqjdhzb1(Lxsh lxsh) {
+		List<Excel_list> result = queryList("queryXmQqjdhzb1Total",lxsh);
+		List<Excel_list> detail = queryList("queryXmQqjdhzb1",lxsh);
+		result.addAll(detail);
+		return result;
+	}
 }
