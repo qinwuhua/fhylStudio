@@ -5375,7 +5375,7 @@ public class GcybbController extends BaseActionSupport{
 					l.setV_8(decimalFormat.format(bndw)+"");
 					l.setV_9(decimalFormat.format(ljdw)+"");
 					
-					double wcbl=MyUtil.divbfb(ljlc, xmlc, 3)*100; 
+					double wcbl=MyUtil.divbfb(ljlc, xmlc, 3); 
 					l.setV_10(decimalFormat2.format(wcbl)+"%");
 					l.setV_11("");
 					l.setV_12(decimalFormat.format(wcmblc)+"");
@@ -5536,7 +5536,7 @@ public class GcybbController extends BaseActionSupport{
 						double ljcgs=0;
 						double wcmblc=0;
 						//从18开始的
-						int f=10;
+						int f=9;
 						for(int j=arr.length-1;j>=0;j--){
 							
 							System.out.println(arr[j]);
@@ -5594,7 +5594,7 @@ public class GcybbController extends BaseActionSupport{
 						l.setV_6(decimalFormat.format(ljlc)+"");
 						l.setV_7(decimalFormat.format(bntz)+"");
 						
-						double wcbl=MyUtil.divbfb(ljlc, xmlc, 3)*100; 
+						double wcbl=MyUtil.divbfb(ljlc, xmlc, 3); 
 						l.setV_8(decimalFormat2.format(wcbl)+"%");
 						
 						Method method26 = cl.getMethod("setV_"+f, new Class[]{String.class});

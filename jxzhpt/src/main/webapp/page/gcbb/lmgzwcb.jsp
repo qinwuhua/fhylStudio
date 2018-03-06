@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>普通国省干线公路路面改造建设任务完成情况表</title>
+	<title>全省普通国省干线路面改造完成情况表</title>
 	<link href="${pageContext.request.contextPath}/css/searchAndNavigation.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
@@ -269,7 +269,7 @@ text-decoration:none;
 		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;height:100%;" cellspacing="0" cellpadding="0" >
 			<tr>
 			<div id="righttop"  >
-						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;<span id="astext">生成报表</span>>&nbsp;<span id="bstext"></span>&nbsp;普通国省干线公路路面改造建设任务完成情况表</div>
+						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;<span id="astext">生成报表</span>>&nbsp;<span id="bstext"></span>&nbsp;全省普通国省干线路面改造完成情况表</div>
 					</div>
         	</tr>
         	<tr>
@@ -312,7 +312,7 @@ text-decoration:none;
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table id="kdtb" width="6000px" >
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">普通干线公路新改建工程项目完成情况汇总表</caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">全省普通国省干线路面改造完成情况表</caption>
 								<thead id="biaotou">
 									<!-- <tr>
 										<td rowspan="3" style="width: 100px;">序号</td>
