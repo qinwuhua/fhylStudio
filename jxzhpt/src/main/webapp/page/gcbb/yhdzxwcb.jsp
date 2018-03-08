@@ -301,7 +301,7 @@ text-decoration:none;
 										<td colspan="12"><span class='nian'></span>年完成总投资（万元）</td>
 										<td colspan="12">累计完成总投资（万元）</td>
 										<td colspan="12"><span class='nian'></span>年完成省级补助资金</td>
-										<td colspan="12"><span class='nian'></span>完成省级补助资金</td>
+										<td colspan="12">累计完成省级补助资金</td>
 										<td rowspan="3"  style="width: 75px;">备注</td>
 									</tr>
 									
