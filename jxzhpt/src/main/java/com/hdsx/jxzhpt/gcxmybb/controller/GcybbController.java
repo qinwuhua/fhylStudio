@@ -4887,7 +4887,7 @@ public class GcybbController extends BaseActionSupport{
 				et.add(new Excel_tilte(nf+"完成总投资（万元）",2,2,61,72));
 				et.add(new Excel_tilte("累计完成总投资（万元）",2,2,73,84));
 				et.add(new Excel_tilte(nf+"年完成省级补助资金",2,2,85,96));
-				et.add(new Excel_tilte("完成省级补助资金",2,2,97,108));
+				et.add(new Excel_tilte("累计完成省级补助资金",2,2,97,108));
 				et.add(new Excel_tilte("备注",2,4,109,109));
 				et.add(new Excel_tilte("国道",3,3,1,4));
 				et.add(new Excel_tilte("省道",3,3,5,8));
@@ -5375,7 +5375,7 @@ public class GcybbController extends BaseActionSupport{
 					l.setV_8(decimalFormat.format(bndw)+"");
 					l.setV_9(decimalFormat.format(ljdw)+"");
 					
-					double wcbl=MyUtil.divbfb(ljlc, xmlc, 3)*100; 
+					double wcbl=MyUtil.divbfb(ljlc, xmlc, 3); 
 					l.setV_10(decimalFormat2.format(wcbl)+"%");
 					l.setV_11("");
 					l.setV_12(decimalFormat.format(wcmblc)+"");
@@ -5536,7 +5536,7 @@ public class GcybbController extends BaseActionSupport{
 						double ljcgs=0;
 						double wcmblc=0;
 						//从18开始的
-						int f=10;
+						int f=9;
 						for(int j=arr.length-1;j>=0;j--){
 							
 							System.out.println(arr[j]);
@@ -5594,7 +5594,7 @@ public class GcybbController extends BaseActionSupport{
 						l.setV_6(decimalFormat.format(ljlc)+"");
 						l.setV_7(decimalFormat.format(bntz)+"");
 						
-						double wcbl=MyUtil.divbfb(ljlc, xmlc, 3)*100; 
+						double wcbl=MyUtil.divbfb(ljlc, xmlc, 3); 
 						l.setV_8(decimalFormat2.format(wcbl)+"%");
 						
 						Method method26 = cl.getMethod("setV_"+f, new Class[]{String.class});
