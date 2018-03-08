@@ -5120,7 +5120,7 @@ public class GcybbController extends BaseActionSupport{
 				List<Excel_list> eL=gcybbServer.getLwgzHzb(gcglabgc);
 				ExcelData eldata=new ExcelData();//创建一个类
 				eldata.setTitleName("公路路网结构改造工程统计汇总表");//设置第一行 
-				eldata.setSheetName("汇总表");//设置sheeet名
+				eldata.setSheetName("公路路网结构改造工程统计汇总表");//设置sheeet名
 				eldata.setFileName("公路路网结构改造工程统计汇总表");//设置文件名
 				eldata.setEl(eL);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
@@ -6083,5 +6083,162 @@ public class GcybbController extends BaseActionSupport{
 				// TODO: handle exception
 				 e.printStackTrace();
 			}
+		 }
+		 
+		 public void getGzxmb() {
+			 try {
+					if("1".equals(flag)){
+						String shijian="";
+		/*				if(Integer.parseInt(yf)<=9){
+							shijian=nf+"-0"+yf;
+						}else{
+							shijian=nf+"-"+yf;
+						}*/
+						shijian=nf+"-"+yf;
+						gcglabgc.setSbyf(shijian);
+						
+						String tiaojian2="";
+						String xzqhdm = "";
+						String gydwdm = "";
+						if("1".equals(flag)){
+							HttpServletRequest request = ServletActionContext.getRequest();
+							HttpSession session = request.getSession();
+							xzqhdm=(String) session.getAttribute("xzqhbb");	
+						}else{
+						xzqhdm	= xzqh;
+						}
+
+						if(xzqhdm.indexOf(",")==-1){
+							tiaojian2="and t3.xzqhdm like '%"+xzqhdm+"%'";
+						}else{
+							tiaojian2=getcxtj("t3.xzqhdm",xzqhdm);
+							//tiaojian2="and xzqh in ("+xzqhdm+")";  
+						}
+						gcglabgc.setXzqhdm(tiaojian2);
+						gcglabgc.setXmnf(nf);
+						gcglabgc.setYf(yf);
+						//查总合list
+						//getcxtj
+						gcglabgc.setJhnd(getcxtj("xd.xdnf",gcglabgc.getJhnd()));
+						List<Excel_list> eL = new ArrayList<Excel_list>();
+						if ("lmgz".equals(type)) {
+							eL=gcybbServer.getLmgzxmb(gcglabgc);
+						}
+						if ("sh".equals(type)) {
+							eL=gcybbServer.getShxmb(gcglabgc);
+						}
+						
+						ExcelData eldata=new ExcelData();//创建一个类
+						eldata.setTitleName("全省普通国省干线公路改造项目完成情况明细表");//设置第一行 
+						eldata.setSheetName("全省普通国省干线公路改造项目完成情况明细表");//设置sheeet名
+						eldata.setFileName("全省普通国省干线公路改造项目完成情况明细表");//设置文件名
+						eldata.setEl(eL);//将实体list放入类中
+						List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+						et.add(new Excel_tilte("一、项目计划",1,1,0,23));
+						et.add(new Excel_tilte("二、"+nf+"年"+"元月至"+yf+"月完成情况",1,1,24,33));
+						et.add(new Excel_tilte("三、自开工至"+nf+"年"+yf+"月"+"底累计完成情况",1,1,34,44));
+						et.add(new Excel_tilte("备注",1,4,45,45));
+						
+						et.add(new Excel_tilte("序号",2,4,0,0));
+						et.add(new Excel_tilte("设市区",2,4,1,1));	
+						et.add(new Excel_tilte("县（市、区）",2,4,2,2));
+						et.add(new Excel_tilte("特殊地区",2,4,3,3));
+						et.add(new Excel_tilte("项目编码",2,4,4,4));
+						et.add(new Excel_tilte("项目名称",2,4,5,5));
+						et.add(new Excel_tilte("计划年度",2,4,6,6));
+						et.add(new Excel_tilte("行政等级",2,4,7,7));
+						et.add(new Excel_tilte("规划路线编码",2,4,8,8));
+						et.add(new Excel_tilte("规划起点桩号",2,4,9,9));
+						et.add(new Excel_tilte("规划止点桩号",2,4,10,10));
+						et.add(new Excel_tilte("现技术等级",2,4,11,11));
+						et.add(new Excel_tilte("建设技术等级",2,4,12,12));
+						et.add(new Excel_tilte("公路建设性质",2,4,13,13));
+						et.add(new Excel_tilte("项目里程（公里）",2,4,14,14));
+						et.add(new Excel_tilte("总投资（万元）",2,4,15,15));
+						et.add(new Excel_tilte("中央车购税（万元）",2,4,16,16));						
+						et.add(new Excel_tilte("地方自筹（万元）",2,4,17,17));						
+						et.add(new Excel_tilte(nf+"年度计划投资（万元）",2,4,18,18));
+						et.add(new Excel_tilte("其中中央车购税",2,4,19,19));
+						et.add(new Excel_tilte(nf+"年度实施里程（公里）",2,4,20,20));
+						et.add(new Excel_tilte("建设状态",2,4,21,21));
+						et.add(new Excel_tilte("开工时间",2,4,22,22));
+						et.add(new Excel_tilte("完工时间",2,4,23,23));
+						
+						et.add(new Excel_tilte("累计资金到位（万元）",2,2,24,27));
+						et.add(new Excel_tilte("项目完成投资（万元）",2,4,28,28));
+						et.add(new Excel_tilte("完成工程量（公里）",2,2,29,33));
+						et.add(new Excel_tilte("累计资金到位（万元）",2,2,34,37));
+						et.add(new Excel_tilte("项目完成投资（万元）",2,4,38,38));
+						et.add(new Excel_tilte("累计完成工程量（公里）",2,2,39,43));
+						et.add(new Excel_tilte("项目未完工作量（公里）",2,4,44,44));	
+						et.add(new Excel_tilte("合计",3,4,24,24));
+						et.add(new Excel_tilte("中央车购税",3,4,25,25));
+						et.add(new Excel_tilte("地方自筹",3,4,26,26));
+						et.add(new Excel_tilte("其他资金",3,4,27,27));	
+						et.add(new Excel_tilte("按技术等级",3,3,29,33));
+						et.add(new Excel_tilte("合计",3,4,34,34));
+						et.add(new Excel_tilte("中央车购税",3,4,35,35));
+						et.add(new Excel_tilte("地方自筹",3,4,36,36));
+						et.add(new Excel_tilte("其他资金",3,4,37,37));
+						et.add(new Excel_tilte("按技术等级",3,3,39,43));	
+						et.add(new Excel_tilte("合计",4,4,29,29));
+						et.add(new Excel_tilte("一级",4,4,30,30));
+						et.add(new Excel_tilte("二级",4,4,31,31));
+						et.add(new Excel_tilte("三级",4,4,32,32));
+						et.add(new Excel_tilte("四级",4,4,33,33));	
+						et.add(new Excel_tilte("合计",4,4,39,39));
+						et.add(new Excel_tilte("一级",4,4,40,40));
+						et.add(new Excel_tilte("二级",4,4,41,41));
+						et.add(new Excel_tilte("三级",4,4,42,42));
+						et.add(new Excel_tilte("四级",4,4,43,43));
+						eldata.setEt(et);//将表头内容设置到类里面
+						HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+						Excel_export.excel_export(eldata,response);
+					
+				}else{
+					String shijian="";
+		/*			if(Integer.parseInt(yf)<=9){
+						shijian=nf+"-0"+yf;
+					}else{
+						shijian=nf+"-"+yf;
+					}*/
+					shijian=nf+"-"+yf;
+					gcglabgc.setSbyf(shijian);
+					String tiaojian2="";
+					String xzqhdm = "";
+					String gydwdm = "";
+					if("1".equals(flag)){
+						HttpServletRequest request = ServletActionContext.getRequest();
+						HttpSession session = request.getSession();
+						xzqhdm=(String) session.getAttribute("xzqhbb");	
+					}else{
+					xzqhdm	= xzqh;
+					}
+					
+					if(xzqhdm.indexOf(",")==-1){
+						tiaojian2="and t3.xzqhdm like '%"+xzqhdm+"%'";
+					}else{
+						tiaojian2=getcxtj("t3.xzqhdm",xzqhdm);
+						//tiaojian2="and xzqh in ("+xzqhdm+")";
+					}
+					gcglabgc.setXzqhdm(tiaojian2);
+					gcglabgc.setXmnf(nf);
+					gcglabgc.setYf(yf);
+					//查总合list
+					//getcxtj
+					gcglabgc.setJhnd(getcxtj("xd.xdnf",gcglabgc.getJhnd()));
+					
+					List<Excel_list> list1 = new ArrayList<Excel_list>();
+					if ("lmgz".equals(type)) {
+						list1=gcybbServer.getLmgzxmb(gcglabgc);
+					}
+					if ("sh".equals(type)) {
+						list1=gcybbServer.getShxmb(gcglabgc);
+					}					
+					JsonUtils.write(list1, getresponse().getWriter());
+		           }                                                     
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		 }
 }

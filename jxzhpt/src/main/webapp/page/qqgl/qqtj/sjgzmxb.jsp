@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -43,7 +44,10 @@
 		//$("#biaotou").empty();
 		
 		var nf=$("#ddlYear").val();var yf=$("#ddlMonth").val();
-		$(".nian").html(nf);$(".nianyue1").html(nf+"."+yf);$(".nianyue2").html(nf+".12");
+		$(".nian").html(nf);
+		$(".yue").html(yf);
+		$(".nianyue1").html(nf+"年"+yf);
+		$(".nianyue2").html(nf+".12");
 		
 		showBb();
 	});
@@ -111,7 +115,7 @@
 	}
 
 	function dcExcel(){
- 		var nf=$("#ddlYear").val();
+		var nf=$("#ddlYear").val();
 		var yf=$("#ddlMonth").val();
 		var xzqhdm=$("#xzqh").combotree("getValues");
 		if(xzqhdm.length==0){
@@ -126,13 +130,14 @@
 		}
 		
  		var data="flag=1&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr
-		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(','); 
+		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',')
+		+"&type="+$("#jsxz").val(); 
 		//var data="flag=1&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr;
 		loadjzt();
 		 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{xzqh:xzqhstr},function(){
-			window.location.href='/jxzhpt/qqgl/queryXmQqjdhzb1.do?'+data;
+			window.location.href='/jxzhpt/gcybb/getGzxmb.do?'+data;
 		 }); 
-		 setTimeout('disLoadjzt()',4000); 
+		 setTimeout('disLoadjzt()',4000);
 	}
 
 	function showBb(){
@@ -150,9 +155,13 @@
 			xzqhstr= xzqhdm.join(',');
 		}
 		
-		$(".nian").html(nf);$(".nianyue1").html(nf+"."+yf);$(".nianyue2").html(nf+".12");
+		$(".nian").html(nf);$(".nianyue1").html(nf+"年"+yf);$(".nianyue2").html(nf+".12");
+		
+		
+		
  		var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr
-		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(','); 
+		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',')
+		+"&type="+$("#jsxz").val(); 
 		//var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr;
 		//alert(data);
 		var tbody = $("#abgclist");
@@ -161,7 +170,7 @@
 		loadjzt();
 		
 		$.ajax({
-			url:"/jxzhpt/qqgl/queryXmQqjdhzb1.do",
+			url:"/jxzhpt/gcybb/getGzxmb.do",
 			data:data,
 			type:"post",
 			dataType:"JSON",
@@ -183,8 +192,7 @@
 						+msg[i].v_33+"</td><td>"+msg[i].v_34+"</td><td>"+msg[i].v_35+"</td><td>"+msg[i].v_36+"</td><td>"
 						+msg[i].v_37+"</td><td>"+msg[i].v_38+"</td><td>"+msg[i].v_39+"</td><td>"+msg[i].v_40+"</td><td>"
 						+msg[i].v_41+"</td><td>"+msg[i].v_42+"</td><td>"+msg[i].v_43+"</td><td>"+msg[i].v_44+"</td><td>"
-						+msg[i].v_45+"</td><td>"+msg[i].v_46+"</td><td>"+msg[i].v_47+"</td><td>"+msg[i].v_48+"</td><td>"
-						+msg[i].v_49+"</td><td>"+msg[i].v_50+"</td><td>"+msg[i].v_51+"</td><td>"+msg[i].v_52+"</td>"
+						+msg[i].v_45+"</td>"
 						tr+="</tr>";
 						tbody.append(tr);
 					}
@@ -228,7 +236,7 @@ text-decoration:none;
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 					<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;生成报表>&nbsp;月报表>&nbsp;江西省“十三五”普通国省干线规划项目前期工作汇总表-1</div>
+						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;生成报表>&nbsp;月报表>&nbsp;全省普通国省干线公路改造项目完成情况明细表</div>
 					</div>
         	</tr>
         	<tr>
@@ -261,7 +269,13 @@ text-decoration:none;
 									<option id="yf10" value="10">10</option>
 									<option id="yf11" value="11">11</option>
 									<option id="yf12" value="12">12</option>
-								</select></td>							
+								</select></td>	
+								<td align="right">项目类型：</td>
+		 						<td><select name="jsxz" id="jsxz" style="width: 100px;">
+									<option id="lmgz" value="lmgz">路面改造</option>
+									<option id="sh" value="sh">灾毁恢复重建</option>
+								</select>
+								</td>							
 							</tr>
 							
         					<tr height="32">
@@ -284,84 +298,73 @@ text-decoration:none;
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table id='bbtable' width="3000px">
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">江西省“十三五”普通国省干线规划项目前期工作汇总表-1</caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">全省普通国省干线公路改造项目完成情况明细表</caption>
 								<tbody id='biaotou'>
 									<tr>
-										<td rowspan="4" style="width: 160px;">设区市</td>
-										<td colspan="47">“十三五”项目（含库外项目）</td>
-										<td rowspan="3" colspan="5">库外项目</td>										
+										<td colspan="24">一、项目计划</td>
+										<td colspan="10">二、<span class='nian'></span>年元月至<span class='yue'></span>月完成情况</td>
+										<td colspan="11">三、自开工至<span class='nianyue1'></span>月底累计完成情况</td>
+										<td rowspan="4" style="width: 100px;">备注</td>									
 									</tr>
 									<tr>
-									    <td rowspan="3" style="width: 90px;">项目个数</td>
-									    <td rowspan="3" style="width: 90px;">行业意见未批复</td>
-									    <td rowspan="3" style="width: 90px;">工可未批复</td>
-									    <td rowspan="3" style="width: 90px;">工可完成比例</td>
-									    <td rowspan="3" style="width: 90px;">初设未批复</td>
-									    <td rowspan="3" style="width: 90px;">初设完成比例</td>
-									    <td rowspan="3" style="width: 90px;">施工图未批复</td>
-									    <td rowspan="3" style="width: 90px;">施工图完成比例</td>
-									    <td rowspan="2" colspan="5">其中贫困地区</td>
-									    <td colspan="10">2016-2017年建设规模</td>
-									    <td colspan="12">2018年应开工建设项目</td>
-									    <td rowspan="2" colspan="7">2019-2020建设项目</td>
-									    <td rowspan="2" colspan="5">跨“十四五”建设项目</td>    
-									</tr>
-									<tr>
-									    <td rowspan="2" style="width: 120px;">项目个数</td>
-									   	<td rowspan="2" style="width: 120px;">行业意见未批复</td>
-									   	<td rowspan="2" style="width: 120px;">工可未批复</td>
-									   	<td rowspan="2" style="width: 120px;">初设未批复</td>
-									   	<td rowspan="2" style="width: 120px;">施工图未批复</td>
-										<td colspan="5">其中库外项目</td>
+										<td rowspan="3" style="width: 60px;">序号</td>		
+										<td rowspan="3" style="width: 250px;">设市区</td>
+										<td rowspan="3" style="width: 125px;">县（市、区）</td>
+										<td rowspan="3" style="width: 125px;">特殊地区</td>
+										<td rowspan="3" style="width: 125px;">项目编码</td>
+										<td rowspan="3" style="width: 125px;">项目名称</td>
+										<td rowspan="3" style="width: 125px;">计划年度</td>
+										<td rowspan="3" style="width: 125px;">行政等级</td>
+										<td rowspan="3" style="width: 125px;">规划路线编码</td>
+										<td rowspan="3" style="width: 125px;">规划起点桩号</td>
+										<td rowspan="3" style="width: 125px;">规划止点桩号</td>
+										<td rowspan="3" style="width: 125px;">现技术等级</td>
+										<td rowspan="3" style="width: 125px;">建设技术等级</td>
+										<td rowspan="3" style="width: 125px;">公里建设性质</td>			
+										<td rowspan="3" style="width: 125px;">项目里程</td>
+										<td rowspan="3" style="width: 125px;">总投资</td>
+										<td rowspan="3" style="width: 125px;">中央车购税（万元）</td>
+										<td rowspan="3" style="width: 125px;">地方自筹（万元）</td>
+										<td rowspan="3" style="width: 125px;"><span class='nian'></span>年度计划投资（万元）</td>							
+										<td rowspan="3" style="width: 125px;">其中中央车购税</td>
+										<td rowspan="3" style="width: 125px;"><span class='nian'></span>年度实施里程（公里）</td>
+										<td rowspan="3" style="width: 125px;">建设状态</td>
+										<td rowspan="3" style="width: 125px;">开工时间</td>
+										<td rowspan="3" style="width: 125px;">完工时间</td>
 										
-										<td rowspan="2" style="width: 120px;">项目个数</td>
-									   	<td rowspan="2" style="width: 120px;">行业意见未批复</td>
-									   	<td rowspan="2" style="width: 120px;">工可未批复</td>
-									   	<td rowspan="2" style="width: 120px;">初设未批复</td>
-									   	<td rowspan="2" style="width: 120px;">初设完成比例</td>
-									   	<td rowspan="2" style="width: 120px;">施工图未批复</td>
-									  	<td rowspan="2" style="width: 120px;">施工图完成比例</td>
-									    <td colspan="5">其中库外项目</td>
+										<td colspan="4">累计资金到位（万元）</td>
+										<td rowspan="3" style="width: 125px;">项目完成投资（万元）</td>
+										<td colspan="5">完成工程量（公里）</td>
+																
+										<td colspan="4">累计资金到位（万元）</td>
+										<td rowspan="3" style="width: 125px;">项目完成投资（万元）</td>
+										<td colspan="5">累计完成工程量（公里）</td>
+										<td rowspan="3" style="width: 125px;">项目未完工程量（公里）</td>
+									</tr>	
+									<tr>
+										<td rowspan="2" style="width: 125px;">合计</td>
+										<td rowspan="2" style="width: 125px;">中央车购税</td>
+										<td rowspan="2" style="width: 125px;">地方自筹</td>
+										<td rowspan="2" style="width: 125px;">其他资金</td>				
+										<td colspan="5">按技术等级</td>
+										<td rowspan="2" style="width: 125px;">合计</td>
+										<td rowspan="2" style="width: 125px;">中央车购税</td>
+										<td rowspan="2" style="width: 125px;">地方自筹</td>
+										<td rowspan="2" style="width: 125px;">其他资金</td>	
+										<td colspan="5">按技术等级</td>
 									</tr>
 									<tr>
-									   	<td rowspan="1" style="width: 120px;">项目个数</td>
-									   	<td rowspan="1" style="width: 120px;">行业意见未批复</td>
-									   	<td rowspan="1" style="width: 120px;">工可未批复</td>
-									   	<td rowspan="1" style="width: 120px;">初设未批复</td>
-									   	<td rowspan="1" style="width: 120px;">施工图未批复</td>
-									   
-									   	<td rowspan="1" style="width: 120px;">项目个数</td>
-									   	<td rowspan="1" style="width: 120px;">行业意见未批复</td>
-									   	<td rowspan="1" style="width: 120px;">工可未批复</td>
-									   	<td rowspan="1" style="width: 120px;">初设未批复</td>
-									   	<td rowspan="1" style="width: 120px;">施工图未批复</td>
-									   	
-									   	<td rowspan="1" style="width: 120px;">项目个数</td>
-									   	<td rowspan="1" style="width: 120px;">行业意见未批复</td>
-									   	<td rowspan="1" style="width: 120px;">工可未批复</td>
-									   	<td rowspan="1" style="width: 120px;">初设未批复</td>
-									   	<td rowspan="1" style="width: 120px;">施工图未批复</td>
-									   	
-									   	<td rowspan="1" style="width: 120px;">项目个数</td>
-									   	<td rowspan="1" style="width: 120px;">行业意见未批复</td>
-									   	<td rowspan="1" style="width: 120px;">工可未批复</td>
-									   	<td rowspan="1" style="width: 120px;">初设未批复</td>
-									   	<td rowspan="1" style="width: 120px;">初设完成比例</td>
-									   	<td rowspan="1" style="width: 120px;">施工图未批复</td>
-									   	<td rowspan="1" style="width: 120px;">施工图完成比例</td>
-									   	
-									    <td rowspan="1" style="width: 120px;">项目个数</td>
-									   	<td rowspan="1" style="width: 120px;">行业意见未批复</td>
-									   	<td rowspan="1" style="width: 120px;">工可未批复</td>
-									   	<td rowspan="1" style="width: 120px;">初设未批复</td>
-									   	<td rowspan="1" style="width: 120px;">施工图未批复</td>
-									   	
-									   	<td rowspan="1" style="width: 120px;">项目个数</td>
-									   	<td rowspan="1" style="width: 120px;">行业意见未批复</td>
-									   	<td rowspan="1" style="width: 120px;">工可未批复</td>
-									   	<td rowspan="1" style="width: 120px;">初设未批复</td>
-									   	<td rowspan="1" style="width: 120px;">施工图未批复</td>
-
+									    <td style="width: 80px;">合计</td>
+									    <td style="width: 80px;">一级</td>
+									    <td style="width: 80px;">二级</td>
+									    <td style="width: 80px;">三级</td>
+									    <td style="width: 80px;">四级</td>
+									    
+									    <td style="width: 80px;">合计</td>
+									    <td style="width: 80px;">一级</td>
+									    <td style="width: 80px;">二级</td>
+									    <td style="width: 80px;">三级</td>
+									    <td style="width: 80px;">四级</td>
 									</tr>									
 								</tbody>
 								<tbody id="abgclist"></tbody>

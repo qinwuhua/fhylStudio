@@ -2554,7 +2554,7 @@ from sjgz_tjb gt
     select '江西省'v_0,nvl(sum(v_1),0)v_1,nvl(sum(v_2),0)v_2 ,nvl(sum(v_3),0)v_3,nvl(round((sum(v_1)-sum(v_3)) *100/sum(v_1)),0)||'%'v_4,nvl(sum(v_5),0)v_5,nvl(round((sum(v_1)-sum(v_5)) *100/sum(v_1)),0)||'%'v_6,nvl(sum(v_7),0)v_7,nvl(round((sum(v_1)-sum(v_7)) *100/sum(v_1)),0)||'%'v_8,nvl(sum(v_9),0)v_9,nvl(sum(v_10),0)v_10,
 nvl(sum(v_11),0)v_11,nvl(sum(v_12),0)v_12,nvl(sum(v_13),0)v_13,nvl(sum(v_14),0)v_14,nvl(sum(v_15),0)v_15,nvl(sum(v_16),0)v_16,nvl(sum(v_17),0)v_17,nvl(sum(v_18),0)v_18,nvl(sum(v_19),0)v_19,nvl(sum(v_20),0)v_20,nvl(sum(v_21),0)v_21,nvl(sum(v_22),0)v_22,nvl(sum(v_23),0)v_23,nvl(sum(v_24),0)v_24,
 nvl(sum(v_25),0)v_25,nvl(sum(v_26),0)v_26,nvl(sum(v_27),0)v_27,nvl(round((sum(v_24)-sum(v_27)) *100/sum(v_24)),0)||'%'v_28,nvl(sum(v_29),0)v_29,nvl(round((sum(v_24)-sum(v_29)) *100/sum(v_24)),0)||'%'v_30,nvl(sum(v_31),0)v_31,nvl(sum(v_32),0)v_32,nvl(sum(v_33),0)v_33,nvl(sum(v_34),0)v_34,nvl(sum(v_35),0)v_35,nvl(sum(v_36),0)v_36,nvl(sum(v_37),0)v_37,
-nvl(sum(v_38),0)v_38,nvl(sum(v_39),0)v_39,nvl(round((sum(v_36)-sum(v_39)) *100/sum(v_36)),0)||'%'v_40,nvl(sum(v_41),0)v_41,nvl(round((sum(v_36)-sum(v_41)) *100/sum(v_36)),0)||'%'v_40,nvl(sum(v_41),0)v_42,nvl(sum(v_43),0)v_43,nvl(sum(v_44),0)v_44,nvl(sum(v_45),0)v_45,nvl(sum(v_46),0)v_46,nvl(sum(v_47),0)v_47,nvl(sum(v_48),0)v_48,nvl(sum(v_49),0)v_49,nvl(sum(v_50),0)v_50,nvl(sum(v_51),0)v_51,nvl(sum(v_52),0)v_52 from(
+nvl(sum(v_38),0)v_38,nvl(sum(v_39),0)v_39,nvl(round((sum(v_36)-sum(v_39)) *100/sum(v_36)),0)||'%'v_40,nvl(sum(v_41),0)v_41,nvl(round((sum(v_36)-sum(v_41)) *100/sum(v_36)),0)||'%'v_42,nvl(sum(v_43),0)v_43,nvl(sum(v_44),0)v_44,nvl(sum(v_45),0)v_45,nvl(sum(v_46),0)v_46,nvl(sum(v_47),0)v_47,nvl(sum(v_48),0)v_48,nvl(sum(v_49),0)v_49,nvl(sum(v_50),0)v_50,nvl(sum(v_51),0)v_51,nvl(sum(v_52),0)v_52 from(
 select gt.XZQHDM,count(gt.LSXMID) v_1, sum(decode(gt.SCSHZT,'1',0,1)) v_2, sum(decode(gt.GKSHZT,'1',0,1))v_3,round(sum(decode(gt.GKSHZT,'1',1,0)) *100/ count(gt.LSXMID))v_4,
 sum(decode(gt.CSSHZT,'1',0,1))v_5,round(sum(decode(gt.CSSHZT,'1',1,0)) *100/ count(gt.LSXMID))v_6,sum(decode(wq.sgtpf,'',1,0))v_7,round(sum(decode(wq.sgtpf,'',0,1)) *100/ count(gt.LSXMID))v_8,
 sum(case when wq.xmbm like '%库外%' then 1 else 0 end) v_48, sum(case when wq.xmbm like '%库外%' then decode(gt.SCSHZT,'1',0,1) else 0 end)v_49,sum(case when wq.xmbm like '%库外%' then decode(gt.GKSHZT,'1',0,1) else 0 end)v_50,
@@ -2577,7 +2577,7 @@ round(sum(decode(gt.CSSHZT,'1',1,0)) *100/ count(gt.LSXMID)) v_40,sum(decode(wq.
 from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid where to_number(wq.mbkgn) = to_number('2019') group by xzqhdm)t5,
 (select gt.XZQHDM,count(gt.LSXMID) v_43,sum(decode(gt.SCSHZT,'1',0,1))v_44,sum(decode(gt.GKSHZT,'1',0,1))v_45,sum(decode(gt.CSSHZT,'1',0,1))v_46,sum(decode(wq.sgtpf,'',1,0))v_47
 from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid where to_number(wq.mbkgn) = to_number('2020') group by xzqhdm)t6 
-where t1.xzqhdm = t2.xzqhdm(+) and t1.xzqhdm = t3.xzqhdm(+) and t1.xzqhdm = t4.xzqhdm(+) and t1.xzqhdm = t5.xzqhdm(+)and t1.xzqhdm = t6.xzqhdm(+) order by t1.xzqhdm 
+where t1.xzqhdm = t2.xzqhdm(+) and t1.xzqhdm = t3.xzqhdm(+) and t1.xzqhdm = t4.xzqhdm(+) and t1.xzqhdm = t5.xzqhdm(+)and t1.xzqhdm = t6.xzqhdm(+) order by t1.xzqhdm
     </select>
 
     <select id="queryXmQqjdhzb1" parameterType="lxsh" resultType="elist">
@@ -2619,7 +2619,7 @@ sum(v_20)v_20,sum(v_21)v_21,sum(v_22)v_22,round((sum(v_20)-sum(v_22))*100/sum(v_
 sum(v_24)v_24,round((sum(v_20)-sum(v_24))*100/sum(v_20))||'%' v_25,sum(v_26)v_26,round((sum(v_20)-sum(v_26))*100/sum(v_20))||'%' v_27,
 sum(v_28)v_28,sum(v_29)v_29,sum(v_30)v_30,round((sum(v_28)-sum(v_30))*100/sum(v_28))||'%' v_31,sum(v_32)v_32,round((sum(v_28)-sum(v_32))*100/sum(v_28))||'%' v_33,
 sum(v_34)v_34,round((sum(v_28)-sum(v_34))*100/sum(v_28))||'%' v_35 from 
-(select xzqhdm,count(gt.LSXMID) v_1,sum(decode(wq.sfgksc,'1',0,1)) v_2,sum(decode(wq.sfhysc,'1',0,1)) v_3 from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid group by xzqhdm)t1,
+(select xzqhdm,count(gt.LSXMID) v_1,sum(decode(wq.sfgksc,'1',0,1)) v_2,sum(decode(wq.sfhysc,'1',0,1)) v_3 from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid where nvl(wq.xmbm,'0') not like '%库外%' group by xzqhdm)t1,
 (select xzqhdm, count(gt.LSXMID) v_4,sum(decode(gt.SCSHZT,'1',0,1)) v_5, sum(decode(gt.GKSHZT,'1',0,1)) v_6, round(sum(decode(gt.GKSHZT,'1',1,0)) *100/ count(gt.LSXMID)) ||'%' v_7,sum(decode(gt.CSSHZT,'1',0,1)) v_8,
 round(sum(decode(gt.CSSHZT,'1',1,0)) *100/ count(gt.LSXMID)) ||'%' v_9,sum(decode(wq.sgtpf,'',1,0)) v_10,round(sum(decode(wq.sgtpf,'',0,1)) *100/ count(gt.LSXMID)) ||'%' v_11
 from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid where wq.xmbm like '%部%' group by xzqhdm)t2,
@@ -2641,7 +2641,7 @@ from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid where wq.
        nvl(v_20,0)v_20,nvl(v_21,0)v_21,nvl(v_22,0)v_22,nvl(v_23,0)||'%' v_23,nvl(v_24,0)v_24,nvl(v_25,0)||'%'v_25,nvl(v_26,0)v_26,nvl(v_27,0)||'%'v_27,
        nvl(v_28,0)v_28,nvl(v_29,0)v_29,nvl(v_30,0)v_30,nvl(v_31,0)||'%' v_31,nvl(v_32,0)v_32,nvl(v_33,0)||'%'v_33,nvl(v_34,0)v_34,nvl(v_35,0)||'%'v_35 
     from 
-(select xzqhdm,count(gt.LSXMID) v_1,sum(decode(wq.sfgksc,'1',0,1)) v_2,sum(decode(wq.sfhysc,'1',0,1)) v_3 from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid group by xzqhdm)t1,
+(select xzqhdm,count(gt.LSXMID) v_1,sum(decode(wq.sfgksc,'1',0,1)) v_2,sum(decode(wq.sfhysc,'1',0,1)) v_3 from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid where nvl(wq.xmbm,'0') not like '%库外%' group by xzqhdm)t1,
 (select xzqhdm, count(gt.LSXMID) v_4,sum(decode(gt.SCSHZT,'1',0,1)) v_5, sum(decode(gt.GKSHZT,'1',0,1)) v_6, round(sum(decode(gt.GKSHZT,'1',1,0)) *100/ count(gt.LSXMID)) v_7,sum(decode(gt.CSSHZT,'1',0,1)) v_8,
 round(sum(decode(gt.CSSHZT,'1',1,0)) *100/ count(gt.LSXMID)) v_9,sum(decode(wq.sgtpf,'',1,0)) v_10,round(sum(decode(wq.sgtpf,'',0,1)) *100/ count(gt.LSXMID)) v_11
 from gsdgz_tjhzb gt left join wnjh_qqxmtjb wq on gt.LSXMID = wq.wnjhid where wq.xmbm like '%部%' group by xzqhdm)t2,

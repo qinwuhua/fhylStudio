@@ -31,8 +31,8 @@
 	});
 
 	function showTjb(){
-		var dfzcJson = [];
-		var  params = [];
+		var comb = [{"value":"","text":"否"},{"value":"1","text":"是"}];//json格式
+		var params = [];
 		var datagrid; //定义全局变量datagrid
 		var xzqhdm=$("#xzqh").combotree("getValues");
 		if(xzqhdm.length==0){
@@ -47,69 +47,119 @@
 		}
 				
 		datagrid=$('#datagrid').datagrid({    
-		    //url:'/jxzhpt/gcybb/getSjgzjdhzb.do',
-		    url:'/jxzhpt/qqgl/getSjgzjdxxb.do',
+		    url:'/jxzhpt/qqgl/queryTjbxx.do',
 		    striped:true,
 		    pagination:false,
 		    rownumbers:true,
 		    checkOnSelect:true,
 		    height:$(window).height()-160,
 		    width:$(window).width()-20,
-		    idField: 'id', //主键
+		    idField: 'lsxmid', //主键
 		    queryParams: {
 		    	xzqh:xzqhstr,
 		    	'lxsh.jsxz':$("#jsxz").combobox('getValues').join(',')
 			},
 			frozenColumns:[[
-				{field:'ck',checkbox:true,rowspan:3,hidden:true},
-		        {field:'lsxmbm',title:'项目编码',width:100,align:'center',rowspan:3},
-				{field:'xzqhdm',title:'设区市',width:60,align:'center',rowspan:3},
-		        {field:'xzqh',title:'县（市、区）',width:100,align:'center',rowspan:3},
-		        {field:'tsdq',title:'特殊地区',width:100,align:'center',rowspan:3},
-		        {field:'xmmc',title:'项目名称',width:180,align:'center',rowspan:3},
-		        {field:'ghlxbm',title:'规划路线编码',width:80,align:'center',rowspan:3},
-		        {field:'xmklx',title:'项目库类型',width:80,align:'center',rowspan:3},
-		        {field:'xmbm',title:'项目库编码',width:80,align:'center',rowspan:3}
+				{field:'ck',checkbox:true,rowspan:2,hidden:true},
+				{field:'xzqhdm',title:'设区市',width:60,align:'center',rowspan:2},
+		        {field:'xzqh',title:'县（市、区）',width:100,align:'center',rowspan:2},
+		        {field:'ghlxbm',title:'规划路线编码',width:100,align:'center',rowspan:2},
+		        {field:'xmmc',title:'项目名称',width:180,align:'center',rowspan:2},
+		        {field:'xmbm',title:'原项目库编码',width:120,align:'center',rowspan:2,editor:{type: 'text',options:{required:false}}},
 			]],
 		   columns:[[
-		        {title:'现状等级（公里）',width:100,align:'center',rowspan:2,colspan:2},
-		        {title:'建设规模（公里）',width:100,align:'center',rowspan:2,colspan:3},
-		        {field:'ztz',title:'总投资（万元）',width:100,align:'center',rowspan:3},
-		        {title:'补助资金（万元）',width:100,align:'center',rowspan:2,colspan:2},
-		        {field:'dfzc',title:'地方自筹（万元）',width:100,align:'center',rowspan:3},
-			    {field:'gkpfwh',title:'工可批复',width:100,align:'center',rowspan:3},
-			    {field:'sjpfwh',title:'初设批复',width:100,align:'center',rowspan:3},
-			    {field:'sgtpf',title:'施工图批复',width:100,align:'center',rowspan:3,editor:{type: 'text',options:{required:false}}},
-		        {title:'计划下达情况',width:100,align:'center',rowspan:2,colspan:2},
-		        {title:'项目建设',width:100,align:'center',colspan:12},
-			    {field:'bz',title:'备注',width:100,align:'center',rowspan:3,editor:{type: 'text',options:{required:false}}}
-	         ],[
-			    {title:'2018年项目建设目标',width:100,align:'center',colspan:3},
-			    {title:'项目建设状态',width:100,align:'center',colspan:3},
-			    {title:'项目建设进度情况',width:100,align:'center',colspan:6}
-	         ],[
-				{field:'sanlc',title:'三级及以下',width:100,align:'center',rowspan:1},
-				{field:'erlc',title:'二级及以上',width:100,align:'center',rowspan:1},
-				{field:'jhyilc',title:'升一',width:100,align:'center',rowspan:1},
-				{field:'jherlc',title:'升二',width:100,align:'center',rowspan:1},
-				{field:'jhsanlc',title:'升三',width:100,align:'center',rowspan:1},
-				{field:'cgs',title:'部级补助',width:100,align:'center',rowspan:1},
-				{field:'sbzzj',title:'省级补助',width:100,align:'center',rowspan:1},
-				{field:'scxdnf',title:'计划年份',width:100,align:'center',rowspan:1},
-				{field:'xdwh',title:'计划文号',width:100,align:'center',rowspan:1},
-				{field:'kglc',title:'开工里程（公里）',width:100,align:'center',rowspan:1},
-				{field:'wglc',title:'完工里程（公里）',width:100,align:'center',rowspan:1},
-				{field:'wctz',title:'完成投资（万元）',width:100,align:'center',rowspan:1},
-				{field:'ywg',title:'已完工',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
-				{field:'zj',title:'在建',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
-				{field:'wkg',title:'未开工',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
-				{field:'jskgsj',title:'建设开工时间',width:100,align:'center',rowspan:1,editor:{type: 'datebox',options:{required:false}}},
-				{field:'jswgsj',title:'建设完工时间',width:100,align:'center',rowspan:1,editor:{type: 'datebox',options:{required:false}}},
-				{field:'zwglc',title:'累计已完工（公里）',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
-				{field:'bnwglc',title:'本年度完工里程（公里）',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
-				{field:'wcztz',title:'累计完成总投资（万元）',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
-				{field:'bnwcztz',title:'本年度完成总投资（万元）',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}}
-	         ]],
+		        {field:'xmkbm',title:'中期调整后项目库编码',width:120,align:'center',rowspan:2,editor:{type: 'text',options:{required:false}}},
+		        {field:'tsdq',title:'特殊地区',width:100,align:'center',rowspan:2},
+		        {field:'ghqdzh',title:'规划起点桩号',width:100,align:'center',rowspan:2},
+		        {field:'ghzdzh',title:'规划止点桩号',width:100,align:'center',rowspan:2},
+		        {field:'jsxz',title:'建设性质',width:100,align:'center',rowspan:2},
+		        //{field:'xmbm',title:'项目编码',width:100,align:'center',rowspan:2},
+		        {title:'现技术等级（公里）',colspan:6},
+		        {title:'建设规模（公里）/（延米）',colspan:6},
+		        //{title:'建设年限',colspan:2},
+		        {field:'scxdnf',title:'首次下达年份',width:100,align:'center',rowspan:2},
+		        {field:'ztz',title:'总投资（万元）',width:100,align:'center',rowspan:2},
+		        /* {field:'cgs',title:'中央车购税投资（万元）',width:100,align:'center',rowspan:2,
+		        	formatter: function(value,row,index){
+	        			var zj = zycgscs(row);
+	     	 	        params.push({"lsxmid":row.lsxmid,"cgs":zj});
+	     	 		    var json = JSON.stringify(params);  
+	     	 		    $('#excelcgs').val(json);
+		        		if(row.cgs==""){
+							return '<font style="color:#2F4F4F;">'+zj+'</font>';
+		        		}else{
+		        			return value;
+		        		}
+					} 
+		        }, */
+		        {field:'cgs',title:'部级补助（万元）',width:100,align:'center',rowspan:2,},
+		        {field:'sbzzj',title:'省级补助（万元）',width:100,align:'center',rowspan:2},
+		        {field:'sjl',title:'省级奖励（万元）',width:100,align:'center',rowspan:2},
+		        {title:'任务目标建设年',colspan:2},
+		        {field:'sfhysc',title:'是否组织行业审查',width:100,align:'center',rowspan:2,
+		        	formatter: function(value,row,index){
+						if(value=="1"){return '是';}
+					},
+			        editor:{
+			            type:'combobox',
+			            options:{
+			            	data :comb,
+			                valueField:'value',
+			                textField:'text',
+			                panelHeight:'auto'
+			            }
+			        }
+		        },
+		        {field:'sfgksc',title:'是否完成工可文本编制',width:100,align:'center',rowspan:2,
+		        	formatter: function(value,row,index){
+						if(value=="1"){return '是';}
+					},
+			        editor:{
+			            type:'combobox',
+			            options:{
+			            	data :comb,
+			                valueField:'value',
+			                textField:'text',
+			                panelHeight:'auto'
+			            }
+			        }
+		        },
+		        {title:'工可行业审查意见',colspan:2},
+		        {title:'工可批复',colspan:2},
+		        {title:'初设批复',colspan:2},
+		        {title:'施工图批复',colspan:2},
+		        {title:'规划',colspan:2},
+		        {title:'用地',colspan:2},
+		        {field:'lsxmbm',title:'项目编码',width:100,align:'center',rowspan:2}
+	         ],
+			[	
+			    {field:'lc',title:'合计',width:80,align:'center',rowspan:1},
+			    {field:'yilc',title:'一级',width:80,align:'center',rowspan:1},
+			    {field:'erlc',title:'二级',width:80,align:'center',rowspan:1},
+			    {field:'sanlc',title:'三级',width:80,align:'center',rowspan:1},
+			    {field:'silc',title:'四级',width:80,align:'center',rowspan:1},
+			    {field:'dwlc',title:'等外',width:80,align:'center',rowspan:1},
+			    {field:'jszlc',title:'合计',width:80,align:'center',rowspan:1},
+			    {field:'jhyilc',title:'一级',width:80,align:'center',rowspan:1},
+			    {field:'jherlc',title:'二级',width:80,align:'center',rowspan:1},
+			    {field:'jhsanlc',title:'三级',width:80,align:'center',rowspan:1},
+			    {field:'ql_ym',title:'独立桥梁',width:80,align:'center',rowspan:1},
+			    {field:'sd_ym',title:'独立隧道',width:80,align:'center',rowspan:1},
+			    {field:'mbkgn',title:'开工年',width:80,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
+			    {field:'mbwgn',title:'完工年',width:80,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
+			    {field:'hyscyj',title:'文号',width:100,align:'center',rowspan:1},
+			    {field:'tgsj',title:'批复时间',width:100,align:'center',rowspan:1},
+			    {field:'gkpfwh',title:'文号',width:100,align:'center',rowspan:1},
+			    {field:'pfsj',title:'批复时间',width:100,align:'center',rowspan:1},
+			    {field:'sjpfwh',title:'文号',width:100,align:'center',rowspan:1},
+			    {field:'sjpfsj',title:'批复时间',width:100,align:'center',rowspan:1},
+			    {field:'sgtpf',title:'文号',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
+			    {field:'sgtpfsj',title:'批复时间',width:100,align:'center',rowspan:1,editor:{type: 'datebox',options:{required:false}}},
+			    {field:'ghwh',title:'文号',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
+			    {field:'ghpfsj',title:'批复时间',width:100,align:'center',rowspan:1,editor:{type: 'datebox',options:{required:false}}},
+			    {field:'ydwh',title:'文号',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
+			    {field:'ydpfsj',title:'批复时间',width:100,align:'center',rowspan:1,editor:{type: 'datebox',options:{required:false}}}
+		    ]],
 		    toolbar: [
 		    	//{ text: '编辑', iconCls: 'icon-edit', handler: function () {}}, '-',
              { text: '保存', iconCls: 'icon-save', handler: function () {
@@ -169,22 +219,12 @@
 	}
 	function saveQqtjb(rows){
        for(var i=0;i<rows.length;i++){
-    	   alert(rows[i].id);
-        	data="lxsh.id="+rows[i].id+
-        	"&lxsh.sgtpf="+rows[i].sgtpf+
-        	"&lxsh.ywg="+rows[i].ywg+
-        	"&lxsh.zj="+rows[i].zj+
-        	"&lxsh.wkg="+rows[i].wkg+
-        	"&lxsh.jskgsj="+rows[i].jskgsj+
-        	"&lxsh.jswgsj="+rows[i].jswgsj+
-        	"&lxsh.zwglc="+rows[i].zwglc+
-        	"&lxsh.bnwglc="+rows[i].bnwglc+
-        	"&lxsh.wcztz="+rows[i].wcztz+
-        	"&lxsh.bnwcztz="+rows[i].bnwcztz+
-        	"&lxsh.lsxmid="+rows[i].lsxmid+"&lxsh.bz="+rows[i].bz;
+        	data="lxsh.id="+rows[i].id+"&lxsh.lsxmid="+rows[i].lsxmid+"&lxsh.xmbm="+rows[i].xmbm+"&lxsh.ghwh="+rows[i].ghwh+"&lxsh.ghpfsj="+rows[i].ghpfsj+
+        	     "&lxsh.ydwh="+rows[i].ydwh+"&lxsh.ydpfsj="+rows[i].ydpfsj+"&lxsh.xmkbm="+rows[i].xmkbm+"&lxsh.mbkgn="+rows[i].mbkgn+
+        	     "&lxsh.mbwgn="+rows[i].mbwgn+"&lxsh.sgtpf="+rows[i].sgtpf+"&lxsh.sgtpfsj="+rows[i].sgtpfsj+"&lxsh.sfhysc="+rows[i].sfhysc+"&lxsh.sfgksc="+rows[i].sfgksc;
     		$.ajax({
     			type:'post',
-    			url:'/jxzhpt/qqgl/insertSjgzjdxxb.do',
+    			url:'/jxzhpt/qqgl/insertWnqqtjb.do',
     	        data:data,
     			dataType:'json',
     			success:function(msg){
@@ -193,7 +233,7 @@
         }
 		alert("保存成功！");
 	}
-	
+
 	function zycgscs(row){
 		
 		var tsdqbz = contains(row.tsdq,"原中央苏区");
@@ -259,11 +299,10 @@
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
-		var param='flag=1';
+		var param='lxsh.xzqh='+xzqhstr+'&lxsh.jsxz='+encodeURI(encodeURI($("#jsxz").combobox('getValues').join(',')));
 		var sql=$("#excelcgs").val();
-		var nameValue=$("#exceldfzc").val();       
-		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{sql:sql,nameValue:nameValue},function(){
-			window.location.href="/jxzhpt/qqgl/getSjgzjdxxb.do?"+param;
+		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{sql:sql},function(){
+			window.location.href="/jxzhpt/qqgl/exportWnqqtjExcel.do?"+param;
 		 });		
 	}
 	
@@ -291,7 +330,7 @@ text-decoration:none;
 			<tr> 
 			    <td>
 					<div id="righttop">
-						<div id="p_top">五年项目库>&nbsp;十三五>&nbsp;全省汇总表>&nbsp;普通国省道升级改造前期工作及项目建设进度表</div>
+						<div id="p_top">五年项目库>&nbsp;十三五>&nbsp;全省汇总表>&nbsp;普通国省道建设项目前期工作推进表</div>
 					</div>
 				</td>
         	</tr>
@@ -303,7 +342,6 @@ text-decoration:none;
         				</legend>
         				<div>
         				    <input id="excelcgs" name="excelcgs" type="hidden"/>
-        				    <input id="exceldfzc" name="exceldfzc" type="hidden"/>    
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
         						<tr height="32">
         						<td align="right">行政区划：</td>
@@ -332,7 +370,7 @@ text-decoration:none;
         	</tr>
         	<tr>
         	    <td>
-        	    <div align="center" style="font-size:x-large;font-weight: bolder; margin-top:8px; margin-bottom:5px;">普通国省道升级改造前期工作及项目建设进度表</div>
+        	    <div align="center" style="font-size:x-large;font-weight: bolder; margin-top:8px; margin-bottom:5px;">“十三五”普通国省道建设项目前期工作推进表</div>
         	    <div><table id="datagrid"></table> </div>
         	    </td>
         	</tr>        	

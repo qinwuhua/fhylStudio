@@ -130,7 +130,7 @@
 		//var data="flag=1&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr;
 		loadjzt();
 		 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{xzqh:xzqhstr},function(){
-			window.location.href='/jxzhpt/qqgl/queryXmQqjdhzb1.do?'+data;
+			window.location.href='/jxzhpt/gcybb/getWnjhQqtjhzb.do?'+data;
 		 }); 
 		 setTimeout('disLoadjzt()',4000); 
 	}
@@ -161,7 +161,7 @@
 		loadjzt();
 		
 		$.ajax({
-			url:"/jxzhpt/qqgl/queryXmQqjdhzb1.do",
+			url:"/jxzhpt/gcybb/getWnjhQqtjhzb.do",
 			data:data,
 			type:"post",
 			dataType:"JSON",
@@ -178,13 +178,7 @@
 						+msg[i].v_13+"</td><td>"+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"+msg[i].v_16+"</td><td>"
 						+msg[i].v_17+"</td><td>"+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"+msg[i].v_20+"</td><td>"
 						+msg[i].v_21+"</td><td>"+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"+msg[i].v_24+"</td><td>"
-						+msg[i].v_25+"</td><td>"+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"+msg[i].v_28+"</td><td>"
-						+msg[i].v_29+"</td><td>"+msg[i].v_30+"</td><td>"+msg[i].v_31+"</td><td>"+msg[i].v_32+"</td><td>"
-						+msg[i].v_33+"</td><td>"+msg[i].v_34+"</td><td>"+msg[i].v_35+"</td><td>"+msg[i].v_36+"</td><td>"
-						+msg[i].v_37+"</td><td>"+msg[i].v_38+"</td><td>"+msg[i].v_39+"</td><td>"+msg[i].v_40+"</td><td>"
-						+msg[i].v_41+"</td><td>"+msg[i].v_42+"</td><td>"+msg[i].v_43+"</td><td>"+msg[i].v_44+"</td><td>"
-						+msg[i].v_45+"</td><td>"+msg[i].v_46+"</td><td>"+msg[i].v_47+"</td><td>"+msg[i].v_48+"</td><td>"
-						+msg[i].v_49+"</td><td>"+msg[i].v_50+"</td><td>"+msg[i].v_51+"</td><td>"+msg[i].v_52+"</td>"
+						+msg[i].v_25+"</td><td>"+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"+msg[i].v_28+"</td>"
 						tr+="</tr>";
 						tbody.append(tr);
 					}
@@ -228,7 +222,7 @@ text-decoration:none;
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 					<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;生成报表>&nbsp;月报表>&nbsp;江西省“十三五”普通国省干线规划项目前期工作汇总表-1</div>
+						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;生成报表>&nbsp;月报表>&nbsp;江西省“十三五”普通国省干线规划项目前期工作进度表</div>
 					</div>
         	</tr>
         	<tr>
@@ -284,84 +278,65 @@ text-decoration:none;
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table id='bbtable' width="3000px">
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">江西省“十三五”普通国省干线规划项目前期工作汇总表-1</caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">江西省“十三五”普通国省干线规划项目前期工作进度表</caption>
 								<tbody id='biaotou'>
 									<tr>
-										<td rowspan="4" style="width: 160px;">设区市</td>
-										<td colspan="47">“十三五”项目（含库外项目）</td>
-										<td rowspan="3" colspan="5">库外项目</td>										
+										<td rowspan="5" style="width: 60px;">地区</td>
+										<td rowspan="5" style="width: 60px;">对接后规划库项目个数</td>
+										<td colspan="18">十三五规划项目</td>
+										<td rowspan="2" colspan="9">库外新增项目</td>										
 									</tr>
 									<tr>
-									    <td rowspan="3" style="width: 90px;">项目个数</td>
-									    <td rowspan="3" style="width: 90px;">行业意见未批复</td>
-									    <td rowspan="3" style="width: 90px;">工可未批复</td>
-									    <td rowspan="3" style="width: 90px;">工可完成比例</td>
-									    <td rowspan="3" style="width: 90px;">初设未批复</td>
-									    <td rowspan="3" style="width: 90px;">初设完成比例</td>
-									    <td rowspan="3" style="width: 90px;">施工图未批复</td>
-									    <td rowspan="3" style="width: 90px;">施工图完成比例</td>
-									    <td rowspan="2" colspan="5">其中贫困地区</td>
-									    <td colspan="10">2016-2017年建设规模</td>
-									    <td colspan="12">2018年应开工建设项目</td>
-									    <td rowspan="2" colspan="7">2019-2020建设项目</td>
-									    <td rowspan="2" colspan="5">跨“十四五”建设项目</td>    
+										<td colspan="9">部库</td>										
+										<td colspan="9">省库</td>											
 									</tr>
 									<tr>
-									    <td rowspan="2" style="width: 120px;">项目个数</td>
-									   	<td rowspan="2" style="width: 120px;">行业意见未批复</td>
-									   	<td rowspan="2" style="width: 120px;">工可未批复</td>
-									   	<td rowspan="2" style="width: 120px;">初设未批复</td>
-									   	<td rowspan="2" style="width: 120px;">施工图未批复</td>
-										<td colspan="5">其中库外项目</td>
+										<td rowspan="3" style="width: 60px;">项目个数</td>
+										<td colspan="6">工可批复</td>
+										<td colspan="2">初设批复</td>
+									    <td rowspan="3" style="width: 60px;">项目个数</td>
+										<td colspan="6">工可批复</td>
+										<td colspan="2">初设批复</td>
+										<td rowspan="3" style="width: 60px;">项目个数</td>
+										<td colspan="6">工可批复</td>
+										<td colspan="2">初设批复</td>
+									</tr>
+									
+									<tr>									   
+										<td rowspan="3" style="width: 90px;">出具审查意见占比</td>
+										<td colspan="3">已出具审查意见</td>
+										<td rowspan="3" style="width: 80px;">完成工可批复</td>
+										<td rowspan="3" style="width: 90px;">完成工可批复占比</td>
+										<td rowspan="3" style="width: 80px;">完成初设批复</td>
+										<td rowspan="3" style="width: 90px;">完成初设批复占比</td>
 										
-										<td rowspan="2" style="width: 120px;">项目个数</td>
-									   	<td rowspan="2" style="width: 120px;">行业意见未批复</td>
-									   	<td rowspan="2" style="width: 120px;">工可未批复</td>
-									   	<td rowspan="2" style="width: 120px;">初设未批复</td>
-									   	<td rowspan="2" style="width: 120px;">初设完成比例</td>
-									   	<td rowspan="2" style="width: 120px;">施工图未批复</td>
-									  	<td rowspan="2" style="width: 120px;">施工图完成比例</td>
-									    <td colspan="5">其中库外项目</td>
+										<td rowspan="3" style="width: 90px;">出具审查意见占比</td>
+										<td colspan="3">已出具审查意见</td>
+										<td rowspan="3" style="width: 80px;">完成工可批复</td>
+										<td rowspan="3" style="width: 90px;">完成工可批复占比</td>
+										<td rowspan="3" style="width: 80px;">完成初设批复</td>
+										<td rowspan="3" style="width: 90px;">完成初设批复占比</td>
+										
+										<td rowspan="3" style="width: 90px;">出具审查意见占比</td>
+										<td colspan="3">已出具审查意见</td>
+										<td rowspan="3" style="width: 80px;">完成工可批复</td>
+										<td rowspan="3" style="width: 90px;">完成工可批复占比</td>
+										<td rowspan="3" style="width: 80px;">完成初设批复</td>
+										<td rowspan="3" style="width: 90px;">完成初设批复占比</td>
 									</tr>
+									
 									<tr>
-									   	<td rowspan="1" style="width: 120px;">项目个数</td>
-									   	<td rowspan="1" style="width: 120px;">行业意见未批复</td>
-									   	<td rowspan="1" style="width: 120px;">工可未批复</td>
-									   	<td rowspan="1" style="width: 120px;">初设未批复</td>
-									   	<td rowspan="1" style="width: 120px;">施工图未批复</td>
-									   
-									   	<td rowspan="1" style="width: 120px;">项目个数</td>
-									   	<td rowspan="1" style="width: 120px;">行业意见未批复</td>
-									   	<td rowspan="1" style="width: 120px;">工可未批复</td>
-									   	<td rowspan="1" style="width: 120px;">初设未批复</td>
-									   	<td rowspan="1" style="width: 120px;">施工图未批复</td>
+									   	<td rowspan="1" style="width: 40px;"></td>
+									   	<td rowspan="1" style="width: 90px;">其中完成规划选址</td>
+									   	<td rowspan="1" style="width: 90px;">其中完成用地预审</td>
 									   	
-									   	<td rowspan="1" style="width: 120px;">项目个数</td>
-									   	<td rowspan="1" style="width: 120px;">行业意见未批复</td>
-									   	<td rowspan="1" style="width: 120px;">工可未批复</td>
-									   	<td rowspan="1" style="width: 120px;">初设未批复</td>
-									   	<td rowspan="1" style="width: 120px;">施工图未批复</td>
+									   	<td rowspan="1" style="width: 40px;"></td>
+									   	<td rowspan="1" style="width: 90px;">其中完成规划选址</td>
+									   	<td rowspan="1" style="width: 90px;">其中完成用地预审</td>
 									   	
-									   	<td rowspan="1" style="width: 120px;">项目个数</td>
-									   	<td rowspan="1" style="width: 120px;">行业意见未批复</td>
-									   	<td rowspan="1" style="width: 120px;">工可未批复</td>
-									   	<td rowspan="1" style="width: 120px;">初设未批复</td>
-									   	<td rowspan="1" style="width: 120px;">初设完成比例</td>
-									   	<td rowspan="1" style="width: 120px;">施工图未批复</td>
-									   	<td rowspan="1" style="width: 120px;">施工图完成比例</td>
-									   	
-									    <td rowspan="1" style="width: 120px;">项目个数</td>
-									   	<td rowspan="1" style="width: 120px;">行业意见未批复</td>
-									   	<td rowspan="1" style="width: 120px;">工可未批复</td>
-									   	<td rowspan="1" style="width: 120px;">初设未批复</td>
-									   	<td rowspan="1" style="width: 120px;">施工图未批复</td>
-									   	
-									   	<td rowspan="1" style="width: 120px;">项目个数</td>
-									   	<td rowspan="1" style="width: 120px;">行业意见未批复</td>
-									   	<td rowspan="1" style="width: 120px;">工可未批复</td>
-									   	<td rowspan="1" style="width: 120px;">初设未批复</td>
-									   	<td rowspan="1" style="width: 120px;">施工图未批复</td>
-
+									   	<td rowspan="1" style="width: 40px;"></td>
+									   	<td rowspan="1" style="width: 90px;">其中完成规划选址</td>
+									   	<td rowspan="1" style="width: 90px;">其中完成用地预审</td>
 									</tr>									
 								</tbody>
 								<tbody id="abgclist"></tbody>

@@ -4,8 +4,10 @@ package com.hdsx.jxzhpt.qqgl.lxsh.server.impl;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 
@@ -433,12 +435,20 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 		List<Lxsh> result = new ArrayList<Lxsh>();
 		result = queryList("queryTjbxx", lxsh);
 		for(int i = 0; i < result.size();i++) {
+	        List<String> xzqhStr = new  ArrayList<String>();
 			String buf = "";
 			int a = result.get(i).getXzqh().indexOf("市")+1;
+			
 			if (result.get(i).getXzqh().contains(",")) {
+				
 				String[] strs=result.get(i).getXzqh().split(",");
+				
 				for(int j=0;j<strs.length;j++){
-					buf=buf+strs[j].substring(a)+",";
+					xzqhStr.add(strs[j]);
+		        }
+	            List<String> newList = new ArrayList<String>(new HashSet<String>(xzqhStr));
+	            for(int x = 0; x<newList.size(); x++) {
+	            	buf=buf+newList.get(x).substring(a)+",";
 					result.get(i).setXzqh(buf.substring(0, buf.length()-1));
 				}
 			}else {
@@ -489,12 +499,17 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 				/*if (result.get(i).getV_25()==""||result.get(i).getV_25()==null) {
 					result.get(i).setV_25(cgs.get(i).getCgs());
 				}*/
+		        List<String> xzqhStr  =   new  ArrayList<String>();
 				String buf = "";
 				int a = result.get(i).getV_2().indexOf("市")+1;
 				if (result.get(i).getV_2().contains(",")) {
 					String[] strs=result.get(i).getV_2().split(",");
 					for(int j=0;j<strs.length;j++){
-						buf=buf+strs[j].substring(a)+",";
+						xzqhStr.add(strs[j]);
+			           }
+					List<String> newList = new ArrayList<String>(new HashSet<String>(xzqhStr));
+		            for(int x = 0; x<newList.size(); x++) {
+		            	buf=buf+newList.get(x).substring(a)+",";
 						result.get(i).setV_2(buf.substring(0, buf.length()-1));
 					}
 				}else {
@@ -541,13 +556,18 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 		List<Lxsh> result = new ArrayList<Lxsh>();
 		result = queryList("getSjgzjdxxb", lxsh);
 		for(int i = 0; i < result.size();i++) {
+	        List<String> xzqhStr  =   new  ArrayList<String>();
 			String buf = "";
 			int a = result.get(i).getXzqh().indexOf("市")+1;
 			if (result.get(i).getXzqh().contains(",")) {
 				String[] strs=result.get(i).getXzqh().split(",");
 				for(int j=0;j<strs.length;j++){
-					buf=buf+strs[j].substring(a)+",";
-					result.get(i).setXzqh(buf.substring(0, buf.length()-1));
+					xzqhStr.add(strs[j]);
+			        }
+				List<String> newList = new ArrayList<String>(new HashSet<String>(xzqhStr));
+		        for(int x = 0; x<newList.size(); x++) {
+		            	buf=buf+newList.get(x).substring(a)+",";
+						result.get(i).setXzqh(buf.substring(0, buf.length()-1));
 				}
 			}else {
 				String subs = result.get(i).getXzqh().substring(a);
@@ -602,14 +622,19 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 				if (result.get(i).getV_17()==""||result.get(i).getV_17()==null) {
 					result.get(i).setV_17(dftz.get(i).getDftz());
 				}*/
+		        List<String> xzqhStr  =   new  ArrayList<String>();
 				String buf = "";
 				int a = result.get(i).getV_3().indexOf("市")+1;
 				if (result.get(i).getV_3().contains(",")) {
 					String[] strs=result.get(i).getV_3().split(",");
 					for(int j=0;j<strs.length;j++){
-						buf=buf+strs[j].substring(a)+",";
-						result.get(i).setV_3(buf.substring(0, buf.length()-1));
+						xzqhStr.add(strs[j]);
 					}
+					List<String> newList = new ArrayList<String>(new HashSet<String>(xzqhStr));
+			        for(int x = 0; x<newList.size(); x++) {
+			            	buf=buf+newList.get(x).substring(a)+",";
+							result.get(i).setV_3(buf.substring(0, buf.length()-1));
+			        }
 				}else {
 					String subs = result.get(i).getV_3().substring(a);
 					result.get(i).setV_3(subs);

@@ -162,4 +162,8 @@ public interface GcybbServer {
 	List<Excel_list> getGsdyhjdhzb(Gcglabgc gcglabgc);
 
 	boolean updateGsdyhjdhzb(Excel_list excel_list);
+
+	List<Excel_list> getLmgzxmb(Gcglabgc gcglabgc);
+
+	List<Excel_list> getShxmb(Gcglabgc gcglabgc);
 }

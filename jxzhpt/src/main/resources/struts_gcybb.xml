@@ -25,6 +25,7 @@
 	<action name="getLwgzZhfzybb" class="gcybbController" method="getLwgzZhfzybb"/>
 	<action name="getLwgzHzb" class="gcybbController" method="getLwgzHzb"/>
 	<action name="getWnjhQqtjhzb" class="gcybbController" method="getWnjhQqtjhzb"/>
+	<action name="getGzxmb" class="gcybbController" method="getGzxmb"/>
 	
 	<action name="getGsdyhjdhzb" class="gcybbController" method="getGsdyhjdhzb"/>
 	<action name="insertGsdyhjdhzb" class="gcybbController" method="insertGsdyhjdhzb"/>

@@ -2,6 +2,7 @@ package com.hdsx.jxzhpt.gcxmybb.server.impl;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -1575,5 +1576,51 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 	@Override
 	public boolean updateGsdyhjdhzb(Excel_list excel_list) {
 		return update("updateGsdyhjdhzb", excel_list)>0;
+	}
+
+	@Override
+	public List<Excel_list> getLmgzxmb(Gcglabgc gcglabgc) {
+		List<Excel_list> total = queryList("getLmgzxmbTotal", gcglabgc);
+		List<Excel_list> result = queryList("getLmgzxmb", gcglabgc);
+		for(int i = 0; i < result.size();i++) {
+			String buf = "";
+			int a = result.get(i).getV_2().indexOf("市")+1;
+			if (result.get(i).getV_2().contains(",")) {
+				String[] strs=result.get(i).getV_2().split(",");
+				for(int j=0;j<strs.length;j++){
+					buf=buf+strs[j].substring(a)+",";
+					result.get(i).setV_2(buf.substring(0, buf.length()-1));
+				}
+				
+			}else {
+				String subs = result.get(i).getV_2().substring(a);
+				result.get(i).setV_2(subs);
+			}	
+		}
+		total.addAll(result);
+		return total;
+	}
+	
+	@Override
+	public List<Excel_list> getShxmb(Gcglabgc gcglabgc) {
+		List<Excel_list> total = queryList("getShxmbTotal", gcglabgc);
+		List<Excel_list> result = queryList("getShxmb", gcglabgc);
+		for(int i = 0; i < result.size();i++) {
+			String buf = "";
+			int a = result.get(i).getV_2().indexOf("市")+1;
+			if (result.get(i).getV_2().contains(",")) {
+				String[] strs=result.get(i).getV_2().split(",");
+				for(int j=0;j<strs.length;j++){
+					buf=buf+strs[j].substring(a)+",";
+					result.get(i).setV_2(buf.substring(0, buf.length()-1));
+				}
+				
+			}else {
+				String subs = result.get(i).getV_2().substring(a);
+				result.get(i).setV_2(subs);
+			}	
+		}
+		total.addAll(result);
+		return total;
 	}
 }
