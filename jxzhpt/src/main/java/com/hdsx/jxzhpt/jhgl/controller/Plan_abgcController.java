@@ -166,7 +166,7 @@ public class Plan_abgcController extends BaseActionSupport{
 				if(lx.getGldj()!=null)
 				if(lx.getGldj().length()>0){
 					String[] tsdqs=lx.getGldj().split(",");
-					String tsdq="and substr(lxbm,0,1) in (";
+					String tsdq="and substr(sck_lxbm,0,1) in (";
 					for (int i = 0; i < tsdqs.length; i++) {
 						if("全部".equals(tsdqs[i])){
 							tsdq="";
@@ -329,7 +329,7 @@ public class Plan_abgcController extends BaseActionSupport{
 			if(lx.getGldj()!=null)
 			if(lx.getGldj().length()>0){
 				String[] tsdqs=lx.getGldj().split(",");
-				String tsdq="and substr(lxbm,0,1) in (";
+				String tsdq="and substr(sck_lxbm,0,1) in (";
 				for (int i = 0; i < tsdqs.length; i++) {
 					if("全部".equals(tsdqs[i])){
 						tsdq="";
@@ -541,7 +541,7 @@ public class Plan_abgcController extends BaseActionSupport{
 				if(lx.getGldj()!=null)
 				if(lx.getGldj().length()>0){
 					String[] tsdqs=lx.getGldj().split(",");
-					String tsdq="and substr(lxbm,0,1) in (";
+					String tsdq="and substr(sck_lxbm,0,1) in (";
 					for (int i = 0; i < tsdqs.length; i++) {
 						if("全部".equals(tsdqs[i])){
 							tsdq="";
@@ -1259,7 +1259,7 @@ public class Plan_abgcController extends BaseActionSupport{
 			if(jh.getGldj()!=null)
 				if(jh.getGldj().length()>0){
 					String[] tsdqs=jh.getGldj().split(",");
-					String tsdq="and substr(lxbm,0,1) in (";
+					String tsdq="and substr(sck_lxbm,0,1) in (";
 					for (int i = 0; i < tsdqs.length; i++) {
 						if("全部".equals(tsdqs[i])){
 							tsdq="";
