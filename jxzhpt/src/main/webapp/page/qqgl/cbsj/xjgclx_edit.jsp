@@ -233,7 +233,7 @@ a{text-decoration:none;}
 					<font color='red' size='2'>*&nbsp;</font>建设性质：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input name="jsxz" id="jsxz" style="width:120px" value='升级改造' type="text"/>
+					<input name="jsxz" id="jsxz" style="width:120px" value='改建' type="text"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
