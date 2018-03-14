@@ -205,7 +205,7 @@
 					jh.sbzt,jh.spzt,jh.jh_sbthcd,jh.kgzt,jh.jgzt,lx.bzls as sfylsjl,
                		lx.gydw,lx.xzqh xzqhmc,lx.xzqhdm,lx.lxbm,lx.lxmc,lx.qdzh as qdzh,lx.zdzh as zdzh,lx.yhlc as yhlc,lx.yhlc scyhlc,lx.yhlc jhyhlc,ts.ylxbm,ts.ylxmc,ts.yqdzh,ts.yzdzh 		
                 	from sck_aqsmfh lx 
-                	left join (select t.id,replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(distinct xm.throadcode),',',';') thlxbm,replace(WMSYS.WM_CONCAT(xm.xmklx),',',';') xmklx,WMSYS.WM_CONCAT(distinct xm.yzdzh) yzdzh,WMSYS.WM_CONCAT(distinct xm.ylxbm) ylxbm,WMSYS.WM_CONCAT(distinct xm.yqdzh) yqdzh,WMSYS.WM_CONCAT(distinct xm.ylxmc) ylxmc from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) 
+                	left join (select t.id,replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(distinct xm.throadcode),',',';') thlxbm,replace(WMSYS.WM_CONCAT(xm.xmklx),',',';') xmklx,max(greatest(xm.yqdzh, xm.yzdzh)) yzdzh,WMSYS.WM_CONCAT(distinct xm.ylxbm) ylxbm,min(least(xm.yqdzh, xm.yzdzh)) yqdzh,WMSYS.WM_CONCAT(distinct xm.ylxmc) ylxmc from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) 
                 	where 1=1
 					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
@@ -713,7 +713,7 @@
          lx.gydw v_19,jh.jhnf v_20,jh.remarks v_21,ts.tsdq v_22
       from plan_af jh
       left join sck_aqsmfh lx on (jh.sckid = lx.id) 
-      left join (select t.id,replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq,WMSYS.WM_CONCAT(distinct xm.yzdzh) yzdzh,WMSYS.WM_CONCAT(distinct xm.ylxbm) ylxbm,WMSYS.WM_CONCAT(distinct xm.yqdzh) yqdzh,WMSYS.WM_CONCAT(distinct xm.ylxmc) ylxmc
+      left join (select t.id,replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq,max(greatest(xm.yqdzh, xm.yzdzh)) yzdzh,WMSYS.WM_CONCAT(distinct xm.ylxbm) ylxbm,min(least(xm.yqdzh, xm.yzdzh)) yqdzh,WMSYS.WM_CONCAT(distinct xm.ylxmc) ylxmc
       from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm 
       left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id
       where 1=1 and lx.gydwdm like '2%'
