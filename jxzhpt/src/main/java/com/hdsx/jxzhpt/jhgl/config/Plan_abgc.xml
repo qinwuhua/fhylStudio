@@ -203,9 +203,9 @@
 				(
 					select jh.id,jh.sckid,jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.jhsybbzje,jh.jhsydfzczj,jh.sfsqablbz,
 					jh.sbzt,jh.spzt,jh.jh_sbthcd,jh.kgzt,jh.jgzt,lx.bzls as sfylsjl,
-               		lx.gydw,lx.xzqh xzqhmc,lx.xzqhdm,lx.lxbm,lx.lxmc,lx.qdzh as qdzh,lx.zdzh as zdzh,lx.yhlc as yhlc,lx.yhlc scyhlc,lx.yhlc jhyhlc,xa.ylxbm,xa.ylxmc,xa.yqdzh,xa.yzdzh 		
-                	from sck_aqsmfh lx left join xmk_aqsmfh xa on lx.id = xa.id
-                	left join (select t.id,replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(distinct xm.throadcode),',',';') thlxbm,replace(WMSYS.WM_CONCAT(xm.xmklx),',',';') xmklx from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) 
+               		lx.gydw,lx.xzqh xzqhmc,lx.xzqhdm,lx.lxbm,lx.lxmc,lx.qdzh as qdzh,lx.zdzh as zdzh,lx.yhlc as yhlc,lx.yhlc scyhlc,lx.yhlc jhyhlc,ts.ylxbm,ts.ylxmc,ts.yqdzh,ts.yzdzh 		
+                	from sck_aqsmfh lx 
+                	left join (select t.id,replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(distinct xm.throadcode),',',';') thlxbm,replace(WMSYS.WM_CONCAT(xm.xmklx),',',';') xmklx,max(greatest(to_number(xm.yqdzh), to_number(xm.yzdzh))) yzdzh,WMSYS.WM_CONCAT(distinct xm.ylxbm) ylxbm,min(least(to_number(xm.yqdzh), to_number(xm.yzdzh))) yqdzh,WMSYS.WM_CONCAT(distinct xm.ylxmc) ylxmc from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) 
                 	where 1=1
 					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
@@ -705,16 +705,15 @@
   		left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id
   		where 1=1  -->
       select  rownum v_0,lx.town v_1,lx.county v_2,lx.lxbm v_3,
-         lx.lxmc v_4, lx.qdzh v_5,lx.zdzh v_6,xa.ylxbm v_7,
-         xa.ylxmc v_8,xa.yqdzh v_9,xa.yzdzh v_10,
+         lx.lxmc v_4, lx.qdzh v_5,lx.zdzh v_6,ts.ylxbm v_7,
+         ts.ylxmc v_8,ts.yqdzh v_9,ts.yzdzh v_10,
          decode(lx.jsxz,'1','中修','2','大修',lx.jsxz) v_11,
          lx.czzlc v_12,lx.yhlc v_13,
          nvl(jh.pfztz,0) v_14,nvl(jh.JHSYBBZJE,0) v_15,nvl(jh.JHSYDFZCZJ,0) v_16,lx.jsnr v_17,lx.spwh v_18,
          lx.gydw v_19,jh.jhnf v_20,jh.remarks v_21,ts.tsdq v_22
       from plan_af jh
-      left join xmk_aqsmfh xa on (jh.sckid = xa.id)
       left join sck_aqsmfh lx on (jh.sckid = lx.id) 
-      left join (select t.id,replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq 
+      left join (select t.id,replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq,max(greatest(to_number(xm.yqdzh), to_number(xm.yzdzh))) yzdzh,WMSYS.WM_CONCAT(distinct xm.ylxbm) ylxbm,min(least(to_number(xm.yqdzh), to_number(xm.yzdzh))) yqdzh,WMSYS.WM_CONCAT(distinct xm.ylxmc) ylxmc
       from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm 
       left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id
       where 1=1 and lx.gydwdm like '2%'
@@ -755,7 +754,7 @@
 	 		and lx.lxbm like '%'||#{lx.lxbm}||'%'
 	 	</if>
 	 	<if test="lx.ylxbm!=null and lx.ylxbm!=''">
-	 		and xa.ylxbm like '%'||#{lx.ylxbm}||'%'
+	 		and ts.ylxbm like '%'||#{lx.ylxbm}||'%'
 	 	</if>
 	 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 	 		${lx.lxjsdj}
