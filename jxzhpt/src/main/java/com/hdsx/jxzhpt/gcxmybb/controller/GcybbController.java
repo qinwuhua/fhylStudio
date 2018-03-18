@@ -6109,9 +6109,9 @@ public class GcybbController extends BaseActionSupport{
 						}
 
 						if(xzqhdm.indexOf(",")==-1){
-							tiaojian2="and t3.xzqhdm like '%"+xzqhdm+"%'";
+							tiaojian2="and lm.xzqhdm like '%"+xzqhdm+"%'";
 						}else{
-							tiaojian2=getcxtj("t3.xzqhdm",xzqhdm);
+							tiaojian2=getcxtj("lm.xzqhdm",xzqhdm);
 							//tiaojian2="and xzqh in ("+xzqhdm+")";  
 						}
 						gcglabgc.setXzqhdm(tiaojian2);
@@ -6119,7 +6119,7 @@ public class GcybbController extends BaseActionSupport{
 						gcglabgc.setYf(yf);
 						//查总合list
 						//getcxtj
-						gcglabgc.setJhnd(getcxtj("xd.xdnf",gcglabgc.getJhnd()));
+						gcglabgc.setJhnd(getcxtj("fun_scxdnf(jh.xmbm)",gcglabgc.getJhnd()));
 						List<Excel_list> eL = new ArrayList<Excel_list>();
 						if ("lmgz".equals(type)) {
 							eL=gcybbServer.getLmgzxmb(gcglabgc);
@@ -6216,9 +6216,9 @@ public class GcybbController extends BaseActionSupport{
 					}
 					
 					if(xzqhdm.indexOf(",")==-1){
-						tiaojian2="and t3.xzqhdm like '%"+xzqhdm+"%'";
+						tiaojian2="and lm.xzqhdm like '%"+xzqhdm+"%'";
 					}else{
-						tiaojian2=getcxtj("t3.xzqhdm",xzqhdm);
+						tiaojian2=getcxtj("lm.xzqhdm",xzqhdm);
 						//tiaojian2="and xzqh in ("+xzqhdm+")";
 					}
 					gcglabgc.setXzqhdm(tiaojian2);
@@ -6226,7 +6226,7 @@ public class GcybbController extends BaseActionSupport{
 					gcglabgc.setYf(yf);
 					//查总合list
 					//getcxtj
-					gcglabgc.setJhnd(getcxtj("xd.xdnf",gcglabgc.getJhnd()));
+					gcglabgc.setJhnd(getcxtj("fun_scxdnf(jh.xmbm)",gcglabgc.getJhnd()));
 					
 					List<Excel_list> list1 = new ArrayList<Excel_list>();
 					if ("lmgz".equals(type)) {

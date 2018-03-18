@@ -101,6 +101,7 @@ public class WnjhController extends BaseActionSupport{
 	private String uploadWGYSFileName;
 	private String lxbm;
 	private String xmlx;
+	private String json;
 
 	 public String getcxtj(String id,String param){
 			String tj="";
@@ -166,6 +167,14 @@ public class WnjhController extends BaseActionSupport{
 			}
 	}
 	
+	public String getJson() {
+		return json;
+	}
+
+	public void setJson(String json) {
+		this.json = json;
+	}
+
 	public String getFlag() {
 		return flag;
 	}
@@ -1802,7 +1811,7 @@ public class WnjhController extends BaseActionSupport{
 	 }
 	 public void insertWnqqtjb() {
 		 try {
-			boolean b = wnjhServer.insertOrUpdateWnqqtjb(lxsh);
+			boolean b = wnjhServer.insertOrUpdateWnqqtjb(getJson());
 			ResponseUtils.write(getresponse(), b+"");
 		 }catch (Exception e) {
 			// TODO: handle exception
@@ -1904,11 +1913,28 @@ public class WnjhController extends BaseActionSupport{
 	 }
 	 public void getSjgzjdxxb() {		 
 		 try {
+			    lxsh.setXmnf(nf);
+				if(xzqh.indexOf(",")==-1){
+					lxsh.setXzqh("and gt.xzqhdm2 like '%"+xzqh+"%'");
+				}else{
+					lxsh.setXzqh(getcxtj("gt.xzqhdm2",xzqh));
+				}
+				String jsxz = "";
+				try {
+				    jsxz = java.net.URLDecoder.decode(lxsh.getJsxz(), "UTF-8");
+				} catch (UnsupportedEncodingException e1) {
+					e1.printStackTrace();
+				}
+				if (jsxz.indexOf(",")==-1) {
+					lxsh.setJsxz("and jsxz like '%"+jsxz+"%'");
+				}else {
+					lxsh.setJsxz(getcxtj("jsxz",jsxz));
+				}
 				if("1".equals(flag)){
-					HttpServletRequest request = ServletActionContext.getRequest();
-					HttpSession session = request.getSession();
-					lxsh.setCgs(((String) session.getAttribute("sql")));
-					lxsh.setDftz(((String) session.getAttribute("nameValue")));
+					//HttpServletRequest request = ServletActionContext.getRequest();
+					//HttpSession session = request.getSession();
+					//lxsh.setCgs(((String) session.getAttribute("sql")));
+					//lxsh.setDftz(((String) session.getAttribute("nameValue")));
 					List<Excel_list> el=wnjhServer.getSjgzjdxxbExcel(lxsh);				
 					ExcelData eldata=new ExcelData();//创建一个类
 					eldata.setTitleName("普通国省道升级改造前期工作及项目建设进度表");//设置第一行 
@@ -1957,9 +1983,9 @@ public class WnjhController extends BaseActionSupport{
 					et.add(new Excel_tilte("建设开工时间",3,3,29,29));
 					et.add(new Excel_tilte("建设完工时间",3,3,30,30));
 					et.add(new Excel_tilte("累计已完工（公里）",3,3,31,31));
-					et.add(new Excel_tilte("本年度完工里程（公里）",3,3,32,32));
+					et.add(new Excel_tilte(nf+"年度完工里程（公里）",3,3,32,32));
 					et.add(new Excel_tilte("累计完成总投资（万元）",3,3,33,33));
-					et.add(new Excel_tilte("本年度完成总投资（万元）",3,3,34,34));
+					et.add(new Excel_tilte(nf+"年度完成总投资（万元）",3,3,34,34));
 					eldata.setEt(et);//将表头内容设置到类里面
 					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 					Excel_export.excel_export(eldata,response);

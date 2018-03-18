@@ -2432,20 +2432,36 @@
 	</select>
 	
 	<select id="getSjgzjdxxb" parameterType="lxsh" resultType="lxsh">
-    select lsxmid, (select name from xtgl_xzqh where id in gt.XZQHDM) xzqhdm,xzqh,ghlxbm,xmmc,tsdq,jsxz,
+select lsxmid, (select name from xtgl_xzqh where id in gt.XZQHDM) xzqhdm,xzqh,ghlxbm,xmmc,tsdq,jsxz,
        gt.xmbm lsxmbm,
-       decode(gt.JSXZ,'改建',sanlc,'路面改造',sanlc,'新建',jhsanlc)+decode(gt.JSXZ,'改建',silc,'路面改造',silc,'新建',jhsilc) 
-       + decode(gt.JSXZ,'改建',dwlc,'路面改造',dwlc,'新建',jhdwlc) sanlc,
-       decode(gt.JSXZ,'改建',yilc,'路面改造',yilc,'新建',jhyilc)+decode(gt.JSXZ,'改建',erlc,'路面改造',erlc,'新建',jherlc) erlc,
-       decode(gt.JSXZ,'改建',jhyilc,'路面改造',yilc,'新建',yilc)jhyilc,
-       decode(gt.JSXZ,'改建',jherlc,'路面改造',erlc,'新建',erlc)jherlc,
-       decode(gt.JSXZ,'改建',jhsanlc,'路面改造',sanlc,'新建',sanlc)jhsanlc, 
-       round(ztz,0) ztz,cgs,gt.sbzzj,nvl(ztz,0)-nvl(cgs,0)-nvl(sbzzj,0) dfzc,gkpfwh,sjpfwh,scxdnf,xdwh,xmklx,wq.*,gt.jaf
+       decode(gt.JSXZ,'改建',gt.sanlc,'路面改造',gt.sanlc,'新建',gt.jhsanlc)+decode(gt.JSXZ,'改建',gt.silc,'路面改造',gt.silc,'新建',gt.jhsilc) 
+       + decode(gt.JSXZ,'改建',gt.dwlc,'路面改造',gt.dwlc,'新建',gt.jhdwlc) sanlc,
+       decode(gt.JSXZ,'改建',gt.yilc,'路面改造',gt.yilc,'新建',gt.jhyilc)+decode(gt.JSXZ,'改建',gt.erlc,'路面改造',gt.erlc,'新建',gt.jherlc) erlc,
+       decode(gt.JSXZ,'改建',gt.jhyilc,'路面改造',gt.yilc,'新建',gt.yilc)jhyilc,
+       decode(gt.JSXZ,'改建',gt.jherlc,'路面改造',gt.erlc,'新建',gt.erlc)jherlc,
+       decode(gt.JSXZ,'改建',gt.jhsanlc,'路面改造',gt.sanlc,'新建',gt.sanlc)jhsanlc, 
+       round(ztz,0) ztz,cgs,gt.sbzzj,nvl(ztz,0)-nvl(cgs,0)-nvl(sbzzj,0) dfzc,gkpfwh,sjpfwh,scxdnf,xdwh,xmklx,wq.sgtpf,wq.kglc,wq.wglc,wq.wctz,gt.jaf,wq.xmbm,
+       gt.SJKGSJ jskgsj,case when gt.SJKGSJ is not null and gt.SJWGSJ is null then gt.yjwgsj else gt.SJWGSJ end jswgsj,
+       '0' ywg, case when nvl(jd.wclc,0)=0 and nvl(jd.bclc,0)=0 and nvl(jd.wcztz,0)=0 and nvl(jd.bcztz,0)=0 then '1' else '0' end wkg,
+       case when nvl(jd.wclc,0)!=0 or nvl(jd.bclc,0)!=0 or nvl(jd.wcztz,0)!=0 or nvl(jd.bcztz,0)!=0 then '1' else '0' end zj, 
+       nvl(jd.wclc,0) zwglc,nvl(jd.bclc,0) bnwglc,nvl(jd.wcztz,0)wcztz,nvl(jd.bcztz,0) bnwcztz    
    from sjgz_tjb gt
      left join wnjh_qqxmtjb wq on gt.lsxmid = wq.wnjhid
-     where wq.target like '%1%' or gt.LSXMID in (
+     left join (select xmbm,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)wclc,
+          sum(wccgs)+sum(wcgz)+sum(wcsz)+sum(wczq)+ sum(wcdk)+sum(wcjl)+sum(wcqt)+sum(wcdfzc)+sum(wcyhdk)+sum(wcrys) wcztz, 
+          sum(case when substr(ybyf,0,4) in (#{xmnf}) then nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0) else 0 end)bclc,
+          sum(case when substr(ybyf,0,4) in (#{xmnf}) then nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0) else 0 end)bcztz  
+     from gcgl_xmjd group by xmbm)jd on gt.lsxmid = jd.xmbm     
+     where (wq.target like '%1%' or gt.LSXMID in (
      '20143607003100','20143607001004','20143607003005','20153607003504','20153607003552','20143608003100','20153604001551','20153604001561',
-     '20133601001003','20133603001001','20133603001002','20153603001565','20133601001002')
+     '20133601001003','20133603001001','20133603001002','20153603001565','20133601001002'))
+        <if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+	    <if test="jsxz !='' and jsxz != null ">
+			${jsxz}
+		</if>
+     order by gt.XZQHDM asc
 	</select>
 	
 	<update id="insertOrUpdateSjgzjdxxb" parameterType="lxsh">
@@ -2476,12 +2492,28 @@
        + decode(gt.JSXZ,'改建',dwlc,'路面改造',dwlc,'新建',jhdwlc) v_9,decode(gt.JSXZ,'改建',yilc,'路面改造',yilc,'新建',jhyilc)+decode(gt.JSXZ,'改建',erlc,'路面改造',erlc,'新建',jherlc)v_10,
   decode(gt.JSXZ,'改建',jhyilc,'路面改造',yilc,'新建',yilc)v_11,decode(gt.JSXZ,'改建',jherlc,'路面改造',erlc,'新建',erlc) v_12,decode(gt.JSXZ,'改建',jhsanlc,'路面改造',sanlc,'新建',sanlc) v_13,
  round(ztz,0) v_14,cgs v_15,gt.sbzzj v_16, '' v_17, gt.GKPFWH v_18, gt.SJPFWH v_19, wq.sgtpf v_20,gt.SCXDNF v_21,gt.XDWH v_22,wq.kglc v_23,wq.wglc v_24,
- wq.wctz v_25,wq.ywg v_26,wq.zj v_27,wq.wkg v_28,wq.jskgsj v_29,wq.jswgsj v_30,wq.zwglc v_31,wq.bnwglc v_32,wq.wcztz v_33,wq.bnwcztz v_34,wq.bz v_35,gt.jaf v_36,gt.jsxz v_37
+ wq.wctz v_25,'0' v_26,
+ case when nvl(jd.wclc,0)!=0 or nvl(jd.bclc,0)!=0 or nvl(jd.wcztz,0)!=0 or nvl(jd.bcztz,0)!=0 then '1' else '0' end v_27,
+ case when nvl(jd.wclc,0)=0 and nvl(jd.bclc,0)=0 and nvl(jd.wcztz,0)=0 and nvl(jd.bcztz,0)=0 then '1' else '0' end v_28,
+ gt.SJKGSJ v_29,case when gt.SJKGSJ is not null and gt.SJWGSJ is null then gt.yjwgsj else gt.SJWGSJ end v_30,
+ nvl(jd.wclc,0) v_31,nvl(jd.bclc,0) v_32,nvl(jd.wcztz,0) v_33,nvl(jd.bcztz,0) v_34,wq.bz v_35,gt.jaf v_36,gt.jsxz v_37
    from sjgz_tjb gt
      left join wnjh_qqxmtjb wq on gt.lsxmid = wq.wnjhid
-   where wq.target like '%1%' or gt.LSXMID in (
+     left join (select xmbm,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)wclc,
+          sum(wccgs)+sum(wcgz)+sum(wcsz)+sum(wczq)+ sum(wcdk)+sum(wcjl)+sum(wcqt)+sum(wcdfzc)+sum(wcyhdk)+sum(wcrys) wcztz, 
+          sum(case when substr(ybyf,0,4) in (#{xmnf}) then nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0) else 0 end)bclc,
+          sum(case when substr(ybyf,0,4) in (#{xmnf}) then nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0) else 0 end)bcztz  
+     from gcgl_xmjd group by xmbm)jd on gt.lsxmid = jd.xmbm 
+   where (wq.target like '%1%' or gt.LSXMID in (
      '20143607003100','20143607001004','20143607003005','20153607003504','20153607003552','20143608003100','20153604001551','20153604001561',
-     '20133601001003','20133603001001','20133603001002','20153603001565','20133601001002')
+     '20133601001003','20133603001001','20133603001002','20153603001565','20133601001002'))
+        <if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="jsxz !='' and jsxz != null ">
+			${jsxz}
+		</if>
+order by gt.XZQHDM asc
 	</select>
 	
 	<select id="getSjgzjdhzbTotal" parameterType="lxsh" resultType="elist">

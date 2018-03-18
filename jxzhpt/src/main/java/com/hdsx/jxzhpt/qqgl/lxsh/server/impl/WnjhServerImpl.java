@@ -394,8 +394,6 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 		}else{
 			return queryList("ckylwjgalx",lxsh);
 		}
-		
-		
 	}
 	@Override
 	public List<Excel_list> ckxlwjg(Lxsh lxsh) {
@@ -481,8 +479,16 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	}
 		
 	@Override
-	public boolean insertOrUpdateWnqqtjb(Lxsh lxsh) {
-		  update("insertOrUpdateWnqqtjb", lxsh);
+	public boolean insertOrUpdateWnqqtjb(String json) {
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			List<Lxsh> list = mapper.readValue(json,new TypeReference<List<Lxsh>>(){});
+		    for(Lxsh lxsh : list){
+				update("insertOrUpdateWnqqtjb", lxsh);
+		    }			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return true;
 	}
 	@Override

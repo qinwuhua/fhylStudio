@@ -188,11 +188,11 @@
 				success:function(msg){
 					if(msg!=null){
 						$("#xmsl").html(msg.SL);
-						 $("#tz").html(msg.TZ);
-						 $("#rys").html(msg.RYS);
-						 $("#dk").html(msg.DK);
+						 $("#tz").html(msg.ZTZ);
+						 $("#rys").html(msg.ZRYS);
+						 $("#dk").html(msg.ZDK);
 						 $("#lc").html(msg.LC);
-						 $("#qt").html(msg.QT);
+						 $("#qt").html(msg.ZQT);
 // 						 $("#dftz").html(msg.DFTZ);
 					}else{
 						$('#spanztz').html("0");

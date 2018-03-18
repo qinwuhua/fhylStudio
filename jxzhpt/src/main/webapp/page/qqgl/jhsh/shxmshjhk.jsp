@@ -153,10 +153,10 @@
 				success:function(msg){
 					if(msg!=null){
 						$("#xmsl").html(msg.SL);
-						 $("#tz").html(msg.TZ);
-						 $("#cgs").html(msg.CGS);
-						 $("#sbz").html(msg.SBZ);
-						 $("#qt").html(msg.SJL);
+						 $("#tz").html(msg.ZTZ);
+						 $("#cgs").html(msg.ZCGS);
+						 $("#sbz").html(msg.ZSBZ);
+						 $("#qt").html(msg.ZQT);
 						 $("#lc").html(msg.LC);
 						 
 // 						 $("#dftz").html(msg.DFTZ);

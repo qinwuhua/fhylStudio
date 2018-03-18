@@ -27,10 +27,27 @@
 	<script type="text/javascript">
 	$(function(){
 		loadDist1("xzqh",$.cookie("dist"));
+		var myDate = new Date();
+		var y = myDate.getFullYear();
+		var m = myDate.getMonth()+1; 
+		for(var x=y;x>=2010;x--){
+			$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+		}
+		$("#yf"+m).attr("selected","selected");
+		//$("#biaotou").empty();
+		
+		var nf=$("#ddlYear").val();var yf=$("#ddlMonth").val();
+		$(".nian").html(nf);
+		$(".yue").html(yf);
+		$(".nianyue1").html(nf+"年"+yf);
+		$(".nianyue2").html(nf+".12");
 		showTjb();
 	});
 
 	function showTjb(){
+		var nf=$("#ddlYear").val();
+		var bnwglc = nf+'年度完工里程（公里）';
+		var bnwcztz = nf+'年度完成投资（万元）'
 		var dfzcJson = [];
 		var  params = [];
 		var datagrid; //定义全局变量datagrid
@@ -58,19 +75,20 @@
 		    idField: 'id', //主键
 		    queryParams: {
 		    	xzqh:xzqhstr,
-		    	'lxsh.jsxz':$("#jsxz").combobox('getValues').join(',')
+		    	'lxsh.jsxz':$("#jsxz").combobox('getValues').join(','),
+		    	nf:nf,
+		    	xzqh:xzqhstr
 			},
-			frozenColumns:[[
-				{field:'ck',checkbox:true,rowspan:3,hidden:true},
-		        {field:'lsxmbm',title:'项目编码',width:100,align:'center',rowspan:3},
+		    frozenColumns:[[    
+		    	{field:'lsxmbm',title:'项目编码',width:120,align:'center',rowspan:3},
 				{field:'xzqhdm',title:'设区市',width:60,align:'center',rowspan:3},
 		        {field:'xzqh',title:'县（市、区）',width:100,align:'center',rowspan:3},
 		        {field:'tsdq',title:'特殊地区',width:100,align:'center',rowspan:3},
 		        {field:'xmmc',title:'项目名称',width:180,align:'center',rowspan:3},
 		        {field:'ghlxbm',title:'规划路线编码',width:80,align:'center',rowspan:3},
 		        {field:'xmklx',title:'项目库类型',width:80,align:'center',rowspan:3},
-		        {field:'xmbm',title:'项目库编码',width:80,align:'center',rowspan:3}
-			]],
+		        {field:'xmbm',title:'项目库编码',width:80,align:'center',rowspan:3}   
+		    ]], 	
 		   columns:[[
 		        {title:'现状等级（公里）',width:100,align:'center',rowspan:2,colspan:2},
 		        {title:'建设规模（公里）',width:100,align:'center',rowspan:2,colspan:3},
@@ -79,10 +97,10 @@
 		        {field:'dfzc',title:'地方自筹（万元）',width:100,align:'center',rowspan:3},
 			    {field:'gkpfwh',title:'工可批复',width:100,align:'center',rowspan:3},
 			    {field:'sjpfwh',title:'初设批复',width:100,align:'center',rowspan:3},
-			    {field:'sgtpf',title:'施工图批复',width:100,align:'center',rowspan:3,editor:{type: 'text',options:{required:false}}},
+			    {field:'sgtpf',title:'施工图批复',width:100,align:'center',rowspan:3},
 		        {title:'计划下达情况',width:100,align:'center',rowspan:2,colspan:2},
 		        {title:'项目建设',width:100,align:'center',colspan:12},
-			    {field:'bz',title:'备注',width:100,align:'center',rowspan:3,editor:{type: 'text',options:{required:false}}}
+			    {field:'bz',title:'备注',width:100,align:'center',rowspan:3}
 	         ],[
 			    {title:'2018年项目建设目标',width:100,align:'center',colspan:3},
 			    {title:'项目建设状态',width:100,align:'center',colspan:3},
@@ -100,17 +118,17 @@
 				{field:'kglc',title:'开工里程（公里）',width:100,align:'center',rowspan:1},
 				{field:'wglc',title:'完工里程（公里）',width:100,align:'center',rowspan:1},
 				{field:'wctz',title:'完成投资（万元）',width:100,align:'center',rowspan:1},
-				{field:'ywg',title:'已完工',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
-				{field:'zj',title:'在建',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
-				{field:'wkg',title:'未开工',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
-				{field:'jskgsj',title:'建设开工时间',width:100,align:'center',rowspan:1,editor:{type: 'datebox',options:{required:false}}},
-				{field:'jswgsj',title:'建设完工时间',width:100,align:'center',rowspan:1,editor:{type: 'datebox',options:{required:false}}},
-				{field:'zwglc',title:'累计已完工（公里）',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
-				{field:'bnwglc',title:'本年度完工里程（公里）',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
-				{field:'wcztz',title:'累计完成总投资（万元）',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}},
-				{field:'bnwcztz',title:'本年度完成总投资（万元）',width:100,align:'center',rowspan:1,editor:{type: 'text',options:{required:false}}}
+				{field:'ywg',title:'已完工',width:100,align:'center',rowspan:1},
+				{field:'zj',title:'在建',width:100,align:'center',rowspan:1},
+				{field:'wkg',title:'未开工',width:100,align:'center',rowspan:1},
+				{field:'jskgsj',title:'建设开工时间',width:100,align:'center',rowspan:1},
+				{field:'jswgsj',title:'建设完工时间',width:100,align:'center',rowspan:1},
+				{field:'zwglc',title:'累计已完工（公里）',width:120,align:'center',rowspan:1},
+				{field:'bnwglc',title:bnwglc,width:120,align:'center',rowspan:1},
+				{field:'wcztz',title:'累计完成总投资（万元）',width:120,align:'center',rowspan:1},
+				{field:'bnwcztz',title:bnwcztz,width:120,align:'center',rowspan:1}
 	         ]],
-		    toolbar: [
+		   /*  toolbar: [
 		    	//{ text: '编辑', iconCls: 'icon-edit', handler: function () {}}, '-',
              { text: '保存', iconCls: 'icon-save', handler: function () {
                  datagrid.datagrid('hideColumn', 'ck');
@@ -136,7 +154,7 @@
                      datagrid.datagrid("unselectAll");
                  }
              }
-             }, '-'],
+             }, '-'], */
 		    onClickCell: function (rowIndex, field, value) {
 		    	beginEditing(rowIndex,field,value);
 		    	datagrid.datagrid('showColumn', 'ck'); 
@@ -250,6 +268,7 @@
 	
 	function dcExcel(){
 		var xzqhdm=$("#xzqh").combotree("getValues");
+		var nf=$("#ddlYear").val();
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");		
 		}else if(xzqhdm.length==1){
@@ -259,19 +278,19 @@
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
-		var param='flag=1';
+		var param='flag=1'+'&nf='+nf+"&xzqh="+xzqhstr+'&lxsh.jsxz='+encodeURI(encodeURI($("#jsxz").combobox('getValues').join(',')));
 		var sql=$("#excelcgs").val();
-		var nameValue=$("#exceldfzc").val();       
-		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{sql:sql,nameValue:nameValue},function(){
-			window.location.href="/jxzhpt/qqgl/getSjgzjdxxb.do?"+param;
-		 });		
+		var nameValue=$("#exceldfzc").val();    
+		 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{xzqh:xzqhstr},function(){
+				window.location.href="/jxzhpt/qqgl/getSjgzjdxxb.do?"+param;
+			 });		
 	}
 	
 	 function onSelect(r) {
 	        if (r.text == '全部') {
 	            $(this).combobox('clear').combobox('setValue', r.value)
 	        }
-	        else $(this).combobox('unselect', "改建,路面改造,新建");
+	        else $(this).combobox('unselect', "改建,新建");
 	        }
 	</script>
 	<style type="text/css">
@@ -310,11 +329,30 @@ text-decoration:none;
         						<td><select id="xzqh" style="width:150px;"></select></td>
         						<td align="right">建设性质：</td>
 		 						<td><select class="easyui-combobox" name="jsxz" id="jsxz" style="width: 130px;"data-options="editable:false,panelHeight:'auto',multiple:true,onSelect:onSelect">
-									<option value="改建,路面改造,新建">全部</option>
+									<option value="改建,新建">全部</option>
 									<option value="改建">改建</option>
-									<option value="路面改造">路面改造</option>
 									<option value="新建">新建</option>
 								</select></td>												
+                                <!-- <td align="right">计划下达年份：</td>
+		        				<td><input id="jhnd" type="text"  style="width: 120px"></td> -->
+        						<td align="right">月报年份：</td>
+		 						<td><select name="ddlYear" id="ddlYear" style="width: 80px;">
+								</select></td>
+		 						<!-- <td align="right">月报月份：</td>
+		 						<td><select name="ddlMonth" id="ddlMonth" style="width: 60px;">
+									<option id="yf1" value="1">01</option>
+									<option id="yf2" value="2">02</option>
+									<option id="yf3" value="3">03</option>
+									<option id="yf4" value="4">04</option>
+									<option id="yf5" value="5">05</option>
+									<option id="yf6" value="6">06</option>
+									<option id="yf7" value="7">07</option>
+									<option id="yf8" value="8">08</option>
+									<option id="yf9" value="9">09</option>
+									<option id="yf10" value="10">10</option>
+									<option id="yf11" value="11">11</option>
+									<option id="yf12" value="12">12</option>
+								</select></td>	 -->							
 							</tr>
 							
         					<tr height="32">

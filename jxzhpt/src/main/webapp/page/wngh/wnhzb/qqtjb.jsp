@@ -78,19 +78,6 @@
 		        //{title:'建设年限',colspan:2},
 		        {field:'scxdnf',title:'首次下达年份',width:100,align:'center',rowspan:2},
 		        {field:'ztz',title:'总投资（万元）',width:100,align:'center',rowspan:2},
-		        /* {field:'cgs',title:'中央车购税投资（万元）',width:100,align:'center',rowspan:2,
-		        	formatter: function(value,row,index){
-	        			var zj = zycgscs(row);
-	     	 	        params.push({"lsxmid":row.lsxmid,"cgs":zj});
-	     	 		    var json = JSON.stringify(params);  
-	     	 		    $('#excelcgs').val(json);
-		        		if(row.cgs==""){
-							return '<font style="color:#2F4F4F;">'+zj+'</font>';
-		        		}else{
-		        			return value;
-		        		}
-					} 
-		        }, */
 		        {field:'cgs',title:'部级补助（万元）',width:100,align:'center',rowspan:2,},
 		        {field:'sbzzj',title:'省级补助（万元）',width:100,align:'center',rowspan:2},
 		        {field:'sjl',title:'省级奖励（万元）',width:100,align:'center',rowspan:2},
@@ -222,8 +209,29 @@
 	    }
 	}
 	function saveQqtjb(rows){
-		alert(rows.length);
-       for(var i=0;i<rows.length;i++){
+        /* {field:'cgs',title:'中央车购税投资（万元）',width:100,align:'center',rowspan:2,
+    	formatter: function(value,row,index){
+			var zj = zycgscs(row);
+	 	        params.push({"lsxmid":row.lsxmid,"cgs":zj});
+	 		    var json = JSON.stringify(params);  
+	 		    $('#excelcgs').val(json);
+    		if(row.cgs==""){
+				return '<font style="color:#2F4F4F;">'+zj+'</font>';
+    		}else{
+    			return value;
+    		}
+		} 
+    }, */
+		
+	     var params = [];
+         for(var i=0;i<rows.length;i++){
+        	 params.push({"id":rows[i].id,"lsxmid":rows[i].lsxmid,"xmbm":rows[i].xmbm,"ghwh":rows[i].ghwh,"ghpfsj":rows[i].ghpfsj,"ydwh":rows[i].ydwh,
+        		 "ydpfsj":rows[i].ydpfsj,"xmkbm":rows[i].xmkbm,"mbkgn":rows[i].mbkgn,"mbwgn":rows[i].mbwgn,"sgtpf":rows[i].sgtpf,"sgtpfsj":rows[i].sgtpfsj,
+        		 "sfhysc":rows[i].sfhysc,"sfgksc":rows[i].sfgksc});
+         }
+         var jsonData = JSON.stringify(params);
+         
+/*        for(var i=0;i<rows.length;i++){
         	data="lxsh.id="+rows[i].id+"&lxsh.lsxmid="+rows[i].lsxmid+"&lxsh.xmbm="+rows[i].xmbm+"&lxsh.ghwh="+rows[i].ghwh+"&lxsh.ghpfsj="+rows[i].ghpfsj+
         	     "&lxsh.ydwh="+rows[i].ydwh+"&lxsh.ydpfsj="+rows[i].ydpfsj+"&lxsh.xmkbm="+rows[i].xmkbm+"&lxsh.mbkgn="+rows[i].mbkgn+
         	     "&lxsh.mbwgn="+rows[i].mbwgn+"&lxsh.sgtpf="+rows[i].sgtpf+"&lxsh.sgtpfsj="+rows[i].sgtpfsj+"&lxsh.sfhysc="+rows[i].sfhysc+"&lxsh.sfgksc="+rows[i].sfgksc;
@@ -236,7 +244,16 @@
     			}
     		});
         }
-		alert("保存成功！");
+		alert("保存成功！"); */
+		$.ajax({
+   			type:'post',
+			url:'/jxzhpt/qqgl/insertWnqqtjb.do',
+	        data:"json="+jsonData,
+			dataType:'json',
+			success:function(msg){
+				alert("保存成功！");
+			}
+		});
 	}
 
 	function zycgscs(row){

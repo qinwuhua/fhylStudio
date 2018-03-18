@@ -1580,9 +1580,12 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 
 	@Override
 	public List<Excel_list> getLmgzxmb(Gcglabgc gcglabgc) {
+		int rowNum = 0;
 		List<Excel_list> total = queryList("getLmgzxmbTotal", gcglabgc);
 		List<Excel_list> result = queryList("getLmgzxmb", gcglabgc);
 		for(int i = 0; i < result.size();i++) {
+			rowNum ++;
+			result.get(i).setV_0(rowNum+"");
 			String buf = "";
 			int a = result.get(i).getV_2().indexOf("市")+1;
 			if (result.get(i).getV_2().contains(",")) {
@@ -1603,9 +1606,12 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 	
 	@Override
 	public List<Excel_list> getShxmb(Gcglabgc gcglabgc) {
+		int rowNum = 0;
 		List<Excel_list> total = queryList("getShxmbTotal", gcglabgc);
 		List<Excel_list> result = queryList("getShxmb", gcglabgc);
 		for(int i = 0; i < result.size();i++) {
+			rowNum ++;
+			result.get(i).setV_0(rowNum+"");
 			String buf = "";
 			int a = result.get(i).getV_2().indexOf("市")+1;
 			if (result.get(i).getV_2().contains(",")) {
