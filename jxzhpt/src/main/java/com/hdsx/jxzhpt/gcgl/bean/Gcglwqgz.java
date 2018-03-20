@@ -110,7 +110,14 @@ public class Gcglwqgz implements Serializable {
 	private String nameValue;
 	private String xmklx;
 	private String xmzt;
+	private String ybsj;
 	
+	public String getYbsj() {
+		return ybsj;
+	}
+	public void setYbsj(String ybsj) {
+		this.ybsj = ybsj;
+	}
 	public String getXmzt() {
 		return xmzt;
 	}
