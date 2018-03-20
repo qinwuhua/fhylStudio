@@ -305,10 +305,8 @@ text-decoration:none;
         						<td align="right">下达年份：</td>
         						<td><input type="text" id="jhxdnf"  style="width:80px;"></td>
         						<td align="right">项目类型：</td>
-        						<td><select id="xmlx" style="width:80px;" class='easyui-combobox'>
-        							<option value="改建">改建</option>
-        							<option value="新建">新建</option>
-        						</select></td>
+        						<td><input type='text' id="xmlx" style="width:80px;">
+        							</td>
         						<td align="right">截至进展年份：</td>
         						<td><input type="text" id="ybnf"  style="width:80px;"></td>
         						<td align="right">截至进展月份：</td>

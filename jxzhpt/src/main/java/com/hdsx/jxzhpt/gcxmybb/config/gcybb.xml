@@ -3732,17 +3732,18 @@
 		v_61,v_62,v_63,v_64,v_65,v_66,v_67,v_68,v_69,v_70,
 		v_71,v_72,(case when to_number(v_74)&lt;0 then v_68 else v_73 end) v_73,(case when to_number(v_74)&lt;0 then 0 else v_74 end) v_74,v_75,nvl(v_15,0)-nvl(v_68,0)  v_76,nvl(to_char(decode(v_15,'0','0',null,'0',round(v_68 / v_15 * 100, 1))),'0')||'%' v_77,nvl(to_char(decode(v_19,'0','0',null,'0',round(v_58 / v_19 * 100, 1))),'0')||'%' v_78,
 		nvl(to_char(decode(v_18,'0','0',null,'0',round(v_67 / v_18 * 100, 1))),'0')||'%' v_79,v_80,xzqhdm v_83,v_84 from XGJWCMXB where 1=1
-			<if test="xmnf != null and  xmnf != ''">
-		      and xmnf in (${xmnf})
-		    </if>
+		
 		    <if test="gydw != null and  gydw != ''">
 		        ${gydw}
 		    </if>
 		    <if test="xzqhdm != null and  xzqhdm != ''">
 		        ${xzqhdm}
 		    </if>
-		    <if test="lxmc != null and  lxmc != ''">
-		        and lxmc like '%'||trim(#{lxmc})||'%'
+		    <if test="lxbm != null and  lxbm != ''">
+		        and v_5 like '%'||trim(#{lxbm})||'%'
+		    </if>
+		    <if test="xmbm != null and  xmbm != ''">
+		        and v_1 like '%'||trim(#{xmbm})||'%'
 		    </if>
 		    <if test="xmmc != null and  xmmc != ''">
 		        and v_6 like '%'||trim(#{xmmc})||'%'
@@ -3784,17 +3785,18 @@
      sum(v_69) v_69,sum(v_70) v_70,sum(v_71) v_71,sum(v_72) v_72,(case when to_number(sum(v_74))&lt;0 then sum(v_68) else sum(v_73) end) v_73,(case when to_number(sum(v_74))&lt;0 then 0 else sum(v_74) end) v_74,sum(v_75) v_75,sum(nvl(v_15,0))-sum(nvl(v_68,0)) v_76,nvl(to_char(decode(sum(v_15),'0','0',null,'0',round(sum(v_68) / sum(v_15) * 100, 1))),'0')||'%' v_77,nvl(to_char(decode(sum(v_19),'0','0',null,'0',round(sum(v_58) / sum(v_19) * 100, 1))),'0')||'%' v_78,
      nvl(to_char(decode(sum(v_18),'0','0',null,'0',round(sum(v_67) / sum(v_18) * 100, 1))),'0')||'%' v_79,min(xzqhdm) v_83,min(v_84) v_84
  	from (select * from XGJWCMXB where 1=1
-			    <if test="xmnf != null and  xmnf != ''">
-		        and xmnf in (${xmnf})
-		    </if>
+			    
 		    <if test="gydw != null and  gydw != ''">
 		        ${gydw}
 		    </if>
 		    <if test="xzqhdm != null and  xzqhdm != ''">
 		        ${xzqhdm}
 		    </if>
-		    <if test="lxmc != null and  lxmc != ''">
-		        and lxmc like '%'||trim(#{lxmc})||'%'
+		    <if test="lxbm != null and  lxbm != ''">
+		        and v_5 like '%'||trim(#{lxbm})||'%'
+		    </if>
+		    <if test="xmbm != null and  xmbm != ''">
+		        and v_1 like '%'||trim(#{xmbm})||'%'
 		    </if>
 		    <if test="xmmc != null and  xmmc != ''">
 		        and v_6 like '%'||trim(#{xmmc})||'%'
@@ -3836,17 +3838,18 @@
      sum(v_69) v_69,sum(v_70) v_70,sum(v_71) v_71,sum(v_72) v_72,(case when to_number(sum(v_74))&lt;0 then sum(v_68) else sum(v_73) end) v_73,(case when to_number(sum(v_74))&lt;0 then 0 else sum(v_74) end) v_74,sum(v_75) v_75,sum(nvl(v_15,0))-sum(nvl(v_68,0)) v_76,nvl(to_char(decode(sum(v_15),'0','0',null,'0',round(sum(v_68) / sum(v_15) * 100, 1))),'0')||'%' v_77,nvl(to_char(decode(sum(v_19),'0','0',null,'0',round(sum(v_58) / sum(v_19) * 100, 1))),'0')||'%' v_78,
      nvl(to_char(decode(sum(v_18),'0','0',null,'0',round(sum(v_67) / sum(v_18) * 100, 1))),'0')||'%' v_79
  	from (select * from XGJWCMXB where 1=1
-			    <if test="xmnf != null and  xmnf != ''">
-		       and xmnf in (${xmnf})
-		    </if>
+			  
 		    <if test="gydw != null and  gydw != ''">
 		        ${gydw}
 		    </if>
 		    <if test="xzqhdm != null and  xzqhdm != ''">
 		        ${xzqhdm}
 		    </if>
-		    <if test="lxmc != null and  lxmc != ''">
-		        and lxmc like '%'||trim(#{lxmc})||'%'
+		    <if test="lxbm != null and  lxbm != ''">
+		        and v_5 like '%'||trim(#{lxbm})||'%'
+		    </if>
+		    <if test="xmbm != null and  xmbm != ''">
+		        and v_1 like '%'||trim(#{xmbm})||'%'
 		    </if>
 		    <if test="xmmc != null and  xmmc != ''">
 		        and v_6 like '%'||trim(#{xmmc})||'%'

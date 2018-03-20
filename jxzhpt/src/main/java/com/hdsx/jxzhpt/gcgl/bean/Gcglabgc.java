@@ -412,7 +412,22 @@ public class Gcglabgc implements Serializable {
 	private String thyy;
 	private String zgthyy;
 	private Date zgshtime;
+	private String xmbm;
+	private String ybsj;
 	
+	
+	public String getXmbm() {
+		return xmbm;
+	}
+	public void setXmbm(String xmbm) {
+		this.xmbm = xmbm;
+	}
+	public String getYbsj() {
+		return ybsj;
+	}
+	public void setYbsj(String ybsj) {
+		this.ybsj = ybsj;
+	}
 	public String getZgshzt() {
 		return zgshzt;
 	}

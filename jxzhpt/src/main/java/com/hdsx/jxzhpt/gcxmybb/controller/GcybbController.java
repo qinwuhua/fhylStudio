@@ -2783,11 +2783,9 @@ public class GcybbController extends BaseActionSupport{
 				
 			}else{
 				String shijian="";
-				if(Integer.parseInt(yf)<=9){
-					shijian=nf+"-0"+yf;
-				}else{
+				
 					shijian=nf+"-"+yf;
-				}
+				
 				gcglabgc.setSbyf(shijian);
 				String tiaojian1="";
 				String tiaojian2="";
@@ -2818,7 +2816,6 @@ public class GcybbController extends BaseActionSupport{
 				gcglabgc.setLxmc(lxmc);
 				gcglabgc.setTiaojian(getcxtj("lxbm",xzdj));
 				gcglabgc.setXzqhdm(tiaojian2);
-				gcglabgc.setXmnf(xmnf);
 				gcglabgc.setXmmc(xmmc);
 				//查总合list
 				//getcxtj

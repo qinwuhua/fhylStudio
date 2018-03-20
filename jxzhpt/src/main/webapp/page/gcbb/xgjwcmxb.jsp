@@ -32,7 +32,6 @@
 	</style>
 	<script type="text/javascript">
 	$(function(){
-		setjhxdnf1("ddlYear1");
 		setjhxdnf1("jhnd");
 		loadUnit1("gydw",$.cookie("unit"));
 		loadDist1("xzqh",$.cookie("dist"));
@@ -45,11 +44,10 @@
 		setbndsslc('bndsslc');
 		var myDate = new Date();
 		var y = myDate.getFullYear();
-		var m = myDate.getMonth()+1; 
-		for(var x=y;x>=2010;x--){
-			$("#ddlYear").append("<option value="+x+">"+x+"</option>");
-		}
-		$("#yf"+m).attr("selected","selected");
+		var m = myDate.getMonth() < 10 ? "0"+(myDate.getMonth()+1) : myDate.getMonth()+1; 
+		var d= myDate.getDate() < 10 ? "0"+myDate.getDate() : myDate.getDate();
+		var timestr = y+"-"+m+"-"+d;
+		$("#ybsj").datebox('setValue',timestr);
 		$("#biaotou").empty();
 	});
 	function setjhxdnf1(id){
@@ -232,11 +230,8 @@
 		
 		var json_data = JSON.stringify(datalist); 
 		
-		var nf=$("#ddlYear").val();
-		var yf=$("#ddlMonth").val();
-		var xmnf=$("#ddlYear1").combobox("getValues").join(",");
-		if(xmnf.substr(0,1)==',')
-			xmnf=xmnf.substr(1,xmnf.length);
+		var nf=$("#ybsj").datebox("getValue").substr(0,4);
+		var yf=$("#ybsj").datebox("getValue").substr(5,2);
 		
 		var gydw=$("#gydw").combotree("getValues");
 		if(gydw.length==0){
@@ -262,8 +257,8 @@
 			xzqhstr= xzqhdm.join(',');
 		}
 		var xzdj=$("#xzdj").combobox("getValues").join(',');
-		var lxmc=$("#lxmc").val();
-		var data="flag=1&nf="+nf+"&yf="+yf+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf
+		var lxbm=$("#lxbm").val();var xmbm=$("#xmbm").val();
+		var data="flag=1&nf="+nf+"&yf="+yf+"&xzdj="+xzdj+"&gcglabgc.lxbm="+lxbm+"&xmmc="+$("#xmmc").val()+"&gcglabgc.xmbm="+xmbm
 		+"&gcglabgc.yjsdj="+$("#yjsdj").combobox('getValues').join(',')
 		+"&gcglabgc.jsjsdj="+$("#jsjsdj").combobox('getValues').join(',')
 		+"&gcglabgc.gljslx="+$("#gljslx").combobox('getValues').join(',')
@@ -283,12 +278,8 @@
 	}
 	
 	function showBb(ss){
-		var nf=$("#ddlYear").val();
-		var yf=$("#ddlMonth").val();
-		var xmnf=$("#ddlYear1").combobox("getValues").join(",");
-		if(xmnf.substr(0,1)==',')
-			xmnf=xmnf.substr(1,xmnf.length);
-		
+		var nf=$("#ybsj").datebox("getValue").substr(0,4);
+		var yf=$("#ybsj").datebox("getValue").substr(5,2);
 		var gydw=$("#gydw").combotree("getValues");
 		if(gydw.length==0){
 			if($.cookie("unit2")=='_____36')
@@ -313,8 +304,8 @@
 			xzqhstr= xzqhdm.join(',');
 		}
 		var xzdj=$("#xzdj").combobox("getValues").join(',');
-		var lxmc=$("#lxmc").val();
-		var data="flag=0&nf="+nf+"&yf="+yf+"&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf
+		var lxbm=$("#lxbm").val();var xmbm=$("#xmbm").val();
+		var data="flag=0&nf="+nf+"&yf="+yf+"&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&gcglabgc.lxbm="+lxbm+"&xmmc="+$("#xmmc").val()+"&gcglabgc.xmbm="+xmbm+"&gcglabgc.ybsj="+$("#ybsj").datebox('getValue')
 		+"&gcglabgc.yjsdj="+$("#yjsdj").combobox('getValues').join(',')
 		+"&gcglabgc.jsjsdj="+$("#jsjsdj").combobox('getValues').join(',')
 		+"&gcglabgc.gljslx="+$("#gljslx").combobox('getValues').join(',')
@@ -408,64 +399,51 @@ text-decoration:none;
 					<tr height="32">
         						<td align="right">管养单位：</td>
         						<td><select id="gydw" style="width:150px;"></select></td>
-        						<td align="right">月报年份：</td>
-		 						<td><select name="ddlYear" id="ddlYear" style="width: 80px;">
-								</select></td>
-		 						<td align="right">月报月份：</td>
-		 						<td><select name="ddlMonth" id="ddlMonth" style="width: 60px;">
-									<option id="yf1" value="1">01</option>
-									<option id="yf2" value="2">02</option>
-									<option id="yf3" value="3">03</option>
-									<option id="yf4" value="4">04</option>
-									<option id="yf5" value="5">05</option>
-									<option id="yf6" value="6">06</option>
-									<option id="yf7" value="7">07</option>
-									<option id="yf8" value="8">08</option>
-									<option id="yf9" value="9">09</option>
-									<option id="yf10" value="10">10</option>
-									<option id="yf11" value="11">11</option>
-									<option id="yf12" value="12">12</option>
-								</select></td>
+        					</select></td>
+		 						
 		        				<td align="right">项目名称：</td>
-		        				<td><input id="xmmc" type="text"  style="width: 75px"></td>
-		        				
+		        				<td><input id="xmmc" type="text"  style="width: 100px"></td>
+		        				<td align="right">项目编码：</td>
+		        				<td><input id="xmbm" type="text"  style="width: 100px"></td>
+		        				<td align="right">路线编码：</td>
+        						<td><input id="lxbm" type="text"  style="width: 100px"></td>
 		        				<td align="right">原技术等级：</td>
-		        				<td><input id="yjsdj" type="text"  style="width: 54px"></td>
+		        				<td><input id="yjsdj" type="text"  style="width: 103px"></td>
 		        				</tr>
         							<tr height="32">
         						<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:150px;"></select></td>
-        						<td align="right">项目年份：</td>
-        						<td><select  id="ddlYear1" style="width: 80px;"></select></td>
         						<td align="right">原行政等级：</td>
-        						<td><select id="xzdj" class="easyui-combobox" style="width:60px;">
+        						<td><select id="xzdj" class="easyui-combobox" style="width:103px;">
         						</select></td>
-        						<td align="right">路线编码：</td>
-        						<td><input id="lxmc" type="text"  style="width: 75px"></td>
-								<td align="right">建设技术标准：</td>
-        						<td><input id="jsjsdj" type="text"  style="width: 54px"></td>
         						
+								<td align="right">建设技术标准：</td>
+        						<td><input id="jsjsdj" type="text"  style="width: 103px"></td>
+        						
+        						<td align="right">公路建设类型：</td>
+        						<td><input id="gljslx" type="text"  style="width: 103px"></td>
+        						<td align="right">月报时间：</td>
+        						<td><input id="ybsj" type="text"  style="width: 103px" class='easyui-datebox'  ></td>
 							</tr>
 									<tr height="32">
-        						<td align="right">公路建设类型：</td>
-        						<td><input id="gljslx" type="text"  style="width: 150px"></td>
-        						<td align="right">计划年度：</td>
-		        				<td><input id="jhnd" type="text"  style="width: 80px"></td>
+        						
+        						<td align="right">首次下达计划年度：</td>
+		        				<td><input id="jhnd" type="text"  style="width: 150px"></td>
         						<td align="right">项目进展状态：</td>
-        						<td><input id="jzzt" type="text"  style="width: 60px"></td>
+        						<td><input id="jzzt" type="text"  style="width: 103px"></td>
         					<!-- 	<span>本年计划投资：</span>
         						<input id="bnjhtz" type="text"  style="width: 60px">
         						<span>本年度实施里程：</span>
         						<input id="bndsslc" type="text"  style="width: 60px">
         						</select> -->
         						<td align="right">本年计划投资：</td>
-        						<td><select name="bnjhtz" id="bnjhtz" class="easyui-combobox" style="width:76px;">
+        						<td><select name="bnjhtz" id="bnjhtz" class="easyui-combobox" style="width:103px;">
 									<!-- <option value="" selected="selected">全部</option>
 									<option value="0">0</option>
 									<option value="非0">非0</option> -->
 								</select></td>
         						<td align="right">本年度实施里程：</td>
-        						<td><select name="bndsslc" id="bndsslc" class="easyui-combobox" style="width:54px;">
+        						<td><select name="bndsslc" id="bndsslc" class="easyui-combobox" style="width:103px;">
 									<!-- <option value="" selected="selected">全部</option>
 									<option value="0">0</option>
 									<option value="非0">非0</option> -->
