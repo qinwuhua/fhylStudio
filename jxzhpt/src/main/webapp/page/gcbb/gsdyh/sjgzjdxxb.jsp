@@ -28,7 +28,7 @@
 	$(function(){
 		loadDist1("xzqh",$.cookie("dist"));
 		var myDate = new Date();
-		var y = myDate.getFullYear();
+		/* var y = myDate.getFullYear();
 		var m = myDate.getMonth()+1; 
 		for(var x=y;x>=2010;x--){
 			$("#ddlYear").append("<option value="+x+">"+x+"</option>");
@@ -36,7 +36,15 @@
 		$("#yf"+m).attr("selected","selected");
 		//$("#biaotou").empty();
 		
-		var nf=$("#ddlYear").val();var yf=$("#ddlMonth").val();
+		var nf=$("#ddlYear").val();
+		var yf=$("#ddlMonth").val(); */
+		
+		var strDate=myDate.getFullYear()+"-"+((myDate.getMonth() + 1) > 9 ? (myDate.getMonth() + 1) : "0" + (myDate.getMonth() + 1))+"-"+myDate.getDate();          
+        $("#enddate").datebox("setValue",strDate);
+		
+		var nf=myDate.getFullYear();
+		var yf=(myDate.getMonth() + 1) > 9 ? (myDate.getMonth() + 1) : "0" + (myDate.getMonth() + 1);
+		
 		$(".nian").html(nf);
 		$(".yue").html(yf);
 		$(".nianyue1").html(nf+"年"+yf);
@@ -45,9 +53,16 @@
 	});
 
 	function showTjb(){
-		var nf=$("#ddlYear").val();
+		
+		//var nf=$("#ddlYear").val();
+		
+		var enddate = $("#enddate").datebox("getValue");
+		var nf=enddate.substring(0, 4);
+		var yf=enddate.substring(5, 7);
+		
 		var bnwglc = nf+'年度完工里程（公里）';
-		var bnwcztz = nf+'年度完成投资（万元）'
+		var bnwcztz = nf+'年度完成投资（万元）';
+		
 		var dfzcJson = [];
 		var  params = [];
 		var datagrid; //定义全局变量datagrid
@@ -77,7 +92,8 @@
 		    	xzqh:xzqhstr,
 		    	'lxsh.jsxz':$("#jsxz").combobox('getValues').join(','),
 		    	nf:nf,
-		    	xzqh:xzqhstr
+		    	xzqh:xzqhstr,
+		    	'lxsh.ybrq':enddate
 			},
 		    frozenColumns:[[    
 		    	{field:'lsxmbm',title:'项目编码',width:120,align:'center',rowspan:3},
@@ -267,8 +283,12 @@
 	}
 	
 	function dcExcel(){
+		var enddate = $("#enddate").datebox("getValue");
+		var nf=enddate.substring(0, 4);
+		var yf=enddate.substring(5, 7);
+		
 		var xzqhdm=$("#xzqh").combotree("getValues");
-		var nf=$("#ddlYear").val();
+		//var nf=$("#ddlYear").val();
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");		
 		}else if(xzqhdm.length==1){
@@ -278,7 +298,7 @@
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
-		var param='flag=1'+'&nf='+nf+"&xzqh="+xzqhstr+'&lxsh.jsxz='+encodeURI(encodeURI($("#jsxz").combobox('getValues').join(',')));
+		var param='flag=1'+'&nf='+nf+"&xzqh="+xzqhstr+'&lxsh.jsxz='+encodeURI(encodeURI($("#jsxz").combobox('getValues').join(',')))+"&lxsh.ybrq="+enddate;
 		var sql=$("#excelcgs").val();
 		var nameValue=$("#exceldfzc").val();    
 		 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{xzqh:xzqhstr},function(){
@@ -335,24 +355,12 @@ text-decoration:none;
 								</select></td>												
                                 <!-- <td align="right">计划下达年份：</td>
 		        				<td><input id="jhnd" type="text"  style="width: 120px"></td> -->
-        						<td align="right">月报年份：</td>
+        						<!-- <td align="right">月报年份：</td>
 		 						<td><select name="ddlYear" id="ddlYear" style="width: 80px;">
-								</select></td>
-		 						<!-- <td align="right">月报月份：</td>
-		 						<td><select name="ddlMonth" id="ddlMonth" style="width: 60px;">
-									<option id="yf1" value="1">01</option>
-									<option id="yf2" value="2">02</option>
-									<option id="yf3" value="3">03</option>
-									<option id="yf4" value="4">04</option>
-									<option id="yf5" value="5">05</option>
-									<option id="yf6" value="6">06</option>
-									<option id="yf7" value="7">07</option>
-									<option id="yf8" value="8">08</option>
-									<option id="yf9" value="9">09</option>
-									<option id="yf10" value="10">10</option>
-									<option id="yf11" value="11">11</option>
-									<option id="yf12" value="12">12</option>
-								</select></td>	 -->							
+								</select></td> -->
+								<td align="right">月报时间：</td>
+								<td><input id="enddate" class="easyui-datebox" name="enddate" data-options="editable:false"></td>
+							
 							</tr>
 							
         					<tr height="32">

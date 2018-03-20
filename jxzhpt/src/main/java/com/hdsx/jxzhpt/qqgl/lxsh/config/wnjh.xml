@@ -2447,10 +2447,10 @@ select lsxmid, (select name from xtgl_xzqh where id in gt.XZQHDM) xzqhdm,xzqh,gh
        nvl(jd.wclc,0) zwglc,nvl(jd.bclc,0) bnwglc,nvl(jd.wcztz,0)wcztz,nvl(jd.bcztz,0) bnwcztz    
    from sjgz_tjb gt
      left join wnjh_qqxmtjb wq on gt.lsxmid = wq.wnjhid
-     left join (select xmbm,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)wclc,
-          sum(wccgs)+sum(wcgz)+sum(wcsz)+sum(wczq)+ sum(wcdk)+sum(wcjl)+sum(wcqt)+sum(wcdfzc)+sum(wcyhdk)+sum(wcrys) wcztz, 
-          sum(case when substr(ybyf,0,4) in (#{xmnf}) then nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0) else 0 end)bclc,
-          sum(case when substr(ybyf,0,4) in (#{xmnf}) then nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0) else 0 end)bcztz  
+     left join (select xmbm,sum(case when to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0) else 0 end)wclc,
+       sum(case when to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0) else 0 end)wcztz,          
+       sum(case when substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0) else 0 end)bclc,
+       sum(case when substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0) else 0 end)bcztz  
      from gcgl_xmjd group by xmbm)jd on gt.lsxmid = jd.xmbm     
      where (wq.target like '%1%' or gt.LSXMID in (
      '20143607003100','20143607001004','20143607003005','20153607003504','20153607003552','20143608003100','20153604001551','20153604001561',
@@ -2499,11 +2499,11 @@ select lsxmid, (select name from xtgl_xzqh where id in gt.XZQHDM) xzqhdm,xzqh,gh
  nvl(jd.wclc,0) v_31,nvl(jd.bclc,0) v_32,nvl(jd.wcztz,0) v_33,nvl(jd.bcztz,0) v_34,wq.bz v_35,gt.jaf v_36,gt.jsxz v_37
    from sjgz_tjb gt
      left join wnjh_qqxmtjb wq on gt.lsxmid = wq.wnjhid
-     left join (select xmbm,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)wclc,
-          sum(wccgs)+sum(wcgz)+sum(wcsz)+sum(wczq)+ sum(wcdk)+sum(wcjl)+sum(wcqt)+sum(wcdfzc)+sum(wcyhdk)+sum(wcrys) wcztz, 
-          sum(case when substr(ybyf,0,4) in (#{xmnf}) then nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0) else 0 end)bclc,
-          sum(case when substr(ybyf,0,4) in (#{xmnf}) then nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0) else 0 end)bcztz  
-     from gcgl_xmjd group by xmbm)jd on gt.lsxmid = jd.xmbm 
+     left join (select xmbm,sum(case when to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0) else 0 end)wclc,
+       sum(case when to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0) else 0 end)wcztz,          
+       sum(case when substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0) else 0 end)bclc,
+       sum(case when substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0) else 0 end)bcztz  
+   from gcgl_xmjd group by xmbm)jd on gt.lsxmid = jd.xmbm 
    where (wq.target like '%1%' or gt.LSXMID in (
      '20143607003100','20143607001004','20143607003005','20153607003504','20153607003552','20143608003100','20153604001551','20153604001561',
      '20133601001003','20133603001001','20133603001002','20153603001565','20133601001002'))

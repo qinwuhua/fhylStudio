@@ -1819,9 +1819,9 @@ public class WnjhController extends BaseActionSupport{
 		}
 	 }
 	 public void exportWnqqtjExcel() {
-		HttpServletRequest request = ServletActionContext.getRequest();
+		/*HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
-		lxsh.setCgs(((String) session.getAttribute("sql")));
+		lxsh.setCgs(((String) session.getAttribute("sql")));*/
 		
 		String jsxz = "";
 		try {
