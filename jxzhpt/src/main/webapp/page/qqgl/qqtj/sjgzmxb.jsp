@@ -35,15 +35,24 @@
 		setjhxdnf1("jhnd");
 		loadDist1("xzqh",$.cookie("dist"));
 		var myDate = new Date();
-		var y = myDate.getFullYear();
+/* 		var y = myDate.getFullYear();
 		var m = myDate.getMonth()+1; 
 		for(var x=y;x>=2010;x--){
 			$("#ddlYear").append("<option value="+x+">"+x+"</option>");
 		}
-		$("#yf"+m).attr("selected","selected");
+		$("#yf"+m).attr("selected","selected"); */
 		//$("#biaotou").empty();
 		
-		var nf=$("#ddlYear").val();var yf=$("#ddlMonth").val();
+/* 		var nf=$("#ddlYear").val();
+		var yf=$("#ddlMonth").val(); */
+		
+        var strDate=myDate.getFullYear()+"-"+((myDate.getMonth() + 1) > 9 ? (myDate.getMonth() + 1) : "0" + (myDate.getMonth() + 1))+"-"+myDate.getDate();          
+        $("#enddate").datebox("setValue",strDate);
+		
+		var nf=myDate.getFullYear();
+		var yf=(myDate.getMonth() + 1) > 9 ? (myDate.getMonth() + 1) : "0" + (myDate.getMonth() + 1);
+        
+		
 		$(".nian").html(nf);
 		$(".yue").html(yf);
 		$(".nianyue1").html(nf+"年"+yf);
@@ -115,8 +124,13 @@
 	}
 
 	function dcExcel(){
-		var nf=$("#ddlYear").val();
-		var yf=$("#ddlMonth").val();
+		//var startdate = $("#startdate").datebox("getValue");
+		var enddate = $("#enddate").datebox("getValue");
+ 		var nf=enddate.substring(0, 4);
+		var yf=enddate.substring(5, 7);
+		var xmbm= $("#xmbm").val();
+		/* var nf=$("#ddlYear").val();
+		var yf=$("#ddlMonth").val(); */
 		var xzqhdm=$("#xzqh").combotree("getValues");
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");
@@ -131,7 +145,7 @@
 		
  		var data="flag=1&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr
 		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',')
-		+"&type="+$("#jsxz").val(); 
+		+"&type="+$("#jsxz").val()+"&gcglabgc.endDate="+enddate+"&gcglabgc.xmbm="+xmbm;
 		//var data="flag=1&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr;
 		loadjzt();
 		 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{xzqh:xzqhstr},function(){
@@ -141,8 +155,11 @@
 	}
 
 	function showBb(){
-		var nf=$("#ddlYear").val();
-		var yf=$("#ddlMonth").val();
+		var enddate = $("#enddate").datebox("getValue");
+ 		var nf=enddate.substring(0, 4);
+		var yf=enddate.substring(5, 7);
+		var xmbm= $("#xmbm").val();
+		
 		var xzqhdm=$("#xzqh").combotree("getValues");
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");
@@ -160,11 +177,9 @@
 		$(".nianyue1").html(nf+"年"+yf);
 		$(".nianyue2").html(nf+".12");
 		
-		
-		
  		var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr
 		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',')
-		+"&type="+$("#jsxz").val(); 
+		+"&type="+$("#jsxz").val()+"&gcglabgc.endDate="+enddate+"&gcglabgc.xmbm="+xmbm; 
 		//var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr;
 		//alert(data);
 		var tbody = $("#abgclist");
@@ -203,11 +218,9 @@
 			}
 		});
 	}
-	
-	
 	</script>
 	
-		<style type="text/css">
+	<style type="text/css">
 <!--
 a:link {
  text-decoration: none;
@@ -255,17 +268,19 @@ text-decoration:none;
         						<td><select id="xzqh" style="width:180px;"></select></td>
                                 <td align="right">计划下达年份：</td>
 		        				<td><input id="jhnd" type="text"  style="width: 120px"></td>
+		        				<td align="right">月报时间：</td>
+								<td><input id="enddate" class="easyui-datebox" name="enddate" data-options="editable:false"></td>
 		        				<td align="right">项目类型：</td>
 		 						<td><select name="jsxz" id="jsxz" style="width: 100px;">
 									<option id="lmgz" value="lmgz">路面改造</option>
 									<option id="sh" value="sh">灾毁恢复重建</option>
 								</select>
 								</td>
-        						<td align="right">月报年份：</td>
-		 						<td><select name="ddlYear" id="ddlYear" style="width: 80px;">
+								<td align="right">项目编码：</td>
+        						<td><input id='xmbm' type="text" style="width:100px" /></td>								
+<!-- 		 						<td><select name="ddlYear" id="ddlYear" style="width: 80px;display:none;">
 								</select></td>
-		 						<td align="right">月报月份：</td>
-		 						<td><select name="ddlMonth" id="ddlMonth" style="width: 60px;">
+		 						<td><select name="ddlMonth" id="ddlMonth" style="width: 60px;display:none;">
 									<option id="yf1" value="1">01</option>
 									<option id="yf2" value="2">02</option>
 									<option id="yf3" value="3">03</option>
@@ -278,9 +293,8 @@ text-decoration:none;
 									<option id="yf10" value="10">10</option>
 									<option id="yf11" value="11">11</option>
 									<option id="yf12" value="12">12</option>
-								</select></td>								
+								</select></td>	 -->							
 							</tr>
-							
         					<tr height="32">
         							<td colspan="10">
         						<img onclick="showBb()" alt="查询" src="/jxzhpt/images/Button/Serch01.gif" onmouseover="this.src='/jxzhpt/images/Button/Serch02.gif'"

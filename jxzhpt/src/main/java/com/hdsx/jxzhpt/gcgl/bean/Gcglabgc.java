@@ -49,6 +49,29 @@ public class Gcglabgc implements Serializable {
 	
 	private String yf;
 	
+	private String startDate;
+	private String endDate;
+	
+	private String xmbm;
+
+	public String getXmbm() {
+		return xmbm;
+	}
+	public void setXmbm(String xmbm) {
+		this.xmbm = xmbm;
+	}
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 	public String getNf() {
 		return nf;
 	}

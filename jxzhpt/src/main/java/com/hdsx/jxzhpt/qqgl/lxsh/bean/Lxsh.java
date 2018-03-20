@@ -3,8 +3,6 @@ package com.hdsx.jxzhpt.qqgl.lxsh.bean;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.aspectj.weaver.AjAttribute.PrivilegedAttribute;
-
 /**
  * @author Administrator
  *
@@ -55,7 +53,14 @@ public class Lxsh implements Serializable {
     private String tiaojian;//SQL条件
     private String jaf;//建安费
     private String xmid;
+    private String ybrq;
     
+	public String getYbrq() {
+		return ybrq;
+	}
+	public void setYbrq(String ybrq) {
+		this.ybrq = ybrq;
+	}
 	public String getXmid() {
 		return xmid;
 	}
