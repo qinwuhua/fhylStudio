@@ -28,9 +28,7 @@
 		var timestr = y+"-"+m+"-"+d;
 		$("#ybsj").datebox('setValue',timestr);
 		setjhxdnf();
-		var urlid=getUrlParame('id');
 		//urlxmnf("jhxdnf",urlid);
-		loadUnit("gydw",$.cookie("unit"));
 		loadDist1("xzqh",$.cookie("dist"));
 	//	loadBmbm2("xmlx","项目类型2");
 		xgjxmlx('xmlx');
@@ -206,7 +204,7 @@
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
-		var data="flag=flag&gcglwqgz.tiaojian="+xmlx+"&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue')+"&gcglwqgz.xzqh="+xzqhstr;
+		var data="flag=flag&gcglwqgz.tiaojian="+xmlx+"&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybsj").datebox("getValue").substr(0,4)+"&gcglwqgz.ybyf="+$("#ybsj").datebox("getValue").substr(5,2)+"&gcglwqgz.xzqh="+xzqhstr+"&gcglwqgz.ybsj="+$("#ybsj").datebox("getValue");
 		window.location.href="/jxzhpt/gcybb/getXgjwchzb.do?"+data;
 	}	
 	</script>
