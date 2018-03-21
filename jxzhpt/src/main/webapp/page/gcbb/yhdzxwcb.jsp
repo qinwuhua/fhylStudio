@@ -36,15 +36,10 @@
 		loadDist1("xzqh",$.cookie("dist"));
 		var myDate = new Date();
 		var y = myDate.getFullYear();
-		var m = myDate.getMonth()+1; 
-		for(var x=y;x>=2010;x--){
-			$("#ddlYear").append("<option value="+x+">"+x+"</option>");
-		}
-		$("#yf"+m).attr("selected","selected");
-		//$("#biaotou").empty();
-		
-		var nf=$("#ddlYear").val();
-		$(".nian").html(nf);
+		var m = myDate.getMonth() < 10 ? "0"+(myDate.getMonth()+1) : myDate.getMonth()+1; 
+		var d= myDate.getDate() < 10 ? "0"+myDate.getDate() : myDate.getDate();
+		var timestr = y+"-"+m+"-"+d;
+		$("#ybsj").datebox('setValue',timestr);
 		showBb();
 	});
 	function setjhxdnf1(id){
@@ -116,8 +111,8 @@
 	
 	
 	function dcExcel(){
-		var nf=$("#ddlYear").val();
-		var yf=$("#ddlMonth").val();
+		var nf=$("#ybsj").datebox("getValue").substr(0,4);
+		var yf=$("#ybsj").datebox("getValue").substr(5,2);
 		var xzqhdm=$("#xzqh").combotree("getValues");
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");
@@ -130,7 +125,7 @@
 			xzqhstr= xzqhdm.join(',');
 		}
 		
-		var data="flag=1&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr
+		var data="flag=1&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr+"&gcglabgc.ybsj="+$("#ybsj").datebox('getValue')
 		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',');
 		loadjzt();
 		 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{xzqh:xzqhstr},function(){
@@ -140,8 +135,8 @@
 	}
 
 	function showBb(){
-		var nf=$("#ddlYear").val();
-		var yf=$("#ddlMonth").val();
+		var nf=$("#ybsj").datebox("getValue").substr(0,4);
+		var yf=$("#ybsj").datebox("getValue").substr(5,2);
 		var xzqhdm=$("#xzqh").combotree("getValues");
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");
@@ -155,7 +150,7 @@
 		}
 		
 		$(".nian").html(nf);
-		var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr
+		var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr+"&gcglabgc.ybsj="+$("#ybsj").datebox('getValue')
 		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',');
 		var ssstr="v_0";
 		for(var i=1;i<110;i++){
@@ -245,24 +240,8 @@ text-decoration:none;
         						<td><select id="xzqh" style="width:150px;"></select></td>
         						<td align="right">计划年度：</td>
 		        				<td><input id="jhnd" type="text"  style="width: 80px"></td>
-        						<td align="right">截止年份：</td>
-		 						<td><select name="ddlYear" id="ddlYear" style="width: 80px;">
-								</select></td>
-		 						<td align="right">截止月份：</td>
-		 						<td><select name="ddlMonth" id="ddlMonth" style="width: 60px;">
-									<option id="yf1" value="1">01</option>
-									<option id="yf2" value="2">02</option>
-									<option id="yf3" value="3">03</option>
-									<option id="yf4" value="4">04</option>
-									<option id="yf5" value="5">05</option>
-									<option id="yf6" value="6">06</option>
-									<option id="yf7" value="7">07</option>
-									<option id="yf8" value="8">08</option>
-									<option id="yf9" value="9">09</option>
-									<option id="yf10" value="10">10</option>
-									<option id="yf11" value="11">11</option>
-									<option id="yf12" value="12">12</option>
-								</select></td>
+        						<td align="right">月报时间：</td>
+        						<td><input id="ybsj" type="text"  style="width: 103px" class='easyui-datebox'  ></td>
 							</tr>
 							
         					<tr height="32">

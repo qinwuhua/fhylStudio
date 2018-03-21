@@ -20,45 +20,17 @@
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
 	</style>
 	<script type="text/javascript">
-	function ybnf(id){
-		var myDate = new Date();
-		
-		var years=[];
-		var first;
-		for(var i=myDate.getFullYear();i>=2005;i--){
-			years.push({text:(i),value:(i)});
-		}
-		$('#'+id).combobox({
-		    data:years,
-		    valueField:'value',
-		    textField:'text'
-		});
-			first=myDate.getFullYear();
-		$('#'+id).combobox("setValue",+first);
-	}
-	function ybyf(id){
-		var myDate = new Date();
-		var years=[];
-		var first;
-		for(var i=1;i<=12;i++){
-			years.push({text:(i),value:(i)});
-		}
-		$('#'+id).combobox({
-		    data:years,
-		    valueField:'value',
-		    textField:'text'
-		});		
-			first=myDate.getMonth()+1;
-
-		$('#'+id).combobox("setValue",+first);
-	}
+	
 		$(function(){
-			ybnf('ybnf');
-			ybyf('ybyf');
+			var myDate = new Date();
+			var y = myDate.getFullYear();
+			var m = myDate.getMonth() < 10 ? "0"+(myDate.getMonth()+1) : myDate.getMonth()+1; 
+			var d= myDate.getDate() < 10 ? "0"+myDate.getDate() : myDate.getDate();
+			var timestr = y+"-"+m+"-"+d;
+			$("#ybsj").datebox('setValue',timestr);
 			setjhxdnf();
-			var urlid=getUrlParame('id');
+// 			var urlid=getUrlParame('id');
 			//urlxmnf("jhxdnf",urlid);
-			loadUnit("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 		//	loadBmbm2("xmlx","项目类型2");
 			//$("#jhxdnf").combotree("setValues",arr);
@@ -171,7 +143,7 @@
 			biaotou.append(biaotstr);
 			var tbody = $("#wqgzlist");
 			tbody.empty();
-			var data="gcglwqgz.tiaojian="+"&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue')+"&gcglwqgz.xzqh="+xzqhstr;
+			var data="gcglwqgz.tiaojian="+"&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybsj").datebox("getValue").substr(0,4)+"&gcglwqgz.ybyf="+$("#ybsj").datebox("getValue").substr(5,2)+"&gcglwqgz.xzqh="+xzqhstr+"&gcglwqgz.ybsj="+$("#ybsj").datebox('getValue');
 			//alert(data);
 			$.ajax({
 				url:"/jxzhpt/gcybb/getLmgzwcb.do",
@@ -217,7 +189,7 @@
 			alert("请选择年份");
 			return;
 		}
-		var data="flag=flag&gcglwqgz.tiaojian="+"&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue')+"&gcglwqgz.xzqh="+xzqhstr;
+		var data="flag=flag&gcglwqgz.tiaojian="+"&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybsj").datebox("getValue").substr(0,4)+"&gcglwqgz.ybyf="+$("#ybsj").datebox("getValue").substr(5,2)+"&gcglwqgz.xzqh="+xzqhstr+"&gcglwqgz.ybsj="+$("#ybsj").datebox('getValue');
 		window.location.href="/jxzhpt/gcybb/getLmgzwcb.do?"+data;
 	}	
 	</script>
@@ -285,10 +257,8 @@ text-decoration:none;
         						<td><select id="xzqh" style="width:150px;"></select></td>
         						<td align="right">下达年份：</td>
         						<td><input type="text" id="jhxdnf"  style="width:80px;"></td>
-        						<td align="right">截至进展年份：</td>
-        						<td><input type="text" id="ybnf"  style="width:80px;"></td>
-        						<td align="right">截至进展月份：</td>
-        						<td><input type="text" id="ybyf"  style="width:80px;">	</td>
+        						<td align="right">月报时间：</td>
+        						<td><input id="ybsj" type="text"  style="width: 103px" class='easyui-datebox'  ></td>
         						</tr>
         						<tr>
         						<td colspan="10">
