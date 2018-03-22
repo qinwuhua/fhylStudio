@@ -26,6 +26,8 @@
 	<action name="getLwgzHzb" class="gcybbController" method="getLwgzHzb"/>
 	<action name="getWnjhQqtjhzb" class="gcybbController" method="getWnjhQqtjhzb"/>
 	<action name="getGzxmb" class="gcybbController" method="getGzxmb"/>
+	<action name="getFormData" class="gcybbController" method="getFormData"/>
+	<action name="insertFormData" class="gcybbController" method="insertFormData"/>
 	
 	<action name="getGsdyhjdhzb" class="gcybbController" method="getGsdyhjdhzb"/>
 	<action name="insertGsdyhjdhzb" class="gcybbController" method="insertGsdyhjdhzb"/>

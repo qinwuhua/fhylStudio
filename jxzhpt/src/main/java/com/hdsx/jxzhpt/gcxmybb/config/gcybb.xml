@@ -3654,11 +3654,9 @@
 	</select>
 	
 	<delete id="deletesjss" parameterType="elist">
-	
-	delete from sjssbb where gydw like '%'||#{gydw}||'%' and nf=#{nf} and yf=#{yf}
+	    delete from sjssbb where gydw like '%'||#{gydw}||'%' and nf=#{nf} and yf=#{yf}
 	</delete>
-	
-	
+		
 	<insert id="insertOrUpdatesjss" parameterType="elist">
 		insert into sjssbb
 	    <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -5154,11 +5152,10 @@ group by bk.xzqhdm order by bk.xzqhdm
       WHERE t.id = #{id}
 	</update>
 	<select id="getLmgzxmbTotal" parameterType="gcglabgc" resultType="elist">
-	select '' v_0,'全省合计' v_1, '' v_2,'' v_3,'' v_4, '' v_5,'' v_6,'' v_7,'' v_8, '' v_9, '' v_10,'' v_11, '' v_12,
-'' v_13, nvl(sum(lx.zlc),0) v_14, nvl(sum(jh.pfztz),0) v_15, nvl(sum(jh.bbzzj),0) v_16, nvl(sum(jh.dfzc),0) v_17, nvl(sum(xd.xdztz),0) v_18, nvl(sum(xd.xdbtz),0) v_19,nvl(sum(gx1.wclc),0) v_20,
-'' v_21,'' v_22,'' v_23,nvl(sum(gc1.pfztz),0) v_24,nvl(sum(gc1.cgsdwzj),0) v_25,nvl(sum(gc1.dfzc),0) v_26,nvl(sum(gc1.qt),0) v_27,nvl(sum(gx2.wcztz),0) v_28,nvl(sum(gx2.wclc),0) v_29,nvl(sum(gx2.yilc),0) v_30, nvl(sum(gx2.erlc),0) v_31, nvl(sum(gx2.sanlc),0) v_32, nvl(sum(gx2.silc),0) v_33
-,nvl(sum(gc2.pfztz),0) v_34,nvl(sum(gc2.cgsdwzj),0) v_35,nvl(sum(gc2.dfzc),0) v_36,nvl(sum(gc2.qt),0) v_37,nvl(sum(gx3.wcztz),0) v_38,nvl(sum(gx3.wclc),0) v_39,nvl(sum(gx3.yilc),0) v_40, nvl(sum(gx3.erlc),0) v_41, nvl(sum(gx3.sanlc),0) v_42, nvl(sum(gx3.silc),0) v_43,
-nvl(sum(lx.zlc),0)-nvl(sum(gx3.wclc),0) v_44,'' v_45
+	select '' v_0,'全省合计' v_1, '' v_2,'' v_3,'' v_4, '' v_5,'' v_6,'' v_7,'' v_8, '' v_9, '' v_10,'' v_11, '' v_12,'' v_13, nvl(sum(lx.zlc),0) v_14, nvl(sum(jh.pfztz),0) v_15, nvl(sum(jh.bbzzj),0) v_16, nvl(sum(jh.dfzc),0) v_17, nvl(sum(xd.xdztz),0) v_18, nvl(sum(xd.xdbtz),0) v_19,nvl(sum(gx1.wclc),0) v_20,
+'' v_21,'' v_22,'' v_23,nvl(sum(gc1.pfztz),0) v_24,nvl(sum(gc1.cgsdwzj),0) v_25,nvl(sum(gc1.dfzc),0) v_26,nvl(sum(gc1.qt),0) v_27,nvl(sum(gx2.wcztz),0) v_28,nvl(sum(gx2.wclc),0) v_29,nvl(sum(gx2.yilc),0) v_30, nvl(sum(gx2.erlc),0) v_31, nvl(sum(gx2.sanlc),0) v_32, nvl(sum(gx2.silc),0) v_33,
+nvl(sum(gc3.pfztz),0) v_34,nvl(sum(gx4.wclc),0) v_35,nvl(sum(gx4.wcztz),0) v_36,nvl(sum(gc2.pfztz),0) v_37,nvl(sum(gc2.cgsdwzj),0) v_38,nvl(sum(gc2.dfzc),0) v_39,nvl(sum(gc2.qt),0) v_40,nvl(sum(gx3.wcztz),0) v_41,nvl(sum(gx3.wclc),0) v_42,nvl(sum(gx3.yilc),0) v_43, nvl(sum(gx3.erlc),0) v_44,
+ nvl(sum(gx3.sanlc),0) v_45, nvl(sum(gx3.silc),0) v_46,nvl(sum(lx.zlc),0)-nvl(sum(gx3.wclc),0) v_47,'' v_48
 from jhsh_lmgz jh
 left join lxsh_lmgz lm on jh.xmbm = lm.xmbm
 left join (select xmid, max(decode(sffirst,'1',ghlxbm))ghlxbm,max(decode(sffirst,'1',ghqdzh))ghqdzh,max(decode(sffirst,'1',ghzdzh))ghzdzh,
@@ -5166,14 +5163,17 @@ nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwl
 from lxsh_lx where jdbs='2' group by xmid) lx on jh.xmbm = lx.xmid
 left join (select xmid,nvl(sum(ztz),0) xdztz, nvl(sum(btzzj),0)xdbtz from plan_zjxd where xdnf in (#{xmnf}) group by xmid)xd on xd.xmid= jh.xmbm
 left join (select xmbm,nvl(sum(cgsdwzj),0)cgsdwzj,nvl(sum(pfztz),0) pfztz,nvl(sum(dfzc),0)dfzc,nvl(sum(pfztz),0)-nvl(sum(cgsdwzj),0)-nvl(sum(dfzc),0)qt from gcgl_cgs 
-           where substr(tbyf,0,4) in (#{xmnf}) and to_number(substr(tbyf, 6, 2)) &lt;= to_number(#{yf}) and shzt in ('1')  group by xmbm)gc1 on gc1.xmbm=jh.xmbm
+           where substr(tbsj,0,4) in (#{xmnf}) and to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(tbsj, 'yyyy-MM-dd') and shzt in ('1') group by xmbm)gc1 on gc1.xmbm=jh.xmbm
 left join (select xmbm,nvl(sum(cgsdwzj),0)cgsdwzj,nvl(sum(pfztz),0) pfztz,nvl(sum(dfzc),0)dfzc,nvl(sum(pfztz),0)-nvl(sum(cgsdwzj),0)-nvl(sum(dfzc),0)qt from gcgl_cgs
-           where to_date(substr(tbyf,0,7),'yyyy-MM') &lt;= to_date(#{sbyf},'yyyy-MM') and shzt in ('1') group by xmbm)gc2 on gc2.xmbm = jh.xmbm      
+           where to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(tbsj, 'yyyy-MM-dd') and shzt in ('1') group by xmbm)gc2 on gc2.xmbm = jh.xmbm
+left join (select xmbm,nvl(sum(pfztz),0) pfztz from gcgl_cgs where to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(tbsj, 'yyyy-MM-dd') and substr(tbsj,0,4) in (#{xmnf}) and substr(tbsj,6,2) in (#{yf}) and shzt in ('1') group by xmbm)gc3 on gc3.xmbm=jh.xmbm
 left join (select xmbm,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0) wclc from gcgl_xmjd where substr(ybrq, 0, 4) in (#{xmnf}) and shzt in ('1') and to_date(#{endDate}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') group by xmbm)gx1 on gx1.xmbm=jh.xmbm
 left join (select xmbm,sum(wccgs)+sum(wcgz)+sum(wcsz)+sum(wczq)+sum(wcdk)+sum(wcjl)+sum(wcqt)+sum(wcdfzc)+sum(wcyhdk)+sum(wcrys) wcztz,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0) wclc, nvl(sum(yilc),0)yilc, nvl(sum(erlc),0)erlc,nvl(sum(sanlc),0)sanlc,nvl(sum(silc),0)silc from gcgl_xmjd 
            where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(ybrq, 'yyyy-MM-dd') and shzt in ('1') group by xmbm)gx2 on gx2.xmbm=jh.xmbm
 left join (select xmbm,sum(wccgs)+sum(wcgz)+sum(wcsz)+sum(wczq)+sum(wcdk)+sum(wcjl)+sum(wcqt)+sum(wcdfzc)+sum(wcyhdk)+sum(wcrys) wcztz,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0) wclc, nvl(sum(yilc),0)yilc, nvl(sum(erlc),0)erlc,nvl(sum(sanlc),0)sanlc,nvl(sum(silc),0)silc from gcgl_xmjd
            where to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(ybrq, 'yyyy-MM-dd') and shzt in ('1') group by xmbm)gx3 on gx3.xmbm=jh.xmbm
+left join (select xmbm,sum(wccgs)+sum(wcgz)+sum(wcsz)+sum(wczq)+sum(wcdk)+sum(wcjl)+sum(wcqt)+sum(wcdfzc)+sum(wcyhdk)+sum(wcrys) wcztz,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0) wclc from gcgl_xmjd
+           where to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(ybrq, 'yyyy-MM-dd') and substr(ybrq,0,4) in (#{xmnf}) and substr(ybrq,6,2) in (#{yf}) and shzt in ('1') group by xmbm)gx4 on gx4.xmbm=jh.xmbm          
 where jh.xdzt in ('1')
 		<if test="xzqhdm != null and  xzqhdm != ''">
 		    ${xzqhdm}
@@ -5189,9 +5189,10 @@ where jh.xdzt in ('1')
     select to_char(rownum) v_0,(select name from xtgl_xzqh where id in (lm.xzqhdm)) v_1, lm.xzqh v_2,lm.tsdq v_3,jh.xmbm v_4, jh.xmmc v_5,fun_scxdnf(jh.xmbm) v_6,substr(lx.ghlxbm,0,1) v_7,lx.ghlxbm v_8, lx.ghqdzh v_9, lx.ghzdzh v_10,lm.xjsdj v_11, lm.jsjsdj v_12,
 lm.jsxz v_13, nvl(lx.zlc,0) v_14, nvl(jh.pfztz,0) v_15, nvl(jh.bbzzj,0) v_16, nvl(jh.dfzc,0) v_17, nvl(xd.xdztz,0) v_18, nvl(xd.xdbtz,0) v_19,nvl(gx1.wclc,0) v_20,
 case when jh.jgzt='1' then '已完工' when jh.kgzt = '1' and jh.jgzt='0' then '已开工' else '未开工' end v_21,
-substr(jh.sjkgsj,0,7) v_22,substr(jh.sjwgsj,0,7) v_23,nvl(gc1.pfztz,0) v_24,nvl(gc1.cgsdwzj,0) v_25,nvl(gc1.dfzc,0) v_26,nvl(gc1.qt,0) v_27,nvl(gx2.wcztz,0) v_28,nvl(gx2.wclc,0) v_29,nvl(gx2.yilc,0) v_30, nvl(gx2.erlc,0) v_31, nvl(gx2.sanlc,0) v_32, nvl(gx2.silc,0) v_33
-,nvl(gc2.pfztz,0) v_34,nvl(gc2.cgsdwzj,0) v_35,nvl(gc2.dfzc,0) v_36,nvl(gc2.qt,0) v_37,nvl(gx3.wcztz,0) v_38,nvl(gx3.wclc,0) v_39,nvl(gx3.yilc,0) v_40, nvl(gx3.erlc,0) v_41, nvl(gx3.sanlc,0) v_42, nvl(gx3.silc,0) v_43,
-nvl(lx.zlc,0)-nvl(gx3.wclc,0) v_44,lm.bz v_45
+substr(jh.sjkgsj,0,7) v_22,substr(jh.sjwgsj,0,7) v_23,nvl(gc1.pfztz,0) v_24,nvl(gc1.cgsdwzj,0) v_25,nvl(gc1.dfzc,0) v_26,nvl(gc1.qt,0) v_27,nvl(gx2.wcztz,0) v_28,nvl(gx2.wclc,0) v_29,nvl(gx2.yilc,0) v_30, nvl(gx2.erlc,0) v_31, nvl(gx2.sanlc,0) v_32, nvl(gx2.silc,0) v_33,
+nvl(gc3.pfztz,0) v_34,nvl(gx4.wclc,0) v_35,nvl(gx4.wcztz,0) v_36,
+nvl(gc2.pfztz,0) v_37,nvl(gc2.cgsdwzj,0) v_38,nvl(gc2.dfzc,0) v_39,nvl(gc2.qt,0) v_40,nvl(gx3.wcztz,0) v_41,nvl(gx3.wclc,0) v_42,nvl(gx3.yilc,0) v_43, nvl(gx3.erlc,0) v_44, nvl(gx3.sanlc,0) v_45, nvl(gx3.silc,0) v_46,
+nvl(lx.zlc,0)-nvl(gx3.wclc,0) v_47,lm.bz v_48
 from jhsh_lmgz jh
 left join lxsh_lmgz lm on jh.xmbm = lm.xmbm
 left join (select xmid, max(decode(sffirst,'1',ghlxbm))ghlxbm,
@@ -5205,15 +5206,17 @@ left join (select xmid, max(decode(sffirst,'1',ghlxbm))ghlxbm,
 from lxsh_lx where jdbs='2' group by xmid) lx on jh.xmbm = lx.xmid
 left join (select xmid,nvl(sum(ztz),0) xdztz, nvl(sum(btzzj),0)xdbtz from plan_zjxd where xdnf in (#{xmnf}) group by xmid)xd on xd.xmid= jh.xmbm
 left join (select xmbm,nvl(sum(cgsdwzj),0)cgsdwzj,nvl(sum(pfztz),0) pfztz,nvl(sum(dfzc),0)dfzc,nvl(sum(pfztz),0)-nvl(sum(cgsdwzj),0)-nvl(sum(dfzc),0)qt from gcgl_cgs 
-           where substr(tbyf,0,4) in (#{xmnf}) and to_number(substr(tbyf, 6, 2)) &lt;= to_number(#{yf}) and shzt in ('1') group by xmbm)gc1 on gc1.xmbm=jh.xmbm
+           where substr(tbsj,0,4) in (#{xmnf}) and to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(tbsj, 'yyyy-MM-dd') and shzt in ('1') group by xmbm)gc1 on gc1.xmbm=jh.xmbm
 left join (select xmbm,nvl(sum(cgsdwzj),0)cgsdwzj,nvl(sum(pfztz),0) pfztz,nvl(sum(dfzc),0)dfzc,nvl(sum(pfztz),0)-nvl(sum(cgsdwzj),0)-nvl(sum(dfzc),0)qt from gcgl_cgs
-           where to_date(substr(tbyf,0,7),'yyyy-MM') &lt;= to_date(#{sbyf},'yyyy-MM') and shzt in ('1') group by xmbm)gc2 on gc2.xmbm = jh.xmbm         
-
+           where to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(tbsj, 'yyyy-MM-dd') and shzt in ('1') group by xmbm)gc2 on gc2.xmbm = jh.xmbm
+left join (select xmbm,nvl(sum(pfztz),0) pfztz from gcgl_cgs where to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(tbsj, 'yyyy-MM-dd') and substr(tbsj,0,4) in (#{xmnf}) and substr(tbsj,6,2) in (#{yf}) and shzt in ('1') group by xmbm)gc3 on gc3.xmbm=jh.xmbm
 left join (select xmbm,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0) wclc from gcgl_xmjd where substr(ybrq, 0, 4) in (#{xmnf}) and shzt in ('1') and to_date(#{endDate}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') group by xmbm)gx1 on gx1.xmbm=jh.xmbm
 left join (select xmbm,sum(wccgs)+sum(wcgz)+sum(wcsz)+sum(wczq)+sum(wcdk)+sum(wcjl)+sum(wcqt)+sum(wcdfzc)+sum(wcyhdk)+sum(wcrys) wcztz,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0) wclc, nvl(sum(yilc),0)yilc, nvl(sum(erlc),0)erlc,nvl(sum(sanlc),0)sanlc,nvl(sum(silc),0)silc from gcgl_xmjd 
            where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(ybrq, 'yyyy-MM-dd') and shzt in ('1') group by xmbm)gx2 on gx2.xmbm=jh.xmbm
 left join (select xmbm,sum(wccgs)+sum(wcgz)+sum(wcsz)+sum(wczq)+sum(wcdk)+sum(wcjl)+sum(wcqt)+sum(wcdfzc)+sum(wcyhdk)+sum(wcrys) wcztz,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0) wclc, nvl(sum(yilc),0)yilc, nvl(sum(erlc),0)erlc,nvl(sum(sanlc),0)sanlc,nvl(sum(silc),0)silc from gcgl_xmjd
            where to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(ybrq, 'yyyy-MM-dd') and shzt in ('1') group by xmbm)gx3 on gx3.xmbm=jh.xmbm
+left join (select xmbm,sum(wccgs)+sum(wcgz)+sum(wcsz)+sum(wczq)+sum(wcdk)+sum(wcjl)+sum(wcqt)+sum(wcdfzc)+sum(wcyhdk)+sum(wcrys) wcztz,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0) wclc from gcgl_xmjd
+           where to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(ybrq, 'yyyy-MM-dd') and substr(ybrq,0,4) in (#{xmnf}) and substr(ybrq,6,2) in (#{yf}) and shzt in ('1') group by xmbm)gx4 on gx4.xmbm=jh.xmbm
 where jh.xdzt in ('1')
 		<if test="xzqhdm != null and  xzqhdm != ''">
 		    ${xzqhdm}
@@ -5224,13 +5227,13 @@ where jh.xdzt in ('1')
 		<if test="xmbm != null and  xmbm != ''">
 		    and jh.xmbm like '%'||trim(#{xmbm})||'%' 
 		</if>
-		
 order by lm.xzqhdm asc,fun_scxdnf1(jh.xmbm) desc, substr(lx.ghlxbm,0,1) desc, jh.xmbm desc
 	</select>
+	
 	<select id="getShxmbTotal" parameterType="gcglabgc" resultType="elist">
 	select '' v_0, '全省合计' v_1, '' v_2,'' v_3,'' v_4, '' v_5, '' v_6,'' v_7,'' v_8, '' v_9, '' v_10,'' v_11,'' v_12,'' v_13, nvl(sum(lx.zlc),0) v_14, nvl(sum(jh.pfztz),0) v_15, nvl(sum(jh.bbzzj),0) v_16, nvl(sum(jh.dfzc),0) v_17, nvl(sum(xd.xdztz),0) v_18, nvl(sum(xd.xdbtz),0) v_19,nvl(sum(gx1.wclc),0) v_20,
 '' v_21,'' v_22,'' v_23,nvl(sum(gc1.pfztz),0) v_24,nvl(sum(gc1.cgsdwzj),0) v_25,nvl(sum(gc1.dfzc),0) v_26,nvl(sum(gc1.qt),0) v_27,nvl(sum(gx2.wcztz),0) v_28,nvl(sum(gx2.wclc),0) v_29,nvl(sum(gx2.yilc),0) v_30, nvl(sum(gx2.erlc),0) v_31, nvl(sum(gx2.sanlc),0) v_32, nvl(sum(gx2.silc),0) v_33,
-nvl(sum(gc2.pfztz),0) v_34,nvl(sum(gc2.cgsdwzj),0) v_35,nvl(sum(gc2.dfzc),0) v_36,nvl(sum(gc2.qt),0) v_37,nvl(sum(gx3.wcztz),0) v_38,nvl(sum(gx3.wclc),0) v_39,nvl(sum(gx3.yilc),0) v_40, nvl(sum(gx3.erlc),0) v_41, nvl(sum(gx3.sanlc),0) v_42, nvl(sum(gx3.silc),0) v_43,nvl(sum(lx.zlc),0)-nvl(sum(gx3.wclc),0) v_44,'' v_45
+nvl(sum(gc3.pfztz),0) v_34,nvl(sum(gx4.wclc),0) v_35,nvl(sum(gx4.wcztz),0) v_36,nvl(sum(gc2.pfztz),0) v_37,nvl(sum(gc2.cgsdwzj),0) v_38,nvl(sum(gc2.dfzc),0) v_39,nvl(sum(gc2.qt),0) v_40,nvl(sum(gx3.wcztz),0) v_41,nvl(sum(gx3.wclc),0) v_42,nvl(sum(gx3.yilc),0) v_43, nvl(sum(gx3.erlc),0) v_44, nvl(sum(gx3.sanlc),0) v_45, nvl(sum(gx3.silc),0) v_46,nvl(sum(lx.zlc),0)-nvl(sum(gx3.wclc),0) v_47,'' v_48
 from jhsh_sh jh
 left join xmsq_sh lm on lm.xmbm = jh.xmbm
 left join (select xmid, max(decode(sffirst,'1',ghlxbm))ghlxbm,max(decode(sffirst,'1',ghqdzh))ghqdzh,max(decode(sffirst,'1',ghzdzh))ghzdzh,
@@ -5239,14 +5242,17 @@ nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwl
 from lxsh_lx where jdbs='2' group by xmid) lx on jh.xmbm = lx.xmid
 left join (select xmid,nvl(sum(ztz),0) xdztz, nvl(sum(btzzj),0)xdbtz from plan_zjxd where xdnf in (#{xmnf}) group by xmid)xd on xd.xmid= jh.xmbm
 left join (select xmbm,nvl(sum(cgsdwzj),0)cgsdwzj,nvl(sum(pfztz),0) pfztz,nvl(sum(dfzc),0)dfzc,nvl(sum(pfztz),0)-nvl(sum(cgsdwzj),0)-nvl(sum(dfzc),0)qt from gcgl_cgs 
-           where substr(tbyf,0,4) in (#{xmnf}) and to_number(substr(tbyf, 6, 2)) &lt;= to_number(#{yf}) and shzt in ('1') group by xmbm)gc1 on gc1.xmbm=jh.xmbm
+           where substr(tbsj,0,4) in (#{xmnf}) and to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(tbsj, 'yyyy-MM-dd') and shzt in ('1') group by xmbm)gc1 on gc1.xmbm=jh.xmbm
 left join (select xmbm,nvl(sum(cgsdwzj),0)cgsdwzj,nvl(sum(pfztz),0) pfztz,nvl(sum(dfzc),0)dfzc,nvl(sum(pfztz),0)-nvl(sum(cgsdwzj),0)-nvl(sum(dfzc),0)qt from gcgl_cgs
-           where to_date(substr(tbyf,0,7),'yyyy-MM') &lt;= to_date(#{sbyf},'yyyy-MM') and shzt in ('1') group by xmbm)gc2 on gc2.xmbm = jh.xmbm
+           where to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(tbsj, 'yyyy-MM-dd') and shzt in ('1') group by xmbm)gc2 on gc2.xmbm = jh.xmbm
+left join (select xmbm,nvl(sum(pfztz),0) pfztz from gcgl_cgs where to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(tbsj, 'yyyy-MM-dd') and substr(tbsj,0,4) in (#{xmnf}) and substr(tbsj,6,2) in (#{yf}) and shzt in ('1') group by xmbm)gc3 on gc3.xmbm=jh.xmbm
 left join (select xmbm,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0) wclc from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{endDate}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt in ('1') group by xmbm)gx1 on gx1.xmbm=jh.xmbm
 left join (select xmbm,sum(wccgs)+sum(wcgz)+sum(wcsz)+sum(wczq)+sum(wcdk)+sum(wcjl)+sum(wcqt)+sum(wcdfzc)+sum(wcyhdk)+sum(wcrys) wcztz,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0) wclc, nvl(sum(yilc),0)yilc, nvl(sum(erlc),0)erlc,nvl(sum(sanlc),0)sanlc,nvl(sum(silc),0)silc from gcgl_xmjd 
            where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(ybrq, 'yyyy-MM-dd') and shzt in ('1') group by xmbm)gx2 on gx2.xmbm=jh.xmbm
 left join (select xmbm,sum(wccgs)+sum(wcgz)+sum(wcsz)+sum(wczq)+sum(wcdk)+sum(wcjl)+sum(wcqt)+sum(wcdfzc)+sum(wcyhdk)+sum(wcrys) wcztz,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0) wclc, nvl(sum(yilc),0)yilc, nvl(sum(erlc),0)erlc,nvl(sum(sanlc),0)sanlc,nvl(sum(silc),0)silc from gcgl_xmjd
            where to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(ybrq, 'yyyy-MM-dd') and shzt in ('1') group by xmbm)gx3 on gx3.xmbm=jh.xmbm
+left join (select xmbm,sum(wccgs)+sum(wcgz)+sum(wcsz)+sum(wczq)+sum(wcdk)+sum(wcjl)+sum(wcqt)+sum(wcdfzc)+sum(wcyhdk)+sum(wcrys) wcztz,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0) wclc from gcgl_xmjd
+           where to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(ybrq, 'yyyy-MM-dd') and substr(ybrq,0,4) in (#{xmnf}) and substr(ybrq,6,2) in (#{yf}) and shzt in ('1') group by xmbm)gx4 on gx4.xmbm=jh.xmbm
 where jh.xdzt in ('1')
 		<if test="xzqhdm != null and  xzqhdm != ''">
 		    ${xzqhdm}
@@ -5263,8 +5269,8 @@ where jh.xdzt in ('1')
 lm.gcfl v_13, nvl(lx.zlc,0) v_14, nvl(jh.pfztz,0) v_15, nvl(jh.bbzzj,0) v_16, nvl(jh.dfzc,0) v_17, nvl(xd.xdztz,0) v_18, nvl(xd.xdbtz,0) v_19,nvl(gx1.wclc,0) v_20,
 case when jh.jgzt='1' then '已完工' when jh.kgzt = '1' and jh.jgzt='0' then '已开工' else '未开工' end v_21,
 substr(jh.sjkgsj,0,7) v_22,substr(jh.sjwgsj,0,7) v_23,nvl(gc1.pfztz,0) v_24,nvl(gc1.cgsdwzj,0) v_25,nvl(gc1.dfzc,0) v_26,nvl(gc1.qt,0) v_27,nvl(gx2.wcztz,0) v_28,nvl(gx2.wclc,0) v_29,nvl(gx2.yilc,0) v_30, nvl(gx2.erlc,0) v_31, nvl(gx2.sanlc,0) v_32, nvl(gx2.silc,0) v_33,
-nvl(gc2.pfztz,0) v_34,nvl(gc2.cgsdwzj,0) v_35,nvl(gc2.dfzc,0) v_36,nvl(gc2.qt,0) v_37,nvl(gx3.wcztz,0) v_38,nvl(gx3.wclc,0) v_39,nvl(gx3.yilc,0) v_40, nvl(gx3.erlc,0) v_41, nvl(gx3.sanlc,0) v_42, nvl(gx3.silc,0) v_43,
-nvl(lx.zlc,0)-nvl(gx3.wclc,0) v_44,lm.bz v_45
+nvl(gc3.pfztz,0) v_34,nvl(gx4.wclc,0) v_35,nvl(gx4.wcztz,0) v_36,nvl(gc2.pfztz,0) v_37,nvl(gc2.cgsdwzj,0) v_38,nvl(gc2.dfzc,0) v_39,nvl(gc2.qt,0) v_40,nvl(gx3.wcztz,0) v_41,nvl(gx3.wclc,0) v_42,nvl(gx3.yilc,0) v_43, nvl(gx3.erlc,0) v_44, nvl(gx3.sanlc,0) v_45, nvl(gx3.silc,0) v_46,
+nvl(lx.zlc,0)-nvl(gx3.wclc,0) v_47,lm.bz v_48
 from jhsh_sh jh
 left join xmsq_sh lm on lm.xmbm = jh.xmbm
 left join (select xmid, max(decode(sffirst,'1',ghlxbm))ghlxbm,
@@ -5279,14 +5285,17 @@ left join (select xmid, max(decode(sffirst,'1',ghlxbm))ghlxbm,
 from lxsh_lx where jdbs='2' group by xmid) lx on jh.xmbm = lx.xmid
 left join (select xmid,nvl(sum(ztz),0) xdztz, nvl(sum(btzzj),0)xdbtz from plan_zjxd where xdnf in (#{xmnf}) group by xmid)xd on xd.xmid= jh.xmbm
 left join (select xmbm,nvl(sum(cgsdwzj),0)cgsdwzj,nvl(sum(pfztz),0) pfztz,nvl(sum(dfzc),0)dfzc,nvl(sum(pfztz),0)-nvl(sum(cgsdwzj),0)-nvl(sum(dfzc),0)qt from gcgl_cgs 
-           where substr(tbyf,0,4) in (#{xmnf}) and to_number(substr(tbyf, 6, 2)) &lt;= to_number(#{yf}) and shzt in ('1') group by xmbm)gc1 on gc1.xmbm=jh.xmbm
+           where substr(tbsj,0,4) in (#{xmnf}) and to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(tbsj, 'yyyy-MM-dd') and shzt in ('1') group by xmbm)gc1 on gc1.xmbm=jh.xmbm
 left join (select xmbm,nvl(sum(cgsdwzj),0)cgsdwzj,nvl(sum(pfztz),0) pfztz,nvl(sum(dfzc),0)dfzc,nvl(sum(pfztz),0)-nvl(sum(cgsdwzj),0)-nvl(sum(dfzc),0)qt from gcgl_cgs
-           where to_date(substr(tbyf,0,7),'yyyy-MM') &lt;= to_date(#{sbyf},'yyyy-MM') and shzt in ('1') group by xmbm)gc2 on gc2.xmbm = jh.xmbm      
+           where to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(tbsj, 'yyyy-MM-dd') and shzt in ('1') group by xmbm)gc2 on gc2.xmbm = jh.xmbm
+left join (select xmbm,nvl(sum(pfztz),0) pfztz from gcgl_cgs where to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(tbsj, 'yyyy-MM-dd') and substr(tbsj,0,4) in (#{xmnf}) and substr(tbsj,6,2) in (#{yf}) and shzt in ('1') group by xmbm)gc3 on gc3.xmbm=jh.xmbm
 left join (select xmbm,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0) wclc from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{endDate}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt in ('1') group by xmbm)gx1 on gx1.xmbm=jh.xmbm
 left join (select xmbm,sum(wccgs)+sum(wcgz)+sum(wcsz)+sum(wczq)+sum(wcdk)+sum(wcjl)+sum(wcqt)+sum(wcdfzc)+sum(wcyhdk)+sum(wcrys) wcztz,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0) wclc, nvl(sum(yilc),0)yilc, nvl(sum(erlc),0)erlc,nvl(sum(sanlc),0)sanlc,nvl(sum(silc),0)silc from gcgl_xmjd 
            where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(ybrq, 'yyyy-MM-dd') and shzt in ('1') group by xmbm)gx2 on gx2.xmbm=jh.xmbm
 left join (select xmbm,sum(wccgs)+sum(wcgz)+sum(wcsz)+sum(wczq)+sum(wcdk)+sum(wcjl)+sum(wcqt)+sum(wcdfzc)+sum(wcyhdk)+sum(wcrys) wcztz,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0) wclc, nvl(sum(yilc),0)yilc, nvl(sum(erlc),0)erlc,nvl(sum(sanlc),0)sanlc,nvl(sum(silc),0)silc from gcgl_xmjd
            where to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(ybrq, 'yyyy-MM-dd') and shzt in ('1') group by xmbm)gx3 on gx3.xmbm=jh.xmbm
+left join (select xmbm,sum(wccgs)+sum(wcgz)+sum(wcsz)+sum(wczq)+sum(wcdk)+sum(wcjl)+sum(wcqt)+sum(wcdfzc)+sum(wcyhdk)+sum(wcrys) wcztz,nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0) wclc from gcgl_xmjd
+           where to_date(#{endDate}, 'yyyy-MM-dd')>=to_date(ybrq, 'yyyy-MM-dd') and substr(ybrq,0,4) in (#{xmnf}) and substr(ybrq,6,2) in (#{yf}) and shzt in ('1') group by xmbm)gx4 on gx4.xmbm=jh.xmbm
 where jh.xdzt in ('1')
     <if test="xzqhdm != null and  xzqhdm != ''">
         ${xzqhdm}
@@ -5299,4 +5308,17 @@ where jh.xdzt in ('1')
 	</if>
 order by lm.xzqhdm asc, fun_scxdnf1(jh.xmbm) desc, substr(lx.ghlxbm,0,1) desc, jh.xmbm desc
 	</select>
+	
+	<select id="getFormData" parameterType="string" resultType="hashmap">
+        select * from bbjcxxb
+	</select>
+	
+	<insert id="insertFormData" parameterType="elist">
+	    INSERT INTO tb1_emplyee(last_name,email,gender,d_id)  
+        VALUES   
+        <foreach collection="emps" item="emp" separator=",">  
+            (#{emp.lastName},#{emp.email},#{emp.gender},#{emp.dept.id})  
+        </foreach>
+	</insert>
+	
 </mapper>

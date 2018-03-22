@@ -27,10 +27,26 @@
 	<script type="text/javascript">
 	$(function(){
 		loadDist1("xzqh",$.cookie("dist"));
+		var myDate = new Date();
+		var strDate=myDate.getFullYear()+"-"+((myDate.getMonth() + 1) > 9 ? (myDate.getMonth() + 1) : "0" + (myDate.getMonth() + 1))+"-"+myDate.getDate();          
+        $("#enddate").datebox("setValue",strDate);
+		
+		var nf=myDate.getFullYear();
+		var yf=(myDate.getMonth() + 1) > 9 ? (myDate.getMonth() + 1) : "0" + (myDate.getMonth() + 1);
+		
+		$(".nian").html(nf);
+		$(".yue").html(yf);
+		
+		$(".nianyue1").html(nf+"年"+yf);
+		$(".nianyue2").html(nf+".12");
 		showTjb();
 	});
 
 	function showTjb(){
+		var enddate = $("#enddate").datebox("getValue");
+		var nf=enddate.substring(0, 4);
+		var yf=enddate.substring(5, 7);
+		
 		var  params = [];
 		var datagrid; //定义全局变量datagrid
 		var xzqhdm=$("#xzqh").combotree("getValues");
@@ -56,12 +72,14 @@
 		    idField: 'id', //主键
 		    queryParams: {
 		    	xzqh:xzqhstr,
-		    	'lxsh.jsxz':$("#jsxz").combobox('getValues').join(',')
+		    	'lxsh.jsxz':$("#jsxz").combobox('getValues').join(','),
+		    	nf:nf,
+		    	'lxsh.ybrq':enddate
 			},
 		   columns:[[
 				{field:'ck',checkbox:true,rowspan:3,hidden:true},
 		        {field:'v_0',title:'设区市',width:100,align:'center',rowspan:3},		        
-		        {title:'2018年项目建设',align:'center',colspan:17}
+		        {title:nf+'年项目建设',align:'center',colspan:17}
 	         ],[
 			    {title:'2018年项目建设目标',align:'center',colspan:4},			    
 			    {title:'目标任务内项目建设进度情况',align:'center',colspan:8},
@@ -74,17 +92,17 @@
 				{field:'v_4',title:'完成投资（万元）',width:100,align:'center',rowspan:1},
 				{field:'v_5',title:'已完工',width:100,align:'center',rowspan:1},
 				{field:'v_6',title:'在建',width:100,align:'center',rowspan:1},
-				{field:'v_7',title:'其中2018年新开工',width:120,align:'center',rowspan:1},
+				{field:'v_7',title:'其中'+nf+'年新开工',width:120,align:'center',rowspan:1},
 				{field:'v_8',title:'未开工',width:100,align:'center',rowspan:1},
 				{field:'v_9',title:'自开工建设累计已完工（公里）',width:160,align:'center',rowspan:1},
-				{field:'v_10',title:'其中2018年完工里程（公里）',width:120,align:'center',rowspan:1},
+				{field:'v_10',title:'其中'+nf+'年完工里程（公里）',width:120,align:'center',rowspan:1},
 				{field:'v_11',title:'自开工建设累计完成总投资（万元）',width:140,align:'center',rowspan:1},
-				{field:'v_12',title:'其中2018年完成投资（万元）',width:120,align:'center',rowspan:1},
-				{field:'v_13',title:'2018年新开工个数',width:100,align:'center',rowspan:1},
+				{field:'v_12',title:'其中'+nf+'年完成投资（万元）',width:120,align:'center',rowspan:1},
+				{field:'v_13',title:nf+'年新开工个数',width:100,align:'center',rowspan:1},
 				{field:'v_14',title:'自开工建设累计已完工（公里）',width:160,align:'center',rowspan:1},
-				{field:'v_15',title:'其中2018年完工里程（公里）',width:120,align:'center',rowspan:1},
+				{field:'v_15',title:'其中'+nf+'年完工里程（公里）',width:120,align:'center',rowspan:1},
 				{field:'v_16',title:'自开工建设累计完成总投资',width:120,align:'center',rowspan:1},
-				{field:'v_17',title:'其中2018年完成投资',width:120,align:'center',rowspan:1}
+				{field:'v_17',title:'其中'+nf+'年完成投资',width:120,align:'center',rowspan:1}
 	         ]],
              /*toolbar: [
 		    	//{ text: '编辑', iconCls: 'icon-edit', handler: function () {}}, '-',
@@ -161,6 +179,11 @@
 	} */
 	
 	function dcExcel(){
+		
+		var enddate = $("#enddate").datebox("getValue");
+		var nf=enddate.substring(0, 4);
+		var yf=enddate.substring(5, 7);
+		
 		var xzqhdm=$("#xzqh").combotree("getValues");
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");		
@@ -171,7 +194,7 @@
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
-		var param='flag=1';
+		var param='flag=1'+'&nf='+nf+"&xzqh="+xzqhstr+'&lxsh.jsxz='+encodeURI(encodeURI($("#jsxz").combobox('getValues').join(',')))+"&lxsh.ybrq="+enddate;;
 		//var sql=$("#excelcgs").val();
 	    
 		window.location.href="/jxzhpt/qqgl/getSjgzjdhzb.do?"+param;
@@ -224,7 +247,9 @@ text-decoration:none;
 									<option value="改建">改建</option>
 									<option value="路面改造">路面改造</option>
 									<option value="新建">新建</option>
-								</select></td>												
+								</select></td>
+								<td align="right">月报时间：</td>
+								<td><input id="enddate" class="easyui-datebox" name="enddate" data-options="editable:false"></td>												
 							</tr>
 							
         					<tr height="32">
