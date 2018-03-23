@@ -168,10 +168,6 @@ public interface GcybbServer {
 
 	List<Excel_list> getShxmb(Gcglabgc gcglabgc);
 
-
 	boolean addghbb(Excel_list excel_list, List<Excel_list> list1);
 
-	List<Map<String, Object>> getFormData();
-
-	boolean insertFormData(String json);
 }

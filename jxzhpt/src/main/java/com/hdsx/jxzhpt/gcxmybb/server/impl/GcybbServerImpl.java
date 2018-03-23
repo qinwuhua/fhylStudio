@@ -1624,30 +1624,4 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 			return false;
 		}
 	}
-		
-	public List<Map<String, Object>> getFormData() {
-		return queryList("getFormData");
-	}
-
-	@Override
-	public boolean insertFormData(String json) {
-		ObjectMapper mapper = new ObjectMapper();
-		String name = "";
-		String value = "";
-		try {
-			List<Excel_list> elist = mapper.readValue(json,new TypeReference<List<Excel_list>>() { });
-			/*for (int i = 0; i < 24; i++) {
-				name+="v_"+(i)+",";	
-				value+="#{v_"+(i)+"},";
-			}
-			name.substring(0, name.length()-1);
-			value.substring(0, name.length()-1);*/
-			deleteBatch("deleteFormData", elist);
-			insertBatch("insertFormData", elist);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return true;
-	}
 }

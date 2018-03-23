@@ -5319,7 +5319,6 @@ where jh.xdzt in ('1')
 order by lm.xzqhdm asc, fun_scxdnf1(jh.xmbm) desc, substr(lx.ghlxbm,0,1) desc, jh.xmbm desc
 	</select>
 	
-<<<<<<< HEAD
 	<insert id="addghbbjcxx" parameterType="elist">
 	 	insert into BBJCXXB 
 	 	<trim prefix="(" suffix=")" suffixOverrides="," >
@@ -5677,20 +5676,5 @@ order by lm.xzqhdm asc, fun_scxdnf1(jh.xmbm) desc, substr(lx.ghlxbm,0,1) desc, j
 	</delete>
 	<delete id="deleteghbbsj" parameterType="elist">
 		delete from BBJCXXB_SJ where FORMID=#{formname}||#{formdate}
-	</delete>
-	
-
-	<select id="getFormData" parameterType="string" resultType="hashmap">
-        select * from bbjcxxb
-	</select>
-	
-	<insert id="insertFormData" parameterType="elist">
-	    INSERT INTO tb1_emplyee(last_name,email,gender,d_id)  
-        VALUES   
-        <foreach collection="emps" item="emp" separator=",">  
-            (#{emp.lastName},#{emp.email},#{emp.gender},#{emp.dept.id})  
-        </foreach>
-	</insert>
-
-	
+	</delete>	
 </mapper>
