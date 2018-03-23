@@ -56,34 +56,54 @@ function closewin(){
 	parent.$('#lxxx').window('destroy')
 }
 //添加
-function addghbb(){
-	if($("#nian").combobox('getValue')==''){alert("请选择年份");return;}
-	if($("#yue").combobox('getValue')==''){alert("请选择月份"); return;}
-	if($("#ri").combobox('getValue')==''){alert("请选择日"); return;}
-	var nian=$("#nian").combobox('getValue');
-	var yue=$("#yue").combobox('getValue');
-	var ri=$("#ri").combobox('getValue');
-	var formdate=nian+"-"+yue+"-"+ri;
-	if(confirm("确认固化版本，版本号："+formdate)){
-		loadjzt();
-		//alert(ss.join(","));
-		$.ajax({
-			url:"/jxzhpt/gcybb/addghbb.do",
-			data:'excel_list.formname='+parent.YMLib.Var.formname+'&excel_list.formdate='+formdate,
-			type:"post",
-			dataType:"JSON",
-			success:function(msg){
-				disLoadjzt();
-				
-				
-				
-				
-			}
-		})
-		disLoadjzt();
-	}
+function ghbbcx(){
+	if($("#formdate").combobox('getValue')==''){alert("请选择版本号");return;}
+	
+	var formdate=$("#formdate").combobox('getValue');
+	if(parent.YMLib.Var.formname=='xgjwcmxb')
+	xgjwcmxbghcx(formdate);
+	
 	
 }
+function xgjwcmxbghcx(formdate){
+	var tbody = parent.$("#abgclist");
+	tbody.empty();
+	loadjzt();
+	$.ajax({
+		url:"/jxzhpt/gcybb/getghbbcx.do",
+		data:"excel_list.formname="+parent.YMLib.Var.formname+"&excel_list.formdate="+formdate,
+		type:"post",
+		dataType:"JSON",
+		success:function(msg){
+			parent.datalist=msg;
+			disLoadjzt();
+			var sstr='v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8,v_9,v_10,v_11,v_12,v_13,v_14,v_15,v_16,v_17,v_18,v_19,v_20,v_21,v_22,v_23,v_24,v_25,v_26,v_27,v_28,v_29,v_30,v_31,v_32,v_33,v_34,v_35,v_36,v_37,v_38,v_39,v_40,v_41,v_42,v_43,v_44,v_45,v_46,v_47,v_48,v_49,v_50,v_51,v_52,v_53,v_54,v_55,v_56,v_57,v_58,v_59,v_60,v_61,v_62,v_63,v_64,v_65,v_66,v_67,v_68,v_69,v_70,v_71,v_72,v_73,v_74,v_75,v_76,v_77,v_78,v_79,v_80,v_83,v_84';
+			var ss=sstr.split(',');
+			if (msg != null) {
+				for ( var i = 0; i < msg.length; i++) {
+					var tr="<tr>";
+					for ( var j = 0; j < ss.length; j++) {
+						if(msg[i].v_0=='是'){
+							if(ss[j]=='v_0'){
+								tr+="<td>"+''+"</td>";
+							}else{
+								tr+="<td>"+msg[i][ss[j]]+"</td>";
+							}
+						}else{
+							tr+="<td>"+msg[i][ss[j]]+"</td>";
+						}
+						
+					}
+					tr+="</tr>";
+					tbody.append(tr);
+				}
+			}
+			closewin();
+		}
+	});
+}
+
+
 
 </script>
 
@@ -105,7 +125,7 @@ function addghbb(){
 			<tr style="height: 35px;">
 				<td colspan="2" style="background-color: #ffffff; height: 35px;"
 					align="center"><a href="javascript:void(0)" id="save_button"
-					class="easyui-linkbutton" plain="true" iconCls="icon-save" onclick="addghbb()">保存</a> <a
+					class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="ghbbcx()">查询</a> <a
 					href="javascript:void(0)" id="qx_window"
 					class="easyui-linkbutton" plain="true" iconCls="icon-cancel" onclick="closewin()">取消</a></td>
 			</tr>

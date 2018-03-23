@@ -5678,7 +5678,9 @@ order by lm.xzqhdm asc, fun_scxdnf1(jh.xmbm) desc, substr(lx.ghlxbm,0,1) desc, j
 	<delete id="deleteghbbsj" parameterType="elist">
 		delete from BBJCXXB_SJ where FORMID=#{formname}||#{formdate}
 	</delete>
-	
+	<select id="getghbbcx" parameterType="elist" resultType="elist">
+		select * from BBJCXXB_SJ where FORMID=#{formname}||#{formdate}
+	</select>
 
 	<select id="getFormData" parameterType="string" resultType="hashmap">
         select * from bbjcxxb
@@ -5691,6 +5693,6 @@ order by lm.xzqhdm asc, fun_scxdnf1(jh.xmbm) desc, substr(lx.ghlxbm,0,1) desc, j
             (#{emp.lastName},#{emp.email},#{emp.gender},#{emp.dept.id})  
         </foreach>
 	</insert>
-
+	
 	
 </mapper>

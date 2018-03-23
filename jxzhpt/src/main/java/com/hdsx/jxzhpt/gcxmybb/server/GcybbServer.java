@@ -174,4 +174,6 @@ public interface GcybbServer {
 	List<Map<String, Object>> getFormData();
 
 	boolean insertFormData(String json);
+
+	List<Excel_list> getghbbcx(Excel_list excel_list);
 }

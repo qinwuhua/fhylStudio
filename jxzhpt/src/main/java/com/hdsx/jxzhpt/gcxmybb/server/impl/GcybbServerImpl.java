@@ -1650,4 +1650,9 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		
 		return true;
 	}
+
+	@Override
+	public List<Excel_list> getghbbcx(Excel_list excel_list) {
+		return queryList("getghbbcx",excel_list);
+	}
 }
