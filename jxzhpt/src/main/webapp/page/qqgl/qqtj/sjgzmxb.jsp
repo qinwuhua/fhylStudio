@@ -8,6 +8,7 @@
 	<link href="/jxzhpt/css/searchAndNavigation.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="/jxzhpt/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="/jxzhpt/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/jxzhpt/css/buttons.css" />
 	<link rel="stylesheet" type="text/css" href="/jxzhpt/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="/jxzhpt/easyui/themes/icon.css" />
 	<script type="text/javascript" src="/jxzhpt/easyui/jquery-1.9.1.min.js"></script>
@@ -15,6 +16,7 @@
 	<script type="text/javascript" src="/jxzhpt/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="/jxzhpt/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="/jxzhpt/js/YMLib.js"></script>
+	
 	<style>
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(/jxzhpt/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(/jxzhpt/images/righttopbg.gif) 0 0 repeat-x;}
@@ -48,18 +50,41 @@
 		
         var strDate=myDate.getFullYear()+"-"+((myDate.getMonth() + 1) > 9 ? (myDate.getMonth() + 1) : "0" + (myDate.getMonth() + 1))+"-"+myDate.getDate();          
         $("#enddate").datebox("setValue",strDate);
-		
 		var nf=myDate.getFullYear();
 		var yf=(myDate.getMonth() + 1) > 9 ? (myDate.getMonth() + 1) : "0" + (myDate.getMonth() + 1);
-        
-		
 		$(".nian").html(nf);
 		$(".yue").html(yf);
 		$(".nianyue1").html(nf+"年"+yf);
 		$(".nianyue2").html(nf+".12");
 		
+		var dataList = [];
+		$.ajax({
+			url:"/jxzhpt/gcybb/getFormData.do",
+			type:"post",
+			dataType:"JSON",
+			success:function(msg){
+				if (msg != null) {
+					for ( var i = 0; i < msg.length; i++) {
+						 dataList.push({"value": msg[i].FORMNAME,"text":msg[i].FORMNAME});
+						}
+				    $("#version").combobox("loadData",dataList);
+					}		
+				}
+		});
 		showBb();
 	});
+	
+	/* function succFunction(data){
+		alert(data.FORMNAME);
+		alert("afdas");
+		alert(data[0].FORMNAME);
+		var dataList = [];
+		 $.each(data,function(index,item){
+			 dataList.push({"value": data[index].formname,"text":data[index].formname});
+		 });
+	     $("#version").combobox("loadData",dataList);
+	} */
+	
 	function setjhxdnf1(id){
 		
 		var years=[];
@@ -122,6 +147,20 @@
 		$('#'+id).combobox("setValues",myvalues);
 		
 	}
+	
+	function solidifyVersion(){
+		if(confirm("你确定要保存当前的版本吗？")){
+			$.ajax({
+				url:"/jxzhpt/gcybb/insertFormData.do",
+				data:"json="+$("#versionJson").val(),
+				type:"post",
+				dataType:"JSON",
+				success:function(msg){
+					alert("保存成功！")
+				}
+			});
+		}
+	}
 
 	function dcExcel(){
 		//var startdate = $("#startdate").datebox("getValue");
@@ -155,6 +194,7 @@
 	}
 
 	function showBb(){
+		var params = [];
 		var enddate = $("#enddate").datebox("getValue");
  		var nf=enddate.substring(0, 4);
 		var yf=enddate.substring(5, 7);
@@ -183,7 +223,7 @@
 		//var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr;
 		//alert(data);
 		var tbody = $("#abgclist");
-				tbody.empty();
+		tbody.empty();
 
 		loadjzt();
 		
@@ -210,14 +250,34 @@
 						+msg[i].v_33+"</td><td>"+msg[i].v_34+"</td><td>"+msg[i].v_35+"</td><td>"+msg[i].v_36+"</td><td>"
 						+msg[i].v_37+"</td><td>"+msg[i].v_38+"</td><td>"+msg[i].v_39+"</td><td>"+msg[i].v_40+"</td><td>"
 						+msg[i].v_41+"</td><td>"+msg[i].v_42+"</td><td>"+msg[i].v_43+"</td><td>"+msg[i].v_44+"</td><td>"
-						+msg[i].v_45+"</td>"
+						+msg[i].v_45+"</td><td>"+msg[i].v_46+"</td><td>"+msg[i].v_47+"</td><td>"+msg[i].v_48+"</td>"
 						tr+="</tr>";
 						tbody.append(tr);
-					}
+						
+				        params.push({"v_0":msg[i].v_0,"v_1":msg[i].v_1,"v_2":msg[i].v_2,"v_3":msg[i].v_3,"v_4":msg[i].v_4,"v_5":msg[i].v_5,"v_6":msg[i].v_6,"v_7":msg[i].v_7,"v_8":msg[i].v_8,
+				        	"v_9":msg[i].v_9,"v_10":msg[i].v_10,"v_11":msg[i].v_11,"v_12":msg[i].v_12,"v_13":msg[i].v_13,"v_14":msg[i].v_14,"v_15":msg[i].v_15,"v_16":msg[i].v_16,"v_17":msg[i].v_17,
+				        	"v_18":msg[i].v_18,"v_19":msg[i].v_19,"v_20":msg[i].v_20,"v_21":msg[i].v_21,"v_22":msg[i].v_22,"v_23":msg[i].v_23,"v_24":msg[i].v_24,"v_25":msg[i].v_25,
+				        	"v_25":msg[i].v_25,"v_26":msg[i].v_26,"v_27":msg[i].v_27,"v_28":msg[i].v_28,"v_29":msg[i].v_29,"v_30":msg[i].v_30,"v_31":msg[i].v_31,"v_32":msg[i].v_32,"v_33":msg[i].v_33,
+				        	"v_34":msg[i].v_34,"v_35":msg[i].v_35,"v_37":msg[i].v_37,"v_38":msg[i].v_38,"v_39":msg[i].v_39,"v_40":msg[i].v_40,"v_41":msg[i].v_41,"v_42":msg[i].v_42,"v_43":msg[i].v_43,
+				        	"v_44":msg[i].v_44,"v_45":msg[i].v_45,"v_46":msg[i].v_46,"v_47":msg[i].v_47,"v_48":msg[i].v_48});
+
+					}	
+					var jsonData = JSON.stringify(params);
+					$("#versionJson").val(jsonData);
 				}
 			}
 		});
 	}
+	
+	function ghbb(){
+		YMLib.Var.formname='sjgzmxb';
+		YMLib.UI.createWindow('lxxx','将查询结果固化为版本','/jxzhpt/page/gcbb/ghbbxz.jsp','lxxx',460,360);
+	}
+	function ghbbcx(){
+		YMLib.Var.formname='sjgzmxb';
+		YMLib.UI.createWindow('lxxx','固化版本查询','/jxzhpt/page/gcbb/ghbbcx.jsp','lxxx',460,360);
+	}
+	
 	</script>
 	
 	<style type="text/css">
@@ -267,7 +327,7 @@ text-decoration:none;
         						<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:180px;"></select></td>
                                 <td align="right">计划下达年份：</td>
-		        				<td><input id="jhnd" type="text"  style="width: 120px"></td>
+		        				<td><input id="jhnd" type="text"  style="width: 100px"></td>
 		        				<td align="right">月报时间：</td>
 								<td><input id="enddate" class="easyui-datebox" name="enddate" data-options="editable:false"></td>
 		        				<td align="right">项目类型：</td>
@@ -277,31 +337,27 @@ text-decoration:none;
 								</select>
 								</td>
 								<td align="right">项目编码：</td>
-        						<td><input id='xmbm' type="text" style="width:100px" /></td>								
-<!-- 		 						<td><select name="ddlYear" id="ddlYear" style="width: 80px;display:none;">
-								</select></td>
-		 						<td><select name="ddlMonth" id="ddlMonth" style="width: 60px;display:none;">
-									<option id="yf1" value="1">01</option>
-									<option id="yf2" value="2">02</option>
-									<option id="yf3" value="3">03</option>
-									<option id="yf4" value="4">04</option>
-									<option id="yf5" value="5">05</option>
-									<option id="yf6" value="6">06</option>
-									<option id="yf7" value="7">07</option>
-									<option id="yf8" value="8">08</option>
-									<option id="yf9" value="9">09</option>
-									<option id="yf10" value="10">10</option>
-									<option id="yf11" value="11">11</option>
-									<option id="yf12" value="12">12</option>
-								</select></td>	 -->							
+        						<td><input id='xmbm' type="text" style="width:100px" /></td>						
 							</tr>
+							
         					<tr height="32">
         							<td colspan="10">
         						<img onclick="showBb()" alt="查询" src="/jxzhpt/images/Button/Serch01.gif" onmouseover="this.src='/jxzhpt/images/Button/Serch02.gif'"
                                 	onmouseout="this.src='/jxzhpt/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;"/>
 								<img alt="导出Ecel" src="/jxzhpt/images/Button/dcecl1.gif" onmouseover="this.src='/jxzhpt/images/Button/dcecl2.gif'"
                                 	onmouseout="this.src='/jxzhpt/images/Button/dcecl1.gif' " onclick="dcExcel()" style="vertical-align: -50%;" />
-        				</td>	</tr></table>
+<!--                                 <a style="margin-top: 1px;margin-bottom: 1px;" href="javascript:solidifyVersion()" class="button button-tiny button-raised button-primary">固化版本</a>
+                                <a style="margin-top: 1px;margin-bottom: 1px;" href="javascript:querySolidifyVersion()" class="button button-tiny button-raised button-primary">固化版本查询</a>
+                                <img alt="固化版本" src="/jxzhpt/images/Button/qzdw2.gif" onmouseover="this.src='/jxzhpt/images/Button/qzdw1.gif'"
+                                	onmouseout="this.src='/jxzhpt/images/Button/qzdw2.gif' " onclick="solidifyVersion()" style="vertical-align: -50%;" />
+                                <img alt="固化版本查询" src="/jxzhpt/images/Button/qzdw2.gif" onmouseover="this.src='/jxzhpt/images/Button/qzdw1.gif'"
+                                	onmouseout="this.src='/jxzhpt/images/Button/qzdw2.gif' " onclick="querySolidifyVersion()" style="vertical-align: -50%;" /> -->
+                                <input type="button" value="固化版本" onclick="ghbb()"></input>
+        						<input type="button" value="固化版本查询" onclick="ghbbcx()"></input>
+                                	
+                                	
+        				</td>	
+        				</tr></table>
         				</div>
         			</fieldset>
         		</td>
@@ -320,13 +376,14 @@ text-decoration:none;
 									<tr>
 										<td colspan="24">一、项目计划</td>
 										<td colspan="10">二、<span class='nian'></span>年元月至<span class='yue'></span>月完成情况</td>
+										<td colspan="3"><span class='nianyue1'></span>月进展情况</td>
 										<td colspan="11">三、自开工至<span class='nianyue1'></span>月底累计完成情况</td>
 										<td rowspan="4" style="width: 100px;">备注</td>									
 									</tr>
 									<tr>
 										<td rowspan="3" style="width: 60px;">序号</td>		
-										<td rowspan="3" style="width: 250px;">设区市</td>
-										<td rowspan="3" style="width: 125px;">县（市、区）</td>
+										<td rowspan="3" style="width: 380px;">设区市</td>
+										<td rowspan="3" style="width: 380px;">县（市、区）</td>
 										<td rowspan="3" style="width: 125px;">特殊地区</td>
 										<td rowspan="3" style="width: 125px;">项目编码</td>
 										<td rowspan="3" style="width: 125px;">项目名称</td>
@@ -337,7 +394,7 @@ text-decoration:none;
 										<td rowspan="3" style="width: 125px;">规划止点桩号</td>
 										<td rowspan="3" style="width: 125px;">现技术等级</td>
 										<td rowspan="3" style="width: 125px;">建设技术等级</td>
-										<td rowspan="3" style="width: 125px;">公里建设性质</td>			
+										<td rowspan="3" style="width: 160px;">公里建设性质</td>			
 										<td rowspan="3" style="width: 125px;">项目里程</td>
 										<td rowspan="3" style="width: 125px;">总投资</td>
 										<td rowspan="3" style="width: 125px;">中央车购税（万元）</td>
@@ -347,15 +404,19 @@ text-decoration:none;
 										<td rowspan="3" style="width: 125px;"><span class='nian'></span>年度实施里程（公里）</td>
 										<td rowspan="3" style="width: 125px;">建设状态</td>
 										<td rowspan="3" style="width: 125px;">开工时间</td>
-										<td rowspan="3" style="width: 125px;">完工时间</td>
-										
+										<td rowspan="3" style="width: 125px;">完工时间</td>	
 										<td colspan="4">累计资金到位（万元）</td>
 										<td rowspan="3" style="width: 125px;">项目完成投资（万元）</td>
-										<td colspan="5">完成工程量（公里）</td>
+										<td colspan="5">完成工程量（公里）</td>	
+										
+										<td rowspan="3" style="width: 125px;">新增资金到位（万元）</td>
+										<td rowspan="3" style="width: 125px;">新增完成工作量（万元）</td>
+										<td rowspan="3" style="width: 125px;">新增项目完成投资（万元）</td>
 																
 										<td colspan="4">累计资金到位（万元）</td>
 										<td rowspan="3" style="width: 125px;">项目完成投资（万元）</td>
-										<td colspan="5">累计完成工程量（公里）</td>
+										<td colspan="5">累计完成工程量（公里）</td>			
+										
 										<td rowspan="3" style="width: 125px;">项目未完工程量（公里）</td>
 									</tr>	
 									<tr>

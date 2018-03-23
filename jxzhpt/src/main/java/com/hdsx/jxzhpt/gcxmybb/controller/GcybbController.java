@@ -6098,24 +6098,6 @@ public class GcybbController extends BaseActionSupport{
 			}
 		 }
 		 
-		 public void getFormData() {
-			 List<Map<String, Object>> l=gcybbServer.getFormData();
-				try {
-					JsonUtils.write(l, getresponse().getWriter());
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-		 }
-		 
-		 public void insertFormData() {
-				try {
-					boolean b = gcybbServer.insertFormData(json);
-					ResponseUtils.write(getresponse(), b+"");
-				} catch (Exception e) {
-					e.printStackTrace();
-				} 
-		 }
-		 
 		 public void getGzxmb() {
 			 try {
 					if("1".equals(flag)){

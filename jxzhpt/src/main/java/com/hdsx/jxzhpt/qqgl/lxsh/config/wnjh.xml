@@ -2527,7 +2527,7 @@ select xzqhdm,nvl(sum(wq.kglc),0) v_1,sum(case when nvl(wq.kglc,0)!=0 then '1' e
      group by xzqhdm order by to_number(xzqhdm)
 )a,(
    select xzqhdm,'0' v_5, sum(case when nvl(jd.wclc,0)!=0 or nvl(jd.bclc,0)!=0 or nvl(jd.wcztz,0)!=0 or nvl(jd.bcztz,0)!=0 then '1' else '0' end)v_6,
-   sum(case when (nvl(jd.wclc,0)!=0 or nvl(jd.bclc,0)!=0 or nvl(jd.wcztz,0)!=0 or nvl(jd.bcztz,0)!=0) and (jd.wcztz = jd.bcztz) then '1' else '0' end)v_7,    
+   sum(case when nvl(wq.kglc,0)!=0 and nvl(jd.wcztz,0)!=0 then '1' else '0' end)v_7, 
    sum(case when nvl(jd.wclc,0)=0 and nvl(jd.bclc,0)=0 and nvl(jd.wcztz,0)=0 and nvl(jd.bcztz,0)=0 then '1' else '0' end) v_8,
    nvl(sum(jd.wclc),0) v_9,nvl(sum(jd.bclc),0) v_10, nvl(sum(jd.wcztz),0) v_11, nvl(sum(jd.bcztz),0) v_12
    from sjgz_tjb gt
@@ -2571,7 +2571,7 @@ from sjgz_tjb gt
      group by xzqhdm order by to_number(xzqhdm)
 )a,(
    select xzqhdm,'0' v_5, sum(case when nvl(jd.wclc,0)!=0 or nvl(jd.bclc,0)!=0 or nvl(jd.wcztz,0)!=0 or nvl(jd.bcztz,0)!=0 then '1' else '0' end)v_6,
-   sum(case when (nvl(jd.wclc,0)!=0 or nvl(jd.bclc,0)!=0 or nvl(jd.wcztz,0)!=0 or nvl(jd.bcztz,0)!=0) and (jd.wcztz = jd.bcztz) then '1' else '0' end)v_7,  
+   sum(case when nvl(wq.kglc,0)!=0 and nvl(jd.wcztz,0)!=0 then '1' else '0' end)v_7,  
    sum(case when nvl(jd.wclc,0)=0 and nvl(jd.bclc,0)=0 and nvl(jd.wcztz,0)=0 and nvl(jd.bcztz,0)=0 then '1' else '0' end) v_8,
    nvl(sum(jd.wclc),0) v_9,nvl(sum(jd.bclc),0) v_10, nvl(sum(jd.wcztz),0) v_11, nvl(sum(jd.bcztz),0) v_12
    from sjgz_tjb gt

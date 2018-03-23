@@ -5318,7 +5318,6 @@ where jh.xdzt in ('1')
 	</if>
 order by lm.xzqhdm asc, fun_scxdnf1(jh.xmbm) desc, substr(lx.ghlxbm,0,1) desc, jh.xmbm desc
 	</select>
-	
 
 	<insert id="addghbbjcxx" parameterType="elist">
 	 	insert into BBJCXXB 
@@ -5694,5 +5693,5 @@ order by lm.xzqhdm asc, fun_scxdnf1(jh.xmbm) desc, substr(lx.ghlxbm,0,1) desc, j
         </foreach>
 	</insert>
 	
-	
+
 </mapper>
