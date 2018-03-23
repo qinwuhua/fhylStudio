@@ -354,6 +354,10 @@
 	}
 	
 	function ghbb(){
+		if(datalist==null){
+			alert("当前尚无查询结果，不能固化版本");
+			return;
+		}
 		YMLib.Var.formname='xgjwcmxb';
 		YMLib.UI.createWindow('lxxx','将查询结果固化为版本','ghbbxz.jsp','lxxx',400,400);
 	}
