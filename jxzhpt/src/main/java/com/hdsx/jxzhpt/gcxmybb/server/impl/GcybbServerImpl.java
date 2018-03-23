@@ -1,11 +1,16 @@
 package com.hdsx.jxzhpt.gcxmybb.server.impl;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
@@ -14,6 +19,7 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.gcxmybb.server.GcybbServer;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
@@ -485,38 +491,6 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		     +" and jh.xmbm=sc.xmid(+) and jh.xmbm=xd.xmid(+) and jh.xmbm=cgs.jhid(+) and jh.xmbm=cgs1.jhid(+) and jh.xmbm=jz1.xmbm(+)"
 		     +" and jh.xmbm=jz.xmbm(+) and jh.xmbm=jz1.xmbm(+) and jh.xmbm=jz2.xmbm(+) and jh.xmbm=jz3.xmbm(+) and jh.xmbm=byxz.jhid(+) and jh.xmbm=byxz1.xmbm(+)"
 		     +" and jh.xmbm in(select xmid from plan_zjxd where jhxdwh is not null)";
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
 		insert("glgzxjmxb", sql);
 		List<Excel_list> l1=queryList("getGlgzxj",gcglabgc);
 		List<Excel_list> l2=queryList("getGlgzxj1",gcglabgc);
@@ -1644,21 +1618,36 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 			delete("deleteghbbjcxx",excel_list);
 			delete("deleteghbbsj",excel_list);
 		}
-		
-		
-		
 		if(insert("addghbbjcxx", excel_list)==1){
 			return insertBatch("addghbbsj", list1)>0;
+		}else{
+			return false;
+		}
+	}
+		
+	public List<Map<String, Object>> getFormData() {
+		return queryList("getFormData");
+	}
+
+	@Override
+	public boolean insertFormData(String json) {
+		ObjectMapper mapper = new ObjectMapper();
+		String name = "";
+		String value = "";
+		try {
+			List<Excel_list> elist = mapper.readValue(json,new TypeReference<List<Excel_list>>() { });
+			/*for (int i = 0; i < 24; i++) {
+				name+="v_"+(i)+",";	
+				value+="#{v_"+(i)+"},";
+			}
+			name.substring(0, name.length()-1);
+			value.substring(0, name.length()-1);*/
+			deleteBatch("deleteFormData", elist);
+			insertBatch("insertFormData", elist);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
-		
-		
-		
-		return false;
-		
-		
-		
-		
-		
+		return true;
 	}
 }

@@ -92,7 +92,7 @@
 		    	xzqh:xzqhstr,
 		    	'lxsh.jsxz':$("#jsxz").combobox('getValues').join(','),
 		    	nf:nf,
-		    	xzqh:xzqhstr,
+		    	//xzqh:xzqhstr,
 		    	'lxsh.ybrq':enddate
 			},
 		    frozenColumns:[[    

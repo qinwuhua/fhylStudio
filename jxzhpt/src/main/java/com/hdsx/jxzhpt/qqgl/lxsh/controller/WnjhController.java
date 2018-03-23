@@ -2008,6 +2008,23 @@ public class WnjhController extends BaseActionSupport{
 	 }
 	 
 		public void getSjgzjdhzb() {
+			lxsh.setXmnf(nf);
+			if(xzqh.indexOf(",")==-1){
+				lxsh.setXzqh("and gt.xzqhdm2 like '%"+xzqh+"%'");
+			}else{
+				lxsh.setXzqh(getcxtj("gt.xzqhdm2",xzqh));
+			}
+			String jsxz = "";
+			try {
+			    jsxz = java.net.URLDecoder.decode(lxsh.getJsxz(), "UTF-8");
+			} catch (UnsupportedEncodingException e1) {
+				e1.printStackTrace();
+			}
+			if (jsxz.indexOf(",")==-1) {
+				lxsh.setJsxz("and jsxz like '%"+jsxz+"%'");
+			}else {
+				lxsh.setJsxz(getcxtj("jsxz",jsxz));
+			}
 			try {
 				if("1".equals(flag)){
 					List<Excel_list> eL=wnjhServer.getSjgzjdhzb(lxsh);				
@@ -2018,7 +2035,7 @@ public class WnjhController extends BaseActionSupport{
 					eldata.setEl(eL);//将实体list放入类中
 					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 					et.add(new Excel_tilte("设区市",1,3,0,0));			
-					et.add(new Excel_tilte("2018年项目建设",1,1,1,17));
+					et.add(new Excel_tilte(nf+"年项目建设",1,1,1,17));
 					et.add(new Excel_tilte("2018年项目建设目标",2,2,1,4));
 					et.add(new Excel_tilte("目标任务内项目建设进度情况",2,2,5,12));
 					et.add(new Excel_tilte("目标任务外项目建设进度情况",2,2,13,17));
@@ -2028,22 +2045,22 @@ public class WnjhController extends BaseActionSupport{
 					et.add(new Excel_tilte("完成投资（万元）",3,3,4,4));
 					et.add(new Excel_tilte("已完工",3,3,5,5));
 					et.add(new Excel_tilte("在建",3,3,6,6));
-					et.add(new Excel_tilte("其中2018年新开工",2,2,7,7));	
+					et.add(new Excel_tilte("其中"+nf+"年新开工",2,2,7,7));	
 					et.add(new Excel_tilte("未开工",3,3,8,8));
 					et.add(new Excel_tilte("自开工建设累计已完成（公里）",3,3,9,9));
-					et.add(new Excel_tilte("其中2018年完工里程（公里）",3,3,10,10));
+					et.add(new Excel_tilte("其中"+nf+"年完工里程（公里）",3,3,10,10));
 					et.add(new Excel_tilte("自开工建设累计完成总投资（万元）",3,3,11,11));
-					et.add(new Excel_tilte("其中2018年完成投资（万元）",3,3,12,12));
-					et.add(new Excel_tilte("2018年新开工个数",3,3,13,13));
+					et.add(new Excel_tilte("其中"+nf+"年完成投资（万元）",3,3,12,12));
+					et.add(new Excel_tilte(nf+"年新开工个数",3,3,13,13));
 					et.add(new Excel_tilte("自开工建设累计已完工（公里）",3,3,14,14));
-					et.add(new Excel_tilte("其中2018年完工里程（公里）",3,3,15,15));
+					et.add(new Excel_tilte("其中"+nf+"年完工里程（公里）",3,3,15,15));
 					et.add(new Excel_tilte("自开工建设累计完成总投资（万元）",3,3,16,16));
-					et.add(new Excel_tilte("其中2018年完成投资（万元）",3,3,17,17));	
+					et.add(new Excel_tilte("其中"+nf+"年完成投资（万元）",3,3,17,17));	
 					eldata.setEt(et);//将表头内容设置到类里面
 					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 					Excel_export.excel_export(eldata,response);
 			}else{
-				String tiaojian2="";
+				/*String tiaojian2="";
 				String xzqhdm = "";
 				if("1".equals(flag)){
 					HttpServletRequest request = ServletActionContext.getRequest();
@@ -2058,7 +2075,7 @@ public class WnjhController extends BaseActionSupport{
 				}else{
 					tiaojian2=getcxtj("t3.xzqhdm",xzqhdm);
 				}
-				lxsh.setXzqhdm(tiaojian2);
+				lxsh.setXzqhdm(tiaojian2);*/
 				List<Excel_list> list1=wnjhServer.getSjgzjdhzb(lxsh);
 				JsonUtils.write(list1, getresponse().getWriter());
 	           }                                                     

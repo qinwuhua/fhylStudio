@@ -31,6 +31,7 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.gcxmybb.bean.Xmbb;
 import com.hdsx.jxzhpt.gcxmybb.server.GcybbServer;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
@@ -72,6 +73,7 @@ public class GcybbController extends BaseActionSupport{
 	private String flag;
 	private String type;//危桥、安防和灾毁定义的项目类型
 	private String sfylrbwqk;
+	private String json;
 	private Excel_list excel_list =new Excel_list();
 	
 	public Excel_list getExcel_list() {
@@ -224,6 +226,14 @@ public class GcybbController extends BaseActionSupport{
 
 	public void setType(String type) {
 		this.type = type;
+	}
+	
+	public String getJson() {
+		return json;
+	}
+
+	public void setJson(String json) {
+		this.json = json;
 	}
 
 	public void getWqgzybb(){		
@@ -6088,6 +6098,24 @@ public class GcybbController extends BaseActionSupport{
 			}
 		 }
 		 
+		 public void getFormData() {
+			 List<Map<String, Object>> l=gcybbServer.getFormData();
+				try {
+					JsonUtils.write(l, getresponse().getWriter());
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+		 }
+		 
+		 public void insertFormData() {
+				try {
+					boolean b = gcybbServer.insertFormData(json);
+					ResponseUtils.write(getresponse(), b+"");
+				} catch (Exception e) {
+					e.printStackTrace();
+				} 
+		 }
+		 
 		 public void getGzxmb() {
 			 try {
 					if("1".equals(flag)){
@@ -6139,9 +6167,9 @@ public class GcybbController extends BaseActionSupport{
 						List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 						et.add(new Excel_tilte("一、项目计划",1,1,0,23));
 						et.add(new Excel_tilte("二、"+nf+"年"+"元月至"+yf+"月完成情况",1,1,24,33));
-						et.add(new Excel_tilte("三、自开工至"+nf+"年"+yf+"月"+"底累计完成情况",1,1,34,44));
-						et.add(new Excel_tilte("备注",1,4,45,45));
-						
+						et.add(new Excel_tilte(nf+"年"+yf+"月进展情况",1,1,34,36));
+						et.add(new Excel_tilte("三、自开工至"+nf+"年"+yf+"月底累计完成情况",1,1,37,47));
+						et.add(new Excel_tilte("备注",1,4,48,48));
 						et.add(new Excel_tilte("序号",2,4,0,0));
 						et.add(new Excel_tilte("设市区",2,4,1,1));	
 						et.add(new Excel_tilte("县（市、区）",2,4,2,2));
@@ -6166,34 +6194,36 @@ public class GcybbController extends BaseActionSupport{
 						et.add(new Excel_tilte("建设状态",2,4,21,21));
 						et.add(new Excel_tilte("开工时间",2,4,22,22));
 						et.add(new Excel_tilte("完工时间",2,4,23,23));
-						
 						et.add(new Excel_tilte("累计资金到位（万元）",2,2,24,27));
 						et.add(new Excel_tilte("项目完成投资（万元）",2,4,28,28));
-						et.add(new Excel_tilte("完成工程量（公里）",2,2,29,33));
-						et.add(new Excel_tilte("累计资金到位（万元）",2,2,34,37));
-						et.add(new Excel_tilte("项目完成投资（万元）",2,4,38,38));
-						et.add(new Excel_tilte("累计完成工程量（公里）",2,2,39,43));
-						et.add(new Excel_tilte("项目未完工作量（公里）",2,4,44,44));	
+						et.add(new Excel_tilte("完成工程量（公里）",2,2,29,33));				
+						et.add(new Excel_tilte("新增资金到位（万元）",2,4,34,34));
+						et.add(new Excel_tilte("新增完成工作量（万元）",2,4,35,35));
+						et.add(new Excel_tilte("新增项目完成投资（万元）",2,4,36,36));
+						et.add(new Excel_tilte("累计资金到位（万元）",2,2,37,40));
+						et.add(new Excel_tilte("项目完成投资（万元）",2,4,41,41));
+						et.add(new Excel_tilte("累计完成工程量（公里）",2,2,42,46));
+						et.add(new Excel_tilte("项目未完工作量（公里）",2,4,47,47));		
 						et.add(new Excel_tilte("合计",3,4,24,24));
 						et.add(new Excel_tilte("中央车购税",3,4,25,25));
 						et.add(new Excel_tilte("地方自筹",3,4,26,26));
 						et.add(new Excel_tilte("其他资金",3,4,27,27));	
 						et.add(new Excel_tilte("按技术等级",3,3,29,33));
-						et.add(new Excel_tilte("合计",3,4,34,34));
-						et.add(new Excel_tilte("中央车购税",3,4,35,35));
-						et.add(new Excel_tilte("地方自筹",3,4,36,36));
-						et.add(new Excel_tilte("其他资金",3,4,37,37));
-						et.add(new Excel_tilte("按技术等级",3,3,39,43));	
+						et.add(new Excel_tilte("合计",3,4,37,37));
+						et.add(new Excel_tilte("中央车购税",3,4,38,38));
+						et.add(new Excel_tilte("地方自筹",3,4,39,39));
+						et.add(new Excel_tilte("其他资金",3,4,40,40));
+						et.add(new Excel_tilte("按技术等级",3,3,42,46));	
 						et.add(new Excel_tilte("合计",4,4,29,29));
 						et.add(new Excel_tilte("一级",4,4,30,30));
 						et.add(new Excel_tilte("二级",4,4,31,31));
 						et.add(new Excel_tilte("三级",4,4,32,32));
-						et.add(new Excel_tilte("四级",4,4,33,33));	
-						et.add(new Excel_tilte("合计",4,4,39,39));
-						et.add(new Excel_tilte("一级",4,4,40,40));
-						et.add(new Excel_tilte("二级",4,4,41,41));
-						et.add(new Excel_tilte("三级",4,4,42,42));
-						et.add(new Excel_tilte("四级",4,4,43,43));
+						et.add(new Excel_tilte("四级",4,4,33,33));
+						et.add(new Excel_tilte("合计",4,4,42,42));
+						et.add(new Excel_tilte("一级",4,4,43,43));
+						et.add(new Excel_tilte("二级",4,4,44,44));
+						et.add(new Excel_tilte("三级",4,4,45,45));
+						et.add(new Excel_tilte("四级",4,4,46,46));
 						eldata.setEt(et);//将表头内容设置到类里面
 						HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 						Excel_export.excel_export(eldata,response);

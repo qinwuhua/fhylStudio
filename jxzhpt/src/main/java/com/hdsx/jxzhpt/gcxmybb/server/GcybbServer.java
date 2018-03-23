@@ -7,6 +7,7 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
@@ -167,5 +168,10 @@ public interface GcybbServer {
 
 	List<Excel_list> getShxmb(Gcglabgc gcglabgc);
 
+
 	boolean addghbb(Excel_list excel_list, List<Excel_list> list1);
+
+	List<Map<String, Object>> getFormData();
+
+	boolean insertFormData(String json);
 }
