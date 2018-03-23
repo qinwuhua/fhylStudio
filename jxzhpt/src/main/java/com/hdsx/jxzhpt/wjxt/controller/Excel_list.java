@@ -34,7 +34,23 @@ public class Excel_list implements Serializable {
 	
 	private String sfhb;
 	private String id;
-
+	private String formname;
+	private String formdate;
+	
+	
+	
+	public String getFormname() {
+		return formname;
+	}
+	public void setFormname(String formname) {
+		this.formname = formname;
+	}
+	public String getFormdate() {
+		return formdate;
+	}
+	public void setFormdate(String formdate) {
+		this.formdate = formdate;
+	}
 	public String getId() {
 		return id;
 	}

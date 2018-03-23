@@ -51,8 +51,14 @@ public class Gcglabgc implements Serializable {
 	
 	private String startDate;
 	private String endDate;
+	private String bnzjdw;
 	
-
+	public String getBnzjdw() {
+		return bnzjdw;
+	}
+	public void setBnzjdw(String bnzjdw) {
+		this.bnzjdw = bnzjdw;
+	}
 	public String getStartDate() {
 		return startDate;
 	}

@@ -3766,9 +3766,13 @@
 		     <if test="jzzt != null and  jzzt != ''">
 		        ${jzzt}
 		    </if>
-		     <if test="bnjhtz != null and  bnjhtz != ''">
-		        ${bnjhtz}
+		     <if test="bnwctz != null and  bnwctz != ''">
+		        ${bnwctz}
 		    </if>
+		    <if test="bnzjdw != null and  bnzjdw != ''">
+		        ${bnzjdw}
+		    </if>
+		    
 		    <if test="bndsslc != null and  bndsslc != ''">
 		        ${bndsslc}
 		    </if> 
@@ -3819,8 +3823,11 @@
 		     <if test="jzzt != null and  jzzt != ''">
 		        ${jzzt}
 		    </if>
-		   <if test="bnjhtz != null and  bnjhtz != ''">
-		        ${bnjhtz}
+		   <if test="bnwctz != null and  bnwctz != ''">
+		        ${bnwctz}
+		    </if>
+		    <if test="bnzjdw != null and  bnzjdw != ''">
+		        ${bnzjdw}
 		    </if>
 		    <if test="bndsslc != null and  bndsslc != ''">
 		        ${bndsslc}
@@ -3872,8 +3879,11 @@
 		     <if test="jzzt != null and  jzzt != ''">
 		        ${jzzt}
 		    </if>
-		    <if test="bnjhtz != null and  bnjhtz != ''">
-		        ${bnjhtz}
+		    <if test="bnwctz != null and  bnwctz != ''">
+		        ${bnwctz}
+		    </if>
+		    <if test="bnzjdw != null and  bnzjdw != ''">
+		        ${bnzjdw}
 		    </if>
 		    <if test="bndsslc != null and  bndsslc != ''">
 		        ${bndsslc}
@@ -5299,4 +5309,365 @@ where jh.xdzt in ('1')
 	</if>
 order by lm.xzqhdm asc, fun_scxdnf1(jh.xmbm) desc, substr(lx.ghlxbm,0,1) desc, jh.xmbm desc
 	</select>
+	
+	<insert id="addghbbjcxx" parameterType="elist">
+	 	insert into BBJCXXB 
+	 	<trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="formname != null and formname != ''" >id,formname,</if>
+	       <if test="formdate != null and formdate != ''" >formdate,</if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="formname != null and formname != ''" >#{formname}||#{formdate},#{formname},</if>
+	      <if test="formdate != null and formdate != ''" >#{formdate},</if>
+	    </trim>
+	</insert>
+	<insert id="addghbbsj" parameterType="elist">
+		insert into BBJCXXB_SJ 
+	 	<trim prefix="(" suffix=")" suffixOverrides="," >
+	       <if test="formname != null and formname != ''" >id,formid,</if>
+	       <if test="v_0 != null and v_0 != ''" >v_0,</if>
+	       <if test="v_1 != null and v_1 != ''" >v_1,</if>
+	       <if test="v_2 != null and v_2 != ''" >v_2,</if>
+	       <if test="v_3 != null and v_3 != ''" >v_3,</if>
+	       <if test="v_4 != null and v_4 != ''" >v_4,</if>
+	       <if test="v_5 != null and v_5 != ''" >v_5,</if>
+	       <if test="v_6 != null and v_6 != ''" >v_6,</if>
+	       <if test="v_7 != null and v_7 != ''" >v_7,</if>
+	       <if test="v_8 != null and v_8 != ''" >v_8,</if>
+	       <if test="v_9 != null and v_9 != ''" >v_9,</if>
+	       
+	       <if test="v_10 != null and v_10 != ''" >v_10,</if>
+	       <if test="v_11 != null and v_11 != ''" >v_11,</if>
+	       <if test="v_12 != null and v_12 != ''" >v_12,</if>
+	       <if test="v_13 != null and v_13 != ''" >v_13,</if>
+	       <if test="v_14 != null and v_14 != ''" >v_14,</if>
+	       <if test="v_15 != null and v_15 != ''" >v_15,</if>
+	       <if test="v_16 != null and v_16 != ''" >v_16,</if>
+	       <if test="v_17 != null and v_17 != ''" >v_17,</if>
+	       <if test="v_18 != null and v_18 != ''" >v_18,</if>
+	       <if test="v_19 != null and v_19 != ''" >v_19,</if>
+	       
+	       <if test="v_20 != null and v_20 != ''" >v_20,</if>
+	       <if test="v_21 != null and v_21 != ''" >v_21,</if>
+	       <if test="v_22 != null and v_22 != ''" >v_22,</if>
+	       <if test="v_23 != null and v_23 != ''" >v_23,</if>
+	       <if test="v_24 != null and v_24 != ''" >v_24,</if>
+	       <if test="v_25 != null and v_25 != ''" >v_25,</if>
+	       <if test="v_26 != null and v_26 != ''" >v_26,</if>
+	       <if test="v_27 != null and v_27 != ''" >v_27,</if>
+	       <if test="v_28 != null and v_28 != ''" >v_28,</if>
+	       <if test="v_29 != null and v_29 != ''" >v_29,</if>
+	       
+	       <if test="v_30 != null and v_30 != ''" >v_30,</if>
+	       <if test="v_31 != null and v_31 != ''" >v_31,</if>
+	       <if test="v_32 != null and v_32 != ''" >v_32,</if>
+	       <if test="v_33 != null and v_33 != ''" >v_33,</if>
+	       <if test="v_34 != null and v_34 != ''" >v_34,</if>
+	       <if test="v_35 != null and v_35 != ''" >v_35,</if>
+	       <if test="v_36 != null and v_36 != ''" >v_36,</if>
+	       <if test="v_37 != null and v_37 != ''" >v_37,</if>
+	       <if test="v_38 != null and v_38 != ''" >v_38,</if>
+	       <if test="v_39 != null and v_39 != ''" >v_39,</if>
+	       
+	       <if test="v_40 != null and v_40 != ''" >v_40,</if>
+	       <if test="v_41 != null and v_41 != ''" >v_41,</if>
+	       <if test="v_42 != null and v_42 != ''" >v_42,</if>
+	       <if test="v_43 != null and v_43 != ''" >v_43,</if>
+	       <if test="v_44 != null and v_44 != ''" >v_44,</if>
+	       <if test="v_45 != null and v_45 != ''" >v_45,</if>
+	       <if test="v_46 != null and v_46 != ''" >v_46,</if>
+	       <if test="v_47 != null and v_47 != ''" >v_47,</if>
+	       <if test="v_48 != null and v_48 != ''" >v_48,</if>
+	       <if test="v_49 != null and v_49 != ''" >v_49,</if>
+	       
+	       <if test="v_50 != null and v_50 != ''" >v_50,</if>
+	       <if test="v_51 != null and v_51 != ''" >v_51,</if>
+	       <if test="v_52 != null and v_52 != ''" >v_52,</if>
+	       <if test="v_53 != null and v_53 != ''" >v_53,</if>
+	       <if test="v_54 != null and v_54 != ''" >v_54,</if>
+	       <if test="v_55 != null and v_55 != ''" >v_55,</if>
+	       <if test="v_56 != null and v_56 != ''" >v_56,</if>
+	       <if test="v_57 != null and v_57 != ''" >v_57,</if>
+	       <if test="v_58 != null and v_58 != ''" >v_58,</if>
+	       <if test="v_59 != null and v_59 != ''" >v_59,</if>
+	       
+	       <if test="v_60 != null and v_60 != ''" >v_60,</if>
+	       <if test="v_61 != null and v_61 != ''" >v_61,</if>
+	       <if test="v_62 != null and v_62 != ''" >v_62,</if>
+	       <if test="v_63 != null and v_63 != ''" >v_63,</if>
+	       <if test="v_64 != null and v_64 != ''" >v_64,</if>
+	       <if test="v_65 != null and v_65 != ''" >v_65,</if>
+	       <if test="v_66 != null and v_66 != ''" >v_66,</if>
+	       <if test="v_67 != null and v_67 != ''" >v_67,</if>
+	       <if test="v_68 != null and v_68 != ''" >v_68,</if>
+	       <if test="v_69 != null and v_69 != ''" >v_69,</if>
+	       
+	       <if test="v_70 != null and v_70 != ''" >v_70,</if>
+	       <if test="v_71 != null and v_71 != ''" >v_71,</if>
+	       <if test="v_72 != null and v_72 != ''" >v_72,</if>
+	       <if test="v_73 != null and v_73 != ''" >v_73,</if>
+	       <if test="v_74 != null and v_74 != ''" >v_74,</if>
+	       <if test="v_75 != null and v_75 != ''" >v_75,</if>
+	       <if test="v_76 != null and v_76 != ''" >v_76,</if>
+	       <if test="v_77 != null and v_77 != ''" >v_77,</if>
+	       <if test="v_78 != null and v_78 != ''" >v_78,</if>
+	       <if test="v_79 != null and v_79 != ''" >v_79,</if>
+	       
+	       <if test="v_80 != null and v_80 != ''" >v_80,</if>
+	       <if test="v_81 != null and v_81 != ''" >v_81,</if>
+	       <if test="v_82 != null and v_82 != ''" >v_82,</if>
+	       <if test="v_83 != null and v_83 != ''" >v_83,</if>
+	       <if test="v_84 != null and v_84 != ''" >v_84,</if>
+	       <if test="v_85 != null and v_85 != ''" >v_85,</if>
+	       <if test="v_86 != null and v_86 != ''" >v_86,</if>
+	       <if test="v_87 != null and v_87 != ''" >v_87,</if>
+	       <if test="v_88 != null and v_88 != ''" >v_88,</if>
+	       <if test="v_89 != null and v_89 != ''" >v_89,</if>
+	       
+	       <if test="v_90 != null and v_90 != ''" >v_90,</if>
+	       <if test="v_91 != null and v_91 != ''" >v_91,</if>
+	       <if test="v_92 != null and v_92 != ''" >v_92,</if>
+	       <if test="v_93 != null and v_93 != ''" >v_93,</if>
+	       <if test="v_94 != null and v_94 != ''" >v_94,</if>
+	       <if test="v_95 != null and v_95 != ''" >v_95,</if>
+	       <if test="v_96 != null and v_96 != ''" >v_96,</if>
+	       <if test="v_97 != null and v_97 != ''" >v_97,</if>
+	       <if test="v_98 != null and v_98 != ''" >v_98,</if>
+	       <if test="v_99 != null and v_99 != ''" >v_99,</if>
+	       
+	       <if test="v_100 != null and v_100 != ''" >v_100</if>
+	       <if test="v_101 != null and v_101 != ''" >v_101,</if>
+	       <if test="v_102 != null and v_102 != ''" >v_102,</if>
+	       <if test="v_103 != null and v_103 != ''" >v_103,</if>
+	       <if test="v_104 != null and v_104 != ''" >v_104,</if>
+	       <if test="v_105 != null and v_105 != ''" >v_105,</if>
+	       <if test="v_106 != null and v_106 != ''" >v_106,</if>
+	       <if test="v_107 != null and v_107 != ''" >v_107,</if>
+	       <if test="v_108 != null and v_108 != ''" >v_108,</if>
+	       <if test="v_109 != null and v_109 != ''" >v_109,</if>
+	       
+	       <if test="v_110 != null and v_110 != ''" >v_110,</if>
+	       <if test="v_111 != null and v_111 != ''" >v_111,</if>
+	       <if test="v_112 != null and v_112 != ''" >v_112,</if>
+	       <if test="v_113 != null and v_113 != ''" >v_113,</if>
+	       <if test="v_114 != null and v_114 != ''" >v_114,</if>
+	       <if test="v_115 != null and v_115 != ''" >v_115,</if>
+	       <if test="v_116 != null and v_116 != ''" >v_116,</if>
+	       <if test="v_117 != null and v_117 != ''" >v_117,</if>
+	       <if test="v_118 != null and v_118 != ''" >v_118,</if>
+	       <if test="v_119 != null and v_119 != ''" >v_119,</if>
+	       
+	       <if test="v_120 != null and v_120 != ''" >v_120,</if>
+	       <if test="v_121 != null and v_121 != ''" >v_121,</if>
+	       <if test="v_122 != null and v_122 != ''" >v_122,</if>
+	       <if test="v_123 != null and v_123 != ''" >v_123,</if>
+	       <if test="v_124 != null and v_124 != ''" >v_124,</if>
+	       <if test="v_125 != null and v_125 != ''" >v_125,</if>
+	       <if test="v_126 != null and v_126 != ''" >v_126,</if>
+	       <if test="v_127 != null and v_127 != ''" >v_127,</if>
+	       <if test="v_128 != null and v_128 != ''" >v_128,</if>
+	       <if test="v_129 != null and v_129 != ''" >v_129,</if>
+	       
+	       <if test="v_130 != null and v_130 != ''" >v_130,</if>
+	       <if test="v_131 != null and v_131 != ''" >v_131,</if>
+	       <if test="v_132 != null and v_132 != ''" >v_132,</if>
+	       <if test="v_133 != null and v_133 != ''" >v_133,</if>
+	       <if test="v_134 != null and v_134 != ''" >v_134,</if>
+	       <if test="v_135 != null and v_135 != ''" >v_135,</if>
+	       <if test="v_136 != null and v_136 != ''" >v_136,</if>
+	       <if test="v_137 != null and v_137 != ''" >v_137,</if>
+	       <if test="v_138 != null and v_138 != ''" >v_138,</if>
+	       <if test="v_139 != null and v_139 != ''" >v_139,</if>
+	       
+	       <if test="v_140 != null and v_140 != ''" >v_140,</if>
+	       <if test="v_141 != null and v_141 != ''" >v_141,</if>
+	       <if test="v_142 != null and v_142 != ''" >v_142,</if>
+	       <if test="v_143 != null and v_143 != ''" >v_143,</if>
+	       <if test="v_144 != null and v_144 != ''" >v_144,</if>
+	       <if test="v_145 != null and v_145 != ''" >v_145,</if>
+	       <if test="v_146 != null and v_146 != ''" >v_146,</if>
+	       <if test="v_147 != null and v_147 != ''" >v_147,</if>
+	       <if test="v_148 != null and v_148 != ''" >v_148,</if>
+	       <if test="v_149 != null and v_149 != ''" >v_149,</if>
+	       
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="formname != null and formname != ''" >sys_guid(),#{formname}||#{formdate},</if>
+	      <if test="v_0 != null and v_0 != ''" >#{v_0},</if>
+	      <if test="v_1 != null and v_1 != ''" >#{v_1},</if>
+	      <if test="v_2 != null and v_2 != ''" >#{v_2},</if>
+	      <if test="v_3 != null and v_3 != ''" >#{v_3},</if>
+	      <if test="v_4 != null and v_4 != ''" >#{v_4},</if>
+	      <if test="v_5 != null and v_5 != ''" >#{v_5},</if>
+	      <if test="v_6 != null and v_6 != ''" >#{v_6},</if>
+	      <if test="v_7 != null and v_7 != ''" >#{v_7},</if>
+	      <if test="v_8 != null and v_8 != ''" >#{v_8},</if>
+	      <if test="v_9 != null and v_9 != ''" >#{v_9},</if>
+	      
+	      <if test="v_10 != null and v_10 != ''" >#{v_10},</if>
+	      <if test="v_11 != null and v_11 != ''" >#{v_11},</if>
+	      <if test="v_12 != null and v_12 != ''" >#{v_12},</if>
+	      <if test="v_13 != null and v_13 != ''" >#{v_13},</if>
+	      <if test="v_14 != null and v_14 != ''" >#{v_14},</if>
+	      <if test="v_15 != null and v_15 != ''" >#{v_15},</if>
+	      <if test="v_16 != null and v_16 != ''" >#{v_16},</if>
+	      <if test="v_17 != null and v_17 != ''" >#{v_17},</if>
+	      <if test="v_18 != null and v_18 != ''" >#{v_18},</if>
+	      <if test="v_19 != null and v_19 != ''" >#{v_19},</if>
+	      
+	      <if test="v_20 != null and v_20 != ''" >#{v_20},</if>
+	      <if test="v_21 != null and v_21 != ''" >#{v_21},</if>
+	      <if test="v_22 != null and v_22 != ''" >#{v_22},</if>
+	      <if test="v_23 != null and v_23 != ''" >#{v_23},</if>
+	      <if test="v_24 != null and v_24 != ''" >#{v_24},</if>
+	      <if test="v_25 != null and v_25 != ''" >#{v_25},</if>
+	      <if test="v_26 != null and v_26 != ''" >#{v_26},</if>
+	      <if test="v_27 != null and v_27 != ''" >#{v_27},</if>
+	      <if test="v_28 != null and v_28 != ''" >#{v_28},</if>
+	      <if test="v_29 != null and v_29 != ''" >#{v_29},</if>
+	      
+	      <if test="v_30 != null and v_30 != ''" >#{v_30},</if>
+	      <if test="v_31 != null and v_31 != ''" >#{v_31},</if>
+	      <if test="v_32 != null and v_32 != ''" >#{v_32},</if>
+	      <if test="v_33 != null and v_33 != ''" >#{v_33},</if>
+	      <if test="v_34 != null and v_34 != ''" >#{v_34},</if>
+	      <if test="v_35 != null and v_35 != ''" >#{v_35},</if>
+	      <if test="v_36 != null and v_36 != ''" >#{v_36},</if>
+	      <if test="v_37 != null and v_37 != ''" >#{v_37},</if>
+	      <if test="v_38 != null and v_38 != ''" >#{v_38},</if>
+	      <if test="v_39 != null and v_39 != ''" >#{v_39},</if>
+	      
+	      <if test="v_40 != null and v_40 != ''" >#{v_40},</if>
+	      <if test="v_41 != null and v_41 != ''" >#{v_41},</if>
+	      <if test="v_42 != null and v_42 != ''" >#{v_42},</if>
+	      <if test="v_43 != null and v_43 != ''" >#{v_43},</if>
+	      <if test="v_44 != null and v_44 != ''" >#{v_44},</if>
+	      <if test="v_45 != null and v_45 != ''" >#{v_45},</if>
+	      <if test="v_46 != null and v_46 != ''" >#{v_46},</if>
+	      <if test="v_47 != null and v_47 != ''" >#{v_47},</if>
+	      <if test="v_48 != null and v_48 != ''" >#{v_48},</if>
+	      <if test="v_49 != null and v_49 != ''" >#{v_49},</if>
+	      
+	      <if test="v_50 != null and v_50 != ''" >#{v_50},</if>
+	      <if test="v_51 != null and v_51 != ''" >#{v_51},</if>
+	      <if test="v_52 != null and v_52 != ''" >#{v_52},</if>
+	      <if test="v_53 != null and v_53 != ''" >#{v_53},</if>
+	      <if test="v_54 != null and v_54 != ''" >#{v_54},</if>
+	      <if test="v_55 != null and v_55 != ''" >#{v_55},</if>
+	      <if test="v_56 != null and v_56 != ''" >#{v_56},</if>
+	      <if test="v_57 != null and v_57 != ''" >#{v_57},</if>
+	      <if test="v_58 != null and v_58 != ''" >#{v_58},</if>
+	      <if test="v_59 != null and v_59 != ''" >#{v_59},</if>
+	      
+	      <if test="v_60 != null and v_60 != ''" >#{v_60},</if>
+	      <if test="v_61 != null and v_61 != ''" >#{v_61},</if>
+	      <if test="v_62 != null and v_62 != ''" >#{v_62},</if>
+	      <if test="v_63 != null and v_63 != ''" >#{v_63},</if>
+	      <if test="v_64 != null and v_64 != ''" >#{v_64},</if>
+	      <if test="v_65 != null and v_65 != ''" >#{v_65},</if>
+	      <if test="v_66 != null and v_66 != ''" >#{v_66},</if>
+	      <if test="v_67 != null and v_67 != ''" >#{v_67},</if>
+	      <if test="v_68 != null and v_68 != ''" >#{v_68},</if>
+	      <if test="v_69 != null and v_69 != ''" >#{v_69},</if>
+	      
+	      <if test="v_70 != null and v_70 != ''" >#{v_70},</if>
+	      <if test="v_71 != null and v_71 != ''" >#{v_71},</if>
+	      <if test="v_72 != null and v_72 != ''" >#{v_72},</if>
+	      <if test="v_73 != null and v_73 != ''" >#{v_73},</if>
+	      <if test="v_74 != null and v_74 != ''" >#{v_74},</if>
+	      <if test="v_75 != null and v_75 != ''" >#{v_75},</if>
+	      <if test="v_76 != null and v_76 != ''" >#{v_76},</if>
+	      <if test="v_77 != null and v_77 != ''" >#{v_77},</if>
+	      <if test="v_78 != null and v_78 != ''" >#{v_78},</if>
+	      <if test="v_79 != null and v_79 != ''" >#{v_79},</if>
+	      
+	      <if test="v_80 != null and v_80 != ''" >#{v_80},</if>
+	      <if test="v_81 != null and v_81 != ''" >#{v_81},</if>
+	      <if test="v_82 != null and v_82 != ''" >#{v_82},</if>
+	      <if test="v_83 != null and v_83 != ''" >#{v_83},</if>
+	      <if test="v_84 != null and v_84 != ''" >#{v_84},</if>
+	      <if test="v_85 != null and v_85 != ''" >#{v_85},</if>
+	      <if test="v_86 != null and v_86 != ''" >#{v_86},</if>
+	      <if test="v_87 != null and v_87 != ''" >#{v_87},</if>
+	      <if test="v_88 != null and v_88 != ''" >#{v_88},</if>
+	      <if test="v_89 != null and v_89 != ''" >#{v_89},</if>
+	      
+	      <if test="v_90 != null and v_90 != ''" >#{v_90},</if>
+	      <if test="v_91 != null and v_91 != ''" >#{v_91},</if>
+	      <if test="v_92 != null and v_92 != ''" >#{v_92},</if>
+	      <if test="v_93 != null and v_93 != ''" >#{v_93},</if>
+	      <if test="v_94 != null and v_94 != ''" >#{v_94},</if>
+	      <if test="v_95 != null and v_95 != ''" >#{v_95},</if>
+	      <if test="v_96 != null and v_96 != ''" >#{v_96},</if>
+	      <if test="v_97 != null and v_97 != ''" >#{v_97},</if>
+	      <if test="v_98 != null and v_98 != ''" >#{v_98},</if>
+	      <if test="v_99 != null and v_99 != ''" >#{v_99},</if>
+	      
+	      <if test="v_100 != null and v_100 != ''" >#{v_100},</if>
+	      <if test="v_101 != null and v_101 != ''" >#{v_101},</if>
+	      <if test="v_102 != null and v_102 != ''" >#{v_102},</if>
+	      <if test="v_103 != null and v_103 != ''" >#{v_103},</if>
+	      <if test="v_104 != null and v_104 != ''" >#{v_104},</if>
+	      <if test="v_105 != null and v_105 != ''" >#{v_105},</if>
+	      <if test="v_106 != null and v_106 != ''" >#{v_106},</if>
+	      <if test="v_107 != null and v_107 != ''" >#{v_107},</if>
+	      <if test="v_108 != null and v_108 != ''" >#{v_108},</if>
+	      <if test="v_109 != null and v_109 != ''" >#{v_109},</if>
+	      
+	      <if test="v_110 != null and v_110 != ''" >#{v_110},</if>
+	      <if test="v_111 != null and v_111 != ''" >#{v_111},</if>
+	      <if test="v_112 != null and v_112 != ''" >#{v_112},</if>
+	      <if test="v_113 != null and v_113 != ''" >#{v_113},</if>
+	      <if test="v_114 != null and v_114 != ''" >#{v_114},</if>
+	      <if test="v_115 != null and v_115 != ''" >#{v_115},</if>
+	      <if test="v_116 != null and v_116 != ''" >#{v_116},</if>
+	      <if test="v_117 != null and v_117 != ''" >#{v_117},</if>
+	      <if test="v_118 != null and v_118 != ''" >#{v_118},</if>
+	      <if test="v_119 != null and v_119 != ''" >#{v_119},</if>
+	      
+	      <if test="v_120 != null and v_120 != ''" >#{v_120},</if>
+	      <if test="v_121 != null and v_121 != ''" >#{v_121},</if>
+	      <if test="v_122 != null and v_122 != ''" >#{v_122},</if>
+	      <if test="v_123 != null and v_123 != ''" >#{v_123},</if>
+	      <if test="v_124 != null and v_124 != ''" >#{v_124},</if>
+	      <if test="v_125 != null and v_125 != ''" >#{v_125},</if>
+	      <if test="v_126 != null and v_126 != ''" >#{v_126},</if>
+	      <if test="v_127 != null and v_127 != ''" >#{v_127},</if>
+	      <if test="v_128 != null and v_128 != ''" >#{v_128},</if>
+	      <if test="v_129 != null and v_129 != ''" >#{v_129},</if>
+	      
+	      <if test="v_130 != null and v_130 != ''" >#{v_130},</if>
+	      <if test="v_131 != null and v_131 != ''" >#{v_131},</if>
+	      <if test="v_132 != null and v_132 != ''" >#{v_132},</if>
+	      <if test="v_133 != null and v_133 != ''" >#{v_133},</if>
+	      <if test="v_134 != null and v_134 != ''" >#{v_134},</if>
+	      <if test="v_135 != null and v_135 != ''" >#{v_135},</if>
+	      <if test="v_136 != null and v_136 != ''" >#{v_136},</if>
+	      <if test="v_137 != null and v_137 != ''" >#{v_137},</if>
+	      <if test="v_138 != null and v_138 != ''" >#{v_138},</if>
+	      <if test="v_139 != null and v_139 != ''" >#{v_139},</if>
+	      
+	      <if test="v_140 != null and v_140 != ''" >#{v_140},</if>
+	      <if test="v_141 != null and v_141 != ''" >#{v_141},</if>
+	      <if test="v_142 != null and v_142 != ''" >#{v_142},</if>
+	      <if test="v_143 != null and v_143 != ''" >#{v_143},</if>
+	      <if test="v_144 != null and v_144 != ''" >#{v_144},</if>
+	      <if test="v_145 != null and v_145 != ''" >#{v_145},</if>
+	      <if test="v_146 != null and v_146 != ''" >#{v_146},</if>
+	      <if test="v_147 != null and v_147 != ''" >#{v_147},</if>
+	      <if test="v_148 != null and v_148 != ''" >#{v_148},</if>
+	      <if test="v_149 != null and v_149 != ''" >#{v_149},</if>
+	    </trim>
+	</insert>
+	<select id="queryghbbByNorD" parameterType="elist" resultType="elist">
+		select * from BBJCXXB where formname=#{formname} and formdate=#{formdate}
+	</select>
+	<delete id="deleteghbbjcxx" parameterType="elist">
+		delete from BBJCXXB where formname=#{formname} and formdate=#{formdate}
+	</delete>
+	<delete id="deleteghbbsj" parameterType="elist">
+		delete from BBJCXXB_SJ where FORMID=#{formname}||#{formdate}
+	</delete>
+	
+	
 </mapper>

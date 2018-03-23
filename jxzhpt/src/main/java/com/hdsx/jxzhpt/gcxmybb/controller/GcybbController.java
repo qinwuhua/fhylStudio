@@ -2824,10 +2824,12 @@ public class GcybbController extends BaseActionSupport{
 				gcglabgc.setJhnd(getcxtj("v_7",gcglabgc.getJhnd()));
 				gcglabgc.setGljslx(getcxtj("v_84",gcglabgc.getGljslx()));
 				gcglabgc.setJzzt(getcxtj("jzzt",gcglabgc.getJzzt()));
-				gcglabgc.setBnjhtz(getcxtj1("v_28",gcglabgc.getBnjhtz()));
+				gcglabgc.setBnzjdw(getcxtj1("v_34",gcglabgc.getBnzjdw()));
+				gcglabgc.setBnwctz(getcxtj1("v_44",gcglabgc.getBnwctz()));
+				
 				gcglabgc.setBndsslc(getcxtj1("v_30",gcglabgc.getBndsslc()));
 				List<Excel_list> list1=gcybbServer.getXgjwcmxb(gcglabgc);
-				
+				getRequest().getSession().setAttribute("xgjwcmxb", list1);
 				JsonUtils.write(list1, getresponse().getWriter());
                }                                                     
 			} catch (Exception e) {
@@ -4024,7 +4026,7 @@ public class GcybbController extends BaseActionSupport{
 				for (int i = 0; i < s.length; i++) {
 					if(i==0){
 						if("非0".equals(s[i])){
-							tj+="and (("+id+" !=0 or "+id+" is not null)";
+							tj+="and (("+id+" !=0 )";
 						}
 						else if("0".equals(s[i])){
 							tj+="and (("+id+" =0 or "+id+" is null)";
@@ -4036,7 +4038,7 @@ public class GcybbController extends BaseActionSupport{
 					
 					else{
 						if("非0".equals(s[i])){
-							tj+="or ("+id+" !=0 or "+id+" is not null)";
+							tj+="or ("+id+" !=0 )";
 						}
 						else if("0".equals(s[i])){
 							tj+="or ("+id+" =0 or "+id+" is null)";
@@ -6242,4 +6244,21 @@ public class GcybbController extends BaseActionSupport{
 					e.printStackTrace();
 				}
 		 }
+		 
+		 public void addghbb(){
+			 try {
+				HttpSession session = getRequest().getSession();
+				List<Excel_list> list1 = (List<Excel_list>) session.getAttribute(excel_list.getFormname());
+				boolean result = gcybbServer.addghbb(excel_list, list1);
+				ResponseUtils.write(getresponse(), result + "");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+				
+				
+			 
+		 }
+		 
+		 
+		 
 }

@@ -166,4 +166,6 @@ public interface GcybbServer {
 	List<Excel_list> getLmgzxmb(Gcglabgc gcglabgc);
 
 	List<Excel_list> getShxmb(Gcglabgc gcglabgc);
+
+	boolean addghbb(Excel_list excel_list, List<Excel_list> list1);
 }

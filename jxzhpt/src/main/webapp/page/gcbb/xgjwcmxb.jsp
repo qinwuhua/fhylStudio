@@ -40,7 +40,8 @@
 		xzdjdx('xzdj');
 		xmjzzt1("jzzt");
 		xgjxmlx('gljslx');
-		setbnjhtz('bnjhtz');
+		setbnjhtz('bnzjdw');
+		setbnjhtz('bnwctz');
 		setbndsslc('bndsslc');
 		var myDate = new Date();
 		var y = myDate.getFullYear();
@@ -48,7 +49,7 @@
 		var d= myDate.getDate() < 10 ? "0"+myDate.getDate() : myDate.getDate();
 		var timestr = y+"-"+m+"-"+d;
 		$("#ybsj").datebox('setValue',timestr);
-		$("#biaotou").empty();
+		//$("#biaotou").empty();
 	});
 	function setjhxdnf1(id){
 		
@@ -126,7 +127,7 @@
 		    multiple:true,
 		    formatter:function(row){
 				var opts = $(this).combobox('options');
-				return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+				return '<input id="id'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 			},
 			onSelect:function(record){
 				var opts = $(this).combobox('options');
@@ -135,11 +136,11 @@
 					var datas = $('#' +id).combobox("getData");
 					$.each(datas,function(index,item){
 						values.push(item.value);
-						$('#id'+item.value).attr('checked', true);
+						$('#id'+id+item.value).attr('checked', true);
 					});
 					$('#' +id).combobox("setValues",values);
 				}else{
-					$('#id'+record.value).attr('checked', true);
+					$('#id'+id+record.value).attr('checked', true);
 				}
 			},
 			onUnselect:function(record){
@@ -153,13 +154,13 @@
 					}
 					$.each(datas,function(index,item){
 						if(jQuery.inArray(""+item.value,values)<0){
-							$('#id'+item.value).attr('checked', false);
+							$('#id'+id+item.value).attr('checked', false);
 						}
 					});
 					$('#' +id).combobox("setValues",values);
 				}else{
 					$.each(datas,function(index,item){
-						$('#id'+item.value).attr('checked', false);
+						$('#id'+id+item.value).attr('checked', false);
 					});
 				}
 			}
@@ -311,7 +312,9 @@
 		+"&gcglabgc.gljslx="+$("#gljslx").combobox('getValues').join(',')
 		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',')
 		+"&gcglabgc.jzzt="+$("#jzzt").combobox('getValues').join(',')
-		+"&gcglabgc.bnjhtz="+$("#bnjhtz").combobox('getValues').join(',')
+		+"&gcglabgc.bnjhtz="
+		+"&gcglabgc.bnzjdw="+$("#bnzjdw").combobox('getValues').join(',')
+		+"&gcglabgc.bnwctz="+$("#bnwctz").combobox('getValues').join(',')
 		+"&gcglabgc.bndsslc="+$("#bndsslc").combobox('getValues').join(',');
 		//alert(data);
 		var tbody = $("#abgclist");
@@ -348,6 +351,15 @@
 				}
 			}
 		});
+	}
+	
+	function ghbb(){
+		YMLib.Var.formname='xgjwcmxb';
+		YMLib.UI.createWindow('lxxx','将查询结果固化为版本','ghbbxz.jsp','lxxx',400,400);
+	}
+	function ghbbcx(){
+		YMLib.Var.formname='xgjwcmxb';
+		YMLib.UI.createWindow('lxxx','固化版本查询','ghbbcx.jsp','lxxx',400,400);
 	}
 	
 	
@@ -436,18 +448,21 @@ text-decoration:none;
         						<span>本年度实施里程：</span>
         						<input id="bndsslc" type="text"  style="width: 60px">
         						</select> -->
-        						<td align="right">本年计划投资：</td>
-        						<td><select name="bnjhtz" id="bnjhtz" class="easyui-combobox" style="width:103px;">
-									<!-- <option value="" selected="selected">全部</option>
-									<option value="0">0</option>
-									<option value="非0">非0</option> -->
-								</select></td>
+        						
         						<td align="right">本年度实施里程：</td>
         						<td><select name="bndsslc" id="bndsslc" class="easyui-combobox" style="width:103px;">
 									<!-- <option value="" selected="selected">全部</option>
 									<option value="0">0</option>
 									<option value="非0">非0</option> -->
 								</select></td>
+								
+								<td align="right">本年资金到位：</td>
+        						<td><select name="bnzjdw" id="bnzjdw" class="easyui-combobox" style="width:103px;">
+								</select></td>
+								<td align="right">本年完成投资：</td>
+        						<td><select name="bnwctz" id="bnwctz" class="easyui-combobox" style="width:103px;">
+								</select></td>
+								
 							</tr>
         							<tr height="32">
         							<td colspan="10">
@@ -455,7 +470,13 @@ text-decoration:none;
                                 	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;"/>
 								<img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
                                 	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="dcExcel()" style="vertical-align: -50%;" />
-        				</td>	</tr></table>
+        						<input type="button" value="固化版本" onclick="ghbb()"></input>
+        						<input type="button" value="固化版本查询" onclick="ghbbcx()"></input>
+        				
+        				</td>	</tr>
+        				
+        				
+        				</table>
         				</div>
         			</fieldset>
         		</td>

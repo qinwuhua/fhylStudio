@@ -131,6 +131,14 @@
 		select id,decode(name,'全部','请选择',name) name,parent,bmid from xtgl_bmbm where parent in (select id from xtgl_bmbm where name=#{name} )
 		order by id
 	</select>
+	
+	<select id="getbbh" parameterType="hashmap" resultType="treenode">
+		select '0' id,'请选择' name,'' parent,'' bmid from dual
+    	union all
+    	select b.formdate id,b.formdate name,'' parent,b.formdate bmid from bbjcxxb b where formname=#{name} order by id
+	</select>
+	
+	
 	<insert id="insertDw" parameterType="unit">
 		insert into xtgl_department (id,parent,name,unit,bmid,desr) values 
 		(#{id},#{parent},#{name},#{unit},SYS_GUID(),#{desr})

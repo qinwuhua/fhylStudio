@@ -168,6 +168,11 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	}
 
 	@Override
+	public List<TreeNode> getbbh(HashMap<String, String> hm) {
+		return queryList("getbbh", hm);
+	}
+	
+	@Override
 	public boolean insertDw(Unit unit) {
 		int b=insert("insertDw", unit);
 		int b2;

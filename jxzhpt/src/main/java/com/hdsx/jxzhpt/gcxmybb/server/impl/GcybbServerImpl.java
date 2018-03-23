@@ -1631,4 +1631,34 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		total.addAll(result);
 		return total;
 	}
+
+	@Override
+	public boolean addghbb(Excel_list excel_list, List<Excel_list> list1) {
+		for (Excel_list excel_list2 : list1) {
+			excel_list2.setFormname(excel_list.getFormname());
+			excel_list2.setFormdate(excel_list.getFormdate());
+		}
+		Excel_list e=null;
+		e=queryOne("queryghbbByNorD", excel_list);
+		if(e!=null){
+			delete("deleteghbbjcxx",excel_list);
+			delete("deleteghbbsj",excel_list);
+		}
+		
+		
+		
+		if(insert("addghbbjcxx", excel_list)==1){
+			return insertBatch("addghbbsj", list1)>0;
+		}
+		
+		
+		
+		
+		return false;
+		
+		
+		
+		
+		
+	}
 }

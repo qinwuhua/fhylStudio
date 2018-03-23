@@ -537,6 +537,20 @@ public class XtglController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void getbbh(){
+		
+		HashMap<String, String> hm=new HashMap<String, String>();
+		hm.put("name", yhm);
+		List<TreeNode> list =  xtglServer.getbbh(hm);
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	/**
 	 * 插入单位
 	 */

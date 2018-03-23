@@ -11,6 +11,7 @@
 	<action name="getLmgzwcb" class="gcybbController" method="getLmgzwcb"/>
 	<action name="getZhhfwcb" class="gcybbController" method="getZhhfwcb"/>
 	<action name="getYhgc" class="gcybbController" method="getYhgc"/>
+	<action name="addghbb" class="gcybbController" method="addghbb"/>
 	
 	
 	

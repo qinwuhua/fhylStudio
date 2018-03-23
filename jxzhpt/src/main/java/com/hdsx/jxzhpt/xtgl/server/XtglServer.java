@@ -183,4 +183,6 @@ public interface XtglServer {
 	List<HashMap<String, String>> selBmbmList();
 
 	List<Plan_upload> downFileByWhAndType(Plan_upload p);
+
+	List<TreeNode> getbbh(HashMap<String, String> hm);
 }

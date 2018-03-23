@@ -4,6 +4,7 @@
 <struts>
 <package name="xtgl" extends="struts-default" namespace="/xtgl">
 	<action name="getBmbmByName" class="bmbmController" method="getBmbmByName"></action>
+	<action name="getbbh" class="xtglController" method="getbbh"></action>
 
 	<action name="czPassword" class="xtglController" method="czPassword"/>
 	<action name="selQx" class="xtglController" method="selQx"/>
