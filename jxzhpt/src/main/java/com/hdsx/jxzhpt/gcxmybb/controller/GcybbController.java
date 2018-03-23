@@ -6246,9 +6246,11 @@ public class GcybbController extends BaseActionSupport{
 					List<Excel_list> list1 = new ArrayList<Excel_list>();
 					if ("lmgz".equals(type)) {
 						list1=gcybbServer.getLmgzxmb(gcglabgc);
+						getRequest().getSession().setAttribute("lwgzxmb", list1);
 					}
 					if ("sh".equals(type)) {
 						list1=gcybbServer.getShxmb(gcglabgc);
+						getRequest().getSession().setAttribute("shxmb", list1);
 					}					
 					JsonUtils.write(list1, getresponse().getWriter());
 		           }                                                     
@@ -6265,12 +6267,6 @@ public class GcybbController extends BaseActionSupport{
 				ResponseUtils.write(getresponse(), result + "");
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
-				
-				
-			 
-		 }
-		 
-		 
-		 
+			} 
+		 }	 
 }

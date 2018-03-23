@@ -57,33 +57,9 @@
 		$(".nianyue1").html(nf+"年"+yf);
 		$(".nianyue2").html(nf+".12");
 		
-		var dataList = [];
-		$.ajax({
-			url:"/jxzhpt/gcybb/getFormData.do",
-			type:"post",
-			dataType:"JSON",
-			success:function(msg){
-				if (msg != null) {
-					for ( var i = 0; i < msg.length; i++) {
-						 dataList.push({"value": msg[i].FORMNAME,"text":msg[i].FORMNAME});
-						}
-				    $("#version").combobox("loadData",dataList);
-					}		
-				}
-		});
 		showBb();
 	});
 	
-	/* function succFunction(data){
-		alert(data.FORMNAME);
-		alert("afdas");
-		alert(data[0].FORMNAME);
-		var dataList = [];
-		 $.each(data,function(index,item){
-			 dataList.push({"value": data[index].formname,"text":data[index].formname});
-		 });
-	     $("#version").combobox("loadData",dataList);
-	} */
 	
 	function setjhxdnf1(id){
 		
@@ -148,20 +124,6 @@
 		
 	}
 	
-	function solidifyVersion(){
-		if(confirm("你确定要保存当前的版本吗？")){
-			$.ajax({
-				url:"/jxzhpt/gcybb/insertFormData.do",
-				data:"json="+$("#versionJson").val(),
-				type:"post",
-				dataType:"JSON",
-				success:function(msg){
-					alert("保存成功！")
-				}
-			});
-		}
-	}
-
 	function dcExcel(){
 		//var startdate = $("#startdate").datebox("getValue");
 		var enddate = $("#enddate").datebox("getValue");
@@ -254,27 +216,34 @@
 						tr+="</tr>";
 						tbody.append(tr);
 						
-				        params.push({"v_0":msg[i].v_0,"v_1":msg[i].v_1,"v_2":msg[i].v_2,"v_3":msg[i].v_3,"v_4":msg[i].v_4,"v_5":msg[i].v_5,"v_6":msg[i].v_6,"v_7":msg[i].v_7,"v_8":msg[i].v_8,
+				       /*  params.push({"v_0":msg[i].v_0,"v_1":msg[i].v_1,"v_2":msg[i].v_2,"v_3":msg[i].v_3,"v_4":msg[i].v_4,"v_5":msg[i].v_5,"v_6":msg[i].v_6,"v_7":msg[i].v_7,"v_8":msg[i].v_8,
 				        	"v_9":msg[i].v_9,"v_10":msg[i].v_10,"v_11":msg[i].v_11,"v_12":msg[i].v_12,"v_13":msg[i].v_13,"v_14":msg[i].v_14,"v_15":msg[i].v_15,"v_16":msg[i].v_16,"v_17":msg[i].v_17,
 				        	"v_18":msg[i].v_18,"v_19":msg[i].v_19,"v_20":msg[i].v_20,"v_21":msg[i].v_21,"v_22":msg[i].v_22,"v_23":msg[i].v_23,"v_24":msg[i].v_24,"v_25":msg[i].v_25,
 				        	"v_25":msg[i].v_25,"v_26":msg[i].v_26,"v_27":msg[i].v_27,"v_28":msg[i].v_28,"v_29":msg[i].v_29,"v_30":msg[i].v_30,"v_31":msg[i].v_31,"v_32":msg[i].v_32,"v_33":msg[i].v_33,
 				        	"v_34":msg[i].v_34,"v_35":msg[i].v_35,"v_37":msg[i].v_37,"v_38":msg[i].v_38,"v_39":msg[i].v_39,"v_40":msg[i].v_40,"v_41":msg[i].v_41,"v_42":msg[i].v_42,"v_43":msg[i].v_43,
-				        	"v_44":msg[i].v_44,"v_45":msg[i].v_45,"v_46":msg[i].v_46,"v_47":msg[i].v_47,"v_48":msg[i].v_48});
-
+				        	"v_44":msg[i].v_44,"v_45":msg[i].v_45,"v_46":msg[i].v_46,"v_47":msg[i].v_47,"v_48":msg[i].v_48}); */
 					}	
-					var jsonData = JSON.stringify(params);
-					$("#versionJson").val(jsonData);
+/* 					var jsonData = JSON.stringify(params);
+					$("#versionJson").val(jsonData); */
 				}
 			}
 		});
 	}
 	
 	function ghbb(){
-		YMLib.Var.formname='sjgzmxb';
+		if($("#jsxz").val()=='sh'){
+			YMLib.Var.formname='shxmb';
+		}else{
+			YMLib.Var.formname='lwgzxmb';
+		}	
 		YMLib.UI.createWindow('lxxx','将查询结果固化为版本','/jxzhpt/page/gcbb/ghbbxz.jsp','lxxx',460,360);
 	}
 	function ghbbcx(){
-		YMLib.Var.formname='sjgzmxb';
+		if($("#jsxz").val()=='sh'){
+			YMLib.Var.formname='shxmb';
+		}else{
+			YMLib.Var.formname='lwgzxmb';
+		}
 		YMLib.UI.createWindow('lxxx','固化版本查询','/jxzhpt/page/gcbb/ghbbcx.jsp','lxxx',460,360);
 	}
 	
@@ -353,9 +322,7 @@ text-decoration:none;
                                 <img alt="固化版本查询" src="/jxzhpt/images/Button/qzdw2.gif" onmouseover="this.src='/jxzhpt/images/Button/qzdw1.gif'"
                                 	onmouseout="this.src='/jxzhpt/images/Button/qzdw2.gif' " onclick="querySolidifyVersion()" style="vertical-align: -50%;" /> -->
                                 <input type="button" value="固化版本" onclick="ghbb()"></input>
-        						<input type="button" value="固化版本查询" onclick="ghbbcx()"></input>
-                                	
-                                	
+        						<input type="button" value="固化版本查询" onclick="ghbbcx()"></input>      	
         				</td>	
         				</tr></table>
         				</div>
