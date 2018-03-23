@@ -61,13 +61,16 @@ function addghbb(){
 			dataType:"JSON",
 			success:function(msg){
 				disLoadjzt();
-				
-				
+				if(msg){
+					alert("保存成功");
+					closewin()
+				}else{
+					alert("保存失败");
+				}
 				
 				
 			}
 		})
-		disLoadjzt();
 	}
 	
 }

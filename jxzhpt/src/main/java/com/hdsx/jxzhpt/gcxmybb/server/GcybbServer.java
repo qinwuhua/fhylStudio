@@ -170,4 +170,8 @@ public interface GcybbServer {
 
 	boolean addghbb(Excel_list excel_list, List<Excel_list> list1);
 
+	boolean insertFormData(String json);
+
+	List<Excel_list> getghbbcx(Excel_list excel_list);
+
 }
