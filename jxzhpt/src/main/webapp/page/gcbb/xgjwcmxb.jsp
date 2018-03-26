@@ -363,11 +363,6 @@
 	}
 	function ghbbcx(){
 		
-		
-		
-		
-		
-		
 		YMLib.Var.formname='xgjwcmxb';
 		YMLib.UI.createWindow('lxxx','固化版本查询','ghbbcx.jsp','lxxx',400,400);
 	}
