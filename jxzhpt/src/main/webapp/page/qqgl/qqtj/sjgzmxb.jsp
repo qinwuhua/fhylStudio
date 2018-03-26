@@ -374,7 +374,7 @@ text-decoration:none;
 										<td colspan="5">完成工程量（公里）</td>	
 										
 										<td rowspan="3" style="width: 125px;">新增资金到位（万元）</td>
-										<td rowspan="3" style="width: 125px;">新增完成工作量（万元）</td>
+										<td rowspan="3" style="width: 125px;">新增完成工作量（公里）</td>
 										<td rowspan="3" style="width: 125px;">新增项目完成投资（万元）</td>
 																
 										<td colspan="4">累计资金到位（万元）</td>
