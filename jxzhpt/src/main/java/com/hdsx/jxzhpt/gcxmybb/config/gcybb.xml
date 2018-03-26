@@ -5322,12 +5322,14 @@ order by lm.xzqhdm asc, fun_scxdnf1(jh.xmbm) desc, substr(lx.ghlxbm,0,1) desc, j
 	<insert id="addghbbjcxx" parameterType="elist">
 	 	insert into BBJCXXB 
 	 	<trim prefix="(" suffix=")" suffixOverrides="," >
-	      <if test="formname != null and formname != ''" >id,formname,</if>
+	       <if test="formname != null and formname != ''" >id,formname,</if>
 	       <if test="formdate != null and formdate != ''" >formdate,</if>
+	       <if test="recordtime != null and recordtime != ''" >recordtime,</if>
 	    </trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides="," >
 	      <if test="formname != null and formname != ''" >#{formname}||#{formdate},#{formname},</if>
 	      <if test="formdate != null and formdate != ''" >#{formdate},</if>
+	      <if test="recordtime != null and recordtime != ''" >#{recordtime},</if>
 	    </trim>
 	</insert>
 	<insert id="addghbbsj" parameterType="elist">
