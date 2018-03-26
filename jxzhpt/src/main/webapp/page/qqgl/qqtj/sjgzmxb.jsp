@@ -315,14 +315,11 @@ text-decoration:none;
                                 	onmouseout="this.src='/jxzhpt/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;"/>
 								<img alt="导出Ecel" src="/jxzhpt/images/Button/dcecl1.gif" onmouseover="this.src='/jxzhpt/images/Button/dcecl2.gif'"
                                 	onmouseout="this.src='/jxzhpt/images/Button/dcecl1.gif' " onclick="dcExcel()" style="vertical-align: -50%;" />
-<!--                                 <a style="margin-top: 1px;margin-bottom: 1px;" href="javascript:solidifyVersion()" class="button button-tiny button-raised button-primary">固化版本</a>
-                                <a style="margin-top: 1px;margin-bottom: 1px;" href="javascript:querySolidifyVersion()" class="button button-tiny button-raised button-primary">固化版本查询</a>
-                                <img alt="固化版本" src="/jxzhpt/images/Button/qzdw2.gif" onmouseover="this.src='/jxzhpt/images/Button/qzdw1.gif'"
-                                	onmouseout="this.src='/jxzhpt/images/Button/qzdw2.gif' " onclick="solidifyVersion()" style="vertical-align: -50%;" />
-                                <img alt="固化版本查询" src="/jxzhpt/images/Button/qzdw2.gif" onmouseover="this.src='/jxzhpt/images/Button/qzdw1.gif'"
-                                	onmouseout="this.src='/jxzhpt/images/Button/qzdw2.gif' " onclick="querySolidifyVersion()" style="vertical-align: -50%;" /> -->
-                                <input type="button" value="固化版本" onclick="ghbb()"></input>
-        						<input type="button" value="固化版本查询" onclick="ghbbcx()"></input>      	
+                                <img alt="固化版本" src="/jxzhpt/images/Button/ghbb1.png" onmouseover="this.src='/jxzhpt/images/Button/ghbb2.png'"
+                                	onmouseout="this.src='/jxzhpt/images/Button/ghbb1.png' " onclick="ghbb()" style="vertical-align: -50%;" />
+        						<img alt="固化版本查询" src="/jxzhpt/images/Button/ghbbcx1.gif" onmouseover="this.src='/jxzhpt/images/Button/ghbbcx2.gif'"
+                                	onmouseout="this.src='/jxzhpt/images/Button/ghbbcx1.gif' " onclick="ghbbcx()" style="vertical-align: -50%;" />
+  	
         				</td>	
         				</tr></table>
         				</div>
