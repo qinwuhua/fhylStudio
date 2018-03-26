@@ -2,7 +2,9 @@ package com.hdsx.jxzhpt.gcxmybb.server.impl;
 
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -1609,9 +1611,12 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 	@Override
 	public boolean addghbb(Excel_list excel_list, List<Excel_list> list1) {
 		int i=0;
+		Date day=new Date();    
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 		for (Excel_list excel_list2 : list1) {
 			excel_list2.setFormname(excel_list.getFormname());
 			excel_list2.setFormdate(excel_list.getFormdate());
+			excel_list2.setRecordtime(df.format(day));
 			excel_list2.setTreeno(i+"");
 			i++;
 		}
@@ -1626,32 +1631,6 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		}else{
 			return false;
 		}
-	}
-		
-	public List<Map<String, Object>> getFormData() {
-		return queryList("getFormData");
-	}
-
-	@Override
-	public boolean insertFormData(String json) {
-		ObjectMapper mapper = new ObjectMapper();
-		String name = "";
-		String value = "";
-		try {
-			List<Excel_list> elist = mapper.readValue(json,new TypeReference<List<Excel_list>>() { });
-			/*for (int i = 0; i < 24; i++) {
-				name+="v_"+(i)+",";	
-				value+="#{v_"+(i)+"},";
-			}
-			name.substring(0, name.length()-1);
-			value.substring(0, name.length()-1);*/
-			deleteBatch("deleteFormData", elist);
-			insertBatch("insertFormData", elist);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return true;
 	}
 
 	@Override
