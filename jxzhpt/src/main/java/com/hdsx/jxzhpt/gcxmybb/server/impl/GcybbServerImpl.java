@@ -1608,9 +1608,12 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 
 	@Override
 	public boolean addghbb(Excel_list excel_list, List<Excel_list> list1) {
+		int i=0;
 		for (Excel_list excel_list2 : list1) {
 			excel_list2.setFormname(excel_list.getFormname());
 			excel_list2.setFormdate(excel_list.getFormdate());
+			excel_list2.setTreeno(i+"");
+			i++;
 		}
 		Excel_list e=null;
 		e=queryOne("queryghbbByNorD", excel_list);

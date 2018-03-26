@@ -5334,6 +5334,7 @@ order by lm.xzqhdm asc, fun_scxdnf1(jh.xmbm) desc, substr(lx.ghlxbm,0,1) desc, j
 		insert into BBJCXXB_SJ 
 	 	<trim prefix="(" suffix=")" suffixOverrides="," >
 	       <if test="formname != null and formname != ''" >id,formid,</if>
+	       <if test="treeno != null and treeno != ''" >xuh,</if>
 	       <if test="v_0 != null and v_0 != ''" >v_0,</if>
 	       <if test="v_1 != null and v_1 != ''" >v_1,</if>
 	       <if test="v_2 != null and v_2 != ''" >v_2,</if>
@@ -5502,6 +5503,7 @@ order by lm.xzqhdm asc, fun_scxdnf1(jh.xmbm) desc, substr(lx.ghlxbm,0,1) desc, j
 	    </trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides="," >
 	      <if test="formname != null and formname != ''" >sys_guid(),#{formname}||#{formdate},</if>
+	      <if test="treeno != null and treeno != ''" >#{treeno},</if>
 	      <if test="v_0 != null and v_0 != ''" >#{v_0},</if>
 	      <if test="v_1 != null and v_1 != ''" >#{v_1},</if>
 	      <if test="v_2 != null and v_2 != ''" >#{v_2},</if>
@@ -5679,7 +5681,7 @@ order by lm.xzqhdm asc, fun_scxdnf1(jh.xmbm) desc, substr(lx.ghlxbm,0,1) desc, j
 	</delete>
 
 	<select id="getghbbcx" parameterType="elist" resultType="elist">
-		select * from BBJCXXB_SJ where FORMID=#{formname}||#{formdate}
+		select * from BBJCXXB_SJ where FORMID=#{formname}||#{formdate} order by xuh asc
 	</select>
 	
 </mapper>
