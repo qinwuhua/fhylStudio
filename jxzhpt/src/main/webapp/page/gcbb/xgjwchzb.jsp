@@ -153,6 +153,7 @@
 				type:"post",
 				dataType:"JSON",
 				success:function(msg){
+					datalist=msg;
 					disLoadjzt();
 						for ( var x = 0; x < msg.length; x++) {
 							var tr="";
@@ -207,6 +208,22 @@
 		var data="flag=flag&gcglwqgz.tiaojian="+xmlx+"&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybsj").datebox("getValue").substr(0,4)+"&gcglwqgz.ybyf="+$("#ybsj").datebox("getValue").substr(5,2)+"&gcglwqgz.xzqh="+xzqhstr+"&gcglwqgz.ybsj="+$("#ybsj").datebox("getValue");
 		window.location.href="/jxzhpt/gcybb/getXgjwchzb.do?"+data;
 	}	
+	
+	var datalist;
+	function ghbb(){
+		if(datalist==null){
+			alert("当前尚无查询结果，不能固化版本");
+			return;
+		}
+		YMLib.Var.formname='xgjwchzb';
+		YMLib.UI.createWindow('lxxx','将查询结果固化为版本','ghbbxz.jsp','lxxx',400,400);
+	}
+	function ghbbcx(){
+		
+		YMLib.Var.formname='xgjwchzb';
+		YMLib.UI.createWindow('lxxx','固化版本查询','ghbbcx.jsp','lxxx',400,400);
+	}
+	
 	</script>
 	<style type="text/css">
 <!--
@@ -289,7 +306,16 @@ text-decoration:none;
                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()" />
 								 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: -50%;" />
-        				</td>	</tr></table>
+        						<img alt="固化版本" src="${pageContext.request.contextPath}/images/Button/ghbb1.png" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/ghbb2.png'"
+                                	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/ghbb1.png' " onclick="ghbb()" style="vertical-align: -50%;" />
+        						<img alt="固化版本查询" src="${pageContext.request.contextPath}/images/Button/ghbbcx1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/ghbbcx2.gif'"
+                                	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/ghbbcx1.gif' " onclick="ghbbcx()" style="vertical-align: -50%;" />
+        						
+        				
+        				</td>	
+        				
+        				
+        				</tr></table>
         					      					
         				</div>
         			</fieldset>

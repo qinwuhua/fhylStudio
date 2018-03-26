@@ -62,7 +62,12 @@ function ghbbcx(){
 	var formdate=$("#formdate").combobox('getValue');
 	//if(parent.YMLib.Var.formname=='xgjwcmxb')
 	xgjwcmxbghcx(formdate);
-	
+	if(parent.YMLib.Var.formname=='xgjwchzb')
+		xgjwchzbghcx(formdate);
+	if(parent.YMLib.Var.formname=='lmgzwcb')
+		lmgzwcbghcx(formdate);
+	if(parent.YMLib.Var.formname=='zhhfwcb')
+		zhhfwcbghcx(formdate);
 	
 }
 function xgjwcmxbghcx(formdate){
@@ -108,8 +113,229 @@ function xgjwcmxbghcx(formdate){
 		}
 	});
 }
+function xgjwchzbghcx(formdate){
+	var xmnf=parent.$("#jhxdnf").combobox("getValues");
+	if(xmnf.join(",").substr(0,1)==',')
+	xmnf=xmnf.join(",").substr(1,xmnf.join(",").length).split(',');
+	xmnf.sort(function (x,y) {
+        return y-x;
+    });
+	var biaotou = parent.$("#biaotou");
+	var str1='';
+	var str2='';
+	var str3='';
+	var min=xmnf[xmnf.length-1];
+	var max=xmnf[0];
+	var len=(xmnf.length+1)*1000+"px";
+	parent.$("#kdtb").attr('width',len);
+	var sv="v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8,v_9,v_10,v_11,v_12,v_13,v_14,v_15,v_16,v_17";
+	var l=18;
+	for(var i=xmnf.length-1;i>=0;i--){
+		sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;
+		str1=str1+'<td colspan="8">计划下达及完成情况</td>';
+		str2=str2+'<td rowspan="1" colspan="2">'+xmnf[i]+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">累计完成投资（万元）</td><td rowspan="2">本年到位车购税（万元）</td><td rowspan="2">累计到位车购税（万元）</td>';
+		str3=str3+'<td>项目数量</td><td>计划里程（公里）</td>';
+	}
+	sv+=",v_"+l;l++;
+	var ss=sv.split(",");
+	biaotstr='<tr><td rowspan="3">序号</td><td rowspan="3">设区市</td><td colspan="16">计划下达及完成情况</td>'
+	+str1+'<td rowspan="3">备注</td></tr>'
+	+'<td rowspan="1" colspan="2">'+min+'-'+max+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">累计完成投资（万元）</td><td rowspan="2">本年到位资金（万元）</td><td rowspan="2">累计到位资金（万元）</td><td rowspan="2">本年到位车购税（万元）</td><td rowspan="2">累计到位车购税（万元）</td><td rowspan="2">工程完成比例（规模）</td><td rowspan="2">'+max+'年目标任务里程（公里）</td><td rowspan="2">'+max+'年目标任务投资（万元）</td><td rowspan="2">'+max+'年目标任务已完成里程（公里）</td><td rowspan="2">目标任务完成比例（规模）</td><td rowspan="2">目标任务总投资完成比例</td>'
+	+str2+'</tr>'
+	+'<td>项目数量</td><td>计划里程（公里）</td>'
+	+str3+'</tr>';
+	biaotou.empty();
+	biaotou.append(biaotstr);
+	var tbody = parent.$("#wqgzlist");
+	tbody.empty();
+	
+	loadjzt();
+	$.ajax({
+		url:"/jxzhpt/gcybb/getghbbcx.do",
+		data:"excel_list.formname="+parent.YMLib.Var.formname+"&excel_list.formdate="+formdate,
+		type:"post",
+		dataType:"JSON",
+		success:function(msg){
+			parent.datalist=msg;
+			disLoadjzt();
+			if (msg != null) {
+				for ( var x = 0; x < msg.length; x++) {
+					var tr="";
+					if(x==0){
+						tr="<tr>";
+						for ( var j = 0; j < ss.length; j++) {
+							if(ss[j]=='v_0'){
+								tr+="<td colspan='2'>"+msg[x][ss[j]]+"</td>";
+								j++;
+							}else{
+								tr+="<td>"+msg[x][ss[j]]+"</td>";
+							}
+						}
+						tr+="</tr>";
+					}else{
+						var tr="<tr>";
+						for ( var j = 0; j < ss.length; j++) {
+							tr+="<td>"+msg[x][ss[j]]+"</td>";
+						}
+						tr+="</tr>";
+					}
+					tbody.append(tr);
+				}
+			}
+			closewin();
+		}
+	});
+}
 
 
+function lmgzwcbghcx(formdate){
+	var xmnf=parent.$("#jhxdnf").combobox("getValues");
+	if(xmnf.join(",").substr(0,1)==',')
+	xmnf=xmnf.join(",").substr(1,xmnf.join(",").length).split(',');
+	xmnf.sort(function (x,y) {
+        return y-x;
+    });
+	
+	var biaotou = parent.$("#biaotou");
+	var str1='';
+	var str2='';
+	var str3='';
+	var min=xmnf[xmnf.length-1];
+	var max=xmnf[0];
+	var len=(xmnf.length+1)*1000+"px";
+	parent.$("#kdtb").attr('width',len);
+	var sv="v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8,v_9,v_10,v_11,v_12";
+	var l=13;
+	for(var i=xmnf.length-1;i>=0;i--){
+		sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;
+		str1=str1+'<td colspan="6">计划下达及完成情况</td>';
+		str2=str2+'<td rowspan="1" colspan="2">'+xmnf[i]+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">工程完成比例</td>';
+		str3=str3+'<td>项目数量</td><td>计划里程（公里）</td>';
+	}
+	sv+=",v_"+l;l++;
+	var ss=sv.split(",");
+	biaotstr='<tr><td rowspan="3">序号</td><td rowspan="3">设区市</td><td colspan="11">计划下达及完成情况</td>'
+	+str1+'<td rowspan="3">备注</td></tr>'
+	+'<td rowspan="1" colspan="2">'+min+'-'+max+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">累计完成投资（万元）</td><td rowspan="2">本年到位资金（万元）</td><td rowspan="2">累计到位资金（万元）</td><td rowspan="2">工程完成比例</td><td rowspan="2">'+max+'年目标任务里程（公里）</td><td rowspan="2">'+max+'年目标任务已完成里程（公里）</td>'
+	+str2+'</tr>'
+	+'<td>项目数量</td><td>计划里程（公里）</td>'
+	+str3+'</tr>';
+	biaotou.empty();
+	biaotou.append(biaotstr);
+	var tbody = parent.$("#wqgzlist");
+	tbody.empty();
+	loadjzt();
+	$.ajax({
+		url:"/jxzhpt/gcybb/getghbbcx.do",
+		data:"excel_list.formname="+parent.YMLib.Var.formname+"&excel_list.formdate="+formdate,
+		type:"post",
+		dataType:"JSON",
+		success:function(msg){
+			parent.datalist=msg;
+			disLoadjzt();
+			if (msg != null) {
+				for ( var x = 0; x < msg.length; x++) {
+					var tr="";
+					if(x==0){
+						tr="<tr>";
+						for ( var j = 0; j < ss.length; j++) {
+							if(ss[j]=='v_0'){
+								tr+="<td colspan='2'>"+msg[x][ss[j]]+"</td>";
+								j++;
+							}else{
+								tr+="<td>"+msg[x][ss[j]]+"</td>";
+							}
+						}
+						tr+="</tr>";
+					}else{
+						var tr="<tr>";
+						for ( var j = 0; j < ss.length; j++) {
+							tr+="<td>"+msg[x][ss[j]]+"</td>";
+						}
+						tr+="</tr>";
+					}
+					tbody.append(tr);
+				}
+			}
+			closewin();
+		}
+	});
+	
+}
+
+function zhhfwcbghcx(formdate){
+	var xmnf=parent.$("#jhxdnf").combobox("getValues");
+	if(xmnf.join(",").substr(0,1)==',')
+	xmnf=xmnf.join(",").substr(1,xmnf.join(",").length).split(',');
+	xmnf.sort(function (x,y) {
+        return y-x;
+    });
+	var biaotou = parent.$("#biaotou");
+	var str1='';
+	var str2='';
+	var str3='';
+	var min=xmnf[xmnf.length-1];
+	var max=xmnf[0];
+	var len=(xmnf.length+1)*1000+"px";
+	parent.$("#kdtb").attr('width',len);
+	var sv="v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8";
+	var l=9;
+	for(var i=xmnf.length-1;i>=0;i--){
+		sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;
+		str1=str1+'<td colspan="7">计划下达及完成情况</td>';
+		str2=str2+'<td rowspan="1" colspan="3">'+xmnf[i]+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">工程完成比例</td>';
+		str3=str3+'<td>项目数量</td><td>计划里程（公里）</td><td>中央或省统筹资金（万元）含续建</td>';
+	}
+	sv+=",v_"+l;l++;
+	var ss=sv.split(",");
+	biaotstr='<tr><td rowspan="3">序号</td><td rowspan="3">设区市</td><td colspan="7">计划下达及完成情况</td>'
+	+str1+'<td rowspan="3">备注</td></tr>'
+	+'<td rowspan="1" colspan="3">'+min+'-'+max+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">工程完成比例</td>'
+	+str2+'</tr>'
+	+'<td>项目数量</td><td>计划里程（公里）</td><td>中央或省统筹资金（万元）含续建</td>'
+	+str3+'</tr>';
+	biaotou.empty();
+	biaotou.append(biaotstr);
+	var tbody = parent.$("#wqgzlist");
+	tbody.empty();
+	loadjzt();
+	$.ajax({
+		url:"/jxzhpt/gcybb/getghbbcx.do",
+		data:"excel_list.formname="+parent.YMLib.Var.formname+"&excel_list.formdate="+formdate,
+		type:"post",
+		dataType:"JSON",
+		success:function(msg){
+			parent.datalist=msg;
+			disLoadjzt();
+			if (msg != null) {
+				for ( var x = 0; x < msg.length; x++) {
+					var tr="";
+					if(x==0){
+						tr="<tr>";
+						for ( var j = 0; j < ss.length; j++) {
+							if(ss[j]=='v_0'){
+								tr+="<td colspan='2'>"+msg[x][ss[j]]+"</td>";
+								j++;
+							}else{
+								tr+="<td>"+msg[x][ss[j]]+"</td>";
+							}
+						}
+						tr+="</tr>";
+					}else{
+						var tr="<tr>";
+						for ( var j = 0; j < ss.length; j++) {
+							tr+="<td>"+msg[x][ss[j]]+"</td>";
+						}
+						tr+="</tr>";
+					}
+					tbody.append(tr);
+				}
+			}
+			closewin();
+		}
+	});
+	
+}
 
 </script>
 
