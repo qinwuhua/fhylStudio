@@ -6305,7 +6305,7 @@ public class GcybbController extends BaseActionSupport{
 						et.add(new Excel_tilte("项目完成投资（万元）",2,4,28,28));
 						et.add(new Excel_tilte("完成工程量（公里）",2,2,29,33));				
 						et.add(new Excel_tilte("新增资金到位（万元）",2,4,34,34));
-						et.add(new Excel_tilte("新增完成工作量（万元）",2,4,35,35));
+						et.add(new Excel_tilte("新增完成工作量（公里）",2,4,35,35));
 						et.add(new Excel_tilte("新增项目完成投资（万元）",2,4,36,36));
 						et.add(new Excel_tilte("累计资金到位（万元）",2,2,37,40));
 						et.add(new Excel_tilte("项目完成投资（万元）",2,4,41,41));

@@ -57,12 +57,16 @@
 		    idField: 'lsxmid', //主键
 		    queryParams: {
 		    	xzqh:xzqhstr,
-		    	'lxsh.jsxz':$("#jsxz").combobox('getValues').join(',')
+		    	'lxsh.jsxz':$("#jsxz").combobox('getValues').join(','),
+		    	'lxsh.xmbm':$("#xmbm").val(),
+		    	'lxsh.ghlxbm':$("#ghlxbm").val(),
+		    	'lxsh.xmmc':$("#xmmc").val()
 			},
 			frozenColumns:[[
 				{field:'xzqhdm',title:'设区市',width:60,align:'center',rowspan:2},
 		        {field:'xzqh',title:'县（市、区）',width:100,align:'center',rowspan:2},
 		        {field:'ghlxbm',title:'规划路线编码',width:100,align:'center',rowspan:2},
+		        {field:'lxbm',title:'原路线编码',width:100,align:'center',rowspan:2},
 		        {field:'xmmc',title:'项目名称',width:180,align:'center',rowspan:2},
 		        {field:'xmbm',title:'原项目库编码',width:120,align:'center',rowspan:2,editor:{type: 'text',options:{required:false}}},
 			]],
@@ -71,6 +75,8 @@
 		        {field:'tsdq',title:'特殊地区',width:100,align:'center',rowspan:2},
 		        {field:'ghqdzh',title:'规划起点桩号',width:100,align:'center',rowspan:2},
 		        {field:'ghzdzh',title:'规划止点桩号',width:100,align:'center',rowspan:2},
+		        {field:'qdzh',title:'原起点桩号',width:100,align:'center',rowspan:2},
+		        {field:'zdzh',title:'原止点桩号',width:100,align:'center',rowspan:2},
 		        {field:'jsxz',title:'建设性质',width:100,align:'center',rowspan:2},
 		        //{field:'xmbm',title:'项目编码',width:100,align:'center',rowspan:2},
 		        {title:'现技术等级（公里）',colspan:6},
@@ -367,14 +373,20 @@ text-decoration:none;
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
         						<tr height="32">
         						<td align="right">行政区划：</td>
-        						<td><select id="xzqh" style="width:150px;"></select></td>
+        						<td><select id="xzqh" style="width:180px;"></select></td>
         						<td align="right">建设性质：</td>
 		 						<td><select class="easyui-combobox" name="jsxz" id="jsxz" style="width: 130px;"data-options="editable:false,panelHeight:'auto',multiple:true,onSelect:onSelect">
 									<option value="改建,路面改造,新建">全部</option>
 									<option value="改建">改建</option>
 									<option value="路面改造">路面改造</option>
 									<option value="新建">新建</option>
-								</select></td>												
+								</select></td>
+							    <td align="right">项目编码：</td>
+        						<td><input id='xmbm' type="text" style="width:100px" /></td>
+        						<td align="right">规划路线编码：</td>
+        						<td><input id='ghlxbm' type="text" style="width:100px" /></td>	
+								<td align="right">项目名称：</td>
+        						<td><input id='xmmc' type="text" style="width:120px" /></td>												
 							</tr>
 							
         					<tr height="32">
