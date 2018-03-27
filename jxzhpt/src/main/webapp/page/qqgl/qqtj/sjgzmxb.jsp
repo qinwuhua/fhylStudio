@@ -181,7 +181,7 @@
 		
  		var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr
 		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',')
-		+"&type="+$("#jsxz").val()+"&gcglabgc.endDate="+enddate+"&gcglabgc.xmbm="+xmbm; 
+		+"&type="+$("#jsxz").val()+"&gcglabgc.endDate="+enddate+"&gcglabgc.xmbm="+xmbm+"&excel_list.xzqhdm="+$.cookie('dist2'); 
 		//var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr;
 		//alert(data);
 		var tbody = $("#abgclist");
@@ -346,7 +346,7 @@ text-decoration:none;
 									</tr>
 									<tr>
 										<td rowspan="3" style="width: 60px;">序号</td>		
-										<td rowspan="3" style="width: 380px;">设区市</td>
+										<td rowspan="3" style="width: 500px;">设区市</td>
 										<td rowspan="3" style="width: 380px;">县（市、区）</td>
 										<td rowspan="3" style="width: 125px;">特殊地区</td>
 										<td rowspan="3" style="width: 125px;">项目编码</td>
