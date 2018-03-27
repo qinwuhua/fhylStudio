@@ -68,7 +68,8 @@ function ghbbcx(){
 		lmgzwcbghcx(formdate);
 	if(parent.YMLib.Var.formname=='zhhfwcb')
 		zhhfwcbghcx(formdate);
-	
+	if(parent.YMLib.Var.formname=='yhdzxwcb')
+		yhdzxwcbghcx(formdate);
 }
 function xgjwcmxbghcx(formdate){
 	var sstr;
@@ -336,6 +337,40 @@ function zhhfwcbghcx(formdate){
 	});
 	
 }
+
+function yhdzxwcbghcx(formdate){
+	var ssstr="v_0";
+	for(var i=1;i<110;i++){
+		ssstr+=",v_"+i;
+	}
+	var ss=ssstr.split(",");
+	var tbody = parent.$("#abgclist");
+	tbody.empty();
+
+	loadjzt();
+	$.ajax({
+		url:"/jxzhpt/gcybb/getghbbcx.do",
+		data:"excel_list.formname="+parent.YMLib.Var.formname+"&excel_list.formdate="+formdate+"&excel_list.xzqhdm="+$.cookie('dist2'),
+		type:"post",
+		dataType:"JSON",
+		success:function(msg){
+			parent.datalist=msg;
+			disLoadjzt();
+			if (msg != null) {
+				for ( var i = 0; i < msg.length; i++) {
+					var tr="<tr>";
+					for ( var j = 0; j < ss.length; j++) {
+						tr+="<td>"+msg[i][ss[j]]+"</td>";
+					}
+					
+					tr+="</tr>";
+					tbody.append(tr);
+				}
+				}
+			}
+	});
+}
+
 
 </script>
 
