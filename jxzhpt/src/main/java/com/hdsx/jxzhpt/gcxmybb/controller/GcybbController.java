@@ -4996,7 +4996,7 @@ public class GcybbController extends BaseActionSupport{
 				//查总合list
 				//getcxtj
 				gcglabgc.setJhnd(getcxtj("xd.jhnf",gcglabgc.getJhnd()));
-				List<Excel_list> eL=gcybbServer.getYhdzxwcb(gcglabgc);
+				List<Excel_list> eL= (List<Excel_list>) getRequest().getSession().getAttribute("yhdzxwcb") ;
 				ExcelData eldata=new ExcelData();//创建一个类
 				eldata.setTitleName("全省普通国省干线养护大中修工程完成情况表");//设置第一行 
 				eldata.setSheetName("养护大中修");//设置sheeet名
@@ -5200,7 +5200,7 @@ public class GcybbController extends BaseActionSupport{
 			//getcxtj
 			gcglabgc.setJhnd(getcxtj("xd.jhnf",gcglabgc.getJhnd()));
 			List<Excel_list> list1=gcybbServer.getYhdzxwcb(gcglabgc);
-			
+			getRequest().getSession().setAttribute("yhdzxwcb", list1);
 			JsonUtils.write(list1, getresponse().getWriter());
            }                                                     
 		} catch (Exception e) {

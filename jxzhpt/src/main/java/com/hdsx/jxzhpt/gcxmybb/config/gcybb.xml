@@ -5447,7 +5447,7 @@ order by lm.xzqhdm asc, fun_scxdnf1(jh.xmbm) desc, substr(lx.ghlxbm,0,1) desc, j
 	       <if test="v_98 != null and v_98 != ''" >v_98,</if>
 	       <if test="v_99 != null and v_99 != ''" >v_99,</if>
 	       
-	       <if test="v_100 != null and v_100 != ''" >v_100</if>
+	       <if test="v_100 != null and v_100 != ''" >v_100,</if>
 	       <if test="v_101 != null and v_101 != ''" >v_101,</if>
 	       <if test="v_102 != null and v_102 != ''" >v_102,</if>
 	       <if test="v_103 != null and v_103 != ''" >v_103,</if>
