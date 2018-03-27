@@ -22,6 +22,7 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.gcxmybb.server.GcybbServer;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
+import com.hdsx.jxzhpt.utile.CalculateGrantsAndAwards;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
@@ -1636,5 +1637,76 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 	@Override
 	public List<Excel_list> getghbbcx(Excel_list excel_list) {
 		return queryList("getghbbcx",excel_list);
+	}
+
+	@Override
+	public List<Excel_list> getSjgzjdxxb(Gcglabgc gcglabgc) {
+		List<Excel_list> result = new ArrayList<Excel_list>();
+		//ObjectMapper mapper = new ObjectMapper();
+        try {
+			//List<Lxsh> cgs = mapper.readValue(lxsh.getCgs(),new TypeReference<List<Lxsh>>() { });
+			//List<Lxsh> dftz = mapper.readValue(lxsh.getDftz(),new TypeReference<List<Lxsh>>() { });
+			int rowNum = 0; 
+			result = queryList("getSjgzjdxxb", gcglabgc);
+			for(int i = 0; i < result.size();i++) {
+				rowNum ++;
+				result.get(i).setV_0(rowNum+"");
+				/*if (result.get(i).getV_15()==""||result.get(i).getV_15()==null) {
+					result.get(i).setV_15(cgs.get(i).getCgs());
+				}
+				if (result.get(i).getV_17()==""||result.get(i).getV_17()==null) {
+					result.get(i).setV_17(dftz.get(i).getDftz());
+				}*/
+		        List<String> xzqhStr  =   new  ArrayList<String>();
+				String buf = "";
+				int a = result.get(i).getV_3().indexOf("市")+1;
+				if (result.get(i).getV_3().contains(",")) {
+					String[] strs=result.get(i).getV_3().split(",");
+					for(int j=0;j<strs.length;j++){
+						xzqhStr.add(strs[j]);
+					}
+					List<String> newList = new ArrayList<String>(new HashSet<String>(xzqhStr));
+			        for(int x = 0; x<newList.size(); x++) {
+			            	buf=buf+newList.get(x).substring(a)+",";
+							result.get(i).setV_3(buf.substring(0, buf.length()-1));
+			        }
+				}else {
+					String subs = result.get(i).getV_3().substring(a);
+					result.get(i).setV_3(subs);
+				}
+				
+				if (result.get(i).getV_15() == null || result.get(i).getV_15()=="") {
+					//计算部级补助标准
+					String ministryGrants = String.valueOf(CalculateGrantsAndAwards.calculateGrantsFromMinistry(
+							result.get(i).getV_6(),result.get(i).getV_2(),result.get(i).getV_7(),result.get(i).getV_37(),result.get(i).getV_4(),
+							result.get(i).getV_14(),result.get(i).getV_36(),result.get(i).getV_11(),result.get(i).getV_12(),result.get(i).getV_13()));
+					result.get(i).setV_15(ministryGrants);
+				}
+				if (result.get(i).getV_16() == null || result.get(i).getV_16()=="") {
+					//计算省级补助标准
+					String provinceGrants = String.valueOf(CalculateGrantsAndAwards.calculateGrantsFromProvince(result.get(i).getV_6(),result.get(i).getV_7(),
+	    					result.get(i).getV_37(),result.get(i).getV_14(),result.get(i).getV_36(),result.get(i).getV_11(),result.get(i).getV_12(),result.get(i).getV_13()));
+					result.get(i).setV_16(provinceGrants);
+				}
+				double ztzVar = 0;
+				double sbzVar = 0;
+				double bbzVar = 0;
+				if (result.get(i).getV_14() != null && result.get(i).getV_14().length() != 0) {
+					ztzVar = Double.parseDouble(result.get(i).getV_14());
+				} 
+				if (result.get(i).getV_15() != null && result.get(i).getV_15().length() != 0) {
+					bbzVar = Double.parseDouble(result.get(i).getV_15());
+				} 
+				if (result.get(i).getV_16() != null && result.get(i).getV_16().length() != 0) {
+					sbzVar = Double.parseDouble(result.get(i).getV_16());
+				} 
+				int dfzc = (int) Math.round(ztzVar-bbzVar-sbzVar);
+				result.get(i).setV_17(String.valueOf(dfzc));
+				
+			}
+        } catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return result;
 	}
 }

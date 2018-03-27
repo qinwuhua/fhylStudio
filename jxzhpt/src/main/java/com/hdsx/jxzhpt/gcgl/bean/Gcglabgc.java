@@ -53,6 +53,14 @@ public class Gcglabgc implements Serializable {
 	private String endDate;
 	private String bnzjdw;
 	
+	private String ybrq;
+
+	public String getYbrq() {
+		return ybrq;
+	}
+	public void setYbrq(String ybrq) {
+		this.ybrq = ybrq;
+	}
 	public String getBnzjdw() {
 		return bnzjdw;
 	}

@@ -5165,7 +5165,7 @@ group by bk.xzqhdm order by bk.xzqhdm
 	select '' v_0,'合计' v_1, '' v_2,'' v_3,'' v_4, '' v_5,'' v_6,'' v_7,'' v_8, '' v_9, '' v_10,'' v_11, '' v_12,'' v_13, nvl(sum(lx.zlc),0) v_14, nvl(sum(jh.pfztz),0) v_15, nvl(sum(jh.bbzzj),0) v_16, nvl(sum(jh.dfzc),0) v_17, nvl(sum(xd.xdztz),0) v_18, nvl(sum(xd.xdbtz),0) v_19,nvl(sum(gx1.wclc),0) v_20,
 '' v_21,'' v_22,'' v_23,nvl(sum(gc1.pfztz),0) v_24,nvl(sum(gc1.cgsdwzj),0) v_25,nvl(sum(gc1.dfzc),0) v_26,nvl(sum(gc1.qt),0) v_27,nvl(sum(gx2.wcztz),0) v_28,nvl(sum(gx2.wclc),0) v_29,nvl(sum(gx2.yilc),0) v_30, nvl(sum(gx2.erlc),0) v_31, nvl(sum(gx2.sanlc),0) v_32, nvl(sum(gx2.silc),0) v_33,
 nvl(sum(gc3.pfztz),0) v_34,nvl(sum(gx4.wclc),0) v_35,nvl(sum(gx4.wcztz),0) v_36,nvl(sum(gc2.pfztz),0) v_37,nvl(sum(gc2.cgsdwzj),0) v_38,nvl(sum(gc2.dfzc),0) v_39,nvl(sum(gc2.qt),0) v_40,nvl(sum(gx3.wcztz),0) v_41,nvl(sum(gx3.wclc),0) v_42,nvl(sum(gx3.yilc),0) v_43, nvl(sum(gx3.erlc),0) v_44,
- nvl(sum(gx3.sanlc),0) v_45, nvl(sum(gx3.silc),0) v_46,nvl(sum(lx.zlc),0)-nvl(sum(gx3.wclc),0) v_47,'' v_48
+ nvl(sum(gx3.sanlc),0) v_45, nvl(sum(gx3.silc),0) v_46,nvl(sum(lx.zlc),0)-nvl(sum(gx3.wclc),0) v_47,'' v_48,'360000' xzqhdm
 from jhsh_lmgz jh
 left join lxsh_lmgz lm on jh.xmbm = lm.xmbm
 left join (select xmid, max(decode(sffirst,'1',ghlxbm))ghlxbm,max(decode(sffirst,'1',ghqdzh))ghqdzh,max(decode(sffirst,'1',ghzdzh))ghzdzh,
@@ -5774,5 +5774,30 @@ where jh.xdzt in ('1')
 		<if test="xzqhdm != null and xzqhdm != ''" >and xzqhdm like #{xzqhdm}||'%'</if>
 		order by xuh asc
 	</select>
-	
+	<select id="getSjgzjdxxb" parameterType="gcglabgc" resultType="elist">
+	select to_char(rownum) v_0,gt.xmbm v_1,(select name from xtgl_xzqh where id in gt.XZQHDM) v_2,xzqh v_3,tsdq v_4,xmmc v_5,ghlxbm v_6,xmklx v_7,
+  wq.xmbm v_8,decode(gt.JSXZ,'改建',sanlc,'路面改造',sanlc,'新建',jhsanlc)+decode(gt.JSXZ,'改建',silc,'路面改造',silc,'新建',jhsilc) 
+       + decode(gt.JSXZ,'改建',dwlc,'路面改造',dwlc,'新建',jhdwlc) v_9,decode(gt.JSXZ,'改建',yilc,'路面改造',yilc,'新建',jhyilc)+decode(gt.JSXZ,'改建',erlc,'路面改造',erlc,'新建',jherlc)v_10,
+  decode(gt.JSXZ,'改建',jhyilc,'路面改造',yilc,'新建',yilc)v_11,decode(gt.JSXZ,'改建',jherlc,'路面改造',erlc,'新建',erlc) v_12,decode(gt.JSXZ,'改建',jhsanlc,'路面改造',sanlc,'新建',sanlc) v_13,
+ round(ztz,0) v_14,cgs v_15,gt.sbzzj v_16, '' v_17, gt.GKPFWH v_18, gt.SJPFWH v_19, wq.sgtpf v_20,gt.SCXDNF v_21,gt.XDWH v_22,wq.kglc v_23,wq.wglc v_24,
+ wq.wctz v_25,'0' v_26,
+ case when nvl(jd.wclc,0)!=0 or nvl(jd.bclc,0)!=0 or nvl(jd.wcztz,0)!=0 or nvl(jd.bcztz,0)!=0 then '1' else '0' end v_27,
+ case when nvl(jd.wclc,0)=0 and nvl(jd.bclc,0)=0 and nvl(jd.wcztz,0)=0 and nvl(jd.bcztz,0)=0 then '1' else '0' end v_28,
+ gt.SJKGSJ v_29,case when gt.SJKGSJ is not null and gt.SJWGSJ is null then gt.yjwgsj else gt.SJWGSJ end v_30,
+ nvl(jd.wclc,0) v_31,nvl(jd.bclc,0) v_32,nvl(jd.wcztz,0) v_33,nvl(jd.bcztz,0) v_34,wq.bz v_35,gt.jaf v_36,gt.jsxz v_37
+   from sjgz_tjb gt
+     left join wnjh_qqxmtjb wq on gt.lsxmid = wq.wnjhid
+     left join (select xmbm,sum(case when to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0) else 0 end)wclc,
+       sum(case when to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0) else 0 end)wcztz,          
+       sum(case when substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0) else 0 end)bclc,
+       sum(case when substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0) else 0 end)bcztz  
+   from gcgl_xmjd group by xmbm)jd on gt.lsxmid = jd.xmbm
+        <if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
+		<if test="jsxz !='' and jsxz != null ">
+			${jsxz}
+		</if>
+order by gt.XZQHDM asc
+	</select>
 </mapper>

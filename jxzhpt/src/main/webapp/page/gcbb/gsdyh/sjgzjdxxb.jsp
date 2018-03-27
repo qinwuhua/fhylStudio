@@ -52,16 +52,10 @@
 		showTjb();
 	});
 
-	function showTjb(){
-		
-		//var nf=$("#ddlYear").val();
-		
+	function showTjb(){		
 		var enddate = $("#enddate").datebox("getValue");
 		var nf=enddate.substring(0, 4);
 		var yf=enddate.substring(5, 7);
-		
-		var bnwglc = nf+'年度完工里程（公里）';
-		var bnwcztz = nf+'年度完成投资（万元）';
 		
 		var dfzcJson = [];
 		var  params = [];
@@ -79,207 +73,75 @@
 		}
 				
 		datagrid=$('#datagrid').datagrid({    
-		    //url:'/jxzhpt/gcybb/getSjgzjdhzb.do',
-		    url:'/jxzhpt/qqgl/getSjgzjdxxb.do',
+		    url:'/jxzhpt/gcybb/getSjgzjdxxb.do',
 		    striped:true,
 		    pagination:false,
-		    rownumbers:true,
+		    //rownumbers:true,
 		    checkOnSelect:true,
 		    height:$(window).height()-160,
 		    width:$(window).width()-20,
 		    idField: 'id', //主键
 		    queryParams: {
 		    	xzqh:xzqhstr,
-		    	'lxsh.jsxz':$("#jsxz").combobox('getValues').join(','),
+		    	'gcglabgc.jsxz':$("#jsxz").combobox('getValues').join(','),
 		    	nf:nf,
-		    	//xzqh:xzqhstr,
-		    	'lxsh.ybrq':enddate
+		    	'gcglabgc.ybrq':enddate
 			},
-		    frozenColumns:[[    
-		    	{field:'lsxmbm',title:'项目编码',width:120,align:'center',rowspan:3},
-				{field:'xzqhdm',title:'设区市',width:60,align:'center',rowspan:3},
-		        {field:'xzqh',title:'县（市、区）',width:100,align:'center',rowspan:3},
-		        {field:'tsdq',title:'特殊地区',width:100,align:'center',rowspan:3},
-		        {field:'xmmc',title:'项目名称',width:180,align:'center',rowspan:3},
-		        {field:'ghlxbm',title:'规划路线编码',width:80,align:'center',rowspan:3},
-		        {field:'xmklx',title:'项目库类型',width:80,align:'center',rowspan:3},
-		        {field:'xmbm',title:'项目库编码',width:80,align:'center',rowspan:3}   
+		    frozenColumns:[[
+		    	{field:'v_0',title:'序号',width:30,align:'center',rowspan:3},
+		    	{field:'v_1',title:'项目编码',width:120,align:'center',rowspan:3},
+				{field:'v_2',title:'设区市',width:80,align:'center',rowspan:3},
+		        {field:'v_3',title:'县（市、区）',width:100,align:'center',rowspan:3},
+		        {field:'v_4',title:'特殊地区',width:100,align:'center',rowspan:3},
+		        {field:'v_5',title:'项目名称',width:180,align:'center',rowspan:3},
+		        {field:'v_6',title:'规划路线编码',width:80,align:'center',rowspan:3},
+		        {field:'v_7',title:'项目库类型',width:80,align:'center',rowspan:3},
+		        {field:'v_8',title:'项目库编码',width:80,align:'center',rowspan:3}   
 		    ]], 	
 		   columns:[[
 		        {title:'现状等级（公里）',width:100,align:'center',rowspan:2,colspan:2},
 		        {title:'建设规模（公里）',width:100,align:'center',rowspan:2,colspan:3},
-		        {field:'ztz',title:'总投资（万元）',width:100,align:'center',rowspan:3},
+		        {field:'v_14',title:'总投资（万元）',width:100,align:'center',rowspan:3},
 		        {title:'补助资金（万元）',width:100,align:'center',rowspan:2,colspan:2},
-		        {field:'dfzc',title:'地方自筹（万元）',width:100,align:'center',rowspan:3},
-			    {field:'gkpfwh',title:'工可批复',width:100,align:'center',rowspan:3},
-			    {field:'sjpfwh',title:'初设批复',width:100,align:'center',rowspan:3},
-			    {field:'sgtpf',title:'施工图批复',width:100,align:'center',rowspan:3},
+		        {field:'v_17',title:'地方自筹（万元）',width:100,align:'center',rowspan:3},
+			    {field:'v_18',title:'工可批复',width:100,align:'center',rowspan:3},
+			    {field:'v_19',title:'初设批复',width:100,align:'center',rowspan:3},
+			    {field:'v_20',title:'施工图批复',width:100,align:'center',rowspan:3},
 		        {title:'计划下达情况',width:100,align:'center',rowspan:2,colspan:2},
 		        {title:'项目建设',width:100,align:'center',colspan:12},
-			    {field:'bz',title:'备注',width:100,align:'center',rowspan:3}
+			    {field:'v_35',title:'备注',width:100,align:'center',rowspan:3}
 	         ],[
 			    {title:'2018年项目建设目标',width:100,align:'center',colspan:3},
 			    {title:'项目建设状态',width:100,align:'center',colspan:3},
 			    {title:'项目建设进度情况',width:100,align:'center',colspan:6}
 	         ],[
-				{field:'sanlc',title:'三级及以下',width:100,align:'center',rowspan:1},
-				{field:'erlc',title:'二级及以上',width:100,align:'center',rowspan:1},
-				{field:'jhyilc',title:'升一',width:100,align:'center',rowspan:1},
-				{field:'jherlc',title:'升二',width:100,align:'center',rowspan:1},
-				{field:'jhsanlc',title:'升三',width:100,align:'center',rowspan:1},
-				{field:'cgs',title:'部级补助',width:100,align:'center',rowspan:1},
-				{field:'sbzzj',title:'省级补助',width:100,align:'center',rowspan:1},
-				{field:'scxdnf',title:'计划年份',width:100,align:'center',rowspan:1},
-				{field:'xdwh',title:'计划文号',width:100,align:'center',rowspan:1},
-				{field:'kglc',title:'开工里程（公里）',width:100,align:'center',rowspan:1},
-				{field:'wglc',title:'完工里程（公里）',width:100,align:'center',rowspan:1},
-				{field:'wctz',title:'完成投资（万元）',width:100,align:'center',rowspan:1},
-				{field:'ywg',title:'已完工',width:100,align:'center',rowspan:1},
-				{field:'zj',title:'在建',width:100,align:'center',rowspan:1},
-				{field:'wkg',title:'未开工',width:100,align:'center',rowspan:1},
-				{field:'jskgsj',title:'建设开工时间',width:100,align:'center',rowspan:1},
-				{field:'jswgsj',title:'建设完工时间',width:100,align:'center',rowspan:1},
-				{field:'zwglc',title:'累计已完工（公里）',width:120,align:'center',rowspan:1},
-				{field:'bnwglc',title:bnwglc,width:120,align:'center',rowspan:1},
-				{field:'wcztz',title:'累计完成总投资（万元）',width:120,align:'center',rowspan:1},
-				{field:'bnwcztz',title:bnwcztz,width:120,align:'center',rowspan:1}
+				{field:'v_9',title:'三级及以下',width:100,align:'center',rowspan:1},
+				{field:'v_10',title:'二级及以上',width:100,align:'center',rowspan:1},
+				{field:'v_11',title:'升一',width:100,align:'center',rowspan:1},
+				{field:'v_12',title:'升二',width:100,align:'center',rowspan:1},
+				{field:'v_13',title:'升三',width:100,align:'center',rowspan:1},	
+				{field:'v_15',title:'部级补助',width:100,align:'center',rowspan:1},
+				{field:'v_16',title:'省级补助',width:100,align:'center',rowspan:1},	
+				{field:'v_21',title:'计划年份',width:100,align:'center',rowspan:1},
+				{field:'v_22',title:'计划文号',width:100,align:'center',rowspan:1},
+				{field:'v_23',title:'开工里程（公里）',width:100,align:'center',rowspan:1},
+				{field:'v_24',title:'完工里程（公里）',width:100,align:'center',rowspan:1},
+				{field:'v_25',title:'完成投资（万元）',width:100,align:'center',rowspan:1},
+				{field:'v_26',title:'已完工',width:100,align:'center',rowspan:1},
+				{field:'v_27',title:'在建',width:100,align:'center',rowspan:1},
+				{field:'v_28',title:'未开工',width:100,align:'center',rowspan:1},
+				{field:'v_29',title:'建设开工时间',width:100,align:'center',rowspan:1},
+				{field:'v_30',title:'建设完工时间',width:100,align:'center',rowspan:1},
+				{field:'v_31',title:'累计已完工（公里）',width:120,align:'center',rowspan:1},
+				{field:'v_32',title:nf+'年度完工里程（公里）',width:120,align:'center',rowspan:1},
+				{field:'v_33',title:'累计完成总投资（万元）',width:120,align:'center',rowspan:1},
+				{field:'v_34',title:nf+'年度完成投资（万元）',width:120,align:'center',rowspan:1}
 	         ]],
-		   /*  toolbar: [
-		    	//{ text: '编辑', iconCls: 'icon-edit', handler: function () {}}, '-',
-             { text: '保存', iconCls: 'icon-save', handler: function () {
-                 datagrid.datagrid('hideColumn', 'ck');
-            	 endEditing();
-                 //保存时结束当前编辑的行，自动触发onAfterEdit事件如果要与后台交互可将数据通过Ajax提交后台
-        		 var rows=datagrid.datagrid('getSelections');
-                 if(rows.length==0){
-        			alert("请勾选要保存的数据！");
-        			return;
-        		}else{
-                    if(confirm("确定要保存当前数据？")){
-                        saveQqtjb(rows);
-                    }
-        		}
-             }
-             }, '-',
-             { text: '取消编辑', iconCls: 'icon-redo', handler: function () {
-                 //取消当前编辑行把当前编辑行罢undefined回滚改变的数据,取消选择的行
-                 if(confirm("确定要撤销所有的更改？")){
-                     editRow = undefined;
-                     datagrid.datagrid('hideColumn', 'ck');
-                     datagrid.datagrid("rejectChanges");
-                     datagrid.datagrid("unselectAll");
-                 }
-             }
-             }, '-'], */
 		    onClickCell: function (rowIndex, field, value) {
 		    	beginEditing(rowIndex,field,value);
 		    	datagrid.datagrid('showColumn', 'ck'); 
 		    }
-
 		}); 
-		
-	}
-	
-	var editIndex = undefined;
-	function beginEditing (rowIndex,field,value) {
-		  if (rowIndex != editIndex) {
-		        if (endEditing()) {
-		        	$('#datagrid').datagrid('beginEdit', rowIndex);
-		            editIndex = rowIndex;
-		        } else {
-		            $('#datagrid').datagrid('selectRow', editIndex);
-		        }
-		    }
-	}
-	function endEditing() {
-	    if (editIndex == undefined) { return true; }	    
-	    if ($('#datagrid').datagrid('validateRow', editIndex)) {
-	        $('#datagrid').datagrid('endEdit', editIndex);
-	        editIndex = undefined;	        
-	        return true;
-	    } else {
-	        return false;
-	    }
-	}
-	function saveQqtjb(rows){
-       for(var i=0;i<rows.length;i++){
-    	   alert(rows[i].id);
-        	data="lxsh.id="+rows[i].id+
-        	"&lxsh.sgtpf="+rows[i].sgtpf+
-        	"&lxsh.ywg="+rows[i].ywg+
-        	"&lxsh.zj="+rows[i].zj+
-        	"&lxsh.wkg="+rows[i].wkg+
-        	"&lxsh.jskgsj="+rows[i].jskgsj+
-        	"&lxsh.jswgsj="+rows[i].jswgsj+
-        	"&lxsh.zwglc="+rows[i].zwglc+
-        	"&lxsh.bnwglc="+rows[i].bnwglc+
-        	"&lxsh.wcztz="+rows[i].wcztz+
-        	"&lxsh.bnwcztz="+rows[i].bnwcztz+
-        	"&lxsh.lsxmid="+rows[i].lsxmid+"&lxsh.bz="+rows[i].bz;
-    		$.ajax({
-    			type:'post',
-    			url:'/jxzhpt/qqgl/insertSjgzjdxxb.do',
-    	        data:data,
-    			dataType:'json',
-    			success:function(msg){
-    			}
-    		});
-        }
-		alert("保存成功！");
-	}
-	
-	function zycgscs(row){
-		
-		var tsdqbz = contains(row.tsdq,"原中央苏区");
-		var xzqhbz = contains(row.xzqhdm,"赣州市");
-		
-		 //路总金额
-		var lxgd = accAdd(accMul(row.yjgd,1000),accMul(row.ejgd,500));
-		var lxsd = accAdd(accAdd(accMul(row.yjsd,350),accMul(row.ejsd,350)),accMul(row.sjsd,150));
-		if(true == tsdqbz && false == xzqhbz){
-			lxsd = accMul(lxsd,1.1);
-		} 
-		if(true == xzqhbz){
-			lxsd = accMul(lxsd,1.2);
-		}
-		var lx = accAdd(lxgd,lxsd);
-
-        //独立桥梁总金额
-        var qlgd = accAdd(accDiv(accMul(accMul(row.yjgdql,21),3000),10000),accDiv(accMul(accMul(row.ejgdql,21),3000),10000));
-        var qlsd = accAdd(accAdd(accDiv(accMul(accMul(row.yjsdql,8),3000),10000),accDiv(accMul(accMul(row.ejsdql,8),3000),10000)),accDiv(accMul(accMul(row.sjsdql,8),3000),10000));
-        var ql = accAdd(qlgd,qlsd);
-
-        //独立隧道总金额        
-        var sdgd = accAdd(accDiv( accMul(accMul(row.yjgdsd,21) ,3000 ),10000 ),accDiv(accMul(accMul(row.ejgdsd,21),3000),10000));
-        var sdsd = accAdd(accAdd(accDiv(accMul(accMul(row.yjsdsd,8),3000),10000),accDiv(accMul(accMul(row.ejsdsd,8),3000),10000)),accDiv(accMul(accMul(row.sjsdsd,8),3000),10000));
-        var sd = accAdd(sdgd,sdsd);
-
-        //按路程标准补助桥梁
-        var qlgdbz = accAdd(accMul(accDiv(row.yjgdql,1000),1000),accMul(accDiv(row.ejgdql,1000),500));
-        var qlsdbz = accAdd(accAdd(accMul(accDiv(row.yjsdql,1000),350),accMul(accDiv(row.ejsdql,1000),350)),accMul(accDiv(row.sjsdql,1000),150));
-        var qlbz = accAdd(qlgdbz,qlsdbz);
-
-        //按路程标准补助隧道
-        var sdgdbz = accAdd(accMul(accDiv(row.yjgdsd,1000),1000),accMul(accDiv(row.ejgdsd,1000),500));
-        var sdsdbz = accAdd(accAdd(accMul(accDiv(row.yjsdsd,1000),350),accMul(accDiv(row.ejsdsd,1000),350)),accMul(accDiv(row.sjsdsd,1000),150));
-        var sdbz = accAdd(sdgdbz,sdsdbz);
-        
-		return new Number(accSub(accAdd(lx,accAdd(ql,sd)),accAdd(qlbz,sdbz))).toFixed(0);
-	}
-	
-	//模糊查询字段
-	function contains(str1,str2){
-		if(str1 == "" || str1 == undefined || str1 == null){
-			return false;
-		}else{
-			var data = str1.split(",");
-		        for(var i = 0;i < data.length;i++){	
-		            if(data[i].match(str2+".*") != null){
-		            	return true;
-	 	            }
-		        }
-		        return false;
-		}
 	}
 	
 	function dcExcel(){
@@ -298,11 +160,11 @@
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
-		var param='flag=1'+'&nf='+nf+"&xzqh="+xzqhstr+'&lxsh.jsxz='+encodeURI(encodeURI($("#jsxz").combobox('getValues').join(',')))+"&lxsh.ybrq="+enddate;
+		var param='flag=1'+'&nf='+nf+"&xzqh="+xzqhstr+'&gcglabgc.jsxz='+encodeURI(encodeURI($("#jsxz").combobox('getValues').join(',')))+"&gcglabgc.ybrq="+enddate;
 		var sql=$("#excelcgs").val();
 		var nameValue=$("#exceldfzc").val();    
 		 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{xzqh:xzqhstr},function(){
-				window.location.href="/jxzhpt/qqgl/getSjgzjdxxb.do?"+param;
+				window.location.href="/jxzhpt/gcybb/getSjgzjdxxb.do?"+param;
 			 });		
 	}
 	

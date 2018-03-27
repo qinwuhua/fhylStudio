@@ -72,9 +72,6 @@ public interface WnjhServer {
 	List<Lxsh> queryTjbxx(Lxsh lxsh);
 	boolean insertOrUpdateWnqqtjb(String json);
 	List<Excel_list> exportWnqqtjExcel(Lxsh lxsh);
-	List<Lxsh> getSjgzjdxxb(Lxsh lxsh);
-	List<Excel_list> getSjgzjdxxbExcel(Lxsh lxsh);
-	boolean insertOrUpdateSjgzjdxxb(Lxsh lxsh);
 	List<Excel_list> getSjgzjdhzb(Lxsh lxsh);
 	List<Excel_list> queryXmQqjdhzb2(Lxsh lxsh);
 	List<Excel_list> queryXmQqjdhzb1(Lxsh lxsh);

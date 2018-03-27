@@ -226,11 +226,7 @@
 		<action name="dclwjg" class="wnjhController" method="dclwjg" />
 		<action name="queryTjbxx" class="wnjhController" method="queryTjbxx"/>
 		<action name="insertWnqqtjb" class="wnjhController" method="insertWnqqtjb"/>
-		<action name="exportWnqqtjExcel" class="wnjhController" method="exportWnqqtjExcel"/>
-		
-        <action name="getSjgzjdxxb" class="wnjhController" method="getSjgzjdxxb"/>
-	    <action name="insertSjgzjdxxb" class="wnjhController" method="insertSjgzjdxxb"/>
-	    
+		<action name="exportWnqqtjExcel" class="wnjhController" method="exportWnqqtjExcel"/>	    
 	    <action name="getSjgzjdhzb" class="wnjhController" method="getSjgzjdhzb"/>
 	    <action name="insertSjgzjdhzb" class="wnjhController" method="insertSjgzjdhzb"/>
 	    
