@@ -398,7 +398,7 @@ text-decoration:none;
 								<td><select name="xmlx" id="xmlx" style="width:80px;" ></select></td>
 								<td align="right">技术等级：</td>
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:118px;"></select></td>
-								<td align="right">项目年份：</td>
+								<td align="right">首次下达年份：</td>
         						<td><select id="xmnf" style="width: 75px;"></select></td>
         					</tr>
         					<tr height="29">
