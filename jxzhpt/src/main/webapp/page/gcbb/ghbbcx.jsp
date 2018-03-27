@@ -83,7 +83,7 @@ function xgjwcmxbghcx(formdate){
 	loadjzt();
 	$.ajax({
 		url:"/jxzhpt/gcybb/getghbbcx.do",
-		data:"excel_list.formname="+parent.YMLib.Var.formname+"&excel_list.formdate="+formdate,
+		data:"excel_list.formname="+parent.YMLib.Var.formname+"&excel_list.formdate="+formdate+"&excel_list.xzqhdm="+$.cookie('dist2'),
 		type:"post",
 		dataType:"JSON",
 		success:function(msg){
@@ -152,7 +152,7 @@ function xgjwchzbghcx(formdate){
 	loadjzt();
 	$.ajax({
 		url:"/jxzhpt/gcybb/getghbbcx.do",
-		data:"excel_list.formname="+parent.YMLib.Var.formname+"&excel_list.formdate="+formdate,
+		data:"excel_list.formname="+parent.YMLib.Var.formname+"&excel_list.formdate="+formdate+"&excel_list.xzqhdm="+$.cookie('dist2'),
 		type:"post",
 		dataType:"JSON",
 		success:function(msg){
@@ -227,7 +227,7 @@ function lmgzwcbghcx(formdate){
 	loadjzt();
 	$.ajax({
 		url:"/jxzhpt/gcybb/getghbbcx.do",
-		data:"excel_list.formname="+parent.YMLib.Var.formname+"&excel_list.formdate="+formdate,
+		data:"excel_list.formname="+parent.YMLib.Var.formname+"&excel_list.formdate="+formdate+"&excel_list.xzqhdm="+$.cookie('dist2'),
 		type:"post",
 		dataType:"JSON",
 		success:function(msg){
@@ -301,7 +301,7 @@ function zhhfwcbghcx(formdate){
 	loadjzt();
 	$.ajax({
 		url:"/jxzhpt/gcybb/getghbbcx.do",
-		data:"excel_list.formname="+parent.YMLib.Var.formname+"&excel_list.formdate="+formdate,
+		data:"excel_list.formname="+parent.YMLib.Var.formname+"&excel_list.formdate="+formdate+"&excel_list.xzqhdm="+$.cookie('dist2'),
 		type:"post",
 		dataType:"JSON",
 		success:function(msg){

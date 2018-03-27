@@ -22,6 +22,7 @@
 	<script type="text/javascript">
 	
 		$(function(){
+			if($.cookie('dist2')!='36'){$("#ghbb").hide()}
 			var myDate = new Date();
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth() < 10 ? "0"+(myDate.getMonth()+1) : myDate.getMonth()+1; 
@@ -269,7 +270,7 @@ text-decoration:none;
 								 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: -50%;" />
         				
-        						<img alt="固化版本" src="${pageContext.request.contextPath}/images/Button/ghbb1.png" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/ghbb2.png'"
+        						<img id='ghbb'  alt="固化版本" src="${pageContext.request.contextPath}/images/Button/ghbb1.png" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/ghbb2.png'"
                                 	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/ghbb1.png' " onclick="ghbb()" style="vertical-align: -50%;" />
         						<img alt="固化版本查询" src="${pageContext.request.contextPath}/images/Button/ghbbcx1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/ghbbcx2.gif'"
                                 	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/ghbbcx1.gif' " onclick="ghbbcx()" style="vertical-align: -50%;" />

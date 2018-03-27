@@ -3729,7 +3729,7 @@
 		(case when to_number(v_52)&lt;0 then v_46 else v_51 end) v_51,(case when to_number(v_52)&lt;0 then 0 else v_52 end)v_52,v_53,v_54,v_55,v_56,nvl(v_60,0)+nvl(v_61,0)+nvl(v_62,0)+nvl(v_63,0)+nvl(v_64,0)+nvl(v_65,0)+nvl(v_66,0)+nvl(v_59,0)+nvl(v_58,0) v_57,v_58,v_59,v_60,
 		v_61,v_62,v_63,v_64,v_65,v_66,v_67,v_68,v_69,v_70,
 		v_71,v_72,(case when to_number(v_74)&lt;0 then v_68 else v_73 end) v_73,(case when to_number(v_74)&lt;0 then 0 else v_74 end) v_74,v_75,nvl(v_15,0)-nvl(v_68,0)  v_76,nvl(to_char(decode(v_15,'0','0',null,'0',round(v_68 / v_15 * 100, 1))),'0')||'%' v_77,nvl(to_char(decode(v_19,'0','0',null,'0',round(v_58 / v_19 * 100, 1))),'0')||'%' v_78,
-		nvl(to_char(decode(v_18,'0','0',null,'0',round(v_67 / v_18 * 100, 1))),'0')||'%' v_79,v_80,xzqhdm v_83,v_84 from XGJWCMXB where 1=1
+		nvl(to_char(decode(v_18,'0','0',null,'0',round(v_67 / v_18 * 100, 1))),'0')||'%' v_79,v_80,xzqhdm v_83,v_84,xzqhdm from XGJWCMXB where 1=1
 		
 		    <if test="gydw != null and  gydw != ''">
 		        ${gydw}
@@ -3785,7 +3785,7 @@
      sum(v_49) v_49,sum(v_50) v_50,(case when to_number(sum(v_52))&lt;0 then sum(v_46) else sum(v_51) end) v_51,(case when to_number(sum(v_52))&lt;0 then 0 else sum(v_52) end) v_52,sum(v_53) v_53,sum(v_54) v_54,sum(v_55) v_55,sum(v_56) v_56,
      sum(nvl(v_58,0))+sum(nvl(v_59,0))+sum(nvl(v_60,0))+sum(nvl(v_61,0))+sum(nvl(v_62,0))+sum(nvl(v_63,0))+sum(nvl(v_64,0))+sum(nvl(v_65,0))+sum(nvl(v_66,0)) v_57,sum(v_58) v_58,sum(v_59) v_59,sum(v_60) v_60,sum(v_61) v_61,sum(v_62) v_62,sum(v_63) v_63,sum(v_64) v_64,sum(v_65) v_65,sum(v_66) v_66,sum(v_67) v_67,sum(v_68) v_68,
      sum(v_69) v_69,sum(v_70) v_70,sum(v_71) v_71,sum(v_72) v_72,(case when to_number(sum(v_74))&lt;0 then sum(v_68) else sum(v_73) end) v_73,(case when to_number(sum(v_74))&lt;0 then 0 else sum(v_74) end) v_74,sum(v_75) v_75,sum(nvl(v_15,0))-sum(nvl(v_68,0)) v_76,nvl(to_char(decode(sum(v_15),'0','0',null,'0',round(sum(v_68) / sum(v_15) * 100, 1))),'0')||'%' v_77,nvl(to_char(decode(sum(v_19),'0','0',null,'0',round(sum(v_58) / sum(v_19) * 100, 1))),'0')||'%' v_78,
-     nvl(to_char(decode(sum(v_18),'0','0',null,'0',round(sum(v_67) / sum(v_18) * 100, 1))),'0')||'%' v_79,min(xzqhdm) v_83,min(v_84) v_84
+     nvl(to_char(decode(sum(v_18),'0','0',null,'0',round(sum(v_67) / sum(v_18) * 100, 1))),'0')||'%' v_79,min(xzqhdm) v_83,min(v_84) v_84,min(xzqhdm) xzqhdm
  	from (select * from XGJWCMXB where 1=1
 			    
 		    <if test="gydw != null and  gydw != ''">
@@ -3841,7 +3841,7 @@
      sum(v_49) v_49,sum(v_50) v_50,(case when to_number(sum(v_52))&lt;0 then sum(v_46) else sum(v_51) end) v_51,(case when to_number(sum(v_52))&lt;0 then 0 else sum(v_52) end) v_52,sum(v_53) v_53,sum(v_54) v_54,sum(v_55) v_55,sum(v_56) v_56,
      sum(nvl(v_58,0))+sum(nvl(v_59,0))+sum(nvl(v_60,0))+sum(nvl(v_61,0))+sum(nvl(v_62,0))+sum(nvl(v_63,0))+sum(nvl(v_64,0))+sum(nvl(v_65,0))+sum(nvl(v_66,0)) v_57,sum(v_58) v_58,sum(v_59) v_59,sum(v_60) v_60,sum(v_61) v_61,sum(v_62) v_62,sum(v_63) v_63,sum(v_64) v_64,sum(v_65) v_65,sum(v_66) v_66,sum(v_67) v_67,sum(v_68) v_68,
      sum(v_69) v_69,sum(v_70) v_70,sum(v_71) v_71,sum(v_72) v_72,(case when to_number(sum(v_74))&lt;0 then sum(v_68) else sum(v_73) end) v_73,(case when to_number(sum(v_74))&lt;0 then 0 else sum(v_74) end) v_74,sum(v_75) v_75,sum(nvl(v_15,0))-sum(nvl(v_68,0)) v_76,nvl(to_char(decode(sum(v_15),'0','0',null,'0',round(sum(v_68) / sum(v_15) * 100, 1))),'0')||'%' v_77,nvl(to_char(decode(sum(v_19),'0','0',null,'0',round(sum(v_58) / sum(v_19) * 100, 1))),'0')||'%' v_78,
-     nvl(to_char(decode(sum(v_18),'0','0',null,'0',round(sum(v_67) / sum(v_18) * 100, 1))),'0')||'%' v_79
+     nvl(to_char(decode(sum(v_18),'0','0',null,'0',round(sum(v_67) / sum(v_18) * 100, 1))),'0')||'%' v_79,'36' xzqhdm
  	from (select * from XGJWCMXB where 1=1
 			  
 		    <if test="gydw != null and  gydw != ''">
@@ -5587,7 +5587,7 @@ where jh.xdzt in ('1')
 	       <if test="v_147 != null and v_147 != ''" >v_147,</if>
 	       <if test="v_148 != null and v_148 != ''" >v_148,</if>
 	       <if test="v_149 != null and v_149 != ''" >v_149,</if>
-	       
+	       <if test="xzqhdm != null and xzqhdm != ''" >xzqhdm,</if>
 	    </trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides="," >
 	      <if test="formname != null and formname != ''" >sys_guid(),#{formname}||#{formdate},</if>
@@ -5756,6 +5756,7 @@ where jh.xdzt in ('1')
 	      <if test="v_147 != null and v_147 != ''" >#{v_147},</if>
 	      <if test="v_148 != null and v_148 != ''" >#{v_148},</if>
 	      <if test="v_149 != null and v_149 != ''" >#{v_149},</if>
+	      <if test="xzqhdm != null and xzqhdm != ''" >#{xzqhdm},</if>
 	    </trim>
 	</insert>
 	<select id="queryghbbByNorD" parameterType="elist" resultType="elist">
@@ -5769,7 +5770,9 @@ where jh.xdzt in ('1')
 	</delete>
 
 	<select id="getghbbcx" parameterType="elist" resultType="elist">
-		select * from BBJCXXB_SJ where FORMID=#{formname}||#{formdate} order by xuh asc
+		select * from BBJCXXB_SJ where FORMID=#{formname}||#{formdate} 
+		<if test="xzqhdm != null and xzqhdm != ''" >and xzqhdm like #{xzqhdm}||'%'</if>
+		order by xuh asc
 	</select>
 	
 </mapper>
