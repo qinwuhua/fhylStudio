@@ -4573,7 +4573,7 @@ public class GcybbController extends BaseActionSupport{
 								+ xmlx + ") " + " group by t.xdnf) t1 ";
 						gcybbServer.createybView(viewsql);
 						String[] arr = gcglwqgz.getXmnf().split(",");
-						String sql = "select xzqhmc";
+						String sql = "select xzqhmc,xzqh xzqhdm";
 						String in = "";
 						for (int j = 0; j < arr.length; j++) {
 							if (j == 0)
@@ -4623,7 +4623,6 @@ public class GcybbController extends BaseActionSupport{
 						}
 						sql = sql + " from " + tableName + "  where jhnf in("
 								+ in + ") group by xzqhmc,xzqh order by xzqh";
-						System.out.println(sql);
 						list = gcybbServer.getGjxjmxbsj(sql);
 						NumberFormat nfs = NumberFormat.getInstance();
 						nfs.setRoundingMode(RoundingMode.HALF_UP);//设置四舍五入 
@@ -4735,6 +4734,7 @@ public class GcybbController extends BaseActionSupport{
 								l.setV_0(i + "");
 							}
 							l.setV_1(list.get(i).get("XZQHMC").toString());
+							l.setXzqhdm(list.get(i).get("XZQHDM").toString());
 							DecimalFormat decimalFormat = new DecimalFormat(
 									"#,##0.000");//格式化设置 
 							DecimalFormat decimalFormat2 = new DecimalFormat(
@@ -5403,7 +5403,7 @@ public class GcybbController extends BaseActionSupport{
 			    			
 				gcybbServer.createybView(viewsql);
 				String[] arr=gcglwqgz.getXmnf().split(",");
-				String sql="select xzqhmc";
+				String sql="select xzqhmc,xzqh xzqhdm";
 				String in="";
 				for(int j=0;j<arr.length;j++){
 					if(j==0)
@@ -5488,6 +5488,7 @@ public class GcybbController extends BaseActionSupport{
 					}else {
 						l.setV_0(i+"");
 					}
+					l.setXzqhdm(list.get(i).get("XZQHDM").toString());
 					l.setV_1(list.get(i).get("XZQHMC").toString());
 					DecimalFormat decimalFormat = new DecimalFormat("#,##0.000");//格式化设置 
 					DecimalFormat decimalFormat2 = new DecimalFormat("#,##0");//格式化设置 
@@ -5624,7 +5625,7 @@ public class GcybbController extends BaseActionSupport{
 				    			
 					gcybbServer.createybView(viewsql);
 					String[] arr=gcglwqgz.getXmnf().split(",");
-					String sql="select xzqhmc";
+					String sql="select xzqhmc,xzqh xzqhdm";
 					String in="";
 					for(int j=0;j<arr.length;j++){
 						if(j==0)
@@ -5671,8 +5672,6 @@ public class GcybbController extends BaseActionSupport{
 						//从18开始的
 						int f=9;
 						for(int j=arr.length-1;j>=0;j--){
-							
-							System.out.println(arr[j]);
 							xmsl=MyUtil.add(xmsl, Double.valueOf(hm.get("XMSL"+arr[j]).toString()));
 							xmlc=MyUtil.add(xmlc, Double.valueOf(hm.get("XMLC"+arr[j]).toString()));
 							bstz=MyUtil.add(bstz, Double.valueOf(hm.get("BSTZ"+arr[j]).toString()));
@@ -5717,6 +5716,7 @@ public class GcybbController extends BaseActionSupport{
 							l.setV_0(i+"");
 						}
 						l.setV_1(list.get(i).get("XZQHMC").toString());
+						l.setXzqhdm(list.get(i).get("XZQHDM").toString());
 						DecimalFormat decimalFormat = new DecimalFormat("#,##0.000");//格式化设置 
 						DecimalFormat decimalFormat2 = new DecimalFormat("#,##0");//格式化设置 
 						
