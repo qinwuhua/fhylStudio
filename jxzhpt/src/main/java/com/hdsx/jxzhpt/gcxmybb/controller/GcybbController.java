@@ -6399,6 +6399,7 @@ public class GcybbController extends BaseActionSupport{
 		 public void getghbbcx(){
 			 try {
 				List<Excel_list> list = gcybbServer.getghbbcx(excel_list);
+				getRequest().getSession().setAttribute(excel_list.getFormname(), list);
 				JsonUtils.write(list, getresponse().getWriter());
 			} catch (Exception e) {
 				e.printStackTrace();
