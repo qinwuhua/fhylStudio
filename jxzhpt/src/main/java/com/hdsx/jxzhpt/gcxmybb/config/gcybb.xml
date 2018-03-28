@@ -5774,6 +5774,7 @@ where jh.xdzt in ('1')
 		<if test="xzqhdm != null and xzqhdm != ''" >and xzqhdm like #{xzqhdm}||'%'</if>
 		order by xuh asc
 	</select>
+	
 	<select id="getSjgzjdxxb" parameterType="gcglabgc" resultType="elist">
 	select to_char(rownum) v_0,gt.xmbm v_1,(select name from xtgl_xzqh where id in gt.XZQHDM) v_2,xzqh v_3,tsdq v_4,xmmc v_5,ghlxbm v_6,xmklx v_7,
   wq.xmbm v_8,decode(gt.JSXZ,'改建',sanlc,'路面改造',sanlc,'新建',jhsanlc)+decode(gt.JSXZ,'改建',silc,'路面改造',silc,'新建',jhsilc) 
@@ -5800,4 +5801,73 @@ where jh.xdzt in ('1')
 		</if>
 order by gt.XZQHDM asc
 	</select>
+	
+	<select id="getSjgzjdhzbTotal" parameterType="gcglabgc" resultType="elist">
+	select '合计' v_0,sum(v_1)v_1,sum(v_2)v_2,sum(v_3)v_3,sum(v_4)v_4,sum(v_5)v_5,sum(v_6)v_6,sum(v_7)v_7,sum(v_8)v_8,sum(v_9)v_9,sum(v_10)v_10,sum(v_11)v_11,sum(v_12)v_12,sum(v_13)v_13,sum(v_14)v_14,sum(v_15)v_15,sum(v_16)v_16,sum(v_17)v_17,'360000' xzqhdm from(
+select xzqhdm,nvl(sum(wq.kglc),0) v_1,sum(case when nvl(wq.kglc,0)!=0 then '1' else '0' end)v_2, nvl(sum(wq.wglc),0) v_3,nvl(sum(wq.wctz),0) v_4
+   from sjgz_tjb gt
+     left join wnjh_qqxmtjb wq on gt.lsxmid = wq.wnjhid
+     group by xzqhdm order by to_number(xzqhdm)
+)a,(
+   select xzqhdm,'0' v_5, sum(case when nvl(jd.wclc,0)!=0 or nvl(jd.bclc,0)!=0 or nvl(jd.wcztz,0)!=0 or nvl(jd.bcztz,0)!=0 then '1' else '0' end)v_6,
+   sum(case when nvl(wq.kglc,0)!=0 and nvl(jd.wcztz,0)!=0 then '1' else '0' end)v_7, 
+   sum(case when nvl(jd.wclc,0)=0 and nvl(jd.bclc,0)=0 and nvl(jd.wcztz,0)=0 and nvl(jd.bcztz,0)=0 then '1' else '0' end) v_8,
+   nvl(sum(jd.wclc),0) v_9,nvl(sum(jd.bclc),0) v_10, nvl(sum(jd.wcztz),0) v_11, nvl(sum(jd.bcztz),0) v_12
+   from sjgz_tjb gt
+     left join wnjh_qqxmtjb wq on gt.lsxmid = wq.wnjhid
+     left join (select xmbm,sum(case when to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0) else 0 end)wclc,
+       sum(case when to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0) else 0 end)wcztz,          
+       sum(case when substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0) else 0 end)bclc,
+       sum(case when substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0) else 0 end)bcztz  
+     from gcgl_xmjd group by xmbm)jd on gt.lsxmid = jd.xmbm
+   where ( nvl(wq.kglc,0)!=0 or nvl(wq.wglc,0)!=0 or nvl(wq.wctz,0)!=0)
+     group by xzqhdm order by to_number(xzqhdm)
+ )b,(    
+select xzqhdm,sum(case when nvl(wq.kglc,0)!=0 and nvl(jd.wcztz,0)!=0 then '1' else '0' end) v_13, nvl(sum(jd.wclc),0) v_14,nvl(sum(jd.bclc),0) v_15, nvl(sum(jd.wcztz),0) v_16, nvl(sum(jd.bcztz),0) v_17
+from sjgz_tjb gt
+     left join wnjh_qqxmtjb wq on gt.lsxmid = wq.wnjhid
+     left join (select xmbm,sum(case when to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0) else 0 end)wclc,
+       sum(case when to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0) else 0 end)wcztz,          
+       sum(case when substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0) else 0 end)bclc,
+       sum(case when substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0) else 0 end)bcztz      
+     from gcgl_xmjd group by xmbm)jd on gt.lsxmid = jd.xmbm
+   where nvl(wq.kglc,0)=0 and nvl(wq.wglc,0)=0 and nvl(wq.wctz,0)=0
+      group by xzqhdm order by to_number(xzqhdm)
+)c where a.xzqhdm = b.xzqhdm(+) and b.xzqhdm=c.xzqhdm(+) order by a.xzqhdm
+	</select>
+	
+    <select id="getSjgzjdhzb" parameterType="gcglabgc" resultType="elist">
+	  select (select name from xtgl_xzqh where id in (a.xzqhdm))v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8,v_9,v_10,v_11,v_12,v_13,v_14,v_15,v_16,v_17,a.xzqhdm from(
+ select xzqhdm,nvl(sum(wq.kglc),0) v_1,sum(case when nvl(wq.kglc,0)!=0 then '1' else '0' end)v_2, nvl(sum(wq.wglc),0) v_3,nvl(sum(wq.wctz),0) v_4
+   from sjgz_tjb gt
+     left join wnjh_qqxmtjb wq on gt.lsxmid = wq.wnjhid    
+     group by xzqhdm order by to_number(xzqhdm)
+)a,(
+   select xzqhdm,'0' v_5, sum(case when nvl(jd.wclc,0)!=0 or nvl(jd.bclc,0)!=0 or nvl(jd.wcztz,0)!=0 or nvl(jd.bcztz,0)!=0 then '1' else '0' end)v_6,
+   sum(case when nvl(wq.kglc,0)!=0 and nvl(jd.wcztz,0)!=0 then '1' else '0' end)v_7,  
+   sum(case when nvl(jd.wclc,0)=0 and nvl(jd.bclc,0)=0 and nvl(jd.wcztz,0)=0 and nvl(jd.bcztz,0)=0 then '1' else '0' end) v_8,
+   nvl(sum(jd.wclc),0) v_9,nvl(sum(jd.bclc),0) v_10, nvl(sum(jd.wcztz),0) v_11, nvl(sum(jd.bcztz),0) v_12
+   from sjgz_tjb gt
+     left join wnjh_qqxmtjb wq on gt.lsxmid = wq.wnjhid
+     left join (select xmbm,sum(case when to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0) else 0 end)wclc,
+       sum(case when to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0) else 0 end)wcztz,          
+       sum(case when substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0) else 0 end)bclc,
+       sum(case when substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0) else 0 end)bcztz  
+     from gcgl_xmjd group by xmbm)jd on gt.lsxmid = jd.xmbm
+   where ( nvl(wq.kglc,0)!=0 or nvl(wq.wglc,0)!=0 or nvl(wq.wctz,0)!=0)
+     group by xzqhdm order by to_number(xzqhdm)
+ )b,(
+    select xzqhdm,sum(case when nvl(wq.kglc,0)!=0 and nvl(jd.wcztz,0)!=0 then '1' else '0' end) v_13, nvl(sum(jd.wclc),0) v_14,nvl(sum(jd.bclc),0) v_15, nvl(sum(jd.wcztz),0) v_16, nvl(sum(jd.bcztz),0) v_17
+from sjgz_tjb gt
+     left join wnjh_qqxmtjb wq on gt.lsxmid = wq.wnjhid
+     left join (select xmbm,sum(case when to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0) else 0 end)wclc,
+       sum(case when to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0) else 0 end)wcztz,          
+       sum(case when substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0) else 0 end)bclc,
+       sum(case when substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') then nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0) else 0 end)bcztz
+     from gcgl_xmjd group by xmbm)jd on gt.lsxmid = jd.xmbm
+   where nvl(wq.kglc,0)=0 and nvl(wq.wglc,0)=0 and nvl(wq.wctz,0)=0
+      group by xzqhdm order by to_number(xzqhdm)
+)c where a.xzqhdm = b.xzqhdm(+) and b.xzqhdm=c.xzqhdm(+) order by a.xzqhdm
+	</select>
+	
 </mapper>

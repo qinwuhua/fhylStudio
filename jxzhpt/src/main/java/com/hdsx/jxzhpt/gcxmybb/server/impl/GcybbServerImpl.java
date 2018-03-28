@@ -32,6 +32,8 @@ import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
+import jsx3.gui.Alerts;
+
 @Service
 public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 
@@ -1614,13 +1616,14 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		int i=0;
 		Date day=new Date();    
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+		excel_list.setRecordtime(df.format(day));
 		for (Excel_list excel_list2 : list1) {
 			excel_list2.setFormname(excel_list.getFormname());
 			excel_list2.setFormdate(excel_list.getFormdate());
-			excel_list2.setRecordtime(df.format(day));
 			excel_list2.setTreeno(i+"");
 			i++;
 		}
+		
 		Excel_list e=null;
 		e=queryOne("queryghbbByNorD", excel_list);
 		if(e!=null){
@@ -1707,6 +1710,14 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
         } catch (Exception e) {
 			e.printStackTrace();
 		}	
+		return result;
+	}
+
+	@Override
+	public List<Excel_list> getSjgzjdhzb(Gcglabgc gcglabgc) {
+		List<Excel_list> result = queryList("getSjgzjdhzbTotal",gcglabgc);
+		List<Excel_list> detail = queryList("getSjgzjdhzb",gcglabgc);
+		result.addAll(detail);
 		return result;
 	}
 }

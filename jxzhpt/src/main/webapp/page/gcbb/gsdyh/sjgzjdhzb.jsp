@@ -26,6 +26,7 @@
 	<script type="text/javascript" src="/jxzhpt/page/wngh/wnjh/js/wnjh.js"></script>
 	<script type="text/javascript">
 	$(function(){
+		if($.cookie('dist2')!='36'){$("#ghbb").hide()}
 		loadDist1("xzqh",$.cookie("dist"));
 		var myDate = new Date();
 		var strDate=myDate.getFullYear()+"-"+((myDate.getMonth() + 1) > 9 ? (myDate.getMonth() + 1) : "0" + (myDate.getMonth() + 1))+"-"+myDate.getDate();          
@@ -47,8 +48,6 @@
 		var nf=enddate.substring(0, 4);
 		var yf=enddate.substring(5, 7);
 		
-		var  params = [];
-		var datagrid; //定义全局变量datagrid
 		var xzqhdm=$("#xzqh").combotree("getValues");
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");
@@ -61,8 +60,8 @@
 			xzqhstr= xzqhdm.join(',');
 		}
 				
-		datagrid=$('#datagrid').datagrid({    
-		    url:'/jxzhpt/qqgl/getSjgzjdhzb.do',
+		$('#datagrid').datagrid({    
+		    url:'/jxzhpt/gcybb/getSjgzjdhzb.do',
 		    striped:true,
 		    pagination:false,
 		    rownumbers:true,
@@ -72,12 +71,12 @@
 		    idField: 'id', //主键
 		    queryParams: {
 		    	xzqh:xzqhstr,
-		    	'lxsh.jsxz':$("#jsxz").combobox('getValues').join(','),
+		    	'gcglabgc.jsxz':$("#jsxz").combobox('getValues').join(','),
 		    	nf:nf,
-		    	'lxsh.ybrq':enddate
+		    	'gcglabgc.ybrq':enddate,
+		    	'&excel_list.xzqhdm=':$.cookie('dist2')
 			},
 		   columns:[[
-				{field:'ck',checkbox:true,rowspan:3,hidden:true},
 		        {field:'v_0',title:'设区市',width:100,align:'center',rowspan:3},		        
 		        {title:nf+'年项目建设',align:'center',colspan:17}
 	         ],[
@@ -104,79 +103,9 @@
 				{field:'v_16',title:'自开工建设累计完成总投资',width:120,align:'center',rowspan:1},
 				{field:'v_17',title:'其中'+nf+'年完成投资',width:120,align:'center',rowspan:1}
 	         ]],
-             /*toolbar: [
-		    	//{ text: '编辑', iconCls: 'icon-edit', handler: function () {}}, '-',
-             { text: '保存', iconCls: 'icon-save', handler: function () {
-                 datagrid.datagrid('hideColumn', 'ck');
-            	 endEditing();
-                 //保存时结束当前编辑的行，自动触发onAfterEdit事件如果要与后台交互可将数据通过Ajax提交后台
-        		 var rows=datagrid.datagrid('getSelections');
-                 if(rows.length==0){
-        			alert("请勾选要保存的数据！");
-        			return;
-        		}else{
-                    if(confirm("确定要保存当前数据？")){
-                        saveQqtjb(rows);
-                    }
-        		}
-             }
-             }, '-',
-             { text: '取消编辑', iconCls: 'icon-redo', handler: function () {
-                 //取消当前编辑行把当前编辑行罢undefined回滚改变的数据,取消选择的行
-                 if(confirm("确定要撤销所有的更改？")){
-                     editRow = undefined;
-                     datagrid.datagrid('hideColumn', 'ck');
-                     datagrid.datagrid("rejectChanges");
-                     datagrid.datagrid("unselectAll");
-                 }
-             }
-             }, '-'], */
-		    /* onClickCell: function (rowIndex, field, value) {
-		    	beginEditing(rowIndex,field,value);
-		    	datagrid.datagrid('showColumn', 'ck'); 
-		    } */
-
 		}); 
 		
 	}
-	
-	/* var editIndex = undefined;
-	function beginEditing (rowIndex,field,value) {
-		  if (rowIndex != editIndex) {
-		        if (endEditing()) {
-		        	$('#datagrid').datagrid('beginEdit', rowIndex);
-		            editIndex = rowIndex;
-		        } else {
-		            $('#datagrid').datagrid('selectRow', editIndex);
-		        }
-		    }
-	}
-	function endEditing() {
-	    if (editIndex == undefined) { return true; }	    
-	    if ($('#datagrid').datagrid('validateRow', editIndex)) {
-	        $('#datagrid').datagrid('endEdit', editIndex);
-	        editIndex = undefined;	        
-	        return true;
-	    } else {
-	        return false;
-	    }
-	}
-	function saveQqtjb(rows){
-       for(var i=0;i<rows.length;i++){
-        	data="excel_list.id="+rows[i].id+"&excel_list.v_5="+rows[i].v_5+"&excel_list.v_6="+rows[i].v_6+"&excel_list.v_7="+rows[i].v_7+"&excel_list.v_8="+rows[i].v_8+
-        	"&excel_list.v_9="+rows[i].v_9+"&excel_list.v_10="+rows[i].v_10+"&excel_list.v_11="+rows[i].v_11+"&excel_list.v_12="+rows[i].v_12+
-        	"&excel_list.v_13="+rows[i].v_13+"&excel_list.v_14="+rows[i].v_14;
-    		$.ajax({
-    			type:'post',
-    			url:'/jxzhpt/qqgl/insertSjgzjdhzb.do',
-    	        data:data,
-    			dataType:'json',
-    			success:function(msg){
-    			}
-    		});
-        }
-		alert("保存成功！");
-	} */
 	
 	function dcExcel(){
 		
@@ -194,10 +123,8 @@
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
-		var param='flag=1'+'&nf='+nf+"&xzqh="+xzqhstr+'&lxsh.jsxz='+encodeURI(encodeURI($("#jsxz").combobox('getValues').join(',')))+"&lxsh.ybrq="+enddate;;
-		//var sql=$("#excelcgs").val();
-	    
-		window.location.href="/jxzhpt/qqgl/getSjgzjdhzb.do?"+param;
+		var param='flag=1'+'&nf='+nf+"&xzqh="+xzqhstr+'&gcglabgc.jsxz='+encodeURI(encodeURI($("#jsxz").combobox('getValues').join(',')))+"&gcglabgc.ybrq="+enddate;	    
+		window.location.href="/jxzhpt/gcybb/getSjgzjdhzb.do?"+param;
 		
 	}
 	
@@ -207,6 +134,16 @@
 	        }
 	        else $(this).combobox('unselect', "改建,路面改造,新建");
 	        }
+	 
+		function ghbb(){			
+		    YMLib.Var.formname='sjgzjdhzb';
+			YMLib.UI.createWindow('lxxx','将查询结果固化为版本','/jxzhpt/page/gcbb/ghbbxz.jsp','lxxx',460,360);
+		}
+		function ghbbcx(){
+		    YMLib.Var.formname='sjgzjdhzb';
+			YMLib.UI.createWindow('lxxx','固化版本查询','/jxzhpt/page/gcbb/ghbbcx.jsp','lxxx',460,360);
+		}
+
 	</script>
 	<style type="text/css">
 TD {
@@ -236,7 +173,6 @@ text-decoration:none;
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        				    <input id="excelcgs" name="excelcgs" type="hidden"/>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
         						<tr height="32">
         						<td align="right">行政区划：</td>
@@ -258,6 +194,10 @@ text-decoration:none;
                                 	onmouseout="this.src='/jxzhpt/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;"/>
 								<img alt="导出Ecel" src="/jxzhpt/images/Button/dcecl1.gif" onmouseover="this.src='/jxzhpt/images/Button/dcecl2.gif'"
                                 	onmouseout="this.src='/jxzhpt/images/Button/dcecl1.gif' " onclick="dcExcel()" style="vertical-align: -50%;" />
+        				        <img id='ghbb' alt="固化版本" src="/jxzhpt/images/Button/ghbb1.png" onmouseover="this.src='/jxzhpt/images/Button/ghbb2.png'"
+                                	onmouseout="this.src='/jxzhpt/images/Button/ghbb1.png' " onclick="ghbb()" style="vertical-align: -50%;" />
+        						<img alt="固化版本查询" src="/jxzhpt/images/Button/ghbbcx1.gif" onmouseover="this.src='/jxzhpt/images/Button/ghbbcx2.gif'"
+                                	onmouseout="this.src='/jxzhpt/images/Button/ghbbcx1.gif' " onclick="ghbbcx()" style="vertical-align: -50%;" />
         				        </td>	
         				    </tr>
         				  </table>

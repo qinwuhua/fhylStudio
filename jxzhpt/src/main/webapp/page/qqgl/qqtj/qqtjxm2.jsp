@@ -31,88 +31,11 @@
 	</style>
 	<script type="text/javascript">
 	$(function(){
-		setjhxdnf1("jhnd");
 		loadDist1("xzqh",$.cookie("dist"));
-		var myDate = new Date();
-		var y = myDate.getFullYear();
-		var m = myDate.getMonth()+1; 
-		for(var x=y;x>=2010;x--){
-			$("#ddlYear").append("<option value="+x+">"+x+"</option>");
-		}
-		$("#yf"+m).attr("selected","selected");
-		//$("#biaotou").empty();
-		
-		var nf=$("#ddlYear").val();var yf=$("#ddlMonth").val();
-		$(".nian").html(nf);$(".nianyue1").html(nf+"."+yf);$(".nianyue2").html(nf+".12");
-		
 		showBb();
 	});
-	function setjhxdnf1(id){
-		
-		var years=[];
-		//var first;
-		years.push({text:'全部',value:''});
-		var myvalues=new Array();
-		
-		for(var i=2011;i<=2020;i++){
-			years.push({text:(i),value:(i)});
-			myvalues.push(i);
-		}
-		$('#'+id).combobox({
-		    data:years,
-		    valueField:'value',
-		    textField:'text',
-		    multiple:true,
-		    formatter:function(row){
-				var opts = $(this).combobox('options');
-				return '<input id="name'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
-			},
-			onSelect:function(record){
-				var opts = $(this).combobox('options');
-				if(record[opts.valueField]==""){
-					var values =new Array();
-					var datas = $('#' +id).combobox("getData");
-					$.each(datas,function(index,item){
-						values.push(item.value);
-						$('#name'+id+item.value).attr('checked', true);
-					});
-					$('#' +id).combobox("setValues",values);
-				}else{
-					$('#name'+id+record.value).attr('checked', true);
-				}
-			},
-			onUnselect:function(record){
-				var opts = $(this).combobox('options');
-				var datas = $('#' +id).combobox("getData");
-				var values = $('#' +id).combobox("getValues");
-				$('#' +id).combobox("clear");
-				if(record[opts.valueField]!=""){
-					if(jQuery.inArray("",values)>=0){
-						values.splice(jQuery.inArray("",values),1);
-					}
-					$.each(datas,function(index,item){
-						if(jQuery.inArray(""+item.value,values)<0){
-							$('#name'+id+item.value).attr('checked', false);
-						}
-					});
-					$('#' +id).combobox("setValues",values);
-				}else{
-					$.each(datas,function(index,item){
-						$('#name'+id+item.value).attr('checked', false);
-					});
-				}
-			}
-		}); 
-		for(var i=0;i<myvalues.length;i++){
-			$('#name'+id+myvalues[i]).attr('checked', true);
-		}
-		$('#'+id).combobox("setValues",myvalues);
-		
-	}
-
+	
 	function dcExcel(){
- 		var nf=$("#ddlYear").val();
-		var yf=$("#ddlMonth").val();
 		var xzqhdm=$("#xzqh").combotree("getValues");
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");
@@ -125,19 +48,13 @@
 			xzqhstr= xzqhdm.join(',');
 		}
 		
- 		var data="flag=1&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr
-		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(','); 
-		//var data="flag=1&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr;
+ 		var data="flag=1"+"&xzqh="+xzqhstr; 
 		loadjzt();
-		 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{xzqh:xzqhstr},function(){
-			window.location.href='/jxzhpt/qqgl/queryXmQqjdhzb2.do?'+data;
-		 }); 
+	    window.location.href='/jxzhpt/qqgl/queryXmQqjdhzb2.do?'+data; 
 		 setTimeout('disLoadjzt()',4000); 
 	}
 
 	function showBb(){
-		var nf=$("#ddlYear").val();
-		var yf=$("#ddlMonth").val();
 		var xzqhdm=$("#xzqh").combotree("getValues");
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");
@@ -150,11 +67,7 @@
 			xzqhstr= xzqhdm.join(',');
 		}
 		
-		$(".nian").html(nf);$(".nianyue1").html(nf+"."+yf);$(".nianyue2").html(nf+".12");
- 		var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr
-		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(','); 
-		//var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr;
-		//alert(data);
+ 		var data="flag=0"+"&xzqh="+xzqhstr; 
 		var tbody = $("#abgclist");
 				tbody.empty();
 
@@ -237,27 +150,7 @@ text-decoration:none;
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
         						<tr height="32">
         						<td align="right">行政区划：</td>
-        						<td><select id="xzqh" style="width:150px;"></select></td>
-                                <td align="right">计划下达年份：</td>
-		        				<td><input id="jhnd" type="text"  style="width: 80px"></td>
-        						<td align="right">月报年份：</td>
-		 						<td><select name="ddlYear" id="ddlYear" style="width: 80px;">
-								</select></td>
-		 						<td align="right">月报月份：</td>
-		 						<td><select name="ddlMonth" id="ddlMonth" style="width: 60px;">
-									<option id="yf1" value="1">01</option>
-									<option id="yf2" value="2">02</option>
-									<option id="yf3" value="3">03</option>
-									<option id="yf4" value="4">04</option>
-									<option id="yf5" value="5">05</option>
-									<option id="yf6" value="6">06</option>
-									<option id="yf7" value="7">07</option>
-									<option id="yf8" value="8">08</option>
-									<option id="yf9" value="9">09</option>
-									<option id="yf10" value="10">10</option>
-									<option id="yf11" value="11">11</option>
-									<option id="yf12" value="12">12</option>
-								</select></td>							
+        						<td><select id="xzqh" style="width:150px;"></select></td>						
 							</tr>
 							
         					<tr height="32">

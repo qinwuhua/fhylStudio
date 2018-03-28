@@ -31,6 +31,7 @@
 	<action name="getWnjhQqtjhzb" class="gcybbController" method="getWnjhQqtjhzb"/>
 	<action name="getGzxmb" class="gcybbController" method="getGzxmb"/>
 	<action name="getSjgzjdxxb" class="gcybbController" method="getSjgzjdxxb"/>
+	<action name="getSjgzjdhzb" class="gcybbController" method="getSjgzjdhzb"/>
 	
 	<action name="getGsdyhjdhzb" class="gcybbController" method="getGsdyhjdhzb"/>
 	<action name="insertGsdyhjdhzb" class="gcybbController" method="insertGsdyhjdhzb"/>
