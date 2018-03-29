@@ -225,6 +225,7 @@
 	var str1="";var str2="";var datalist;
 	
 	function dcExcel(){
+		
 		if(str1==""||str2==""){
 			alert("请您先查询报表数据");
 			return;
