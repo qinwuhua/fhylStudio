@@ -258,7 +258,7 @@ text-decoration:none;
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
-        						<td align="right">下达年份：</td>
+        						<td align="right">首次下达年份：</td>
         						<td><input type="text" id="jhxdnf"  style="width:80px;"></td>
         						<td align="right">月报时间：</td>
         						<td><input id="ybsj" type="text"  style="width: 103px" class='easyui-datebox'  ></td>

@@ -6261,10 +6261,10 @@ public class GcybbController extends BaseActionSupport{
 						gcglabgc.setJhnd(getcxtj("fun_scxdnf(jh.xmbm)",gcglabgc.getJhnd()));
 						List<Excel_list> eL = new ArrayList<Excel_list>();
 						if ("lmgz".equals(type)) {
-							eL=gcybbServer.getLmgzxmb(gcglabgc);
+							eL=(List<Excel_list>) getRequest().getSession().getAttribute("lwgzxmb");
 						}
 						if ("sh".equals(type)) {
-							eL=gcybbServer.getShxmb(gcglabgc);
+							eL=(List<Excel_list>) getRequest().getSession().getAttribute("shxmb");
 						}
 						
 						ExcelData eldata=new ExcelData();//创建一个类
@@ -6410,9 +6410,9 @@ public class GcybbController extends BaseActionSupport{
 			 try {
 				 gcglabgc.setXmnf(nf);
 					if(xzqh.indexOf(",")==-1){
-						gcglabgc.setXzqhdm("and gt.xzqhdm2 like '%"+xzqh+"%'");
+						gcglabgc.setXzqhdm("and gt.xzqhdm like '%"+xzqh+"%'");
 					}else{
-						gcglabgc.setXzqhdm(getcxtj("gt.xzqhdm2",xzqh));
+						gcglabgc.setXzqhdm(getcxtj("gt.xzqhdm",xzqh));
 					}
 					String jsxz = "";
 					try {
@@ -6421,16 +6421,12 @@ public class GcybbController extends BaseActionSupport{
 						e1.printStackTrace();
 					}
 					if (jsxz.indexOf(",")==-1) {
-						gcglabgc.setJsxz("and jsxz like '%"+jsxz+"%'");
+						gcglabgc.setJsxz("and gt.jsxz like '%"+jsxz+"%'");
 					}else {
-						gcglabgc.setJsxz(getcxtj("jsxz",jsxz));
+						gcglabgc.setJsxz(getcxtj("gt.jsxz",jsxz));
 					}
 					if("1".equals(flag)){
-						//HttpServletRequest request = ServletActionContext.getRequest();
-						//HttpSession session = request.getSession();
-						//lxsh.setCgs(((String) session.getAttribute("sql")));
-						//lxsh.setDftz(((String) session.getAttribute("nameValue")));
-						List<Excel_list> el=gcybbServer.getSjgzjdxxb(gcglabgc);				
+						List<Excel_list> el=(List<Excel_list>) getRequest().getSession().getAttribute("sjgzjdxxb");				
 						ExcelData eldata=new ExcelData();//创建一个类
 						eldata.setTitleName("普通国省道升级改造前期工作及项目建设进度表");//设置第一行 
 						eldata.setSheetName("普通国省道升级改造前期工作及项目建设进度表");//设置sheeet名
@@ -6486,6 +6482,7 @@ public class GcybbController extends BaseActionSupport{
 						Excel_export.excel_export(eldata,response);
 				}else{
 					List<Excel_list> list1=gcybbServer.getSjgzjdxxb(gcglabgc);
+					getRequest().getSession().setAttribute("sjgzjdxxb", list1);
 					JsonUtils.write(list1, getresponse().getWriter());
 		           }                                                     
 				} catch (Exception e) {
@@ -6496,9 +6493,9 @@ public class GcybbController extends BaseActionSupport{
 		 public void getSjgzjdhzb() {
 			    gcglabgc.setXmnf(nf);
 				if(xzqh.indexOf(",")==-1){
-					gcglabgc.setXzqhdm("and gt.xzqhdm2 like '%"+xzqh+"%'");
+					gcglabgc.setXzqhdm("and a.xzqhdm like '%"+xzqh+"%'");
 				}else{
-					gcglabgc.setXzqhdm(getcxtj("gt.xzqhdm2",xzqh));
+					gcglabgc.setXzqhdm(getcxtj("a.xzqhdm",xzqh));
 				}
 				String jsxz = "";
 				try {
@@ -6507,13 +6504,13 @@ public class GcybbController extends BaseActionSupport{
 					e1.printStackTrace();
 				}
 				if (jsxz.indexOf(",")==-1) {
-					gcglabgc.setJsxz("and jsxz like '%"+jsxz+"%'");
+					gcglabgc.setJsxz("and a.jsxz like '%"+jsxz+"%'");
 				}else {
-					gcglabgc.setJsxz(getcxtj("jsxz",jsxz));
+					gcglabgc.setJsxz(getcxtj("a.jsxz",jsxz));
 				}
 				try {
 					if("1".equals(flag)){
-						List<Excel_list> eL=gcybbServer.getSjgzjdhzb(gcglabgc);				
+						List<Excel_list> eL=(List<Excel_list>) getRequest().getSession().getAttribute("sjgzjdhzb");								
 						ExcelData eldata=new ExcelData();//创建一个类
 						eldata.setTitleName("普通国省道升级改造项目建设进度汇总表");//设置第一行 
 						eldata.setSheetName("普通国省道升级改造项目建设进度汇总表");//设置sheeet名
@@ -6546,22 +6543,6 @@ public class GcybbController extends BaseActionSupport{
 						HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 						Excel_export.excel_export(eldata,response);
 				}else{
-					/*String tiaojian2="";
-					String xzqhdm = "";
-					if("1".equals(flag)){
-						HttpServletRequest request = ServletActionContext.getRequest();
-						HttpSession session = request.getSession();
-						xzqhdm=(String) session.getAttribute("xzqhbb");	
-					}else{
-					xzqhdm	= xzqh;
-					}
-					
-					if(xzqhdm.indexOf(",")==-1){
-						tiaojian2="and t3.xzqhdm like '%"+xzqhdm+"%'";
-					}else{
-						tiaojian2=getcxtj("t3.xzqhdm",xzqhdm);
-					}
-					lxsh.setXzqhdm(tiaojian2);*/
 					List<Excel_list> list1=gcybbServer.getSjgzjdhzb(gcglabgc);
 					getRequest().getSession().setAttribute("sjgzjdhzb", list1);
 					JsonUtils.write(list1, getresponse().getWriter());

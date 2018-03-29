@@ -24,8 +24,23 @@
 	<script type="text/javascript" src="/jxzhpt/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="/jxzhpt/js/YMLib.js"></script>
 	<script type="text/javascript" src="/jxzhpt/page/wngh/wnjh/js/wnjh.js"></script>
+	
+	<style>
+		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(/jxzhpt/images/jianjiao.png) 8px 0 no-repeat;}
+		#righttop{height:33px;background:url(/jxzhpt/images/righttopbg.gif) 0 0 repeat-x;}
+	</style>
+	<style type="text/css">
+		a:link {text-decoration: none;}
+		a:visited {text-decoration: none;}
+		a:hover {text-decoration: none;}
+		a:active {text-decoration: none;}
+		#bbtable {border-collapse:collapse;}
+		#bbtable thead tr td {text-align:center;font-size:1em;font-weight:bold;border:1px solid #cde0f3;padding:3px 7px 2px 7px;}
+		#bbtable tbody tr td {text-align:center;font-size:1em;border:1px solid #cde0f3;padding:3px 7px 2px 7px;}
+	</style>
 	<script type="text/javascript">
 	$(function(){
+		if($.cookie('dist2')!='36'){$("#ghbb").hide()}		
 		loadDist1("xzqh",$.cookie("dist"));
 		var myDate = new Date();
 		/* var y = myDate.getFullYear();
@@ -49,10 +64,11 @@
 		$(".yue").html(yf);
 		$(".nianyue1").html(nf+"年"+yf);
 		$(".nianyue2").html(nf+".12");
+		
 		showTjb();
 	});
 
-	function showTjb(){		
+/* 	function showTjb(){		
 		var enddate = $("#enddate").datebox("getValue");
 		var nf=enddate.substring(0, 4);
 		var yf=enddate.substring(5, 7);
@@ -142,6 +158,58 @@
 		    	datagrid.datagrid('showColumn', 'ck'); 
 		    }
 		}); 
+	} */
+	function showTjb(){	
+		var enddate = $("#enddate").datebox("getValue");
+		var nf=enddate.substring(0, 4);
+		var yf=enddate.substring(5, 7);
+		
+		var xzqhdm=$("#xzqh").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+		
+		var tbody = $("#abgclist");
+		tbody.empty();
+		
+		loadjzt();
+		
+		var data="flag=0"+"&xzqh="+xzqhstr+'&excel_list.xzqhdm='+$.cookie('dist2')+'&gcglabgc.ybrq='+enddate+'&nf='+nf+'&gcglabgc.jsxz='+$("#jsxz").combobox('getValues').join(',')+'&gcglabgc.xmbm='+$("#xmbm").val(); 
+		
+		$.ajax({
+			url:"/jxzhpt/gcybb/getSjgzjdxxb.do",
+			data:data,
+			type:"post",
+			dataType:"JSON",
+			success:function(msg){
+				datalist=msg;
+				disLoadjzt();
+				if (msg != null) {
+					for ( var i = 0; i < msg.length; i++) {
+						var tr="<tr>";
+						tr=tr+ "<td style='color:red;'>"+msg[i].v_0+"</td><td>"
+						+msg[i].v_1+"</td><td>"+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"+msg[i].v_4+"</td><td>"
+						+msg[i].v_5+"</td><td>"+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"+msg[i].v_8+"</td><td>"
+						+msg[i].v_9+"</td><td>"+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"+msg[i].v_12+"</td><td>"
+						+msg[i].v_13+"</td><td>"+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"+msg[i].v_16+"</td><td>"
+						+msg[i].v_17+"</td><td>"+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"+msg[i].v_20+"</td><td>"
+						+msg[i].v_21+"</td><td>"+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"+msg[i].v_24+"</td><td>"
+						+msg[i].v_25+"</td><td>"+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"+msg[i].v_28+"</td><td>"
+						+msg[i].v_29+"</td><td>"+msg[i].v_30+"</td><td>"+msg[i].v_31+"</td><td>"+msg[i].v_32+"</td><td>"
+						+msg[i].v_33+"</td><td>"+msg[i].v_34+"</td><td>"+msg[i].v_35+"</td>"
+						tr+="</tr>";
+						tbody.append(tr);
+					}	
+				}
+			}
+		});
 	}
 	
 	function dcExcel(){
@@ -150,7 +218,6 @@
 		var yf=enddate.substring(5, 7);
 		
 		var xzqhdm=$("#xzqh").combotree("getValues");
-		//var nf=$("#ddlYear").val();
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");		
 		}else if(xzqhdm.length==1){
@@ -160,12 +227,9 @@
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
-		var param='flag=1'+'&nf='+nf+"&xzqh="+xzqhstr+'&gcglabgc.jsxz='+encodeURI(encodeURI($("#jsxz").combobox('getValues').join(',')))+"&gcglabgc.ybrq="+enddate;
-		var sql=$("#excelcgs").val();
-		var nameValue=$("#exceldfzc").val();    
-		 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{xzqh:xzqhstr},function(){
-				window.location.href="/jxzhpt/gcybb/getSjgzjdxxb.do?"+param;
-			 });		
+		var param='flag=1'+'&nf='+nf+"&xzqh="+xzqhstr+'&gcglabgc.jsxz='+encodeURI(encodeURI($("#jsxz").combobox('getValues').join(',')))+"&gcglabgc.ybrq="+enddate+'&gcglabgc.xmbm='+$("#xmbm").val();
+		window.location.href="/jxzhpt/gcybb/getSjgzjdxxb.do?"+param;
+		
 	}
 	
 	 function onSelect(r) {
@@ -174,6 +238,14 @@
 	        }
 	        else $(this).combobox('unselect', "改建,新建");
 	        }
+	 function ghbb(){			
+		    YMLib.Var.formname='sjgzjdxxb';
+			YMLib.UI.createWindow('lxxx','将查询结果固化为版本','/jxzhpt/page/gcbb/ghbbxz.jsp','lxxx',460,360);
+		}
+		function ghbbcx(){
+		    YMLib.Var.formname='sjgzjdxxb';
+			YMLib.UI.createWindow('lxxx','固化版本查询','/jxzhpt/page/gcbb/ghbbcx.jsp','lxxx',460,360);
+		} 
 	</script>
 	<style type="text/css">
 TD {
@@ -202,9 +274,7 @@ text-decoration:none;
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
-        				<div>
-        				    <input id="excelcgs" name="excelcgs" type="hidden"/>
-        				    <input id="exceldfzc" name="exceldfzc" type="hidden"/>    
+        				<div>    
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
         						<tr height="32">
         						<td align="right">行政区划：</td>
@@ -214,15 +284,11 @@ text-decoration:none;
 									<option value="改建,新建">全部</option>
 									<option value="改建">改建</option>
 									<option value="新建">新建</option>
-								</select></td>												
-                                <!-- <td align="right">计划下达年份：</td>
-		        				<td><input id="jhnd" type="text"  style="width: 120px"></td> -->
-        						<!-- <td align="right">月报年份：</td>
-		 						<td><select name="ddlYear" id="ddlYear" style="width: 80px;">
-								</select></td> -->
+								</select></td>											
 								<td align="right">月报时间：</td>
 								<td><input id="enddate" class="easyui-datebox" name="enddate" data-options="editable:false"></td>
-							
+							    <td align="right">项目编码：</td>
+        						<td><input id='xmbm' type="text" style="width:100px" /></td>
 							</tr>
 							
         					<tr height="32">
@@ -231,6 +297,10 @@ text-decoration:none;
                                 	onmouseout="this.src='/jxzhpt/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;"/>
 								<img alt="导出Ecel" src="/jxzhpt/images/Button/dcecl1.gif" onmouseover="this.src='/jxzhpt/images/Button/dcecl2.gif'"
                                 	onmouseout="this.src='/jxzhpt/images/Button/dcecl1.gif' " onclick="dcExcel()" style="vertical-align: -50%;" />
+        				        <img id='ghbb' alt="固化版本" src="/jxzhpt/images/Button/ghbb1.png" onmouseover="this.src='/jxzhpt/images/Button/ghbb2.png'"
+                                	onmouseout="this.src='/jxzhpt/images/Button/ghbb1.png' " onclick="ghbb()" style="vertical-align: -50%;" />
+        						<img alt="固化版本查询" src="/jxzhpt/images/Button/ghbbcx1.gif" onmouseover="this.src='/jxzhpt/images/Button/ghbbcx2.gif'"
+                                	onmouseout="this.src='/jxzhpt/images/Button/ghbbcx1.gif' " onclick="ghbbcx()" style="vertical-align: -50%;" />
         				        </td>	
         				    </tr>
         				  </table>
@@ -239,10 +309,73 @@ text-decoration:none;
         		</td>
         	</tr>
         	<tr>
-        	    <td>
-        	    <div align="center" style="font-size:x-large;font-weight: bolder; margin-top:8px; margin-bottom:5px;">普通国省道升级改造前期工作及项目建设进度表</div>
-        	    <div><table id="datagrid"></table> </div>
-        	    </td>
+        	   <td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
+                	<div id="gddiv" style="width:100%;height: 380px;" >
+                		<script type="text/javascript">
+                			$("#gddiv").attr('style','width:100%;height:'+($(window).height()-140)+'px;');
+                		</script>
+                		<div class="easyui-layout"  fit="true">
+							<div data-options="region:'center',border:false" style="overflow:auto;">
+							<table id='bbtable' width="3000px">
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">全省普通国省干线公路改造项目完成情况明细表</caption>
+								<tbody id='biaotou'>
+									<tr>
+										<td rowspan="3" style="width: 50px;">序号</td>
+										<td rowspan="3" style="width: 100px;">项目编码</td>
+										<td rowspan="3" style="width: 100px;">设区市</td>
+										<td rowspan="3" style="width: 100px;">县（市、区）</td>
+										<td rowspan="3" style="width: 100px;">特殊地区</td>
+									    <td rowspan="3" style="width: 100px;">项目名称</td>
+										<td rowspan="3" style="width: 100px;">规划路线编码</td>
+										<td rowspan="3" style="width: 100px;">项目库类型</td>
+										<td rowspan="3" style="width: 100px;">项目库编码</td>
+										<td rowspan="2" colspan="2">现状等级（公里）</td>		
+										<td rowspan="2" colspan="3">建设规模（公里）</td>		
+										<td rowspan="3" style="width: 100px;">总投资（万元）</td>
+										<td rowspan="2" colspan="2" style="width: 100px;">补助资金（万元）</td>		
+										<td rowspan="3" style="width: 100px;">地方自筹（万元）</td>
+										<td rowspan="3" style="width: 100px;">工可批复</td>
+										<td rowspan="3" style="width: 100px;">初设批复</td>
+										<td rowspan="3" style="width: 100px;">施工图批复</td>																				
+										<td rowspan="2" colspan="2" style="width: 100px;">计划下达情况</td>	
+										<td colspan="12">项目建设</td>
+										<td rowspan="3" style="width: 100px;">备注</td>																				
+									</tr>
+									<tr>	
+										<td colspan="3">2018年项目建设目标</td>
+										<td colspan="3">项目建设状态</td>
+										<td colspan="6">项目建设进度情况</td>	
+									</tr>	
+									<tr>
+									    <td style="width: 80px;">三级及以下</td>
+									    <td style="width: 80px;">二级及以上</td>
+									    <td style="width: 80px;">升一</td>
+									    <td style="width: 80px;">升二</td>
+									    <td style="width: 80px;">升三</td>
+									    <td style="width: 80px;">部级补助</td>
+									    <td style="width: 80px;">省级补助</td>					    
+									    <td style="width: 80px;">计划年份</td>
+									    <td style="width: 80px;">计划文号</td>    
+									    <td style="width: 80px;">开工里程（公里）</td>
+									    <td style="width: 80px;">完工里程（公里）</td>
+									    <td style="width: 80px;">完成投资（万元）</td>    
+									    <td style="width: 80px;">已完工</td>	    
+									    <td style="width: 80px;">在建</td>
+									    <td style="width: 80px;">未开工</td>
+									    <td style="width: 80px;">建设开工时间</td>
+									    <td style="width: 80px;">建设完工时间</td>
+									    <td style="width: 80px;">累计已完工（公里）</td>
+									    <td style="width: 80px;"><span class='nian'></span>年度完工里程（公里）</td>
+									    <td style="width: 80px;">累计完成总投资（万元）</td>
+									    <td style="width: 80px;"><span class='nian'></span>年度完成投资（万元）</td>
+									</tr>									
+								</tbody>
+								<tbody id="abgclist"></tbody>
+							</table>
+							</div>
+						</div>
+					</div>
+				</td>
         	</tr>        	
 		</table>
 	</div>
