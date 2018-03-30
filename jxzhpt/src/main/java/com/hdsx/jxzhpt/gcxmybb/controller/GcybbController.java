@@ -5367,11 +5367,11 @@ public class GcybbController extends BaseActionSupport{
 			    			+" select "
 			    			+" to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.* from"
 			    			+" (select "
-			    			+" substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tt.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tt.xdnf,nvl(lx.zlc,0),0)) xmlc,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwclc,0),0)) bnlc,sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwclc,0),0)) ljlc,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwctz,0),0)) bntz,sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwctz,0),0)) ljtz,sum(decode(t.xdnf,tt.xdnf,nvl(bncgs.ztz,0),0)) bndw,sum(decode(t.xdnf,tt.xdnf,nvl(ljcgs.ztz,0),0)) ljdw,"
+			    			+" substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tt.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tt.xdnf,nvl(lx.zlc,0),0)) xmlc,sum(decode(t.xdnf,tt.xdnf,nvl(t.pfztz,0),0)) xmtz,sum(decode(t.xdnf,tt.xdnf,nvl(t.bbz,0),0)) xmbb,sum(decode(t.xdnf,tt.xdnf,nvl(t.sbz,0),0)) xmsb,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwclc,0),0)) bnlc,sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwclc,0),0)) ljlc,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwctz,0),0)) bntz,sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwctz,0),0)) ljtz,sum(decode(t.xdnf,tt.xdnf,nvl(bncgs.ztz,0),0)) bndw,sum(decode(t.xdnf,tt.xdnf,nvl(ljcgs.ztz,0),0)) ljdw,"
 			    			+" sum(decode(t.xdnf,tt.xdnf,nvl(bncgs.cgs,0),0)) bncgs,sum(decode(t.xdnf,tt.xdnf,nvl(ljcgs.cgs,0),0)) ljcgs,nvl(to_char(decode(sum(nvl(lx.zlc,0)),'0','0',null,'0',round(sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwclc,0),0)) / sum(nvl(lx.zlc,0)) * 100, 0))),'0')||'%' wcbl,null mblc,0 mbtz,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwclc,0),0)) wcmblc "
 			    			+" from jhsh_lmgz j,cbsj_lmgz cb,"
 			    			+" (select xmid,decode(substr(xmid, 11, 1),1,(nvl(sum(jhyilc), 0) + nvl(sum(jherlc), 0) +nvl(sum(jhsanlc), 0) + nvl(sum(jhsilc), 0) +nvl(sum(jhdwlc), 0) + nvl(sum(jhwllc), 0)),(nvl(sum(yilc), 0) + nvl(sum(erlc), 0) + nvl(sum(sanlc), 0) + nvl(sum(silc), 0) +nvl(sum(dwlc), 0) + nvl(sum(wllc), 0))) zlc from lxsh_lx where jdbs = 2 group by xmid) lx,"
-			    			+" (select xmid,xdnf xdnf,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) bbzorsbz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) +sum(nvl(dfzc, 0)) pfztz from plan_zjxd where jhxdwh is not null group by xmid,xdnf) t,"
+			    			+" (select xmid,xdnf xdnf,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) bbzorsbz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) +sum(nvl(dfzc, 0)) pfztz,sum(nvl(btzzj, 0)) bbz,sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) sbz,sum(nvl(dfzc, 0)) dfzc from plan_zjxd where jhxdwh is not null group by xmid,xdnf) t,"
 		                    +" (select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null group by xmid) tt,"
 			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) ljwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) ljwctz from gcgl_xmjd where to_date(ybrq, 'yyyy-mm-dd') <= to_date('"+gcglwqgz.getYbsj()+"','yyyy-mm-dd') and shzt=1 group by xmbm) ljwc,"
 			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) bnwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) bnwctz from gcgl_xmjd where substr(ybyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(ybrq, 'yyyy-mm-dd') <= to_date('"+gcglwqgz.getYbsj()+"','yyyy-mm-dd') and shzt=1 group by xmbm) bnwc,"
@@ -5386,20 +5386,20 @@ public class GcybbController extends BaseActionSupport{
 			    			+" select "
 			    			+" '全省汇总' xzqhmc,t1.* from"
 			    			+" (select "
-			    			+" '36' xzqh,t.xdnf jhnf,,sum(decode(t.xdnf,tt.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tt.xdnf,nvl(lx.zlc,0),0)) xmlc,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwclc,0),0)) bnlc,sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwclc,0),0)) ljlc,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwctz,0),0)) bntz,sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwctz,0),0)) ljtz,sum(decode(t.xdnf,tt.xdnf,nvl(bncgs.ztz,0),0)) bndw,sum(decode(t.xdnf,tt.xdnf,nvl(ljcgs.ztz,0),0)) ljdw,"
+			    			+" '36' xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tt.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tt.xdnf,nvl(lx.zlc,0),0)) xmlc,sum(decode(t.xdnf,tt.xdnf,nvl(t.pfztz,0),0)) xmtz,sum(decode(t.xdnf,tt.xdnf,nvl(t.bbz,0),0)) xmbb,sum(decode(t.xdnf,tt.xdnf,nvl(t.sbz,0),0)) xmsb,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwclc,0),0)) bnlc,sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwclc,0),0)) ljlc,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwctz,0),0)) bntz,sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwctz,0),0)) ljtz,sum(decode(t.xdnf,tt.xdnf,nvl(bncgs.ztz,0),0)) bndw,sum(decode(t.xdnf,tt.xdnf,nvl(ljcgs.ztz,0),0)) ljdw,"
 			    			+" sum(decode(t.xdnf,tt.xdnf,nvl(bncgs.cgs,0),0)) bncgs,sum(decode(t.xdnf,tt.xdnf,nvl(ljcgs.cgs,0),0)) ljcgs,nvl(to_char(decode(sum(nvl(lx.zlc,0)),'0','0',null,'0',round(sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwclc,0),0)) / sum(nvl(lx.zlc,0)) * 100, 0))),'0')||'%' wcbl,null mblc,0 mbtz,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwclc,0),0)) wcmblc "
 			    			+" from jhsh_lmgz j,cbsj_lmgz cb,"
 			    			+" (select xmid,decode(substr(xmid, 11, 1),1,(nvl(sum(jhyilc), 0) + nvl(sum(jherlc), 0) +nvl(sum(jhsanlc), 0) + nvl(sum(jhsilc), 0) +nvl(sum(jhdwlc), 0) + nvl(sum(jhwllc), 0)),(nvl(sum(yilc), 0) + nvl(sum(erlc), 0) + nvl(sum(sanlc), 0) + nvl(sum(silc), 0) +nvl(sum(dwlc), 0) + nvl(sum(wllc), 0))) zlc from lxsh_lx where jdbs = 2 group by xmid) lx,"
-			    			+" (select xmid,xdnf xdnf,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) bbzorsbz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) +sum(nvl(dfzc, 0)) pfztz from plan_zjxd where jhxdwh is not null group by xmid,xdnf) t,"
-	                        +" (select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null group by xmid) tt,"
+			    			+" (select xmid,xdnf xdnf,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) bbzorsbz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) +sum(nvl(dfzc, 0)) pfztz,sum(nvl(btzzj, 0)) bbz,sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) sbz,sum(nvl(dfzc, 0)) dfzc from plan_zjxd where jhxdwh is not null group by xmid,xdnf) t,"
+		                    +" (select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null group by xmid) tt,"
 			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) ljwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) ljwctz from gcgl_xmjd where to_date(ybrq, 'yyyy-mm-dd') <= to_date('"+gcglwqgz.getYbsj()+"','yyyy-mm-dd') and shzt=1 group by xmbm) ljwc,"
 			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) bnwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) bnwctz from gcgl_xmjd where substr(ybyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(ybrq, 'yyyy-mm-dd') <= to_date('"+gcglwqgz.getYbsj()+"','yyyy-mm-dd') and shzt=1 group by xmbm) bnwc,"
 			    			+" (select xmbm,sum(nvl(bnsslc,0)) bnsslc from gcgl_bnss where nf='"+gcglwqgz.getYbnf()+"' group by xmbm ) bnss,"
 			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) ljcgs,"
 			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) bncgs"
-			    			+" where j.xmbm = cb.xmbm(+) and j.xmbm = lx.xmid(+) and j.xmbm = t.xmid(+) and j.xmbm = tt.xmid(+) and j.xmbm = ljwc.xmbm(+) and j.xmbm = bnwc.xmbm(+) and j.xmbm = ljcgs.jhid(+) and j.xmbm = bncgs.jhid(+) AND J.XMBM = bnss.XMBM(+)"
+			    			+" where j.xmbm = cb.xmbm(+) and j.xmbm = lx.xmid(+) and j.xmbm = t.xmid(+) and j.xmbm = tt.xmid(+) and j.xmbm = ljwc.xmbm(+) and j.xmbm = bnwc.xmbm(+) and j.xmbm = ljcgs.jhid(+) and j.xmbm = bncgs.jhid(+) AND J.XMBM = bnss.XMBM(+) "
+			    			+" and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) "
 			    			+xzqhtj
-			    			+" and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) " 
 			    			+" group by t.xdnf) t1 ";               
 			    			
 				gcybbServer.createybView(viewsql);
@@ -5413,6 +5413,9 @@ public class GcybbController extends BaseActionSupport{
 						in=in+",'"+arr[j]+"'";
 					sql=sql+",decode(sum(decode(jhnf,'"+arr[j]+"',xmsl)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',xmsl)) )xmsl"+arr[j]+
 							",decode(sum(decode(jhnf,'"+arr[j]+"',xmlc)),null,0,sum(decode(jhnf,'"+arr[j]+"',xmlc))) xmlc"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',xmtz)),null,0,sum(decode(jhnf,'"+arr[j]+"',xmtz))) xmtz"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',xmbb)),null,0,sum(decode(jhnf,'"+arr[j]+"',xmbb))) xmbb"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',xmsb)),null,0,sum(decode(jhnf,'"+arr[j]+"',xmsb))) xmsb"+arr[j]+
 							",decode(sum(decode(jhnf,'"+arr[j]+"',bnlc)),null,0,sum(decode(jhnf,'"+arr[j]+"',bnlc))) bnlc"+arr[j]+
 							",decode(sum(decode(jhnf,'"+arr[j]+"',ljlc)),null,0,sum(decode(jhnf,'"+arr[j]+"',ljlc))) ljlc"+arr[j]+
 							",decode(sum(decode(jhnf,'"+arr[j]+"',bntz)),null,0,sum(decode(jhnf,'"+arr[j]+"',bntz))) bntz"+arr[j]+
@@ -5436,7 +5439,7 @@ public class GcybbController extends BaseActionSupport{
 					Class cl = l.getClass();
 					HashMap<String,Object> hm=(HashMap<String, Object>) list.get(i);
 					double xmsl=0;
-					double xmlc=0;
+					double xmlc=0;double xmtz=0;double xmbb=0;double xmsb=0;
 					double bnlc=0;
 					double ljlc=0;
 					double bntz=0;
@@ -5447,10 +5450,13 @@ public class GcybbController extends BaseActionSupport{
 					double ljcgs=0;
 					double wcmblc=0;
 					//从18开始的
-					int f=13;
+					int f=14;
 					for(int j=arr.length-1;j>=0;j--){
 						xmsl=MyUtil.add(xmsl, Double.valueOf(hm.get("XMSL"+arr[j]).toString()));
 						xmlc=MyUtil.add(xmlc, Double.valueOf(hm.get("XMLC"+arr[j]).toString()));
+						xmtz=MyUtil.add(xmlc, Double.valueOf(hm.get("XMTZ"+arr[j]).toString()));
+						xmbb=MyUtil.add(xmlc, Double.valueOf(hm.get("XMBB"+arr[j]).toString()));
+						xmsb=MyUtil.add(xmlc, Double.valueOf(hm.get("XMSB"+arr[j]).toString()));
 						bnlc=MyUtil.add(bnlc, Double.valueOf(hm.get("BNLC"+arr[j]).toString()));
 						ljlc=MyUtil.add(ljlc, Double.valueOf(hm.get("LJLC"+arr[j]).toString()));
 						bntz=MyUtil.add(bntz, Double.valueOf(hm.get("BNTZ"+arr[j]).toString()));
@@ -5467,6 +5473,16 @@ public class GcybbController extends BaseActionSupport{
 						Method method19 = cl.getMethod("setV_"+f, new Class[]{String.class});
 						method19.invoke(l, new Object[]{hm.get("XMLC"+arr[j]).toString()});
 						f++;
+						Method method191 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method191.invoke(l, new Object[]{hm.get("XMTZ"+arr[j]).toString()});
+						f++;
+						Method method192 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method192.invoke(l, new Object[]{hm.get("XMBB"+arr[j]).toString()});
+						f++;
+						Method method193= cl.getMethod("setV_"+f, new Class[]{String.class});
+						method193.invoke(l, new Object[]{hm.get("XMSB"+arr[j]).toString()});
+						f++;
+						
 						Method method20 = cl.getMethod("setV_"+f, new Class[]{String.class});
 						method20.invoke(l, new Object[]{hm.get("BNLC"+arr[j]).toString()});
 						f++;
@@ -5475,8 +5491,17 @@ public class GcybbController extends BaseActionSupport{
 						f++;
 						Method method22 = cl.getMethod("setV_"+f, new Class[]{String.class});
 						method22.invoke(l, new Object[]{hm.get("BNTZ"+arr[j]).toString()});
-						
 						f++;
+						Method method221 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method221.invoke(l, new Object[]{hm.get("LJTZ"+arr[j]).toString()});
+						f++;
+						Method method222 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method222.invoke(l, new Object[]{hm.get("BNDW"+arr[j]).toString()});
+						f++;
+						Method method223 = cl.getMethod("setV_"+f, new Class[]{String.class});
+						method223.invoke(l, new Object[]{hm.get("LJDW"+arr[j]).toString()});
+						f++;
+						
 						String wcblS=MyUtil.divbfb(Double.valueOf(hm.get("LJLC"+arr[j]).toString()), Double.valueOf(hm.get("XMLC"+arr[j]).toString()), 3)+"%";
 						Method method23 = cl.getMethod("setV_"+f, new Class[]{String.class});
 						method23.invoke(l, new Object[]{wcblS});
@@ -5495,21 +5520,20 @@ public class GcybbController extends BaseActionSupport{
 					DecimalFormat decimalFormat2 = new DecimalFormat("#,##0");//格式化设置 
 					
 					l.setV_2(decimalFormat2.format(xmsl));
-					l.setV_3(decimalFormat.format(xmlc));
-					l.setV_4(decimalFormat.format(bnlc)+"");
-					l.setV_5(decimalFormat.format(ljlc)+"");
-					l.setV_6(decimalFormat.format(bntz)+"");
-					l.setV_7(decimalFormat.format(ljtz)+"");
-					l.setV_8(decimalFormat.format(bndw)+"");
-					l.setV_9(decimalFormat.format(ljdw)+"");
+					l.setV_3(decimalFormat2.format(xmtz));
+					l.setV_4(decimalFormat2.format(xmbb));
+					l.setV_5(decimalFormat2.format(xmsb));
+					
+					l.setV_6(decimalFormat.format(xmlc));
+					l.setV_7(decimalFormat.format(bnlc)+"");
+					l.setV_8(decimalFormat.format(ljlc)+"");
+					l.setV_9(decimalFormat.format(bntz)+"");
+					l.setV_10(decimalFormat.format(ljtz)+"");
+					l.setV_11(decimalFormat.format(bndw)+"");
+					l.setV_12(decimalFormat.format(ljdw)+"");
 					
 					double wcbl=MyUtil.divbfb(ljlc, xmlc, 3); 
-					l.setV_10(decimalFormat2.format(wcbl)+"%");
-					l.setV_11("");
-					l.setV_12(decimalFormat.format(wcmblc)+"");
-					
-					Method method26 = cl.getMethod("setV_"+f, new Class[]{String.class});
-					method26.invoke(l, new Object[]{" "});
+					l.setV_13(decimalFormat2.format(wcbl)+"%");
 					
 				  eL.add(l);
 				  
@@ -5528,42 +5552,55 @@ public class GcybbController extends BaseActionSupport{
 					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 					et.add(new Excel_tilte("序号",1,3,0,0));
 					et.add(new Excel_tilte("设区市",1,3,1,1));
-					et.add(new Excel_tilte("计划下达及完成情况",1,1,2,12));
-					int sj1=13;
+					et.add(new Excel_tilte("计划下达及完成情况",1,1,2,13));
+					int sj1=14;
 					for (int i = 0; i < arr.length; i++) {
-						et.add(new Excel_tilte("计划下达及完成情况",1,1,sj1,sj1+5));
-						sj1=sj1+6;
+						et.add(new Excel_tilte("计划下达及完成情况",1,1,sj1,sj1+11));
+						sj1=sj1+12;
 					}
-					et.add(new Excel_tilte("备注",1,3,sj1,sj1));
-					et.add(new Excel_tilte(arr[0]+"-"+arr[arr.length-1]+"年度",2,2,2,3));
-					et.add(new Excel_tilte("本年完成里程(公里)",2,3,4,4));
-					et.add(new Excel_tilte("累计完成里程(公里)",2,3,5,5));
-					et.add(new Excel_tilte("本年完成投资(万元)",2,3,6,6));
-					et.add(new Excel_tilte("累计完成投资(万元)",2,3,7,7));
-					et.add(new Excel_tilte("本年到位投资(万元)",2,3,8,8));
-					et.add(new Excel_tilte("累计到位投资(万元)",2,3,9,9));
-					et.add(new Excel_tilte("工程完成比例",2,3,10,10));
-					et.add(new Excel_tilte(arr[arr.length-1]+"年目标任务里程（公里）",2,3,11,11));
-					et.add(new Excel_tilte(arr[arr.length-1]+"年目标任务已完成里程（公里）",2,3,12,12));
+					et.add(new Excel_tilte(arr[0]+"-"+arr[arr.length-1]+"年度",2,2,2,6));
+					et.add(new Excel_tilte("完成里程(公里)",2,2,7,8));
+					et.add(new Excel_tilte("完成投资(万元)",2,2,9,10));
+					et.add(new Excel_tilte("资金到位(万元)",2,2,11,12));
+					et.add(new Excel_tilte("工程完成比例",2,3,13,13));
 					
 					
-					int sj2=13;
+					int sj2=14;
 					for (int i = 0; i < arr.length; i++) {
-						et.add(new Excel_tilte(arr[i]+"年度",2,2,sj2,sj2+1));
-						et.add(new Excel_tilte("本年完成里程(公里)",2,3,sj2+2,sj2+2));
-						et.add(new Excel_tilte("累计完成里程(公里)",2,3,sj2+3,sj2+3));
-						et.add(new Excel_tilte("本年完成投资(万元)",2,3,sj2+4,sj2+4));
-						et.add(new Excel_tilte("工程完成比例",2,3,sj2+5,sj2+5));
+						et.add(new Excel_tilte(arr[i]+"年度",2,2,sj2,sj2+4));
+						et.add(new Excel_tilte("完成里程(公里)",2,2,sj2+5,sj2+6));
+						et.add(new Excel_tilte("完成投资(万元)",2,2,sj2+7,sj2+8));
+						et.add(new Excel_tilte("资金到位(万元)",2,2,sj2+9,sj2+10));
+						et.add(new Excel_tilte("工程完成比例",2,3,sj2+11,sj2+11));
 						
-						sj2=sj2+6;
+						sj2=sj2+12;
 					}
 					et.add(new Excel_tilte("项目数量",3,3,2,2));
 					et.add(new Excel_tilte("计划里程(公里)",3,3,3,3));
-					int sj3=13;
+					et.add(new Excel_tilte("总投资(万元)",3,3,4,4));
+					et.add(new Excel_tilte("部级补助(万元)",3,3,5,5));
+					et.add(new Excel_tilte("省级补助(万元)",3,3,6,6));
+					et.add(new Excel_tilte(gcglwqgz.getYbnf(),3,3,7,7));
+					et.add(new Excel_tilte("累计",3,3,8,8));
+					et.add(new Excel_tilte(gcglwqgz.getYbnf(),3,3,9,9));
+					et.add(new Excel_tilte("累计",3,3,10,10));
+					et.add(new Excel_tilte(gcglwqgz.getYbnf(),3,3,11,11));
+					et.add(new Excel_tilte("累计",3,3,12,12));
+					int sj3=14;
 					for (int i = 0; i < arr.length; i++) {
 						et.add(new Excel_tilte("项目数量",3,3,sj3,sj3));
 						et.add(new Excel_tilte("计划里程(公里)",3,3,sj3+1,sj3+1));
-						sj3=sj3+6;
+						et.add(new Excel_tilte("总投资(万元)",3,3,sj3+2,sj3+2));
+						et.add(new Excel_tilte("部级补助(万元)",3,3,sj3+3,sj3+3));
+						et.add(new Excel_tilte("省级补助(万元)",3,3,sj3+4,sj3+4));
+						et.add(new Excel_tilte(gcglwqgz.getYbnf(),3,3,sj3+5,sj3+5));
+						et.add(new Excel_tilte("累计",3,3,sj3+6,sj3+6));
+						et.add(new Excel_tilte(gcglwqgz.getYbnf(),3,3,sj3+7,sj3+7));
+						et.add(new Excel_tilte("累计",3,3,sj3+8,sj3+8));
+						et.add(new Excel_tilte(gcglwqgz.getYbnf(),3,3,sj3+9,sj3+9));
+						et.add(new Excel_tilte("累计",3,3,sj3+10,sj3+10));
+						
+						sj3=sj3+12;
 					}
 					eldata.setEt(et);//将表头内容设置到类里面
 					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
@@ -5591,12 +5628,12 @@ public class GcybbController extends BaseActionSupport{
 				    			+" select "
 				    			+" to_char((select name from xtgl_xzqh where id = t1.xzqh || '00')) xzqhmc,t1.* from"
 				    			+" (select "
-				    			+" substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tt.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tt.xdnf,nvl(lx.zlc,0),0)) xmlc,sum(nvl(t.bstz,0)) bstz,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwclc,0),0)) bnlc,sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwclc,0),0)) ljlc,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwctz,0),0)) bntz,sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwctz,0),0)) ljtz,sum(decode(t.xdnf,tt.xdnf,nvl(bncgs.ztz,0),0)) bndw,sum(decode(t.xdnf,tt.xdnf,nvl(ljcgs.ztz,0),0)) ljdw,"
+				    			+" substr(cb.xzqhdm, 0, 4) xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tt.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tt.xdnf,nvl(lx.zlc,0),0)) xmlc,sum(decode(t.xdnf,tt.xdnf,nvl(t.pfztz,0),0)) xmtz,sum(decode(t.xdnf,tt.xdnf,nvl(t.bbz,0),0)) xmbb,sum(decode(t.xdnf,tt.xdnf,nvl(t.sbz,0),0)) xmsb,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwclc,0),0)) bnlc,sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwclc,0),0)) ljlc,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwctz,0),0)) bntz,sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwctz,0),0)) ljtz,sum(decode(t.xdnf,tt.xdnf,nvl(bncgs.ztz,0),0)) bndw,sum(decode(t.xdnf,tt.xdnf,nvl(ljcgs.ztz,0),0)) ljdw,"
 				    			+" sum(decode(t.xdnf,tt.xdnf,nvl(bncgs.cgs,0),0)) bncgs,sum(decode(t.xdnf,tt.xdnf,nvl(ljcgs.cgs,0),0)) ljcgs,nvl(to_char(decode(sum(nvl(lx.zlc,0)),'0','0',null,'0',round(sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwclc,0),0)) / sum(nvl(lx.zlc,0)) * 100, 0))),'0')||'%' wcbl,null mblc,0 mbtz,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwclc,0),0)) wcmblc "
 				    			+" from jhsh_sh j,cbsj_sh cb,"
 				    			+" (select xmid,decode(substr(xmid, 11, 1),1,(nvl(sum(jhyilc), 0) + nvl(sum(jherlc), 0) +nvl(sum(jhsanlc), 0) + nvl(sum(jhsilc), 0) +nvl(sum(jhdwlc), 0) + nvl(sum(jhwllc), 0)),(nvl(sum(yilc), 0) + nvl(sum(erlc), 0) + nvl(sum(sanlc), 0) + nvl(sum(silc), 0) +nvl(sum(dwlc), 0) + nvl(sum(wllc), 0))) zlc from lxsh_lx where jdbs = 2 group by xmid) lx,"
-				    			+" (select xmid,min(xdnf) xdnf,sum(nvl(btzzj, 0))+sum(nvl(rys, 0))+sum(nvl(dk, 0))+sum(nvl(jl, 0)) bstz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) bbzorsbz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) +sum(nvl(dfzc, 0)) pfztz from plan_zjxd where jhxdwh is not null group by xmid) t,"
-				    			+" (select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null group by xmid) tt,"
+				    			+" (select xmid,xdnf xdnf,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) bbzorsbz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) +sum(nvl(dfzc, 0)) pfztz,sum(nvl(btzzj, 0)) bbz,sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) sbz,sum(nvl(dfzc, 0)) dfzc from plan_zjxd where jhxdwh is not null group by xmid,xdnf) t,"
+			                    +" (select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null group by xmid) tt,"
 				    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) ljwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) ljwctz from gcgl_xmjd where to_date(ybrq, 'yyyy-mm-dd') <= to_date('"+gcglwqgz.getYbsj()+"','yyyy-mm-dd') and shzt=1 group by xmbm) ljwc,"
 				    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) bnwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) bnwctz from gcgl_xmjd where substr(ybyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(ybrq, 'yyyy-mm-dd') <= to_date('"+gcglwqgz.getYbsj()+"','yyyy-mm-dd') and shzt=1 group by xmbm) bnwc,"
 				    			+" (select xmbm,sum(nvl(bnsslc,0)) bnsslc from gcgl_bnss where nf='"+gcglwqgz.getYbnf()+"' group by xmbm ) bnss,"
@@ -5609,12 +5646,12 @@ public class GcybbController extends BaseActionSupport{
 				    			+" select "
 				    			+" '全省汇总' xzqhmc,t1.* from"
 				    			+" (select "
-				    			+" '36' xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tt.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tt.xdnf,nvl(lx.zlc,0),0)) xmlc,sum(nvl(t.bstz,0)) bstz,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwclc,0),0)) bnlc,sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwclc,0),0)) ljlc,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwctz,0),0)) bntz,sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwctz,0),0)) ljtz,sum(decode(t.xdnf,tt.xdnf,nvl(bncgs.ztz,0),0)) bndw,sum(decode(t.xdnf,tt.xdnf,nvl(ljcgs.ztz,0),0)) ljdw,"
+				    			+" '36' xzqh,t.xdnf jhnf,sum(decode(t.xdnf,tt.xdnf,1,0)) xmsl,sum(decode(t.xdnf,tt.xdnf,nvl(lx.zlc,0),0)) xmlc,sum(decode(t.xdnf,tt.xdnf,nvl(t.pfztz,0),0)) xmtz,sum(decode(t.xdnf,tt.xdnf,nvl(t.bbz,0),0)) xmbb,sum(decode(t.xdnf,tt.xdnf,nvl(t.sbz,0),0)) xmsb,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwclc,0),0)) bnlc,sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwclc,0),0)) ljlc,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwctz,0),0)) bntz,sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwctz,0),0)) ljtz,sum(decode(t.xdnf,tt.xdnf,nvl(bncgs.ztz,0),0)) bndw,sum(decode(t.xdnf,tt.xdnf,nvl(ljcgs.ztz,0),0)) ljdw,"
 				    			+" sum(decode(t.xdnf,tt.xdnf,nvl(bncgs.cgs,0),0)) bncgs,sum(decode(t.xdnf,tt.xdnf,nvl(ljcgs.cgs,0),0)) ljcgs,nvl(to_char(decode(sum(nvl(lx.zlc,0)),'0','0',null,'0',round(sum(decode(t.xdnf,tt.xdnf,nvl(ljwc.ljwclc,0),0)) / sum(nvl(lx.zlc,0)) * 100, 0))),'0')||'%' wcbl,null mblc,0 mbtz,sum(decode(t.xdnf,tt.xdnf,nvl(bnwc.bnwclc,0),0)) wcmblc "
 				    			+" from jhsh_sh j,cbsj_sh cb,"
 				    			+" (select xmid,decode(substr(xmid, 11, 1),1,(nvl(sum(jhyilc), 0) + nvl(sum(jherlc), 0) +nvl(sum(jhsanlc), 0) + nvl(sum(jhsilc), 0) +nvl(sum(jhdwlc), 0) + nvl(sum(jhwllc), 0)),(nvl(sum(yilc), 0) + nvl(sum(erlc), 0) + nvl(sum(sanlc), 0) + nvl(sum(silc), 0) +nvl(sum(dwlc), 0) + nvl(sum(wllc), 0))) zlc from lxsh_lx where jdbs = 2 group by xmid) lx,"
-				    			+" (select xmid,min(xdnf) xdnf,sum(nvl(btzzj, 0))+sum(nvl(rys, 0))+sum(nvl(dk, 0))+sum(nvl(jl, 0)) bstz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) bbzorsbz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) +sum(nvl(dfzc, 0)) pfztz from plan_zjxd where jhxdwh is not null group by xmid) t,"
-				    			+" (select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null group by xmid) tt,"
+				    			+" (select xmid,xdnf xdnf,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) bbzorsbz,sum(nvl(btzzj, 0)) + sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) +sum(nvl(dfzc, 0)) pfztz,sum(nvl(btzzj, 0)) bbz,sum(nvl(gz, 0)) + sum(nvl(sz, 0)) +sum(nvl(zq, 0)) + sum(nvl(dk, 0)) + sum(nvl(jl, 0)) +sum(nvl(qt, 0)) + sum(nvl(yhdk, 0)) sbz,sum(nvl(dfzc, 0)) dfzc from plan_zjxd where jhxdwh is not null group by xmid,xdnf) t,"
+			                    +" (select xmid,min(xdnf) xdnf from plan_zjxd where jhxdwh is not null group by xmid) tt,"
 				    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) ljwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) ljwctz from gcgl_xmjd where to_date(ybrq, 'yyyy-mm-dd') <= to_date('"+gcglwqgz.getYbsj()+"','yyyy-mm-dd') and shzt=1 group by xmbm) ljwc,"
 				    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) bnwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) bnwctz from gcgl_xmjd where substr(ybyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(ybrq, 'yyyy-mm-dd') <= to_date('"+gcglwqgz.getYbsj()+"','yyyy-mm-dd') and shzt=1 group by xmbm) bnwc,"
 				    			+" (select xmbm,sum(nvl(bnsslc,0)) bnsslc from gcgl_bnss where nf='"+gcglwqgz.getYbnf()+"' group by xmbm ) bnss,"
@@ -5635,7 +5672,9 @@ public class GcybbController extends BaseActionSupport{
 							in=in+",'"+arr[j]+"'";
 						sql=sql+",decode(sum(decode(jhnf,'"+arr[j]+"',xmsl)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',xmsl)) )xmsl"+arr[j]+
 								",decode(sum(decode(jhnf,'"+arr[j]+"',xmlc)),null,0,sum(decode(jhnf,'"+arr[j]+"',xmlc))) xmlc"+arr[j]+
-								",decode(sum(decode(jhnf,'"+arr[j]+"',bstz)),null,0,sum(decode(jhnf,'"+arr[j]+"',bstz))) bstz"+arr[j]+
+								",decode(sum(decode(jhnf,'"+arr[j]+"',xmtz)),null,0,sum(decode(jhnf,'"+arr[j]+"',xmtz))) xmtz"+arr[j]+
+							  ",decode(sum(decode(jhnf,'"+arr[j]+"',xmbb)),null,0,sum(decode(jhnf,'"+arr[j]+"',xmbb))) xmbb"+arr[j]+
+							  ",decode(sum(decode(jhnf,'"+arr[j]+"',xmsb)),null,0,sum(decode(jhnf,'"+arr[j]+"',xmsb))) xmsb"+arr[j]+
 								",decode(sum(decode(jhnf,'"+arr[j]+"',bnlc)),null,0,sum(decode(jhnf,'"+arr[j]+"',bnlc))) bnlc"+arr[j]+
 								",decode(sum(decode(jhnf,'"+arr[j]+"',ljlc)),null,0,sum(decode(jhnf,'"+arr[j]+"',ljlc))) ljlc"+arr[j]+
 								",decode(sum(decode(jhnf,'"+arr[j]+"',bntz)),null,0,sum(decode(jhnf,'"+arr[j]+"',bntz))) bntz"+arr[j]+
@@ -5659,8 +5698,7 @@ public class GcybbController extends BaseActionSupport{
 						Class cl = l.getClass();
 						HashMap<String,Object> hm=(HashMap<String, Object>) list.get(i);
 						double xmsl=0;
-						double xmlc=0;
-						double bstz=0;
+						double xmlc=0;double xmtz=0;double xmbb=0;double xmsb=0;
 						double bnlc=0;
 						double ljlc=0;
 						double bntz=0;
@@ -5671,11 +5709,13 @@ public class GcybbController extends BaseActionSupport{
 						double ljcgs=0;
 						double wcmblc=0;
 						//从18开始的
-						int f=9;
+						int f=14;
 						for(int j=arr.length-1;j>=0;j--){
 							xmsl=MyUtil.add(xmsl, Double.valueOf(hm.get("XMSL"+arr[j]).toString()));
 							xmlc=MyUtil.add(xmlc, Double.valueOf(hm.get("XMLC"+arr[j]).toString()));
-							bstz=MyUtil.add(bstz, Double.valueOf(hm.get("BSTZ"+arr[j]).toString()));
+							xmtz=MyUtil.add(xmlc, Double.valueOf(hm.get("XMTZ"+arr[j]).toString()));
+							xmbb=MyUtil.add(xmlc, Double.valueOf(hm.get("XMBB"+arr[j]).toString()));
+							xmsb=MyUtil.add(xmlc, Double.valueOf(hm.get("XMSB"+arr[j]).toString()));
 							bnlc=MyUtil.add(bnlc, Double.valueOf(hm.get("BNLC"+arr[j]).toString()));
 							ljlc=MyUtil.add(ljlc, Double.valueOf(hm.get("LJLC"+arr[j]).toString()));
 							bntz=MyUtil.add(bntz, Double.valueOf(hm.get("BNTZ"+arr[j]).toString()));
@@ -5693,8 +5733,15 @@ public class GcybbController extends BaseActionSupport{
 							method19.invoke(l, new Object[]{hm.get("XMLC"+arr[j]).toString()});
 							f++;
 							Method method191 = cl.getMethod("setV_"+f, new Class[]{String.class});
-							method191.invoke(l, new Object[]{hm.get("BSTZ"+arr[j]).toString()});
+							method191.invoke(l, new Object[]{hm.get("XMTZ"+arr[j]).toString()});
 							f++;
+							Method method192 = cl.getMethod("setV_"+f, new Class[]{String.class});
+							method192.invoke(l, new Object[]{hm.get("XMBB"+arr[j]).toString()});
+							f++;
+							Method method193= cl.getMethod("setV_"+f, new Class[]{String.class});
+							method193.invoke(l, new Object[]{hm.get("XMSB"+arr[j]).toString()});
+							f++;
+							
 							Method method20 = cl.getMethod("setV_"+f, new Class[]{String.class});
 							method20.invoke(l, new Object[]{hm.get("BNLC"+arr[j]).toString()});
 							f++;
@@ -5704,6 +5751,16 @@ public class GcybbController extends BaseActionSupport{
 							Method method22 = cl.getMethod("setV_"+f, new Class[]{String.class});
 							method22.invoke(l, new Object[]{hm.get("BNTZ"+arr[j]).toString()});
 							f++;
+							Method method221 = cl.getMethod("setV_"+f, new Class[]{String.class});
+							method221.invoke(l, new Object[]{hm.get("LJTZ"+arr[j]).toString()});
+							f++;
+							Method method222 = cl.getMethod("setV_"+f, new Class[]{String.class});
+							method222.invoke(l, new Object[]{hm.get("BNDW"+arr[j]).toString()});
+							f++;
+							Method method223 = cl.getMethod("setV_"+f, new Class[]{String.class});
+							method223.invoke(l, new Object[]{hm.get("LJDW"+arr[j]).toString()});
+							f++;
+							
 							String wcblS=MyUtil.divbfb(Double.valueOf(hm.get("LJLC"+arr[j]).toString()), Double.valueOf(hm.get("XMLC"+arr[j]).toString()), 3)+"%";
 							Method method23 = cl.getMethod("setV_"+f, new Class[]{String.class});
 							method23.invoke(l, new Object[]{wcblS});
@@ -5716,23 +5773,26 @@ public class GcybbController extends BaseActionSupport{
 						}else {
 							l.setV_0(i+"");
 						}
-						l.setV_1(list.get(i).get("XZQHMC").toString());
 						l.setXzqhdm(list.get(i).get("XZQHDM").toString());
+						l.setV_1(list.get(i).get("XZQHMC").toString());
 						DecimalFormat decimalFormat = new DecimalFormat("#,##0.000");//格式化设置 
 						DecimalFormat decimalFormat2 = new DecimalFormat("#,##0");//格式化设置 
 						
 						l.setV_2(decimalFormat2.format(xmsl));
-						l.setV_3(decimalFormat.format(xmlc));
-						l.setV_4(decimalFormat.format(bstz));
-						l.setV_5(decimalFormat.format(bnlc)+"");
-						l.setV_6(decimalFormat.format(ljlc)+"");
-						l.setV_7(decimalFormat.format(bntz)+"");
+						l.setV_3(decimalFormat2.format(xmtz));
+						l.setV_4(decimalFormat2.format(xmbb));
+						l.setV_5(decimalFormat2.format(xmsb));
+						
+						l.setV_6(decimalFormat.format(xmlc));
+						l.setV_7(decimalFormat.format(bnlc)+"");
+						l.setV_8(decimalFormat.format(ljlc)+"");
+						l.setV_9(decimalFormat.format(bntz)+"");
+						l.setV_10(decimalFormat.format(ljtz)+"");
+						l.setV_11(decimalFormat.format(bndw)+"");
+						l.setV_12(decimalFormat.format(ljdw)+"");
 						
 						double wcbl=MyUtil.divbfb(ljlc, xmlc, 3); 
-						l.setV_8(decimalFormat2.format(wcbl)+"%");
-						
-						Method method26 = cl.getMethod("setV_"+f, new Class[]{String.class});
-						method26.invoke(l, new Object[]{" "});
+						l.setV_13(decimalFormat2.format(wcbl)+"%");
 						
 					  eL.add(l);
 					 
@@ -5746,43 +5806,60 @@ public class GcybbController extends BaseActionSupport{
 						eldata.setTitleName("普通国省干线公路灾毁恢复建设任务完成情况表");//设置第一行 
 						eldata.setSheetName("灾毁恢复建");//设置sheeet名
 						eldata.setFileName("普通国省干线公路灾毁恢复建设任务完成情况表");//设置文件名
-						List<Excel_list> eL = (List<Excel_list>) getRequest().getSession().getAttribute("lmgzwcb");
+						List<Excel_list> eL = (List<Excel_list>) getRequest().getSession().getAttribute("zhhfwcb");
 						eldata.setEl(eL);//将实体list放入类中
 						List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 						et.add(new Excel_tilte("序号",1,3,0,0));
 						et.add(new Excel_tilte("设区市",1,3,1,1));
-						et.add(new Excel_tilte("计划下达及完成情况",1,1,2,8));
-						int sj1=9;
+						et.add(new Excel_tilte("计划下达及完成情况",1,1,2,13));
+						int sj1=14;
 						for (int i = 0; i < arr.length; i++) {
-							et.add(new Excel_tilte("计划下达及完成情况",1,1,sj1,sj1+6));
-							sj1=sj1+7;
+							et.add(new Excel_tilte("计划下达及完成情况",1,1,sj1,sj1+11));
+							sj1=sj1+12;
 						}
-						et.add(new Excel_tilte("备注",1,3,sj1,sj1));
-						et.add(new Excel_tilte(arr[0]+"-"+arr[arr.length-1]+"年度",2,2,2,4));
-						et.add(new Excel_tilte("本年完成里程(公里)",2,3,5,5));
-						et.add(new Excel_tilte("累计完成里程(公里)",2,3,6,6));
-						et.add(new Excel_tilte("本年完成投资(万元)",2,3,7,7));
-						et.add(new Excel_tilte("工程完成比例",2,3,8,8));
+						et.add(new Excel_tilte(arr[0]+"-"+arr[arr.length-1]+"年度",2,2,2,6));
+						et.add(new Excel_tilte("完成里程(公里)",2,2,7,8));
+						et.add(new Excel_tilte("完成投资(万元)",2,2,9,10));
+						et.add(new Excel_tilte("资金到位(万元)",2,2,11,12));
+						et.add(new Excel_tilte("工程完成比例",2,3,13,13));
 						
-						int sj2=9;
+						
+						int sj2=14;
 						for (int i = 0; i < arr.length; i++) {
-							et.add(new Excel_tilte(arr[i]+"年度",2,2,sj2,sj2+2));
-							et.add(new Excel_tilte("本年完成里程(公里)",2,3,sj2+3,sj2+3));
-							et.add(new Excel_tilte("累计完成里程(公里)",2,3,sj2+4,sj2+4));
-							et.add(new Excel_tilte("本年完成投资(万元)",2,3,sj2+5,sj2+5));
-							et.add(new Excel_tilte("工程完成比例",2,3,sj2+6,sj2+6));
+							et.add(new Excel_tilte(arr[i]+"年度",2,2,sj2,sj2+4));
+							et.add(new Excel_tilte("完成里程(公里)",2,2,sj2+5,sj2+6));
+							et.add(new Excel_tilte("完成投资(万元)",2,2,sj2+7,sj2+8));
+							et.add(new Excel_tilte("资金到位(万元)",2,2,sj2+9,sj2+10));
+							et.add(new Excel_tilte("工程完成比例",2,3,sj2+11,sj2+11));
 							
-							sj2=sj2+7;
+							sj2=sj2+12;
 						}
 						et.add(new Excel_tilte("项目数量",3,3,2,2));
 						et.add(new Excel_tilte("计划里程(公里)",3,3,3,3));
-						et.add(new Excel_tilte("中央或省统筹资金（万元）含续建",3,3,4,4));
-						int sj3=9;
+						et.add(new Excel_tilte("总投资(万元)",3,3,4,4));
+						et.add(new Excel_tilte("部级补助(万元)",3,3,5,5));
+						et.add(new Excel_tilte("省级补助(万元)",3,3,6,6));
+						et.add(new Excel_tilte(gcglwqgz.getYbnf(),3,3,7,7));
+						et.add(new Excel_tilte("累计",3,3,8,8));
+						et.add(new Excel_tilte(gcglwqgz.getYbnf(),3,3,9,9));
+						et.add(new Excel_tilte("累计",3,3,10,10));
+						et.add(new Excel_tilte(gcglwqgz.getYbnf(),3,3,11,11));
+						et.add(new Excel_tilte("累计",3,3,12,12));
+						int sj3=14;
 						for (int i = 0; i < arr.length; i++) {
 							et.add(new Excel_tilte("项目数量",3,3,sj3,sj3));
 							et.add(new Excel_tilte("计划里程(公里)",3,3,sj3+1,sj3+1));
-							et.add(new Excel_tilte("中央或省统筹资金（万元）含续建",3,3,sj3+2,sj3+2));
-							sj3=sj3+7;
+							et.add(new Excel_tilte("总投资(万元)",3,3,sj3+2,sj3+2));
+							et.add(new Excel_tilte("部级补助(万元)",3,3,sj3+3,sj3+3));
+							et.add(new Excel_tilte("省级补助(万元)",3,3,sj3+4,sj3+4));
+							et.add(new Excel_tilte(gcglwqgz.getYbnf(),3,3,sj3+5,sj3+5));
+							et.add(new Excel_tilte("累计",3,3,sj3+6,sj3+6));
+							et.add(new Excel_tilte(gcglwqgz.getYbnf(),3,3,sj3+7,sj3+7));
+							et.add(new Excel_tilte("累计",3,3,sj3+8,sj3+8));
+							et.add(new Excel_tilte(gcglwqgz.getYbnf(),3,3,sj3+9,sj3+9));
+							et.add(new Excel_tilte("累计",3,3,sj3+10,sj3+10));
+							
+							sj3=sj3+12;
 						}
 						eldata.setEt(et);//将表头内容设置到类里面
 						HttpServletResponse response= getresponse();//获得一个HttpServletResponse

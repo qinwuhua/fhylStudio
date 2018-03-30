@@ -229,21 +229,20 @@ function lmgzwcbghcx(formdate){
 	var max=xmnf[0];
 	var len=(xmnf.length+1)*1000+"px";
 	parent.$("#kdtb").attr('width',len);
-	var sv="v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8,v_9,v_10,v_11,v_12";
-	var l=13;
+	var sv="v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8,v_9,v_10,v_11,v_12,v_13";
+	var l=14;
 	for(var i=xmnf.length-1;i>=0;i--){
-		sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;
-		str1=str1+'<td colspan="6">计划下达及完成情况</td>';
-		str2=str2+'<td rowspan="1" colspan="2">'+xmnf[i]+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">工程完成比例</td>';
-		str3=str3+'<td>项目数量</td><td>计划里程（公里）</td>';
+		sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;
+		str1=str1+'<td colspan="12">计划下达及完成情况</td>';
+		str2=str2+'<td rowspan="1" colspan="5">'+xmnf[i]+'年度</td><td colspan="2">完成里程（公里）</td><td colspan="2">完成投资（万元）</td><td colspan="2">资金到位（万元）</td><td rowspan="2">工程完成比例</td>';
+		str3=str3+'<td>项目数量</td><td>计划里程（公里）</td><td>总投资（万元）</td><td>部级补助（万元）</td><td>省级补助（万元）</td><td>'+$("#ybsj").datebox("getValue").substr(0,4)+'</td><td>累计</td><td>'+$("#ybsj").datebox("getValue").substr(0,4)+'</td><td>累计</td><td>'+$("#ybsj").datebox("getValue").substr(0,4)+'</td><td>累计</td>';
 	}
-	sv+=",v_"+l;l++;
 	var ss=sv.split(",");
-	biaotstr='<tr><td rowspan="3">序号</td><td rowspan="3">设区市</td><td colspan="11">计划下达及完成情况</td>'
-	+str1+'<td rowspan="3">备注</td></tr>'
-	+'<td rowspan="1" colspan="2">'+min+'-'+max+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">累计完成投资（万元）</td><td rowspan="2">本年到位资金（万元）</td><td rowspan="2">累计到位资金（万元）</td><td rowspan="2">工程完成比例</td><td rowspan="2">'+max+'年目标任务里程（公里）</td><td rowspan="2">'+max+'年目标任务已完成里程（公里）</td>'
+	biaotstr='<tr><td rowspan="3">序号</td><td rowspan="3">设区市</td><td colspan="12">计划下达及完成情况</td>'
+	+str1+'</tr>'
+	+'<td rowspan="1" colspan="5">'+min+'-'+max+'年度</td><td colspan="2">完成里程（公里）</td><td colspan="2">完成投资（万元）</td><td colspan="2">资金到位（万元）</td><td rowspan="2">工程完成比例</td>'
 	+str2+'</tr>'
-	+'<td>项目数量</td><td>计划里程（公里）</td>'
+	+'<td>项目数量</td><td>计划里程（公里）</td><td>总投资（万元）</td><td>部级补助（万元）</td><td>省级补助（万元）</td><td>'+$("#ybsj").datebox("getValue").substr(0,4)+'</td><td>累计</td><td>'+$("#ybsj").datebox("getValue").substr(0,4)+'</td><td>累计</td><td>'+$("#ybsj").datebox("getValue").substr(0,4)+'</td><td>累计</td>'
 	+str3+'</tr>';
 	biaotou.empty();
 	biaotou.append(biaotstr);
@@ -303,21 +302,20 @@ function zhhfwcbghcx(formdate){
 	var max=xmnf[0];
 	var len=(xmnf.length+1)*1000+"px";
 	parent.$("#kdtb").attr('width',len);
-	var sv="v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8";
-	var l=9;
+	var sv="v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8,v_9,v_10,v_11,v_12,v_13";
+	var l=14;
 	for(var i=xmnf.length-1;i>=0;i--){
-		sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;
-		str1=str1+'<td colspan="7">计划下达及完成情况</td>';
-		str2=str2+'<td rowspan="1" colspan="3">'+xmnf[i]+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">工程完成比例</td>';
-		str3=str3+'<td>项目数量</td><td>计划里程（公里）</td><td>中央或省统筹资金（万元）含续建</td>';
+		sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;sv+=",v_"+l;l++;
+		str1=str1+'<td colspan="12">计划下达及完成情况</td>';
+		str2=str2+'<td rowspan="1" colspan="5">'+xmnf[i]+'年度</td><td colspan="2">完成里程（公里）</td><td colspan="2">完成投资（万元）</td><td colspan="2">资金到位（万元）</td><td rowspan="2">工程完成比例</td>';
+		str3=str3+'<td>项目数量</td><td>计划里程（公里）</td><td>总投资（万元）</td><td>部级补助（万元）</td><td>省级补助（万元）</td><td>'+$("#ybsj").datebox("getValue").substr(0,4)+'</td><td>累计</td><td>'+$("#ybsj").datebox("getValue").substr(0,4)+'</td><td>累计</td><td>'+$("#ybsj").datebox("getValue").substr(0,4)+'</td><td>累计</td>';
 	}
-	sv+=",v_"+l;l++;
 	var ss=sv.split(",");
-	biaotstr='<tr><td rowspan="3">序号</td><td rowspan="3">设区市</td><td colspan="7">计划下达及完成情况</td>'
-	+str1+'<td rowspan="3">备注</td></tr>'
-	+'<td rowspan="1" colspan="3">'+min+'-'+max+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">工程完成比例</td>'
+	biaotstr='<tr><td rowspan="3">序号</td><td rowspan="3">设区市</td><td colspan="12">计划下达及完成情况</td>'
+	+str1+'</tr>'
+	+'<td rowspan="1" colspan="5">'+min+'-'+max+'年度</td><td colspan="2">完成里程（公里）</td><td colspan="2">完成投资（万元）</td><td colspan="2">资金到位（万元）</td><td rowspan="2">工程完成比例</td>'
 	+str2+'</tr>'
-	+'<td>项目数量</td><td>计划里程（公里）</td><td>中央或省统筹资金（万元）含续建</td>'
+	+'<td>项目数量</td><td>计划里程（公里）</td><td>总投资（万元）</td><td>部级补助（万元）</td><td>省级补助（万元）</td><td>'+$("#ybsj").datebox("getValue").substr(0,4)+'</td><td>累计</td><td>'+$("#ybsj").datebox("getValue").substr(0,4)+'</td><td>累计</td><td>'+$("#ybsj").datebox("getValue").substr(0,4)+'</td><td>累计</td>'
 	+str3+'</tr>';
 	biaotou.empty();
 	biaotou.append(biaotstr);
