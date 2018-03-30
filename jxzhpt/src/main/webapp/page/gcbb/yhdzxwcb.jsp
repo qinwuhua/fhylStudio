@@ -251,7 +251,7 @@ text-decoration:none;
         						<tr height="32">
         						<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:150px;"></select></td>
-        						<td align="right">计划年度：</td>
+        						<td align="right">首次下达年份：</td>
 		        				<td><input id="jhnd" type="text"  style="width: 80px"></td>
         						<td align="right">月报时间：</td>
         						<td><input id="ybsj" type="text"  style="width: 103px" class='easyui-datebox'  ></td>

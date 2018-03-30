@@ -61,7 +61,6 @@ function ghbbcx(){
 	
 	var formdate=$("#formdate").combobox('getValue');
 	//if(parent.YMLib.Var.formname=='xgjwcmxb')
-
 	if(parent.YMLib.Var.formname=='xgjwchzb'){
 		xgjwchzbghcx(formdate);}
 	else if(parent.YMLib.Var.formname=='lmgzwcb'){
@@ -70,8 +69,6 @@ function ghbbcx(){
 		zhhfwcbghcx(formdate);}
 	else if(parent.YMLib.Var.formname=='yhdzxwcb'){
 		yhdzxwcbghcx(formdate);}
-	else if(parent.YMLib.Var.formname=='sjgzjdhzb'){
-		sjgzjdhzbcx(formdate);}
 	else{xgjwcmxbghcx(formdate);}
 }
 function xgjwcmxbghcx(formdate){
@@ -96,6 +93,12 @@ function xgjwcmxbghcx(formdate){
 	}
 	if(parent.YMLib.Var.formname=='lwgzxmb'||parent.YMLib.Var.formname=='shxmb'){
 		sstr='v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8,v_9,v_10,v_11,v_12,v_13,v_14,v_15,v_16,v_17,v_18,v_19,v_20,v_21,v_22,v_23,v_24,v_25,v_26,v_27,v_28,v_29,v_30,v_31,v_32,v_33,v_34,v_35,v_36,v_37,v_38,v_39,v_40,v_41,v_42,v_43,v_44,v_45,v_46,v_47,v_48';
+	}
+	if(parent.YMLib.Var.formname=='sjgzjdhzb'){
+		sstr='v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8,v_9,v_10,v_11,v_12,v_13,v_14,v_15,v_16,v_17';
+	}
+	if(parent.YMLib.Var.formname=='sjgzjdxxb'){
+		sstr='v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8,v_9,v_10,v_11,v_12,v_13,v_14,v_15,v_16,v_17,v_18,v_19,v_20,v_21,v_22,v_23,v_24,v_25,v_26,v_27,v_28,v_29,v_30,v_31,v_32,v_33,v_34,v_35';
 	}
 
 	var tbody = parent.$("#abgclist");
@@ -390,61 +393,6 @@ function yhdzxwcbghcx(formdate){
 				}
 			}
 	});
-}
-function sjgzjdhzbcx(formdate){
-// 	alert("asfdas");
-	var tbody = parent.$("#datagrid");
-	var enddate =parent.$("#enddate").datebox("getValue");
-	var nf=enddate.substring(0, 4);
-    alert(nf);
-    alert(parent.YMLib.Var.formname);
-    alert(parent.$("#datagrid"));
-    loadjzt();
-    tbody.datagrid({    
-	    url:'/jxzhpt/gcybb/getghbbcx.do',
-	    striped:true,
-	    pagination:false,
-	    rownumbers:true,
-	    checkOnSelect:true,
-	    height:$(window).height()-160,
-	    width:$(window).width()-20,
-	    idField: 'id', //主键
-	    queryParams: {
-	    	"excel_list.formname":parent.YMLib.Var.formname,
-	    	"&excel_list.formdate":formdate,
-	    	"&excel_list.xzqhdm":$.cookie('dist2')
-		},
-	   columns:[[
-	        {field:'v_0',title:'设区市',width:100,align:'center',rowspan:3},		        
-	        {title:nf+'年项目建设',align:'center',colspan:17}
-         ],[
-		    {title:'2018年项目建设目标',align:'center',colspan:4},			    
-		    {title:'目标任务内项目建设进度情况',align:'center',colspan:8},
-		    {title:'目标任务外项目建设进度情况',align:'center',colspan:5}
-
-         ],[
-			{field:'v_1',title:'开工里程（公里）',width:100,align:'center',rowspan:1},
-			{field:'v_2',title:'开工项目个数',width:100,align:'center',rowspan:1},
-			{field:'v_3',title:'完工里程（公里）',width:100,align:'center',rowspan:1},
-			{field:'v_4',title:'完成投资（万元）',width:100,align:'center',rowspan:1},
-			{field:'v_5',title:'已完工',width:100,align:'center',rowspan:1},
-			{field:'v_6',title:'在建',width:100,align:'center',rowspan:1},
-			{field:'v_7',title:'其中'+nf+'年新开工',width:120,align:'center',rowspan:1},
-			{field:'v_8',title:'未开工',width:100,align:'center',rowspan:1},
-			{field:'v_9',title:'自开工建设累计已完工（公里）',width:160,align:'center',rowspan:1},
-			{field:'v_10',title:'其中'+nf+'年完工里程（公里）',width:120,align:'center',rowspan:1},
-			{field:'v_11',title:'自开工建设累计完成总投资（万元）',width:140,align:'center',rowspan:1},
-			{field:'v_12',title:'其中'+nf+'年完成投资（万元）',width:120,align:'center',rowspan:1},
-			{field:'v_13',title:nf+'年新开工个数',width:100,align:'center',rowspan:1},
-			{field:'v_14',title:'自开工建设累计已完工（公里）',width:160,align:'center',rowspan:1},
-			{field:'v_15',title:'其中'+nf+'年完工里程（公里）',width:120,align:'center',rowspan:1},
-			{field:'v_16',title:'自开工建设累计完成总投资',width:120,align:'center',rowspan:1},
-			{field:'v_17',title:'其中'+nf+'年完成投资',width:120,align:'center',rowspan:1}
-         ]],
-	}); 
-    disLoadjzt();
-    alert(parent.$("#datagrid").datagrid('getColumnFields'));
-
 }
 
 </script>

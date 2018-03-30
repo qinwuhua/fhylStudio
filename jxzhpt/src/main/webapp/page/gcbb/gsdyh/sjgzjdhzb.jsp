@@ -24,6 +24,22 @@
 	<script type="text/javascript" src="/jxzhpt/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="/jxzhpt/js/YMLib.js"></script>
 	<script type="text/javascript" src="/jxzhpt/page/wngh/wnjh/js/wnjh.js"></script>
+		<style>
+		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(/jxzhpt/images/jianjiao.png) 8px 0 no-repeat;}
+		#righttop{height:33px;background:url(/jxzhpt/images/righttopbg.gif) 0 0 repeat-x;}
+	</style>
+	<style type="text/css">		
+		a:link {text-decoration: none;}
+		a:visited {text-decoration: none;}
+		a:hover {text-decoration: none;}
+		a:active {text-decoration: none;}
+		#bbtable {border-collapse:collapse;}
+		#bbtable thead tr td {text-align:center;font-size:1em;font-weight:bold;border:1px solid #cde0f3;padding:3px 7px 2px 7px;}
+		#bbtable tbody tr td {text-align:center;font-size:1em;border:1px solid #cde0f3;padding:3px 7px 2px 7px;}
+		TD {font-size: 12px;}
+        a{text-decoration:none;}
+        .abgc_td td{padding-right:5px;}
+	</style>
 	<script type="text/javascript">
 	$(function(){
 		if($.cookie('dist2')!='36'){$("#ghbb").hide()}
@@ -59,53 +75,37 @@
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
-				
-		$('#datagrid').datagrid({    
-		    url:'/jxzhpt/gcybb/getSjgzjdhzb.do',
-		    striped:true,
-		    pagination:false,
-		    rownumbers:true,
-		    checkOnSelect:true,
-		    height:$(window).height()-160,
-		    width:$(window).width()-20,
-		    idField: 'id', //主键
-		    queryParams: {
-		    	xzqh:xzqhstr,
-		    	'gcglabgc.jsxz':$("#jsxz").combobox('getValues').join(','),
-		    	nf:nf,
-		    	'gcglabgc.ybrq':enddate,
-		    	'&excel_list.xzqhdm=':$.cookie('dist2')
-			},
-		   columns:[[
-		        {field:'v_0',title:'设区市',width:100,align:'center',rowspan:3},		        
-		        {title:nf+'年项目建设',align:'center',colspan:17}
-	         ],[
-			    {title:'2018年项目建设目标',align:'center',colspan:4},			    
-			    {title:'目标任务内项目建设进度情况',align:'center',colspan:8},
-			    {title:'目标任务外项目建设进度情况',align:'center',colspan:5}
+		var tbody = $("#abgclist");
+		tbody.empty();
 
-	         ],[
-				{field:'v_1',title:'开工里程（公里）',width:100,align:'center',rowspan:1},
-				{field:'v_2',title:'开工项目个数',width:100,align:'center',rowspan:1},
-				{field:'v_3',title:'完工里程（公里）',width:100,align:'center',rowspan:1},
-				{field:'v_4',title:'完成投资（万元）',width:100,align:'center',rowspan:1},
-				{field:'v_5',title:'已完工',width:100,align:'center',rowspan:1},
-				{field:'v_6',title:'在建',width:100,align:'center',rowspan:1},
-				{field:'v_7',title:'其中'+nf+'年新开工',width:120,align:'center',rowspan:1},
-				{field:'v_8',title:'未开工',width:100,align:'center',rowspan:1},
-				{field:'v_9',title:'自开工建设累计已完工（公里）',width:160,align:'center',rowspan:1},
-				{field:'v_10',title:'其中'+nf+'年完工里程（公里）',width:120,align:'center',rowspan:1},
-				{field:'v_11',title:'自开工建设累计完成总投资（万元）',width:140,align:'center',rowspan:1},
-				{field:'v_12',title:'其中'+nf+'年完成投资（万元）',width:120,align:'center',rowspan:1},
-				{field:'v_13',title:nf+'年新开工个数',width:100,align:'center',rowspan:1},
-				{field:'v_14',title:'自开工建设累计已完工（公里）',width:160,align:'center',rowspan:1},
-				{field:'v_15',title:'其中'+nf+'年完工里程（公里）',width:120,align:'center',rowspan:1},
-				{field:'v_16',title:'自开工建设累计完成总投资',width:120,align:'center',rowspan:1},
-				{field:'v_17',title:'其中'+nf+'年完成投资',width:120,align:'center',rowspan:1}
-	         ]],
-		}); 
-		
+loadjzt();
+
+var data="flag=0"+"&xzqh="+xzqhstr+'&excel_list.xzqhdm='+$.cookie('dist2')+'&gcglabgc.ybrq='+enddate+'&nf='+nf+'&gcglabgc.jsxz='+$("#jsxz").combobox('getValues').join(','); 
+
+$.ajax({
+	url:"/jxzhpt/gcybb/getSjgzjdhzb.do",
+	data:data,
+	type:"post",
+	dataType:"JSON",
+	success:function(msg){
+		datalist=msg;
+		disLoadjzt();
+		if (msg != null) {
+			for ( var i = 0; i < msg.length; i++) {
+				var tr="<tr>";
+				tr=tr+ "<td>"+msg[i].v_0+"</td><td>"
+				+msg[i].v_1+"</td><td>"+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"+msg[i].v_4+"</td><td>"
+				+msg[i].v_5+"</td><td>"+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"+msg[i].v_8+"</td><td>"
+				+msg[i].v_9+"</td><td>"+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"+msg[i].v_12+"</td><td>"
+				+msg[i].v_13+"</td><td>"+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"+msg[i].v_16+"</td><td>"
+				+msg[i].v_17+"</td>"
+				tr+="</tr>";
+				tbody.append(tr);
+			}
+		}
 	}
+  });
+}	
 	
 	function dcExcel(){
 		
@@ -145,16 +145,6 @@
 		}
 
 	</script>
-	<style type="text/css">
-TD {
-font-size: 12px;
-}
-a{
-text-decoration:none;
-}
-.abgc_td td{padding-right:5px;}
-
-</style>
 </head>
 <body style="padding-right:1px">
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
@@ -206,10 +196,51 @@ text-decoration:none;
         		</td>
         	</tr>
         	<tr>
-        	    <td>
-        	    <div align="center" style="font-size:x-large;font-weight: bolder; margin-top:8px; margin-bottom:5px;">普通国省道升级改造项目建设进度汇总表</div>
-        	    <div><table id="datagrid"></table> </div>
-        	    </td>
+        	    <td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
+                	<div id="gddiv" style="width:100%;height: 380px;" >
+                		<script type="text/javascript">
+                			$("#gddiv").attr('style','width:100%;height:'+($(window).height()-140)+'px;');
+                		</script>
+                		<div class="easyui-layout"  fit="true">
+							<div data-options="region:'center',border:false" style="overflow:auto;">
+							<table id='bbtable' width="3000px">
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">普通国省道升级改造项目建设进度汇总表</caption>
+								<tbody id='biaotou'>
+									<tr>
+										<td rowspan="3" style="width: 80px;">设区市</td>
+										<td colspan="17"><span class='nian'></span>年项目建设</td>
+									</tr>
+									<tr>
+									    <td colspan="4">2018年项目建设目标</td>
+									    <td colspan="8">目标任务内项目建设进度情况</td>
+									    <td colspan="5">目标任务外项目建设进度情况</td>
+									</tr>
+									<tr>
+									   	<td rowspan="1" style="width: 100px;">开工里程（公里）</td>
+									   	<td rowspan="1" style="width: 100px;">开工项目个数</td>
+									   	<td rowspan="1" style="width: 100px;">完工里程（公里）</td>
+									   	<td rowspan="1" style="width: 100px;">完成投资（万元）</td>
+									   	<td rowspan="1" style="width: 100px;">已完工</td>
+									   	<td rowspan="1" style="width: 100px;">在建</td>
+									   	<td rowspan="1" style="width: 100px;">其中<span class='nian'></span>年新开工</td>	   	
+									   	<td rowspan="1" style="width: 100px;">未开工</td> 	
+									   	<td rowspan="1" style="width: 100px;">自开工建设累计已完工（公里）</td>
+									   	<td rowspan="1" style="width: 100px;">其中<span class='nian'></span>年完工里程（公里）</td>
+									   	<td rowspan="1" style="width: 100px;">自开工建设累计完成总投资（万元）</td>  	
+									   	<td rowspan="1" style="width: 100px;">其中<span class='nian'></span>年完成投资（万元）</td>
+									   	<td rowspan="1" style="width: 100px;"><span class='nian'></span>年新开工个数</td>	   	
+									   	<td rowspan="1" style="width: 100px;">自开工建设累计已完工（公里）</td>	   	
+									   	<td rowspan="1" style="width: 100px;">其中<span class='nian'></span>年完工里程（公里）</td>
+									   	<td rowspan="1" style="width: 100px;">自开工建设累计完成总投资</td>
+									   	<td rowspan="1" style="width: 100px;">其中<span class='nian'></span>年完成投资</td>
+									</tr>									
+								</tbody>
+								<tbody id="abgclist"></tbody>
+							</table>
+							</div>
+						</div>
+					</div>
+				</td>
         	</tr>        	
 		</table>
 	</div>
