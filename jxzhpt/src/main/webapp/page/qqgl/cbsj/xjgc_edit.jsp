@@ -58,10 +58,10 @@
 				'multi' : false,
 				'buttonImg': '../../../js/uploader/bdll.png',
 				'simUploadLimit' : 3,
-				'sizeLimit' : 100000000,
+				'sizeLimit' : 524288000,
 				'queueSizeLimit' : 5,
-				'fileDesc' : '支持格式:xls',
-				'fileExt' : '',
+				'fileDesc' : '支持格式:doc，docx，pdf，rar，zip',
+				'fileExt' : '*.doc;*.docx;*.pdf;*.rar;*.zip;',
 				'height' : 30,
 				'width' : 92,
 				'scriptData' : {

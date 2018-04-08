@@ -24,15 +24,42 @@
 	<script type="text/javascript" src="/jxzhpt/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="/jxzhpt/js/YMLib.js"></script>
 	<script type="text/javascript" src="/jxzhpt/page/wngh/wnjh/js/wnjh.js"></script>
+	<style>
+		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(/jxzhpt/images/jianjiao.png) 8px 0 no-repeat;}
+		#righttop{height:33px;background:url(/jxzhpt/images/righttopbg.gif) 0 0 repeat-x;}
+	</style>
+	<style type="text/css">
+		<!--
+		a:link {text-decoration: none;}
+		a:visited {text-decoration: none;}
+		a:hover {text-decoration: none;}
+		a:active {text-decoration: none;}
+		#bbtable {border-collapse:collapse;}
+		#bbtable thead tr td {text-align:center;font-size:1em;font-weight:bold;border:1px solid #cde0f3;padding:3px 7px 2px 7px;}
+		#bbtable tbody tr td {text-align:center;font-size:1em;border:1px solid #cde0f3;padding:3px 7px 2px 7px;}
+		-->
+	</style>
 	<script type="text/javascript">
 	$(function(){
+		var myDate = new Date();
+		var strDate=myDate.getFullYear()+"-"+((myDate.getMonth() + 1) > 9 ? (myDate.getMonth() + 1) : "0" + (myDate.getMonth() + 1))+"-"+myDate.getDate();          
+        $("#enddate").datebox("setValue",strDate);
+	    var nf=myDate.getFullYear();
+		var yf=(myDate.getMonth() + 1) > 9 ? (myDate.getMonth() + 1) : "0" + (myDate.getMonth() + 1);
+		$(".nian").html(nf);
+		$(".yue").html(yf);
+		$(".nianyue1").html(nf+"年"+yf);
+		$(".nianyue2").html(nf+".12");
+		
 		loadDist1("xzqh",$.cookie("dist"));
 		showTjb();
 	});
 
-	function showTjb(){
-		var  params = [];
-		var datagrid; //定义全局变量datagrid
+/* 	function showTjb(){
+		var enddate = $("#enddate").datebox("getValue");
+ 		var nf=enddate.substring(0, 4);
+		var yf=enddate.substring(5, 7);
+		
 		var xzqhdm=$("#xzqh").combotree("getValues");
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");
@@ -45,25 +72,25 @@
 			xzqhstr= xzqhdm.join(',');
 		}
 				
-		datagrid=$('#datagrid').datagrid({    
+		$('#datagrid').datagrid({    
 		    url:'/jxzhpt/gcybb/getGsdyhjdhzb.do',
 		    striped:true,
 		    pagination:false,
-		    //fitColumns:true,
 		    rownumbers:true,
 		    checkOnSelect:true,
 		    height:$(window).height()-160,
 		    width:$(window).width()-20,
 		    idField: 'id', //主键
 		    queryParams: {
-		    	xzqh:xzqhstr
-		    	//'lxsh.jsxz':$("#jsxz").combobox('getValues').join(',')
+		    	xzqh:xzqhstr,
+		    	'gcglabgc.ybrq':enddate,
+		    	nf:nf
 			},
 		   columns:[[
 				{field:'ck',width:60,checkbox:true,rowspan:4,hidden:true},
 		        {field:'v_0',title:'设区市',width:100,align:'center',rowspan:4,colspan:1},		        
 		        {title:'2018年养护工作目标',align:'center',rowspan:1,colspan:20},
-		        {title:'2018年养护工作进度情况',align:'center',rowspan:1,colspan:31}
+		        {title:nf+'年养护工作进度情况',align:'center',rowspan:1,colspan:31}
 	         ], [
 			    {title:'养护大中修（含路面改造工程、灾毁恢复重建工程）',align:'center',rowspan:2,colspan:2},
 		        {title:'路网结构改造工程',align:'center',colspan:6},
@@ -92,7 +119,6 @@
 			    {title:'驿站、停车区',align:'center',colspan:3},
 			    {title:'道班',align:'center',colspan:3}
 	         ], [
-		        //{field:'v_0',title:'设区市',width:200,width:100,align:'center',rowspan:3,colspan:1},		        
 				{field:'v_1',title:'里程（公里）',width:150,align:'center'},
 				{field:'v_2',title:'总投资（万元）',width:150,align:'center'},
 				{field:'v_3',title:'座数（座）',width:100,align:'center'},
@@ -113,251 +139,106 @@
 				{field:'v_18',title:'总投资（万元）',width:100,align:'center'},
 				{field:'v_19',title:'完成时间',width:100,align:'center'},
 				{field:'v_20',title:'总投资（万元）',width:100,align:'center'},
-		        //{field:'v_21',title:' 本年完成总投资（万元）',width:100,align:'center',rowspan:1,colspan:1,editor:{type: 'text',options:{required:false}}},
-				{field:'v_22',title:'里程（公里）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_23',title:'总投资（万元）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_24',title:'完成比例',width:100,align:'center',editor:{type: 'text',options:{required:false}}},	
-				{field:'v_25',title:'座数（座）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_26',title:'总投资（万元）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_27',title:'完成比例',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_28',title:'里程（公里）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_29',title:'总投资（万元）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_30',title:'完成比例',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_31',title:'里程（公里）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_32',title:'总投资（万元）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_33',title:'完成比例',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_34',title:'里程（公里）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_35',title:'总投资（万元）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_36',title:'完成比例',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_37',title:'项目个数（个数）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_38',title:'总投资（万元）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_39',title:'完成比例',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_40',title:'项目个数（个数）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_41',title:'总投资（万元）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_42',title:'完成比例',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_43',title:'项目个数（个数）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_44',title:'总投资（万元）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_45',title:'完成比例',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_46',title:'项目个数（个数）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_47',title:'总投资（万元）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_48',title:'完成比例',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_49',title:'完成时间',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_50',title:'总投资（万元）',width:100,align:'center',editor:{type: 'text',options:{required:false}}},
-				{field:'v_51',title:'完成比例',width:100,align:'center',editor:{type: 'text',options:{required:false}}}
-	         ]],
-		    toolbar: [
-		    	//{ text: '编辑', iconCls: 'icon-edit', handler: function () {}}, '-',
-             { text: '保存', iconCls: 'icon-save', handler: function () {
-                 datagrid.datagrid('hideColumn', 'ck');
-            	 endEditing();
-                 //保存时结束当前编辑的行，自动触发onAfterEdit事件如果要与后台交互可将数据通过Ajax提交后台
-        		 var rows=datagrid.datagrid('getSelections');
-                 if(rows.length==0){
-        			alert("请勾选要保存的数据！");
-        			return;
-        		}else{
-                    if(confirm("确定要保存当前数据？")){
-                        saveQqtjb(rows);
-                    }
-        		}
-             }
-             }, '-',
-             { text: '取消编辑', iconCls: 'icon-redo', handler: function () {
-                 //取消当前编辑行把当前编辑行罢undefined回滚改变的数据,取消选择的行
-                 if(confirm("确定要撤销所有的更改？")){
-                     editRow = undefined;
-                     datagrid.datagrid('hideColumn', 'ck');
-                     datagrid.datagrid("rejectChanges");
-                     datagrid.datagrid("unselectAll");
-                 }
-             }
-             }, '-'],
-             onLoadSuccess : function(data) {
-            	datagrid.datagrid('resize'); 
-            },
-		    onClickCell: function (rowIndex, field, value) {
-		    	beginEditing(rowIndex,field,value);
-		    	datagrid.datagrid('showColumn', 'ck'); 
-		    }
-
+				{field:'v_22',title:'里程（公里）',width:100,align:'center'},
+				{field:'v_23',title:'总投资（万元）',width:100,align:'center'},
+				{field:'v_24',title:'完成比例',width:100,align:'center'},	
+				{field:'v_25',title:'座数（座）',width:100,align:'center'},
+				{field:'v_26',title:'总投资（万元）',width:100,align:'center'},
+				{field:'v_27',title:'完成比例',width:100,align:'center'},
+				{field:'v_28',title:'里程（公里）',width:100,align:'center'},
+				{field:'v_29',title:'总投资（万元）',width:100,align:'center'},
+				{field:'v_30',title:'完成比例',width:100,align:'center'},
+				{field:'v_31',title:'里程（公里）',width:100,align:'center'},
+				{field:'v_32',title:'总投资（万元）',width:100,align:'center'},
+				{field:'v_33',title:'完成比例',width:100,align:'center'},
+				{field:'v_34',title:'里程（公里）',width:100,align:'center'},
+				{field:'v_35',title:'总投资（万元）',width:100,align:'center'},
+				{field:'v_36',title:'完成比例',width:100,align:'center'},
+				{field:'v_37',title:'项目个数（个数）',width:100,align:'center'},
+				{field:'v_38',title:'总投资（万元）',width:100,align:'center'},
+				{field:'v_39',title:'完成比例',width:100,align:'center'},
+				{field:'v_40',title:'项目个数（个数）',width:100,align:'center'},
+				{field:'v_41',title:'总投资（万元）',width:100,align:'center'},
+				{field:'v_42',title:'完成比例',width:100,align:'center'},
+				{field:'v_43',title:'项目个数（个数）',width:100,align:'center'},
+				{field:'v_44',title:'总投资（万元）',width:100,align:'center'},
+				{field:'v_45',title:'完成比例',width:100,align:'center'},
+				{field:'v_46',title:'项目个数（个数）',width:100,align:'center'},
+				{field:'v_47',title:'总投资（万元）',width:100,align:'center'},
+				{field:'v_48',title:'完成比例',width:100,align:'center'},
+				{field:'v_49',title:'完成时间',width:100,align:'center'},
+				{field:'v_50',title:'总投资（万元）',width:100,align:'center'},
+				{field:'v_51',title:'完成比例',width:100,align:'center'}
+	         ]]
 		}); 
 		
-	}
-	
-	var editIndex = undefined;
-	function beginEditing (rowIndex,field,value) {
-		  if (rowIndex != editIndex) {
-		        if (endEditing()) {
-		        	$('#datagrid').datagrid('beginEdit', rowIndex);
-	                setEditing(rowIndex);
-		            editIndex = rowIndex;
-		        } else {
-		            $('#datagrid').datagrid('selectRow', editIndex);
-	                setEditing(rowIndex);
-		        }
-		    }
-	}
-	function endEditing() {
-	    if (editIndex == undefined) { return true; }	    
-	    if ($('#datagrid').datagrid('validateRow', editIndex)) {
-	        $('#datagrid').datagrid('endEdit', editIndex);
-	        editIndex = undefined;	        
-	        return true;
-	    } else {
-	        return false;
-	    }
-	}
-	
-	function setEditing(rowIndex){
-        var objGrid = $('#datagrid');  
-        var v22Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_22'});
-        var v25Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_25'});
-        var v28Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_28'});
-        var v31Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_31'});
-        var v34Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_34'});
-        var v37Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_37'});
-        var v40Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_40'});
-        var v43Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_43'});
-        var v46Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_46'});
-        var v50Editor = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_50'});
+	} */
+	function showTjb(){
+		var enddate = $("#enddate").datebox("getValue");
+ 		var nf=enddate.substring(0, 4);
+		var yf=enddate.substring(5, 7);
+		
+		var xzqhdm=$("#xzqh").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+		
+		var tbody = $("#abgclist");
+		tbody.empty();
 
-
-        v22Editor.target.bind("change", function(){    
-            calculateV_22(rowIndex);
-        }); 
-        v25Editor.target.bind("change", function(){    
-            calculateV_25(rowIndex);
-        });
-        v28Editor.target.bind("change", function(){    
-            calculateV_28(rowIndex);
-        }); 
-        v31Editor.target.bind("change", function(){    
-            calculateV_31(rowIndex);
-        });
-        v34Editor.target.bind("change", function(){    
-            calculateV_34(rowIndex);
-        });
-        v37Editor.target.bind("change", function(){    
-            calculateV_37(rowIndex);
-        });
-        v40Editor.target.bind("change", function(){    
-            calculateV_40(rowIndex);
-        });
-        v43Editor.target.bind("change", function(){    
-            calculateV_43(rowIndex);
-        });
-        v46Editor.target.bind("change", function(){    
-            calculateV_46(rowIndex);
-        });
-        v50Editor.target.bind("change", function(){    
-            calculateV_50(rowIndex);
-        });
-	}
-	
-	function calculateV_22(rowIndex){
-		var objGrid = $('#datagrid'); 
-		var selectedRowData = objGrid.datagrid('getSelected');
-		var v22Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_22'});
-        var v24Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_24'});
-		$(v24Edt.target).val(Math.round(($(v22Edt.target).val()/selectedRowData.v_1) * 100) + '%');
-	}
-	function calculateV_25(rowIndex){
-		var objGrid = $('#datagrid'); 
-		var selectedRowData = objGrid.datagrid('getSelected');
-		var v25Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_25'});
-        var v27Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_27'});
-		$(v27Edt.target).val(Math.round(($(v25Edt.target).val()/selectedRowData.v_3) * 100) + '%');
-	}
-
-	function calculateV_28(rowIndex){
-		var objGrid = $('#datagrid'); 
-		var selectedRowData = objGrid.datagrid('getSelected');
-		var v28Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_28'});
-        var v30Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_30'});
-		$(v30Edt.target).val(Math.round(($(v28Edt.target).val()/selectedRowData.v_5) * 100) + '%');
-	}
-
-	function calculateV_31(rowIndex){
-		var objGrid = $('#datagrid'); 
-		var selectedRowData = objGrid.datagrid('getSelected');
-		var v31Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_31'});
-        var v33Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_33'});
-		$(v33Edt.target).val(Math.round(($(v31Edt.target).val()/selectedRowData.v_7) * 100) + '%');
-	}
-
-	function calculateV_34(rowIndex){
-		var objGrid = $('#datagrid'); 
-		var selectedRowData = objGrid.datagrid('getSelected');
-		var v34Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_34'});
-        var v36Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_36'});
-		$(v36Edt.target).val(Math.round(($(v34Edt.target).val()/selectedRowData.v_9) * 100) + '%');
-	}
-
-	function calculateV_37(rowIndex){
-		var objGrid = $('#datagrid'); 
-		var selectedRowData = objGrid.datagrid('getSelected');
-		var v37Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_37'});
-        var v39Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_39'});
-		$(v39Edt.target).val(Math.round(($(v37Edt.target).val()/selectedRowData.v_11) * 100) + '%');
-	}
-
-	function calculateV_40(rowIndex){
-		var objGrid = $('#datagrid'); 
-		var selectedRowData = objGrid.datagrid('getSelected');
-		var v40Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_40'});
-        var v42Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_42'});
-		$(v42Edt.target).val(Math.round(($(v40Edt.target).val()/selectedRowData.v_13) * 100) + '%');
-	}
-	
-	function calculateV_43(rowIndex){
-		var objGrid = $('#datagrid'); 
-		var selectedRowData = objGrid.datagrid('getSelected');
-		var v43Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_43'});
-        var v45Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_45'});
-		$(v45Edt.target).val(Math.round(($(v43Edt.target).val()/selectedRowData.v_15) * 100) + '%');
-	}
-
-	function calculateV_46(rowIndex){
-		var objGrid = $('#datagrid'); 
-		var selectedRowData = objGrid.datagrid('getSelected');
-		var v46Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_46'});
-        var v48Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_48'});
-		$(v48Edt.target).val(Math.round(($(v46Edt.target).val()/selectedRowData.v_17) * 100) + '%');
-	}
-
-	function calculateV_50(rowIndex){
-		var objGrid = $('#datagrid'); 
-		var selectedRowData = objGrid.datagrid('getSelected');
-		var v50Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_50'});
-        var v51Edt = objGrid.datagrid('getEditor',{index:rowIndex,field:'v_51'});
-		$(v51Edt.target).val(Math.round(($(v50Edt.target).val()/selectedRowData.v_20) * 100) + '%');
-	}
-	
-	function saveQqtjb(rows){
-       for(var i=0;i<rows.length;i++){
-        	data="excel_list.id="+rows[i].id+"&excel_list.v_0="+rows[i].v_0+"&excel_list.v_21="+rows[i].v_21+"&excel_list.v_22="+rows[i].v_22+"&excel_list.v_23="+rows[i].v_23+
-        	"&excel_list.v_24="+rows[i].v_24+"&excel_list.v_25="+rows[i].v_25+"&excel_list.v_26="+rows[i].v_26+"&excel_list.v_27="+rows[i].v_27+
-        	"&excel_list.v_28="+rows[i].v_28+"&excel_list.v_29="+rows[i].v_29+"&excel_list.v_30="+rows[i].v_30+
-        	"&excel_list.v_31="+rows[i].v_31+"&excel_list.v_32="+rows[i].v_32+"&excel_list.v_33="+rows[i].v_33+
-        	"&excel_list.v_34="+rows[i].v_34+"&excel_list.v_35="+rows[i].v_35+"&excel_list.v_36="+rows[i].v_36+
-        	"&excel_list.v_37="+rows[i].v_37+"&excel_list.v_38="+rows[i].v_38+"&excel_list.v_39="+rows[i].v_39+
-        	"&excel_list.v_40="+rows[i].v_40+"&excel_list.v_41="+rows[i].v_41+"&excel_list.v_42="+rows[i].v_42+
-        	"&excel_list.v_43="+rows[i].v_43+"&excel_list.v_44="+rows[i].v_44+"&excel_list.v_45="+rows[i].v_45+
-        	"&excel_list.v_46="+rows[i].v_46+"&excel_list.v_47="+rows[i].v_47+"&excel_list.v_48="+rows[i].v_48+
-        	"&excel_list.v_49="+rows[i].v_49+"&excel_list.v_50="+rows[i].v_50+"&excel_list.v_51="+rows[i].v_51;
-    		$.ajax({
-    			type:'post',
-    			url:'/jxzhpt/gcybb/insertGsdyhjdhzb.do',
-    	        data:data,
-    			dataType:'json',
-    			success:function(msg){
-    			}
-    		});
-        }
-		alert("保存成功！");
+		loadjzt();
+		
+		var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr
+		+"&gcglabgc.ybrq="+enddate+"&excel_list.xzqhdm="+$.cookie('dist2'); 
+		
+		$.ajax({
+			url:"/jxzhpt/gcybb/getGsdyhjdhzb.do",
+			data:data,
+			type:"post",
+			dataType:"JSON",
+			success:function(msg){
+				datalist=msg;
+				disLoadjzt();
+				if (msg != null) {
+					for ( var i = 0; i < msg.length; i++) {
+						var tr="<tr>";
+						tr=tr+ "<td>"+msg[i].v_0+"</td><td>"
+						+msg[i].v_1+"</td><td>"+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"+msg[i].v_4+"</td><td>"
+						+msg[i].v_5+"</td><td>"+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"+msg[i].v_8+"</td><td>"
+						+msg[i].v_9+"</td><td>"+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"+msg[i].v_12+"</td><td>"
+						+msg[i].v_13+"</td><td>"+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"+msg[i].v_16+"</td><td>"
+						+msg[i].v_17+"</td><td>"+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"+msg[i].v_20+"</td><td>"
+						+msg[i].v_21+"</td><td>"+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"+msg[i].v_24+"</td><td>"
+						+msg[i].v_25+"</td><td>"+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"+msg[i].v_28+"</td><td>"
+						+msg[i].v_29+"</td><td>"+msg[i].v_30+"</td><td>"+msg[i].v_31+"</td><td>"+msg[i].v_32+"</td><td>"
+						+msg[i].v_33+"</td><td>"+msg[i].v_34+"</td><td>"+msg[i].v_35+"</td><td>"+msg[i].v_36+"</td><td>"
+						+msg[i].v_37+"</td><td>"+msg[i].v_38+"</td><td>"+msg[i].v_39+"</td><td>"+msg[i].v_40+"</td><td>"
+						+msg[i].v_41+"</td><td>"+msg[i].v_42+"</td><td>"+msg[i].v_43+"</td><td>"+msg[i].v_44+"</td><td>"
+						+msg[i].v_45+"</td><td>"+msg[i].v_46+"</td><td>"+msg[i].v_47+"</td><td>"+msg[i].v_48+"</td><td>"
+						+msg[i].v_49+"</td><td>"+msg[i].v_50+"</td><td>"+msg[i].v_51+"</td><td>"+msg[i].v_52+"</td><td>"
+						+msg[i].v_53+"</td><td>"+msg[i].v_54+"</td><td>"+msg[i].v_55+"</td><td>"+msg[i].v_56+"</td><td>"
+						+msg[i].v_57+"</td>"
+						tr+="</tr>";
+						tbody.append(tr);  
+					}	
+				}
+			}
+		});
 	}
 	
 	function dcExcel(){
+		
+		var enddate = $("#enddate").datebox("getValue");
+		var nf=enddate.substring(0, 4);
+		var yf=enddate.substring(5, 7);
+		
 		var xzqhdm=$("#xzqh").combotree("getValues");
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");		
@@ -368,19 +249,19 @@
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
-		var param='flag=1';
-		//var sql=$("#excelcgs").val();
+		var param='flag=1'+'&nf='+nf+"&gcglabgc.ybrq="+enddate+'&xzqh='+xzqhstr;
 	    
 		window.location.href="/jxzhpt/gcybb/getGsdyhjdhzb.do?"+param;
 		
 	}
-	
-	 function onSelect(r) {
-	        if (r.text == '全部') {
-	            $(this).combobox('clear').combobox('setValue', r.value)
-	        }
-	        else $(this).combobox('unselect', "改建,路面改造,新建");
-	        }
+	function ghbb(){			
+	    YMLib.Var.formname='yhjdhzb';
+		YMLib.UI.createWindow('lxxx','将查询结果固化为版本','/jxzhpt/page/gcbb/ghbbxz.jsp','lxxx',460,360);
+	}
+	function ghbbcx(){
+	    YMLib.Var.formname='yhjdhzb';
+		YMLib.UI.createWindow('lxxx','固化版本查询','/jxzhpt/page/gcbb/ghbbcx.jsp','lxxx',460,360);
+	} 
 	</script>
 	<style type="text/css">
 TD {
@@ -414,14 +295,9 @@ text-decoration:none;
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
         						<tr height="32">
         						<td align="right">行政区划：</td>
-        						<td><select id="xzqh" style="width:150px;"></select></td>
-        						<td align="right">建设性质：</td>
-		 						<td><select class="easyui-combobox" name="jsxz" id="jsxz" style="width: 130px;"data-options="editable:false,panelHeight:'auto',multiple:true,onSelect:onSelect">
-									<option value="改建,路面改造,新建">全部</option>
-									<option value="改建">改建</option>
-									<option value="路面改造">路面改造</option>
-									<option value="新建">新建</option>
-								</select></td>												
+        						<td><select id="xzqh" style="width:150px;"></select></td>											
+							    <td align="right">月报时间：</td>
+								<td><input id="enddate" class="easyui-datebox" name="enddate" data-options="editable:false"></td>
 							</tr>
 							
         					<tr height="32">
@@ -430,6 +306,10 @@ text-decoration:none;
                                 	onmouseout="this.src='/jxzhpt/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;"/>
 								<img alt="导出Ecel" src="/jxzhpt/images/Button/dcecl1.gif" onmouseover="this.src='/jxzhpt/images/Button/dcecl2.gif'"
                                 	onmouseout="this.src='/jxzhpt/images/Button/dcecl1.gif' " onclick="dcExcel()" style="vertical-align: -50%;" />
+        				        <img id='ghbb' alt="固化版本" src="/jxzhpt/images/Button/ghbb1.png" onmouseover="this.src='/jxzhpt/images/Button/ghbb2.png'"
+                                	onmouseout="this.src='/jxzhpt/images/Button/ghbb1.png' " onclick="ghbb()" style="vertical-align: -50%;" />
+        						<img alt="固化版本查询" src="/jxzhpt/images/Button/ghbbcx1.gif" onmouseover="this.src='/jxzhpt/images/Button/ghbbcx2.gif'"
+                                	onmouseout="this.src='/jxzhpt/images/Button/ghbbcx1.gif' " onclick="ghbbcx()" style="vertical-align: -50%;" />
         				        </td>	
         				    </tr>
         				  </table>
@@ -438,10 +318,119 @@ text-decoration:none;
         		</td>
         	</tr>
         	<tr>
-        	    <td>
-        	    <div align="center" style="font-size:x-large;font-weight: bolder; margin-top:8px; margin-bottom:5px;">国省道养护工作进度汇总表</div>
-        	    <div><table id="datagrid"></table> </div>
-        	    </td>
+        	    <td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
+                	<div id="gddiv" style="width:100%;height: 380px;" >
+                		<script type="text/javascript">
+                			$("#gddiv").attr('style','width:100%;height:'+($(window).height()-140)+'px;');
+                		</script>
+                		<div class="easyui-layout"  fit="true">
+							<div data-options="region:'center',border:false" style="overflow:auto;">
+							<table id='bbtable' width="3000px">
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">全省普通国省干线公路改造项目完成情况明细表</caption>
+								<tbody id='biaotou'>								
+									<tr>
+										<td rowspan="4" style="width: 340px;">设区市</td>
+										<td rowspan="1" colspan="20">2018年养护工作目标</td>
+										<td rowspan="1" colspan="37"><span class='nian'></span>年养护工作进度情况</td>								
+									</tr>
+									<tr>
+										<td rowspan="2" colspan="2">养护大中修（含路面改造工程、灾毁恢复重建工程）</td>		
+										<td rowspan="1" colspan="6">路网结构改造工程</td>
+										<td rowspan="2" colspan="2">“畅安舒美”示范路</td>
+										<td rowspan="1" colspan="8">服务设施</td>
+										<td rowspan="2" colspan="2">安全隐患整治</td>
+										<td rowspan="3" style="width: 125px;">本年完成总投资（万元）</td>										
+										<td rowspan="1" colspan="9">养护大中修（含路面改造工程、灾毁恢复重建工程）</td>												
+										<td rowspan="1" colspan="9">路网结构改造工程</td>
+										<td rowspan="2" colspan="3">“畅安舒美”示范路</td>		
+										<td rowspan="1" colspan="12">服务设施</td>
+										<td rowspan="2" colspan="3">安全隐患整治</td>
+									</tr>	
+									<tr>						
+										<td rowspan="1" colspan="2">危桥改造</td>
+										<td rowspan="1" colspan="2">安全生命防护工程</td>
+										<td rowspan="1" colspan="2">灾害防治工程</td>
+										<td rowspan="1" colspan="2">综合养护中心</td>				
+										<td rowspan="1" colspan="2">服务区</td>
+										<td rowspan="1" colspan="2">驿站、停车区</td>
+										<td rowspan="1" colspan="2">道班</td>
+										<td rowspan="1" colspan="3">合计</td>
+										<td rowspan="1" colspan="2">养护大中修</td>
+										<td rowspan="1" colspan="2">路面改造</td>
+										<td rowspan="1" colspan="2">灾毁恢复重建</td>
+										<td rowspan="1" colspan="3">危桥改造</td>
+										<td rowspan="1" colspan="3">安全生命防护工程</td>
+										<td rowspan="1" colspan="3">灾害防治工程</td>
+										<td rowspan="1" colspan="3">综合养护中心</td>
+										<td rowspan="1" colspan="3">服务区</td>
+										<td rowspan="1" colspan="3">驿站、停车区</td>
+										<td rowspan="1" colspan="3">道班</td>
+									</tr>
+									<tr>
+									    <td style="width: 340px;">里程（公里）</td>
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">座数（座）</td>
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">里程（公里）</td>
+									    <td style="width: 340px;">总投资（万元）</td>		    
+									    <td style="width: 340px;">里程（公里）</td>			    
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">里程（公里）</td>
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">项目个数（个数）</td>
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">项目个数（个数）</td>
+									    <td style="width: 340px;">总投资（万元）</td>	    
+									    <td style="width: 340px;">项目个数（个数）</td>	
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">项目个数（个数）</td>
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">完成时间</td>
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">里程（公里）</td>
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">完成比例</td>
+									    <td style="width: 340px;">里程（公里）</td>
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">里程（公里）</td>
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">里程（公里）</td>
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">座数（座）</td>	    
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">完成比例</td>
+									    <td style="width: 340px;">里程（公里）</td>
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">完成比例</td>
+									    <td style="width: 340px;">里程（公里）</td>
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">完成比例</td>
+									    <td style="width: 340px;">里程（公里）</td>
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">完成比例</td>
+									    <td style="width: 340px;">项目个数（个数）</td>
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">完成比例</td>
+									    <td style="width: 340px;">项目个数（个数）</td>
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">完成比例</td>
+									    <td style="width: 340px;">项目个数（个数）</td>
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">完成比例</td>
+									    <td style="width: 340px;">项目个数（个数）</td>
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">完成比例</td>   
+									    <td style="width: 340px;">完成时间</td>
+									    <td style="width: 340px;">总投资（万元）</td>
+									    <td style="width: 340px;">完成比例</td>
+									</tr>									
+								</tbody>
+								<tbody id="abgclist"></tbody>
+							</table>
+							</div>
+						</div>
+					</div>
+				</td>
         	</tr>        	
 		</table>
 	</div>

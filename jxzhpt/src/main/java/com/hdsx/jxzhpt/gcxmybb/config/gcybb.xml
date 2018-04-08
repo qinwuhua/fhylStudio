@@ -5142,8 +5142,104 @@ left join(select gt.LSXMID,count(*)kwcs from gsdgz_tjhzb gt where gt.XMKLX like 
 group by bk.xzqhdm order by bk.xzqhdm
 	</select>
 	
+	<select id="getGsdyhjdhzbTotal" parameterType="gcglabgc" resultType="elist">
+	select '360000' xzqhdm, '合计' v_0,sum(tg.v_1)v_1,sum(tg.v_2)v_2,sum(tg.v_3)v_3,sum(tg.v_4)v_4,sum(tg.v_5)v_5,sum(tg.v_6)v_6,sum(tg.v_7)v_7,sum(tg.v_8)v_8,sum(tg.v_9)v_9,sum(tg.v_10)v_10,sum(tg.v_11)v_11,sum(tg.v_12)v_12,sum(tg.v_13)v_13,sum(tg.v_14)v_14,sum(tg.v_15)v_15,sum(tg.v_16)v_16,
+sum(tg.v_17)v_17,sum(tg.v_18)v_18,'' v_19,sum(tg.v_20)v_20,
+nvl(sum(yh.yhdztz),0)+nvl(sum(yh.wqztz),0)+nvl(sum(yh.smztz),0)+nvl(sum(yh.zhztz),0)+nvl(sum(yh.sfztz),0)+nvl(sum(yh.yhztz),0)+nvl(sum(yh.fwztz),0)+
+nvl(sum(yh.yzztz),0)+nvl(sum(yh.dbztz),0)+nvl(sum(tg.v_50),0) v_21,
+nvl(sum(yh.hjlc),0) v_22, nvl(sum(yh.hjztz),0) v_23, decode(nvl(sum(tg.v_1),0),'0','0%',round(nvl(sum(yh.hjlc),0)*100/nvl(sum(tg.v_1),0),0)||'%') v_24,
+sum(yh.yhdlc) v_25, sum(yh.yhdztz) v_26, sum(yh.lmlc) v_27,sum(yh.lmztz) v_28,sum(yh.shlc) v_29,sum(yh.shztz) v_30,
+sum(yh.wqsl) v_31, sum(yh.wqztz) v_32, decode(nvl(sum(tg.v_3),0),'0','0%',round(nvl(sum(yh.wqsl),0)*100/nvl(sum(tg.v_3),0),0)||'%') v_33,
+sum(yh.smlc) v_34, sum(yh.smztz) v_35,decode(nvl(sum(tg.v_5),0),'0','0%',round(nvl(sum(yh.smlc),0)*100/nvl(sum(tg.v_5),0),0)||'%') v_36,
+sum(yh.zhlc) v_37, sum(yh.zhztz) v_38,decode(nvl(sum(tg.v_7),0),'0','0%',round(nvl(sum(yh.zhlc),0)*100/nvl(sum(tg.v_7),0),0)||'%') v_39,
+sum(yh.sflc) v_40, sum(yh.sfztz) v_41,decode(nvl(sum(tg.v_9),0),'0','0%',round(nvl(sum(yh.sflc),0)*100/nvl(sum(tg.v_9),0),0)||'%') v_42,
+sum(yh.yhsl) v_43, sum(yh.yhztz) v_44,decode(nvl(sum(tg.v_11),0),'0','0%',round(nvl(sum(yh.yhsl),0)*100/nvl(sum(tg.v_11),0),0)||'%') v_45,
+sum(yh.fwsl) v_46, sum(yh.fwztz) v_47,decode(nvl(sum(tg.v_13),0),'0','0%',round(nvl(sum(yh.fwsl),0)*100/nvl(sum(tg.v_13),0),0)||'%') v_48,
+sum(yh.yzsl) v_49,sum(yh.yzztz) v_50,decode(nvl(sum(tg.v_15),0),'0','0%',round(nvl(sum(yh.yzsl),0)*100/nvl(sum(tg.v_15),0),0)||'%') v_51,
+sum(yh.dbsl) v_52,sum(yh.dbztz) v_53,decode(nvl(sum(tg.v_17),0),'0','0%',round(nvl(sum(yh.dbsl),0)*100/nvl(sum(tg.v_17),0),0)||'%') v_54,
+sum(tg.v_49) v_55,sum(tg.v_50) v_56,decode(nvl(sum(tg.v_20),0),'0','0%',round(nvl(sum(tg.v_50),0)*100/nvl(sum(tg.v_20),0),0)||'%') v_57
+from (
+select hj.xzqhdm, hj.wclc hjlc,hj.wcztz hjztz,yhdzx.wclc yhdlc,yhdzx.wcztz yhdztz,lmgz.wclc lmlc,lmgz.wcztz lmztz,
+zhhf.wclc shlc,zhhf.wcztz shztz,wqgz.wcsl wqsl,wqgz.wcztz wqztz,smfh.wclc smlc, smfh.wcztz smztz, zhfz.wclc zhlc,
+zhfz.wcztz zhztz, sfl.wclc sflc,sfl.wcztz sfztz,yhzx.wcsl yhsl, yhzx.wcztz yhztz,fwq.wcsl fwsl, fwq.wcztz fwztz,
+yztcq.wcsl yzsl,yztcq.wcztz yzztz,db.wcsl dbsl,db.wcztz dbztz from(
+--合计
+select t.xzqhdm,sum(gx.wclc) wclc ,sum(gx.wcztz) wcztz from (select xmbm,xzqhdm from jhsh_yhdzx union select j.xmbm,l.xzqhdm from jhsh_lmgz j left join lxsh_lmgz l on l.xmbm=j.xmbm union  select xmbm,xzqhdm from jhsh_sh)t left join (select xmbm,sum(yilc)+sum(erlc)+sum(sanlc)+sum(silc) wclc,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt = '1' group by xmbm) gx on t.xmbm=gx.xmbm group by t.xzqhdm)hj
+--养护大中修
+full join(select substr(jh.xzqhdm,0,4)||'00' xzqhdm,sum(gx.wclc) wclc ,sum(gx.wcztz) wcztz from jhsh_yhdzx jh left join (select xmbm,sum(yilc)+sum(erlc)+sum(sanlc)+sum(silc) wclc,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt = '1' group by xmbm) gx on jh.xmbm = gx.xmbm group by substr(jh.xzqhdm, 0, 4))yhdzx on hj.xzqhdm = yhdzx.xzqhdm
+--路面改造
+full join(select substr(l.xzqhdm,0,4)||'00' xzqhdm,sum(gx.wclc) wclc ,sum(gx.wcztz) wcztz from jhsh_lmgz jh left join lxsh_lmgz l on l.xmbm=jh.xmbm left join (select xmbm,sum(yilc)+sum(erlc)+sum(sanlc)+sum(silc) wclc,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt = '1' group by xmbm) gx on jh.xmbm = gx.xmbm group by substr(l.xzqhdm, 0, 4))lmgz on hj.xzqhdm = lmgz.xzqhdm
+--灾害恢复重建
+full join(select substr(jh.xzqhdm,0,4)||'00' xzqhdm,sum(gx.wclc) wclc ,sum(gx.wcztz) wcztz from jhsh_sh jh left join (select xmbm,sum(yilc)+sum(erlc)+sum(sanlc)+sum(silc) wclc,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt = '1' group by xmbm) gx on jh.xmbm = gx.xmbm group by substr(jh.xzqhdm, 0, 4))zhhf on hj.xzqhdm = zhhf.xzqhdm
+--危桥改造
+full join(select substr(lx.xzqhdm,0,4)||'00' xzqhdm,sum(case when substr(jh.sjwgsj, 0, 4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(jh.sjwgsj, 'yyyy-MM-dd') then jh.jgzt else '0' end) wcsl, sum(wc_ztz) wcztz from plan_wqgz jh left join sck_wqgz sc on (jh.sckid = sc.sckid) left join xmk_wqgz lx on (sc.xmkid = lx.id) left join gcgl_wqgz gx on gx.jhid = jh.id where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and gx.sfsj = '7' and gx.shzt like '%已审核%' group by substr(lx.xzqhdm,0,4))wqgz on hj.xzqhdm=wqgz.xzqhdm
+--安防工程
+full join(select substr(t.xzqhdm,0,4)||'00' xzqhdm,sum(gx.wclc)wclc,sum(gx.wcztz)wcztz from(select jh.id,lx.xzqhdm from plan_abgc jh left join sck_abgc sc on (jh.sckid = sc.sckid) left join xmk_abgc lx on (sc.xmkid = lx.id) union select jh.id ,sc.xzqhdm from plan_af jh left join sck_aqsmfh sc on sc.id = jh.sckid where xzqhdm is not null)t left join (select jhid,sum(bywc_gl)wclc,sum(wc_ztz) wcztz from gcgl_abgc where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and sfsj = '7' and shzt like '%已审核%' group by jhid)gx on t.id = gx.jhid group by substr(t.xzqhdm,0,4))smfh on hj.xzqhdm = smfh.xzqhdm
+--灾害防治
+full join(select substr(lx.xzqhdm,0,4)||'00' xzqhdm,sum(bywcgl)wclc,sum(gx.wc_ztz) wcztz from plan_zhfz jh left join sck_zhfz sc on (jh.sckid = sc.sckid) left join xmk_zhfz lx on (sc.xmkid = lx.id) left join gcgl_zhfz gx on jh.id = gx.jhid where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and gx.sfsj = '7' and gx.shzt like '%已审核%' group by substr(lx.xzqhdm,0,4))zhfz on hj.xzqhdm = zhfz.xzqhdm
+--示范路
+full join(select substr(sz.xzqhdm,0,4)||'00' xzqhdm,sum(wclc) wclc,sum(wcztz)wcztz FROM JHSH_SFL JH LEFT JOIN SGT_SFL sg ON JH.XMBM = SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID = WN.ID left join szxmzd sz on wn.id = sz.xmkid left join (select xmbm,sum(yilc)+sum(erlc)+sum(sanlc)+sum(silc) wclc,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt = '1' group by xmbm) gx on jh.xmbm=gx.xmbm group by substr(sz.xzqhdm,0,4))sfl on hj.xzqhdm = sfl.xzqhdm
+--养护中心
+full join(select substr(sz.xzqhdm,0,4)||'00' xzqhdm,sum(case when substr(jh.sjwgsj, 0, 4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(jh.sjwgsj, 'yyyy-MM-dd') then jh.jgzt else '0' end) wcsl ,sum(wcztz)wcztz FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM = SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID = WN.ID left join szxmzd sz on wn.id = sz.xmkid left join (select xmbm,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt='1' group by xmbm) gx on jh.xmbm=gx.xmbm group by substr(sz.xzqhdm,0,4))yhzx on hj.xzqhdm = yhzx.xzqhdm
+--服务区
+full join(select substr(sz.xzqhdm,0,4)||'00' xzqhdm,sum(case when substr(jh.sjwgsj, 0, 4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(jh.sjwgsj, 'yyyy-MM-dd') then jh.jgzt else '0' end) wcsl ,sum(wcztz)wcztz FROM Jhsh_Fwq JH LEFT JOIN Sgt_Fwq sg ON JH.XMBM = SG.XMBM LEFT JOIN WNJH_FWQ WN ON SG.XMKID = WN.ID left join szxmzd sz on wn.id = sz.xmkid left join (select xmbm,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt='1' group by xmbm) gx on jh.xmbm=gx.xmbm group by substr(sz.xzqhdm,0,4))fwq on hj.xzqhdm = fwq.xzqhdm
+--驿站、停车区
+full join(select substr(sz.xzqhdm,0,4)||'00' xzqhdm,sum(case when substr(jh.sjwgsj, 0, 4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(jh.sjwgsj, 'yyyy-MM-dd') then jh.jgzt else '0' end) wcsl ,sum(wcztz)wcztz FROM Jhsh_Fwq JH LEFT JOIN Sgt_Fwq sg ON JH.XMBM = SG.XMBM LEFT JOIN WNJH_FWQ WN ON SG.XMKID = WN.ID left join szxmzd sz on wn.id = sz.xmkid left join (select xmbm,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt='1' group by xmbm) gx on jh.xmbm=gx.xmbm where jh.xmmc like '%驿站%' or jh.xmmc like '%停车区%' group by substr(sz.xzqhdm,0,4))yztcq on hj.xzqhdm = yztcq.xzqhdm
+--道班
+full join(select substr(wn.qhdm,0,4)||'00' xzqhdm,sum(case when substr(jh.sjwgsj, 0, 4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(jh.sjwgsj, 'yyyy-MM-dd') then jh.jgzt else '0' end) wcsl,sum(wcztz)wcztz FROM Jhsh_Db JH LEFT JOIN Sgt_Db sg ON JH.XMBM = SG.XMBM LEFT JOIN Wnjh_Db WN ON SG.XMKID = WN.ID left join (select xmbm,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt='1' group by xmbm) gx on jh.xmbm=gx.xmbm group by substr(wn.qhdm,0,4))db on yhdzx.xzqhdm = db.xzqhdm
+)yh
+right join temp_gsdyhjdhz tg on yh.xzqhdm = tg.xzqhdm
+order by tg.xzqhdm
+	</select>
+	
 	<select id="getGsdyhjdhzb" parameterType="gcglabgc" resultType="elist">
-	    select * from TEMP_GSDYHJDHZ
+	 select tg.xzqhdm,tg.v_0,tg.v_1,tg.v_2,tg.v_3,tg.v_4,tg.v_5,tg.v_6,tg.v_7,tg.v_8,tg.v_9,tg.v_10,tg.v_11,tg.v_12,tg.v_13,tg.v_14,tg.v_15,tg.v_16,
+tg.v_17,tg.v_18,tg.v_19,tg.v_20,
+nvl(yh.yhdztz,0)+nvl(yh.wqztz,0)+nvl(yh.smztz,0)+nvl(yh.zhztz,0)+nvl(yh.sfztz,0)+nvl(yh.yhztz,0)+nvl(yh.fwztz,0)+
+nvl(yh.yzztz,0)+nvl(yh.dbztz,0)+nvl(tg.v_50,0) v_21,
+nvl(yh.hjlc,0) v_22, nvl(yh.hjztz,0) v_23, decode(nvl(tg.v_1,0),'0','0%',round(nvl(yh.hjlc,0)*100/nvl(tg.v_1,0),0)||'%') v_24,
+yh.yhdlc v_25, yh.yhdztz v_26, yh.lmlc v_27,yh.lmztz v_28,yh.shlc v_29,yh.shztz v_30,
+yh.wqsl v_31, yh.wqztz v_32, decode(nvl(tg.v_3,0),'0','0%',round(nvl(yh.wqsl,0)*100/nvl(tg.v_3,0),0)||'%') v_33,
+yh.smlc v_34, yh.smztz v_35,decode(nvl(tg.v_5,0),'0','0%',round(nvl(yh.smlc,0)*100/nvl(tg.v_5,0),0)||'%') v_36,
+yh.zhlc v_37, yh.zhztz v_38,decode(nvl(tg.v_7,0),'0','0%',round(nvl(yh.zhlc,0)*100/nvl(tg.v_7,0),0)||'%') v_39,
+yh.sflc v_40, yh.sfztz v_41,decode(nvl(tg.v_9,0),'0','0%',round(nvl(yh.sflc,0)*100/nvl(tg.v_9,0),0)||'%') v_42,
+yh.yhsl v_43, yh.yhztz v_44,decode(nvl(tg.v_11,0),'0','0%',round(nvl(yh.yhsl,0)*100/nvl(tg.v_11,0),0)||'%') v_45,
+yh.fwsl v_46, yh.fwztz v_47,decode(nvl(tg.v_13,0),'0','0%',round(nvl(yh.fwsl,0)*100/nvl(tg.v_13,0),0)||'%') v_48,
+yh.yzsl v_49,yh.yzztz v_50,decode(nvl(tg.v_15,0),'0','0%',round(nvl(yh.yzsl,0)*100/nvl(tg.v_15,0),0)||'%') v_51,
+yh.dbsl v_52,yh.dbztz v_53,decode(nvl(tg.v_17,0),'0','0%',round(nvl(yh.dbsl,0)*100/nvl(tg.v_17,0),0)||'%') v_54,
+tg.v_49 v_55,tg.v_50 v_56,decode(nvl(tg.v_20,0),'0','0%',round(nvl(tg.v_50,0)*100/nvl(tg.v_20,0),0)||'%') v_57
+from (
+select hj.xzqhdm, hj.wclc hjlc,hj.wcztz hjztz,yhdzx.wclc yhdlc,yhdzx.wcztz yhdztz,lmgz.wclc lmlc,lmgz.wcztz lmztz,
+zhhf.wclc shlc,zhhf.wcztz shztz,wqgz.wcsl wqsl,wqgz.wcztz wqztz,smfh.wclc smlc, smfh.wcztz smztz, zhfz.wclc zhlc,
+zhfz.wcztz zhztz, sfl.wclc sflc,sfl.wcztz sfztz,yhzx.wcsl yhsl, yhzx.wcztz yhztz,fwq.wcsl fwsl, fwq.wcztz fwztz,
+yztcq.wcsl yzsl,yztcq.wcztz yzztz,db.wcsl dbsl,db.wcztz dbztz from(
+--合计
+select t.xzqhdm,sum(gx.wclc) wclc ,sum(gx.wcztz) wcztz from (select xmbm,xzqhdm from jhsh_yhdzx union select j.xmbm,l.xzqhdm from jhsh_lmgz j left join lxsh_lmgz l on l.xmbm=j.xmbm union  select xmbm,xzqhdm from jhsh_sh)t left join (select xmbm,sum(yilc)+sum(erlc)+sum(sanlc)+sum(silc) wclc,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt = '1' group by xmbm) gx on t.xmbm=gx.xmbm group by t.xzqhdm)hj
+--养护大中修
+full join(select substr(jh.xzqhdm,0,4)||'00' xzqhdm,sum(gx.wclc) wclc ,sum(gx.wcztz) wcztz from jhsh_yhdzx jh left join (select xmbm,sum(yilc)+sum(erlc)+sum(sanlc)+sum(silc) wclc,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt = '1' group by xmbm) gx on jh.xmbm = gx.xmbm group by substr(jh.xzqhdm, 0, 4))yhdzx on hj.xzqhdm = yhdzx.xzqhdm
+--路面改造
+full join(select substr(l.xzqhdm,0,4)||'00' xzqhdm,sum(gx.wclc) wclc ,sum(gx.wcztz) wcztz from jhsh_lmgz jh left join lxsh_lmgz l on l.xmbm=jh.xmbm left join (select xmbm,sum(yilc)+sum(erlc)+sum(sanlc)+sum(silc) wclc,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt = '1' group by xmbm) gx on jh.xmbm = gx.xmbm group by substr(l.xzqhdm, 0, 4))lmgz on hj.xzqhdm = lmgz.xzqhdm
+--灾害恢复重建
+full join(select substr(jh.xzqhdm,0,4)||'00' xzqhdm,sum(gx.wclc) wclc ,sum(gx.wcztz) wcztz from jhsh_sh jh left join (select xmbm,sum(yilc)+sum(erlc)+sum(sanlc)+sum(silc) wclc,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt = '1' group by xmbm) gx on jh.xmbm = gx.xmbm group by substr(jh.xzqhdm, 0, 4))zhhf on hj.xzqhdm = zhhf.xzqhdm
+--危桥改造
+full join(select substr(lx.xzqhdm,0,4)||'00' xzqhdm,sum(case when substr(jh.sjwgsj, 0, 4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(jh.sjwgsj, 'yyyy-MM-dd') then jh.jgzt else '0' end) wcsl, sum(wc_ztz) wcztz from plan_wqgz jh left join sck_wqgz sc on (jh.sckid = sc.sckid) left join xmk_wqgz lx on (sc.xmkid = lx.id) left join gcgl_wqgz gx on gx.jhid = jh.id where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and gx.sfsj = '7' and gx.shzt like '%已审核%' group by substr(lx.xzqhdm,0,4))wqgz on hj.xzqhdm=wqgz.xzqhdm
+--安防工程
+full join(select substr(t.xzqhdm,0,4)||'00' xzqhdm,sum(gx.wclc)wclc,sum(gx.wcztz)wcztz from(select jh.id,lx.xzqhdm from plan_abgc jh left join sck_abgc sc on (jh.sckid = sc.sckid) left join xmk_abgc lx on (sc.xmkid = lx.id) union select jh.id ,sc.xzqhdm from plan_af jh left join sck_aqsmfh sc on sc.id = jh.sckid where xzqhdm is not null)t left join (select jhid,sum(bywc_gl)wclc,sum(wc_ztz) wcztz from gcgl_abgc where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and sfsj = '7' and shzt like '%已审核%' group by jhid)gx on t.id = gx.jhid group by substr(t.xzqhdm,0,4))smfh on hj.xzqhdm = smfh.xzqhdm
+--灾害防治
+full join(select substr(lx.xzqhdm,0,4)||'00' xzqhdm,sum(bywcgl)wclc,sum(gx.wc_ztz) wcztz from plan_zhfz jh left join sck_zhfz sc on (jh.sckid = sc.sckid) left join xmk_zhfz lx on (sc.xmkid = lx.id) left join gcgl_zhfz gx on jh.id = gx.jhid where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and gx.sfsj = '7' and gx.shzt like '%已审核%' group by substr(lx.xzqhdm,0,4))zhfz on hj.xzqhdm = zhfz.xzqhdm
+--示范路
+full join(select substr(sz.xzqhdm,0,4)||'00' xzqhdm,sum(wclc) wclc,sum(wcztz)wcztz FROM JHSH_SFL JH LEFT JOIN SGT_SFL sg ON JH.XMBM = SG.XMBM LEFT JOIN WNJH_SFL WN ON SG.XMKID = WN.ID left join szxmzd sz on wn.id = sz.xmkid left join (select xmbm,sum(yilc)+sum(erlc)+sum(sanlc)+sum(silc) wclc,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt = '1' group by xmbm) gx on jh.xmbm=gx.xmbm group by substr(sz.xzqhdm,0,4))sfl on hj.xzqhdm = sfl.xzqhdm
+--养护中心
+full join(select substr(sz.xzqhdm,0,4)||'00' xzqhdm,sum(case when substr(jh.sjwgsj, 0, 4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(jh.sjwgsj, 'yyyy-MM-dd') then jh.jgzt else '0' end) wcsl ,sum(wcztz)wcztz FROM JHSH_YHZX JH LEFT JOIN SGT_YHZX sg ON JH.XMBM = SG.XMBM LEFT JOIN WNJH_YHZX WN ON SG.XMKID = WN.ID left join szxmzd sz on wn.id = sz.xmkid left join (select xmbm,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt='1' group by xmbm) gx on jh.xmbm=gx.xmbm group by substr(sz.xzqhdm,0,4))yhzx on hj.xzqhdm = yhzx.xzqhdm
+--服务区
+full join(select substr(sz.xzqhdm,0,4)||'00' xzqhdm,sum(case when substr(jh.sjwgsj, 0, 4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(jh.sjwgsj, 'yyyy-MM-dd') then jh.jgzt else '0' end) wcsl ,sum(wcztz)wcztz FROM Jhsh_Fwq JH LEFT JOIN Sgt_Fwq sg ON JH.XMBM = SG.XMBM LEFT JOIN WNJH_FWQ WN ON SG.XMKID = WN.ID left join szxmzd sz on wn.id = sz.xmkid left join (select xmbm,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt='1' group by xmbm) gx on jh.xmbm=gx.xmbm group by substr(sz.xzqhdm,0,4))fwq on hj.xzqhdm = fwq.xzqhdm
+--驿站、停车区
+full join(select substr(sz.xzqhdm,0,4)||'00' xzqhdm,sum(case when substr(jh.sjwgsj, 0, 4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(jh.sjwgsj, 'yyyy-MM-dd') then jh.jgzt else '0' end) wcsl ,sum(wcztz)wcztz FROM Jhsh_Fwq JH LEFT JOIN Sgt_Fwq sg ON JH.XMBM = SG.XMBM LEFT JOIN WNJH_FWQ WN ON SG.XMKID = WN.ID left join szxmzd sz on wn.id = sz.xmkid left join (select xmbm,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt='1' group by xmbm) gx on jh.xmbm=gx.xmbm where jh.xmmc like '%驿站%' or jh.xmmc like '%停车区%' group by substr(sz.xzqhdm,0,4))yztcq on hj.xzqhdm = yztcq.xzqhdm
+--道班
+full join(select substr(wn.qhdm,0,4)||'00' xzqhdm,sum(case when substr(jh.sjwgsj, 0, 4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(jh.sjwgsj, 'yyyy-MM-dd') then jh.jgzt else '0' end) wcsl,sum(wcztz)wcztz FROM Jhsh_Db JH LEFT JOIN Sgt_Db sg ON JH.XMBM = SG.XMBM LEFT JOIN Wnjh_Db WN ON SG.XMKID = WN.ID left join (select xmbm,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt='1' group by xmbm) gx on jh.xmbm=gx.xmbm group by substr(wn.qhdm,0,4))db on yhdzx.xzqhdm = db.xzqhdm
+)yh
+right join temp_gsdyhjdhz tg on yh.xzqhdm = tg.xzqhdm
+order by tg.xzqhdm
 	</select>
 	
 	<update id="updateGsdyhjdhzb" parameterType="elist">
