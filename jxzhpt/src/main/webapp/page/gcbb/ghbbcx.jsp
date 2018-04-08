@@ -365,7 +365,7 @@ function zhhfwcbghcx(formdate){
 
 function yhdzxwcbghcx(formdate){
 	var ssstr="v_0";
-	for(var i=1;i<110;i++){
+	for(var i=1;i<117;i++){
 		ssstr+=",v_"+i;
 	}
 	var ss=ssstr.split(",");
@@ -385,6 +385,11 @@ function yhdzxwcbghcx(formdate){
 				for ( var i = 0; i < msg.length; i++) {
 					var tr="<tr>";
 					for ( var j = 0; j < ss.length; j++) {
+						if(i==0&&j==0){
+							j=1;
+							tr+="<td colspan='2'>"+msg[i][ss[j]]+"</td>";
+						}
+						else
 						tr+="<td>"+msg[i][ss[j]]+"</td>";
 					}
 					

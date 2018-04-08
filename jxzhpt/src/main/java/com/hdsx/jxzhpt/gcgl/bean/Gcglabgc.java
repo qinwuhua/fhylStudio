@@ -54,7 +54,22 @@ public class Gcglabgc implements Serializable {
 	private String bnzjdw;
 	
 	private String ybrq;
-
+	private String minnf;
+	private String maxnf;
+	
+	
+	public String getMinnf() {
+		return minnf;
+	}
+	public void setMinnf(String minnf) {
+		this.minnf = minnf;
+	}
+	public String getMaxnf() {
+		return maxnf;
+	}
+	public void setMaxnf(String maxnf) {
+		this.maxnf = maxnf;
+	}
 	public String getYbrq() {
 		return ybrq;
 	}

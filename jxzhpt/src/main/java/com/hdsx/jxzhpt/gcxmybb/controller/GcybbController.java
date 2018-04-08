@@ -4969,11 +4969,7 @@ public class GcybbController extends BaseActionSupport{
 		try {
 			if("1".equals(flag)){
 				String shijian="";
-				if(Integer.parseInt(yf)<=9){
-					shijian=nf+"-0"+yf;
-				}else{
-					shijian=nf+"-"+yf;
-				}
+				shijian=nf+"-"+yf;
 				gcglabgc.setSbyf(shijian);
 				String tiaojian2="";
 				String xzqhdm = "";
@@ -4996,6 +4992,7 @@ public class GcybbController extends BaseActionSupport{
 				gcglabgc.setXmnf(nf);
 				//查总合list
 				//getcxtj
+				gcglabgc.setJhnf(gcglabgc.getJhnd());
 				gcglabgc.setJhnd(getcxtj("xd.jhnf",gcglabgc.getJhnd()));
 				List<Excel_list> eL= (List<Excel_list>) getRequest().getSession().getAttribute("yhdzxwcb") ;
 				ExcelData eldata=new ExcelData();//创建一个类
@@ -5004,150 +5001,174 @@ public class GcybbController extends BaseActionSupport{
 				eldata.setFileName("全省普通国省干线养护大中修工程完成情况表");//设置文件名
 				eldata.setEl(eL);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
-				et.add(new Excel_tilte("设区市公路局",1,4,0,0));
-				et.add(new Excel_tilte("养护大中修",1,1,1,109));
-				et.add(new Excel_tilte(nf+"年下达计划里程(公里)",2,2,1,12));
-				et.add(new Excel_tilte(nf+"年下达计划完成里程（公里）",2,2,13,24));
-				et.add(new Excel_tilte("累计完成里程（公里）",2,2,25,36));
-				et.add(new Excel_tilte("计划总投资（万元）",2,2,37,48));
-				et.add(new Excel_tilte("省级补助资金",2,2,49,60));
-				et.add(new Excel_tilte(nf+"完成总投资（万元）",2,2,61,72));
-				et.add(new Excel_tilte("累计完成总投资（万元）",2,2,73,84));
-				et.add(new Excel_tilte(nf+"年完成省级补助资金",2,2,85,96));
-				et.add(new Excel_tilte("累计完成省级补助资金",2,2,97,108));
-				et.add(new Excel_tilte("备注",2,4,109,109));
-				et.add(new Excel_tilte("国道",3,3,1,4));
-				et.add(new Excel_tilte("省道",3,3,5,8));
-				et.add(new Excel_tilte("农村公路",3,3,9,12));
-				et.add(new Excel_tilte("国道",3,3,13,16));
-				et.add(new Excel_tilte("省道",3,3,17,20));
-				et.add(new Excel_tilte("农村公路",3,3,21,24));
-				et.add(new Excel_tilte("国道",3,3,25,28));
-				et.add(new Excel_tilte("省道",3,3,29,32));
-				et.add(new Excel_tilte("农村公路",3,3,33,36));
-				et.add(new Excel_tilte("国道",3,3,37,40));
-				et.add(new Excel_tilte("省道",3,3,41,44));
-				et.add(new Excel_tilte("农村公路",3,3,45,48));
-				et.add(new Excel_tilte("国道",3,3,49,52));
-				et.add(new Excel_tilte("省道",3,3,53,56));
-				et.add(new Excel_tilte("农村公路",3,3,57,60));
-				et.add(new Excel_tilte("国道",3,3,61,64));
-				et.add(new Excel_tilte("省道",3,3,65,68));
-				et.add(new Excel_tilte("农村公路",3,3,69,72));
-				et.add(new Excel_tilte("国道",3,3,73,76));
-				et.add(new Excel_tilte("省道",3,3,77,80));
-				et.add(new Excel_tilte("农村公路",3,3,81,84));
-				et.add(new Excel_tilte("国道",3,3,85,88));
-				et.add(new Excel_tilte("省道",3,3,89,92));
-				et.add(new Excel_tilte("农村公路",3,3,93,96));
-				et.add(new Excel_tilte("国道",3,3,97,100));
-				et.add(new Excel_tilte("省道",3,3,101,104));
-				et.add(new Excel_tilte("农村公路",3,3,105,108));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
-				et.add(new Excel_tilte("小计",4,4,1,1));
-				et.add(new Excel_tilte("大修",4,4,2,2));
-				et.add(new Excel_tilte("中修",4,4,3,3));
-				et.add(new Excel_tilte("预防性养护",4,4,4,4));
+				et.add(new Excel_tilte("序号",1,4,0,0));
+				et.add(new Excel_tilte("设区市公路局",1,4,1,1));
+				et.add(new Excel_tilte(gcglabgc.getMinnf()+"-"+gcglabgc.getMaxnf()+"计划下达及完成情况",1,1,2,44));
+				et.add(new Excel_tilte(nf+"完成情况",1,1,45,80));
+				et.add(new Excel_tilte("累计完成情况",1,1,81,116));
+				et.add(new Excel_tilte("计划里程(公里)",2,2,2,13));
+				et.add(new Excel_tilte("总投资(万元)",2,2,14,25));
+				et.add(new Excel_tilte("省级补助(万元)",2,2,26,37));
 				
+				
+				et.add(new Excel_tilte("完成里程(公里)",2,2,38,39));
+				et.add(new Excel_tilte("完成投资(万元)",2,2,40,41));
+				et.add(new Excel_tilte("资金到位(万元)",2,2,42,43));
+				
+				et.add(new Excel_tilte("工程完成比例",2,4,44,44));
+				et.add(new Excel_tilte("完成里程(公里)",2,2,45,56));
+				et.add(new Excel_tilte("完成投资(万元)",2,2,57,68));
+				et.add(new Excel_tilte("资金到位(万元)",2,2,69,80));
+				et.add(new Excel_tilte("完成里程(公里)",2,2,81,92));
+				et.add(new Excel_tilte("完成投资(万元)",2,2,93,104));
+				et.add(new Excel_tilte("资金到位(万元)",2,2,105,116));
+				
+				
+				et.add(new Excel_tilte("国道",3,3,2,5));
+				et.add(new Excel_tilte("省道",3,3,6,9));
+				et.add(new Excel_tilte("农村公路",3,3,10,13));
+				et.add(new Excel_tilte("国道",3,3,14,17));
+				et.add(new Excel_tilte("省道",3,3,18,21));
+				et.add(new Excel_tilte("农村公路",3,3,22,25));
+				et.add(new Excel_tilte("国道",3,3,26,29));
+				et.add(new Excel_tilte("省道",3,3,30,33));
+				et.add(new Excel_tilte("农村公路",3,3,34,37));
+				
+				et.add(new Excel_tilte(nf,3,4,38,38));
+				et.add(new Excel_tilte("累计",3,4,39,39));
+				et.add(new Excel_tilte(nf,3,4,40,40));
+				et.add(new Excel_tilte("累计",3,4,41,41));
+				et.add(new Excel_tilte(nf,3,4,42,42));
+				et.add(new Excel_tilte("累计",3,4,43,43));
+				
+				et.add(new Excel_tilte("国道",3,3,45,48));
+				et.add(new Excel_tilte("省道",3,3,49,52));
+				et.add(new Excel_tilte("农村公路",3,3,53,56));
+				et.add(new Excel_tilte("国道",3,3,57,60));
+				et.add(new Excel_tilte("省道",3,3,61,64));
+				et.add(new Excel_tilte("农村公路",3,3,65,68));
+				et.add(new Excel_tilte("国道",3,3,69,72));
+				et.add(new Excel_tilte("省道",3,3,73,76));
+				et.add(new Excel_tilte("农村公路",3,3,77,80));
+				et.add(new Excel_tilte("国道",3,3,81,84));
+				et.add(new Excel_tilte("省道",3,3,85,88));
+				et.add(new Excel_tilte("农村公路",3,3,89,92));
+				et.add(new Excel_tilte("国道",3,3,93,96));
+				et.add(new Excel_tilte("省道",3,3,97,100));
+				et.add(new Excel_tilte("农村公路",3,3,101,104));
+				et.add(new Excel_tilte("国道",3,3,105,108));
+				et.add(new Excel_tilte("省道",3,3,109,112));
+				et.add(new Excel_tilte("农村公路",3,3,113,116));
+				
+				et.add(new Excel_tilte("小计",4,4,2,2));
+				et.add(new Excel_tilte("大修",4,4,3,3));
+				et.add(new Excel_tilte("中修",4,4,4,4));
+				et.add(new Excel_tilte("预防性养护",4,4,5,5));
+				et.add(new Excel_tilte("小计",4,4,6,6));
+				et.add(new Excel_tilte("大修",4,4,7,7));
+				et.add(new Excel_tilte("中修",4,4,8,8));
+				et.add(new Excel_tilte("预防性养护",4,4,9,9));
+				et.add(new Excel_tilte("小计",4,4,10,10));
+				et.add(new Excel_tilte("大修",4,4,11,11));
+				et.add(new Excel_tilte("中修",4,4,12,12));
+				et.add(new Excel_tilte("预防性养护",4,4,13,13));
+				et.add(new Excel_tilte("小计",4,4,14,14));
+				et.add(new Excel_tilte("大修",4,4,15,15));
+				et.add(new Excel_tilte("中修",4,4,16,16));
+				et.add(new Excel_tilte("预防性养护",4,4,17,17));
+				et.add(new Excel_tilte("小计",4,4,18,18));
+				et.add(new Excel_tilte("大修",4,4,19,19));
+				et.add(new Excel_tilte("中修",4,4,20,20));
+				et.add(new Excel_tilte("预防性养护",4,4,21,21));
+				et.add(new Excel_tilte("小计",4,4,22,22));
+				et.add(new Excel_tilte("大修",4,4,23,23));
+				et.add(new Excel_tilte("中修",4,4,24,24));
+				et.add(new Excel_tilte("预防性养护",4,4,25,25));
+				et.add(new Excel_tilte("小计",4,4,26,26));
+				et.add(new Excel_tilte("大修",4,4,27,27));
+				et.add(new Excel_tilte("中修",4,4,28,28));
+				et.add(new Excel_tilte("预防性养护",4,4,29,29));
+				et.add(new Excel_tilte("小计",4,4,30,30));
+				et.add(new Excel_tilte("大修",4,4,31,31));
+				et.add(new Excel_tilte("中修",4,4,32,32));
+				et.add(new Excel_tilte("预防性养护",4,4,33,33));
+				et.add(new Excel_tilte("小计",4,4,34,34));
+				et.add(new Excel_tilte("大修",4,4,35,35));
+				et.add(new Excel_tilte("中修",4,4,36,36));
+				et.add(new Excel_tilte("预防性养护",4,4,37,37));
+				et.add(new Excel_tilte("小计",4,4,45,45));
+				et.add(new Excel_tilte("大修",4,4,46,46));
+				et.add(new Excel_tilte("中修",4,4,47,47));
+				et.add(new Excel_tilte("预防性养护",4,4,48,48));
+				et.add(new Excel_tilte("小计",4,4,49,49));
+				et.add(new Excel_tilte("大修",4,4,50,50));
+				et.add(new Excel_tilte("中修",4,4,51,51));
+				et.add(new Excel_tilte("预防性养护",4,4,52,52));
+				et.add(new Excel_tilte("小计",4,4,53,53));
+				et.add(new Excel_tilte("大修",4,4,54,54));
+				et.add(new Excel_tilte("中修",4,4,55,55));
+				et.add(new Excel_tilte("预防性养护",4,4,56,56));
+				et.add(new Excel_tilte("小计",4,4,57,57));
+				et.add(new Excel_tilte("大修",4,4,58,58));
+				et.add(new Excel_tilte("中修",4,4,59,59));
+				et.add(new Excel_tilte("预防性养护",4,4,60,60));
+				et.add(new Excel_tilte("小计",4,4,61,61));
+				et.add(new Excel_tilte("大修",4,4,62,62));
+				et.add(new Excel_tilte("中修",4,4,63,63));
+				et.add(new Excel_tilte("预防性养护",4,4,64,64));
+				et.add(new Excel_tilte("小计",4,4,65,65));
+				et.add(new Excel_tilte("大修",4,4,66,66));
+				et.add(new Excel_tilte("中修",4,4,67,67));
+				et.add(new Excel_tilte("预防性养护",4,4,68,68));
+				et.add(new Excel_tilte("小计",4,4,69,69));
+				et.add(new Excel_tilte("大修",4,4,70,70));
+				et.add(new Excel_tilte("中修",4,4,71,71));
+				et.add(new Excel_tilte("预防性养护",4,4,72,72));
+				et.add(new Excel_tilte("小计",4,4,73,73));
+				et.add(new Excel_tilte("大修",4,4,74,74));
+				et.add(new Excel_tilte("中修",4,4,75,75));
+				et.add(new Excel_tilte("预防性养护",4,4,76,76));
+				et.add(new Excel_tilte("小计",4,4,77,77));
+				et.add(new Excel_tilte("大修",4,4,78,78));
+				et.add(new Excel_tilte("中修",4,4,79,79));
+				et.add(new Excel_tilte("预防性养护",4,4,80,80));
+				et.add(new Excel_tilte("小计",4,4,81,81));
+				et.add(new Excel_tilte("大修",4,4,82,82));
+				et.add(new Excel_tilte("中修",4,4,83,83));
+				et.add(new Excel_tilte("预防性养护",4,4,84,84));
+				et.add(new Excel_tilte("小计",4,4,85,85));
+				et.add(new Excel_tilte("大修",4,4,86,86));
+				et.add(new Excel_tilte("中修",4,4,87,87));
+				et.add(new Excel_tilte("预防性养护",4,4,88,88));
+				et.add(new Excel_tilte("小计",4,4,89,89));
+				et.add(new Excel_tilte("大修",4,4,90,90));
+				et.add(new Excel_tilte("中修",4,4,91,91));
+				et.add(new Excel_tilte("预防性养护",4,4,92,92));
+				et.add(new Excel_tilte("小计",4,4,93,93));
+				et.add(new Excel_tilte("大修",4,4,94,94));
+				et.add(new Excel_tilte("中修",4,4,95,95));
+				et.add(new Excel_tilte("预防性养护",4,4,96,96));
+				et.add(new Excel_tilte("小计",4,4,97,97));
+				et.add(new Excel_tilte("大修",4,4,98,98));
+				et.add(new Excel_tilte("中修",4,4,99,99));
+				et.add(new Excel_tilte("预防性养护",4,4,100,100));
+				et.add(new Excel_tilte("小计",4,4,101,101));
+				et.add(new Excel_tilte("大修",4,4,102,102));
+				et.add(new Excel_tilte("中修",4,4,103,103));
+				et.add(new Excel_tilte("预防性养护",4,4,104,104));
+				et.add(new Excel_tilte("小计",4,4,105,105));
+				et.add(new Excel_tilte("大修",4,4,106,106));
+				et.add(new Excel_tilte("中修",4,4,107,107));
+				et.add(new Excel_tilte("预防性养护",4,4,108,108));
+				et.add(new Excel_tilte("小计",4,4,109,109));
+				et.add(new Excel_tilte("大修",4,4,110,110));
+				et.add(new Excel_tilte("中修",4,4,111,111));
+				et.add(new Excel_tilte("预防性养护",4,4,112,112));
+				et.add(new Excel_tilte("小计",4,4,113,113));
+				et.add(new Excel_tilte("大修",4,4,114,114));
+				et.add(new Excel_tilte("中修",4,4,115,115));
+				et.add(new Excel_tilte("预防性养护",4,4,116,116));
+				/*
 				int k=1;
 				for (int i = 1; i < 109; i++) {
 					if(k==1)
@@ -5161,9 +5182,7 @@ public class GcybbController extends BaseActionSupport{
 					k++;
 					if(k==5)
 						k=1;
-				}
-				
-				
+				}*/
 				
 				
 				eldata.setEt(et);//将表头内容设置到类里面
@@ -5172,11 +5191,7 @@ public class GcybbController extends BaseActionSupport{
 			
 		}else{
 			String shijian="";
-			if(Integer.parseInt(yf)<=9){
-				shijian=nf+"-0"+yf;
-			}else{
-				shijian=nf+"-"+yf;
-			}
+			shijian=nf+"-"+yf;
 			gcglabgc.setSbyf(shijian);
 			String tiaojian2="";
 			String xzqhdm = "";
@@ -5199,6 +5214,7 @@ public class GcybbController extends BaseActionSupport{
 			gcglabgc.setXmnf(nf);
 			//查总合list
 			//getcxtj
+			gcglabgc.setJhnf(gcglabgc.getJhnd());
 			gcglabgc.setJhnd(getcxtj("xd.jhnf",gcglabgc.getJhnd()));
 			List<Excel_list> list1=gcybbServer.getYhdzxwcb(gcglabgc);
 			getRequest().getSession().setAttribute("yhdzxwcb", list1);

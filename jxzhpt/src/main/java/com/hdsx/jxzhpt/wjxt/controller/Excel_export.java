@@ -410,8 +410,16 @@ public class Excel_export {
                     cell.setCellStyle(style);
             	}
             	if(j==1){
-            		cell.setCellValue(trqk1.getV_1());  
-                    cell.setCellStyle(style);
+            		if("全省汇总".equals(trqk1.getV_1())&&"全省汇总".equals(trqk1.getV_0())){
+            			cell.setCellValue(trqk1.getV_1());  
+                        cell.setCellStyle(style);
+                        CellRangeAddress ranges = new CellRangeAddress(5,5,0,1);
+                		sheet.addMergedRegion(ranges);
+                		setRegionStyle(style,ranges,sheet);
+            		}else{
+            			cell.setCellValue(trqk1.getV_1());  
+                        cell.setCellStyle(style);
+            		}
             	}
             	if(j==2){
             		cell.setCellValue(trqk1.getV_2());  

@@ -125,9 +125,16 @@
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
-		
+		var xmnf=$("#jhnd").combobox("getValues");
+		if(xmnf.join(",").substr(0,1)==',')
+			xmnf=xmnf.join(",").substr(1,xmnf.join(",").length).split(',');
+			xmnf.sort(function (x,y) {
+	            return y-x;
+	        });
+		var min=xmnf[xmnf.length-1];
+		var max=xmnf[0];
 		var data="flag=1&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr+"&gcglabgc.ybsj="+$("#ybsj").datebox('getValue')
-		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',');
+		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',')+"&gcglabgc.minnf="+min+"&gcglabgc.maxnf="+max;
 		loadjzt();
 		 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{xzqh:xzqhstr},function(){
 			window.location.href='/jxzhpt/gcybb/getYhdzxwcb.do?'+data;
@@ -150,11 +157,22 @@
 			xzqhstr= xzqhdm.join(',');
 		}
 		
+		var xmnf=$("#jhnd").combobox("getValues");
+		if(xmnf.join(",").substr(0,1)==',')
+			xmnf=xmnf.join(",").substr(1,xmnf.join(",").length).split(',');
+			xmnf.sort(function (x,y) {
+	            return y-x;
+	        });
+		var min=xmnf[xmnf.length-1];
+		var max=xmnf[0];
+		$("#nffw").html(min+"-"+max);
+		
+		
 		$(".nian").html(nf);
 		var data="flag=0&nf="+nf+"&yf="+yf+"&xzqh="+xzqhstr+"&gcglabgc.ybsj="+$("#ybsj").datebox('getValue')
 		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',');
 		var ssstr="v_0";
-		for(var i=1;i<110;i++){
+		for(var i=1;i<117;i++){
 			ssstr+=",v_"+i;
 		}
 		var ss=ssstr.split(",");
@@ -177,6 +195,11 @@
 					for ( var i = 0; i < msg.length; i++) {
 						var tr="<tr>";
 						for ( var j = 0; j < ss.length; j++) {
+							if(i==0&&j==0){
+								j=1;
+								tr+="<td colspan='2'>"+msg[i][ss[j]]+"</td>";
+							}
+							else
 							tr+="<td>"+msg[i][ss[j]]+"</td>";
 						}
 						
@@ -286,21 +309,28 @@ text-decoration:none;
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">全省普通国省干线养护大中修工程完成情况表</caption>
 								<tbody id='biaotou'>
 									<tr>
+									    <td rowspan="4"  style="width: 75px;">序号</td>
 										<td rowspan="4"  style="width: 75px;">设区市公路局</td>
-										<td colspan="109">养护大中修</td>
+										<td colspan="45"><span id='nffw'></span>计划下达及完成情况</td>
+										<td colspan="36"><span class='nian'></span>完成情况</td>
+										<td colspan="36">累计完成情况</td>
+										
 									</tr>
 									
 									<tr>
-										<td colspan="12"><span class='nian'></span>年下达计划里程(公里)</td>
-										<td colspan="12"><span class='nian'></span>年下达计划完成里程（公里）</td>
-										<td colspan="12">累计完成里程（公里）</td>
-										<td colspan="12">计划总投资（万元）</td>
-										<td colspan="12">省级补助资金</td>
-										<td colspan="12"><span class='nian'></span>年完成总投资（万元）</td>
-										<td colspan="12">累计完成总投资（万元）</td>
-										<td colspan="12"><span class='nian'></span>年完成省级补助资金</td>
-										<td colspan="12">累计完成省级补助资金</td>
-										<td rowspan="3"  style="width: 75px;">备注</td>
+										<td colspan="12">计划里程(公里)</td>
+										<td colspan="12">总投资(万元)</td>
+										<td colspan="12">省级补助(万元)</td>
+										<td colspan="2">完成里程(公里)</td>
+										<td colspan="2">完成投资(万元)</td>
+										<td colspan="2">资金到位(万元)</td>
+										<td rowspan="3"  style="width: 75px;">工程完成比例</td>
+										<td colspan="12">完成里程(公里)</td>
+										<td colspan="12">完成投资(万元)</td>
+										<td colspan="12">资金到位(万元)</td>
+										<td colspan="12">完成里程(公里)</td>
+										<td colspan="12">完成投资(万元)</td>
+										<td colspan="12">资金到位(万元)</td>
 									</tr>
 									
 									<tr>
@@ -313,6 +343,13 @@ text-decoration:none;
 										<td colspan="4" style="width: 100px;">国道</td>
 										<td colspan="4" style="width: 100px;">省道</td>
 										<td colspan="4" style="width: 100px;">农村公路</td>
+										
+										<td rowspan="2" style="width: 100px;"><span class='nian'></span></td>
+										<td rowspan="2" style="width: 100px;">累计</td>
+										<td rowspan="2" style="width: 100px;"><span class='nian'></span></td>
+										<td rowspan="2" style="width: 100px;">累计</td>
+										<td rowspan="2" style="width: 100px;"><span class='nian'></span></td>
+										<td rowspan="2" style="width: 100px;">累计</td>
 										<td colspan="4" style="width: 100px;">国道</td>
 										<td colspan="4" style="width: 100px;">省道</td>
 										<td colspan="4" style="width: 100px;">农村公路</td>
