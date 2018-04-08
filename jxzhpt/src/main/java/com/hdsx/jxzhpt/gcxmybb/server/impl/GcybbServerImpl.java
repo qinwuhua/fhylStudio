@@ -1488,7 +1488,18 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 
 	@Override
 	public List<Excel_list> getYhdzxwcb(Gcglabgc gcglabgc) {
-		return queryList("getYhdzxwcb",gcglabgc);
+		List<Excel_list> l = queryList("getYhdzxwcb",gcglabgc);
+		if(l.size()>0){
+			int i=0;
+			for (Excel_list ex : l) {
+				if(i==0)
+					ex.setV_0("全省汇总");
+				else
+					ex.setV_0(""+i);
+				i++;
+			}
+		}
+		return l;
 	}
 
 	@Override
