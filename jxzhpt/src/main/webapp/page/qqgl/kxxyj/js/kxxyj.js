@@ -1273,7 +1273,7 @@ function showAllsjsh(){
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
-	        {field:'c',title:'操作',width:180,align:'center',formatter:function(value,row,index){
+	        {field:'c',title:'操作',width:240,align:'center',formatter:function(value,row,index){
 	        	//if(row.sbzt1=='1')
 	        	//	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑    ';
 	        	//if($.cookie("unit2").length!=7)
@@ -1282,16 +1282,16 @@ function showAllsjsh(){
 	        	if($.cookie("unit2").length!=7){
 	        		if(row.sbzt1=='1'){
 	        			res +='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑  ';
-	        			return res+' 添加路线   变更';
+	        			return res+' 添加路线   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="approvalDocuments('+index+')">批复文件</a>   '+'变更';
 	        		}
         			else{
 		        		res +='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑 </a>';
-		        		return res+' <a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   <a href="javascript:tz('+"'"+row.xmbm+"','sjgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
+		        		return res+' <a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="approvalDocuments('+index+')">批复文件</a>   '+'<a href="javascript:tz('+"'"+row.xmbm+"','sjgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 		        	}
 	        	}
 	        	else{
 	        		res +='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑 </a>';
-		        	return res+' <a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   <a href="javascript:tz('+"'"+row.xmbm+"','sjgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
+		        	return res+' <a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="approvalDocuments('+index+')">批复文件</a>   '+'<a href="javascript:tz('+"'"+row.xmbm+"','sjgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 	        	}
 	        	
 	        }},
@@ -1700,21 +1700,21 @@ function showAlllmsh(){
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
-	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
+	        {field:'c',title:'操作',width:240,align:'center',formatter:function(value,row,index){
 	        	var res ="";
 	        	if($.cookie("unit2").length!=7){
 	        		if(row.sbzt1=='1'){
 	        			res +='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'编辑  ';
-	        			return res+' 添加路线   变更';
+	        			return res+' 添加路线  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="approvalDocuments('+index+')">批复文件</a>   '+'变更';
 	        		}
         			else{
 		        		res +='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit1('+index+')">编辑</a>  ';
-		        		return res+'   <a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">添加路线</a>     <a href="javascript:tz('+"'"+row.xmbm+"','lmgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a> ';
+		        		return res+'   <a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">添加路线</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="approvalDocuments('+index+')">批复文件</a>    '+'<a href="javascript:tz('+"'"+row.xmbm+"','lmgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a> ';
 		        	}
 	        	}
 	        	else{
 	        		res +='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit1('+index+')">编辑</a>  ';
-		        	return res+'   <a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">添加路线</a>     <a href="javascript:tz('+"'"+row.xmbm+"','lmgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a> ';
+		        	return res+'   <a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">添加路线</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="approvalDocuments('+index+')">批复文件</a>   '+'<a href="javascript:tz('+"'"+row.xmbm+"','lmgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a> ';
 	        	}
 	        	
 	        	
@@ -2136,21 +2136,21 @@ function showAllxjsh(){
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
-	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
+	        {field:'c',title:'操作',width:240,align:'center',formatter:function(value,row,index){
 	        	var res="";
 	        	if($.cookie("unit2").length!=7){
 	        		if(row.sbzt1=='1'){
 	        			res +='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'编辑  ';
-	        			return res+' 添加路线   变更';
+	        			return res+' 添加路线    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="approvalDocuments('+index+')">批复文件</a>   '+'变更';
 	        		}
         			else{
         				res +='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>';
-    	        		return res+'   <a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>     <a href="javascript:tz('+"'"+row.xmbm+"','xj'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
+    	        		return res+'   <a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="approvalDocuments('+index+')">批复文件</a>   '+'<a href="javascript:tz('+"'"+row.xmbm+"','xj'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
     	        	}
 	        	}
 	        	else{
 	        		res +='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>';
-	        		return res+'   <a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>     <a href="javascript:tz('+"'"+row.xmbm+"','xj'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
+	        		return res+'   <a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="approvalDocuments('+index+')">批复文件</a>   '+'<a href="javascript:tz('+"'"+row.xmbm+"','xj'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 	        	}
 	        	/*var re= '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>';
         		return re+'   <a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>     <a href="javascript:tz('+"'"+row.xmbm+"','xj'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
@@ -2475,8 +2475,8 @@ function fileShow(xmbm,type){
 			$("#gkpfTable").empty();
 			for ( var i = 0; i < data.length; i++) {
 				if(data[i].filetype==type){
-					var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>" +
-					'<a href="javascript:downFile('+"'"+data[i].fileurl.replace(/\\/g,"%2F")+"',"+"'"+data[i].filename+"'"+')" style="text-decoration:none;color:#3399CC;">下载</a>  |  ' +
+					var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'> " + data[i].filename + "</td><td style='background-color: #ffffff; height: 25px;' align='left'>" +
+					'  <a href="javascript:downFile('+"'"+data[i].fileurl.replace(/\\/g,"%2F")+"',"+"'"+data[i].filename+"'"+')" style="text-decoration:none;color:#3399CC;">下载</a>  |  ' +
 					"<a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
 					$("#gkpfTable").append(tr);
 				}
@@ -3157,7 +3157,7 @@ function showAllxjsh__ck(){
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field : 'lc',title : '里程',width : 60,align : 'center'},
-		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+		    {field : 'jsjsdj',title:'建设技术等级',width:100,align:'center'},
 		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
 		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'}
 	    ]],
@@ -3547,4 +3547,9 @@ function ckthyy(index){
 function hyscthyy(index){
     $.messager.alert("退回原因", $("#datagrid").datagrid('getRows')[index].scthyy,"warning");
 	/*alert($("#datagrid").datagrid('getRows')[index].thyy);*/
+}
+function approvalDocuments(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('lxxx','工可批复文件','kxxyjpfwj.jsp','lxxx',800,240);
 }

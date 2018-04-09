@@ -5233,6 +5233,10 @@ full join(select substr(sz.xzqhdm,0,4)||'00' xzqhdm,sum(case when substr(jh.sjwg
 full join(select substr(wn.qhdm,0,4)||'00' xzqhdm,sum(case when substr(jh.sjwgsj, 0, 4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(jh.sjwgsj, 'yyyy-MM-dd') then jh.jgzt else '0' end) wcsl,sum(wcztz)wcztz FROM Jhsh_Db JH LEFT JOIN Sgt_Db sg ON JH.XMBM = SG.XMBM LEFT JOIN Wnjh_Db WN ON SG.XMKID = WN.ID left join (select xmbm,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt='1' group by xmbm) gx on jh.xmbm=gx.xmbm group by substr(wn.qhdm,0,4))db on yhdzx.xzqhdm = db.xzqhdm
 )yh
 right join temp_gsdyhjdhz tg on yh.xzqhdm = tg.xzqhdm
+where 1=1
+		<if test="xzqhdm != null and  xzqhdm != ''">
+		    ${xzqhdm}
+		</if>
 order by tg.xzqhdm
 	</select>
 	
@@ -5283,6 +5287,10 @@ full join(select substr(sz.xzqhdm,0,4)||'00' xzqhdm,sum(case when substr(jh.sjwg
 full join(select substr(wn.qhdm,0,4)||'00' xzqhdm,sum(case when substr(jh.sjwgsj, 0, 4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(jh.sjwgsj, 'yyyy-MM-dd') then jh.jgzt else '0' end) wcsl,sum(wcztz)wcztz FROM Jhsh_Db JH LEFT JOIN Sgt_Db sg ON JH.XMBM = SG.XMBM LEFT JOIN Wnjh_Db WN ON SG.XMKID = WN.ID left join (select xmbm,sum(wccgs) wcztz from gcgl_xmjd where substr(ybrq,0,4) in (#{xmnf}) and to_date(#{ybrq}, 'yyyy-MM-dd') >= to_date(ybrq, 'yyyy-MM-dd') and shzt='1' group by xmbm) gx on jh.xmbm=gx.xmbm group by substr(wn.qhdm,0,4))db on yhdzx.xzqhdm = db.xzqhdm
 )yh
 right join temp_gsdyhjdhz tg on yh.xzqhdm = tg.xzqhdm
+where 1=1
+		<if test="xzqhdm != null and  xzqhdm != ''">
+		    ${xzqhdm}
+		</if>
 order by tg.xzqhdm
 	</select>
 	

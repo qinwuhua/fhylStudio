@@ -6176,9 +6176,9 @@ public class GcybbController extends BaseActionSupport{
 		public void getGsdyhjdhzb() {
 			gcglabgc.setXmnf(nf);
 			if(xzqh.indexOf(",")==-1){
-				gcglabgc.setXzqhdm("and a.xzqhdm like '%"+xzqh+"%'");
+				gcglabgc.setXzqhdm("and tg.xzqhdm like '%"+xzqh+"%'");
 			}else{
-				gcglabgc.setXzqhdm(getcxtj("a.xzqhdm",xzqh));
+				gcglabgc.setXzqhdm(getcxtj("tg.xzqhdm",xzqh));
 			}
 			try {
 				if("1".equals(flag)){					
