@@ -120,14 +120,17 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		params.put("page", page);
 		params.put("rows", rows);
 		List<Xmsq> result = new ArrayList<Xmsq>();
-		List<Xmsq> lx = queryList("queryYhdzxXmsq",params);
+		List<Xmsq> lx = queryList("queryYhdzxXmsq",params);	
 		String mqistr = null;
+		String pqistr = null;
 		for (int i = 0;i< lx.size();i++) {
 			Xmsq ls =lx.get(i);
 			mqistr=queryOne("queryMqidj", ls);
 			ls.setMqidj(mqistr);
+			pqistr=queryOne("queryPqidj", ls);
+			ls.setPqidj(pqistr);
 			result.add(ls);
-		}		
+		}
 		return result;
 	}
 	@Override

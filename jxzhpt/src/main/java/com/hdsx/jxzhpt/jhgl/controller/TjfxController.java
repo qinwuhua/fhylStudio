@@ -2135,4 +2135,15 @@ public class TjfxController extends BaseActionSupport{
 				e.printStackTrace();
 		}
     }
+	
+	public void queryPqidjxx() {
+		List<Lkmxb> list = tjfxServer.queryPqidjxx(lkmxb);
+			try {
+				JsonUtils.write(list, this.getresponse().getWriter());
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+		}
+    }
 }

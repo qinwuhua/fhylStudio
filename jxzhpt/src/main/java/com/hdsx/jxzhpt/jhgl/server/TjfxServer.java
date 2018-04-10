@@ -79,4 +79,6 @@ public interface TjfxServer {
 	List<Map<String, Object>> queryTsbl(String tjfl,int nf);
 
 	List<Lkmxb> queryMqidjxx(Lkmxb lkmxb);
+
+	List<Lkmxb> queryPqidjxx(Lkmxb lkmxb);
 }
