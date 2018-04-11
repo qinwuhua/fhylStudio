@@ -5470,9 +5470,9 @@ public class GcybbController extends BaseActionSupport{
 					for(int j=arr.length-1;j>=0;j--){
 						xmsl=MyUtil.add(xmsl, Double.valueOf(hm.get("XMSL"+arr[j]).toString()));
 						xmlc=MyUtil.add(xmlc, Double.valueOf(hm.get("XMLC"+arr[j]).toString()));
-						xmtz=MyUtil.add(xmlc, Double.valueOf(hm.get("XMTZ"+arr[j]).toString()));
-						xmbb=MyUtil.add(xmlc, Double.valueOf(hm.get("XMBB"+arr[j]).toString()));
-						xmsb=MyUtil.add(xmlc, Double.valueOf(hm.get("XMSB"+arr[j]).toString()));
+						xmtz=MyUtil.add(xmtz, Double.valueOf(hm.get("XMTZ"+arr[j]).toString()));
+						xmbb=MyUtil.add(xmbb, Double.valueOf(hm.get("XMBB"+arr[j]).toString()));
+						xmsb=MyUtil.add(xmsb, Double.valueOf(hm.get("XMSB"+arr[j]).toString()));
 						bnlc=MyUtil.add(bnlc, Double.valueOf(hm.get("BNLC"+arr[j]).toString()));
 						ljlc=MyUtil.add(ljlc, Double.valueOf(hm.get("LJLC"+arr[j]).toString()));
 						bntz=MyUtil.add(bntz, Double.valueOf(hm.get("BNTZ"+arr[j]).toString()));
@@ -5536,11 +5536,11 @@ public class GcybbController extends BaseActionSupport{
 					DecimalFormat decimalFormat2 = new DecimalFormat("#,##0");//格式化设置 
 					
 					l.setV_2(decimalFormat2.format(xmsl));
-					l.setV_3(decimalFormat2.format(xmtz));
-					l.setV_4(decimalFormat2.format(xmbb));
-					l.setV_5(decimalFormat2.format(xmsb));
+					l.setV_3(decimalFormat.format(xmlc));
+					l.setV_4(decimalFormat2.format(xmtz));
+					l.setV_5(decimalFormat2.format(xmbb));
+					l.setV_6(decimalFormat2.format(xmsb));
 					
-					l.setV_6(decimalFormat.format(xmlc));
 					l.setV_7(decimalFormat.format(bnlc)+"");
 					l.setV_8(decimalFormat.format(ljlc)+"");
 					l.setV_9(decimalFormat.format(bntz)+"");
@@ -5729,9 +5729,9 @@ public class GcybbController extends BaseActionSupport{
 						for(int j=arr.length-1;j>=0;j--){
 							xmsl=MyUtil.add(xmsl, Double.valueOf(hm.get("XMSL"+arr[j]).toString()));
 							xmlc=MyUtil.add(xmlc, Double.valueOf(hm.get("XMLC"+arr[j]).toString()));
-							xmtz=MyUtil.add(xmlc, Double.valueOf(hm.get("XMTZ"+arr[j]).toString()));
-							xmbb=MyUtil.add(xmlc, Double.valueOf(hm.get("XMBB"+arr[j]).toString()));
-							xmsb=MyUtil.add(xmlc, Double.valueOf(hm.get("XMSB"+arr[j]).toString()));
+							xmtz=MyUtil.add(xmtz, Double.valueOf(hm.get("XMTZ"+arr[j]).toString()));
+							xmbb=MyUtil.add(xmbb, Double.valueOf(hm.get("XMBB"+arr[j]).toString()));
+							xmsb=MyUtil.add(xmsb, Double.valueOf(hm.get("XMSB"+arr[j]).toString()));
 							bnlc=MyUtil.add(bnlc, Double.valueOf(hm.get("BNLC"+arr[j]).toString()));
 							ljlc=MyUtil.add(ljlc, Double.valueOf(hm.get("LJLC"+arr[j]).toString()));
 							bntz=MyUtil.add(bntz, Double.valueOf(hm.get("BNTZ"+arr[j]).toString()));
@@ -5795,11 +5795,11 @@ public class GcybbController extends BaseActionSupport{
 						DecimalFormat decimalFormat2 = new DecimalFormat("#,##0");//格式化设置 
 						
 						l.setV_2(decimalFormat2.format(xmsl));
-						l.setV_3(decimalFormat2.format(xmtz));
-						l.setV_4(decimalFormat2.format(xmbb));
-						l.setV_5(decimalFormat2.format(xmsb));
+						l.setV_3(decimalFormat.format(xmlc));
+						l.setV_4(decimalFormat2.format(xmtz));
+						l.setV_5(decimalFormat2.format(xmbb));
+						l.setV_6(decimalFormat2.format(xmsb));
 						
-						l.setV_6(decimalFormat.format(xmlc));
 						l.setV_7(decimalFormat.format(bnlc)+"");
 						l.setV_8(decimalFormat.format(ljlc)+"");
 						l.setV_9(decimalFormat.format(bntz)+"");
