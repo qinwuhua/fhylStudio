@@ -27,7 +27,7 @@
 			loadGhlx('ghlxbm');
 			loadylx('lxbm');
 			loadBmbm2('sqzt','申请状态地市');
-			
+/* 			loadBmbm2('mqidj','MQI等级') */
 			//根据用户等级展示按钮
 			if(userPanduan($.cookie("unit2"))=="省"){
 				title='综规处审核状态';
@@ -55,6 +55,8 @@
 			loadDist1("xzqh",$.cookie("dist"));
 			loadUnit1("gydw",$.cookie("unit"));
 			loadBmbm3('jsdj','技术等级');
+			loadBmbm3('mqidj','MQI等级');
+			loadBmbm3('pqidj','MQI等级');
 			loadGcfl('gcfl','工程分类');
 			loadGldj('gldj');
 			//gsdxmlx('xmlx');
@@ -70,6 +72,14 @@
 			queryYhdzx();
 		});
 		function queryYhdzx(){
+			var mqidj = $('#mqidj').combobox("getValues").join(",");
+			var pqidj = $('#pqidj').combobox("getValues").join(",");
+			if(mqidj.substr(0,1)==','){
+				mqidj=mqidj.substr(1);
+			}
+			if(pqidj.substr(0,1)==','){
+				pqidj=pqidj.substr(1);
+			}
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			var jsxz=$("#xmlx").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
@@ -111,7 +121,10 @@
 					'lsxmlx':lsxmlx,
 					'lsxmnf':lsxmnf,
 					'xmbm':$("#xmbm").val(),
-					'yhcsh':$('#yhcsh').combobox("getValue")};
+					'yhcsh':$('#yhcsh').combobox("getValue"),
+					'mqidj':mqidj,
+					'pqidj':pqidj
+			};
 			var sqzt = $('#sqzt').combobox("getValue");
 			
 			if(userPanduan($.cookie("unit2"))!="省"){
@@ -857,6 +870,7 @@
 			YMLib.Var.sq=flag;
 			YMLib.UI.createWindow('pqi','PQI等级详细信息','pqidjcx.jsp','pqi',900,400);
 		}
+
 	</script>
 		<style type="text/css">
 TD {
@@ -1003,7 +1017,21 @@ text-decoration:none;
 		       							<option value="1">已审核</option>
 	       							</select>
        							</td>
+								<!-- <td align="right">MQI等级：</td>
+		 						<td><select class="easyui-combobox" name="mqidj" id="jsxz" style="width: 130px;"data-options="editable:false,panelHeight:'auto',multiple:true,onSelect:onSelect">
+									<option value="">请选择</option>
+									<option value="优">优</option>
+									<option value="良">良</option>
+									<option value="中">中</option>
+									<option value="次">次</option>
+									<option value="差">差</option>
+								</select></td> -->
+								<td align="right">MQI等级：</td>
+								<td><select id="mqidj" class="easyui-combobox" style="width: 118px;"></select></td>
 								
+								<td align="right">PQI等级：</td>
+		 						<td><select id="pqidj" class="easyui-combobox" style="width: 118px;"></select></td>
+		 						
 								</tr>
 								<tr height="29">
        							<td colspan="8">

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONArray;
 
+import org.apache.bcel.generic.I2F;
 import org.apache.commons.beanutils.BeanComparator;
 import org.apache.commons.collections.comparators.ComparatorChain;
 import org.apache.struts2.ServletActionContext;
@@ -67,6 +68,22 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	private File fileupload;
 	private String tbbmbm2;//填报部门编码，用于Excel
 
+	
+	public String getcxOr(String id,String param){
+		String tj="";
+		if(param!=null&&!"".equals(param)){
+			String[] s=param.split(",");
+			for (int i = 0; i < s.length; i++) {
+				if(i==0)
+				tj+=" and ("+id+" like '%"+s[i]+"%'";
+				else
+				tj+=" or "+id+" like '%"+s[i]+"%'";
+			}
+			tj+=")";
+		}
+		return tj;
+	}
+	
 	/**
 	 * 查询下一个项目编码
 	 * @throws Exception
@@ -616,6 +633,23 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				}
 				xmsq.setYhcsh(xmsq.getYhcsh());
 				//System.out.println(xmsq.getJsxz());
+				
+				if (xmsq.getMqidj() != null && !xmsq.getMqidj().equals("")) {
+					if (!xmsq.getMqidj().contains(",")) {
+						xmsq.setMqidj("and mqidj like '%"+xmsq.getMqidj()+"%'");
+					}else {
+						xmsq.setMqidj(getcxOr("mqidj",xmsq.getMqidj()));
+					}
+				}
+				
+				if (xmsq.getPqidj() != null && !xmsq.getPqidj().equals("") ) {
+					if (!xmsq.getPqidj().contains(",")) {
+						xmsq.setPqidj("and pqidj like '%"+xmsq.getPqidj()+"%'");
+					}else {
+						xmsq.setPqidj(getcxOr("pqidj",xmsq.getPqidj()));
+					}
+				}
+				
 				list = xmsqServer.queryYhdzxXmsq(xmsq,page,rows);
 				total =xmsqServer.queryYhdzxCount(xmsq);
 			}else if(xmsq.getXmlx()==5){
@@ -2057,6 +2091,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		et.add(new Excel_tilte("计划核对结果",1,1,27,27));
 		et.add(new Excel_tilte("五年项目库",1,1,28,28));
 		et.add(new Excel_tilte("MQI等级",1,1,29,29));
+		et.add(new Excel_tilte("PQI等级",1,1,30,30));
 		eldata.setEt(et);//将表头内容设置到类里面
 		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 		try {

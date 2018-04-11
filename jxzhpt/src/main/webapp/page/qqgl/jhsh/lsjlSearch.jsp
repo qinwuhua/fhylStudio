@@ -24,6 +24,7 @@
 			loadBmbm3("xmknf",'十三五项目年份');
 			loadBmbm3("sjlx",'综合查询数据类型');
 			loadDist1("xzqh",$.cookie("dist"));
+
 		});
 		function search(){
 			var xmlx=$("#xmlx").combobox("getValues").join(",");
@@ -437,6 +438,7 @@ text-decoration:none;
 								<td style="text-align: right;">项目名称：</td>
         						<td style="text-align: left;"><input id="xmmc" type="text" style="width: 60px;margin-right: 10px;"/></td>
         					</tr>
+        					
                             <tr height="32">
                             	<td colspan="8">
 								<a style="margin-top: 1px;margin-bottom: 1px;" href="javascript:search()" class="button button-tiny button-raised button-primary">查询</a>

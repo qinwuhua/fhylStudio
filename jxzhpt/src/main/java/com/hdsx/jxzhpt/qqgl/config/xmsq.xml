@@ -659,7 +659,8 @@
 		select * from (
 			select rownum num,t.* from (
 				select distinct x.xmbm, x.gcfl, l.ghlxbm ghlxbh, l.lxbm ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy,  
-				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc lc,sl.xmsl,sl.zlc,sl.sbzj,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh,x.yhcsh
+				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc lc,sl.xmsl,sl.zlc,sl.sbzj,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh,x.yhcsh,
+				fun_pqi(ghlxbm,ghqdzh,ghzdzh) pqidj,fun_mqi2(ghlxbm,ghqdzh,ghzdzh) mqidj
 				from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid 
 				left join (select xmid,count(xmid) xmsl,sum(sbzj) sbzj,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='1' 
 				group by xmid) sl on x.xmbm=sl.xmid
@@ -712,7 +713,16 @@
 			     and x.ylxbh=#{xmsq.lxbm}
 			    </if>
 			  
-				order by x.sqzt desc,x.xmbm desc) t ) t2
+				order by x.sqzt desc,x.xmbm desc) t
+				<where>
+				   <if test="xmsq.mqidj != null and  xmsq.mqidj != ''">
+			         ${xmsq.mqidj}
+			       </if>
+				   <if test="xmsq.pqidj != null and  xmsq.pqidj != ''">
+			         ${xmsq.pqidj}
+			       </if>
+				</where>
+				) t2
 		<if test="page!=null and page!='' and page!=0">
 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 		</if>
@@ -2318,9 +2328,9 @@
      x.bz v_26,
     (decode(x.lsjl,'是',( select WMSYS.WM_CONCAT(distinct xmlx||'  '||xmmc||'  '||xdnf||'  '||ghlxbm||'  '||ghqdzh||'  '||ghzdzh) from all_lsjl where 1=1 and length(xmbm)=14 and x.lsxmid like '%'||id||'%'),' ')) v_27,
     (decode(x.wnxmk,'是',( select WMSYS.WM_CONCAT(distinct xmlx||'  '||xmmc||'  '||xmnf||'  '||ghlxbm||'  '||ghqdzh||'  '||ghzdzh) from wn_xmxx where 1=1 and x.WNXMID like '%'||ID||'%'),' ')) v_28,
-    decode(substr(fun_mqi1(ghlxbm,ghqdzh,ghzdzh),0,1),',',substr(fun_mqi1(ghlxbm,ghqdzh,ghzdzh),2),'') v_29
-    
-    
+    decode(substr(fun_mqi1(ghlxbm,ghqdzh,ghzdzh),0,1),',',substr(fun_mqi1(ghlxbm,ghqdzh,ghzdzh),2),'') v_29,
+    decode(substr(fun_pqi1(ghlxbm,ghqdzh,ghzdzh),0,1),',',substr(fun_pqi1(ghlxbm,ghqdzh,ghzdzh),2),'') v_30
+
     from xmsq_yhdzx x 
     left join (select sjpfwh,xmbm from cbsj_yhdzx ) c on x.xmbm=c.xmbm 
     left join (

@@ -5189,8 +5189,8 @@ group by bk.xzqhdm order by bk.xzqhdm
 	<select id="getGsdyhjdhzbTotal" parameterType="gcglabgc" resultType="elist">
 	select '360000' xzqhdm, '合计' v_0,sum(tg.v_1)v_1,sum(tg.v_2)v_2,sum(tg.v_3)v_3,sum(tg.v_4)v_4,sum(tg.v_5)v_5,sum(tg.v_6)v_6,sum(tg.v_7)v_7,sum(tg.v_8)v_8,sum(tg.v_9)v_9,sum(tg.v_10)v_10,sum(tg.v_11)v_11,sum(tg.v_12)v_12,sum(tg.v_13)v_13,sum(tg.v_14)v_14,sum(tg.v_15)v_15,sum(tg.v_16)v_16,
 sum(tg.v_17)v_17,sum(tg.v_18)v_18,'' v_19,sum(tg.v_20)v_20,
-nvl(sum(yh.yhdztz),0)+nvl(sum(yh.wqztz),0)+nvl(sum(yh.smztz),0)+nvl(sum(yh.zhztz),0)+nvl(sum(yh.sfztz),0)+nvl(sum(yh.yhztz),0)+nvl(sum(yh.fwztz),0)+
-nvl(sum(yh.yzztz),0)+nvl(sum(yh.dbztz),0)+nvl(sum(tg.v_50),0) v_21,
+round(nvl(sum(yh.hjztz),0)+nvl(sum(yh.wqztz),0)+nvl(sum(yh.smztz),0)+nvl(sum(yh.zhztz),0)+nvl(sum(yh.sfztz),0)+nvl(sum(yh.yhztz),0)+nvl(sum(yh.fwztz),0)+
+nvl(sum(yh.yzztz),0)+nvl(sum(yh.dbztz),0)+nvl(sum(tg.v_50),0)) v_21,
 nvl(sum(yh.hjlc),0) v_22, nvl(sum(yh.hjztz),0) v_23, decode(nvl(sum(tg.v_1),0),'0','0%',round(nvl(sum(yh.hjlc),0)*100/nvl(sum(tg.v_1),0),0)||'%') v_24,
 sum(yh.yhdlc) v_25, sum(yh.yhdztz) v_26, sum(yh.lmlc) v_27,sum(yh.lmztz) v_28,sum(yh.shlc) v_29,sum(yh.shztz) v_30,
 sum(yh.wqsl) v_31, sum(yh.wqztz) v_32, decode(nvl(sum(tg.v_3),0),'0','0%',round(nvl(sum(yh.wqsl),0)*100/nvl(sum(tg.v_3),0),0)||'%') v_33,
@@ -5243,8 +5243,8 @@ order by tg.xzqhdm
 	<select id="getGsdyhjdhzb" parameterType="gcglabgc" resultType="elist">
 	 select tg.xzqhdm,tg.v_0,tg.v_1,tg.v_2,tg.v_3,tg.v_4,tg.v_5,tg.v_6,tg.v_7,tg.v_8,tg.v_9,tg.v_10,tg.v_11,tg.v_12,tg.v_13,tg.v_14,tg.v_15,tg.v_16,
 tg.v_17,tg.v_18,tg.v_19,tg.v_20,
-nvl(yh.yhdztz,0)+nvl(yh.wqztz,0)+nvl(yh.smztz,0)+nvl(yh.zhztz,0)+nvl(yh.sfztz,0)+nvl(yh.yhztz,0)+nvl(yh.fwztz,0)+
-nvl(yh.yzztz,0)+nvl(yh.dbztz,0)+nvl(tg.v_50,0) v_21,
+round(nvl(yh.hjztz,0)+nvl(yh.wqztz,0)+nvl(yh.smztz,0)+nvl(yh.zhztz,0)+nvl(yh.sfztz,0)+nvl(yh.yhztz,0)+nvl(yh.fwztz,0)+
+nvl(yh.yzztz,0)+nvl(yh.dbztz,0)+nvl(tg.v_50,0)) v_21,
 nvl(yh.hjlc,0) v_22, nvl(yh.hjztz,0) v_23, decode(nvl(tg.v_1,0),'0','0%',round(nvl(yh.hjlc,0)*100/nvl(tg.v_1,0),0)||'%') v_24,
 yh.yhdlc v_25, yh.yhdztz v_26, yh.lmlc v_27,yh.lmztz v_28,yh.shlc v_29,yh.shztz v_30,
 yh.wqsl v_31, yh.wqztz v_32, decode(nvl(tg.v_3,0),'0','0%',round(nvl(yh.wqsl,0)*100/nvl(tg.v_3,0),0)||'%') v_33,

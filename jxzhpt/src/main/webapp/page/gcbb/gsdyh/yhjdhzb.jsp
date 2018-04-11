@@ -280,7 +280,7 @@ text-decoration:none;
 			<tr> 
 			    <td>
 					<div id="righttop">
-						<div id="p_top">五年项目库>&nbsp;十三五>&nbsp;全省汇总表>&nbsp;普通国省道建设项目前期工作推进表</div>
+						<div id="p_top">五年项目库>&nbsp;十三五>&nbsp;全省汇总表>&nbsp;普通国省道养护工作进度汇总表</div>
 					</div>
 				</td>
         	</tr>
@@ -326,7 +326,7 @@ text-decoration:none;
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table id='bbtable' width="3000px">
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">全省普通国省干线公路改造项目完成情况明细表</caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">普通国省道养护工作进度汇总表</caption>
 								<tbody id='biaotou'>								
 									<tr>
 										<td rowspan="4" style="width: 340px;">设区市</td>
