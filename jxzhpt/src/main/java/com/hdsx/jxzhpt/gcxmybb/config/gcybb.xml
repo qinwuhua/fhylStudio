@@ -4466,7 +4466,7 @@ select to_char(rownum) v_0, lx.lxbm v_1,  decode(lx.lxmc,'','',concat(lx.lxmc, l
     sum(decode(trim(c.jsxz),'预防性养护',decode(lx.gldj,'S',0,'G',0,nvl(ljdw.ztz,0),0))) v_116
     
     from jhsh_yhdzx j,xmsq_yhdzx x,cbsj_yhdzx c,
-    (select xmid xmbm,min(xdnf) jhnf,sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)+nvl(dk,0)+nvl(jl,0)+nvl(stz,0)+nvl(zddzjl,0)) sbz,sum(nvl(ztz,0)) ztz from plan_zjxd where jhxdwh is not null group by xmid) xd,
+    (select xmbm,fun_scxdnf(xmbm) jhnf,'0' cgs,sum(nvl(rys,0)+nvl(dk,0)) sbz,sum(nvl(ztz,0)) ztz from jhsh_yhdzx group by xmbm) xd,
     (select xmid xmbm,(case when wm_concat(distinct to_char(ghlxbm)) like '%G%' then 'G' when  wm_concat(distinct to_char(ghlxbm)) like '%S%' then 'S' else 'XYC' end) gldj,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)) zlc from lxsh_lx where jdbs=2 group by xmid) lx,
     (select xmbm,sum(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)) jsgm,sum(nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0)) ztz,sum(nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcrys,0)) sbz from gcgl_xmjd where to_date(ybrq,'yyyy-mm-dd')&lt;=to_date(#{ybsj},'yyyy-mm-dd') and shzt=1 group by xmbm) ljwc,
     (select xmbm,sum(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)) jsgm,sum(nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0)) ztz,sum(nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcrys,0)) sbz from gcgl_xmjd where substr(ybyf,0,4)=substr(#{sbyf},0,4) and to_date(ybrq,'yyyy-mm-dd')&lt;=to_date(#{ybsj},'yyyy-mm-dd') and shzt=1 group by xmbm) bnwc,
@@ -4614,7 +4614,7 @@ select to_char(rownum) v_0, lx.lxbm v_1,  decode(lx.lxmc,'','',concat(lx.lxmc, l
     sum(decode(trim(c.jsxz),'预防性养护',decode(lx.gldj,'S',0,'G',0,nvl(ljdw.ztz,0),0))) v_116
     
     from jhsh_yhdzx j,xmsq_yhdzx x,cbsj_yhdzx c,
-    (select xmid xmbm,min(xdnf) jhnf,sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)+nvl(dk,0)+nvl(jl,0)+nvl(stz,0)+nvl(zddzjl,0)) sbz,sum(nvl(ztz,0)) ztz from plan_zjxd where jhxdwh is not null group by xmid) xd,
+    (select xmbm,fun_scxdnf(xmbm) jhnf,'0' cgs,sum(nvl(rys,0)+nvl(dk,0)) sbz,sum(nvl(ztz,0)) ztz from jhsh_yhdzx group by xmbm) xd,
     (select xmid xmbm,(case when wm_concat(distinct to_char(ghlxbm)) like '%G%' then 'G' when  wm_concat(distinct to_char(ghlxbm)) like '%S%' then 'S' else 'XYC' end) gldj,sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)) zlc from lxsh_lx where jdbs=2 group by xmid) lx,
     (select xmbm,sum(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)) jsgm,sum(nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0)) ztz,sum(nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcrys,0)) sbz from gcgl_xmjd where to_date(ybrq,'yyyy-mm-dd')&lt;=to_date(#{ybsj},'yyyy-mm-dd') and shzt=1 group by xmbm) ljwc,
     (select xmbm,sum(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)) jsgm,sum(nvl(wccgs,0)+nvl(wcgz,0)+nvl(wcsz,0)+nvl(wczq,0)+nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcqt,0)+nvl(wcdfzc,0)+nvl(wcyhdk,0)+nvl(wcrys,0)) ztz,sum(nvl(wcdk,0)+nvl(wcjl,0)+nvl(wcrys,0)) sbz from gcgl_xmjd where substr(ybyf,0,4)=substr(#{sbyf},0,4) and to_date(ybrq,'yyyy-mm-dd')&lt;=to_date(#{ybsj},'yyyy-mm-dd') and shzt=1 group by xmbm) bnwc,
