@@ -748,6 +748,15 @@
 		
 		function exportXmsq(){
 			
+			var mqidj = $('#mqidj').combobox("getValues").join(",");
+			var pqidj = $('#pqidj').combobox("getValues").join(",");
+			if(mqidj.substr(0,1)==','){
+				mqidj=mqidj.substr(1);
+			}
+			if(pqidj.substr(0,1)==','){
+				pqidj=pqidj.substr(1);
+			}
+			
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
@@ -780,8 +789,7 @@
 			'&ylxbh='+$('#gldj').combobox("getValues").join(",")+"&wnxmk="+$("#wnxmk").combobox("getValue")+
 			'&ghlxbh='+$("#lxbm").combotree('getText')+'&lxmc='+$("#lxmc").val()+'&ghlxbm='+$("#ghlxbm").combotree('getText')+
 			'&ghlxmc='+$("#ghlxmc").val()+"&lsxmlx="+lsxmlx+"&lsxmnf="+lsxmnf+"&jdbs="+YMLib.Var.jdbs+"&jsxz="+$("#xmlx").combobox("getValues").join(",")+
-			'&xmbm='+$("#xmbm").val()+'&yhcsh='+$('#yhcsh').combobox("getValue");
-			
+			'&xmbm='+$("#xmbm").val()+'&yhcsh='+$('#yhcsh').combobox("getValue")+"&mqidj="+decodeURI(decodeURI(mqidj))+"&pqidj="+decodeURI(decodeURI(pqidj));
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{tsdq:tsdq},function(){
 				window.location.href="/jxzhpt/qqgl/exportExcelXmsq1.do?"+param;
 			 });

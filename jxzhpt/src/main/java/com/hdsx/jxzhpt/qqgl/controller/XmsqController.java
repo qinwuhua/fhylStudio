@@ -2,7 +2,9 @@ package com.hdsx.jxzhpt.qqgl.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Base64.Decoder;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
@@ -2042,6 +2044,28 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				}
 				xmsq.setTsdq(tsdq);
 			}
+			
+		    try {
+				String mqidj  = java.net.URLDecoder.decode(xmsq.getMqidj(), "UTF-8");
+				if (mqidj != null && !mqidj.equals("")) {
+					if (!mqidj.contains(",")) {
+							xmsq.setMqidj("and fun_mqi2(ghlxbm,ghqdzh,ghzdzh) like '%"+mqidj+"%'");
+					}else {
+							xmsq.setMqidj(getcxOr("fun_mqi2(ghlxbm,ghqdzh,ghzdzh)",mqidj));
+					}
+				}
+				String pqidj = java.net.URLDecoder.decode(xmsq.getPqidj(),"UTF-8");
+				if (pqidj != null && !pqidj.equals("") ) {
+					if (!pqidj.contains(",")) {
+							xmsq.setPqidj("and fun_pqi(ghlxbm,ghqdzh,ghzdzh) like '%"+pqidj+"%'");
+					}else {
+							xmsq.setPqidj(getcxOr("fun_pqi(ghlxbm,ghqdzh,ghzdzh)",pqidj));
+					}
+				}		
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
 			l= xmsqServer.queryYhdzxExport1(xmsq);
 //			int k=1;
 //			for (Excel_list e : l) {

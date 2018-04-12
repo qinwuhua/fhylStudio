@@ -18,12 +18,13 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			bbxmlx1('xmlx');
+			//bbxmlx1('xmlx');
 			tsdqdx("tsdq");
 			loadBmbm3("xdnf",'历史项目年份');
 			loadBmbm3("xmknf",'十三五项目年份');
 			loadBmbm3("sjlx",'综合查询数据类型');
 			loadDist1("xzqh",$.cookie("dist"));
+			
 
 		});
 		function search(){
@@ -410,7 +411,10 @@ text-decoration:none;
 								<td style="text-align: right;">原止点桩号：</td>
         						<td style="text-align: left;"><input id="zdzh" type="text" style="width: 60px;margin-right: 10px;"/></td>
         						<td style="text-align: right;">项目类型：</td>
-        						<td style="text-align: left;"><input id="xmlx" type="text" style="width: 150px;margin-right: 10px;"/></td>
+        						<!-- <td style="text-align: left;"><input id="xmlx" type="text" style="width: 150px;margin-right: 10px;"/></td> -->
+        						<td style="text-align: left;"><input class="easyui-combotree" data-options="url:'json/xmlx.json',valueField:'value',textField:'text',multiple:true,panelHeight:'auto'" style="width:150px;"></td>
+        						
+        						
         						<td style="text-align: right;">下达年份：</td>
         						<td style="text-align: left;"><input id="xdnf" type="text" style="width: 100px;margin-right: 10px;"/></td>
         						<td style="text-align: right;">项目库年份：</td>

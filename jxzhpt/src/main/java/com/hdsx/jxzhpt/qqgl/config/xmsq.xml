@@ -916,8 +916,11 @@
 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 		</if>
 	</select>
-	<select id="queryYhdzxCount" parameterType="xmsq" resultType="int">
-		select count(distinct x.xmbm) from xmsq_yhdzx x where 1=1
+	<select id="queryYhdzxCount" parameterType="xmsq" resultType="int">	
+	  select count(distinct xmbm) from
+		(select  x.xmbm,fun_pqi(ghlxbm,ghqdzh,ghzdzh) pqidj,fun_mqi2(ghlxbm,ghqdzh,ghzdzh) mqidj
+          from xmsq_yhdzx x left join lxsh_lx l on x.xmbm = l.xmid
+          where l.jdbs = '1' and l.sffirst = '1'
 		<if test="wnxmk!=null and wnxmk!=''">and x.wnxmk=#{wnxmk}</if>
 		<if test="gydwdm!=null and gydwdm!=''">
 			and ${gydwdm}
@@ -969,7 +972,18 @@
 			and X.lxmc like '%'||#{lxmc}||'%'
 		</if>
 		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
-<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+		
+        <if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+        
+        )
+        where 1=1
+           <if test="mqidj != null and mqidj != ''">
+			 ${mqidj}
+		   </if>
+		   <if test="pqidj != null and pqidj != ''">
+			 ${pqidj}
+		   </if>
+		
 	</select>
 	<select id="queryYhdzxCountbyyhc" parameterType="xmsq" resultType="int">
 		select count(x.xmbm) from xmsq_yhdzx x where 1=1 and x.sqzt='7'
@@ -2403,8 +2417,12 @@
 				</if>
 				<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
 				<if test="yhcsh!=null and yhcsh!=''">and x.yhcsh=#{yhcsh}</if>
+				<if test="mqidj!=null and mqidj!=''">${mqidj}</if>
+				<if test="pqidj!=null and pqidj!=''">${mqidj}</if>
 		order by x.xmbm
 	) tb
+	
+	
 	
 	</select>
 	<select id="getghxx1" parameterType="xmsq" resultType="xmsq">
