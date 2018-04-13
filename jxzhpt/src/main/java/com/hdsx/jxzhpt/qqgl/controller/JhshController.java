@@ -2555,7 +2555,7 @@ public class JhshController extends BaseActionSupport implements
 			lx.setXzqhdm(getcxtj("xzqhdm2", xzqh));
 			lx.setXdnf(getcxtj("xdnf", lx.getXdnf()));
 			lx.setTsdq(getcxtj("tsdq", lx.getTsdq()));
-			lx.setJsxz(getcxtj("jsxz", lx.getXmlx()));
+			lx.setJsxz(getcxtj("scxd", lx.getXmlx()));
 			lx.setXmknf(getcxtj("xmknf", lx.getXmknf()));
 			/*
 			 * if(!"".equals(lx.getXmknf())&&!"".equals(lx.getXdnf()))
@@ -2578,7 +2578,7 @@ public class JhshController extends BaseActionSupport implements
 			lx.setXdnf(getcxtj("xdnf", lx.getXdnf()));
 			lx.setTsdq(getcxtj("tsdq", lx.getTsdq()));
 			String xmlx = java.net.URLDecoder.decode(lx.getXmlx(),"UTF-8");
-			lx.setJsxz(getcxtj("jsxz", xmlx));
+			lx.setJsxz(getcxtj("scxd", xmlx));
 			lx.setXmknf(getcxtj("xmknf", lx.getXmknf()));
 			String sjlx = java.net.URLDecoder.decode(lx.getSjlx(),"UTF-8");
 			lx.setSjlx(getcxtj("sjlx", sjlx));
@@ -4740,7 +4740,7 @@ public class JhshController extends BaseActionSupport implements
 			lx.setXzqhdm(getcxtj("xzqhdm2", xzqh));
 			lx.setXdnf(getcxtj("xdnf", lx.getXdnf()));
 			lx.setTsdq(getcxtj("tsdq", lx.getTsdq()));
-			lx.setJsxz(getcxtj("jsxz", lx.getXmlx()));
+			lx.setJsxz(getcxtj("scxd", lx.getXmlx()));
 			lx.setXmknf(getcxtj("xmknf", lx.getXmknf()));
 			/*
 			 * if(!"".equals(lx.getXmknf())&&!"".equals(lx.getXdnf()))

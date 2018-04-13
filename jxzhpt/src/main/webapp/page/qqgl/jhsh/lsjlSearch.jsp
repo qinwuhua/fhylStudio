@@ -28,12 +28,17 @@
 
 		});
 		function search(){
-			var xmlx=$("#xmlx").combobox("getValues").join(",");
+			var xmlx = $('#xmlx').combotree("getValues").join(",");
+			if(xmlx.substr(0,1)==','){
+				xmlx=xmlx.substr(1);
+			}
+			alert(xmlx);
+			/* var xmlx=$("#xmlx").combobox("getValues").join(",");
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
 			if(xmlx==''){
 				xmlx='改建,路面改造,新建,养护大中修,灾毁重建,路网结构工程';
-			}
+			} */
 			var xzqhdm=$("#xzqh").combotree("getValues");
 			if(xzqhdm.length==0){
 				xzqhstr= $.cookie("dist2");
@@ -340,11 +345,15 @@
 		
 		//导出综合查询Excel
 		function exportJhshxx(){
-			var xmlx=$("#xmlx").combobox("getValues").join(",");
+			/* var xmlx=$("#xmlx").combobox("getValues").join(",");
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
 			if(xmlx==''){
 				xmlx='改建,路面改造,新建,养护大中修,灾毁重建,路网结构工程';
+			} */
+			var xmlx = $('#xmlx').combotree("getValues").join(",");
+			if(xmlx.substr(0,1)==','){
+				xmlx=xmlx.substr(1);
 			}
 			var xzqhdm=$("#xzqh").combotree("getValues");
 			if(xzqhdm.length==0){
@@ -377,6 +386,17 @@
 			'&lx.xdnf='+xdnf+'&lx.tsdq='+tsdq+'&lx.xmknf='+xmknf+'&lx.sjlx='+encodeURI(encodeURI(sjlx))+'&lx.xmid='+$('#xmid').val()+'&lx.xmmc='+encodeURI(encodeURI($('#xmmc').val()));
 			
 			window.location.href="/jxzhpt/qqgl/exportLsjlSearchExcel.do?"+param;
+		}
+		
+		function onCheck(node){
+            //alert($("#xmlx").combotree("tree").tree('isLeaf', node.target));
+             var tree = $(this).tree;  
+            //如果是全部，则其他的都不选中
+            
+            
+            //如果父节点选中，则子节点不选择 
+             var isLeaf = tree('isLeaf', node.target);
+            alert(isLeaf.text); 
 		} 
 	</script>
 	<style>
@@ -412,7 +432,7 @@ text-decoration:none;
         						<td style="text-align: left;"><input id="zdzh" type="text" style="width: 60px;margin-right: 10px;"/></td>
         						<td style="text-align: right;">项目类型：</td>
         						<!-- <td style="text-align: left;"><input id="xmlx" type="text" style="width: 150px;margin-right: 10px;"/></td> -->
-        						<td style="text-align: left;"><input class="easyui-combotree" data-options="url:'json/xmlx.json',valueField:'value',textField:'text',multiple:true,panelHeight:'auto'" style="width:150px;"></td>
+        						<td style="text-align: left;"><input id="xmlx" type="text" class="easyui-combotree" data-options="url:'json/xmlx.json',valueField:'value',textField:'text',multiple:true,panelHeight:'auto',onCheck:onCheck" style="width:150px;margin-right: 10px;"></td>
         						
         						
         						<td style="text-align: right;">下达年份：</td>
