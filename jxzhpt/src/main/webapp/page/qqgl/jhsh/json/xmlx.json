@@ -1,7 +1,6 @@
 [{   
     "id": "",  
-    "text": "全部",    
-    "checked":"true",
+    "text": "全部",
     "iconCls":"icon-none"
 },{
     "id": "sjgz", 

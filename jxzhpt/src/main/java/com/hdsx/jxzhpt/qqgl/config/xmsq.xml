@@ -2324,7 +2324,7 @@
 	
 	<select id="queryYhdzxExport1" parameterType="xmsq" resultType="elist">
  select rownum v_0,tb.* from (
-    select 
+    select distinct
    RemoveSameStr(func_splitstr(lx.ghlxbm, ','),',') v_1,
     x.xmbm v_2,x.xmmc v_3,
     decode(instr(RemoveSameStr(lx.ylxbm,','),','),0,RemoveSameStr(lx.ylxbm,','),lx.ylxbm) v_4,
