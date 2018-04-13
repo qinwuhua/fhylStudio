@@ -5392,8 +5392,8 @@ public class GcybbController extends BaseActionSupport{
 			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) ljwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) ljwctz from gcgl_xmjd where to_date(ybrq, 'yyyy-mm-dd') <= to_date('"+gcglwqgz.getYbsj()+"','yyyy-mm-dd') and shzt=1 group by xmbm) ljwc,"
 			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) bnwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) bnwctz from gcgl_xmjd where substr(ybyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(ybrq, 'yyyy-mm-dd') <= to_date('"+gcglwqgz.getYbsj()+"','yyyy-mm-dd') and shzt=1 group by xmbm) bnwc,"
 			    			+" (select xmbm,sum(nvl(bnsslc,0)) bnsslc from gcgl_bnss where nf='"+gcglwqgz.getYbnf()+"' group by xmbm ) bnss,"
-			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) ljcgs,"
-			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) bncgs"
+			    			+" (select jhid,sum(cgsdwzj) cgs,sum(nvl(cgsdwzj,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(rys,0)+nvl(dk,0)+nvl(jl,0)) ztz from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) ljcgs,"
+			    			+" (select jhid,sum(cgsdwzj) cgs,sum(nvl(cgsdwzj,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(rys,0)+nvl(dk,0)+nvl(jl,0)) ztz from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) bncgs"
 			    			+" where j.xmbm = cb.xmbm(+) and j.xmbm = lx.xmid(+) and j.xmbm = t.xmid(+) and j.xmbm = tt.xmid(+) and j.xmbm = ljwc.xmbm(+) and j.xmbm = bnwc.xmbm(+) and j.xmbm = ljcgs.jhid(+) and j.xmbm = bncgs.jhid(+) AND J.XMBM = bnss.XMBM(+) "
 			    			+" and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) "
 			    			+xzqhtj
@@ -5411,8 +5411,8 @@ public class GcybbController extends BaseActionSupport{
 			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) ljwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) ljwctz from gcgl_xmjd where to_date(ybrq, 'yyyy-mm-dd') <= to_date('"+gcglwqgz.getYbsj()+"','yyyy-mm-dd') and shzt=1 group by xmbm) ljwc,"
 			    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) bnwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) bnwctz from gcgl_xmjd where substr(ybyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(ybrq, 'yyyy-mm-dd') <= to_date('"+gcglwqgz.getYbsj()+"','yyyy-mm-dd') and shzt=1 group by xmbm) bnwc,"
 			    			+" (select xmbm,sum(nvl(bnsslc,0)) bnsslc from gcgl_bnss where nf='"+gcglwqgz.getYbnf()+"' group by xmbm ) bnss,"
-			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) ljcgs,"
-			    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) bncgs"
+			    			+" (select jhid,sum(cgsdwzj) cgs,sum(nvl(cgsdwzj,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(rys,0)+nvl(dk,0)+nvl(jl,0)) ztz from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) ljcgs,"
+			    			+" (select jhid,sum(cgsdwzj) cgs,sum(nvl(cgsdwzj,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(rys,0)+nvl(dk,0)+nvl(jl,0)) ztz from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) bncgs"
 			    			+" where j.xmbm = cb.xmbm(+) and j.xmbm = lx.xmid(+) and j.xmbm = t.xmid(+) and j.xmbm = tt.xmid(+) and j.xmbm = ljwc.xmbm(+) and j.xmbm = bnwc.xmbm(+) and j.xmbm = ljcgs.jhid(+) and j.xmbm = bncgs.jhid(+) AND J.XMBM = bnss.XMBM(+) "
 			    			+" and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) "
 			    			+xzqhtj
@@ -5526,7 +5526,6 @@ public class GcybbController extends BaseActionSupport{
 					}
 					if(i==0) {
 						l.setV_0("全省汇总");
-						l.setV_0("全省汇总");
 					}else {
 						l.setV_0(i+"");
 					}
@@ -5574,7 +5573,7 @@ public class GcybbController extends BaseActionSupport{
 						et.add(new Excel_tilte("计划下达及完成情况",1,1,sj1,sj1+11));
 						sj1=sj1+12;
 					}
-					et.add(new Excel_tilte(arr[0]+"-"+arr[arr.length-1]+"年度",2,2,2,6));
+					et.add(new Excel_tilte(arr[arr.length-1]+"-"+arr[0]+"年度",2,2,2,6));
 					et.add(new Excel_tilte("完成里程(公里)",2,2,7,8));
 					et.add(new Excel_tilte("完成投资(万元)",2,2,9,10));
 					et.add(new Excel_tilte("资金到位(万元)",2,2,11,12));
@@ -5582,7 +5581,7 @@ public class GcybbController extends BaseActionSupport{
 					
 					
 					int sj2=14;
-					for (int i = 0; i < arr.length; i++) {
+					for (int i = arr.length-1; i >=0; i--) {
 						et.add(new Excel_tilte(arr[i]+"年度",2,2,sj2,sj2+4));
 						et.add(new Excel_tilte("完成里程(公里)",2,2,sj2+5,sj2+6));
 						et.add(new Excel_tilte("完成投资(万元)",2,2,sj2+7,sj2+8));
@@ -5653,8 +5652,8 @@ public class GcybbController extends BaseActionSupport{
 				    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) ljwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) ljwctz from gcgl_xmjd where to_date(ybrq, 'yyyy-mm-dd') <= to_date('"+gcglwqgz.getYbsj()+"','yyyy-mm-dd') and shzt=1 group by xmbm) ljwc,"
 				    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) bnwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) bnwctz from gcgl_xmjd where substr(ybyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(ybrq, 'yyyy-mm-dd') <= to_date('"+gcglwqgz.getYbsj()+"','yyyy-mm-dd') and shzt=1 group by xmbm) bnwc,"
 				    			+" (select xmbm,sum(nvl(bnsslc,0)) bnsslc from gcgl_bnss where nf='"+gcglwqgz.getYbnf()+"' group by xmbm ) bnss,"
-				    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) ljcgs,"
-				    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) bncgs"
+				    			+" (select jhid,sum(cgsdwzj) cgs,sum(nvl(cgsdwzj,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(rys,0)+nvl(dk,0)+nvl(jl,0)) ztz from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) ljcgs,"
+				    			+" (select jhid,sum(cgsdwzj) cgs,sum(nvl(cgsdwzj,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(rys,0)+nvl(dk,0)+nvl(jl,0)) ztz from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) bncgs"
 				    			+" where j.xmbm = cb.xmbm(+) and j.xmbm = lx.xmid(+) and j.xmbm = t.xmid(+) and j.xmbm = tt.xmid(+) and j.xmbm = ljwc.xmbm(+) and j.xmbm = bnwc.xmbm(+) and j.xmbm = ljcgs.jhid(+) and j.xmbm = bncgs.jhid(+) AND J.XMBM = bnss.XMBM(+) "
 				    			+" and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) "
 				    			+" group by substr(cb.xzqhdm, 0, 4),t.xdnf) t1 "
@@ -5671,8 +5670,8 @@ public class GcybbController extends BaseActionSupport{
 				    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) ljwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) ljwctz from gcgl_xmjd where to_date(ybrq, 'yyyy-mm-dd') <= to_date('"+gcglwqgz.getYbsj()+"','yyyy-mm-dd') and shzt=1 group by xmbm) ljwc,"
 				    			+" (select xmbm,sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) bnwclc,sum(nvl(wcrys, 0)) + sum(nvl(wccgs, 0)) + sum(nvl(wcgz, 0)) +sum(nvl(wcsz, 0)) + sum(nvl(wczq, 0)) +sum(nvl(wcdk, 0)) + sum(nvl(wcjl, 0)) +sum(nvl(wcqt, 0)) + sum(nvl(wcyhdk, 0)) +sum(nvl(wcdfzc, 0)) bnwctz from gcgl_xmjd where substr(ybyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(ybrq, 'yyyy-mm-dd') <= to_date('"+gcglwqgz.getYbsj()+"','yyyy-mm-dd') and shzt=1 group by xmbm) bnwc,"
 				    			+" (select xmbm,sum(nvl(bnsslc,0)) bnsslc from gcgl_bnss where nf='"+gcglwqgz.getYbnf()+"' group by xmbm ) bnss,"
-				    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) ljcgs,"
-				    			+" (select jhid,sum(cgsdwzj) cgs,sum(pfztz) ztz  from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) bncgs"
+				    			+" (select jhid,sum(cgsdwzj) cgs,sum(nvl(cgsdwzj,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(rys,0)+nvl(dk,0)+nvl(jl,0)) ztz from gcgl_cgs where to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) ljcgs,"
+				    			+" (select jhid,sum(cgsdwzj) cgs,sum(nvl(cgsdwzj,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(rys,0)+nvl(dk,0)+nvl(jl,0)) ztz from gcgl_cgs where substr(tbyf, 0, 4) = '"+gcglwqgz.getYbnf()+"' and to_date(tbyf, 'yyyy-mm') <= to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid) bncgs"
 				    			+" where j.xmbm = cb.xmbm(+) and j.xmbm = lx.xmid(+) and j.xmbm = t.xmid(+) and j.xmbm = tt.xmid(+) and j.xmbm = ljwc.xmbm(+) and j.xmbm = bnwc.xmbm(+) and j.xmbm = ljcgs.jhid(+) and j.xmbm = bncgs.jhid(+) AND J.XMBM = bnss.XMBM(+)"
 				    			+" and j.xmbm in (select xmid from plan_zjxd where jhxdwh is not null) " 
 				    			+" group by t.xdnf) t1 ";               
@@ -5785,7 +5784,6 @@ public class GcybbController extends BaseActionSupport{
 						}
 						if(i==0) {
 							l.setV_0("全省汇总");
-							l.setV_0("全省汇总");
 						}else {
 							l.setV_0(i+"");
 						}
@@ -5833,7 +5831,7 @@ public class GcybbController extends BaseActionSupport{
 							et.add(new Excel_tilte("计划下达及完成情况",1,1,sj1,sj1+11));
 							sj1=sj1+12;
 						}
-						et.add(new Excel_tilte(arr[0]+"-"+arr[arr.length-1]+"年度",2,2,2,6));
+						et.add(new Excel_tilte(arr[arr.length-1]+"-"+arr[0]+"年度",2,2,2,6));
 						et.add(new Excel_tilte("完成里程(公里)",2,2,7,8));
 						et.add(new Excel_tilte("完成投资(万元)",2,2,9,10));
 						et.add(new Excel_tilte("资金到位(万元)",2,2,11,12));
@@ -5841,7 +5839,7 @@ public class GcybbController extends BaseActionSupport{
 						
 						
 						int sj2=14;
-						for (int i = 0; i < arr.length; i++) {
+						for (int i = arr.length-1; i >=0; i--) {
 							et.add(new Excel_tilte(arr[i]+"年度",2,2,sj2,sj2+4));
 							et.add(new Excel_tilte("完成里程(公里)",2,2,sj2+5,sj2+6));
 							et.add(new Excel_tilte("完成投资(万元)",2,2,sj2+7,sj2+8));
