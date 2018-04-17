@@ -67,10 +67,65 @@
 			}else{
 				loadBmbm2('sqzt','申请状态省');
 			}
-			loadBmbm3('lsxmlx','历史项目类型');  
+			//loadBmbm3('lsxmlx','历史项目类型');  
 			loadBmbm3('lsxmnf','历史项目年份');  
 			queryYhdzx();
 		});
+		
+		function queryYhdzxx(){
+			var params = [];
+			var k= getTreeSelected();
+            for (var i = 0; i < k.length;i++) {
+                params.push(k[i].text);
+            } 
+            var xmlx = unique(params).join(",");
+            alert(xmlx);
+        }
+		
+		function unique(arr){
+			 var res = [];
+			 for(var i=0; i<arr.length; i++){
+			  if( !res.includes(arr[i]) ){ // 如果res新数组包含当前循环item
+			   res.push(arr[i]);
+			  }
+			 }
+			 return res;
+			}
+		
+		 //获原始树结构所选节点的数据数组
+        function getTreeSelected(){
+            //debugger;
+            var t = $("#lsxmlx").combotree('tree');
+            var nodes = t.tree('getChecked');
+            var arr = new Array();
+            for (var i = 0; i < nodes.length;i++) {
+                //arr.push(nodes[i]);
+                myFuc(nodes[i]);
+            }
+            return arr;
+
+            //内部递归函数
+            function myFuc(n) {
+            	var t = $("#lsxmlx").combotree('tree');
+                var parent = t.tree('getParent', n.target);
+                if (parent == null) return;
+                //if (isExistItem(parent)) return;
+                arr.push(parent);
+                myFuc(parent);
+            }
+            //验证节点是否已存在数组中
+            function isExistItem(item){
+                var flag = false;
+                for (var i = 0; i < arr.length;i++)
+                {
+                    if (arr[i] == item) {
+                        flag = true; break;
+                    }
+                }
+                return flag;
+            }
+        }
+		
 		function queryYhdzx(){
 			var mqidj = $('#mqidj').combobox("getValues").join(",");
 			var pqidj = $('#pqidj').combobox("getValues").join(",");
@@ -92,11 +147,22 @@
 			lsxmnf='';
 			if(lsxmnf.substr(0,1)==',')
 			lsxmnf=lsxmnf.substr(1,lsxmnf.length);
-			var lsxmlx=$("#lsxmlx").combobox('getValues').join(",");
+			
+			/* var lsxmlx=$("#lsxmlx").combobox('getValues').join(",");
 			if(lsxmlx=='')
 			lsxmlx='';
 			if(lsxmlx.substr(0,1)==',')
-			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
+			lsxmlx=lsxmlx.substr(1,lsxmlx.length); */
+			var params = [];
+			var k= getTreeSelected();
+            for (var i = 0; i < k.length;i++) {
+                params.push(k[i].text);
+            } 
+            var lsxmlx = unique(params).join(",");
+            alert(lsxmlx);
+            
+            var xdnf=$("#lsxmlx").combotree("getValues");
+            
 			grid.id="grid";
 			grid.url="../../../qqgl/queryXmsq.do";
 			var params={'xmlx':4,
@@ -123,7 +189,8 @@
 					'xmbm':$("#xmbm").val(),
 					'yhcsh':$('#yhcsh').combobox("getValue"),
 					'mqidj':mqidj,
-					'pqidj':pqidj
+					'pqidj':pqidj,
+					'xdnf':xdnf
 			};
 			var sqzt = $('#sqzt').combobox("getValue");
 			
@@ -1003,10 +1070,12 @@ text-decoration:none;
        							<td><select id="sqzt" class="easyui-combobox" style="width: 118px;"></select></td>
        							<!-- 筛选历史条件 -->
 								<td align="right">历史项目类型：</td>
-								<td>
+								<!-- <td>
 									<select id='lsxmlx' class="easyui-combobox" style="width: 85px;">
 									</select>
-								</td>
+								</td> -->
+								<td style="text-align: left;"><input id="lsxmlx" type="text" class="easyui-combotree" data-options="url:'json/lsxmlx.json',valueField:'value',textField:'text',multiple:true,panelHeight:'auto'" style="width:150px;margin-right: 10px;"></td>
+								
        							</tr>
        							<tr height="29">
        							<td align="right">历史计划年份：</td>
@@ -1014,6 +1083,7 @@ text-decoration:none;
 									<select id='lsxmnf' class="easyui-combobox" style="width: 124px;">
 									</select>
 								</td>
+								
 								<td align="right">项目编码：</td>
 								<td><input type="text" id="xmbm" style="width:115px;" /></td>
 								

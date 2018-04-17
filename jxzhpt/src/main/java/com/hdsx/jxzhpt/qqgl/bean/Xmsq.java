@@ -328,6 +328,15 @@ public class Xmsq {
 	private String snhntmchbmj;
 	private String bzlx135;
 	private String bzje135;
+	private String xdnf;
+	
+	public String getXdnf() {
+		return xdnf;
+	}
+
+	public void setXdnf(String xdnf) {
+		this.xdnf = xdnf;
+	}
 
 	public String getBzlx135() {
 		return bzlx135;
