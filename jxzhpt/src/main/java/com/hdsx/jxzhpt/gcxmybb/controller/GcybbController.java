@@ -4780,7 +4780,7 @@ public class GcybbController extends BaseActionSupport{
 					eldata.setTitleName("普通干线公路新改建工程项目完成情况汇总表");//设置第一行 
 					eldata.setSheetName("完成情况表");//设置sheeet名
 					eldata.setFileName("普通干线公路新改建工程项目完成情况汇总表");//设置文件名
-					List<Excel_list> eL=(List<Excel_list>) getRequest().getSession().getAttribute("xgjwchjzb");
+					List<Excel_list> eL=(List<Excel_list>) getRequest().getSession().getAttribute("xgjwchzb");
 					eldata.setEl(eL);//将实体list放入类中
 					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 					et.add(new Excel_tilte("序号",1,3,0,0));
