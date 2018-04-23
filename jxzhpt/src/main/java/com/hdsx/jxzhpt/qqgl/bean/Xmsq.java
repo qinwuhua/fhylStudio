@@ -17,7 +17,16 @@ public class Xmsq {
 	private String yxylxbh;
 	private String mqidj;// 路面评定等级
 	private String pqidj;// pqi等级
-	
+	private String lsxmlx1;//历史项目类型
+
+	public String getLsxmlx1() {
+		return lsxmlx1;
+	}
+
+	public void setLsxmlx1(String lsxmlx1) {
+		this.lsxmlx1 = lsxmlx1;
+	}
+
 	public String getPqidj() {
 		return pqidj;
 	}
@@ -328,14 +337,14 @@ public class Xmsq {
 	private String snhntmchbmj;
 	private String bzlx135;
 	private String bzje135;
-	private String xdnf;
+	private String lsxdnf;
 	
-	public String getXdnf() {
-		return xdnf;
+	public String getLsxdnf() {
+		return lsxdnf;
 	}
 
-	public void setXdnf(String xdnf) {
-		this.xdnf = xdnf;
+	public void setLsxdnf(String lsxdnf) {
+		this.lsxdnf = lsxdnf;
 	}
 
 	public String getBzlx135() {

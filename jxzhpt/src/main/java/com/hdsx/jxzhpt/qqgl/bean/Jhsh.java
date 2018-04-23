@@ -268,7 +268,17 @@ public class Jhsh implements Serializable {
 	//计划预安排增加初设完成情况和计划下达情况（0未完成，1已完成）
 	private String cbsjwc;
 	private String jhxdwc;
-		
+	
+	private String xmlxnf;
+	
+	public String getXmlxnf() {
+		return xmlxnf;
+	}
+
+	public void setXmlxnf(String xmlxnf) {
+		this.xmlxnf = xmlxnf;
+	}
+
 	public String getCbsjwc() {
 		return cbsjwc;
 	}

@@ -68,11 +68,11 @@
 				loadBmbm2('sqzt','申请状态省');
 			}
 			//loadBmbm3('lsxmlx','历史项目类型');  
-			loadBmbm3('lsxmnf','历史项目年份');  
+			//loadBmbm3('lsxmnf','历史项目年份');  
 			queryYhdzx();
 		});
 		
-		function queryYhdzxx(){
+		/* function queryYhdzx(){
 			var params = [];
 			var k= getTreeSelected();
             for (var i = 0; i < k.length;i++) {
@@ -80,7 +80,7 @@
             } 
             var xmlx = unique(params).join(",");
             alert(xmlx);
-        }
+        } */
 		
 		function unique(arr){
 			 var res = [];
@@ -142,11 +142,11 @@
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
-			var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
+			/* var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
 			if(lsxmnf=='')
 			lsxmnf='';
 			if(lsxmnf.substr(0,1)==',')
-			lsxmnf=lsxmnf.substr(1,lsxmnf.length);
+			lsxmnf=lsxmnf.substr(1,lsxmnf.length); */
 			
 			/* var lsxmlx=$("#lsxmlx").combobox('getValues').join(",");
 			if(lsxmlx=='')
@@ -159,10 +159,9 @@
                 params.push(k[i].text);
             } 
             var lsxmlx = unique(params).join(",");
-            alert(lsxmlx);
             
-            var xdnf=$("#lsxmlx").combotree("getValues");
-            
+            var lsxdnf=$("#lsxmlx").combotree("getValues").join(",");
+                        
 			grid.id="grid";
 			grid.url="../../../qqgl/queryXmsq.do";
 			var params={'xmlx':4,
@@ -185,12 +184,12 @@
 					//'gcfl':$('#gcfl').combobox("getValues").join(","),
 					"ylxbh":$('#gldj').combobox("getValues").join(","),
 					'lsxmlx':lsxmlx,
-					'lsxmnf':lsxmnf,
+					/* 'lsxmnf':lsxmnf, */
 					'xmbm':$("#xmbm").val(),
 					'yhcsh':$('#yhcsh').combobox("getValue"),
 					'mqidj':mqidj,
 					'pqidj':pqidj,
-					'xdnf':xdnf
+					'lsxdnf':lsxdnf
 			};
 			var sqzt = $('#sqzt').combobox("getValue");
 			
@@ -264,11 +263,10 @@
 						return result;
 					}
 				},
-				
 				{field:'lsjl',title:'历史记录',width:60,align:'center',
 					formatter: function(value,row,index){
 						if(value=="是"){
-							return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+							return '<a href="javascript:openYhLsjl('+"'"+row.xmbm+"','"+lsxmlx+"','"+lsxdnf+"'"+')" style="color:#3399CC;">是</a>';
 						}else{
 							return value;
 						}
@@ -402,7 +400,7 @@
 								{field:'lsjl',title:'历史记录',width:60,align:'center',
 									formatter: function(value,row,index){
 										if(value=="是"){
-											return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+											return '<a href="javascript:openYhLsjl('+"'"+row.xmbm+"','"+lsxmlx+"','"+lsxdnf+"'"+')" style="color:#3399CC;">是</a>';
 										}else{
 											return value;
 										}
@@ -484,12 +482,12 @@
 				success:function(msg){
 					if(msg!=null){
 						$("#xmsl").html(msg.SL);
-						 $("#tz").html(msg.TZ);
-						 $("#cgs").html(msg.BZYS);
-						 $("#sbz").html(msg.SBZ);
-						 $("#sjl").html(msg.SJL);
-						 $("#lc").html(msg.LC);
-						 $("#dftz").html(msg.DFTZ);
+						$("#tz").html(Math.round(msg.TZ));
+						$("#cgs").html(msg.BZYS);
+						$("#sbz").html(Math.round(msg.SBZ));
+						$("#sjl").html(msg.SJL);
+						$("#lc").html(msg.LC);
+						$("#dftz").html(msg.DFTZ);
 					}else{
 						$('#spanntz').html('0');
 						$('#spanlc').html('0');
@@ -554,7 +552,6 @@
 				}
 			});
 		}
-		
 		
 		function batchSb(){
 			var selRow = $('#grid').datagrid("getSelections");
@@ -814,7 +811,6 @@
 		
 		
 		function exportXmsq(){
-			
 			var mqidj = $('#mqidj').combobox("getValues").join(",");
 			var pqidj = $('#pqidj').combobox("getValues").join(",");
 			if(mqidj.substr(0,1)==','){
@@ -830,16 +826,25 @@
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
-			var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
+			/* var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
 			if(lsxmnf=='')
 			lsxmnf='';
 			if(lsxmnf.substr(0,1)==',')
-			lsxmnf=lsxmnf.substr(1,lsxmnf.length);
-			var lsxmlx=$("#lsxmlx").combobox('getValues').join(",");
+			lsxmnf=lsxmnf.substr(1,lsxmnf.length); */
+			/* var lsxmlx=$("#lsxmlx").combobox('getValues').join(",");
 			if(lsxmlx=='')
 			lsxmlx='';
 			if(lsxmlx.substr(0,1)==',')
-			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
+			lsxmlx=lsxmlx.substr(1,lsxmlx.length); */
+			
+			var params = [];
+			var k= getTreeSelected();
+            for (var i = 0; i < k.length;i++) {
+                params.push(k[i].text);
+            } 
+            var lsxmlx = unique(params).join(",");
+
+            var lsxdnf=$("#lsxmlx").combotree("getValues").join(",");
 			
 			var sqzt = $('#sqzt').combobox("getValue");
 			if(userPanduan($.cookie("unit2"))!="省"){
@@ -855,8 +860,9 @@
 			'&tsdq='+tsdq+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue")+
 			'&ylxbh='+$('#gldj').combobox("getValues").join(",")+"&wnxmk="+$("#wnxmk").combobox("getValue")+
 			'&ghlxbh='+$("#lxbm").combotree('getText')+'&lxmc='+$("#lxmc").val()+'&ghlxbm='+$("#ghlxbm").combotree('getText')+
-			'&ghlxmc='+$("#ghlxmc").val()+"&lsxmlx="+lsxmlx+"&lsxmnf="+lsxmnf+"&jdbs="+YMLib.Var.jdbs+"&jsxz="+$("#xmlx").combobox("getValues").join(",")+
-			'&xmbm='+$("#xmbm").val()+'&yhcsh='+$('#yhcsh').combobox("getValue")+"&mqidj="+decodeURI(decodeURI(mqidj))+"&pqidj="+decodeURI(decodeURI(pqidj));
+			'&ghlxmc='+$("#ghlxmc").val()+"&lsxmlx="+lsxmlx+"&jdbs="+YMLib.Var.jdbs+"&jsxz="+$("#xmlx").combobox("getValues").join(",")+
+			'&xmbm='+$("#xmbm").val()+'&yhcsh='+$('#yhcsh').combobox("getValue")+"&mqidj="+decodeURI(decodeURI(mqidj))+"&pqidj="+decodeURI(decodeURI(pqidj))+
+			"&lsxdnf="+lsxdnf;
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{tsdq:tsdq},function(){
 				window.location.href="/jxzhpt/qqgl/exportExcelXmsq1.do?"+param;
 			 });
@@ -1078,11 +1084,11 @@ text-decoration:none;
 								
        							</tr>
        							<tr height="29">
-       							<td align="right">历史计划年份：</td>
+       							<!-- <td align="right">历史计划年份：</td>
 								<td>
 									<select id='lsxmnf' class="easyui-combobox" style="width: 124px;">
 									</select>
-								</td>
+								</td> -->
 								
 								<td align="right">项目编码：</td>
 								<td><input type="text" id="xmbm" style="width:115px;" /></td>

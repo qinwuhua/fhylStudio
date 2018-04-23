@@ -9289,6 +9289,15 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 		</if>
 		order by xmbm
 	</select>
+	
+	<select id="queryyhLsxx" parameterType="jhsh" resultType="lx">
+		select * from jhsh_lsjl where id in(${lsxmbm})
+		<if test="xmlxnf != null and xmlxnf != ''">
+		   ${xmlxnf}
+		</if>
+		order by xmbm
+	</select>  
+	
 	<select id="querywnxmxxxmbm" parameterType="jhsh" resultType="string">
 		select wnxmid from lx_xmxx where xmbm=#{xmbm}
 	</select>

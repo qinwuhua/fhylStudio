@@ -23,6 +23,8 @@ import net.sf.json.JsonConfig;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
+import org.apache.xpath.operations.And;
+import org.aspectj.weaver.ast.Var;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -307,7 +309,24 @@ public class JhshController extends BaseActionSupport implements
 		}
 		return tj;
 	}
-
+	
+	/*public String getXmlxnf(String param) {
+		String tj = "";
+		if (param != null && !"".equals(param)) {
+			String[] s = param.split(",");
+			for (int i = 0; i < s.length; i++) {
+				if (i == 0) {
+					tj += "(xmlx like '%" + s[i].substring(4) + "%' and fun_xmlxnf(xmnf) >=" + s[i].substring(0,4);
+				}else {
+					tj += "or xmlx like '%" + s[i].substring(4) + "%' and fun_xmlxnf(xmnf) >=" + s[i].substring(0,4);
+				}
+				tj += ")";
+			}
+		}
+		
+		return tj;
+	}*/	
+	
 	public void queryGsdgz() throws Exception {
 		List<Jhsh> listData = null;
 		int total = 0;
@@ -2510,7 +2529,62 @@ public class JhshController extends BaseActionSupport implements
 			e.printStackTrace();
 		}
 	}
+	
+	public String concatXmlxnf(String param,String args) {
+		String res = "" ;String tj = ""; String str = "";
+		if (param != null && !"".equals(param)) {
+			String[] s = param.split(",");			
+			for (int i = 0; i < s.length; i++) {
+				if (i == 0)
+					tj += "( xmlx like '%" + s[i].substring(4) + "%' and fun_xmlxnf(xmnf) >=" + s[i].substring(0,4);
+				else
+					tj += " or " + "xmlx like '%" + s[i].substring(4) + "%' and fun_xmlxnf(xmnf) >=" + s[i].substring(0,4);
+			}
+			tj += ")";
+		}		
+		int flag = 0;
+	    if (args != null && !"".equals(args)) {
+	    	String[] x = args.split(",");
+	    	for (int j = 0; j < x.length; j++) {
+	    		if (!x[j].equals("中修") && !x[j].equals("大修")) {
+					if (flag == 0) 
+						str += " (" + "xmlx" + " like '%" + x[j] + "%'";
+					else
+						str += " or " + "xmlx" + " like '%" + x[j] + "%'";
+					flag ++;
+				}
+	    	}
+	    	if (!"".equals(str)) {
+		    	str += ")";
+			}
+		} 
+			    
+	    if (!"".equals(tj) && "".equals(str)) {
+			res = "and" + tj;
+		}
+	    if ("".equals(tj) && !"".equals(str)) {
+			res = "and" + str;
+		}
+	    if (!"".equals(tj) && !"".equals(str)) {
+		    res = "and (" + tj + "or" + str + ")";
+		}
+		return res;
+	}
+	
+	public void queryyhLsxx() {
+		
+	   jhsh.setXmlxnf(concatXmlxnf(jhsh.getXmlxnf(),jhsh.getLsxmlx()));
 
+		try {
+			JsonUtils.write(jhshServer.queryyhLsxx(jhsh), getresponse()
+					.getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	
+	
 	/**
 	 * 新查询立项项目库历史数据信息
 	 */

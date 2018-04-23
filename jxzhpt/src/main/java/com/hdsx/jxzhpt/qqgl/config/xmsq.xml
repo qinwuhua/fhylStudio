@@ -477,6 +477,8 @@
 	      <if test="xmsq.wbc != null">
 	        ,wbc
 	      </if>
+	      <if test="lx.bzlx135 != null">,bzlx135</if>
+	      <if test="lx.bzje135 != null">,bzje135</if>
 		)
 		values(#{lx.id}<if test="lx.xmid!=null">,#{lx.xmid}</if><if test="lx.lxbm!=null">,#{lx.lxbm}</if><if test="lx.lxmc!=null">,#{lx.lxmc}</if>
 		<if test="lx.xzqh!=null">,#{lx.xzqh}</if><if test="lx.xzqhdm!=null">,#{lx.xzqhdm}</if><if test="lx.gydw!=null">,#{lx.gydw}</if>
@@ -648,6 +650,8 @@
 	      <if test="xmsq.wbc != null">
 	         ,#{xmsq.wbc}
 	      </if>
+	      <if test="lx.bzlx135 != null">,#{lx.bzlx135}</if>
+	      <if test="lx.bzje135 != null">,#{lx.bzje135}</if>
 		)
 	</insert>
 	
@@ -702,6 +706,9 @@
 				</if>
 				<if test="xmsq.lsxmlx !='' and xmsq.lsxmlx != null ">
 					${xmsq.lsxmlx}
+				</if>
+				<if test="xmsq.lsxdnf !='' and xmsq.lsxdnf != null ">
+					${xmsq.lsxdnf}
 				</if>
 				<if test="xmsq.qdzh != null and  xmsq.qdzh != ''">
 				 and l.zdzh >= #{xmsq.qdzh}
@@ -975,6 +982,7 @@
 		
         <if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
         
+        <if test="lsxdnf!='' and lsxdnf!= null ">${lsxdnf}</if>
         )
         where 1=1
            <if test="mqidj != null and mqidj != ''">
@@ -1515,6 +1523,7 @@
 			</if>
 			<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
             <if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+            <if test="lsxdnf!='' and lsxdnf!= null ">${lsxdnf}</if>
 		)
 	</select>
 	<select id="queryLjYhdzxbyyhc" parameterType="xmsq" resultType="java.util.Map">
@@ -2340,7 +2349,10 @@
      x.ylmlx v_18,x.ylmjg v_19,x.gcfl v_20,x.jsfa v_21,
      to_char(lx.sbzj,'fm999990.09999') v_22,x.ntz v_23,c.sjpfwh v_24,x.gydw v_25,
      x.bz v_26,
-    (decode(x.lsjl,'是',( select WMSYS.WM_CONCAT(distinct xmlx||'  '||xmmc||'  '||xdnf||'  '||ghlxbm||'  '||ghqdzh||'  '||ghzdzh) from all_lsjl where 1=1 and length(xmbm)=14 and x.lsxmid like '%'||id||'%'),' ')) v_27,
+    (decode(x.lsjl,'是',( select WMSYS.WM_CONCAT(distinct xmlx||'  '||xmmc||'  '||xdnf||'  '||ghlxbm||'  '||ghqdzh||'  '||ghzdzh) from all_lsjl where 1=1 and length(xmbm)=14 and x.lsxmid like '%'||id||'%'
+    <if test="lsxmlx1 !='' and lsxmlx1 != null ">
+		${lsxmlx1}
+	</if>),' ')) v_27,
     (decode(x.wnxmk,'是',( select WMSYS.WM_CONCAT(distinct xmlx||'  '||xmmc||'  '||xmnf||'  '||ghlxbm||'  '||ghqdzh||'  '||ghzdzh) from wn_xmxx where 1=1 and x.WNXMID like '%'||ID||'%'),' ')) v_28,
     decode(substr(fun_mqi1(ghlxbm,ghqdzh,ghzdzh),0,1),',',substr(fun_mqi1(ghlxbm,ghqdzh,ghzdzh),2),'') v_29,
     decode(substr(fun_pqi1(ghlxbm,ghqdzh,ghzdzh),0,1),',',substr(fun_pqi1(ghlxbm,ghqdzh,ghzdzh),2),'') v_30
@@ -2414,6 +2426,9 @@
 				</if>
 				<if test="lsxmlx !='' and lsxmlx != null ">
 					${lsxmlx}
+				</if>
+				<if test="lsxdnf !='' and lsxdnf != null ">
+					${lsxdnf}
 				</if>
 				<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
 				<if test="yhcsh!=null and yhcsh!=''">and x.yhcsh=#{yhcsh}</if>

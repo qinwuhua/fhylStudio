@@ -644,5 +644,7 @@ public interface JhshServer {
 	public boolean insertOrUpdateJhshDj(List<Jhsh> list);
 		
 	public Lx queryLsxxTotal(Lx lx);
+	
+	public List<Lx> queryyhLsxx(Jhsh jhsh);
 
 }

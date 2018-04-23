@@ -2008,4 +2008,17 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		}
 		return result;
 	}
+
+	@Override
+	public List<Lx> queryyhLsxx(Jhsh jhsh) {
+		// System.out.println(jhsh.getLsxmlx());
+		String lsxmbm = queryOne("querylxLsxxxmbm", jhsh);
+		jhsh.setLsxmbm(lsxmbm);
+		//jhsh.setLsxmlx(MyUtil.getQueryTJ1(jhsh.getLsxmlx(), "xmlx"));
+		//jhsh.setLsxmnf(MyUtil.getQueryTJ(jhsh.getLsxmnf(), "xmnf"));
+		// 返回结果
+		List<Lx> result = queryList("queryyhLsxx", jhsh);
+		// 查询此计划所有的路线信息
+		return result;
+	}
 }

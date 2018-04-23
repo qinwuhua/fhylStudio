@@ -355,6 +355,7 @@
 		<action name="querywnxx" class="jhshController" method="querywnxx"></action>
 		<action name="querywnxmxx" class="jhshController" method="querywnxmxx"></action>
 
+        <action name="queryyhLsxx" class="jhshController" method="queryyhLsxx"></action>
 		<action name="queryLsxx1" class="jhshController" method="queryLsxx1"></action>
 		<action name="querywnLsxx" class="jhshController" method="querywnLsxx"></action>
 		<action name="querylxLsxx" class="jhshController" method="querylxLsxx"></action>
