@@ -3598,10 +3598,10 @@ function autoCompleteYLXBM(){
 		}
 		$('#yx_gpsqdzh').val(item.yqdzh);
 		$('#yx_gpsqdzh').val(item.yzdzh);
-		selectGHTSDQ(item.xlxbm,item.xqdzh,item.xzdzh);
+		getgxlxinfo1($('#yx_ghlxbm').val(),$("#yx_ghqdzh").val(),$("#yx_ghzdzh").val());
 		cxghqdmc($('#yx_ghlxbm').val(),$("#yx_ghqdzh").val());
 		cxghzdmc($('#yx_ghlxbm').val(),$("#yx_ghzdzh").val());
-		
+		selectGHTSDQ(item.xlxbm,item.xqdzh,item.xzdzh);
 	});
 }
 
@@ -3732,6 +3732,8 @@ function queryGhByY(){
 	$("#yx_ghqdzh").val(qd);
 	$("#yx_ghzdzh").val(zd);
 	
+	//查询共线信息
+	getgxlxinfo1($('#yx_ghlxbm').val(),$("#yx_ghqdzh").val(),$("#yx_ghzdzh").val());
 	//查询起点名称
 	cxghqdmc($('#yx_ghlxbm').val(),$("#yx_ghqdzh").val());
 	//查询止点名称
@@ -3859,6 +3861,33 @@ function getgxlxinfo(lxbm,qdzh,zdzh){
 					$("#gxlxbm").val(gxbm.substring(0,gxbm.length-1));
 					$("#gxqdzh").val(gxqd.substring(0,gxqd.length-1));
 					$("#gxzdzh").val(gxzd.substring(0,gxzd.length-1));
+					//$("#gxlxbm").val('');$("#gxqdzh").val('');$("#gxzdzh").val('');
+				}
+			}
+		});
+}
+
+function getgxlxinfo1(lxbm,qdzh,zdzh){
+	$("#yx_gxlxbm").val('');$("#yx_gxqdzh").val('');$("#yx_gxzdzh").val('');
+	$.ajax({
+		data:'xmsq.ylxbm='+lxbm+"&xmsq.qdzh="+qdzh+"&xmsq.zdzh="+zdzh+"&xmsq.xzqh="+$.cookie("dist2"),
+		type:'post',
+		dataType:'json',
+		url:'/jxzhpt/qqgl/getgxlxinfo.do',
+		success:function(msg){
+				var gxbm='';var gxqd='';var gxzd='';
+				for(var i=0;i<msg.length;i++){
+					//alert(msg[i].qdzh+","+msg[i].zdzh);
+					gxbm+=msg[i].lxbm+",";
+					gxqd+=msg[i].qdzh+",";
+					gxzd+=msg[i].zdzh+",";
+				}
+				//alert(gxqd+"-,-"+gxzd);
+				if(gxbm!=''){
+					//alert(gxqd.substring(0,gxqd.length-1)+"----"+gxzd.substring(0,gxzd.length-1));
+					$("#yx_gxlxbm").val(gxbm.substring(0,gxbm.length-1));
+					$("#yx_gxqdzh").val(gxqd.substring(0,gxqd.length-1));
+					$("#yx_gxzdzh").val(gxzd.substring(0,gxzd.length-1));
 					//$("#gxlxbm").val('');$("#gxqdzh").val('');$("#gxzdzh").val('');
 				}
 			}

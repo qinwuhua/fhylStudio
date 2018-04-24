@@ -18,6 +18,12 @@
 	<script type="text/javascript">
 		$(function(){
 			/* var lsxmnf=''; */
+			var data=parent.YMLib.Var.Obj;
+			var ghlxbm = data.ghlxbm;
+			var ghqdzh = data.ghqdzh;
+			var ghzdzh = data.ghzdzh;
+			var xmbm = data.xmbm;
+			
 			var lsxmlx='';
 			var xmlxnf='';
 			try {
@@ -40,7 +46,7 @@
 			$('#grid').datagrid({
 				//url:'../../../qqgl/queryLsxx.do',
 				url:'../../../qqgl/queryyhLsxx.do',
-				queryParams: {xmbm: parent.YMLib.Var.xmbm,lsxmlx:lsxmlx,xmlxnf:xmlxnf},
+				queryParams: {xmbm:xmbm,lsxmlx:lsxmlx,xmlxnf:xmlxnf,ghlxbm:ghlxbm,ghqdzh:ghqdzh,ghzdzh:ghzdzh},
 				height:$(window).height()-1,
 				fitColumns:true,
 				columns:[[

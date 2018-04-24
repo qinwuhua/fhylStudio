@@ -266,7 +266,7 @@
 				{field:'lsjl',title:'历史记录',width:60,align:'center',
 					formatter: function(value,row,index){
 						if(value=="是"){
-							return '<a href="javascript:openYhLsjl('+"'"+row.xmbm+"','"+lsxmlx+"','"+lsxdnf+"'"+')" style="color:#3399CC;">是</a>';
+							return '<a href="javascript:openYhLsjl('+"'"+index+"','"+lsxmlx+"','"+lsxdnf+"'"+')" style="color:#3399CC;">是</a>';
 						}else{
 							return value;
 						}
@@ -400,7 +400,7 @@
 								{field:'lsjl',title:'历史记录',width:60,align:'center',
 									formatter: function(value,row,index){
 										if(value=="是"){
-											return '<a href="javascript:openYhLsjl('+"'"+row.xmbm+"','"+lsxmlx+"','"+lsxdnf+"'"+')" style="color:#3399CC;">是</a>';
+											return '<a href="javascript:openYhLsjl('+"'"+index+"','"+lsxmlx+"','"+lsxdnf+"'"+')" style="color:#3399CC;">是</a>';
 										}else{
 											return value;
 										}

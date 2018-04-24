@@ -62,7 +62,7 @@
 			var params={'xmlx':6,'gydwdm':getgydw('gydw'),'xzqhdm':getxzqhdm('xzqh'),
 					'lxmc':$('#lxmc').val(),'jsxz':$('#jsxz').combobox("getValue"),
 					'jb':$('#jb').combobox("getValue"),'xmmc':$('#xmmc').val(),
-					'xmbm':$('#xmnf').combobox("getValues").join(','),
+					'xmnf':$('#xmnf').combobox("getValues").join(','),
 					"ydbmc":$('#ydbmc').val()};
 			var sqzt = $('#sqzt').combobox("getValue");
 			

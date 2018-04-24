@@ -161,7 +161,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-	}
+	}	
 	/**
 	 * 查询特殊地区
 	 * @throws Exception
@@ -546,9 +546,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	
 	
 	public void queryXmsq(){
-		try {
-			
-			if(!xmsq.getXmnf().equals("")){
+		try {			
+			if(!"".equals(xmsq.getXmnf())){
 				/*if(xmbm.indexOf(",")>-1){
 					if(xmbm.indexOf(",") == 0){
 						xmbm = xmbm.substring(0);
@@ -591,13 +590,13 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			xmsq.setGhlxbh(MyUtil.getQueryTJ(xmsq.getGhlxbh(), "lxbm"));
 			xmsq.setGhlxbm(MyUtil.getQueryTJ(xmsq.getGhlxbm(), "ghlxbm"));
 			
-			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
 			xmsq.setJsxz(xmsq.getJsxz());
 			xmsq.setWnxmk(xmsq.getWnxmk());
 			xmsq.setLsxmlx(MyUtil.getQueryTJ2(xmsq.getLsxmnf(),xmsq.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 			xmsq.setLsxmnf(MyUtil.getQueryTJ(xmsq.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			xmsq.setLsxdnf(MyUtil.getQueryTJ(xmsq.getLsxdnf(),"fun_lsxmlx(lsxmbm)"));
 			if(xmsq.getXmlx()==4){
+				xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
 				String gcfl = xmsq.getJsxz();
 				if(gcfl!=null && !gcfl.equals("")){
 					if(gcfl.indexOf(",")>-1){
@@ -658,6 +657,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				list = xmsqServer.queryYhdzxXmsq(xmsq,page,rows);
 				total =xmsqServer.queryYhdzxCount(xmsq);
 			}else if(xmsq.getXmlx()==5){
+				xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
 				if(xmsq.getTsdq().length()>0){
 					String[] tsdqs=xmsq.getTsdq().split(",");
 					String tsdq="and(";
@@ -682,6 +682,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				total =xmsqServer.queryShCount(xmsq);
 			}
 			else if(xmsq.getXmlx()==6) {
+				xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
+				xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
 				list = xmsqServer.queryYhzxXmsq(xmsq,page,rows);
 				total =xmsqServer.queryYhzxCount(xmsq);
 			}
@@ -738,7 +740,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		
 		jsdjHandle();
 	//	xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
-		xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
+		//xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
 		xmsq.setJsxz(xmsq.getJsxz());
 		xmsq.setWnxmk(xmsq.getWnxmk());
 		xmsq.setGhlxbh(MyUtil.getQueryTJ(xmsq.getGhlxbh(), "lxbm"));
@@ -746,6 +748,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		
 		Map<String, String> result = null;
 		if(xmsq.getXmlx()==4){
+			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
 			String gcfl = xmsq.getJsxz();
 			if(gcfl==null || gcfl.equals("")){
 				gcfl=null;
@@ -798,6 +801,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}
 			result = xmsqServer.queryLjYhdzx(xmsq);
 		}else if(xmsq.getXmlx()==5){
+			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
 			if(xmsq.getTsdq().length()>0){
 				String[] tsdqs=xmsq.getTsdq().split(",");
 				String tsdq="and(";
@@ -821,6 +825,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			result = xmsqServer.queryLjSh(xmsq);
 		}
 		else if(xmsq.getXmlx()==6){
+			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
+			xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 			result = xmsqServer.queryLjYhzx(xmsq);
 		}
 		
@@ -1308,7 +1314,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			String tsdqS=(String) session.getAttribute("tsdq");
 			xmsq.setTsdq(tsdqS);
 			
-			if(xmbm.indexOf(",")>-1){
+			if(xmbm != null && xmbm.indexOf(",")>-1){
 				String[] xmnfArray = xmbm.split(",");
 				for (int i = 0; i < xmnfArray.length; i++) {
 					if(i==xmnfArray.length-1){
@@ -1324,13 +1330,13 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}
 			xmsq.setXmnf(xmbm);
 			String ylxbh = xmsq.getYlxbh();
-			if(ylxbh!=null && !ylxbh.equals("")){
+			if(ylxbh!=null && !"".equals(ylxbh)){
 				String[] split1 = ylxbh.split(",");
 				ylxbh="";
 				for (int i = 0; i < split1.length; i++) {
 					ylxbh+=i==split1.length-1 ? "lxbm like '"+split1[i]+"%'" : "lxbm like '"+split1[i]+"%' or ";
 				}
-				if(ylxbh!=null && ylxbh.equals("")){
+				if(ylxbh!=null && "".equals(ylxbh)){
 					ylxbh = "("+ylxbh+")";
 				}
 				xmsq.setYlxbh(ylxbh);
@@ -1342,7 +1348,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 //			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
 			
-			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
+			//xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
 			xmsq.setWnxmk(xmsq.getWnxmk());
 			xmsq.setLsxmlx(MyUtil.getQueryTJ2(xmsq.getLsxmnf(),xmsq.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 			xmsq.setLsxmnf(MyUtil.getQueryTJ(xmsq.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
@@ -1350,6 +1356,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			if(xmsq.getXmlx()==4){
 				titleName="立项审核";
 				fileName="养护大中修立项审核";
+				xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
 				if(xmsq.getTsdq().length()>0){
 					String[] tsdqs=xmsq.getTsdq().split(",");
 					String tsdq="and(";
@@ -1374,6 +1381,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}else if(xmsq.getXmlx()==5){
 				titleName="立项审核";
 				fileName="灾毁重建立项审核";
+				xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
 				if(xmsq.getTsdq().length()>0){
 					String[] tsdqs=xmsq.getTsdq().split(",");
 					String tsdq="and(";
@@ -1400,6 +1408,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			    fileTitle="<title=项目编码,fieid=xmbm>,<title=项目名称,fieid=xmmc>,<title=行政区划,fieid=xzqh>,<title=管养单位,fieid=gydw>,<title=原道班名称,fieid=ydbmc>,<title=所在路线桩号,fieid=lxzh>,<title=计划开工时间,fieid=jhkgsj>,<title=计划完工时间,fieid=jhwgsj>,<title=备注,fieid=bz,width=20>";
 				titleName="立项审核";
 				fileName="养护中心立项审核";
+				xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
 				excelData = xmsqServer.queryYhzxExport(xmsq);
 			}
 			ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());

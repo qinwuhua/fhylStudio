@@ -1140,8 +1140,9 @@ function openLsjl(xmbm){
 	openWindow('lsjlwindow','历史记录','/jxzhpt/page/qqgl/jhsh/lsjl.jsp',980,300);
 }
 
-function openYhLsjl(xmbm,lsxmlx,lsxdnf){
-	YMLib.Var.xmbm=xmbm;
+function openYhLsjl(index,lsxmlx,lsxdnf){
+	var data=$("#grid").datagrid('getRows')[index];
+	YMLib.Var.Obj=data;
 	YMLib.Var.lsxmlx=lsxmlx;
 	YMLib.Var.lsxdnf=lsxdnf;
 	openWindow('lsjlwindow','历史记录','/jxzhpt/page/qqgl/jhsh/yhlsjl.jsp',980,300);

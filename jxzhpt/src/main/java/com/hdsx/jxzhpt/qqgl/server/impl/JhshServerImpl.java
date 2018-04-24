@@ -585,8 +585,30 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		jhsh.setLsxmnf(MyUtil.getQueryTJ(jhsh.getLsxmnf(), "xmnf"));
 		// 返回结果
 		List<Lx> result = queryList("querylxLsxx", jhsh);
+		
+		Lx lxxx = new Lx();
+		lxxx.setXmid(jhsh.getXmbm());
+		Lx lx = queryOne("queryLxMaxJdbsAndSffirst", lxxx);
+		
+		if (!"".equals(lx.getGhlxbm())) {
+			if ("".equals(lx.getGhqdzh()))
+				lx.setGhqdzh("0");
+			if ("".equals(lx.getGhzdzh()))
+				lx.setGhzdzh("9999");
+			List<Lx> l = queryList("getgxlxbyzh", lx);
+			if (l.size() > 0)
+				for (Lx lx2 : l) {
+					lx.setLxbm(null);
+					lx.setQdzh(null);
+					lx.setZdzh(null);
+					lx.setGhlxbm(lx2.getLxbm());
+					lx.setGhqdzh(lx2.getQdzh());
+					lx.setGhzdzh(lx2.getZdzh());
+					List<Lx> l2 = queryList("queryLxLsxxByzh", lx);
+					result.addAll(l2);
+				}
+		}
 		// 查询此计划所有的路线信息
-
 		return result;
 	}
 
@@ -2019,6 +2041,31 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		// 返回结果
 		List<Lx> result = queryList("queryyhLsxx", jhsh);
 		// 查询此计划所有的路线信息
+		
+		Lx lx = new Lx();
+		lx.setGhlxbm(jhsh.getGhlxbm());
+		lx.setGhqdzh(jhsh.getGhqdzh());
+		lx.setGhzdzh(jhsh.getGhzdzh());
+		
+		if (!"".equals(lx.getGhlxbm())) {
+			if ("".equals(lx.getGhqdzh()))
+				lx.setGhqdzh("0");
+			if ("".equals(lx.getGhzdzh()))
+				lx.setGhzdzh("9999");
+			List<Lx> l = queryList("getgxlxbyzh", lx);
+			if (l.size() > 0)
+				for (Lx lx2 : l) {
+					lx.setLxbm(null);
+					lx.setQdzh(null);
+					lx.setZdzh(null);
+					lx.setGhlxbm(lx2.getLxbm());
+					lx.setGhqdzh(lx2.getQdzh());
+					lx.setGhzdzh(lx2.getZdzh());
+					List<Lx> l2 = queryList("queryLxLsxxByzh", lx);
+					result.addAll(l2);
+				}
+		}
+		
 		return result;
 	}
 }

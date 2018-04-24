@@ -9290,6 +9290,14 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 		order by xmbm
 	</select>
 	
+	<select id="queryLxLsxxByzh" parameterType="lx" resultType="lx">
+	select * from jhsh_lsjl where xmbm in (select xmid
+    from lxsh_lx
+    where  ghlxbm like '%' || #{ghlxbm} || '%'
+    and to_number(fun_zdzxz(ghqdzh, ghzdzh, 'max')) &gt; to_number(#{ghqdzh})
+    and to_number(fun_zdzxz(ghqdzh, ghzdzh, 'min')) &lt; to_number(#{ghzdzh}))
+	</select>
+	
 	<select id="queryyhLsxx" parameterType="jhsh" resultType="lx">
 		select * from jhsh_lsjl where id in(${lsxmbm})
 		<if test="xmlxnf != null and xmlxnf != ''">
@@ -10212,4 +10220,11 @@ select to_char(rownum) v_0, j.ZYDPX v_1, j.ds v_2, j.XMBM v_3, j.xmmc v_4, lx.gh
       end if;
       end;   
 	</update>
+	
+	<select id="queryLxMaxJdbsAndSffirst" parameterType="lx" resultType="lx">
+		select * from lxsh_lx where xmid=#{xmid} 		
+		and sffirst = '1'
+		and jdbs= (select max(jdbs) from lxsh_lx x where x.xmid = #{xmid})
+	</select>
+	
 </mapper>

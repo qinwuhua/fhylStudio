@@ -92,8 +92,27 @@ text-decoration:none;
 					<input disabled='disabled' id="zdzh" name="zdzh" onchange="querymc('zdzh')" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;"></span><br/>
 					
 				</td>
+            </tr>  
+                         
+            <tr style="height: 30px;">
+            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					共线路线编码</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="gxlxbm" name="gxlxbm" type="text" style="width: 120px;" disabled='disabled'/>
+					
+				</td>
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					共线起点桩号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="gxqdzh" name="gxqdzh" type="text" style="width: 120px;" disabled='disabled'/>
+				</td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					共线止点桩号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="gxzdzh" name="gxzdzh" type="text" style="width: 120px;" disabled='disabled'/>
+				</td>
             </tr>
-
+            
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>&nbsp;</font>原路线名称：</td>
@@ -179,7 +198,7 @@ text-decoration:none;
 					<span style="color: red;"></span>					
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					规划起点桩号</td>
+					规划起点桩号</td>                           
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="yx_ghqdzh" disabled="disabled" name="yx_ghqdzh" type="text" style="width: 120px;" onchange="queryghmc('yx_ghqdzh')"/>&nbsp;<span style="color: red;"></span><br/>
 					<input id="yx_yghqdzh" name="yx_yghqdzh" type="hidden" style="width: 120px;"/>				
@@ -192,6 +211,24 @@ text-decoration:none;
 				</td>
             </tr>
             
+            <tr style="height: 30px;">
+            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					共线路线编码</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="yx_gxlxbm" name="gxlxbm" type="text" style="width: 120px;" disabled='disabled'/>
+					
+				</td>
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					共线起点桩号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="yx_gxqdzh" name="gxqdzh" type="text" style="width: 120px;" disabled='disabled'/>
+				</td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					共线止点桩号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="yx_gxzdzh" name="gxzdzh" type="text" style="width: 120px;" disabled='disabled'/>
+				</td>
+            </tr> 
              
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
