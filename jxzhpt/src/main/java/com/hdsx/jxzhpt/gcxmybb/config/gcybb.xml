@@ -5434,7 +5434,7 @@ where jh.xdzt in ('1')
 	<select id="getShxmbTotal" parameterType="gcglabgc" resultType="elist">
 	select '' v_0, '合计' v_1, '' v_2,'' v_3,'' v_4, '' v_5, '' v_6,'' v_7,'' v_8, '' v_9, '' v_10,'' v_11,'' v_12,'' v_13, nvl(sum(lx.zlc),0) v_14, nvl(sum(jh.pfztz),0) v_15, nvl(sum(jh.bbzzj),0) v_16, nvl(sum(jh.dfzc),0) v_17, nvl(sum(xd.xdztz),0) v_18, nvl(sum(xd.xdbtz),0) v_19,nvl(sum(gx1.wclc),0) v_20,
 '' v_21,'' v_22,'' v_23,nvl(sum(gc1.pfztz),0) v_24,nvl(sum(gc1.cgsdwzj),0) v_25,nvl(sum(gc1.dfzc),0) v_26,nvl(sum(gc1.qt),0) v_27,nvl(sum(gx2.wcztz),0) v_28,nvl(sum(gx2.wclc),0) v_29,nvl(sum(gx2.yilc),0) v_30, nvl(sum(gx2.erlc),0) v_31, nvl(sum(gx2.sanlc),0) v_32, nvl(sum(gx2.silc),0) v_33,
-nvl(sum(gc3.pfztz),0) v_34,nvl(sum(gx4.wclc),0) v_35,nvl(sum(gx4.wcztz),0) v_36,nvl(sum(gc2.pfztz),0) v_37,nvl(sum(gc2.cgsdwzj),0) v_38,nvl(sum(gc2.dfzc),0) v_39,nvl(sum(gc2.qt),0) v_40,nvl(sum(gx3.wcztz),0) v_41,nvl(sum(gx3.wclc),0) v_42,nvl(sum(gx3.yilc),0) v_43, nvl(sum(gx3.erlc),0) v_44, nvl(sum(gx3.sanlc),0) v_45, nvl(sum(gx3.silc),0) v_46,nvl(sum(lx.zlc),0)-nvl(sum(gx3.wclc),0) v_47,'' v_48
+nvl(sum(gc3.pfztz),0) v_34,nvl(sum(gx4.wclc),0) v_35,nvl(sum(gx4.wcztz),0) v_36,nvl(sum(gc2.pfztz),0) v_37,nvl(sum(gc2.cgsdwzj),0) v_38,nvl(sum(gc2.dfzc),0) v_39,nvl(sum(gc2.qt),0) v_40,nvl(sum(gx3.wcztz),0) v_41,nvl(sum(gx3.wclc),0) v_42,nvl(sum(gx3.yilc),0) v_43, nvl(sum(gx3.erlc),0) v_44, nvl(sum(gx3.sanlc),0) v_45, nvl(sum(gx3.silc),0) v_46,nvl(sum(lx.zlc),0)-nvl(sum(gx3.wclc),0) v_47,'' v_48,'360000' xzqhdm
 from jhsh_sh jh
 left join xmsq_sh lm on lm.xmbm = jh.xmbm
 left join (select xmid, max(decode(sffirst,'1',ghlxbm))ghlxbm,max(decode(sffirst,'1',ghqdzh))ghqdzh,max(decode(sffirst,'1',ghzdzh))ghzdzh,
