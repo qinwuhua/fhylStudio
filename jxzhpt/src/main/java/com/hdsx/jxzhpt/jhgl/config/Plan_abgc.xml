@@ -62,7 +62,7 @@
 				(
 					select jh.id,jh.sckid,jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.jhsybbzje,jh.jhsydfzczj,jh.sfsqablbz,
 					jh.sbzt,jh.spzt,jh.jh_sbthcd,jh.kgzt,jh.jgzt,sc.bzls as sfylsjl,lx.ylxbm,lx.ylxmc,lx.yqdzh,lx.yzdzh,
-               		lx.gydw,lx.xzqhmc,lx.xzqhdm,lx.lxbm,lx.lxmc,sc.scqdzh as qdzh,sc.sczdzh as zdzh,sc.scyhlc,yhlc,jhyhlc
+               		lx.gydw,lx.xzqhmc,lx.xzqhdm,sc.sck_lxbm lxbm,sc.sck_lxmc lxmc,sc.scqdzh as qdzh,sc.sczdzh as zdzh,sc.scyhlc,yhlc,jhyhlc
                 	from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
 					left join xmk_abgc lx on (sc.xmkid=lx.id) 
 						left join (select xmid,replace(WMSYS.WM_CONCAT(jhxdwh),',',',') jhxdwh from plan_zjxd group by xmid) xd on jh.id=xd.xmid
