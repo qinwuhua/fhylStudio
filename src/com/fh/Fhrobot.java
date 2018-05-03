@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.fh.controller.Fhcontroller;
 import com.fh.server.FhMapper;
 import com.fh.tools.DBTools;
 import com.sobte.cqp.jcq.entity.Anonymous;
@@ -161,7 +162,8 @@ public class Fhrobot extends JcqAppAbstract implements ICQVer, IMsg, IRequest {
 		 try {
 			 
 			 if(msg.indexOf("创建角色")!=-1&&msg.split("-").length==3) {
-				 
+				 String remsg = Fhcontroller.cjrole(fromQQ,msg);
+				 CQ.sendGroupMsg(fromGroup,CC.at(fromQQ)+"\n"+  remsg);
 			 }else {
 				 List<Map<String, String>> l = m.selectOutMsg(msg);
 					if(l.size()>0)
@@ -173,9 +175,8 @@ public class Fhrobot extends JcqAppAbstract implements ICQVer, IMsg, IRequest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-        
-		 
-	        return MSG_IGNORE;
+        ss.close();
+	    return MSG_IGNORE;
         
         
         

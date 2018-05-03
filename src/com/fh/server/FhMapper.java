@@ -15,5 +15,7 @@ public interface FhMapper {
 	    public List<Map<String, String>> selectOutMsg(String msg) throws Exception;
 
 		public List<HashMap<String, String>> selectRoleByQq(String string);
+
+		public int insertRole(Map<String, String> role);
 	
 }
