@@ -9,10 +9,36 @@
     <select id="selectRoleByQq" resultType="map" parameterType="string">
      select * from fh_role where qq=#{value}
     </select>
+    <select id="selectRoleByQqAndJg" resultType="map" parameterType="string">
+     select * from fh_role where qq=#{value} and sysdate-numtodsinterval(5,'minute')>=czsj
+    </select>
     <insert id="insertRole" parameterType="map" >
     	INSERT INTO FH_ROLE(QQ,NAME,SEX,SM,FY,GJ,ZL)
     	VALUES(#{QQ},#{NAME},#{SEX},#{SM},#{FY},#{GJ},#{ZL})
     </insert>
+    <update id="updateRole" parameterType="map">
+    UPDATE FH_ROLE
+    <set>
+      <if test="NAME != null" >NAME = #{NAME},</if>
+      <if test="SEX != null" >SEX = #{SEX},</if>
+      <if test="LV != null" >LV = #{LV},</if>
+      <if test="XZLV != null" >XZLV = #{XZLV},</if>
+      <if test="ZLV != null" >ZLV = #{ZLV},</if>
+      <if test="SM != null" >SM = #{SM},</if>
+      <if test="FY != null" >FY = #{FY},</if>
+      <if test="GJ != null" >GJ = #{GJ},</if>
+      <if test="ZL != null" >ZL = #{ZL},</if>
+      <if test="POU != null" >POU = #{POU},</if>
+      <if test="CW != null" >CW = #{CW},</if>
+      <if test="JY != null and JY != ''" >JY=#{JY},</if>
+	  <if test="CZSJ != null and CZSJ != ''" >CZSJ=SYSDATE,</if>
+	 </set>
+    WHERE QQ=#{QQ}
+    </update>
+    
+    <select id="selectFb" resultType="map" >
+    	select * from fh_fb order by to_number(id)
+    </select>
     
     
     

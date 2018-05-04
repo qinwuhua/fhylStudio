@@ -1,5 +1,6 @@
 package com.fh;
 
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
@@ -165,11 +166,15 @@ public class Fhrobot extends JcqAppAbstract implements ICQVer, IMsg, IRequest {
 				 String remsg = Fhcontroller.cjrole(fromQQ,msg);
 				 CQ.sendGroupMsg(fromGroup,CC.at(fromQQ)+"\n"+  remsg);
 			 }else {
-				 List<Map<String, String>> l = m.selectOutMsg(msg);
-					if(l.size()>0)
-					for (Map<String, String> map : l) {
-						CQ.sendGroupMsg(fromGroup,  map.get("OUT_MSG").replaceAll("enter", "\n"));
-					}
+				 List<Map<String, String>> l = m.selectOutMsg(msg.trim());
+				 if(l.get(0).get("FUN")==null) {
+					 CQ.sendGroupMsg(fromGroup,  l.get(0).get("OUT_MSG").replaceAll("enter", "\n"));
+				 }else {
+					 Method method = Fhcontroller.class.getMethod(l.get(0).get("FUN"), long.class,long.class);  
+				     String remsg = (String) method.invoke(Fhcontroller.class.newInstance(), fromQQ, qqId);
+				     CQ.sendGroupMsg(fromGroup,CC.at(fromQQ)+"\n"+  remsg);
+				 }
+						
 			 }
 			
 		} catch (Exception e) {

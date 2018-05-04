@@ -17,5 +17,13 @@ public interface FhMapper {
 		public List<HashMap<String, String>> selectRoleByQq(String string);
 
 		public int insertRole(Map<String, String> role);
+
+		public void updateRole(Map<String, String> role);
+
+		public List<HashMap<String, String>> selectRoleByQqAndJg(String string);
+
+		public List<HashMap<String, String>> selectFb();
+		
+		
 	
 }
