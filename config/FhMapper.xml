@@ -10,7 +10,7 @@
      select * from fh_role where qq=#{value}
     </select>
     <select id="selectRoleByQqAndJg" resultType="map" parameterType="string">
-     select * from fh_role where qq=#{value} and sysdate-numtodsinterval(5,'minute')>=czsj
+     select * from fh_role where qq=#{value} and sysdate-numtodsinterval(1,'minute')>=czsj
     </select>
     <insert id="insertRole" parameterType="map" >
     	INSERT INTO FH_ROLE(QQ,NAME,SEX,SM,FY,GJ,ZL)
@@ -22,6 +22,7 @@
       <if test="NAME != null" >NAME = #{NAME},</if>
       <if test="SEX != null" >SEX = #{SEX},</if>
       <if test="LV != null" >LV = #{LV},</if>
+      <if test="XZ != null" >XZ = #{XZ},</if>
       <if test="XZLV != null" >XZLV = #{XZLV},</if>
       <if test="ZLV != null" >ZLV = #{ZLV},</if>
       <if test="SM != null" >SM = #{SM},</if>
@@ -31,6 +32,7 @@
       <if test="POU != null" >POU = #{POU},</if>
       <if test="CW != null" >CW = #{CW},</if>
       <if test="JY != null and JY != ''" >JY=#{JY},</if>
+      <if test="LS != null and LS != ''" >LS=#{LS},</if>
 	  <if test="CZSJ != null and CZSJ != ''" >CZSJ=SYSDATE,</if>
 	 </set>
     WHERE QQ=#{QQ}
@@ -38,6 +40,52 @@
     
     <select id="selectFb" resultType="map" >
     	select * from fh_fb order by to_number(id)
+    </select>
+    <select id="queryfbByName" resultType="map"  parameterType="string">
+    	select * from fh_fb where name=#{value} order by to_number(id)
+    </select>
+    
+    <select id="selectSP" resultType="map"  parameterType="string">
+    	select * from fh_sp where lx=#{value} order by to_number(id)
+    </select>
+    
+    <select id="selectWpByQq" resultType="map"  parameterType="string">
+    	select * from fh_bb where qq=#{value} order by lx,to_number(lv)
+    </select>
+    <select id="selectWdwpByQqAndName" resultType="map"  parameterType="map">
+    	select * from fh_bb where qq=#{QQ} and name=#{NAME} order by lx,to_number(lv)
+    </select>
+    <select id="selectSpByName" resultType="map"  parameterType="string">
+    	select * from fh_sp where name=#{value} order by to_number(id)
+    </select>
+    <update id="updatewp" parameterType="map">
+    	update fh_bb set sl=#{SL} WHERE QQ=#{QQ} AND NAME=#{NAME}
+    </update>
+    <insert id="insertWp" parameterType="map" >
+    	INSERT INTO FH_BB(ID,QQ,NAME,LX,SL,LV)
+    	VALUES(SYS_GUID(),#{QQ},#{NAME},#{LX},#{SL},#{LV})
+    </insert>
+    <delete id="deleteWp" parameterType="map" >
+    	DELETE FROM FH_BB WHERE QQ=#{QQ} AND NAME=#{NAME}
+    </delete>
+    
+    <update id="updateRolebyWp" parameterType="map">
+    UPDATE FH_ROLE
+    <set>
+      <if test="WQ != null" >WQ = #{WQ},</if>
+      <if test="HJ != null" >HJ = #{HJ},</if>
+      <if test="SS != null" >SS = #{SS},</if>
+      <if test="SM != null" >SM = #{SM},</if>
+      <if test="FY != null" >FY = #{FY},</if>
+      <if test="GJ != null" >GJ = #{GJ},</if>
+      <if test="ZL != null" >ZL = #{ZL},</if>
+      <if test="LS != null" >LS  = #{LS},</if>
+	 </set>
+    WHERE QQ=#{QQ}
+    </update>
+    
+    <select id="querySpByIdAndLx"  resultType="map"  parameterType="string">
+    	SELECT * FROM FH_SP WHERE ID=#{ID} AND LX=#{LX}
     </select>
     
     

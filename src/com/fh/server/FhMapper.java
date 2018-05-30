@@ -23,6 +23,26 @@ public interface FhMapper {
 		public List<HashMap<String, String>> selectRoleByQqAndJg(String string);
 
 		public List<HashMap<String, String>> selectFb();
+
+		public List<HashMap<String, String>> queryfbByName(String split);
+
+		public List<HashMap<String, String>> selectSP(String string);
+
+		public List<HashMap<String, String>> selectWpByQq(String string);
+
+		public List<HashMap<String, String>> selectWdwpByQqAndName(HashMap<String, String> h);
+
+		public List<HashMap<String, String>> selectSpByName(String string);
+
+		public void updatewp(HashMap<String, String> h);
+
+		public void insertWp(HashMap<String, String> ywq);
+
+		public void deleteWp(HashMap<String, String> xwq);
+
+		public void updateRolebyWp(HashMap<String, String> h);
+
+		public HashMap<String, String> querySpByIdAndLx(HashMap<String, String> bsp);
 		
 		
 	

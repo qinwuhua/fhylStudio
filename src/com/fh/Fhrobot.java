@@ -124,76 +124,6 @@ public class Fhrobot extends JcqAppAbstract implements ICQVer, IMsg, IRequest {
 		return MSG_IGNORE;
 	}
 
-	/**
-	 * 群消息 (Type=2)<br>
-	 * 本方法会在酷Q【线程】中被调用。<br>
-	 *
-	 * @param subType
-	 *            子类型，目前固定为1
-	 * @param msgId
-	 *            消息ID
-	 * @param fromGroup
-	 *            来源群号
-	 * @param fromQQ
-	 *            来源QQ号
-	 * @param fromAnonymous
-	 *            来源匿名者
-	 * @param msg
-	 *            消息内容
-	 * @param font
-	 *            字体
-	 * @return 关于返回值说明, 见 {@link #privateMsg 私聊消息} 的方法
-	 */
-	public int groupMsg(int subType, int msgId, long fromGroup, long fromQQ, String fromAnonymous, String msg,
-			int font) {
-		// 如果消息来自匿名者
-        if (fromQQ == 80000000L && !fromAnonymous.equals("")) {
-            // 将匿名用户信息放到 anonymous 变量中
-            @SuppressWarnings("unused")
-			Anonymous anonymous = CQ.getAnonymous(fromAnonymous);
-        }
-        // 解析CQ码案例 如：[CQ:at,qq=100000]
-        // CC.analysis();// 此方法将CQ码解析为可直接读取的对象
-        @SuppressWarnings("unused")
-		long qqId = CC.getAt(msg);// 此方法为简便方法，获取第一个CQ:At里的QQ号，错误时为：-1000
-        // 这里处理消息
-        
-        SqlSession ss=DBTools.getSession();
-		 FhMapper m = ss.getMapper(FhMapper.class);
-		 try {
-			 
-			 if(msg.indexOf("创建角色")!=-1&&msg.split("-").length==3) {
-				 String remsg = Fhcontroller.cjrole(fromQQ,msg);
-				 CQ.sendGroupMsg(fromGroup,CC.at(fromQQ)+"\n"+  remsg);
-			 }else {
-				 List<Map<String, String>> l = m.selectOutMsg(msg.trim());
-				 if(l.get(0).get("FUN")==null) {
-					 CQ.sendGroupMsg(fromGroup,  l.get(0).get("OUT_MSG").replaceAll("enter", "\n"));
-				 }else {
-					 Method method = Fhcontroller.class.getMethod(l.get(0).get("FUN"), long.class,long.class);  
-				     String remsg = (String) method.invoke(Fhcontroller.class.newInstance(), fromQQ, qqId);
-				     CQ.sendGroupMsg(fromGroup,CC.at(fromQQ)+"\n"+  remsg);
-				 }
-						
-			 }
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-        ss.close();
-	    return MSG_IGNORE;
-        
-        
-        
-        
-       
-        
-        
-        
-        /*CQ.sendGroupMsg(fromGroup, CC.at(fromQQ) + "你发送了这样的消息：" + msg + "\n来自Java插件");
-        return MSG_IGNORE;*/
-        
-	}
 
 	/**
 	 * 讨论组消息 (Type=4)<br>
@@ -395,18 +325,94 @@ public class Fhrobot extends JcqAppAbstract implements ICQVer, IMsg, IRequest {
 	}
 
 	
-	public static void main(String[] args) {
-		 SqlSession ss=DBTools.getSession();
-		 FhMapper m = ss.getMapper(FhMapper.class);
+	
+	
+	
+	
+	/**
+	 * 群消息 (Type=2)<br>
+	 * 本方法会在酷Q【线程】中被调用。<br>
+	 *
+	 * @param subType
+	 *            子类型，目前固定为1
+	 * @param msgId
+	 *            消息ID
+	 * @param fromGroup
+	 *            来源群号
+	 * @param fromQQ
+	 *            来源QQ号
+	 * @param fromAnonymous
+	 *            来源匿名者
+	 * @param msg
+	 *            消息内容
+	 * @param font
+	 *            字体
+	 * @return 关于返回值说明, 见 {@link #privateMsg 私聊消息} 的方法
+	 */
+	public int groupMsg(int subType, int msgId, long fromGroup, long fromQQ, String fromAnonymous, String msg,
+			int font) {
+		// 如果消息来自匿名者
+        if (fromQQ == 80000000L && !fromAnonymous.equals("")) {
+            // 将匿名用户信息放到 anonymous 变量中
+            @SuppressWarnings("unused")
+			Anonymous anonymous = CQ.getAnonymous(fromAnonymous);
+        }
+        // 解析CQ码案例 如：[CQ:at,qq=100000]
+        // CC.analysis();// 此方法将CQ码解析为可直接读取的对象
+        long qqId = CC.getAt(msg);// 此方法为简便方法，获取第一个CQ:At里的QQ号，错误时为：-1000
+        // 这里处理消息
+        msg=msg.trim();
 		 try {
-			List<Map<String, String>> l = m.selectOutMsg("测试");
-			for (Map<String, String> map : l) {
-				System.out.println(map.get("OUT_MSG"));
-			}
-			
+			 SqlSession ss=DBTools.getSession();
+			 FhMapper m = ss.getMapper(FhMapper.class);
+			 if(msg.indexOf("创建角色")!=-1&&msg.split("-").length==3) {
+				 String remsg = Fhcontroller.cjrole(fromQQ,msg);
+				 CQ.sendGroupMsg(fromGroup,CC.at(fromQQ)+"\n"+  remsg);
+			 }else if(msg.indexOf("进入副本")!=-1&&msg.split("-").length==2) {
+				 String remsg = Fhcontroller.jrfb(fromQQ,msg);
+				 CQ.sendGroupMsg(fromGroup,CC.at(fromQQ)+"\n"+  remsg);
+			 }
+			 else if(msg.indexOf("购买装备")!=-1&&msg.split("-").length==2) {
+				 String remsg = Fhcontroller.gmwp(fromQQ,msg);
+				 CQ.sendGroupMsg(fromGroup,CC.at(fromQQ)+"\n"+  remsg);
+			 }
+			 else if(msg.indexOf("使用装备")!=-1&&msg.split("-").length==2) {
+				 String remsg = Fhcontroller.sywp(fromQQ,msg);
+				 CQ.sendGroupMsg(fromGroup,CC.at(fromQQ)+"\n"+  remsg);
+			 }
+			 else {
+				 List<Map<String, String>> l = m.selectOutMsg(msg.trim());
+				 if(l.get(0).get("FUN")==null) {
+					 CQ.sendGroupMsg(fromGroup,  l.get(0).get("OUT_MSG").replaceAll("enter", "\n"));
+				 }else {
+					 Method method = Fhcontroller.class.getMethod(l.get(0).get("FUN"), long.class,long.class);  
+				     String remsg = (String) method.invoke(Fhcontroller.class.newInstance(), fromQQ, qqId);
+				     CQ.sendGroupMsg(fromGroup,CC.at(fromQQ)+"\n"+  remsg);
+				 }
+						
+			 }
+			 ss.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+        
+	    return MSG_IGNORE;
+        
+        
+        
+        
+       
+        
+        
+        
+        /*CQ.sendGroupMsg(fromGroup, CC.at(fromQQ) + "你发送了这样的消息：" + msg + "\n来自Java插件");
+        return MSG_IGNORE;*/
+        
 	}
+
+	
+	
+	
+	
 	
 }

@@ -21,7 +21,7 @@ public class DBTools {
         
     }
     //创建能执行映射文件中sql的sqlSession
-    public static SqlSession getSession(){
+    public static SqlSession getSession() throws Exception{
         return sessionFactory.openSession();
     }
     
